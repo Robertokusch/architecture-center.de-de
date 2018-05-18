@@ -5,16 +5,16 @@ description: >-
 
   Anleitungen, VPN-Gateway, ExpressRoute, Lastenausgleich, virtuelles Netzwerk, Active Directory
 author: telmosampaio
-ms.date: 11/28/2016
+ms.date: 05/02/2018
 pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: e32a6420821e70c84e77d2c39614f0c45efbb7e2
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 047ecea41ba30ce4cccf17b8c4964a37ae60150f
+ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 05/03/2018
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>Erstellen einer Active Directory Domain Services (AD DS)-Ressourcengesamtstruktur in Azure
 
@@ -90,51 +90,71 @@ Spezifische Überlegungen zur Sicherheit für Active Directory finden Sie im Abs
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Eine Lösung zur Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github] verfügbar. Sie benötigen die neueste Version der Azure-Befehlszeilenschnittstelle, um das PowerShell-Skript auszuführen, mit dem die Lösung bereitgestellt wird. Um die Referenzarchitektur bereitzustellen, gehen Sie folgendermaßen vor:
+Eine Bereitstellung für diese Architektur ist auf [GitHub][github] verfügbar. Beachten Sie, dass die gesamte Bereitstellung bis zu zwei Stunden dauern kann, was das Erstellen des VPN-Gateways und die Ausführung der Skripts beinhaltet, die AD DS konfigurieren.
 
-1. Laden Sie den Projektmappenordner von [GitHub][github] auf Ihren lokalen Computer herunter, oder klonen Sie ihn.
+### <a name="prerequisites"></a>Voraussetzungen
 
-2. Öffnen Sie die Azure-Befehlszeilenschnittstelle, und navigieren Sie zum lokalen Projektmappenordner.
+1. Klonen oder Forken Sie das GitHub-Repository [Referenzarchitekturen][github], oder laden Sie die entsprechende ZIP-Datei herunter.
 
-3. Führen Sie den folgenden Befehl aus:
-   
-    ```Powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> <mode>
+2. Installieren Sie [Azure CLI 2.0][azure-cli-2].
+
+3. Installieren Sie das npm-Paket mit den [Azure Bausteinen][azbb].
+
+4. Melden Sie sich über eine Eingabeaufforderung, eine Bash-Eingabeaufforderung oder die PowerShell-Eingabeaufforderung bei Ihrem Azure-Konto an. Verwenden Sie hierzu den unten aufgeführten Befehl.
+
+   ```bash
+   az login
+   ```
+
+### <a name="deploy-the-simulated-on-premises-datacenter"></a>Bereitstellen des simulierten lokalen Rechenzentrums
+
+1. Navigieren Sie zum Ordner `identity/adds-forest` des GitHub-Repositorys.
+
+2. Öffnen Sie die Datei `onprem.json` . Suchen Sie nach Instanzen von `adminPassword` und `Password`, und fügen Sie Werte für die Kennwörter hinzu.
+
+3. Führen Sie den folgenden Befehl aus, und warten Sie, bis die Bereitstellung abgeschlossen ist:
+
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p onprem.json --deploy
     ```
-   
-    Ersetzen Sie `<subscription id>` durch Ihre Azure-Abonnement-ID.
-   
-    Geben Sie für `<location>` eine Azure-Region an, z.B. `eastus` oder `westus`.
-   
-    Der `<mode>`-Parameter steuert die Granularität der Bereitstellung. Er kann einen der folgenden Werte annehmen:
-   
-   * `Onpremise`: stellt die simulierte lokale Umgebung bereit
-   * `Infrastructure`: stellt die VNET-Infrastruktur und die Jumpbox in Azure bereit
-   * `CreateVpn`: stellt das Gateway des virtuellen Azure-Netzwerks bereit und verbindet es mit dem simulierten lokalen Netzwerk.
-   * `AzureADDS`: stellt die virtuellen Computer, die als Active Directory DS-Server fungieren, auf diesen virtuellen Computern Active Directory und dann die Domäne in Azure bereit.
-   * `WebTier`: stellt die virtuellen Computer der Webebene und den Lastenausgleich bereit.
-   * `Prepare`: stellt alle vorherigen Bereitstellungen bereit. **Dies ist die empfohlene Option, wenn Sie nicht über ein lokales Netzwerk verfügen, aber die vollständige oben beschriebene Referenzarchitektur für Tests oder Prüfverfahren bereitstellen möchten.** 
-   * `Workload`: stellt die virtuellen Computer der Geschäfts- und Datenebene sowie Lastenausgleichsmodule bereit. Beachten Sie, dass diese virtuellen Computer nicht in der Bereitstellung `Prepare` enthalten sind.
 
-4. Warten Sie, bis die Bereitstellung abgeschlossen ist. Das Bereitstellen der Bereitstellung `Prepare` dauert mehrere Stunden.
-     
-5. Wenn Sie die simulierte lokale Konfiguration verwenden, konfigurieren Sie die eingehende Vertrauensstellung:
-   
-   1. Stellen Sie eine Verbindung mit der Jumpbox her (<em>ra-adtrust-mgmt-vm1</em> in der Ressourcengruppe <em>ra-adtrust-security-rg</em>). Melden Sie sich als <em>testuser</em> mit dem Kennwort <em>AweS0me@PW</em> an.
-   2. Öffnen Sie in der Jumpbox eine RDP-Sitzung auf dem ersten virtuellen Computer in der Domäne <em>contoso.com</em> (die lokale Domäne). Dieser virtuelle Computer hat die IP-Adresse 192.168.0.4. Der Benutzername ist <em>contoso\testuser</em> mit dem Kennwort <em>AweS0me@PW</em>.
-   3. Laden Sie das Skript [incoming-trust.ps1][incoming-trust] herunter, und führen Sie es aus, um die eingehende Vertrauensstellung von der Domäne *treyresearch.com* zu erstellen.
+### <a name="deploy-the-azure-vnet"></a>Bereitstellen von Azure VNet
 
-6. Wenn Sie Ihre eigene lokale Infrastruktur verwenden, gehen Sie folgendermaßen vor:
-   
-   1. Laden Sie das Skript [incoming-trust.ps1][incoming-trust] herunter.
-   2. Bearbeiten Sie das Skript, und ersetzen Sie den Wert der Variablen `$TrustedDomainName` durch den Namen Ihrer eigenen Domäne.
-   3. Führen Sie das Skript aus.
+1. Öffnen Sie die Datei `azure.json` . Suchen Sie nach Instanzen von `adminPassword` und `Password`, und fügen Sie Werte für die Kennwörter hinzu.
 
-7. Stellen Sie von der Jumpbox eine Verbindung mit dem ersten virtuellen Computer in der Domäne <em>treyresearch.com</em> (die Domäne in der Cloud) her. Dieser virtuelle Computer hat die IP-Adresse 10.0.4.4. Der Benutzername ist <em>treyresearch\testuser</em> mit dem Kennwort <em>AweS0me@PW</em>.
+2. Suchen Sie in der gleichen Datei nach Instanzen von `sharedKey`, und geben Sie gemeinsam verwendete Schlüssel für die VPN-Verbindung ein. 
 
-8. Laden Sie das Skript [outgoing-trust.ps1][outgoing-trust] herunter, und führen Sie es aus, um die eingehende Vertrauensstellung von der Domäne *treyresearch.com* zu erstellen. Wenn Sie Ihre eigenen lokalen Computer verwenden, bearbeiten Sie zuerst das Skript. Legen Sie die Variable `$TrustedDomainName` auf den Namen Ihrer lokalen Domäne fest, und geben Sie die IP-Adressen der Active Directory DS-Server für diese Domäne in der Variablen `$TrustedDomainDnsIpAddresses` an.
+    ```bash
+    "sharedKey": "",
+    ```
 
-9. Warten Sie einige Minuten, bis die vorherigen Schritte abgeschlossen sind, und stellen Sie dann eine Verbindung mit einem lokalen virtuellen Computer her. Führen Sie die im Artikel [Überprüfen einer Vertrauensstellung][verify-a-trust] beschriebenen Schritte aus, um festzustellen, ob die Vertrauensstellung zwischen den Domänen *contoso.com* und *treyresearch.com* richtig konfiguriert ist.
+3. Führen Sie den folgenden Befehl aus, und warten Sie, bis die Bereitstellung abgeschlossen ist.
+
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p onoprem.json --deploy
+    ```
+
+   Führen Sie die Bereitstellung in der gleichen Ressourcengruppe durch, in der das lokale VNet bereitgestellt ist.
+
+
+### <a name="test-the-ad-trust-relation"></a>Testen der AD-Vertrauensbeziehung
+
+1. Navigieren Sie im Azure-Portal zu der Ressourcengruppe, die Sie erstellt haben.
+
+2. Suchen Sie im Azure-Portal die VM `ra-adt-mgmt-vm1`.
+
+2. Klicke Sie auf `Connect`, um eine Remotedesktopsitzung mit der VM zu öffnen. Der Benutzername ist `contoso\testuser`, und das Kennwort entspricht dem, das Sie in der `onprem.json`-Parameterdatei angegeben haben.
+
+3. Öffnen Sie von der Remotedesktopsitzung aus eine andere Remotedesktopsitzung mit 192.168.0.4 (IP-Adresse des virtuellen Computers namens `ra-adtrust-onpremise-ad-vm1`). Der Benutzername ist `contoso\testuser`, und das Kennwort entspricht dem, das Sie in der `azure.json`-Parameterdatei angegeben haben.
+
+4. Wechseln Sie von der Remotedesktopsitzung für `ra-adtrust-onpremise-ad-vm1` zum **Server-Manager**, und klicken Sie auf **Extras** > **Active Directory-Domänen und -Vertrauensstellungen**. 
+
+5. Klicken Sie im linken Bereich mit der rechten Maustaste auf „contoso.com“, und klicken Sie auf **Eigenschaften**.
+
+6. Klicken Sie auf die Registerkarte **Vertrauensstellungen**. Als eingehende Vertrauensstellung sollte „treyresearch.net“ angezeigt werden.
+
+![](./images/ad-forest-trust.png)
+
 
 ## <a name="next-steps"></a>Nächste Schritte
 
@@ -144,6 +164,8 @@ Eine Lösung zur Bereitstellung für diese Referenzarchitektur ist auf [GitHub][
 <!-- links -->
 [adds-extend-domain]: adds-extend-domain.md
 [adfs]: adfs.md
+[azure-cli-2]: /azure/install-azure-cli
+[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 
 [implementing-a-secure-hybrid-network-architecture]: ../dmz/secure-vnet-hybrid.md
 [implementing-a-secure-hybrid-network-architecture-with-internet-access]: ../dmz/secure-vnet-dmz.md

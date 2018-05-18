@@ -4,11 +4,11 @@ description: Enthält die Namenskonventionen für Azure-Ressourcen. Benennen von
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f3f010ceb3c810caafa53523de63aa787d392aa1
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: b4f40c427fc91c6b00d934c9a5dacdca91a55690
+ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 05/03/2018
 ---
 # <a name="naming-conventions"></a>Benennungskonventionen
 
@@ -102,7 +102,7 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 |Warteschlangenname |Speicherkonto |3-63 |Kleinbuchstaben |Alphanumerisch und Bindestrich |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
 |Tabellenname | Speicherkonto |3-63 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch |`<service short name><context>` |`awesomeservicelogs` |
 |Dateiname | Speicherkonto |3-63 |Kleinbuchstaben | Alphanumerisch |`<variable based on blob usage>` |`<variable based on blob usage>` |
-|Data Lake-Speicher | Global |3-24 |Kleinbuchstaben | Alphanumerisch |`<name>dls` |`telemetrydls` |
+|Data Lake Store | Global |3-24 |Kleinbuchstaben | Alphanumerisch |`<name>dls` |`telemetrydls` |
 
 ### <a name="networking"></a>Netzwerk
 
@@ -114,8 +114,8 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 |Netzwerksicherheitsgruppen (NSG) |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |Netzwerksicherheitsgruppen-Regel |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<descriptive context>` |`sql-allow` |
 |Öffentliche IP-Adresse |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<vm or service name>-pip` |`profx-sql1-pip` |
-|Lastenausgleichsmodul |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<service or role>-lb` |`profx-lb` |
-|Konfiguration der Regeln für die Lastenverteilung |Lastenausgleichsmodul |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<descriptive context>` |`http` |
+|Load Balancer |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<service or role>-lb` |`profx-lb` |
+|Konfiguration der Regeln für die Lastenverteilung |Load Balancer |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<descriptive context>` |`http` |
 |Azure Application Gateway |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<service or role>-agw` |`profx-agw` |
 |Traffic Manager-Profil |Ressourcengruppe |1 - 63 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich und Punkt |`<descriptive context>` |`app1` |
 
