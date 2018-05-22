@@ -5,11 +5,11 @@ author: zoinerTejada
 ms:date: 02/12/2018
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 0975d056aa971c627ca91c9fc05c4e16e07b6fc0
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 63c1cca45fe9d99b5d0679360ef487c3a42da956
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/07/2018
+ms.lasthandoff: 05/21/2018
 ---
 # <a name="azure-data-architecture-guide"></a>Azure-Datenarchitekturleitfaden
 
@@ -21,7 +21,7 @@ Die Cloud verändert die Art und Weise, wie Anwendungen entwickelt werden, und a
 
 ## <a name="how-this-guide-is-structured"></a>Aufbau dieses Leitfadens
 
-Dieser Leitfaden basiert auf zwei allgemeinen Kategorien für Datenlösungen: *herkömmliche RDMBS-Workloads* und *Big Data-Lösungen*. 
+Dieser Leitfaden basiert auf zwei allgemeinen Kategorien für Datenlösungen: *herkömmliche RDBMS-Workloads* und *Big Data-Lösungen*. 
 
 **[Herkömmliche RDMBS-Workloads:](./relational-data/index.md)** Hierzu zählen OLTP (Online Transaction Processing, Onlinetransaktionsverarbeitung) und OLAP (Online Analytical Processing, analytische Onlineverarbeitung). Bei den Daten in OLTP-Systemen handelt es sich in der Regel um relationale Daten mit einem vordefinierten Schema und einer Reihe von Einschränkungen zur Wahrung der referenziellen Integrität. Häufig werden Daten aus mehreren Quellen in der Organisation in einem Data Warehouse konsolidiert. Dabei werden die Quelldaten mithilfe eines ETL-Prozesses verschoben und transformiert.
 
