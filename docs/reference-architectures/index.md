@@ -3,11 +3,11 @@ title: Azure-Referenzarchitekturen
 description: Referenzarchitekturen, Blaupausen und reglementierende Implementierungsanweisungen für gängige Workloads in Azure
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 4c0006404ed0c0f603e9599cd9c04e6d02fdbfeb
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: 6c9be20e2b831f2e6c1ffd33aa89a56375a0511c
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/06/2018
+ms.lasthandoff: 05/21/2018
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -179,8 +179,8 @@ Unsere Referenzarchitekturen sind nach Szenarien angeordnet, wobei verwandte Arc
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>SAP NetWeaver und SAP HANA</h3>
-                        <p>Sie stellen SAP NetWeaver und SAP HANA in einer Hochverfügbarkeitsumgebung in Azure bereit und führen diese aus.</p>
+                        <h3>Ausführen von SAP in Azure</h3>
+                        <p>Sie stellen SAP in einer Hochverfügbarkeitsumgebung in Azure bereit und führen die Lösung aus.</p>
                     </div>
                 </div>
             </div>
