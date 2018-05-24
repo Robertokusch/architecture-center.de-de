@@ -6,11 +6,11 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: signup
 pnp.series.next: authorize
-ms.openlocfilehash: a39c64f003c26f860086701dd988a8bb21fab5bf
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: ec563936e5f00aba79d65844762feeed97ad547d
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 05/21/2018
 ---
 # <a name="application-roles"></a>Anwendungsrollen
 
@@ -53,7 +53,7 @@ Nachteile:
 ### <a name="implementation"></a>Implementierung
 **Definieren der Rollen.** Der SaaS-Anbieter deklariert die App-Rollen im [Anwendungsmanifest]. Hier ein Beispiel des Manifesteintrags für die App „Surveys“.
 
-```
+```json
 "appRoles": [
   {
     "allowedMemberTypes": [
@@ -123,7 +123,7 @@ Nachteile:
 ### <a name="implementation"></a>Implementierung
 Legen Sie im Anwendungsmanifest die `groupMembershipClaims` -Eigenschaft auf „SecurityGroup“ fest. Dies ist erforderlich, um Ansprüche von Gruppenmitgliedschaften aus AAD abzurufen.
 
-```
+```json
 {
    // ...
    "groupMembershipClaims": "SecurityGroup",
