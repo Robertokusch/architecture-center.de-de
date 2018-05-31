@@ -4,11 +4,12 @@ description: Spezifische Dienstanleitung für die Festlegung des Wiederholungsme
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: d03cc9dd1af92a91bbfab1ebc8c438e6312eeb49
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 65206c5f39a74d228c7eaa0fea0c5b1b0710b22f
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/07/2018
+ms.lasthandoff: 05/21/2018
+ms.locfileid: "34423016"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Wiederholungsanleitung für bestimmte Dienste
 
@@ -855,7 +856,7 @@ Die folgenden Tabellen enthalten die Standardeinstellungen für die integrierten
 
 | **Einstellung** | **Standardwert** | **Bedeutung** |
 | --- | --- | --- |
-| MaximumExecutionTime | 120 Sekunden | Maximale Ausführungszeit für die Anforderung, einschließlich aller möglichen Wiederholungsversuche. |
+| MaximumExecutionTime | Keine | Maximale Ausführungszeit für die Anforderung, einschließlich aller möglichen Wiederholungsversuche. Ist diese Option nicht angegeben, ist die für diese Anforderung zulässige Zeitspanne unendlich. Das heißt, es kann sein, dass die Anforderung nicht reagiert. |
 | ServerTimeout | Keine | Server-Timeout-Intervall für die Anforderung (der Wert wird in Sekunden gerundet). Wenn nicht angegeben, wird der Standardwert für alle Anforderungen an den Server verwendet. In der Regel ist die beste Option, diese Einstellung auszulassen, sodass die Standardeinstellung des Servers verwendet wird. | 
 | LocationMode | Keine | Wenn das Speicherkonto mit der Replikationsoption des Lesezugriffs auf georedundanten Speicher (RA-GRS) erstellt wird, können Sie mit dem Speicherortmodus bestimmen, welche Stelle die Anforderung erhalten soll. Wenn zum Beispiel **PrimaryThenSecondary** angegeben ist, werden Anforderungen immer zuerst an den primären Standort gesendet. Wenn eine Anforderung fehlschlägt, wird sie an den sekundären Standort gesendet. |
 | RetryPolicy | ExponentialPolicy | Details zu jeder Option finden Sie weiter unten. |
