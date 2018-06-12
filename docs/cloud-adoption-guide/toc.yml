@@ -10,6 +10,8 @@
           items:
             - name: 'Erläuterungen: Wie funktioniert Azure?'
               href: adoption-intro/azure-explainer.md
+            - name: 'Erläuterungen: Was ist die Cloudressourcenkontrolle?'
+              href: adoption-intro/governance-explainer.md
         - name: Grundlegendes zu digitalen Identitäten in Azure
           items:
             - name: 'Erläuterungen: Was ist ein Azure Active Directory-Mandant?'
@@ -62,3 +64,8 @@
                   href: /azure/virtual-machines/linux/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
                 - name: 'Anleitungen: Bewährte Methoden für die Bereitstellung eines virtuellen Linux-Computers in Azure'
                   href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm?toc=/azure/architecture/cloud-adoption-guide/toc.json
+    - name: Mittlere Azure-Einführungsphase
+      href: intermediate-stage/overview.md
+      items:
+        - name: Governance-Entwurfshandbuch
+          href: intermediate-stage/governance-design-guide.md
