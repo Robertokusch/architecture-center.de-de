@@ -127,12 +127,16 @@
   items:
     - name: Azure für AWS-Spezialisten
       href: aws-professional/index.md
+    - name: Erstellen von Microservices in Azure
+      href: ./microservices/index.md
     - name: Verwalten der Identität in mehrinstanzenfähigen Anwendungen
       href: multitenant-identity/index.md
     - name: Migration von Cloud Services zu Service Fabric
-      href: service-fabric/migrate-from-cloud-services.md
-    - name: 'Umgestalten einer Azure Service Fabric-Anwendung, die von Azure Cloud Services migriert wurde'
-      href: service-fabric/refactor-migrated-app.md
+      items:
+        - name: Migrieren einer Cloud Services-Anwendung zu Service Fabric
+          href: service-fabric/migrate-from-cloud-services.md
+        - name: Umgestalten einer Service Fabric-Anwendung
+          href: service-fabric/refactor-migrated-app.md
     - name: Erweitern der Azure Resource Manager-Vorlagenfunktionen
       href: building-blocks/extending-templates/index.md
 - name: angeben
