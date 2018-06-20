@@ -5,6 +5,8 @@
   items:
     - name: Grundlegende Einführungsphase
       href: cloud-adoption-guide/adoption-intro/overview.md
+    - name: Mittlere Einführungsphase
+      href: cloud-adoption-guide/intermediate-stage/overview.md
 - name: Anwendungsarchitekturleitfaden
   href: guide/index.md
   items:
@@ -19,7 +21,8 @@
     - name: Säulen der Softwarequalität
       href: guide/pillars.md
     - name: Entwurfsmuster
-      href: patterns/index.md?toc=/azure/architecture/guide/toc.json
+      href: patterns/index.md
+      maintainContext: true
 - name: Datenarchitekturleitfaden
   href: data-guide/index.md
 - name: Referenzarchitekturen
@@ -120,7 +123,8 @@
     - name: Entwurf resilienter Anwendungen
       href: resiliency/index.md
     - name: Checkliste für Resilienz
-      href: checklist/resiliency.md?toc=/azure/architecture/resiliency/toc.json
+      href: checklist/resiliency.md
+      maintainContext: true
     - name: Fehlermodusanalyse
       href: resiliency/failure-mode-analysis.md
 - name: Anleitungen zu Szenarien

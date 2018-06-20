@@ -60,4 +60,5 @@
     - name: Säulen der Softwarequalität
       href: pillars.md
     - name: Entwurfsmuster
-      href: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
+      href: ../patterns/index.md
+      maintainContext: true
