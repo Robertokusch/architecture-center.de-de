@@ -2,12 +2,12 @@
 title: Umgehung von Grenzwerten durch Partitionierung
 description: Einsetzen der Partitionierung, um Datenbank-, Netzwerk- und Computegrenzwerte zu umgehen
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 4371490385b24230551bf17db0075052f320b574
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 86306c6c33ea7a93c4c1f868d820cc522095a8b7
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206641"
 ---
 # <a name="partition-around-limits"></a>Umgehung von Grenzwerten durch Partitionierung
 
@@ -33,7 +33,7 @@ Eine Datenbank kann *horizontal*, *vertikal* oder *funktional* partitioniert wer
 
 Ausführlichere Anleitungen finden Sie unter [Datenpartitionierung][data-partitioning-guidance].
 
-## <a name="recommendations"></a>Recommendations
+## <a name="recommendations"></a>Empfehlungen
 
 **Partitionieren Sie verschiedene Teile der Anwendung**. Datenbanken sind ein offensichtlicher Kandidat für die Partitionierung, aber Sie könnten auch Speicher, Cache, Warteschlangen und Serverinstanzen partitionieren.
 

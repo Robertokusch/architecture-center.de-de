@@ -2,12 +2,12 @@
 title: Verwenden des besten Datenspeichers für den Auftrag
 description: Wählen Sie die Speichertechnologie aus, die sich am besten für Ihre Daten und den vorgesehenen Einsatzzweck eignet.
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: ef9439f7a3766d13b498eac915e0f5afd23de4e2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: c3619012e8c199d154e4ac432ce03b2a9295c26f
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206564"
 ---
 # <a name="use-the-best-data-store-for-the-job"></a>Verwenden des besten Datenspeichers für den Auftrag
 
@@ -25,7 +25,7 @@ Einen Produktkatalog sollten Sie z.B. in einer Dokumentdatenbank wie Cosmos DB s
 
 Denken Sie daran, dass zu den Daten mehr gehört als nur die dauerhaft gespeicherten Anwendungsdaten. Daten umfassen auch Anwendungsprotokolle, Ereignisse, Nachrichten und Caches.
 
-## <a name="recommendations"></a>Recommendations
+## <a name="recommendations"></a>Empfehlungen
 
 **Verwenden Sie nicht für alle Daten eine relationale Datenbank**. Wählen Sie andere Datenspeicher aus, wenn diese sich besser eignen. Weitere Informationen finden Sie unter [Auswählen des richtigen Datenspeichers][data-store-overview].
 

@@ -2,12 +2,12 @@
 title: Entwurf mit Blick auf den Betrieb
 description: Setzen Sie es sich beim Entwurf Ihrer Anwendung als Ziel, dem Betriebsteam die benötigten Verwaltungstools zur Verfügung zu stellen.
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 76338cc27daf82ccb99df4e4c51c7a5ac6f26065
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 5b9f76c27656e5154fb039ca41976f7209395cd8
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206553"
 ---
 # <a name="design-for-operations"></a>Entwurf mit Blick auf den Betrieb
 
@@ -23,7 +23,7 @@ Durch die Cloud hat sich die Rolle des Betriebsteams erheblich geändert. Es ist
 
 Stabile Protokollierung und Nachverfolgung sind in Cloudanwendungen besonders wichtig. Beziehen Sie das Betriebsteam in den Entwurf und die Planung ein, um sicherzustellen, dass es von der Anwendung alle für eine erfolgreiche Arbeit erforderlichen Daten und Einblicke erhält.  <!-- to do: Link to DevOps checklist -->
 
-## <a name="recommendations"></a>Recommendations
+## <a name="recommendations"></a>Empfehlungen
 
 **Stellen Sie die Überwachungsfähigkeit aller Komponenten sicher**. Sobald eine Lösung bereitgestellt ist und ausgeführt wird, stellen Protokolle und Ablaufverfolgungen Ihren primären Einblick in das System dar. Die *Ablaufverfolgung* zeichnet einen Pfad durch das System auf und ist nützlich zum Identifizieren von Engpässen, Leistungsproblemen und Schwachstellen. Die *Protokollierung* erfasst einzelne Ereignisse, z.B. Änderungen am Zustand der Anwendung, Fehler und Ausnahmen. Führen Sie die Protokollierung in Produktionssystemen durch, andernfalls verlieren Sie Einblicke genau zu den Zeiten, in denen Sie sie am meisten benötigen.
 

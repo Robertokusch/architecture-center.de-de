@@ -2,12 +2,12 @@
 title: Verwenden verwalteter Dienste
 description: Verwenden Sie nach Möglichkeit PaaS (Platform-as-a-Service) anstelle von IaaS (Infrastructure-as-a-Service).
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 7156c073db3e047fb38e031309ddb637a9e44c02
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6d3cfb2e97b5a9b25bb1afd72059e981ef45c0d8
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206721"
 ---
 # <a name="use-managed-services"></a>Verwenden verwalteter Dienste
 
@@ -27,6 +27,6 @@ Es kann natürlich sein, dass Ihre Anwendung über bestimmte Anforderungen verf�
 | IIS | App Service |
 | MongoDB | Cosmos DB |
 | Redis | Azure Redis Cache |
-| SQL Server | Azure SQL-Datenbank |
+| SQL Server | Azure SQL-Datenbank |
 
 

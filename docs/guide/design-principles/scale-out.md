@@ -2,12 +2,12 @@
 title: Ausrichtung des Entwurfs auf horizontale Skalierung
 description: Cloudanwendungen sollten mit Blick auf die horizontale Skalierung entworfen werden.
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 8f9b3e99a53f5941f708b0de124f37e6ff7e5ab2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 8207f322d4312f6a30a8b0db7328b272c1d82de0
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206729"
 ---
 # <a name="design-to-scale-out"></a>Ausrichtung des Entwurfs auf horizontale Skalierung
 
@@ -15,7 +15,7 @@ ms.lasthandoff: 11/14/2017
 
 Einer der Hauptvorteile der Cloud ist die elastische Skalierbarkeit: Sie können so viel Kapazität nutzen, wie Sie benötigen. Wenn die Auslastung steigt, können Sie das System horizontal hochskalieren und es wieder herunterskalieren, wenn die zusätzliche Kapazität nicht mehr benötigt wird. Entwerfen Sie Ihre Anwendung so, dass sie durch Hinzufügen oder Entfernen von Instanzen ganz nach Bedarf horizontal skaliert werden kann.
 
-## <a name="recommendations"></a>Recommendations
+## <a name="recommendations"></a>Empfehlungen
 
 **Vermeiden Sie Instanzbindung**. Bindung oder *Sitzungsaffinität* tritt auf, wenn Anforderungen desselben Clients immer an den gleichen Server weitergeleitet werden. Dies beeinträchtigt die Fähigkeit einer Anwendung, sich horizontal hochskalieren zu lassen. Beispielsweise wird der Datenverkehr eines Benutzers mit hohem Datenvolumen nicht auf mehrere Instanzen verteilt. Gründe für die Bindung können das Speichern des Sitzungszustands im Arbeitsspeicher und die Verwendung von bestimmten Schlüsseln für die Verschlüsselung sein. Stellen Sie sicher, dass jede Instanz jede Anforderung verarbeiten kann. 
 

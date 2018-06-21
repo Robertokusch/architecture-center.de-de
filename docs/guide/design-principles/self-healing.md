@@ -2,12 +2,12 @@
 title: Entwurf mit Blick auf Selbstreparatur
 description: Resiliente Anwendungen können nach einem Ausfall ohne manuellen Eingriff wiederhergestellt werden.
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 0782b65b77615f7c006724264ab0ca2d2c7c04e2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 508341ba428b294cf268e34e922aced9d2d67579
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206651"
 ---
 # <a name="design-for-self-healing"></a>Entwurf mit Blick auf Selbstreparatur
 
@@ -25,11 +25,11 @@ Ihre Reaktion auf einen bestimmten Typ von Ausfällen kann von den Anforderungen
 
 Berücksichtigen Sie zudem nicht nur umfangreiche Ereignisse, z.B. regionale Ausfälle, die in der Regel selten auftreten. Sie sollten sich mindestens in gleichem Ausmaß mit der Behandlung lokaler, kurzfristiger Ausfälle, z.B. dem Ausfall von Netzwerk- oder Datenbankverbindungen, befassen.
 
-## <a name="recommendations"></a>Recommendations
+## <a name="recommendations"></a>Empfehlungen
 
 **Wiederholen Sie fehlgeschlagene Vorgänge**. Vorübergehende Fehler können durch eine kurze Trennung der Netzwerkverbindung, einen Verlust der Verbindung mit der Datenbank oder eine Zeitüberschreitung bei zu hoher Auslastung eines Diensts verursacht werden. Integrieren Sie zur Behandlung vorübergehender Fehler Wiederholungslogik in die Anwendung. Für viele Azure-Dienste werden automatische Wiederholungen durch das Client-SDK implementiert. Weitere Informationen finden Sie unter [Behandeln vorübergehender Fehler][transient-fault-handling] und [Wiederholungsmuster][retry].
 
-**Schützen Sie ausgefallene Remotedienste (Trennschalter)**. Es empfiehlt sich, nach einem vorübergehenden Fehler den Vorgang zu wiederholen. Wenn jedoch der Fehler weiterhin auftritt, treffen möglicherweise zu viele Aufrufe auf den ausgefallenen Dienst. Dies kann zu kaskadierenden Fehlern führen, wenn sich Anforderungen aufstauen. Verwenden Sie das [Trennschalter-Muster] [ circuit-breaker], um schnell einen Fehler auszulösen (ohne den Remoteaufruf auszuführen), wenn eine hohe Wahrscheinlichkeit besteht, dass ein Vorgang fehlschlägt.  
+**Schützen Sie ausgefallene Remotedienste (Trennschalter)**. Es empfiehlt sich, nach einem vorübergehenden Fehler den Vorgang zu wiederholen. Wenn jedoch der Fehler weiterhin auftritt, treffen möglicherweise zu viele Aufrufe auf den ausgefallenen Dienst. Dies kann zu kaskadierenden Fehlern führen, wenn sich Anforderungen aufstauen. Verwenden Sie das [Trennschalter-Muster][circuit-breaker], um Fail-Fast-fähig zu sein (ohne den Remoteaufruf auszuführen), wenn eine hohe Wahrscheinlichkeit besteht, dass ein Vorgang fehlschlägt.  
 
 **Isolieren Sie kritische Ressourcen (Bulkhead)**. Fehler in einem Subsystem können manchmal kaskadiert werden. Dies kann passieren, wenn ein Fehler dazu führt, dass einige Ressourcen, z.B. Threads oder Sockets, nicht rechtzeitig freigegeben werden und die Ressourcen erschöpft sind. Um dies zu vermeiden, sollten Sie ein System in isolierte Gruppen partitionieren, damit ein Ausfall in einer Partition nicht zum Ausfall des gesamten Systems führt.  
 
