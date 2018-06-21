@@ -2,12 +2,12 @@
 title: 'Erläuterungen: Was ist Cloud-Governance?'
 description: Enthält eine Beschreibung des Konzepts zur Ressourcenkontrolle für Azure und die Cloud.
 author: petertay
-ms.openlocfilehash: 63b04089aad5fc736641f8aaa6ff5247ea8ba13e
-ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
+ms.openlocfilehash: 3404beaa719177ee7638feed8a8442b5c3b455c6
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35291114"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206479"
 ---
 # <a name="explainer-what-is-cloud-resource-governance"></a>Erläuterungen: Was ist die Cloudressourcenkontrolle?
 
@@ -16,6 +16,8 @@ In der Erläuterung [Wie funktioniert Azure?](azure-explainer.md) haben Sie gele
 Wenn Entwickler uneingeschränkten Zugriff auf Ressourcen haben, können sie zwar sehr flexibel vorgehen, aber es können sich auch unerwünschte Kosten ergeben. Beispielsweise kann für ein Entwicklungsteam die Bereitstellung einer Reihe von Ressourcen zu Testzwecken genehmigt werden, wobei dann nach Abschluss des Testens aber vergessen wird, diese zu löschen. Für diese Ressourcen fallen weiterhin Kosten an, obwohl die Nutzung nicht mehr genehmigt oder erforderlich ist. 
 
 Die Lösung dieses Problems ist die Kontrolle (**Governance**) des Ressourcenzugriffs. „Governance“ bezieht sich auf das fortlaufende Verwalten, Überwachen und Überprüfen der Nutzung von Azure-Ressourcen, um die Ziele und Anforderungen Ihrer Organisation zu erfüllen. 
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94] 
 
 Da diese Ziele und Anforderungen für jede Organisation einzigartig sind, gibt es keinen allgemeingültigen Governance-Ansatz. Stattdessen werden von Azure zwei primäre Governance-Tools implementiert, die **ressourcenbasierte Zugriffssteuerung (RBAC)** und eine **Ressourcenrichtlinie**. Es liegt dann jeweils im Ermessen der Organisation, wie das Governance-Modell für die Nutzung dieser Komponenten entworfen wird.
 
