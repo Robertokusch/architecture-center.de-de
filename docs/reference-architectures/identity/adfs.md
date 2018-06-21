@@ -9,11 +9,12 @@ ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: adds-forest
 cardTitle: Extend AD FS to Azure
-ms.openlocfilehash: 87489b7b81cf323c221466c539ee14ea90e23c14
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 37edae209334da96aa9c121b1ac68c5e1d363323
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252728"
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>Erweitern von Active Directory Federation Services (AD FS) auf Azure
 
@@ -118,7 +119,7 @@ Konfigurieren Sie die Lastenausgleiche für die virtuellen AD FS- und WAP-Comput
 * Verwenden Sie einen Azure-Lastenausgleich, um externen Zugriff auf die virtuellen WAP-Computer zu bieten, und einen internen Lastenausgleich, um die Last auf die AD FS-Server in der Farm zu verteilen.
 * Übergeben Sie an die AD FS/WAP-Server nur Datenverkehr, der am Port 443 (HTTPS) ankommt.
 * Geben Sie dem Lastenausgleich eine statische IP-Adresse.
-* Erstellen Sie einen Integritätstest mit dem TCP-Protokoll statt mit HTTPS. Sie können Port 443 pingen, um zu überprüfen, ob ein AD FS-Server funktionsfähig ist.
+* Erstellen Sie einen Integritätstest, indem Sie HTTP für `/adfs/probe` verwenden. Weitere Informationen finden Sie unter [Hardware Load Balancer Health Checks and Web Application Proxy/AD FS 2012 R2](https://blogs.technet.microsoft.com/applicationproxyblog/2014/10/17/hardware-load-balancer-health-checks-and-web-application-proxy-ad-fs-2012-r2/) (Hardware-Load Balancer-Integritätsprüfungen und Webanwendungsproxy/AD FS 2012 R2).
   
   > [!NOTE]
   > AD FS-Server verwenden das SNI-Protokoll (Server Name Indication), daher schlägt ein Versuch, den Test über einen HTTPS-Endpunkt aus dem Lastenausgleich auszuführen, fehl.

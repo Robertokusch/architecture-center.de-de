@@ -3,15 +3,16 @@ title: Muster „Gatewayrouting“
 description: Anforderungen werden über einen einzigen Endpunkt an mehrere Dienste weitergeleitet.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 53239b23cfd98fad1edc38ca37c2274d5a9d7a0f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: ea0bc4d31b745043a7ac3afb277dfc46d87ff109
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252599"
 ---
 # <a name="gateway-routing-pattern"></a>Muster „Gatewayrouting“
 
-Anforderungen werden über einen einzigen Endpunkt an mehrere Dienste weitergeleitet. Dieses Muster ist hilfreich, wenn Sie mehrere Dienste auf einem einzigen Endpunkt verfügbar machen möchten und die Weiterleitung an den geeigneten Dienst basierend auf der Anforderung erfolgen soll.
+Leiten Sie Anforderungen an mehrere Dienste mit einem einzelnen Endpunkt weiter. Dieses Muster ist hilfreich, wenn Sie mehrere Dienste auf einem einzigen Endpunkt verfügbar machen möchten und die Weiterleitung an den geeigneten Dienst basierend auf der Anforderung erfolgen soll.
 
 ## <a name="context-and-problem"></a>Kontext und Problem
 
@@ -31,7 +32,7 @@ Dieses Muster kann auch bei der Bereitstellung helfen, da Sie bestimmen können,
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
-- Der Gatewaydienst kann einen Single Point of Failure darstellen. Stellen Sie sicher, dass es auf Ihre Verfügbarkeitsanforderungen ausgelegt ist. Berücksichtigen Sie bei der Implementierung die Aspekte Resilienz und Fehlertoleranz.
+- Der Gatewaydienst kann ein Single Point of Failure darstellen. Stellen Sie sicher, dass es auf Ihre Verfügbarkeitsanforderungen ausgelegt ist. Berücksichtigen Sie bei der Implementierung die Aspekte Resilienz und Fehlertoleranz.
 - Der Gatewaydienst kann einen Engpass darstellen. Stellen Sie sicher, dass das Gateway leistungsfähig genug ist, um die Last zu verarbeiten, und dass es sich problemlos gemäß Ihren Wachstumserwartungen skalieren lässt.
 - Führen Sie einen Auslastungstest für das Gateway durch, um sicherzustellen, dass keine kaskadierenden Ausfälle bei den Diensten auftreten.
 - Das Gatewayrouting erfolgt auf Ebene 7. Es kann auf IP, Port, Header oder URL basieren.

@@ -2,11 +2,12 @@
 title: Auswählen des richtigen Datenspeichers
 description: Übersicht über das Auswählen von Datenspeichern in Azure
 author: MikeWasson
-ms.openlocfilehash: 3a5780c4a2dbd8a41e9c7bfa7f68d8a7916a7374
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 4836ae1997f86d35d8ab8aa66bbc63b4ef826d23
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252633"
 ---
 # <a name="choose-the-right-data-store"></a>Auswählen des richtigen Datenspeichers
 
@@ -16,7 +17,7 @@ Diese Vielschichtigkeit bedeutet, dass ein einzelner Datenspeicher in der Regel 
 
 Die Wahl des richtigen Datenspeichers für Ihre Anforderungen ist eine wichtige Entwurfsentscheidung. Es gibt buchstäblich Hunderte von Implementierungen, aus denen Sie unter SQL- und NoSQL-Datenbanken wählen können. Datenspeicher werden häufig nach der Strukturierung von Daten und den von ihnen unterstützten Betriebsarten kategorisiert. In diesem Artikel werden einige der gängigsten Speichermodelle beschrieben. Beachten Sie, dass eine bestimmte Datenspeichertechnologie mehrere Speichermodelle unterstützen kann. Beispielsweise kann ein Managementsystem für relationale Datenbanken (RDBMS) auch die Speicherung von Schlüsseln/Werten oder Diagrammen unterstützen. Tatsächlich gibt es einen allgemeinen Trend zur sogenannten *Multimodell*-Unterstützung, bei der ein einziges Datenbanksystem mehrere Modelle unterstützt. Aber dennoch ist es sinnvoll, mit verschiedenen Modelle allgemein vertraut zu sein. 
 
-Nicht alle Datenspeicher in einer bestimmten Kategorie bieten den gleichen Funktionsumfang. Die meisten Datenspeicher bieten serverseitige Funktionalität zur Abfrage und Verarbeitung von Daten. In einigen Fällen ist diese Funktionalität in das Datenspeichermodul integriert. In anderen Fällen sind die Funktionen zur Datenspeicherung und -verarbeitung getrennt, und es gibt möglicherweise mehrere Optionen für Verarbeitung und Analyse. Datenspeicher unterstützen auch verschiedene programmgesteuerte und Verwaltungsschnittstellen. 
+Nicht alle Datenspeicher in einer bestimmten Kategorie bieten den gleichen Funktionsumfang. Die meisten Datenspeicher bieten serverseitige Funktionalität zur Abfrage und Verarbeitung von Daten. In einigen Fällen ist diese Funktionalität in die Datenspeicher-Engine integriert. In anderen Fällen sind die Funktionen zur Datenspeicherung und -verarbeitung getrennt, und es gibt möglicherweise mehrere Optionen für Verarbeitung und Analyse. Datenspeicher unterstützen auch verschiedene programmgesteuerte und Verwaltungsschnittstellen. 
 
 Grundsätzlich sollten Sie sich zunächst überlegen, welches Speichermodell für Ihre Anforderungen am besten geeignet ist. Ziehen Sie anschließend basierend auf Faktoren wie Funktionsumfang, Kosten und Verwaltbarkeit einen bestimmten Datenspeicher innerhalb dieser Kategorie in Betracht.
 
@@ -67,7 +68,7 @@ Mithilfe des Dokumentschlüssels kann die Anwendung Dokumente abrufen. Dieser Sc
 
 Viele Dokumentdatenbanken unterstützen direkte Aktualisierungen, sodass eine Anwendung die Werte bestimmter Felder in einem Dokument ändern kann, ohne das gesamte Dokument neu schreiben zu müssen. Lese- und Schreibvorgänge in mehreren Feldern eines Dokuments sind in der Regel atomisch.
 
-In Frage kommender Azure-Dienst: [Cosmos DB][cosmosdb]
+Relevanter Azure-Dienst: [Cosmos DB][cosmosdb]
 
 ## <a name="graph-databases"></a>Diagrammdatenbanken
 
@@ -79,7 +80,7 @@ Der Zweck einer Diagrammdatenbank ist es, einer Anwendung zu ermöglichen, effiz
 
 Diese Struktur macht es einfach, Abfragen wie „Alle Mitarbeiter finden, die Sarah direkt oder indirekt unterstellt sind“ oder „Wer arbeitet in derselben Abteilung wie John?“ auszuführen. Bei großen Diagrammen mit vielen Entitäten und Beziehungen können Sie sehr komplexe Analysen sehr schnell durchführen. Viele Diagrammdatenbanken bieten eine Abfragesprache, mit der Sie ein Beziehungsnetz effizient durchlaufen können. 
 
-In Frage kommender Azure-Dienst: [Cosmos DB][cosmosdb]
+Relevanter Azure-Dienst: [Cosmos DB][cosmosdb]
 
 ## <a name="column-family-databases"></a>Spaltenfamilien-Datenbanken
 
@@ -95,7 +96,7 @@ Im Gegensatz zu einem Schlüssel-Wert-Speicher oder einer Dokumentendatenbank sp
 
 Lese- und Schreibvorgänge für eine Zeile sind in der Regel mit einer einzigen Spaltenfamilien atomisch, obwohl einige Implementierungen Atomarität über die gesamte Zeile bieten und mehrere Spaltenfamilien umfassen.
 
-In Frage kommender Azure-Dienst: [HBase in HDInsight][hbase]
+Relevanter Azure-Dienst: [HBase in HDInsight][hbase]
 
 ## <a name="data-analytics"></a>Datenanalysen
 
@@ -114,7 +115,7 @@ Die Hauptmerkmale einer Suchmaschinen-Datenbank sind die Fähigkeit, Information
 
 Suchen können genau oder unscharf sein. Eine unscharfe Suche findet Dokumente, die mit einer Reihe von Begriffen übereinstimmen, und berechnet, wie genau diese übereinstimmen. Einige Suchmaschinen unterstützen auch linguistische Analysen, die Treffer auf der Basis von Synonymen, Gattungserweiterungen (z.B. Abgleich von `dogs` mit `pets`) und Wortstammerkennung (Abgleich von Wörtern mit demselben Wortstamm) liefern können. 
 
-In Frage kommender Azure-Dienst: [Azure Search][search]
+Relevanter Azure-Dienst: [Azure Search][search]
 
 ## <a name="time-series-databases"></a>Zeitreihen-Datenbanken
 
@@ -122,19 +123,19 @@ Zeitreihendaten sind eine Menge von Werten, die nach Zeit organisiert sind. Eine
 
 Zeitreihen-Datenbanken eignen sich besonders zur Speicherung von Telemetriedaten. Einsatzszenarien sind z.B. IoT-Sensoren oder Anwendungs- und Systemleistungsindikatoren.
 
-In Frage kommender Azure-Dienst: [Time Series Insights][time-series]
+Relevanter Azure-Dienst: [Time Series Insights][time-series]
 
 ## <a name="object-storage"></a>Objektspeicher  
 
 Ein Objektspeicher ist optimiert für das Speichern und Abrufen großer binärer Objekte (Bilder, Dateien, Video- und Audiostreams, große Anwendungsdatenobjekte und -dokumente, VM-Datenträgerimages). Objekte in diesen Speichertypen setzen sich aus den gespeicherten Daten, einigen Metadaten und einer eindeutigen ID für den Objektzugriff zusammen. Objektspeicher ermöglichen die Verwaltung extrem großer Mengen unstrukturierter Daten.  
 
-In Frage kommender Azure-Dienst: [Blob Storage][blob]
+Relevanter Azure-Dienst: [Blob Storage][blob]
 
 ## <a name="shared-files"></a>Freigegebene Dateien   
 
 Mitunter kann die Verwendung einfacher Flatfiles das effektivste Mittel zum Speichern und Abrufen von Informationen sein. Der Einsatz von Dateifreigaben ermöglicht den Zugriff auf Dateien über ein Netzwerk. Bei entsprechenden Sicherheits- und Kontrollmechanismen für den gleichzeitigen Zugriff kann die gemeinsame Nutzung von Daten auf diese Weise verteilten Diensten Folgendes ermöglichen: einen überaus skalierbaren Datenzugriff zur Durchführung grundlegender, allgemeiner Vorgänge wie beispielsweise einfacher Lese- und Schreibvorgänge.
 
-In Frage kommender Azure-Dienst: [File Storage][file-storage]
+Relevanter Azure-Dienst: [File Storage][file-storage]
 
 <!-- links -->
 

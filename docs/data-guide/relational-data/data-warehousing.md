@@ -3,11 +3,12 @@ title: Data Warehousing und Data Marts
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 552cdfad2d571c93f83bc1e4ff0d09ac12d0b6a4
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 9b90d77ce1a81cd4a7532f5d4230ada8b4991d13
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252804"
 ---
 # <a name="data-warehousing-and-data-marts"></a>Data Warehousing und Data Marts
 
@@ -142,7 +143,7 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | --- | --- | --- | --- | --- | --- | -- |
 | Redundante regionale Server für Hochverfügbarkeit  | Ja | Ja | Ja | Nein  | Nein  |
 | Unterstützung des horizontalen Hochskalierens für Abfragen (verteilte Abfragen)  | Nein  | Nein  | Ja | Ja | Ja |
-| Dynamische Skalierbarkeit (zentrales Hochskalieren)  | Ja | Nein  | Ja<sup>1</sup> | Nein  | Nein  |
+| Dynamische Skalierbarkeit | Ja | Nein  | Ja<sup>1</sup> | Nein  | Nein  |
 | Unterstützung der speicherinternen Zwischenspeicherung von Daten | Ja |  Ja | Nein | Ja | Ja |
 
 [1] SQL Data Warehouse ermöglicht zentrales Hoch- und Herunterskalieren durch Anpassung der Anzahl von Data Warehouse-Einheiten (Data Warehouse Units, DWUs). Weitere Informationen finden Sie unter [Verwalten von Computeleistung in Azure SQL Data Warehouse (Übersicht)](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview).

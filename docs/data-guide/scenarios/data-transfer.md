@@ -3,11 +3,12 @@ title: Auswählen einer Datenübertragungstechnologie
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: bb0732b0f771a4c9e1a4e565875576c08484490a
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 53dcf8a69ad8ae100dbdbb230a9280efd419342a
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252752"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>Übertragen von Daten in und aus Azure
 
@@ -32,11 +33,11 @@ Für den physischen Transport von Daten in Azure stehen zwei Hauptoptionen zur V
 
 Erwägen Sie die Verwendung dieser Optionen, wenn Sie eine skript- und programmgesteuerte Datenübertragung benötigen.
 
-- **Azure-Befehlszeilenschnittstelle:** Die [Azure-Befehlszeilenschnittstelle](/azure/hdinsight/hdinsight-upload-data#commandline) ist ein plattformübergreifendes Tool, mit dem Sie Azure-Dienste verwalten und Daten in Azure Storage hochladen können. 
+- **Azure-Befehlszeilenschnittstelle**. Die [Azure-Befehlszeilenschnittstelle](/azure/hdinsight/hdinsight-upload-data#commandline) ist ein plattformübergreifendes Tool, mit dem Sie Azure-Dienste verwalten und Daten in Azure Storage hochladen können. 
 
-- **AzCopy:** Verwenden Sie AzCopy an einer Befehlszeile unter [Windows](/azure/storage/common/storage-use-azcopy?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) oder [Linux](/azure/storage/common/storage-use-azcopy-linux?toc=%2fazure%2fstorage%2fblobs%2ftoc.json), um Daten ganz einfach und mit optimaler Leistung aus bzw. in Azure Blob Storage, Azure File Storage oder Azure Table Storage zu kopieren. AzCopy unterstützt Nebenläufigkeit und Parallelität sowie die Fortsetzung unterbrochener Kopiervorgänge. Darüber hinaus ist AzCopy schneller als die meisten anderen Optionen. Für den programmgesteuerten Zugriff nutzt AzCopy die [Microsoft Azure Storage Data Movement-Bibliothek](/azure/storage/common/storage-use-data-movement-library) als Kernframework. Diese wird als .NET Core-Bibliothek bereitgestellt. 
+- **AzCopy**. Verwenden Sie AzCopy an einer Befehlszeile unter [Windows](/azure/storage/common/storage-use-azcopy?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) oder [Linux](/azure/storage/common/storage-use-azcopy-linux?toc=%2fazure%2fstorage%2fblobs%2ftoc.json), um Daten ganz einfach und mit optimaler Leistung aus bzw. in Azure Blob Storage, Azure File Storage oder Azure Table Storage zu kopieren. AzCopy unterstützt Nebenläufigkeit und Parallelität sowie die Fortsetzung unterbrochener Kopiervorgänge. Darüber hinaus ist AzCopy schneller als die meisten anderen Optionen. Für den programmgesteuerten Zugriff nutzt AzCopy die [Microsoft Azure Storage Data Movement-Bibliothek](/azure/storage/common/storage-use-data-movement-library) als Kernframework. Diese wird als .NET Core-Bibliothek bereitgestellt. 
 
-- **PowerShell:** Das [PowerShell-Cmdlet `Start-AzureStorageBlobCopy`](/powershell/module/azure.storage/start-azurestorageblobcopy?view=azurermps-5.0.0) ist eine Option für Windows-Administratoren mit PowerShell-Erfahrung.  
+- **PowerShell**: Das [PowerShell-Cmdlet `Start-AzureStorageBlobCopy`](/powershell/module/azure.storage/start-azurestorageblobcopy?view=azurermps-5.0.0) ist eine Option für Windows-Administratoren mit PowerShell-Erfahrung.  
 
 - **AdlCopy:** [AdlCopy](/azure/data-lake-store/data-lake-store-copy-data-azure-storage-blob) ermöglicht das Kopieren von Daten aus Azure Storage Blob-Instanzen in Data Lake Store. Diese Option kann auch zum Kopieren von Daten zwischen zwei Azure Data Lake Store-Konten verwendet werden. Sie kann jedoch nicht verwendet werden, um Daten aus Data Lake Store in Speicherblobs zu kopieren.
 
@@ -54,11 +55,11 @@ Erwägen Sie die Verwendung folgender Optionen, wenn Sie nur wenige Dateien oder
 
 - **Azure Storage-Explorer:** Der [Azure Storage-Explorer](https://azure.microsoft.com/features/storage-explorer/) ist ein plattformübergreifendes Tool zur Verwaltung der Inhalte Ihrer Azure-Speicherkonten. Mit diesem Tool können Sie Blobs, Dateien, Warteschlangen, Tabellen und Azure Cosmos DB-Entitäten hochladen, herunterladen und verwalten. Verwenden Sie es zusammen mit Blob Storage, um Blobs und Ordner zu verwalten und Blobs zwischen Ihrem lokalen Dateisystem und Blob Storage oder zwischen Speicherkonten hoch- und herunterzuladen.
 
-- **Azure-Portal:** Sowohl Blob Storage als auch Data Lake Store verfügt über eine webbasierte Schnittstelle zum Erkunden von Dateien sowie zum Hochladen einzelner neuer Dateien. Diese Option empfiehlt sich, wenn Sie Ihre Dateien schnell erkunden möchten, ohne Tools zu installieren oder Befehle auszuführen, oder einfach einige neue Dateien hochladen möchten.
+- **Azure-Portal**. Sowohl Blob Storage als auch Data Lake Store verfügt über eine webbasierte Schnittstelle zum Erkunden von Dateien sowie zum Hochladen einzelner neuer Dateien. Diese Option empfiehlt sich, wenn Sie Ihre Dateien schnell erkunden möchten, ohne Tools zu installieren oder Befehle auszuführen, oder einfach einige neue Dateien hochladen möchten.
 
 ## <a name="data-pipeline"></a>Datenpipeline
 
-**Azure Data Factory:** Der verwaltete Dienst [Azure Data Factory](/azure/data-factory/) eignet sich am besten zur regelmäßigen Übertragung von Dateien – zwischen einer Reihe von Azure-Diensten, lokal oder zwischen einer Kombination aus beidem. Mit Azure Data Factory können Sie datengesteuerte Workflows (so genannte Pipelines) erstellen und planen, die Daten aus unterschiedlichen Datenspeichern erfassen. Die Anwendung kann diese Daten mithilfe von Compute Services wie Azure HDInsight Hadoop, Spark, Azure Data Lake Analytics und Azure Machine Learning verarbeiten und transformieren. Erstellen Sie datengesteuerte Workflows zur [Orchestrierung](../technology-choices/pipeline-orchestration-data-movement.md) und Automatisierung der Verschiebung und Transformation von Daten.
+**Azure Data Factory** Der verwaltete Dienst [Azure Data Factory](/azure/data-factory/) eignet sich am besten zur regelmäßigen Übertragung von Dateien – zwischen einer Reihe von Azure-Diensten, lokal oder zwischen einer Kombination aus beidem. Mit Azure Data Factory können Sie datengesteuerte Workflows (so genannte Pipelines) erstellen und planen, die Daten aus unterschiedlichen Datenspeichern erfassen. Die Anwendung kann diese Daten mithilfe von Compute Services wie Azure HDInsight Hadoop, Spark, Azure Data Lake Analytics und Azure Machine Learning verarbeiten und transformieren. Erstellen Sie datengesteuerte Workflows zur [Orchestrierung](../technology-choices/pipeline-orchestration-data-movement.md) und Automatisierung der Verschiebung und Transformation von Daten.
 
 ## <a name="key-selection-criteria"></a>Wichtige Auswahlkriterien
 
@@ -68,7 +69,7 @@ Die folgenden Fragen unterstützen Sie bei der Ermittlung eines geeigneten Syste
 
 - Bevorzugen Sie die Verwendung skriptgesteuerter (und somit wiederverwendbarer) Datenübertragungsaufgaben? Falls ja, entscheiden Sie sich für eine der Befehlszeilenoptionen oder für Azure Data Factory.
 
-- Müssen Sie eine große Datenmenge über eine Netzwerkverbindung übertragen? Falls ja, wählen Sie eine für Big Data optimierte Option.
+- Müssen Sie eine große Datenmenge über eine Netzwerkverbindung übertragen? Wenn ja, sollten Sie eine für Big Data optimierte Option wählen.
 
 - Müssen Sie Daten in eine relationale Datenbank oder aus einer relationalen Datenbank übertragen? Falls ja, entscheiden Sie sich für eine Option, die mindestens eine relationale Datenbank unterstützt. Beachten Sie, dass einige dieser Optionen auch einen Hadoop-Cluster erfordern.
 
@@ -83,9 +84,9 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | | Azure Import/Export-Dienst | Azure Data Box |
 | --- | --- | --- |
 | Formfaktor | Interne SATA-HDDs oder -SDDs | Einzelne sichere und manipulationsgeschützte Hardwareappliance |
-| Von Microsoft verwaltete Versandlogistik | Nein | Ja |
-| Integration in Partnerprodukte | Nein | Ja |
-| Angepasste Appliance | Nein | Ja |
+| Von Microsoft verwaltete Versandlogistik | Nein  | Ja |
+| Integration in Partnerprodukte | Nein  | Ja |
+| Angepasste Appliance | Nein  | Ja |
 
 ### <a name="command-line-tools"></a>Befehlszeilentools
 
@@ -94,25 +95,25 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | | Distcp | Sqoop | Hadoop-Befehlszeilenschnittstelle |
 | --- | --- | --- | --- |
 | Für Big Data optimiert | Ja | Ja |  Ja |
-| Kopieren in relationale Datenbank |  Nein | Ja | Nein |
-| Kopieren aus relationaler Datenbank |  Nein | Ja | Nein |
+| Kopieren in relationale Datenbank |  Nein  | Ja | Nein  |
+| Kopieren aus relationaler Datenbank |  Nein  | Ja | Nein  |
 | Kopieren in Blob Storage |  Ja | Ja | Ja |
-| Kopieren aus Blob Storage | Ja |  Ja | Nein |
+| Kopieren aus Blob Storage | Ja |  Ja | Nein  |
 | Kopieren in Data Lake Store | Ja | Ja | Ja |
-| Kopieren aus Data Lake Store | Ja | Ja | Nein |
+| Kopieren aus Data Lake Store | Ja | Ja | Nein  |
 
 **Andere**
 
 | | Azure-Befehlszeilenschnittstelle | AzCopy | PowerShell | AdlCopy | PolyBase |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Kompatible Plattformen | Linux, OS X, Windows | Linux, Windows | Windows | Linux, OS X, Windows | SQL Server, Azure SQL Data Warehouse | 
-| Für Big Data optimiert | Nein | Nein | Nein | Ja<sup>1</sup> | Ja<sup>2</sup> |
-| Kopieren in relationale Datenbank | Nein | Nein | Nein | Nein | Ja | 
-| Kopieren aus relationaler Datenbank | Nein | Nein | Nein | Nein | Ja | 
+| Für Big Data optimiert | Nein  | Nein  | Nein  | Ja<sup>1</sup> | Ja<sup>2</sup> |
+| Kopieren in relationale Datenbank | Nein  | Nein  | Nein  | Nein  | Ja | 
+| Kopieren aus relationaler Datenbank | Nein  | Nein  | Nein  | Nein  | Ja | 
 | Kopieren in Blob Storage | Ja | Ja | Ja | Nein | Ja | 
 | Kopieren aus Blob Storage | Ja | Ja | Ja | Ja | Ja |
-| Kopieren in Data Lake Store | Nein | Nein | Ja | Ja |  Ja | 
-| Kopieren aus Data Lake Store | Nein | Nein | Ja | Ja | Ja | 
+| Kopieren in Data Lake Store | Nein  | Nein  | Ja | Ja |  Ja | 
+| Kopieren aus Data Lake Store | Nein  | Nein  | Ja | Ja | Ja | 
 
 
 [1] AdlCopy ist bei Verwendung mit einem Data Lake Analytics-Konto für die Übertragung von Big Data optimiert.
@@ -123,17 +124,17 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | Azure Storage-Explorer | Azure-Portal* | Azure Data Factory |
 | --- | --- | --- | --- |
-| Für Big Data optimiert | Nein | Nein | Ja | 
-| Kopieren in relationale Datenbank | Nein | Nein | Ja |
-| Kopieren in relationale Datenbank | Nein | Nein | Ja |
+| Für Big Data optimiert | Nein  | Nein  | Ja | 
+| Kopieren in relationale Datenbank | Nein  | Nein  | Ja |
+| Kopieren in relationale Datenbank | Nein  | Nein  | Ja |
 | Kopieren in Blob Storage | Ja | Nein | Ja |
 | Kopieren aus Blob Storage | Ja | Nein | Ja |
-| Kopieren in Data Lake Store | Nein | Nein | Ja |
-| Kopieren aus Data Lake Store | Nein | Nein | Ja |
+| Kopieren in Data Lake Store | Nein  | Nein  | Ja |
+| Kopieren aus Data Lake Store | Nein  | Nein  | Ja |
 | Hochladen in Blob Storage | Ja | Ja | Ja |
 | Hochladen in Data Lake Store | Ja | Ja | Ja |
-| Orchestrieren von Datenübertragungen | Nein | Nein | Ja |
-| Benutzerdefinierte Datentransformationen | Nein | Nein | Ja |
+| Orchestrieren von Datenübertragungen | Nein  | Nein  | Ja |
+| Benutzerdefinierte Datentransformationen | Nein  | Nein  | Ja |
 | Preismodell | Kostenlos | Kostenlos | Nutzungsbasierte Bezahlung |
 
 \* Azure-Portal bedeutet in diesem Fall die Verwendung der webbasierten Erkundungstools für Blob Storage und Data Lake Store.

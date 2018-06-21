@@ -7,11 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
-ms.openlocfilehash: 85191fc630549559f8a1395e5a8622a7a6140a2d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6e05a30245fbf5183a4e50a54650505f5a5f2aa8
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252923"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>Muster „Computeressourcenkonsolidierung“
 
@@ -88,7 +89,7 @@ Beim Erstellen eines Clouddiensts in Azure ist es möglich, die Verarbeitung meh
 
 Die Rolle ist für das Starten und Beenden der Tasks verantwortlich. Wenn der Azure Fabric Controller eine Rolle lädt, löst er das Ereignis `Start` für die Rolle aus. Sie können die Methode `OnStart` der Klasse `WebRole` oder `WorkerRole` überschreiben, um dieses Ereignis zu behandeln – um beispielsweise die Daten und andere Ressourcen zu initialisieren, von denen die Tasks in dieser Methode abhängen.
 
-Wenn die Methode `OnStart ` abgeschlossen wurde, kann die Rolle auf Anforderungen antworten. Weitere Informationen und Anweisungen zur Verwendung der Methoden `OnStart` und `Run` in einer Rolle finden Sie im Abschnitt [Prozesse für den Anwendungsstart](https://msdn.microsoft.com/library/ff803371.aspx#sec16) im Patterns & Practices-Leitfaden zum [Verschieben von Anwendungen in die Cloud](https://msdn.microsoft.com/library/ff728592.aspx).
+Nachdem die `OnStart`-Methode abgeschlossen wurde, kann die Rolle auf Anforderungen antworten. Weitere Informationen und Anweisungen zur Verwendung der Methoden `OnStart` und `Run` in einer Rolle finden Sie im Abschnitt [Prozesse für den Anwendungsstart](https://msdn.microsoft.com/library/ff803371.aspx#sec16) im Patterns & Practices-Leitfaden zum [Verschieben von Anwendungen in die Cloud](https://msdn.microsoft.com/library/ff728592.aspx).
 
 > Halten Sie den Code in der `OnStart`-Methode so kurz wie möglich. Azure legt keine Zeit bis zum Abschluss dieser Methode fest, aber die Rolle kann erst auf eingehende Netzwerkanforderungen reagieren, wenn diese Methode abgeschlossen wurde.
 

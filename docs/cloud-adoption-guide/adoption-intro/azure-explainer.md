@@ -2,11 +2,12 @@
 title: 'Erläuterungen: Wie funktioniert Azure?'
 description: Enthält eine Beschreibung der internen Funktionsweise von Azure.
 author: petertay
-ms.openlocfilehash: b4830fec69ac6d256d934d91ea2c295219925a9a
-ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
+ms.openlocfilehash: 1cebcc001b8d2ae93d8b0271c48d54617281c7c2
+ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35290508"
 ---
 # <a name="explainer-how-does-azure-work"></a>Erläuterungen: Wie funktioniert Azure?
 
@@ -28,7 +29,7 @@ Einfach ausgedrückt: Azure ist eine große Sammlung von Servern und Netzwerkhar
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-* Nachdem Sie jetzt die interne Funktionsweise von Azure verstanden haben, besteht der erste Schritt zur Einführung von Azure darin, sich über die [digitale Identität in Azure](tenant-explainer.md) zu informieren. Anschließend können Sie [Ihren ersten Benutzer in Azure AD erstellen][docs-add-users-to-aad].
+* Nachdem Sie sich jetzt mit der internen Funktionsweise von Azure vertraut gemacht haben, können Sie sich über die [Kontrolle des Ressourcenzugriffs](governance-explainer.md) informieren. Fahren Sie anschließend mit dem ersten Schritt zur Einführung von Azure fort, in dem Sie sich [mit der digitalen Identität in Azure vertraut machen](tenant-explainer.md). Nach Abschluss dieses Schritts können Sie [Ihren ersten Benutzer in Azure AD][docs-add-users-to-aad] erstellen.
 
 <!-- Links -->
 

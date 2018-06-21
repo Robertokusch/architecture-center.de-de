@@ -2,11 +2,12 @@
 title: Kriterien für die Auswahl eines Datenspeichers
 description: Übersicht über Azure-Computeoptionen
 author: MikeWasson
-ms.openlocfilehash: 9cb2f77b854a38450490bc96bf0b6a2998ceb1c7
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 70f746f80c29623004620d83eb38747777df7f84
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252872"
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>Kriterien für die Auswahl eines Datenspeichers
 
@@ -24,7 +25,7 @@ Sammeln Sie für den Vergleich zunächst möglichst viele der folgenden Informat
 - **Datenbeziehungen:** Müssen Ihre Daten 1:n- oder m:n-Beziehungen unterstützen? Sind die Beziehungen selbst ein wichtiger Teil der Daten? Müssen Sie Daten innerhalb des gleichen DataSets oder aus externen DataSets verknüpfen oder auf andere Weise kombinieren? 
 - **Konsistenzmodell:** Wie wichtig ist es, dass in einem Knoten durchgeführte Aktualisierungen in anderen Knoten angezeigt werden, damit weitere Änderungen vorgenommen werden können? Können Sie letztlich Konsistenz akzeptieren? Benötigen Sie ACID-Garantien für Transaktionen?
 - **Schemaflexibilität:** Welche Art von Schemas wenden Sie auf Ihre Daten an? Verwenden Sie ein festes Schema, ein Schema bei Schreibvorgängen oder ein Schema bei Lesevorgängen?
-- **Parallelität:** Welche Art von Parallelitätsmechanismus möchten Sie beim Aktualisieren und Synchronisieren von Daten verwenden? Werden in der Anwendung viele Aktualisierungen durchgeführt, die potenziell zu Konflikten führen? Wenn dies der Fall ist, benötigen Sie möglicherweise die Datensatzsperrung und Steuerung für pessimistische Parallelität. Können Sie alternativ die Steuerung für optimistische Parallelität unterstützen? Wenn ja, ist eine einfache zeitstempelbasierte Parallelitätssteuerung ausreichend. Oder benötigen Sie die erweiterte Funktion der Parallelitätssteuerung mit mehreren Versionen?
+- **Parallelität:** Welche Art von Parallelitätsmechanismus möchten Sie beim Aktualisieren und Synchronisieren von Daten verwenden? Werden in der Anwendung viele Aktualisierungen durchgeführt, die potenziell zu Konflikten führen? Wenn dies der Fall ist, benötigen Sie unter Umständen die Datensatzsperrung und Steuerung für pessimistische Parallelität. Können Sie alternativ die Steuerung für optimistische Parallelität unterstützen? Wenn ja, ist eine einfache zeitstempelbasierte Parallelitätssteuerung ausreichend. Oder benötigen Sie die erweiterte Funktion der Parallelitätssteuerung mit mehreren Versionen?
 - **Datenverschiebung:** Müssen in Ihrer Lösung ETL-Aufgaben durchgeführt werden, um Daten in andere Speicher oder Data Warehouses zu verschieben?
 - **Datenlebenszyklus:** Werden die Daten einmal geschrieben und häufig gelesen? Können sie in Cool oder Cold Storage verschoben werden?
 - **Andere unterstützte Features:** Benötigen Sie andere spezifische Features, z.B. Schemaüberprüfung, Aggregation, Indizierung, Volltextsuche, MapReduce oder andere Abfragefunktionen?
@@ -211,7 +212,7 @@ In den folgenden Abschnitten werden verschiedene Datenspeichermodelle in Bezug a
             <li>Organigramme</li>
             <li>Social Graphs</li>
             <li>Betrugserkennung</li>
-            <li>Analyse</li>
+            <li>Analytics</li>
             <li>Empfehlungs-Engines</li>
         </ul>
     </td>
@@ -289,7 +290,7 @@ In den folgenden Abschnitten werden verschiedene Datenspeichermodelle in Bezug a
             <li>Produktkataloge</li>
             <li>Websitesuche</li>
             <li>Protokollierung</li>
-            <li>Analyse</li>
+            <li>Analytics</li>
             <li>Shopping-Websites</li>
         </ul>
     </td>
@@ -330,7 +331,7 @@ In den folgenden Abschnitten werden verschiedene Datenspeichermodelle in Bezug a
 <tr><td><strong>Workload</strong></td>
     <td>
         <ul>
-            <li>Der überwiegende Anteil der Vorgänge sind Schreibvorgänge (95 bis 99 %).</li>
+            <li>Der überwiegende Anteil der Vorgänge sind Schreibvorgänge (95 bis 99%).</li>
             <li>Datensätze werden generell sequenziell in zeitlicher Reihenfolge angefügt.</li>
             <li>Aktualisierungen sind selten.</li>
             <li>Löschvorgänge werden massenweise und in zusammenhängenden Blöcken oder Datensätzen durchgeführt.</li>

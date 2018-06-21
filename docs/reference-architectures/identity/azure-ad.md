@@ -7,11 +7,12 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: 9475d669b2cb8888a7ceabed7e36317fe63681fd
-ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
+ms.openlocfilehash: ade79f8ebffc15b423ef6ebfb9b19611c9500cd8
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/23/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252991"
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>Integrieren von lokalen Active Directory-Domänen in Azure Active Directory
 
@@ -32,7 +33,7 @@ Typische Einsatzmöglichkeiten für diese Referenzarchitektur sind:
 * Architekturen, in denen das lokale Netzwerk und das Azure VNet der Anwendung nicht über eine VPN-Tunnel- oder ExpressRoute-Verbindung verbunden sind.
 
 > [!NOTE]
-> Azure AD unterstützt derzeit nur Benutzerauthentifizierung. Einige Anwendungen und Dienste, z. B. SQL Server, erfordern möglicherweise Computerauthentifizierung. In diesem Fall ist diese Lösung nicht geeignet.
+> Azure AD kann die Identität von Benutzern und Anwendungen authentifizieren, die im Verzeichnis einer Organisation enthalten sind. Einige Anwendungen und Dienste, z. B. SQL Server, erfordern möglicherweise Computerauthentifizierung. In diesem Fall ist diese Lösung nicht geeignet.
 > 
 
 Weitere Überlegungen finden Sie unter [Auswählen einer Lösung für die Integration einer lokalen Active Directory-Instanz in Azure][considerations]. 
