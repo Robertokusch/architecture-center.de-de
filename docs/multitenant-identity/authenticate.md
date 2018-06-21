@@ -11,6 +11,7 @@ ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26359254"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>Authentifizieren mithilfe von Azure AD und OpenID Connect
 

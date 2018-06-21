@@ -19,6 +19,7 @@ ms.sourcegitcommit: 4ec010846b9b5545c843a32e08293f906e512302
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 05/17/2018
+ms.locfileid: "34299908"
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a>Beispiele für das Implementieren eines Azure-Unternehmensgerüsts
 Dieser Artikel enthält Beispiele dafür, wie ein Unternehmen die Empfehlungen für ein [Azure-Unternehmensgerüst](subscription-governance.md) implementieren kann. Ein fiktives Unternehmen mit dem Namen Contoso wird verwendet, um die bewährten Methoden für allgemeine Szenarien zu veranschaulichen.

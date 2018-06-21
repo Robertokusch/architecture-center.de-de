@@ -9,6 +9,7 @@ ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 01/05/2018
+ms.locfileid: "27596018"
 ---
 # <a name="api-implementation"></a>API-Implementierung
 

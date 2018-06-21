@@ -7,6 +7,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29478305"
 ---
 # <a name="explainer-what-is-an-azure-subscription"></a>Erläuterungen: Was ist ein Azure-Abonnement?
 

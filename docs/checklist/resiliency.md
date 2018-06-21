@@ -9,6 +9,7 @@ ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 03/08/2018
+ms.locfileid: "29782613"
 ---
 # <a name="resiliency-checklist"></a>Checkliste für Resilienz
 

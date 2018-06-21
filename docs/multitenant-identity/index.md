@@ -10,6 +10,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541672"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a>Verwalten der Identität in mehrmandantenfähigen Anwendungen
 

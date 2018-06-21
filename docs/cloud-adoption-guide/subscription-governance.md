@@ -19,6 +19,7 @@ ms.sourcegitcommit: 4ec010846b9b5545c843a32e08293f906e512302
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 05/17/2018
+ms.locfileid: "34299916"
 ---
 # <a name="azure-enterprise-scaffold---prescriptive-subscription-governance"></a>Azure-Unternehmensgerüst – präskriptive Abonnementgovernance
 Immer mehr Unternehmen führen für Mobilität und Flexibilität eine öffentliche Cloud ein. Sie nutzen die Stärken der Cloud, um Umsatz zu generieren oder Ressourcen für das Unternehmen zu optimieren. Microsoft Azure bietet eine Vielzahl von Diensten, die Unternehmen wie Bausteine zusammenstellen können, um ein großes Spektrum von Workloads und Anwendungen zu berücksichtigen. 
