@@ -2,31 +2,31 @@
 title: Verwenden verwalteter Dienste
 description: Verwenden Sie nach Möglichkeit PaaS (Platform-as-a-Service) anstelle von IaaS (Infrastructure-as-a-Service).
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 7156c073db3e047fb38e031309ddb637a9e44c02
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6d3cfb2e97b5a9b25bb1afd72059e981ef45c0d8
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206721"
 ---
-# <a name="use-managed-services"></a>Verwenden verwalteter Dienste
+# <a name="use-managed-services"></a><span data-ttu-id="37fee-103">Verwenden verwalteter Dienste</span><span class="sxs-lookup"><span data-stu-id="37fee-103">Use managed services</span></span>
 
-## <a name="when-possible-use-platform-as-a-service-paas-rather-than-infrastructure-as-a-service-iaas"></a>Verwenden Sie nach Möglichkeit PaaS (Platform-as-a-Service) anstelle von IaaS (Infrastructure-as-a-Service)
+## <a name="when-possible-use-platform-as-a-service-paas-rather-than-infrastructure-as-a-service-iaas"></a><span data-ttu-id="37fee-104">Verwenden Sie nach Möglichkeit PaaS (Platform-as-a-Service) anstelle von IaaS (Infrastructure-as-a-Service)</span><span class="sxs-lookup"><span data-stu-id="37fee-104">When possible, use platform as a service (PaaS) rather than infrastructure as a service (IaaS)</span></span>
 
-IaaS können Sie sich wie eine Kiste mit Einzelteilen vorstellen. Sie können beliebige Dinge bauen, aber Sie müssen alles selbst zusammensetzen. Verwaltete Dienste können einfacher konfiguriert und verwaltet werden. Sie müssen keine VMs bereitstellen, VNets einrichten oder Patches und Updates verwalten, und auch der restliche Mehraufwand für die Ausführung von Software auf einer VM fällt weg.
+<span data-ttu-id="37fee-105">IaaS können Sie sich wie eine Kiste mit Einzelteilen vorstellen.</span><span class="sxs-lookup"><span data-stu-id="37fee-105">IaaS is like having a box of parts.</span></span> <span data-ttu-id="37fee-106">Sie können beliebige Dinge bauen, aber Sie müssen alles selbst zusammensetzen.</span><span class="sxs-lookup"><span data-stu-id="37fee-106">You can build anything, but you have to assemble it yourself.</span></span> <span data-ttu-id="37fee-107">Verwaltete Dienste können einfacher konfiguriert und verwaltet werden.</span><span class="sxs-lookup"><span data-stu-id="37fee-107">Managed services are easier to configure and administer.</span></span> <span data-ttu-id="37fee-108">Sie müssen keine VMs bereitstellen, VNets einrichten oder Patches und Updates verwalten, und auch der restliche Mehraufwand für die Ausführung von Software auf einer VM fällt weg.</span><span class="sxs-lookup"><span data-stu-id="37fee-108">You don't need to provision VMs, set up VNets, manage patches and updates, and all of the other overhead associated with running software on a VM.</span></span>
 
-Angenommen, Ihre Anwendung benötigt eine Nachrichtenwarteschlange. Sie können Ihren eigenen Messagingdienst auf einer VM einrichten, indem Sie beispielsweise RabbitMQ verwenden. Für Azure Service Bus wird aber bereits ein zuverlässiger Messagingdienst bereitgestellt, der leichter einzurichten ist. Erstellen Sie einfach einen Service Bus-Namespace (z.B. im Rahmen des Bereitstellungsskripts), und rufen Sie anschließend Service Bus auf, indem Sie das Client-SDK verwenden. 
+<span data-ttu-id="37fee-109">Angenommen, Ihre Anwendung benötigt eine Nachrichtenwarteschlange.</span><span class="sxs-lookup"><span data-stu-id="37fee-109">For example, suppose your application needs a message queue.</span></span> <span data-ttu-id="37fee-110">Sie können Ihren eigenen Messagingdienst auf einer VM einrichten, indem Sie beispielsweise RabbitMQ verwenden.</span><span class="sxs-lookup"><span data-stu-id="37fee-110">You could set up your own messaging service on a VM, using something like RabbitMQ.</span></span> <span data-ttu-id="37fee-111">Für Azure Service Bus wird aber bereits ein zuverlässiger Messagingdienst bereitgestellt, der leichter einzurichten ist.</span><span class="sxs-lookup"><span data-stu-id="37fee-111">But Azure Service Bus already provides reliable messaging as service, and it's simpler to set up.</span></span> <span data-ttu-id="37fee-112">Erstellen Sie einfach einen Service Bus-Namespace (z.B. im Rahmen des Bereitstellungsskripts), und rufen Sie anschließend Service Bus auf, indem Sie das Client-SDK verwenden.</span><span class="sxs-lookup"><span data-stu-id="37fee-112">Just create a Service Bus namespace (which can be done as part of a deployment script) and then call Service Bus using the client SDK.</span></span> 
 
-Es kann natürlich sein, dass Ihre Anwendung über bestimmte Anforderungen verfügt, für die ein IaaS-Ansatz besser geeignet ist. Auch wenn Ihre Anwendung auf IaaS basiert, sollten Sie nach Stellen suchen, für die die Einbindung von verwalteten Diensten hilfreich ist. Hierzu gehören die Bereiche Cache, Warteschlangen und Datenspeicher.
+<span data-ttu-id="37fee-113">Es kann natürlich sein, dass Ihre Anwendung über bestimmte Anforderungen verfügt, für die ein IaaS-Ansatz besser geeignet ist.</span><span class="sxs-lookup"><span data-stu-id="37fee-113">Of course, your application may have specific requirements that make an IaaS approach more suitable.</span></span> <span data-ttu-id="37fee-114">Auch wenn Ihre Anwendung auf IaaS basiert, sollten Sie nach Stellen suchen, für die die Einbindung von verwalteten Diensten hilfreich ist.</span><span class="sxs-lookup"><span data-stu-id="37fee-114">However, even if your application is based on IaaS, look for places where it may be natural to incorporate managed services.</span></span> <span data-ttu-id="37fee-115">Hierzu gehören die Bereiche Cache, Warteschlangen und Datenspeicher.</span><span class="sxs-lookup"><span data-stu-id="37fee-115">These include cache, queues, and data storage.</span></span>
 
-| Anstelle der Ausführung von: | Mögliche Verwendung von: |
+| <span data-ttu-id="37fee-116">Anstelle der Ausführung von:</span><span class="sxs-lookup"><span data-stu-id="37fee-116">Instead of running...</span></span> | <span data-ttu-id="37fee-117">Mögliche Verwendung von:</span><span class="sxs-lookup"><span data-stu-id="37fee-117">Consider using...</span></span> |
 |-----------------------|-------------|
-| Active Directory | Azure Active Directory Domain Services |
-| Elasticsearch | Azure Search |
-| Hadoop | HDInsight |
-| IIS | App Service |
-| MongoDB | Cosmos DB |
-| Redis | Azure Redis Cache |
-| SQL Server | Azure SQL-Datenbank |
+| <span data-ttu-id="37fee-118">Active Directory</span><span class="sxs-lookup"><span data-stu-id="37fee-118">Active Directory</span></span> | <span data-ttu-id="37fee-119">Azure Active Directory Domain Services</span><span class="sxs-lookup"><span data-stu-id="37fee-119">Azure Active Directory Domain Services</span></span> |
+| <span data-ttu-id="37fee-120">Elasticsearch</span><span class="sxs-lookup"><span data-stu-id="37fee-120">Elasticsearch</span></span> | <span data-ttu-id="37fee-121">Azure Search</span><span class="sxs-lookup"><span data-stu-id="37fee-121">Azure Search</span></span> |
+| <span data-ttu-id="37fee-122">Hadoop</span><span class="sxs-lookup"><span data-stu-id="37fee-122">Hadoop</span></span> | <span data-ttu-id="37fee-123">HDInsight</span><span class="sxs-lookup"><span data-stu-id="37fee-123">HDInsight</span></span> |
+| <span data-ttu-id="37fee-124">IIS</span><span class="sxs-lookup"><span data-stu-id="37fee-124">IIS</span></span> | <span data-ttu-id="37fee-125">App Service</span><span class="sxs-lookup"><span data-stu-id="37fee-125">App Service</span></span> |
+| <span data-ttu-id="37fee-126">MongoDB</span><span class="sxs-lookup"><span data-stu-id="37fee-126">MongoDB</span></span> | <span data-ttu-id="37fee-127">Cosmos DB</span><span class="sxs-lookup"><span data-stu-id="37fee-127">Cosmos DB</span></span> |
+| <span data-ttu-id="37fee-128">Redis</span><span class="sxs-lookup"><span data-stu-id="37fee-128">Redis</span></span> | <span data-ttu-id="37fee-129">Azure Redis Cache</span><span class="sxs-lookup"><span data-stu-id="37fee-129">Azure Redis Cache</span></span> |
+| <span data-ttu-id="37fee-130">SQL Server</span><span class="sxs-lookup"><span data-stu-id="37fee-130">SQL Server</span></span> | <span data-ttu-id="37fee-131">Azure SQL-Datenbank</span><span class="sxs-lookup"><span data-stu-id="37fee-131">Azure SQL Database</span></span> |
 
 
