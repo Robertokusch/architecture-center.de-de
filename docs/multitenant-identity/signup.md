@@ -11,6 +11,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541400"
 ---
 # <a name="tenant-sign-up-and-onboarding"></a><span data-ttu-id="0d1a1-103">Registrierung und Onboarding von Mandanten</span><span class="sxs-lookup"><span data-stu-id="0d1a1-103">Tenant sign-up and onboarding</span></span>
 

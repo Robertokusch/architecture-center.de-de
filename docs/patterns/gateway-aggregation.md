@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541272"
 ---
 # <a name="gateway-aggregation-pattern"></a><span data-ttu-id="c6aa8-103">Muster „Gatewayaggregation“</span><span class="sxs-lookup"><span data-stu-id="c6aa8-103">Gateway Aggregation pattern</span></span>
 

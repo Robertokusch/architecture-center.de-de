@@ -9,6 +9,7 @@ ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 02/27/2018
+ms.locfileid: "29563556"
 ---
 # <a name="best-practices-for-using-content-delivery-networks-cdns"></a><span data-ttu-id="19a03-103">Bewährte Methoden für die Verwendung von Content Delivery Networks (CDNs)</span><span class="sxs-lookup"><span data-stu-id="19a03-103">Best practices for using content delivery networks (CDNs)</span></span>
 

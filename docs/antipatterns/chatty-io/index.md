@@ -7,6 +7,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29477739"
 ---
 # <a name="chatty-io-antipattern"></a><span data-ttu-id="9681c-103">Antimuster „Zu viele E/A-Vorgänge“</span><span class="sxs-lookup"><span data-stu-id="9681c-103">Chatty I/O antipattern</span></span>
 

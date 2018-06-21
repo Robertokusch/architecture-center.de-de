@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24540984"
 ---
 # <a name="strangler-pattern"></a><span data-ttu-id="bc15c-103">Einschnürungsmuster</span><span class="sxs-lookup"><span data-stu-id="bc15c-103">Strangler pattern</span></span>
 

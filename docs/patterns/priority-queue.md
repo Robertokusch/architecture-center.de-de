@@ -13,6 +13,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24543144"
 ---
 # <a name="priority-queue-pattern"></a><span data-ttu-id="6f1c1-104">Muster „Prioritätswarteschlange“</span><span class="sxs-lookup"><span data-stu-id="6f1c1-104">Priority Queue pattern</span></span>
 

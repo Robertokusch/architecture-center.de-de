@@ -15,6 +15,7 @@ ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26359318"
 ---
 # <a name="queue-based-load-leveling-pattern"></a><span data-ttu-id="fe220-104">Warteschlangenbasiertes Lastenausgleichsmuster</span><span class="sxs-lookup"><span data-stu-id="fe220-104">Queue-Based Load Leveling pattern</span></span>
 

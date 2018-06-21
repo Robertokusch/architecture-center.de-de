@@ -7,6 +7,7 @@ ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 02/27/2018
+ms.locfileid: "29563454"
 ---
 # <a name="guidance-azure-ad-tenant-design"></a><span data-ttu-id="46b80-103">Anleitungen: Entwerfen eines Azure AD-Mandanten</span><span class="sxs-lookup"><span data-stu-id="46b80-103">Guidance: Azure AD tenant design</span></span>
 

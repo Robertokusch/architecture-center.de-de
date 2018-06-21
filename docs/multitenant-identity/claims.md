@@ -11,6 +11,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541912"
 ---
 # <a name="work-with-claims-based-identities"></a><span data-ttu-id="cdbe7-103">Arbeiten mit anspruchsbasierten Identitäten</span><span class="sxs-lookup"><span data-stu-id="cdbe7-103">Work with claims-based identities</span></span>
 

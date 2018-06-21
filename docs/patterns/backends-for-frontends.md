@@ -8,6 +8,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270018"
 ---
 # <a name="backends-for-frontends-pattern"></a><span data-ttu-id="466a4-103">Muster „Back-Ends für Front-Ends“</span><span class="sxs-lookup"><span data-stu-id="466a4-103">Backends for Frontends pattern</span></span>
 

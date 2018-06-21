@@ -13,6 +13,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24542424"
 ---
 # <a name="scheduler-agent-supervisor-pattern"></a><span data-ttu-id="9fdb8-104">Muster „Scheduler-Agent-Supervisor“</span><span class="sxs-lookup"><span data-stu-id="9fdb8-104">Scheduler Agent Supervisor pattern</span></span>
 

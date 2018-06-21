@@ -10,6 +10,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847089"
 ---
 # <a name="data-management-patterns"></a><span data-ttu-id="e6ca4-106">Datenverwaltungsmuster</span><span class="sxs-lookup"><span data-stu-id="e6ca4-106">Data Management patterns</span></span>
 

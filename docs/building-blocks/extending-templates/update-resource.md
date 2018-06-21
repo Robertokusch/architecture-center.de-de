@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24538472"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a><span data-ttu-id="a7eff-103">Aktualisieren einer Ressource in einer Azure Resource Manager-Vorlage</span><span class="sxs-lookup"><span data-stu-id="a7eff-103">Update a resource in an Azure Resource Manager template</span></span>
 

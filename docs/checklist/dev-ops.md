@@ -9,6 +9,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847058"
 ---
 # <a name="devops-checklist"></a><span data-ttu-id="50812-103">Checkliste für DevOps</span><span class="sxs-lookup"><span data-stu-id="50812-103">DevOps Checklist</span></span>
 

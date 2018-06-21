@@ -10,6 +10,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847191"
 ---
 # <a name="resiliency-patterns"></a><span data-ttu-id="bb6f5-106">Resilienzmuster</span><span class="sxs-lookup"><span data-stu-id="bb6f5-106">Resiliency patterns</span></span>
 

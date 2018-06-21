@@ -7,6 +7,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541656"
 ---
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a><span data-ttu-id="b31ce-103">Auswählen einer Lösung für die Integration einer lokalen Active Directory-Instanz in Azure</span><span class="sxs-lookup"><span data-stu-id="b31ce-103">Choose a solution for integrating on-premises Active Directory with Azure</span></span>
 

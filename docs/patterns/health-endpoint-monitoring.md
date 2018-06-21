@@ -14,6 +14,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847848"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a><span data-ttu-id="e7719-104">Muster für Überwachung der Integrität von Endpunkten</span><span class="sxs-lookup"><span data-stu-id="e7719-104">Health Endpoint Monitoring pattern</span></span>
 

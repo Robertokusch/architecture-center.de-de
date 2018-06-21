@@ -13,6 +13,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541784"
 ---
 # <a name="index-table-pattern"></a><span data-ttu-id="ad51a-104">Muster „Indextabelle“</span><span class="sxs-lookup"><span data-stu-id="ad51a-104">Index Table pattern</span></span>
 

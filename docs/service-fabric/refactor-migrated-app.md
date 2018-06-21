@@ -8,6 +8,7 @@ ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 03/08/2018
+ms.locfileid: "29782545"
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a><span data-ttu-id="dd8db-103">Umgestalten einer Azure Service Fabric-Anwendung, die von Azure Cloud Services migriert wurde</span><span class="sxs-lookup"><span data-stu-id="dd8db-103">Refactor an Azure Service Fabric Application migrated from Azure Cloud Services</span></span>
 

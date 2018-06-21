@@ -7,6 +7,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24539800"
 ---
 # <a name="web-queue-worker-architecture-style"></a><span data-ttu-id="f034f-103">Architekturstil „Web-Warteschlange-Worker“</span><span class="sxs-lookup"><span data-stu-id="f034f-103">Web-Queue-Worker architecture style</span></span>
 

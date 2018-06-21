@@ -11,6 +11,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24540280"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a><span data-ttu-id="fd3b0-103">Abrufen von Zugriffstoken aus Azure AD mithilfe der Clientassertion</span><span class="sxs-lookup"><span data-stu-id="fd3b0-103">Use client assertion to get access tokens from Azure AD</span></span>
 

@@ -8,6 +8,7 @@ ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673602"
 ---
 # <a name="run-a-windows-vm-on-azure"></a><span data-ttu-id="f18bf-103">Ausführen eines virtuellen Windows-Computers in Azure</span><span class="sxs-lookup"><span data-stu-id="f18bf-103">Run a Windows VM on Azure</span></span>
 

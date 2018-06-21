@@ -9,6 +9,7 @@ ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 01/11/2018
+ms.locfileid: "27766104"
 ---
 # <a name="scalability-checklist"></a><span data-ttu-id="8e38a-103">Checkliste für die Skalierbarkeit</span><span class="sxs-lookup"><span data-stu-id="8e38a-103">Scalability checklist</span></span>
 

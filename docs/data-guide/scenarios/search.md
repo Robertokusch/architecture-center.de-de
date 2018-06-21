@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29288812"
 ---
 # <a name="processing-free-form-text-for-search"></a><span data-ttu-id="0cf66-102">Verarbeiten von Freitext für die Suche</span><span class="sxs-lookup"><span data-stu-id="0cf66-102">Processing free-form text for search</span></span>
 

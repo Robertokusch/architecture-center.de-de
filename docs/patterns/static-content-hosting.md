@@ -14,6 +14,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541688"
 ---
 # <a name="static-content-hosting-pattern"></a><span data-ttu-id="1ce7d-104">Muster für das Hosten von statischen Inhalten</span><span class="sxs-lookup"><span data-stu-id="1ce7d-104">Static Content Hosting pattern</span></span>
 

@@ -8,6 +8,7 @@ ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 03/17/2018
+ms.locfileid: "29963192"
 ---
 # <a name="extend-azure-resource-manager-template-functionality"></a><span data-ttu-id="43384-103">Erweitern der Azure Resource Manager-Vorlagenfunktionen</span><span class="sxs-lookup"><span data-stu-id="43384-103">Extend Azure Resource Manager template functionality</span></span>
 

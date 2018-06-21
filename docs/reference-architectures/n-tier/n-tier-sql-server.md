@@ -11,6 +11,7 @@ ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673592"
 ---
 # <a name="n-tier-application-with-sql-server"></a><span data-ttu-id="2fa58-103">n-schichtige Anwendung mit SQL Server</span><span class="sxs-lookup"><span data-stu-id="2fa58-103">N-tier application with SQL Server</span></span>
 
