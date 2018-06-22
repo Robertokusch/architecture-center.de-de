@@ -2,12 +2,13 @@
 title: Entscheidungsstruktur für Azure-Computedienste
 description: Ein Flussdiagramm zur Auswahl eines Computediensts
 author: MikeWasson
-ms.date: 04/21/2018
-ms.openlocfilehash: 3dcfbd156d4fced863a56bcc8bb74483aa665f9f
-ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
+ms.date: 06/13/2018
+ms.openlocfilehash: 60bb84d4bf210888d3d43498db043b6e452f6a80
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/11/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206726"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Entscheidungsstruktur für Azure-Computedienste
 
@@ -25,5 +26,20 @@ Azure bietet eine Vielzahl von Möglichkeiten zum Hosten Ihres Anwendungscodes. 
 
 Wenn Ihre Anwendung aus mehreren Workloads besteht, bewerten Sie jede Workload getrennt. Eine vollständige Lösung kann zwei oder mehr Computedienste umfassen.
 
+## <a name="flowchart"></a>Flussdiagramm
+
 ![](../images/compute-decision-tree.svg)
 
+## <a name="definitions"></a>Definitionen
+
+- **Greenfield** beschreibt ein völlig neues Softwareprojekt, das von Grund auf neu erstellt wird. Es enthält keinen Legacycode. 
+
+- **Brownfield** beschreibt ein Softwareprojekt, das auf einer vorhandenen Anwendung basiert. Es enthält unter Umständen Legacycode oder -frameworks.
+
+- **Lift und Shift** ist eine Strategie zum Migrieren einer Workload zur Cloud ohne Überarbeitung der Anwendung oder Änderung des Codes. Dies wird auch als *erneutes Hosten* bezeichnet. Weitere Informationen finden Sie im [Azure-Migrationscenter](https://azure.microsoft.com/migration/).
+
+- **Cloudoptimierung** ist eine Strategie für die Migration zur Cloud durch Umgestaltung einer Anwendung, um cloudeigene Features und Funktionen zu nutzen.
+
+## <a name="next-steps"></a>Nächste Schritte
+
+Weitere Aspekte, die berücksichtigt werden sollten, finden Sie unter [Kriterien für die Auswahl einer Azure-Compute-Option](./compute-comparison.md).

@@ -2,16 +2,19 @@
 title: Übersicht über Azure-Computeoptionen
 description: Übersicht über Azure-Computeoptionen
 author: MikeWasson
-ms.date: 04/21/2018
-ms.openlocfilehash: 8ee508aaa07d87ac77ef484e20d572fdf2b9fb40
-ms.sourcegitcommit: 3846a0ab2b2b2552202a3c9c21af0097a145ffc6
+ms.date: 06/13/2018
+ms.openlocfilehash: ceb70f8eeff42e6cadb8a63c2f36986f26322201
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/29/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206558"
 ---
 # <a name="overview-of-azure-compute-options"></a>Übersicht über Azure-Compute-Optionen
 
 Der Begriff *Compute* bezieht sich auf das Hostingmodell für die Computeressourcen, auf denen Ihre Anwendung ausgeführt wird. 
+
+## <a name="overview"></a>Übersicht
 
 An einem Ende des Spektrums befindet sich IaaS (**Infrastructure-as-a-Service**). Bei IaaS stellen Sie die benötigten VMs zusammen mit den zugeordneten Netzwerk- und Speicherkomponenten bereit. Anschließend stellen Sie die Software und Anwendungen bereit, die für diese VMs jeweils vorgesehen sind. Dieses Modell weist die größte Ähnlichkeit mit einer herkömmlichen lokalen Umgebung auf – mit der Ausnahme, dass die Infrastruktur von Microsoft verwaltet wird. Sie verwalten weiterhin die einzelnen VMs.  
 
@@ -23,12 +26,15 @@ Bei FaaS (**Functions-as-a-Service**) geht dies noch weiter, da es auch nicht me
 
 IaaS bietet das höchste Maß an Steuerung, Flexibilität und Portabilität. FaaS bietet Einfachheit, elastische Skalierung und potenzielle Kosteneinsparungen, da Sie nur für die Zeiten zahlen, in denen Ihr Code ausgeführt wird. PaaS liegt zwischen IaaS und FaaS. Im Allgemeinen gilt Folgendes: Je mehr Flexibilität ein Dienst ermöglicht, desto größer ist Ihre Verantwortung für die Konfiguration und Verwaltung der Ressourcen. Mit FaaS-Diensten werden automatisch fast alle Aspekte der Anwendungsausführung verwaltet, während es bei IaaS-Lösungen erforderlich ist, dass Sie die von Ihnen erstellten VMs und Netzwerkkomponenten bereitstellen, konfigurieren und verwalten.
 
+## <a name="azure-compute-options"></a>Compute-Optionen in Azure
+
 Hier sind die wichtigsten Compute-Optionen aufgeführt, die in Azure derzeit verfügbar sind:
 
 - [Virtual Machines](/azure/virtual-machines/) ist ein IaaS-Dienst, mit dem Sie VMs in einem virtuellen Netzwerk (VNet) bereitstellen und verwalten können.
-- [App Service](/azure/app-service/app-service-value-prop-what-is) ist ein verwalteter Dienst zum Hosten von Web-Apps, mobilen App-Back-Ends, RESTful-APIs oder automatisierten Geschäftsprozessen.
+- [App Service](/azure/app-service/app-service-value-prop-what-is) ist ein verwaltetes PaaS-Angebot zum Hosten von Web-Apps, mobilen App-Back-Ends, RESTful-APIs oder automatisierten Geschäftsprozessen.
 - [Service Fabric](/azure/service-fabric/service-fabric-overview) ist eine Plattform für verteilte Systeme, die in vielen Umgebungen ausgeführt werden kann, z.B. Azure oder lokal. Service Fabric ist ein Orchestrator von Microservices in einem Cluster mit Computern. 
 - Mit [Azure Container Service](/azure/container-service/container-service-intro) können Sie einen Cluster mit VMs, die für die Ausführung von Anwendungen in Containern vorkonfiguriert sind, erstellen, konfigurieren und verwalten.
+- Mit [Azure Container Instances](/azure/container-instances/container-instances-overview) lassen sich Container in Azure besonders schnell und einfach ausführen, ohne dass Sie dazu virtuelle Computer bereitstellen oder einen übergeordneten Dienst einführen müssen.
 - [Azure Functions](/azure/azure-functions/functions-overview) ist ein verwalteter FaaS-Dienst.
 - [Azure Batch](/azure/batch/batch-technical-overview) ist ein verwalteter Dienst zum Ausführen von umfassenden parallelen HPC-Anwendungen (High-Performance Computing).
 - Bei [Cloud Services](/azure/cloud-services/cloud-services-choose-me) handelt es sich um einen verwalteten Dienst zum Ausführen von Cloudanwendungen. Hierfür wird ein PaaS-Hostingmodell verwendet. 
@@ -42,6 +48,8 @@ Berücksichtigen Sie bei der Auswahl einer Compute-Option die folgenden Faktoren
 - Kosten: Zusätzlich zu den Kosten des eigentlichen Diensts sollten Sie die Betriebskosten für die Verwaltung einer Lösung berücksichtigen, die für den Dienst erstellt wird. Für IaaS-Lösungen können die Betriebskosten unter Umständen höher sein.
 - Welche allgemeinen Beschränkungen gelten für die einzelnen Dienste? 
 - Welche Art von Anwendungsarchitekturen sind für diesen Dienst geeignet? 
+
+## <a name="next-steps"></a>Nächste Schritte
 
 Wählen Sie einen Computedienst für Ihre Anwendung mithilfe der [Entscheidungsstruktur für Azure-Computedienste](./compute-decision-tree.md) aus.
 

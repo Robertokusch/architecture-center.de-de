@@ -2,12 +2,12 @@
 title: Mittlere Einführungsphase für Azure
 description: Hier wird der Wissensstand beschrieben, den ein Unternehmen in der mittleren Einführungsphase für Azure benötigt.
 author: petertay
-ms.openlocfilehash: 39b98595dd615ba1aa36921e48a0b23797bebaa0
-ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
+ms.openlocfilehash: 227d9558647ed8076b2832d95e192f2f0c43b9db
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35291153"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206360"
 ---
 # <a name="azure-cloud-adoption-guide-intermediate-overview"></a>Handbuch zur Einführung von Azure Cloud: Übersicht über die mittlere Phase
 
@@ -53,31 +53,31 @@ Das Cloud-Governance-Modell Ihrer Organisation bildet die Schnittmenge zwischen 
 Folgen Sie diesen Schritten:
 
 1. Erstellen Sie ein [Azure-Konto](/azure/active-directory/sign-up-organization), falls Ihre Organisation noch keins besitzt. Die Person, die sich für das Azure-Konto registriert, wird zum Azure-Kontoadministrator, und die Geschäftsleitung Ihrer Organisation muss eine Person bestimmen, die diese Rolle übernimmt. Die Aufgaben dieser Person umfassen Folgendes:
-  * Erstellen von Abonnements
-  * Erstellen und Verwalten von [Azure Active Directory (AD)](/azure/active-directory/active-directory-whatis)-Mandanten zur Speicherung der Benutzeridentität für diese Abonnements    
+    * Erstellen von Abonnements
+    * Erstellen und Verwalten von [Azure Active Directory (AD)](/azure/active-directory/active-directory-whatis)-Mandanten zur Speicherung der Benutzeridentität für diese Abonnements    
 2. Die Geschäftsleitung Ihrer Organisation bestimmt die zuständigen Personen für Folgendes:
-  * Verwaltung von Benutzeridentitäten. Bei der Erstellung des Azure-Kontos Ihrer Organisation wird standardmäßig auch ein [Azure AD-Mandant](/azure/active-directory/develop/active-directory-howto-tenant) erstellt, und der Kontoadministrator wird standardmäßig als [globaler Azure AD-Administrator](/azure/active-directory/active-directory-assign-admin-roles-azure-portal#details-about-the-global-administrator-role) hinzugefügt. Ihrer Organisation kann einen anderen Benutzer mit der Verwaltung von Benutzeridentitäten betrauen, indem sie [diesem Benutzer die Rolle des globalen Azure AD-Administrators zuweist](/azure/active-directory/active-directory-users-assign-role-azure-portal). 
-  * Abonnements. Diese Benutzer haben folgende Aufgaben:
-    * Verwalten der Kosten im Zusammenhang mit der Ressourcennutzung in diesem Abonnement
-    * Implementieren und Verwalten des Modells der geringsten Berechtigungen für den Ressourcenzugriff
-    * Überwachen von Diensteinschränkungen
-  * Gemeinsame Infrastrukturdienste (sofern sich Ihre Organisation für die Verwendung dieses Modells entscheidet). Dieser Benutzer ist für Folgendes zuständig:
-    * Konnektivität zwischen der lokalen Umgebung und dem Azure-Netzwerk 
-    * Netzwerkkonnektivität innerhalb von Azure durch Peering virtueller Netzwerke
-  * Workloadbesitzer 
+    * Verwaltung von Benutzeridentitäten. Bei der Erstellung des Azure-Kontos Ihrer Organisation wird standardmäßig auch ein [Azure AD-Mandant](/azure/active-directory/develop/active-directory-howto-tenant) erstellt, und der Kontoadministrator wird standardmäßig als [globaler Azure AD-Administrator](/azure/active-directory/active-directory-assign-admin-roles-azure-portal#details-about-the-global-administrator-role) hinzugefügt. Ihrer Organisation kann einen anderen Benutzer mit der Verwaltung von Benutzeridentitäten betrauen, indem sie [diesem Benutzer die Rolle des globalen Azure AD-Administrators zuweist](/azure/active-directory/active-directory-users-assign-role-azure-portal). 
+    * Abonnements. Diese Benutzer haben folgende Aufgaben:
+        * Verwalten der Kosten im Zusammenhang mit der Ressourcennutzung in diesem Abonnement
+        * Implementieren und Verwalten des Modells der geringsten Berechtigungen für den Ressourcenzugriff
+        * Überwachen von Diensteinschränkungen
+    * Gemeinsame Infrastrukturdienste (sofern sich Ihre Organisation für die Verwendung dieses Modells entscheidet). Dieser Benutzer ist für Folgendes zuständig:
+        * Konnektivität zwischen der lokalen Umgebung und dem Azure-Netzwerk 
+        * Netzwerkkonnektivität innerhalb von Azure durch Peering virtueller Netzwerke
+    * Workloadbesitzer 
 3. Der globale Azure AD-Administrator [erstellt die neuen Benutzerkonten](/azure/active-directory/add-users-azure-active-directory) für folgende Benutzer:
-  * Die Person, die als **Abonnementbesitzer** für die einzelnen Abonnements fungiert, die den einzelnen Umgebungen zugeordnet sind. Hinweis: Dies ist nur erforderlich, wenn der **Dienstadministrator** des Abonnements nicht für die Verwaltung des Ressourcenzugriffs für die einzelnen Abonnements/Umgebungen zuständig ist.
-  * Die Person, die als **Netzwerkbetriebsbenutzer** fungiert.
-  * Die Personen, die als **Workloadbesitzer** fungieren.
+    * Die Person, die als **Abonnementbesitzer** für die einzelnen Abonnements fungiert, die den einzelnen Umgebungen zugeordnet sind. Hinweis: Dies ist nur erforderlich, wenn der **Dienstadministrator** des Abonnements nicht für die Verwaltung des Ressourcenzugriffs für die einzelnen Abonnements/Umgebungen zuständig ist.
+    * Die Person, die als **Netzwerkbetriebsbenutzer** fungiert
+    * Die Personen, die als **Workloadbesitzer** fungieren
 4. Der Azure-Kontoadministrator erstellt über das [Azure-Kontoportal](https://account.azure.com) die drei folgenden Abonnements:
-  * Ein Abonnement für die **gemeinsame Infrastruktur**.
-  * Ein Abonnement für die **Produktionsumgebung**. 
-  * Ein Abonnement für die **Entwicklungsumgebung**. 
+    * Ein Abonnement für die **gemeinsame Infrastruktur**
+    * Ein Abonnement für die **Produktionsumgebung** 
+    * Ein Abonnement für die **Entwicklungsumgebung** 
 5. Der Azure-Kontoadministrator [fügt den Abonnements jeweils den Abonnementdienstbesitzer hinzu](/azure/billing/billing-add-change-azure-subscription-administrator#add-an-rbac-owner-admin-for-a-subscription-in-azure-portal).
-6. Erstellen Sie einen Genehmigungsprozess, damit **Workloadbesitzer** die Erstellung von Ressourcengruppen anfordern können. Der Genehmigungsprozess kann auf verschiedene Arten (beispielsweise per E-Mail) implementiert werden. Alternativ können Sie ein Prozessverwaltungstool wie [Sharepoint-Workflows](https://support.office.com/article/introduction-to-sharepoint-workflow-07982276-54e8-4e17-8699-5056eff4d9e3) verwenden. Der Genehmigungsprozess kann wie folgt aussehen:
-  1. Der **Workloadbesitzer** erstellt eine Stückliste mit Azure-Ressourcen, die in der **Entwicklungsumgebung**, in der **Produktionsumgebung** oder in beiden benötigt werden, und übermittelt sie an den **Abonnementbesitzer**.
-  2. Der **Abonnementbesitzer** prüft die Stückliste und die angeforderten Ressourcen, um sicherzustellen, dass sie für die geplante Verwendung angemessen sind (etwa durch Überprüfung, ob die angeforderten [VM-Größen](/azure/virtual-machines/windows/sizes) korrekt sind).
-  3. Wird die Anforderung nicht genehmigt, erhält der **Workloadbesitzer** eine entsprechende Benachrichtigung. Wenn die Anforderung genehmigt wird, führt der **Abonnementbesitzer** die [Erstellung der angeforderten Ressourcengruppe](/azure/azure-resource-manager/resource-group-portal#manage-resource-groups) unter Einhaltung der [Benennungskonventionen](/azure/architecture/best-practices/naming-conventions) Ihrer Organisation durch, [fügt den **Workloadbesitzer** hinzu](/azure/role-based-access-control/role-assignments-portal#add-access) (mit der [Rolle **Mitwirkender**](/azure/role-based-access-control/built-in-roles#contributor)) und informiert den **Workloadbesitzer** über die Erstellung der Ressourcengruppe.
+6. Erstellen Sie einen Genehmigungsprozess, damit **Workloadbesitzer** die Erstellung von Ressourcengruppen anfordern können. Der Genehmigungsprozess kann auf verschiedene Arten (beispielsweise per E-Mail) implementiert werden. Alternativ können Sie ein Prozessverwaltungstool wie [Sharepoint-Workflows](https://support.office.com/article/introduction-to-sharepoint-workflow-07982276-54e8-4e17-8699-5056eff4d9e3) verwenden. Der Genehmigungsprozess kann wie folgt aussehen:  
+    * Der **Workloadbesitzer** erstellt eine Stückliste mit Azure-Ressourcen, die in der **Entwicklungsumgebung**, in der **Produktionsumgebung** oder in beiden benötigt werden, und übermittelt sie an den **Abonnementbesitzer**.
+    * Der **Abonnementbesitzer** prüft die Stückliste und die angeforderten Ressourcen, um sicherzustellen, dass sie für die geplante Verwendung angemessen sind (etwa durch Überprüfung, ob die angeforderten [VM-Größen](/azure/virtual-machines/windows/sizes) korrekt sind).
+    * Wird die Anforderung nicht genehmigt, erhält der **Workloadbesitzer** eine entsprechende Benachrichtigung. Wenn die Anforderung genehmigt wird, führt der **Abonnementbesitzer** die [Erstellung der angeforderten Ressourcengruppe](/azure/azure-resource-manager/resource-group-portal#manage-resource-groups) unter Einhaltung der [Benennungskonventionen](/azure/architecture/best-practices/naming-conventions) Ihrer Organisation durch, [fügt den **Workloadbesitzer** hinzu](/azure/role-based-access-control/role-assignments-portal#add-access) (mit der [Rolle **Mitwirkender**](/azure/role-based-access-control/built-in-roles#contributor)) und informiert den **Workloadbesitzer** über die Erstellung der Ressourcengruppe.
 7. Erstellen Sie einen Genehmigungsprozess, damit Workloadbesitzer beim Besitzer der gemeinsamen Infrastruktur eine Verbindung mit Peering virtueller Netzwerke anfordern können. Dieser Genehmigungsprozess kann genau wie im vorherigen Schritt per E-Mail oder unter Verwendung eines Prozessverwaltungstools implementiert werden.
 
 Nach der Implementierung Ihres Governance-Modells können Sie Ihre gemeinsamen Infrastrukturdienste bereitstellen.

@@ -4,12 +4,12 @@ description: Enthält die Namenskonventionen für Azure-Ressourcen. Benennen von
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 42d91da3eacdcda66b82dff82ba444170c11d7d1
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: a92b6a1a23b35e7379f586d477b6f7cc6ccfc7e1
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35253059"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206377"
 ---
 # <a name="naming-conventions"></a>Benennungskonventionen
 
@@ -34,7 +34,7 @@ Ein empfohlenes Muster für das Benennen von Abonnements:
 `<Company> <Department (optional)> <Product Line (optional)> <Environment>`
 
 * Das Unternehmen ist für jedes Abonnement normalerweise gleich. Einige Unternehmen verfügen in ihrer Organisationsstruktur aber ggf. über untergeordnete Unternehmen. Diese Unternehmen werden unter Umständen von einer zentralen IT-Gruppe verwaltet. In diesem Fall ist eine Unterscheidung möglich, indem sowohl der Name des übergeordneten Unternehmens (*Contoso*) als auch der Name des untergeordneten Unternehmens (*Northwind*) verwendet wird.
-* Die Abteilung ist ein Name für einen Bereich in der Organisation, in der eine Gruppe von Personen arbeitet. Dieses Element ist innerhalb des Namespace optional.
+* Die Abteilung ist ein Name für einen Bereich in der Organisation, die eine Gruppe von Personen enthält. Dieses Element ist innerhalb des Namespace optional.
 * Die Produktlinie bezeichnet den spezifischen Namen eines Produkts oder einer Funktion, die von der Abteilung aus ausgeführt wird. Dies ist für interne Dienste und Anwendungen normalerweise optional. Der Einsatz wird aber dringend für öffentliche Dienste empfohlen, für die eine einfache Trennung und Identifikation (z.B. zur eindeutigen Trennung für Abrechnungsdatensätze) erforderlich ist.
 * Die Umgebung ist der Name für den Bereitstellungszyklus der Anwendungen oder Dienste wie Entwicklung, QA oder Bereitstellung.
 
