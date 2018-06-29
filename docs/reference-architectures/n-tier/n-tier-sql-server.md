@@ -2,16 +2,13 @@
 title: n-schichtige Anwendung mit SQL Server
 description: Vorgehensweise zur Implementierung einer mehrschichtigen Architektur in Azure für Verfügbarkeit, Sicherheit, Skalierbarkeit und Verwaltbarkeit.
 author: MikeWasson
-ms.date: 05/03/2018
-pnp.series.title: Windows VM workloads
-pnp.series.next: multi-region-application
-pnp.series.prev: multi-vm
-ms.openlocfilehash: 0f170f2fbcbbfeace53db199cb5d3949415b5546
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.date: 06/23/2018
+ms.openlocfilehash: 050ea9b3104a2dc9af4cdaad3b4540cd75434e9d
+ms.sourcegitcommit: 767c8570d7ab85551c2686c095b39a56d813664b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673592"
+ms.lasthandoff: 06/24/2018
+ms.locfileid: "36746671"
 ---
 # <a name="n-tier-application-with-sql-server"></a>n-schichtige Anwendung mit SQL Server
 
@@ -43,9 +40,11 @@ Die Architektur besteht aus den folgenden Komponenten:
 
 * **Jumpbox:** Wird auch als [geschützter Host] bezeichnet. Dies ist eine geschützte VM im Netzwerk, die von Administratoren zum Herstellen der Verbindung mit anderen VMs verwendet wird. Die Jumpbox verfügt über eine NSG, die Remotedatenverkehr nur von öffentlichen IP-Adressen zulässt, die in einer Liste mit sicheren Absendern aufgeführt sind. Die NSG sollte Remotedesktop-Datenverkehr (RDP) zulassen.
 
-* **SQL Server Always On-Verfügbarkeitsgruppe:** Stellt Hochverfügbarkeit in der Datenschicht durch Replikation und Failover bereit.
+* **SQL Server Always On-Verfügbarkeitsgruppe:** Stellt Hochverfügbarkeit in der Datenschicht durch Replikation und Failover bereit. Verwendet WSFC-Technologie (Windows Server-Failovercluster) für Failover.
 
-* **AD DS-Server (Active Directory Domain Services):** Die SQL Server-AlwaysOn-Verfügbarkeitsgruppen werden einer Domäne hinzugefügt, um die WSFC-Technologie (Windows Server-Failovercluster) für Failover zu aktivieren. 
+* **AD DS-Server (Active Directory Domain Services):** Die Computerobjekte für den Failovercluster und die zugehörigen Clusterrollen werden in Active Directory Domain Services (AD DS) erstellt.
+
+* **Cloudzeuge**. Bei einem Failovercluster muss mindestens die Hälfte der Knoten ausgeführt werden (Quorum). Enthält der Cluster nur zwei Knoten, kann eine Netzwerkpartition dazu führen, dass sich beide Knoten als Masterknoten betrachten. In diesem Fall benötigen Sie einen *Zeugen*, um den Konflikt zu lösen und ein Quorum festzulegen. Ein Zeuge ist eine Ressource (beispielsweise ein freigegebener Datenträger), der den Ausschlag für das Quorum gibt. Ein Cloudzeuge ist ein Zeugentyp, der Azure Blob Storage nutzt. Weitere Informationen zum Konzept des Quorums finden Sie unter [Understanding cluster and pool quorum](/windows-server/storage/storage-spaces/understand-quorum) (Grundlegendes zu Cluster- und Poolquoren). Weitere Informationen zu Cloudzeugen finden Sie unter [Deploy a cloud witness for a Failover Cluster](/windows-server/failover-clustering/deploy-cloud-witness) (Bereitstellen eines Cloudzeugen für einen Failovercluster). 
 
 * **Azure DNS:** [Azure DNS][azure-dns] ist ein Hostingdienst für DNS-Domänen, der die Namensauflösung unter Verwendung der Microsoft Azure-Infrastruktur durchführt. Durch das Hosten Ihrer Domänen in Azure können Sie Ihre DNS-Einträge mithilfe der gleichen Anmeldeinformationen, APIs, Tools und Abrechnung wie für die anderen Azure-Dienste verwalten.
 
@@ -157,13 +156,13 @@ Verschlüsseln Sie sensible ruhende Daten, und verwalten Sie die Datenbankversch
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folder] verfügbar. 
+Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folder] verfügbar. Beachten Sie, dass die gesamte Bereitstellung bis zu zwei Stunden dauern kann. Dies umfasst die Ausführung der Skripts zum Konfigurieren von AD DS, des Windows Server-Failoverclusters und der SQL Server-Verfügbarkeitsgruppe.
 
 ### <a name="prerequisites"></a>Voraussetzungen
 
 1. Klonen oder Forken Sie das GitHub-Repository [Referenzarchitekturen][ref-arch-repo], oder laden Sie die entsprechende ZIP-Datei herunter.
 
-2. Vergewissern Sie sich, dass Azure CLI 2.0 auf Ihrem Computer installiert ist. Um die Befehlszeilenschnittstelle zu installieren, befolgen Sie die Anweisungen unter [Installieren von Azure CLI 2.0][azure-cli-2].
+2. Installieren Sie [Azure CLI 2.0][azure-cli-2].
 
 3. Installieren Sie das npm-Paket mit den [Azure Bausteinen][azbb].
 
@@ -171,32 +170,80 @@ Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folde
    npm install -g @mspnp/azure-building-blocks
    ```
 
-4. Melden Sie sich über eine Eingabeaufforderung, eine bash-Eingabeaufforderung oder die PowerShell-Eingabeaufforderung bei Ihrem Azure-Konto an. Verwenden Sie dazu die unten aufgeführten Befehle, und befolgen Sie die Anweisungen.
+4. Melden Sie sich über eine Eingabeaufforderung, eine Bash-Eingabeaufforderung oder die PowerShell-Eingabeaufforderung bei Ihrem Azure-Konto an. Verwenden Sie hierzu den unten aufgeführten Befehl.
 
    ```bash
    az login
    ```
 
-### <a name="deploy-the-solution-using-azbb"></a>Bereitstellen der Lösung mit azbb
+### <a name="deploy-the-solution"></a>Bereitstellen der Lösung 
 
-Um die Windows-VMs für eine n-schichtige Anwendungsreferenzarchitektur bereitzustellen, führen Sie die folgenden Schritte aus:
+1. Führen Sie den folgenden Befehl aus, um eine Ressourcengruppe zu erstellen:
 
-1. Navigieren Sie zum `virtual-machines\n-tier-windows`-Ordner für das Repository, das Sie oben in Schritt 1 der Voraussetzungen als Klon erstellt haben.
+    ```bash
+    az group create --location <location> --name <resource-group-name>
+    ```
 
-2. Die Parameterdatei gibt einen Standard-Administratorbenutzernamen und ein Standardkennwort für jede VM in der Bereitstellung an. Sie müssen diese vor der Bereitstellung der Referenzarchitektur ändern. Öffnen Sie die `n-tier-windows.json`-Datei, und ersetzen Sie jedes Feld **adminUsername** und **adminPassword** durch neue Einstellungen.
-  
-   > [!NOTE]
-   > Während dieser Bereitstellung werden sowohl in den **VirtualMachineExtension**-Objekten als auch in den **extensions**-Einstellungen für einige der **VirtualMachine**-Objekte mehrere Skripts ausgeführt. Für einige dieser Skripts sind der Administratorbenutzername und das Kennwort erforderlich, die Sie soeben geändert haben. Wir empfehlen Ihnen, diese Skripts zu überprüfen, um sicherzustellen, dass Sie die richtigen Anmeldeinformationen angegeben haben. Wenn Sie nicht die richtigen Anmeldeinformationen angegeben haben, tritt bei der Bereitstellung möglicherweise ein Fehler auf.
-   > 
-   > 
+2. Führen Sie den folgenden Befehl aus, um ein Speicherkonto für den Cloudzeugen zu erstellen:
 
-Speichern Sie die Datei .
+    ```bash
+    az storage account create --location <location> \
+      --name <storage-account-name> \
+      --resource-group <resource-group-name> \
+      --sku Standard_LRS
+    ```
 
-3. Stellen Sie die Referenzarchitektur mithilfe des Befehlszeilentools **azbb** bereit, wie unten dargestellt.
+3. Navigieren Sie zum Ordner `virtual-machines\n-tier-windows` des GitHub-Repositorys für Referenzarchitekturen.
 
-   ```bash
-   azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-windows.json --deploy
-   ```
+4. Öffnen Sie die Datei `n-tier-windows.json` . 
+
+5. Suchen Sie nach allen Instanzen von „witnessStorageBlobEndPoint“, und ersetzen Sie den Platzhaltertext durch den Namen des Speicherkontos aus Schritt 2.
+
+    ```json
+    "witnessStorageBlobEndPoint": "https://[replace-with-storageaccountname].blob.core.windows.net",
+    ```
+
+6. Führen Sie den folgenden Befehl aus, um die Kontoschlüssel für das Speicherkonto aufzulisten:
+
+    ```bash
+    az storage account keys list \
+      --account-name <storage-account-name> \
+      --resource-group <resource-group-name>
+    ```
+
+    Die Ausgabe sollte wie im folgenden Beispiel aussehen. Kopieren Sie den Wert von `key1`.
+
+    ```json
+    [
+    {
+        "keyName": "key1",
+        "permissions": "Full",
+        "value": "..."
+    },
+    {
+        "keyName": "key2",
+        "permissions": "Full",
+        "value": "..."
+    }
+    ]
+    ```
+
+7. Suchen Sie in der Datei `n-tier-windows.json` nach allen Instanzen von „witnessStorageAccountKey“, und fügen Sie den Kontoschlüssel ein.
+
+    ```json
+    "witnessStorageAccountKey": "[replace-with-storagekey]"
+    ```
+
+8. Suchen Sie in der Datei `n-tier-windows.json` nach allen Instanzen von `testPassw0rd!23`, `test$!Passw0rd111` und `AweS0me@SQLServicePW`. Ersetzen Sie sie durch Ihre eigenen Kennwörter, und speichern Sie die Datei.
+
+    > [!NOTE]
+    > Wenn Sie den Administratorbenutzernamen ändern, müssen Sie auch die `extensions`-Blöcke in der JSON-Datei aktualisieren. 
+
+9. Führen Sie den folgenden Befehl aus, um die Architektur bereitzustellen:
+
+    ```bash
+    azbb -s <your subscription_id> -g <resource_group_name> -l <location> -p n-tier-windows.json --deploy
+    ```
 
 Weitere Informationen zum Bereitstellen dieser Beispielreferenzarchitektur mithilfe von Azure-Bausteinen finden Sie im [GitHub-Repository][git].
 

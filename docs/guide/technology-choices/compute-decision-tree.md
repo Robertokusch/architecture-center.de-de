@@ -3,12 +3,12 @@ title: Entscheidungsstruktur für Azure-Computedienste
 description: Ein Flussdiagramm zur Auswahl eines Computediensts
 author: MikeWasson
 ms.date: 06/13/2018
-ms.openlocfilehash: 60bb84d4bf210888d3d43498db043b6e452f6a80
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: 689ec3f265e563273a75ad98268d03624a7b4536
+ms.sourcegitcommit: ce2fa8ac2d310f7078317cade12f1b89db1ffe06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206726"
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "36338182"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Entscheidungsstruktur für Azure-Computedienste
 
@@ -25,6 +25,8 @@ Azure bietet eine Vielzahl von Möglichkeiten zum Hosten Ihres Anwendungscodes. 
 - [Kriterien für die Auswahl einer Azure-Compute-Option](./compute-comparison.md)
 
 Wenn Ihre Anwendung aus mehreren Workloads besteht, bewerten Sie jede Workload getrennt. Eine vollständige Lösung kann zwei oder mehr Computedienste umfassen.
+
+Weitere Informationen zu den Optionen für das Hosten von Containern in Azure finden Sie unter https://azure.microsoft.com/overview/containers/.
 
 ## <a name="flowchart"></a>Flussdiagramm
 
