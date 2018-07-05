@@ -3,12 +3,12 @@ title: Ausführen eines virtuellen Linux-Computers in Azure
 description: Hier erfahren Sie, wie Sie eine Linux-VM unter Azure ausführen und die Skalierbarkeit, Resilienz, Verwaltbarkeit und Sicherheit im Blick behalten.
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: f29b7225c2e0edbb1569c9e3a55d112d12041af8
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: 3d0492d05280e8c296cdfc4157aa0387a70337bf
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673582"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142317"
 ---
 # <a name="run-a-linux-vm-on-azure"></a>Ausführen eines virtuellen Linux-Computers in Azure
 
@@ -144,17 +144,7 @@ Eine Bereitstellung ist auf [GitHub][github-folder] verfügbar. Folgendes wird b
 
 ### <a name="prerequisites"></a>Voraussetzungen
 
-1. Klonen oder Forken Sie das GitHub-Repository [Referenzarchitekturen][ref-arch-repo], oder laden Sie die entsprechende ZIP-Datei herunter.
-
-2. Vergewissern Sie sich, dass Azure CLI 2.0 auf Ihrem Computer installiert ist. Anweisungen zur CLI-Installation finden Sie unter [Installieren von Azure-CLI 2.0][azure-cli-2].
-
-3. Installieren Sie das npm-Paket mit den [Azure Bausteinen][azbb].
-
-4. Geben Sie an einer Eingabeaufforderung, an einer Bash-Eingabeaufforderung oder an einer PowerShell-Eingabeaufforderung den folgenden Befehl ein, um sich bei Ihrem Azure-Konto anzumelden:
-
-  ```bash
-  az login
-  ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 5. Erstellen Sie ein SSH-Schlüsselpaar. Weitere Informationen finden Sie unter [Erstellen und Verwenden eines SSH-Schlüsselpaars (öffentlich und privat) für virtuelle Linux-Computer in Azure](/azure/virtual-machines/linux/mac-create-ssh-keys).
 

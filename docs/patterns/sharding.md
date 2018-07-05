@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: 328483e24c75137f07576104d50dc59d426b8ac4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a4e35a19851f4742b5c154197c22bb1fe13de108
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24543016"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091103"
 ---
 # <a name="sharding-pattern"></a>Sharding-Muster
 
@@ -214,12 +214,11 @@ Trace.TraceInformation("Fanout query complete - Record Count: {0}",
 
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
-Die folgenden Muster und Anweisungen können ebenfalls für die Implementierung dieses Musters relevant sein:
-- [Data Consistency Primer (Grundlagen der Datenkonsistenz)](https://msdn.microsoft.com/library/dn589800.aspx): Es ist möglicherweise erforderlich, die Konsistenz der Daten, die über verschiedene Shards verteilt sind, zu erhalten. Fasst die Probleme bei der Aufrechterhaltung von Konsistenz in verteilten Daten zusammen und beschreibt die Vor- und Nachteile der verschiedenen Konsistenzmodelle.
+Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
+- [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Grundlagen der Datenkonsistenz). Es ist möglicherweise erforderlich, die Konsistenz der Daten, die über verschiedene Shards verteilt sind, zu erhalten. Fasst die Probleme bei der Aufrechterhaltung von Konsistenz in verteilten Daten zusammen und beschreibt die Vor- und Nachteile der verschiedenen Konsistenzmodelle.
 - [Leitfaden zur Datenpartitionierung](https://msdn.microsoft.com/library/dn589795.aspx): Das Sharding eines Datenspeichers kann eine Reihe von zusätzlichen Problemen mit sich bringen. Beschreibt diese Probleme in Bezug auf die Partitionierung von Datenspeichern in der Cloud, um die Skalierbarkeit zu verbessern, Konflikte zu verringern und die Leistung zu optimieren.
 - [Index Table Pattern (Indextabellenmuster)](index-table.md): Mitunter ist es nicht möglich, Abfragen allein durch die Gestaltung des Shard-Schlüssels vollständig zu unterstützen. Ermöglicht einer Anwendung das schnelle Abrufen von Daten aus einem großen Datenspeicher durch die Angabe eines anderen Schlüssels als des Shard-Schlüssels.
 - [Muster für materialisierte Sichten](materialized-view.md): Um die Leistung einiger Abfragevorgänge aufrechtzuerhalten, ist es sinnvoll, materialisierte Ansichten zu erstellen, die Daten aggregieren und zusammenfassen. Dies ist insbesondere hilfreich, wenn diese zusammenfassenden Daten auf Informationen basieren, die über Shards verteilt sind. Beschreibt das Erstellen und Füllen dieser Ansichten.
 - [Shard Lessons](http://www.addsimplicity.com/adding_simplicity_an_engi/2008/08/shard-lessons.html) (Shard-Lektionen) zum Blog „Adding Simplicity“ (Hinzufügen der Einfachheit).
 - [Database Sharding](http://dbshards.com/database-sharding/) (Datenbank-Sharding) auf der CodeFutures-Website.
-- [Scalability Strategies Primer: Database Sharding](http://blog.maxindelicato.com/2008/12/scalability-strategies-primer-database-sharding.html) (Einführung zu Skalierbarkeitsstrategien: Datenbank-Sharding) im Blog von Max Indelicato.
 - [Building Scalable Databases: Pros and Cons of Various Database Sharding Schemes](http://www.25hoursaday.com/weblog/2009/01/16/BuildingScalableDatabasesProsAndConsOfVariousDatabaseShardingSchemes.aspx) (Erstellen von skalierbaren Datenbanken: Vor- und Nachteile verschiedener Schemas zum Datenbank-Sharding) im Blog von Dare Obasanjo.

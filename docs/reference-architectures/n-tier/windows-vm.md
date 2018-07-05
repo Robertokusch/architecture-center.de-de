@@ -3,12 +3,12 @@ title: Ausführen eines virtuellen Windows-Computers in Azure
 description: Erfahren Sie, wie Sie einen virtuellen Windows-Computer unter Azure ausführen und dabei die Skalierbarkeit, Resilienz, Verwaltbarkeit und Sicherheit im Blick behalten.
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: 748bcfcf599c7fa0e82691632d14e0f78fd78582
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: d790c9a6693dca751e0ba05f1fd3c23756cf53bb
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673602"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142215"
 ---
 # <a name="run-a-windows-vm-on-azure"></a>Ausführen eines virtuellen Windows-Computers in Azure
 
@@ -127,17 +127,7 @@ Eine Bereitstellung für diese Architektur ist auf [GitHub][github-folder] verf�
 
 ### <a name="prerequisites"></a>Voraussetzungen
 
-1. Klonen oder Forken Sie das GitHub-Repository [Referenzarchitekturen][ref-arch-repo], oder laden Sie die entsprechende ZIP-Datei herunter.
-
-2. Vergewissern Sie sich, dass Azure CLI 2.0 auf Ihrem Computer installiert ist. Anweisungen zur CLI-Installation finden Sie unter [Installieren von Azure-CLI 2.0][azure-cli-2].
-
-3. Installieren Sie das npm-Paket mit den [Azure Bausteinen][azbb].
-
-4. Geben Sie an einer Eingabeaufforderung, an einer Bash-Eingabeaufforderung oder an einer PowerShell-Eingabeaufforderung den folgenden Befehl ein, um sich bei Ihrem Azure-Konto anzumelden:
-
-  ```bash
-  az login
-  ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-solution-using-azbb"></a>Bereitstellen der Lösung mit azbb
 

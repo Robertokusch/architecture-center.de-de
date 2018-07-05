@@ -3,12 +3,12 @@ title: Notfallwiederherstellung für Azure-Anwendungen
 description: Technische Übersicht und ausführliche Informationen zum Entwerfen von Anwendungen für die Notfallwiederherstellung in Microsoft Azure.
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: 7235e752cf1b96e392a700b223d63b07c0f85b66
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 2d890e479e008e03dcfce9b7240f8bcbaf270372
+ms.sourcegitcommit: e8f4786b187697b1bea374e5f35f217c65d2dfe0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477773"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37343378"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Notfallwiederherstellung für Azure-Anwendungen
 
@@ -278,7 +278,7 @@ Testen Sie Ihre Skripts wiederholt von Anfang bis Ende. Wenn Sie die grundlegend
 Eine bewährte Methode bei der Automatisierung ist die Erstellung eines Repositorys mit PowerShell- oder CLI-Skripts (Command-Line Interface, Befehlszeilenschnittstelle) für die Azure-Notfallwiederherstellung. Kennzeichnen und kategorisieren Sie sie eindeutig, um schnell Zugriff darauf zu haben. Benennen Sie einen Zuständigen, der das Repository und die Versionen der Skripts verwaltet. Dokumentieren Sie die Skripts mit Erklärungen der Parameter und Beispielen für die Skriptverwendung. Stellen Sie außerdem sicher, dass diese Dokumentation mit Ihren Azure-Bereitstellungen synchronisiert bleibt. Dies verdeutlicht, warum eine Person für alle Teile des Repositorys verantwortlich sein sollte.
 
 ## <a name="failure-detection"></a>Ausfallerkennung
-Um Probleme mit der Verfügbarkeit und der Notfallwiederherstellung korrekt zu behandeln, müssen Sie Lage sein, Ausfälle zu erkennen und zu diagnostizieren. Führen Sie eine erweiterte Server- und Bereitstellungsüberwachung durch. So erkennen Sie schnell, wenn ein System oder seine Komponenten plötzlich nicht mehr verfügbar sind. Überwachungstools, die die Gesamtintegrität des Clouddiensts und seiner Abhängigkeiten analysieren, können einen Teil dieser Arbeit übernehmen. Ein geeignetes Tool von Microsoft ist [System Center 2016](https://www.microsoft.com/server-cloud/products/system-center-2016/). Tools von Drittanbietern können ebenfalls Überwachungsfunktionen bieten. Die meisten Überwachungslösungen verfolgen wichtige Leistungsindikatoren und die Verfügbarkeit von Diensten.
+Um Probleme mit der Verfügbarkeit und der Notfallwiederherstellung korrekt zu behandeln, müssen Sie Lage sein, Ausfälle zu erkennen und zu diagnostizieren. Führen Sie eine erweiterte Server- und Bereitstellungsüberwachung durch. So erkennen Sie schnell, wenn ein System oder seine Komponenten plötzlich nicht mehr verfügbar sind. Überwachungstools, die die Gesamtintegrität des Clouddiensts und seiner Abhängigkeiten analysieren, können einen Teil dieser Arbeit übernehmen. Ein geeignetes Tool von Microsoft ist [System Center 2016](https://www.microsoft.com/cloud-platform/system-center). Tools von Drittanbietern können ebenfalls Überwachungsfunktionen bieten. Die meisten Überwachungslösungen verfolgen wichtige Leistungsindikatoren und die Verfügbarkeit von Diensten.
 
 Obwohl diese Tools wichtig sind, müssen Sie eine Ausfallerkennung und entsprechende Berichte in einem Clouddienst vorsehen. Sie müssen auch die ordnungsgemäße Verwendung der Azure-Diagnose einplanen. Benutzerdefinierte Leistungsindikatoren oder Ereignisprotokolleinträge können auch Teil der Gesamtstrategie sein. Dadurch erhalten Sie mehr Daten bei Ausfällen, um schnell das Problem zu diagnostizieren und den vollen Funktionsumfang wiederherzustellen. Darüber hinaus stehen Ihnen so weitere Metriken für die Überwachungstools bereit, mit denen Sie den Zustand der Anwendung bestimmen können. Weitere Informationen finden Sie unter [Aktivieren der Azure-Diagnose in Azure Cloud Services](/azure/cloud-services/cloud-services-dotnet-diagnostics/). Eine Beschreibung der Planung eines globalen „Integritätsmodells“ finden Sie unter [Failsafe: Guidance for Resilient Cloud Architectures](https://channel9.msdn.com/Series/FailSafe)(Ausfallsicherheit: Leitfaden für robuste Cloudarchitekturen).
 
@@ -300,7 +300,7 @@ In den folgenden Themen werden die spezifischen Azure-Dienste für die Notfallwi
 | Dienst | Thema |
 |---------|-------|
 | Cloud Services | [Vorgehensweise bei einer Azure-Dienstunterbrechung mit Auswirkungen auf Azure Cloud Services](/azure/cloud-services/cloud-services-disaster-recovery-guidance) |
-| Schlüsseltresor | [Azure Key Vault: Verfügbarkeit und Redundanz](/azure/key-vault/key-vault-disaster-recovery-guidance) |
+| Key Vault | [Azure Key Vault: Verfügbarkeit und Redundanz](/azure/key-vault/key-vault-disaster-recovery-guidance) |
 |Speicher | [Vorgehensweise beim Ausfall von Azure Storage](/azure/storage/storage-disaster-recovery-guidance) |
 | SQL-Datenbank | [Wiederherstellen einer Azure SQL-Datenbank oder Failover auf eine sekundäre Datenbank](/azure/sql-database/sql-database-disaster-recovery) |
 | Virtuelle Computer | [Vorgehensweise bei einer Azure-Dienstunterbrechung mit Auswirkungen auf virtuelle Azure-Computer](/azure/virtual-machines/virtual-machines-disaster-recovery-guidance) |

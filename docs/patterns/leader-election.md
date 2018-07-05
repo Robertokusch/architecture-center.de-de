@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - resiliency
-ms.openlocfilehash: 3e7d47f70f660f2507f0619e1c41bf9a32a25be4
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 8c8efa0846550557bb53ea81f85ac0e303a77b19
+ms.sourcegitcommit: f19314f18cd794ebe380fa722ca92066b8735b56
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846650"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37348268"
 ---
 # <a name="leader-election-pattern"></a>Muster für die Auswahl einer übergeordneten Instanz
 
@@ -200,6 +200,5 @@ Die folgenden Richtlinien sind unter Umständen beim Implementieren dieses Muste
 - Das [aufgabenbasierte asynchrone Muster](https://msdn.microsoft.com/library/hh873175.aspx)
 - Ein Beispiel zur Veranschaulichung des [Bullyalgorithmus](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)
 - Ein Beispiel zur Veranschaulichung des [Ringalgorithmus](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)
-- Der Artikel [Apache ZooKeeper in Microsoft Azure](https://msopentech.com/opentech-projects/apache-zookeeper-on-windows-azure-2/) auf der Microsoft Open Technologies-Website
 - [Apache Curator](http://curator.apache.org/), eine Clientbibliothek für Apache ZooKeeper
 - Der Artikel [Leasen eines Blobs (REST-API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) bei MSDN
