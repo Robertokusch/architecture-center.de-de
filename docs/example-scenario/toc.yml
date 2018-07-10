@@ -1,0 +1,19 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: Beispielszenario
+  href: index.md
+  items:
+    - name: AI
+      items:
+        - name: Bildverarbeitung
+          href: ai/intelligent-apps-image-processing.md
+    - name: Apps
+      items:
+        - name: Chatbot für Hotelreservierung
+          href: apps/commerce-chatbot.md
+        - name: DevOps mit Azure Kubernetes Service
+          href: apps/devops-with-aks.md
+    - name: Daten und Analysen
+      items:
+        - name: Betrugsermittlung in Echtzeit
+          href: data/fraud-detection.md
