@@ -14,7 +14,7 @@ ms.locfileid: "37142351"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementieren einer Hub-Spoke-Netzwerktopologie mit gemeinsamen Diensten in Azure
 
-Diese Referenzarchitektur baut auf der [Hub-Spoke][guidance-hub-spoke]-Referenzarchitektur auf, um gemeinsame Dienste in den Hub einzubinden, die von allen Spokes genutzt werden können. Als ersten Schritt zur Migration eines Rechenzentrums zur Cloud und Erstellung eines [Virtuelles Rechenzentrum] müssen Sie zunächst die Dienste für Identität und Sicherheit freigeben. Anhand dieser Referenzarchitektur wird veranschaulicht, wie Sie Ihre Active Directory-Dienste aus Ihrem lokalen Rechenzentrum auf Azure ausdehnen und ein virtuelles Netzwerkgerät (Network Virtual Appliance, NVA) hinzufügen, das in einer Hub-Spoke-Topologie als Firewall fungieren kann.  [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
+Diese Referenzarchitektur baut auf der [Hub-Spoke][guidance-hub-spoke]-Referenzarchitektur auf, um gemeinsame Dienste in den Hub einzubinden, die von allen Spokes genutzt werden können. Als ersten Schritt zur Migration eines Rechenzentrums zur Cloud und Erstellung eines [virtuellen Rechenzentrums] müssen Sie zunächst die Dienste für Identität und Sicherheit freigeben. Anhand dieser Referenzarchitektur wird veranschaulicht, wie Sie Ihre Active Directory-Dienste aus Ihrem lokalen Rechenzentrum auf Azure ausdehnen und ein virtuelles Netzwerkgerät (Network Virtual Appliance, NVA) hinzufügen, das in einer Hub-Spoke-Topologie als Firewall fungieren kann.  [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
 ![[0]][0]
 
@@ -256,7 +256,7 @@ Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
 [hybrid-ha]: ./expressroute-vpn-failover.md
 [naming conventions]: /azure/guidance/guidance-naming-conventions
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
-[Virtuelles Rechenzentrum]: https://aka.ms/vdc
+[virtuellen Rechenzentrums]: https://aka.ms/vdc
 [vnet-peering]: /azure/virtual-network/virtual-network-peering-overview
 [vnet-peering-limit]: /azure/azure-subscription-service-limits#networking-limits
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
