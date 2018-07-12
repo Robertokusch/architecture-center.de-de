@@ -3,12 +3,12 @@ title: Auswählen einer Technologie für die Datenstromverarbeitung
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 29e4cd3d5ea6e10f036bfe226152290512dafa65
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: fd93418c62b584e79f229e9f42703d148aeb0eca
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848647"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091062"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>Auswählen einer Technologie für die Datenstromverarbeitung in Azure
 
@@ -53,8 +53,8 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Azure Stream Analytics | HDInsight mit Spark Streaming | Apache Spark in Azure Databricks | HDInsight mit Storm | Azure-Funktionen | WebJobs in Azure App Service |
 | --- | --- | --- | --- | --- | --- | --- | 
-| Eingaben | [Stream Analytics-Eingaben](/azure/stream-analytics/stream-analytics-define-inputs)  | Event Hubs, IoT Hub, Kafka, HDFS, Speicherblobs, Azure Data Lake Store  | Event Hubs, IoT Hub, Kafka, HDFS, Speicherblobs, Azure Data Lake Store  | Event Hubs, IoT Hub, Speicherblobs, Azure Data Lake Store  | [Unterstützte Bindungen](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Service Bus, Speicherwarteschlangen, Speicherblobs, Event Hubs, WebHooks, Cosmos DB, Dateien |
-| Senken |  [Stream Analytics-Ausgaben](/azure/stream-analytics/stream-analytics-define-outputs) | HDFS, Kafka, Speicherblobs, Azure Data Lake Store, Cosmos DB | HDFS, Kafka, Speicherblobs, Azure Data Lake Store, Cosmos DB | Event Hubs, Service Bus, Kafka | [Unterstützte Bindungen](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Service Bus, Speicherwarteschlangen, Speicherblobs, Event Hubs, WebHooks, Cosmos DB, Dateien | 
+| Eingaben | Azure Event Hubs, Azure IoT Hub, Azure Blob-Speicher  | Event Hubs, IoT Hub, Kafka, HDFS, Speicherblobs, Azure Data Lake Store  | Event Hubs, IoT Hub, Kafka, HDFS, Speicherblobs, Azure Data Lake Store  | Event Hubs, IoT Hub, Speicherblobs, Azure Data Lake Store  | [Unterstützte Bindungen](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Service Bus, Speicherwarteschlangen, Speicherblobs, Event Hubs, WebHooks, Cosmos DB, Dateien |
+| Senken |  Azure Data Lake Store, Azure SQL-Datenbank, Storage-Blobs, Event Hubs, Power BI, Table Storage, Service Bus-Warteschlangen, Service Bus-Themen, Cosmos DB, Azure Functions  | HDFS, Kafka, Speicherblobs, Azure Data Lake Store, Cosmos DB | HDFS, Kafka, Speicherblobs, Azure Data Lake Store, Cosmos DB | Event Hubs, Service Bus, Kafka | [Unterstützte Bindungen](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Service Bus, Speicherwarteschlangen, Speicherblobs, Event Hubs, WebHooks, Cosmos DB, Dateien | 
 
 ### <a name="processing-capabilities"></a>Verarbeitungsfunktionen
 

@@ -3,12 +3,12 @@ title: Verarbeitung in Echtzeit
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 8d3497c37d15dc0aa4645ddfce3bd30740217b2c
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: 4abb159924f902b5babe0673cc021e80b00c8529
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298628"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37090984"
 ---
 # <a name="real-time-processing"></a>Verarbeitung in Echtzeit
 
@@ -56,7 +56,7 @@ Weitere Informationen finden Sie unter [Datenspeicher](../technology-choices/dat
 
 ### <a name="stream-processing"></a>Datenstromverarbeitung
 
-- **Azure Stream Analytics**: Mit Azure Stream Analytics können für einen ungebundenen Datenstrom unbefristete Abfragen ausgeführt werden. Diese Abfragen nutzen Datenströme von Speicher oder Nachrichtenbrokern, filtern und aggregieren die Daten basierend auf temporalen Fenstern und schreiben die Ergebnisse in Senken, z.B. Speicher, Datenbanken oder direkt in Berichte in Power BI.
+- **Azure Stream Analytics**: Mit Azure Stream Analytics können für einen ungebundenen Datenstrom unbefristete Abfragen ausgeführt werden. Diese Abfragen nutzen Datenströme von Speicher oder Nachrichtenbrokern, filtern und aggregieren die Daten basierend auf temporalen Fenstern und schreiben die Ergebnisse in Senken, z.B. Speicher, Datenbanken oder direkt in Berichte in Power BI. Stream Analytics verwendet eine SQL-basierte Abfragesprache, die temporale und räumliche Konstrukte unterstützt und mithilfe von JavaScript erweitert werden kann.
 - **Storm**: Apache Storm ist ein Open-Source-Framework für die Datenstromverarbeitung, bei dem eine Topologie mit so genannten Spouts und Bolts verwendet wird, um die Ergebnisse der Datenquellen von Echtzeitdatenströmen zu nutzen, zu verarbeiten und auszugeben. Sie können Storm in einem Azure HDInsight-Cluster bereitstellen und eine Topologie in Java oder C# implementieren.
 - **Spark Streaming**: Apache Spark ist eine verteilte Open-Source-Plattform für die allgemeine Datenverarbeitung. Spark stellt die Spark Streaming-API bereit, in der Sie Code in allen unterstützten Spark-Sprachen schreiben können, z.B. Java, Scala und Python. Mit Spark 2.0 wurde die Spark Structured Streaming-API eingeführt, die über ein einfacheres und einheitlicheres Programmiermodell verfügt. Spark 2.0 ist in einem Azure HDInsight-Cluster verfügbar.
 
