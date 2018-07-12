@@ -4,12 +4,12 @@ description: Empfohlene Architektur für eine einfache Webanwendung, die in Micr
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: efd831b1f54fa0662bdfa9874318e7b314172215
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: bc8cf9b5c66fc451d097cbc992ecb9a249645dce
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846402"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091120"
 ---
 # <a name="basic-web-application"></a>Einfache Webanwendung
 [!INCLUDE [header](../../_includes/header.md)]
@@ -89,7 +89,7 @@ Empfehlungen zum Skalieren einer Web App:
 * Die CPU-Auslastung ist im Allgemeinen eine gute Metrik für Regeln zur automatischen Skalierung. Jedoch sollten Sie einen Auslastungstest Ihrer Anwendung durchführen, potenzielle Engpässe identifizieren und Regeln für die automatische Skalierung auf diesen Daten aufbauen.  
 * Regeln für die automatische Skalierung beinhalten eine *Abkühlphase*; damit wird die Warteperiode nach dem Abschluss einer Skalierungsaktion bezeichnet, bevor eine neue Skalierungsaktion gestartet wird. In der Abkühlphase stabilisiert sich das System, bevor eine erneute Skalierung erfolgt. Legen Sie eine kürzere Abkühlphase für das Hinzufügen von Instanzen und eine längere Abkühlphase für das Entfernen von Instanzen fest. Legen Sie beispielsweise 5 Minuten für das Hinzufügen einer Instanz aber 60 Minuten für das Entfernen einer Instanz fest. Es ist besser, bei hoher Auslastung schnell neue Instanzen hinzuzufügen, um den zusätzlichen Datenverkehr zu bewältigen, und das System dann nach und nach wieder herunterzuskalieren.
 
-### <a name="scaling-sql-database"></a>Skalieren von SQL-­Datenbank
+### <a name="scaling-sql-database"></a>Skalierung einer SQL-Datenbank
 Wenn Sie eine höhere Dienstebene oder Leistungsstufe für SQL-Datenbank benötigen, können Sie einzelne Datenbanken ohne Ausfallzeit der Anwendung zentral hochskalieren. Weitere Informationen finden Sie unter [SQL-Datenbankoptionen und -leistung: Grundlegendes zum Angebot in den einzelnen Tarifen][sql-db-scale].
 
 ## <a name="availability-considerations"></a>Überlegungen zur Verfügbarkeit
@@ -124,7 +124,7 @@ Weitere Informationen finden Sie unter [Übersicht über den Azure Resource Mana
 ### <a name="deployment"></a>Bereitstellung
 Die Bereitstellung umfasst zwei Schritte:
 
-1. Bereitstellen der Azure-Ressourcen. Wir empfehlen für diesen Schritt die Verwendung von [Azure-Ressource-Manager-Vorlagen][arm-template]. Mithilfe von Vorlagen können Bereitstellungen über PowerShell oder die Azure-Befehlszeilenschnittstelle (CLI) leichter automatisiert werden.
+1. Bereitstellen der Azure-Ressourcen. Wir empfehlen für diesen Schritt die Verwendung von [Azure Resource Manager-Vorlagen][arm-template]. Mithilfe von Vorlagen können Bereitstellungen über PowerShell oder die Azure-Befehlszeilenschnittstelle (CLI) leichter automatisiert werden.
 2. Bereitstellen der Anwendung (Code, Binarys und Inhaltsdateien). Es gibt eine Reihe verschiedener Optionen, einschließlich der Bereitstellung aus einem lokalen Git-Repository, der Verwendung von Visual Studio oder Continuous Deployment aus einer cloudbasierten Quellcodeverwaltung. Weitere Informationen finden Sie unter [Bereitstellen der App in Azure App Service][deploy].  
 
 Eine App Service-App weist immer einen Bereitstellungsslot mit dem Namen `production` auf, der die Produktions-Livewebsite darstellt. Wir empfehlen, zum Bereitstellen von Updates einen Stagingslot zu erstellen. Zu den Vorteilen beim Verwenden eines Stagingslots gehören:
@@ -198,7 +198,7 @@ Einige Einschränkungen der App Service-Authentifizierung:
 * In Szenarien mit mehreren Mandanten muss die Anwendung die Logik für die Überprüfung des Tokenbenutzers implementieren.
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
-Ein Beispiel einer Ressourcen-Manager-Vorlage für diese Architektur ist [auf GitHub verfügbar][paas-basic-arm-template].
+Ein Beispiel einer Resource Manager-Vorlage für diese Architektur ist [auf GitHub verfügbar][paas-basic-arm-template].
 
 Wenn Sie die Vorlage mit PowerShell bereitstellen möchten, führen Sie die folgenden Befehle aus:
 

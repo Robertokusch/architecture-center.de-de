@@ -2,21 +2,21 @@
 title: Implementieren einer sicheren hybriden Netzwerkarchitektur in Azure
 description: Implementieren einer sicheren hybriden Netzwerkarchitektur in Azure
 author: telmosampaio
-ms.date: 11/23/2016
+ms.date: 07/01/2018
 pnp.series.title: Network DMZ
 pnp.series.prev: ./index
 pnp.series.next: secure-vnet-dmz
 cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: 81dea2e4439d5a01ebb88ab86dc0a59609bb7bc3
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 45583473ef297b2c7a5b0c4baff52485286dd051
+ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30849653"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37403163"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>DMZ zwischen Azure und Ihrem lokalen Datencenter
 
-Diese Referenzarchitektur zeigt ein sicheres Hybridnetzwerk, das ein lokales Netzwerk in Azure erweitert. Die Architektur implementiert eine DMZ, auch als *Umkreisnetzwerk* bezeichnet, zwischen dem lokalen Netzwerk und einem virtuellen Azure-Netzwerk (VNet). Die DMZ umfasst virtuelle Netzwerkgeräte (Network Virtual Appliances, NVAs), die Sicherheitsfunktionen wie z.B. Firewalls und Paketüberprüfung implementieren. Der gesamte ausgehende Datenverkehr vom VNet wird zwangsweise durch das lokale Netzwerk in das Internet getunnelt, sodass er überwacht werden kann.
+Diese Referenzarchitektur zeigt ein sicheres Hybridnetzwerk, das ein lokales Netzwerk in Azure erweitert. Die Architektur implementiert eine DMZ, auch als *Umkreisnetzwerk* bezeichnet, zwischen dem lokalen Netzwerk und einem virtuellen Azure-Netzwerk (VNet). Die DMZ umfasst virtuelle Netzwerkgeräte (Network Virtual Appliances, NVAs), die Sicherheitsfunktionen wie z.B. Firewalls und Paketüberprüfung implementieren. Der gesamte ausgehende Datenverkehr vom VNet wird zwangsweise durch das lokale Netzwerk in das Internet getunnelt, sodass er überwacht werden kann. [**So stellen Sie diese Lösung bereit**.](#deploy-the-solution)
 
 [![0]][0] 
 
@@ -159,19 +159,65 @@ Der Datenverkehr zwischen den Schichten wird mithilfe von NSGs eingeschränkt. D
 ### <a name="devops-access"></a>DevOps-Zugriff
 Verwenden Sie [RBAC][rbac], um die Vorgänge einzuschränken, die DevOps in den einzelnen Schichten ausführen können. Verwenden Sie beim Erteilen von Berechtigungen den [Ansatz der geringsten Rechte][security-principle-of-least-privilege]. Protokollieren Sie alle Verwaltungsvorgänge, und führen Sie regelmäßig Überwachungen durch, um sicherzustellen, dass alle Konfigurationsänderungen auf Planung beruhen.
 
-## <a name="solution-deployment"></a>Bereitstellung von Lösungen
+## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Eine Bereitstellung für eine Referenzarchitektur, die diese Empfehlungen implementiert, steht auf [GitHub][github-folder] zur Verfügung. Die Referenzarchitektur kann gemäß den folgenden Anweisungen bereitgestellt werden:
+Eine Bereitstellung für eine Referenzarchitektur, die diese Empfehlungen implementiert, steht auf [GitHub][github-folder] zur Verfügung. 
 
-1. Klicken Sie auf diese Schaltfläche:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fdmz%2Fsecure-vnet-hybrid%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-2. Nachdem der Link im Azure-Portal geöffnet wurde, müssen Sie Werte für einige Einstellungen eingeben:   
-   * Der Name der **Ressourcengruppe** ist bereits in der Parameterdatei definiert. Wählen Sie also **Neu erstellen**, und geben Sie im Textfeld `ra-private-dmz-rg` ein.
-   * Wählen Sie im Dropdownfeld **Standort** die Region aus.
-   * Lassen Sie die Textfelder für den **Vorlagenstamm-URI** bzw. **Parameterstamm-URI** unverändert.
-   * Überprüfen Sie die allgemeinen Geschäftsbedingungen, und aktivieren Sie dann das Kontrollkästchen **Ich stimme den oben genannten Geschäftsbedingungen zu**.
-   * Klicken Sie auf die Schaltfläche **Kaufen**.
-3. Warten Sie, bis die Bereitstellung abgeschlossen ist.
-4. Die Parameterdateien enthalten einen hartcodierten Administratorbenutzernamen und das zugehörige Kennwort für alle VMs. Es wird dringend empfohlen, beides sofort zu ändern. Wählen Sie jeden virtuellen Computer in der Bereitstellung im Azure-Portal aus, und klicken Sie dann auf dem Blatt **Support und Problembehandlung** auf **Kennwort zurücksetzen**. Wählen Sie im Dropdownfeld **Modus** die Option **Kennwort zurücksetzen** und dann einen neuen **Benutzernamen** und ein **Kennwort** aus. Klicken Sie auf die Schaltfläche **Aktualisieren**, um Ihre Änderungen zu speichern.
+### <a name="prerequisites"></a>Voraussetzungen
+
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
+
+### <a name="deploy-resources"></a>Bereitstellen von Ressourcen
+
+1. Navigieren Sie zum Ordner `/dmz/secure-vnet-hybrid` des GitHub-Repositorys für Referenzarchitekturen.
+
+2. Führen Sie den folgenden Befehl aus:
+
+    ```bash
+    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.json --deploy
+    ```
+
+3. Führen Sie den folgenden Befehl aus:
+
+    ```bash
+    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p secure-vnet-hybrid.json --deploy
+    ```
+
+### <a name="connect-the-on-premises-and-azure-gateways"></a>Verbinden der lokalen und der Azure-Gateways
+
+In diesem Schritt verbinden Sie die zwei Gateways des lokalen Netzwerks.
+
+1. Navigieren Sie im Azure-Portal zu der Ressourcengruppe, die Sie erstellt haben. 
+
+2. Suchen Sie nach der Ressource mit dem Namen `ra-vpn-vgw-pip`, und kopieren Sie die auf dem Blatt **Übersicht** angezeigte IP-Adresse.
+
+3. Suchen Sie nach der Ressource mit dem Namen `onprem-vpn-lgw`.
+
+4. Klicken Sie auf das Blatt **Konfiguration**. Fügen Sie unter **IP-Adresse** die IP-Adresse aus Schritt 2 ein.
+
+    ![](./images/local-net-gw.png)
+
+5. Klicken Sie auf **Speichern**, und warten Sie, bis der Vorgang abgeschlossen ist. Dies dauert etwa fünf Minuten.
+
+6. Suchen Sie nach der Ressource mit dem Namen `onprem-vpn-gateway1-pip`. Kopieren Sie die auf dem Blatt **Übersicht** angezeigte IP-Adresse.
+
+7. Suchen Sie nach der Ressource mit dem Namen `ra-vpn-lgw`. 
+
+8. Klicken Sie auf das Blatt **Konfiguration**. Fügen Sie unter **IP-Adresse** die IP-Adresse aus Schritt 6 ein.
+
+9. Klicken Sie auf **Speichern**, und warten Sie, bis der Vorgang abgeschlossen ist.
+
+10. Zum Überprüfen der Verbindung rufen Sie das Blatt **Verbindungen** für jedes Gateway auf. Der Status sollte **Verbunden** lauten.
+
+### <a name="verify-that-network-traffic-reaches-the-web-tier"></a>Sicherstellen, dass Netzwerkdatenverkehr die Webebene erreicht
+
+1. Navigieren Sie im Azure-Portal zu der Ressourcengruppe, die Sie erstellt haben. 
+
+2. Suchen Sie nach der Ressource mit dem Namen `int-dmz-lb`, d.h. dem Lastenausgleich vor der privaten DMZ. Kopieren Sie die private IP-Adresse aus dem Blatt **Übersicht**.
+
+3. Suchen Sie den virtuellen Computer mit dem Namen `jb-vm1`. Klicken Sie auf **Verbinden**, und stellen Sie über Remotedesktop eine Verbindung zum virtuellen Computer her. Der Benutzername und das Kennwort sind in der Datei „onprem.json“ angegeben.
+
+4. Öffnen Sie in der Remotedesktopsitzung einen Webbrowser, und navigieren Sie zur IP-Adresse aus Schritt 2. Daraufhin sollte die standardmäßige Apache2-Serverhomepage angezeigt werden.
 
 ## <a name="next-steps"></a>Nächste Schritte
 
