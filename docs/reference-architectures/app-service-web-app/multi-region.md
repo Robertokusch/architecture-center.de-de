@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
 ms.openlocfilehash: 00309e58c163a64f6d9796bedc19d936afcd09ab
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270287"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37958822"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Ausführen einer Webanwendung in mehreren Regionen
 [!INCLUDE [header](../../_includes/header.md)]

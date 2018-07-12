@@ -3,21 +3,23 @@ title: Bereitstellen von SAP NetWeaver (Windows) für AnyDB in Azure Virtual Mac
 description: Bewährte Methoden zum Ausführen von SAP S/4HANA in einer Linux-Umgebung in Azure mit Hochverfügbarkeit.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 0efe3e78d9e1809fdab52044b75e432742786b79
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 90334e4872bdd15d59aa16286a031d07f3d1bb2f
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423063"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864537"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Bereitstellen von SAP NetWeaver (Windows) für AnyDB in Azure Virtual Machines
 
 Anhand dieser Referenzarchitektur werden einige bewährte Methoden veranschaulicht, wie SAP NetWeaver in einer Windows-Umgebung in Azure mit Hochverfügbarkeit ausgeführt werden kann. Die Datenbank ist AnyDB. „AnyDB“ ist der SAP-Begriff für alle unterstützten Datenbank-Managementsysteme neben SAP HANA. Diese Architektur wird mit virtuellen Computern bestimmter Größen bereitgestellt, die an die Anforderungen Ihres Unternehmens angepasst werden können.
 
-![](./images/sap-s4hana.png)
- 
+![](./images/sap-netweaver.png)
+
+*Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
+
 > [!NOTE] 
-> Zum Bereitstellen von SAP-Produkten gemäß dieser Referenzarchitektur ist eine geeignete Lizenzierung von SAP-Produkten und anderen nicht von Microsoft stammenden Technologiekomponenten erforderlich.
+> Zum Bereitstellen dieser Referenzarchitektur ist eine geeignete Lizenzierung von SAP-Produkten und anderen nicht von Microsoft stammenden Technologiekomponenten erforderlich.
 
 ## <a name="architecture"></a>Architecture
 Diese Architektur umfasst die folgenden Infrastruktur- und Schlüsselsoftwarekomponenten.
@@ -174,3 +176,4 @@ Communitys können Fragen beantworten und Sie beim Einrichten einer erfolgreiche
 - [SAP Community](https://www.sap.com/community.html)
 - [Stapelüberlauf](https://stackoverflow.com/tags/sap/)
 
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

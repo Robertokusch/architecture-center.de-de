@@ -3,11 +3,11 @@ title: Architekturstil „Web-Warteschlange-Worker“
 description: In diesem Artikel werden die Vorteile, Herausforderungen und bewährten Methoden für Architekturen vom Typ „Web-Warteschlange-Worker“ in Azure beschrieben.
 author: MikeWasson
 ms.openlocfilehash: 545472e71ffcd43717ad24af0dc9218a221ca910
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24539800"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37958788"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Architekturstil „Web-Warteschlange-Worker“
 

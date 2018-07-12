@@ -3,12 +3,12 @@ title: Ausführen von SAP HANA in Azure (große Instanzen)
 description: Bewährte Methoden zum Ausführen von SAP HANA in einer Hochverfügbarkeitsumgebung in Azure (große Instanzen).
 author: lbrader
 ms.date: 05/16/2018
-ms.openlocfilehash: 7605fa8a0012aaef3f7323c6f88614b640152e3b
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 746161ac51335af5c48a559830d6e0345dcfb7b1
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423058"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864520"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>Ausführen von SAP HANA in Azure (große Instanzen)
 
@@ -16,16 +16,18 @@ Anhand dieser Referenzarchitektur werden einige bewährte Methoden für die Ausf
 
 ![0][0]
 
+*Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
+
 > [!NOTE]
 > Zum Bereitstellen dieser Referenzarchitektur ist eine geeignete Lizenzierung von SAP-Produkten und anderen nicht von Microsoft stammenden Technologiekomponenten erforderlich.
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 Diese Architektur umfasst die folgenden Infrastrukturkomponenten.
 
-- **Virtuelles Netzwerk**: Der [Azure Virtual Network][vnet]-Dienst verbindet auf sichere Weise Azure-Ressourcen miteinander und wird in separate [Subnetze][subnet] für jede Ebene unterteilt. SAP-Anwendungsebenen werden auf virtuellen Azure-Computern (VMs) bereitgestellt, um eine Verbindung mit der HANA-Datenbankebene herzustellen, die in großen Instanzen gespeichert ist.
+- **Virtuelles Netzwerk**. Der [Azure Virtual Network][vnet]-Dienst verbindet auf sichere Weise Azure-Ressourcen miteinander und wird in separate [Subnetze][subnet] für jede Ebene unterteilt. SAP-Anwendungsebenen werden auf virtuellen Azure-Computern (VMs) bereitgestellt, um eine Verbindung mit der HANA-Datenbankebene herzustellen, die in großen Instanzen gespeichert ist.
 
-- **Virtuelle Computer**: Virtuelle Computer werden in der SAP-Anwendungsebene und der Ebene für gemeinsame Dienste verwendet. Letztere enthält eine Jumpbox, die von Administratoren verwendet wird, um große HANA-Instanzen einzurichten und Zugriff auf andere virtuelle Computer bereitzustellen. 
+- **Virtuelle Computer:** Virtuelle Computer werden in der SAP-Anwendungsebene und der Ebene für gemeinsame Dienste verwendet. Letztere enthält eine Jumpbox, die von Administratoren verwendet wird, um große HANA-Instanzen einzurichten und Zugriff auf andere virtuelle Computer bereitzustellen. 
 
 - **Große HANA-Instanz**. Ein [physischer Server][physical], der für die SAP HANA TDI-Standards (Tailored Datacenter Integration) zertifiziert ist, führt SAP HANA aus. Diese Architektur verwendet zwei große HANA-Instanzen: eine primäre und eine sekundäre Compute-Einheit. Hochverfügbarkeit auf der Datenebene wird über HSR (HANA System Replication) bereitgestellt.
 
@@ -39,7 +41,7 @@ Diese Architektur umfasst die folgenden Infrastrukturkomponenten.
 
 - **ExpressRoute**: [ExpressRoute][expressroute] ist der empfohlene Azure-Netzwerkdienst für das Erstellen privater Verbindungen zwischen einem lokalen Netzwerk und virtuellen Azure-Netzwerken, die nicht über das öffentliche Internet genutzt werden. Virtuelle Azure-Computer stellen über eine weitere ExpressRoute-Verbindung eine Verbindung mit großen HANA-Instanzen her. Die ExpressRoute-Verbindung zwischen dem virtuellen Azure-Netzwerk und den großen HANA-Instanzen wird als Teil des Microsoft-Angebots eingerichtet.
 
-- **Gateway**: Das ExpressRoute-Gateway wird verwendet, um das für die SAP-Anwendungsebene verwendete virtuelle Azure-Netzwerk mit dem Netzwerk der großen HANA-Instanz zu verbinden. Verwenden Sie die SKU für [Hohe Leistung oder Höchstleistung][sku].
+- **Gateway**. Das ExpressRoute-Gateway wird verwendet, um das für die SAP-Anwendungsebene verwendete virtuelle Azure-Netzwerk mit dem Netzwerk der großen HANA-Instanz zu verbinden. Verwenden Sie die SKU für [Hohe Leistung oder Höchstleistung][sku].
 
 - **Notfallwiederherstellung (Disaster Recovery, DR)**: Auf Anforderung wird Speicherreplikation unterstützt. Sie wird zwischen dem primären Server und dem [DR-Standort][DR-site] in einer anderen Region konfiguriert.  
  
@@ -201,3 +203,5 @@ Communitys können Fragen beantworten und Sie beim Einrichten einer erfolgreiche
 [type]: /azure/virtual-machines/workloads/sap/hana-installation
 [vnet]: /azure/virtual-network/virtual-networks-overview
 [0]: ./images/sap-hana-large-instances.png "SAP HANA in Azure (große Instanzen): Architektur"
+
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

@@ -3,25 +3,26 @@ title: SAP S/4HANA für virtuelle Linux-Computer in Azure
 description: Bewährte Methoden zum Ausführen von SAP S/4HANA in einer Linux-Umgebung in Azure mit Hochverfügbarkeit.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: d24ef6f9e4eae460d0d0dcfff35568c812d09951
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 9635de73ec431e0ac678e4008e0c4835796d47ad
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423066"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864503"
 ---
 # <a name="sap-s4hana-for-linux-virtual-machines-on-azure"></a>SAP S/4HANA für virtuelle Linux-Computer in Azure
 
 Anhand dieser Referenzarchitektur werden einige bewährte Methoden für die Ausführung von S/4HANA in einer Hochverfügbarkeitsumgebung veranschaulicht, die Notfallwiederherstellung in Azure unterstützt. Diese Architektur wird mit virtuellen Computern bestimmter Größen bereitgestellt, die an die Anforderungen Ihres Unternehmens angepasst werden können. 
 
-
 ![](./images/sap-s4hana.png)
+
+*Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
+
+> [!NOTE] 
+> Zum Bereitstellen dieser Referenzarchitektur ist eine geeignete Lizenzierung von SAP-Produkten und anderen nicht von Microsoft stammenden Technologiekomponenten erforderlich.
 
 ## <a name="architecture"></a>Architecture
  
-> [!NOTE] 
-> Zum Bereitstellen von SAP-Produkten gemäß dieser Referenzarchitektur ist eine geeignete Lizenzierung von SAP-Produkten und anderen nicht von Microsoft stammenden Technologiekomponenten erforderlich.
-
 Diese Referenzarchitektur beschreibt ein für Unternehmen konzipiertes einsatzfähiges System. Um Ihren Geschäftsanforderungen gerecht zu werden, kann diese Konfiguration bis hin zu einem einzigen virtuellen Computer reduziert werden. Die folgenden Komponenten sind jedoch erforderlich:
 
 **Virtuelles Netzwerk**. Der [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview)-Dienst verbindet Azure-Ressourcen sicher miteinander. In dieser Architektur wird das virtuelle Netzwerk über ein Gateway mit einer lokalen Umgebung verbunden, und dieses Gateway wird im Hub einer [Hub-Spoke-Topologie](../hybrid-networking/hub-spoke.md) bereitgestellt. Die Speiche (Spoke) ist das virtuelle Netzwerk, das für die SAP-Anwendungen verwendet wird.
@@ -197,3 +198,5 @@ Communitys können Fragen beantworten und Sie beim Einrichten einer erfolgreiche
 - [Azure-Communitysupport](https://azure.microsoft.com/support/community/)
 - [SAP Community](https://www.sap.com/community.html)
 - [Stapelüberlauf](https://stackoverflow.com/tags/sap/)
+
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx
