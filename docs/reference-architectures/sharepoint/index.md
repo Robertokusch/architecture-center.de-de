@@ -3,12 +3,12 @@ title: Ausführen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure
 description: Enthält eine Beschreibung der bewährten Methoden zum Einrichten einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure.
 author: njray
 ms.date: 08/01/2017
-ms.openlocfilehash: d1e3f0b73c94844ac649bf2abb6917809202fdb7
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 9fe4fc09cf3babdf3ec8e8f27049f90e0047e9f0
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270121"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987708"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Ausführen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure
 
@@ -38,9 +38,11 @@ Die Architektur umfasst die folgenden Komponenten:
 
 - **Gateway**: Das Gateway stellt eine Verbindung zwischen Ihrem lokalen Netzwerk und dem virtuellen Azure-Netzwerk her. Hierfür kann eine ExpressRoute- oder eine Site-to-Site-VPN-Verbindung verwendet werden. Weitere Informationen finden Sie unter [Connect an on-premises network to Azure][hybrid-ra] (Verbinden eines lokalen Netzwerks mit Azure).
 
-- **Windows Server Active Directory-Domänencontroller**: Da SharePoint Server 2016 die Verwendung von Azure Active Directory Domain Services nicht unterstützt, müssen Sie Windows Server AD-Domänencontroller bereitstellen. Diese Domänencontroller werden im Azure VNet ausgeführt und verfügen über eine Vertrauensstellung mit der lokalen Windows Server AD-Gesamtstruktur. Clientwebanforderungen für Ressourcen von SharePoint-Farmen werden im VNet authentifiziert, anstatt den Datenverkehr des Authentifizierungsvorgangs über die Gatewayverbindung an das lokale Netzwerk zu senden. In DNS werden A- oder CNAME-Intraneteinträge erstellt, damit Intranetbenutzer den Namen der SharePoint-Farm in die private IP-Adresse des internen Lastenausgleichs auflösen können.
+- **Windows Server Active Directory-Domänencontroller**: Anhand dieser Referenzarchitektur werden Windows Server AD-Domänencontroller bereitgestellt. Diese Domänencontroller werden im Azure VNet ausgeführt und verfügen über eine Vertrauensstellung mit der lokalen Windows Server AD-Gesamtstruktur. Clientwebanforderungen für Ressourcen von SharePoint-Farmen werden im VNet authentifiziert, anstatt den Datenverkehr des Authentifizierungsvorgangs über die Gatewayverbindung an das lokale Netzwerk zu senden. In DNS werden A- oder CNAME-Intraneteinträge erstellt, damit Intranetbenutzer den Namen der SharePoint-Farm in die private IP-Adresse des internen Lastenausgleichs auflösen können.
 
-- **SQL Server Always On-Verfügbarkeitsgruppe**: Wir empfehlen die Verwendung von [SQL Server Always On-Verfügbarkeitsgruppen][sql-always-on], um für die SQL Server-Datenbank Hochverfügbarkeit zu erzielen. Zwei virtuelle Computer werden für SQL Server verwendet. Einer enthält das primäre Datenbankreplikat, und der andere enthält das sekundäre Replikat. 
+  SharePoint Server 2016 unterstützt auch die Verwendung [Azure Active Directory Domain Services](/azure/active-directory-domain-services/). Azure AD Domain Services stellt verwaltete Domänendienste bereit, sodass Sie keine Domänencontroller in Azure bereitstellen und verwalten müssen.
+
+- **SQL Server Always On-Verfügbarkeitsgruppe**. Wir empfehlen die Verwendung von [SQL Server Always On-Verfügbarkeitsgruppen][sql-always-on], um für die SQL Server-Datenbank Hochverfügbarkeit zu erzielen. Zwei virtuelle Computer werden für SQL Server verwendet. Einer enthält das primäre Datenbankreplikat, und der andere enthält das sekundäre Replikat. 
 
 - **Hauptknoten-VM**: Mit dieser VM kann der Failovercluster ein Quorum festlegen. Weitere Informationen finden Sie unter [Grundlegendes zu Quorumkonfigurationen in einem Failovercluster][sql-quorum].
 

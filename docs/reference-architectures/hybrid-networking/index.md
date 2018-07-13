@@ -1,126 +1,87 @@
 ---
-title: Verbinden eines lokalen Netzwerks mit Azure
-description: Empfohlene Architekturen für sichere, stabile Netzwerkverbindungen zwischen lokalen Netzwerken und Azure
-layout: LandingPage
-ms.openlocfilehash: 372efb8ecf69245a5895c51e3da156a348bd665e
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+title: Auswählen einer Lösung zum Herstellen einer Verbindung zwischen einem lokalen Netzwerk und Azure
+description: Dieser Artikel vergleicht Referenzarchitekturen zum Herstellen einer Verbindung zwischen einem lokalen Netzwerk und Azure.
+author: telmosampaio
+ms.date: 07/02/2018
+ms.openlocfilehash: 0cc07d3b7d45accf9f99ce32914b0ef065d62f32
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782326"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987477"
 ---
-<!-- This file is generated! -->
-<!-- See the templates in ./build/reference-architectures  -->
-<!-- See data in index.json -->
-
 # <a name="connect-an-on-premises-network-to-azure"></a>Verbinden eines lokalen Netzwerks mit Azure
 
-Diese Referenzarchitekturen zeigen bewährte Methoden für die Erstellung einer stabilen Netzwerkverbindung zwischen einem lokalen Netzwerk und Azure. [Welche Option sollte ich auswählen?](./considerations.md)
+Dieser Artikel vergleicht Optionen zum Herstellen einer Verbindung zwischen einem lokalen Netzwerk und einem virtuellen Azure-Netzwerk (VNET). Für jede Option ist eine detailliertere Referenzarchitektur verfügbar.
 
-<section class="series">
-    <ul class="panelContent">
-    <!-- VPN -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./vpn.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/vpn.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>VPN</h3>
-                        <p>Erweitern Sie ein lokales Netzwerk auf Azure, indem Sie ein Site-to-Site-VPN (virtuelles privates Netzwerk) verwenden.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- ExpressRoute -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./expressroute.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/expressroute.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>ExpressRoute</h3>
-                        <p>Erweitern Sie ein lokales Netzwerk mit Azure ExpressRoute auf Azure.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- ExpressRoute with VPN failover -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./expressroute-vpn-failover.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/expressroute-vpn-failover.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>ExpressRoute mit VPN-Failover</h3>
-                        <p>Erweitern Sie ein lokales Netzwerk mit Azure ExpressRoute auf Azure, indem Sie ein VPN als Failoververbindung verwenden.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Hub-spoke topology -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./hub-spoke.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/hub-spoke.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Hub-Spoke-Topologie</h3>
-                        <p>Der Hub ist ein zentraler Konnektivitätspunkt für Ihr lokales Netzwerk. Bei Speichen handelt es sich um VNETs, die eine Peerverbindung mit dem Hub herstellen und zur Isolierung von Workloads verwendet werden können.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Hub-spoke topology with shared services -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./shared-services.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/shared-services.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Hub-Spoke-Topologie mit gemeinsamen Diensten</h3>
-                        <p>Stellen Sie eine Hub-Spoke-Topologie mit gemeinsamen Diensten bereit, z.B. Active Directory-Dienste und ein virtuelles Netzwerkgerät (Network Virtual Appliance, NVA). Gemeinsame Dienste können von allen Spokes genutzt werden.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    </ul>
-</section>
+## <a name="vpn-connection"></a>VPN-Verbindung
 
-<ul class="panelContent cardsI">
-</ul>
+Ein [VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) ist eine Art von Gateway für virtuelle Netzwerke, mit dem verschlüsselter Datenverkehr zwischen einem virtuellen Azure-Netzwerk und einem lokalen Standort gesendet wird. Der verschlüsselte Datenverkehr wird über das öffentliche Internet übertragen.
+
+Diese Architektur eignet sich für hybride Anwendungen, bei denen wahrscheinlich nur wenig Datenverkehr zwischen der lokalen Hardware und der Cloud stattfindet. Sie ist auch dann geeignet, wenn Sie eine geringfügig erhöhte Latenz in Kauf nehmen können, um von der Flexibilität und der Verarbeitungsleistung der Cloud zu profitieren.
+
+**Vorteile**
+
+- Diese Architektur lässt sich leicht konfigurieren.
+
+**Herausforderungen**
+
+- Es ist ein lokales VPN-Gerät erforderlich.
+- Microsoft garantiert zwar für jedes VPN Gateway eine Verfügbarkeit von 99,9 %, diese [SLA](https://azure.microsoft.com/support/legal/sla/vpn-gateway/) gilt aber nur für das VPN Gateway, nicht für Ihre Netzwerkverbindung zum Gateway.
+- Eine VPN-Verbindung über ein Azure VPN-Gateway unterstützt zurzeit eine Bandbreite von maximal 200 MBit/s. Möglicherweise müssen Sie Ihr virtuelles Azure-Netzwerk über mehrere VPN-Verbindungen hinweg partitionieren, wenn Sie damit rechnen, diesen Durchsatz zu überschreiten.
+
+**Referenzarchitektur**
+
+- [Hybridnetzwerk mit VPN-Gateway](./vpn.md)
+
+## <a name="azure-expressroute-connection"></a>Azure ExpressRoute-Verbindung
+
+[ExpressRoute](/azure/expressroute/)-Verbindungen nutzen eine dedizierte private Verbindung über einen Drittanbieter für die Konnektivität. Die private Verbindung erweitert Ihr lokales Netzwerk auf Azure. 
+
+Diese Architektur eignet sich für hybride Anwendungen, die umfangreiche geschäftskritische Workloads ausführen, für die ein hohes Maß an Skalierbarkeit erforderlich ist. 
+
+**Vorteile**
+
+- Es steht eine wesentlich höhere Bandbreite zur Verfügung – bis zu 10 GBit/s, je nach Konnektivitätsanbieter.
+- Die Architektur unterstützt eine dynamische Skalierung der Bandbreite, um in Zeiträumen mit geringerer Nachfrage die Kosten zu senken. Allerdings steht diese Option nicht bei allen Konnektivitätsanbietern zur Verfügung.
+- Möglicherweise erhält Ihre Organisation direkten Zugriff auf landesweite Clouds – dies hängt vom Konnektivitätsanbieter ab.
+- Es gilt für die gesamte Verbindung eine Verfügbarkeits-SLA von 99,9 %.
+
+**Herausforderungen**
+
+- Die Einrichtung kann sehr komplex sein. Zum Erstellen einer ExpressRoute-Verbindung müssen Sie mit einem Drittanbieter für die Konnektivität zusammenarbeiten. Der Anbieter ist für die Bereitstellung der Netzwerkverbindung verantwortlich.
+- Die Architektur erfordert lokale Router mit hoher Bandbreite.
+
+**Referenzarchitektur**
+
+- [Hybridnetzwerk mit ExpressRoute](./expressroute.md)
+
+## <a name="expressroute-with-vpn-failover"></a>ExpressRoute mit VPN-Failover
+
+Diese Option kombiniert die beiden vorherigen: Unter normalen Bedingungen wird eine ExpressRoute-Verbindung verwendet, aber im Fall eines Konnektivitätsverlusts in der ExpressRoute-Leitung erfolgt ein Failover auf eine VPN-Verbindung.
+
+Diese Architektur eignet sich für hybride Anwendungen, die sowohl die höhere Bandbreite von ExpressRoute als auch Netzwerkkonnektivität mit hoher Verfügbarkeit benötigen. 
+
+**Vorteile**
+
+- Bei einem Ausfall der ExpressRoute-Leitung ist eine hohe Verfügbarkeit gewährleistet, auch wenn die Fallbackverbindung über ein Netzwerk mit geringerer Bandbreite erfolgt.
+
+**Herausforderungen**
+
+- Die Konfiguration ist komplex. Sie müssen sowohl eine VPN-Verbindung als auch eine ExpressRoute-Leitung einrichten.
+- Es sind redundante Hardwarekomponenten (VPN-Geräte) und eine redundante Azure VPN-Gatewayverbindung erforderlich, wofür Gebühren anfallen.
+
+**Referenzarchitektur**
+
+- [Hybridnetzwerk mit ExpressRoute und VPN-Failover](./expressroute-vpn-failover.md)
+
+
+## <a name="hub-spoke-network-topology"></a>Hub-Spoke-Netzwerktopologie
+
+Eine Hub-Spoke-Netzwerktopologie ist eine Möglichkeit zur Isolierung von Workloads während Dienste wie Identität und Sicherheit gemeinsam verwendet werden. Bei einem Hub handelt es sich um ein virtuelles Netzwerk (VNET) in Azure, das als zentraler Konnektivitätspunkt für Ihr lokales Netzwerk fungiert. Bei den Spokes handelt es sich um VNETs, die eine Peeringverbindung mit dem Hub herstellen. Gemeinsame Dienste werden im Hub bereitgestellt, während einzelne Workloads als Spokes bereitgestellt werden.
+
+
+**Referenzarchitekturen**
+
+- [Hub-Spoke-Topologie](./hub-spoke.md)
+- [Hub-Spoke mit gemeinsamen Diensten](./shared-services.md)
