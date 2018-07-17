@@ -2,13 +2,13 @@
 title: Ausführen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure
 description: Enthält eine Beschreibung der bewährten Methoden zum Einrichten einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure.
 author: njray
-ms.date: 08/01/2017
-ms.openlocfilehash: 9fe4fc09cf3babdf3ec8e8f27049f90e0047e9f0
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.date: 07/14/2018
+ms.openlocfilehash: ff690300cb5f4af301bcfac58ac10b9b3c47f96d
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987708"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060896"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Ausführen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure
 
@@ -172,78 +172,104 @@ Außerdem ist es immer ratsam, mit Blick auf die Sicherheitshärtung zu planen. 
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Die Bereitstellungsskripts für diese Referenzarchitektur sind auf [GitHub][github] verfügbar. 
+Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github] verfügbar. Der gesamte Bereitstellungsvorgang kann mehrere Stunden in Anspruch nehmen.
 
-Sie können diese Architektur inkrementell oder auf einmal bereitstellen. Für die erste Bereitstellung empfehlen wir eine inkrementelle Vorgehensweise, damit Sie verfolgen können, was bei den einzelnen Bereitstellungsvorgängen passiert. Geben Sie das Inkrement an, indem Sie einen der folgenden *mode*-Parameter verwenden.
+Die Bereitstellung erstellt die folgenden Ressourcengruppen in Ihrem Abonnement:
 
-| Mode           | Funktionsbeschreibung                                                                                                            |
-|----------------|-------------------------------------------------------------------------------------------------------------------------|
-| onprem         | (Optional) Stellt eine simulierte lokale Netzwerkumgebung zum Testen oder Evaluieren bereit. Bei diesem Schritt wird keine Verbindung mit einem tatsächlichen lokalen Netzwerk hergestellt. |
-| infrastructure | Stellt die SharePoint 2016-Netzwerkinfrastruktur und die Jumpbox für Azure bereit.                                                |
-| createvpn      | Stellt ein virtuelles Netzwerkgateway für das SharePoint-Netzwerk und das lokale Netzwerk bereit und stellt dafür eine Verbindung her. Führen Sie diesen Schritt nur aus, wenn Sie zuvor den Schritt `onprem` ausgeführt haben.                |
-| workload       | Stellt die SharePoint-Server im SharePoint-Netzwerk bereit.                                                               |
-| security       | Stellt die Netzwerksicherheitsgruppe im SharePoint-Netzwerk bereit.                                                           |
-| alle            | Stellt alle vorherigen Bereitstellungen bereit.                            
+- ra-onprem-sp2016-rg
+- ra-sp2016-network-rg
 
+Die Vorlagenparameterdateien beziehen sich auf diese Namen, d.h. wenn Sie sie ändern, müssen Sie die Parameterdateien entsprechend aktualisieren. 
 
-Führen Sie die folgenden Schritte in der unten angegebenen Reihenfolge aus, um die Architektur inkrementell mit einer simulierten lokalen Netzwerkumgebung bereitzustellen:
-
-1. onprem
-2. infrastructure
-3. createvpn
-4. workload
-5. security
-
-Führen Sie die folgenden Schritte in der unten angegebenen Reihenfolge aus, um die Architektur inkrementell ohne simulierte lokale Netzwerkumgebung bereitzustellen:
-
-1. infrastructure
-2. workload
-3. security
-
-Verwenden Sie `all`, um alles innerhalb eines Schritts bereitzustellen. Beachten Sie, dass der gesamte Prozess mehrere Stunden dauern kann.
+Die Parameterdateien enthalten an verschiedenen Stellen ein hartcodiertes Kennwort. Ändern Sie diese Werte vor der Bereitstellung.
 
 ### <a name="prerequisites"></a>Voraussetzungen
 
-* Installieren Sie die neueste Version von [Azure PowerShell][azure-ps].
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-* Überprüfen Sie vor dem Bereitstellen dieser Referenzarchitektur, ob Ihr Abonnement über das Mindestkontingent von 38 Kernen verfügt. Verwenden Sie das Azure-Portal, um per Supportanfrage ein höheres Kontingent anzufordern, falls diese Voraussetzung nicht erfüllt ist.
+### <a name="deploy-the-solution"></a>Bereitstellen der Lösung 
 
-* Sie können eine Schätzung für die Kosten dieser Bereitstellung erstellen, indem Sie den [Azure-Preisrechner][azure-pricing] nutzen.
+1. Führen Sie den folgenden Befehl aus, um ein simuliertes lokales Netzwerk bereitzustellen.
 
-### <a name="deploy-the-reference-architecture"></a>Bereitstellen der Referenzarchitektur
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p onprem.json --deploy
+    ```
 
-1.  Laden Sie das [GitHub-Repository][github] auf Ihren lokalen Computer herunter, oder klonen Sie es.
+2. Führen Sie den folgenden Befehl aus, um das Azure-VNET und das VPN-Gateway bereitzustellen.
 
-2.  Öffnen Sie ein PowerShell-Fenster, und navigieren Sie zum Ordner `/sharepoint/sharepoint-2016`.
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p connections.json --deploy
+    ```
 
-3.  Führen Sie den folgenden PowerShell-Befehl aus: Verwenden Sie als \<subscription id\> die ID Ihres Azure-Abonnements. Geben Sie für \<location\> eine Azure-Region an, z.B. `eastus` oder `westus`. Geben Sie für \<mode\> `onprem`, `infrastructure`, `createvpn`, `workload`, `security` oder `all` an.
+3. Führen Sie den folgenden Befehl aus, um die Jumpbox, AD-Domänencontroller und virtuelle SQL Server-Computer bereitzustellen.
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure1.json --deploy
+    ```
+
+4. Führen Sie den folgenden Befehl aus, um den Failovercluster und die Verfügbarkeitsgruppe zu erstellen. 
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure2-cluster.json --deploy
+
+5. Run the following command to deploy the remaining VMs.
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure3.json --deploy
+    ```
+
+An diesem Punkt stellen Sie sicher, dass Sie für die SQL Server Always On-Verfügbarkeitsgruppe eine TCP-Verbindung vom Web-Front-End zum Lastenausgleich herstellen können. Führen Sie dazu die folgenden Schritte aus:
+
+1. Suchen Sie im Azure-Portal die VM namens `ra-sp-jb-vm1` in der `ra-sp2016-network-rg`-Ressourcengruppe. Dies ist der virtuelle Jumpbox-Computer.
+
+2. Klicke Sie auf `Connect`, um eine Remotedesktopsitzung mit der VM zu öffnen. Verwenden Sie das Kennwort, das Sie in der `azure1.json`-Parameterdatei angegeben haben.
+
+3. Melden Sie sich in der Remotedesktopsitzung bei 10.0.5.4 an. Dies ist die IP-Adresse des virtuellen Computers mit dem Namen `ra-sp-app-vm1`.
+
+4. Öffnen Sie auf dem virtuellen Computer eine PowerShell-Konsole, und verwenden Sie das Cmdlet `Test-NetConnection`, um sicherzustellen, dass Sie eine Verbindung mit dem Lastenausgleich herstellen können.
 
     ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> <mode>
-    ```   
-4. Melden Sie sich an Ihrem Azure-Konto an, wenn die Aufforderung angezeigt wird. Je nach ausgewähltem Modus kann es mehrere Stunden dauern, bis die Bereitstellungsskripts abgeschlossen sind.
+    Test-NetConnection 10.0.3.100 -Port 1433
+    ```
 
-5. Führen Sie nach Abschluss der Bereitstellung die Skripts zum Konfigurieren von SQL Server Always On-Verfügbarkeitsgruppen aus. Details hierzu finden Sie auf der Seite mit dem Inhalt der [Infodatei][readme].
+Die Ausgabe sollte in etwa wie folgt aussehen:
 
-> [!WARNING]
-> Die Parameterdateien enthalten an verschiedenen Stellen ein hartcodiertes Kennwort (`AweS0me@PW`). Ändern Sie diese Werte vor der Bereitstellung.
+```powershell
+ComputerName     : 10.0.3.100
+RemoteAddress    : 10.0.3.100
+RemotePort       : 1433
+InterfaceAlias   : Ethernet 3
+SourceAddress    : 10.0.0.132
+TcpTestSucceeded : True
+```
 
+Falls ein Fehler auftritt, starten Sie mithilfe des Azure-Portals den virtuellen Computer namens `ra-sp-sql-vm2` neu. Nach dem Neustart des virtuellen Computers führen Sie den Befehl `Test-NetConnection` erneut aus. Möglicherweise müssen Sie nach dem Neustart des virtuellen Computers etwa eine Minute warten, bis die Verbindung erfolgreich ist. 
 
-## <a name="validate-the-deployment"></a>Überprüfen der Bereitstellung
+Schließen Sie jetzt die Bereitstellung wie folgt ab.
 
-Nachdem Sie diese Referenzarchitektur bereitgestellt haben, werden unter dem von Ihnen verwendeten Abonnement die folgenden Ressourcengruppen aufgeführt:
+1. Führen Sie den folgenden Befehl aus, um den primären Knoten der SharePoint-Farm bereitzustellen.
 
-| Ressourcengruppe        | Zweck                                                                                         |
-|-----------------------|-------------------------------------------------------------------------------------------------|
-| ra-onprem-sp2016-rg   | Simuliertes lokales Netzwerk mit Active Directory, Verbund mit dem SharePoint 2016-Netzwerk |
-| ra-sp2016-network-rg  | Infrastruktur zur Unterstützung der SharePoint-Bereitstellung                                                 |
-| ra-sp2016-workload-rg | SharePoint und unterstützende Ressourcen                                                             |
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure4-sharepoint-server.json --deploy
+    ```
 
-### <a name="validate-access-to-the-sharepoint-site-from-the-on-premises-network"></a>Überprüfen des Zugriffs auf die SharePoint-Website aus dem lokalen Netzwerk
+2. Führen Sie den folgenden Befehl aus, um SharePoint-Cache, -Suche und -Web bereitzustellen.
 
-1. Wählen Sie im [Azure-Portal][azure-portal] unter **Ressourcengruppen** die Ressourcengruppe `ra-onprem-sp2016-rg`.
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure5-sharepoint-farm.json --deploy
+    ```
 
-2. Wählen Sie in der Liste mit den Ressourcen die VM-Ressource mit dem Namen `ra-adds-user-vm1`. 
+3. Führen Sie den folgenden Befehl aus, um die NSG-Regeln zu erstellen.
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure6-security.json --deploy
+    ```
+
+### <a name="validate-the-deployment"></a>Überprüfen der Bereitstellung
+
+1. Navigieren Sie im [Azure-Portal][azure-portal] zur Ressourcengruppe `ra-onprem-sp2016-rg`.
+
+2. Wählen Sie in der Liste mit den Ressourcen die VM-Ressource mit dem Namen `ra-onpr-u-vm1`. 
 
 3. Stellen Sie eine Verbindung mit der VM her, wie unter [Herstellen der Verbindung mit dem virtuellen Computer][connect-to-vm] beschrieben. Der Benutzername lautet `\onpremuser`.
 
@@ -252,38 +278,6 @@ Nachdem Sie diese Referenzarchitektur bereitgestellt haben, werden unter dem von
 6.  Melden Sie sich im Feld **Windows-Sicherheit** am SharePoint-Portal an, indem Sie `contoso.local\testuser` als Benutzername verwenden.
 
 Bei dieser Anmeldung wird ein Tunnel von der Domäne „Fabrikam.com“, die vom lokalen Netzwerk genutzt wird, zur Domäne „contoso.local“ des SharePoint-Portals erstellt. Wenn die SharePoint-Website geöffnet wird, wird die Demo-Stammwebsite angezeigt.
-
-### <a name="validate-jumpbox-access-to-vms-and-check-configuration-settings"></a>Überprüfen des Jumpbox-Zugriffs auf VMs und Prüfen der Konfigurationseinstellungen
-
-1.  Wählen Sie im [Azure-Portal][azure-portal] unter **Ressourcengruppen** die Ressourcengruppe `ra-sp2016-network-rg`.
-
-2.  Wählen Sie in der Liste mit den Ressourcen die VM-Ressource mit dem Namen `ra-sp2016-jb-vm1` aus. Dies ist die Jumpbox.
-
-3. Stellen Sie eine Verbindung mit der VM her, wie unter [Herstellen der Verbindung mit dem virtuellen Computer][connect-to-vm] beschrieben. Der Benutzername lautet `testuser`.
-
-4.  Öffnen Sie nach dem Anmelden an der Jumpbox eine RDP-Sitzung aus der Jumpbox. Stellen Sie eine Verbindung mit anderen VMs im VNet her. Der Benutzername lautet `testuser`. Sie können die Warnung zum Sicherheitszertifikat des Remotecomputers ignorieren.
-
-5.  Wenn die Remoteverbindung mit der VM geöffnet wird, können Sie die Konfiguration prüfen und Änderungen vornehmen, indem Sie Verwaltungstools verwenden, z.B. Server-Manager.
-
-Die folgende Tabelle enthält die bereitgestellten VMs. 
-
-| Ressourcenname      | Zweck                                   | Ressourcengruppe        | VM-Name                       |
-|--------------------|-------------------------------------------|-----------------------|-------------------------------|
-| Ra-sp2016-ad-vm1   | Active Directory + DNS                    | Ra-sp2016-network-rg  | Ad1.contoso.local             |
-| Ra-sp2016-ad-vm2   | Active Directory + DNS                    | Ra-sp2016-network-rg  | Ad2.contoso.local             |
-| Ra-sp2016-fsw-vm1  | SharePoint                                | Ra-sp2016-network-rg  | Fsw1.contoso.local            |
-| Ra-sp2016-jb-vm1   | Jumpbox                                   | Ra-sp2016-network-rg  | Jb (öffentliche IP zum Anmelden verwenden) |
-| Ra-sp2016-sql-vm1  | SQL Always On – Failover                  | Ra-sp2016-network-rg  | Sq1.contoso.local             |
-| Ra-sp2016-sql-vm2  | SQL Always On – Primär                   | Ra-sp2016-network-rg  | Sq2.contoso.local             |
-| Ra-sp2016-app-vm1  | SharePoint 2016-Anwendung – MinRole       | Ra-sp2016-workload-rg | App1.contoso.local            |
-| Ra-sp2016-app-vm2  | SharePoint 2016-Anwendung – MinRole       | Ra-sp2016-workload-rg | App2.contoso.local            |
-| Ra-sp2016-dch-vm1  | SharePoint 2016 – Verteilter Cache – MinRole | Ra-sp2016-workload-rg | Dch1.contoso.local            |
-| Ra-sp2016-dch-vm2  | SharePoint 2016 – Verteilter Cache – MinRole | Ra-sp2016-workload-rg | Dch2.contoso.local            |
-| Ra-sp2016-srch-vm1 | SharePoint 2016-Suche – MinRole            | Ra-sp2016-workload-rg | Srch1.contoso.local           |
-| Ra-sp2016-srch-vm2 | SharePoint 2016-Suche – MinRole            | Ra-sp2016-workload-rg | Srch2.contoso.local           |
-| Ra-sp2016-wfe-vm1  | SharePoint 2016-Web-Front-End – MinRole     | Ra-sp2016-workload-rg | Wfe1.contoso.local            |
-| Ra-sp2016-wfe-vm2  | SharePoint 2016-Web-Front-End – MinRole     | Ra-sp2016-workload-rg | Wfe2.contoso.local            |
-
 
 **_Mitwirkende dieser Referenzarchitektur_** &mdash; Joe Davies, Bob Fox, Neil Hodgkinson, Paul Stork
 
