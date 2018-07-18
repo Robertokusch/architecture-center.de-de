@@ -4,12 +4,12 @@ description: Spezifische Dienstanleitung für die Festlegung des Wiederholungsme
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 77cf5d90373da2118d34301bd5c790080d3cf63f
-ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
+ms.openlocfilehash: 39d342dc96e3d0d923ce159c392d9427359a4639
+ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/22/2018
-ms.locfileid: "36327686"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37843625"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Wiederholungsanleitung für bestimmte Dienste
 
@@ -383,7 +383,7 @@ Erwägen Sie, mit den folgenden Einstellungen für Wiederholungsvorgänge zu beg
 \*Ohne Berücksichtigung der Verzögerung, die hinzukommt, wenn eine Antwort vom Typ „Server ausgelastet“ empfangen wird.
 
 ### <a name="telemetry"></a>Telemetrie
-Service Bus protokollieren Wiederholungen als ETW-Ereignisse mit einer **EventSource**. Sie müssen einen **EventListener** an die Ereignisquelle anfügen, um die Ereignisse zu erfassen und in Performance-Viewer anzuzeigen oder diese in ein geeignetes Ziel-Protokoll schreiben. Dazu können Sie den [Anwendungsblock Semantic Logging](http://msdn.microsoft.com/library/dn775006.aspx) verwenden. Die Wiederholungsereignisse sind im folgenden Format:
+Service Bus protokollieren Wiederholungen als ETW-Ereignisse mit einer **EventSource**. Sie müssen einen **EventListener** an die Ereignisquelle anfügen, um die Ereignisse zu erfassen und in Performance-Viewer anzuzeigen oder diese in ein geeignetes Ziel-Protokoll schreiben. Die Wiederholungsereignisse sind im folgenden Format:
 
 ```text
 Microsoft-ServiceBus-Client/RetryPolicyIteration
@@ -985,8 +985,8 @@ namespace RetryCodeSamples
 Berücksichtigen Sie beim Zugriff auf die Dienste von Azure oder von Drittanbietern Folgendes:
 
 * Verwenden Sie einen systematischen Ansatz zur Verwaltung von Wiederholungen, vielleicht als wiederverwendbaren Code, sodass Sie eine einheitliche Methodik für alle Clients und alle Lösungen anwenden können.
-* Erwägen Sie die Verwendung eines Wiederholungsframeworks, wie z. B. den Anwendungsblock zur Handhabung vorübergehender Fehler, um Wiederholungen zu verwalten, wenn der Zieldienst oder der Client nicht über integrierte Wiederholungsmechanismen verfügt. Dies hilft Ihnen bei der Implementierung eines konsistenten Wiederholungsverhaltens, und kann eine geeignete Standardwiederholungsstrategie für den Zieldienst bereitstellen. Sie müssen aber unter Umständen einen benutzerdefinierten Wiederholungscode für Dienste erstellen, die kein Standardverhalten aufweisen und nicht auf Ausnahmen vertrauen, um vorübergehende Fehler anzuzeigen, oder wenn Sie eine **Retry-Response**-Antwort verwenden möchten, um das Wiederholungsverhalten zu verwalten.
-* Die vorübergehende Erkennungslogik hängt von der tatsächlichen Client-API ab, die Sie verwenden, um die REST-Aufrufe aufzurufen. Einige Clients, z.B. die neuere **HttpClient**-Klasse, lösen keine Ausnahmen für abgeschlossene Anforderungen mit einem nicht erfolgreichen HTTP-Statuscode aus. Dies verbessert die Leistung, verhindert jedoch die Verwendung des Anwendungsblocks zur Handhabung vorübergehender Fehler. In diesem Fall können Sie den Aufruf der REST-API mit einem Code umschließen, der Ausnahmen für nicht erfolgreiche HTTP-Statuscodes erzeugt, die dann vom Block verarbeitet werden können. Alternativ können Sie einen anderen Mechanismus für die Durchführung der Wiederholungen verwenden.
+* Verwenden Sie ggf. ein Wiederholungsframework (beispielsweise [Polly][polly]), um Wiederholungen zu verwalten, wenn der Zieldienst oder der Client über keinen integrierten Wiederholungsmechanismus verfügt. Dies hilft Ihnen bei der Implementierung eines konsistenten Wiederholungsverhaltens, und kann eine geeignete Standardwiederholungsstrategie für den Zieldienst bereitstellen. Sie müssen aber unter Umständen einen benutzerdefinierten Wiederholungscode für Dienste erstellen, die kein Standardverhalten aufweisen und nicht auf Ausnahmen vertrauen, um vorübergehende Fehler anzuzeigen, oder wenn Sie eine **Retry-Response**-Antwort verwenden möchten, um das Wiederholungsverhalten zu verwalten.
+* Die vorübergehende Erkennungslogik hängt von der tatsächlichen Client-API ab, die Sie verwenden, um die REST-Aufrufe aufzurufen. Einige Clients, z.B. die neuere **HttpClient**-Klasse, lösen keine Ausnahmen für abgeschlossene Anforderungen mit einem nicht erfolgreichen HTTP-Statuscode aus. 
 * Der vom Dienst zurückgegebene HTTP-Statuscode kann dabei helfen, zu erkennen, ob der Fehler vorübergehend ist. Möglicherweise müssen Sie die Ausnahmen, die von einem Client oder dem Wiederholungsframework erzeugt wurden untersuchen, um auf den Statuscode zuzugreifen oder um den entsprechenden Ausnahmetyp bestimmen zu können. Die folgenden HTTP-Codes geben in der Regel an, dass eine Wiederholung geeignet ist:
   * 408 Anforderungstimeout
   * 429 – Zu viele Anforderungen
@@ -999,7 +999,7 @@ Berücksichtigen Sie beim Zugriff auf die Dienste von Azure oder von Drittanbiet
   * WebExceptionStatus.ConnectFailure
   * WebExceptionStatus.Timeout
   * WebExceptionStatus.RequestCanceled
-* Im Fall des Status „Dienst nicht verfügbar“ weist der Dienst unter Umständen auf die entsprechende Verzögerung vor der Wiederholung im **Retry-After** -Antwort-Header oder in einem anderen benutzerdefinierten Header hin. Dienste können auch zusätzliche Informationen als benutzerdefinierte Header oder in den Inhalt der Antwort eingebettet senden. Der Anwendungsblock zur Handhabung vorübergehender Fehler kann keine Standard- oder benutzerdefinierte „Retry-after“-Header verwenden.
+* Im Fall des Status „Dienst nicht verfügbar“ weist der Dienst unter Umständen auf die entsprechende Verzögerung vor der Wiederholung im **Retry-After** -Antwort-Header oder in einem anderen benutzerdefinierten Header hin. Dienste können auch zusätzliche Informationen als benutzerdefinierte Header oder in den Inhalt der Antwort eingebettet senden. 
 * Führen Sie keine Wiederholung für Statuscodes durch, die Clientfehler (Fehler im Bereich 4xx) darstellen, mit Ausnahme eines Anforderungstimeouts 408.
 * Testen Sie Ihre Wiederholungsstrategien und Mechanismen gründlich unter verschiedenen Bedingungen, wie z. B. verschiedenen Netzwerkzuständen und sich ändernden Systemlastverteilungen.
 
