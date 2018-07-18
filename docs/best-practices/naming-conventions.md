@@ -4,12 +4,12 @@ description: Enthält die Namenskonventionen für Azure-Ressourcen. Benennen von
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: a92b6a1a23b35e7379f586d477b6f7cc6ccfc7e1
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: b9833654f63dc81ff6d05b9c49897e0c58de2683
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206377"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864554"
 ---
 # <a name="naming-conventions"></a>Benennungskonventionen
 
@@ -122,7 +122,7 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 
 ## <a name="organize-resources-with-tags"></a>Organisieren von Ressourcen mit Tags
 
-Azure Resource Manager unterstützt das Kennzeichnen von Entitäten mit beliebigen Textzeichenfolgen, um den Kontext zu identifizieren und die Automatisierung zu optimieren.  Mit dem Tag `"sqlVersion: "sql2014ee"` können beispielsweise VMs in einer Bereitstellung mit SQL Server 2014 Enterprise Edition für die Ausführung eines automatisierten Skripts identifiziert werden.  Tags sollten zusätzlich zu den gewählten Namenskonventionen zum Verbessern und Erweitern des Kontexts verwendet werden.
+Azure Resource Manager unterstützt das Kennzeichnen von Entitäten mit beliebigen Textzeichenfolgen, um den Kontext zu identifizieren und die Automatisierung zu optimieren.  So können beispielsweise mit dem Tag `"sqlVersion"="sql2014ee"` virtuelle Computer mit SQL Server 2014 Enterprise Edition gekennzeichnet werden. Tags sollten zusätzlich zu den gewählten Namenskonventionen zum Verbessern und Erweitern des Kontexts verwendet werden.
 
 > [!TIP]
 > Ein weiterer Vorteil von Tags ist, dass sie sich über Ressourcengruppen erstrecken, wodurch Sie die Möglichkeit haben, Entitäten über verschiedene Bereitstellungen hinweg zu verknüpfen und zu korrelieren.

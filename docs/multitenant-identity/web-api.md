@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: 65529280c5849e36ed7ff23de08a0b485034d0d8
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 2d02ff7be04c6ebec888039453fe1ac7e957b301
+ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541464"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37843673"
 ---
 # <a name="secure-a-backend-web-api"></a>Schützen einer Back-End-Web-API
 
@@ -68,7 +68,7 @@ Die Tailspin-Anwendung implementiert die delegierte Benutzeridentität. Im Folge
 Bei beiden Ansätzen muss die Webanwendung ein Zugriffstoken als Anmeldeinformation erhalten, die für das Aufrufen der Web-API erforderlich ist.
 
 * Für die delegierte Benutzeridentität muss das Token vom Identitätsanbieter stammen, der ein Token für den Benutzer ausstellen kann.
-* Für Clientanmeldeinformationen kann eine Anwendung das Token vom Identitätsanbieter abrufen oder einen eigenen Tokenserver hosten. (Schreiben Sie aber keinen Tokenserver von Grund auf neu, sondern verwenden Sie ein sorgfältig getestetes Framework, z. B. [IdentityServer3].) Beim Authentifizieren mit Azure AD wird dringend empfohlen, das Zugriffstoken auch beim Vorgang mit Clientanmeldeinformationen aus Azure AD abzurufen.
+* Für Clientanmeldeinformationen kann eine Anwendung das Token vom Identitätsanbieter abrufen oder einen eigenen Tokenserver hosten. (Schreiben Sie aber keinen Tokenserver von Grund auf neu, sondern verwenden Sie ein sorgfältig getestetes Framework wie etwa [IdentityServer4].) Beim Authentifizieren mit Azure AD wird dringend empfohlen, das Zugriffstoken auch beim Vorgang mit Clientanmeldeinformationen aus Azure AD abzurufen.
 
 Im Rest dieses Artikels wird davon ausgegangen, dass die Anwendung mithilfe von Azure AD authentifiziert wird.
 
@@ -271,7 +271,7 @@ public void ConfigureServices(IServiceCollection services)
 [JwtBearer]: https://www.nuget.org/packages/Microsoft.AspNet.Authentication.JwtBearer
 
 [Tailspin Surveys]: tailspin.md
-[IdentityServer3]: https://github.com/IdentityServer/IdentityServer3
+[IdentityServer4]: https://github.com/IdentityServer/IdentityServer4
 [Aktualisieren des Anwendungsmanifests]: ./run-the-app.md#update-the-application-manifests
 [Tokencaching]: token-cache.md
 [Mandantenanmeldung]: signup.md
