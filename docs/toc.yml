@@ -458,75 +458,46 @@
       items:
         - name: Übersicht
           href: cloud-adoption-guide/adoption-intro/overview.md
-        - name: Ausführliche Informationen zu Azure
+        - name: Informationen zu Azure
           items:
-            - name: 'Erläuterungen: Wie funktioniert Azure?'
+            - name: Wie funktioniert Azure?
               href: cloud-adoption-guide/adoption-intro/azure-explainer.md
-            - name: 'Erläuterungen: Was ist die Cloudressourcenkontrolle?'
+            - name: Was ist die Cloudressourcenkontrolle?
               href: cloud-adoption-guide/adoption-intro/governance-explainer.md
-        - name: Grundlegendes zu digitalen Identitäten in Azure
+        - name: Informationen zur Kontrolle des Azure-Ressourcenzugriffs
           items:
-            - name: 'Erläuterungen: Was ist ein Azure Active Directory-Mandant?'
-              href: cloud-adoption-guide/adoption-intro/tenant-explainer.md
-            - name: 'Vorgehensweise: Einrichten eines Azure Active Directory-Mandanten'
-              href: /azure/active-directory/develop/active-directory-howto-tenant
-              maintainContext: true
-            - name: 'Anleitungen: Entwerfen eines Azure AD-Mandanten'
-              href: cloud-adoption-guide/adoption-intro/tenant.md
-            - name: 'Vorgehensweise: Hinzufügen eines Benutzers zu einem Azure AD-Mandanten'
-              href: /azure/active-directory/add-users-azure-active-directory
-              maintainContext: true
-        - name: Grundlegendes zu Azure-Abonnements
-          items:
-            - name: 'Erläuterungen: Was ist ein Azure-Abonnement?'
-              href: cloud-adoption-guide/adoption-intro/subscription-explainer.md
-            - name: 'Anleitungen: Entwerfen eines Azure-Abonnements'
-              href: cloud-adoption-guide/adoption-intro/subscription.md
-        - name: Grundlegendes zur Ressourcenverwaltung in Azure
-          items:
-            - name: 'Erläuterungen: Was ist Azure Resource Manager?'
-              href: cloud-adoption-guide/adoption-intro/resource-manager-explainer.md
-            - name: 'Erläuterungen: Was ist eine Azure-Ressourcengruppe?'
-              href: cloud-adoption-guide/adoption-intro/resource-group-explainer.md
-            - name: 'Erläuterungen: Grundlegendes zum Zugriff auf Ressourcen in Azure'
-              href: /azure/active-directory/active-directory-understanding-resource-access
-              maintainContext: true
-            - name: 'Vorgehensweise: Erstellen einer Ressourcengruppe mit dem Portal'
-              href: /azure/azure-resource-manager/resource-group-portal
-              maintainContext: true
-            - name: 'Anleitung: Entwerfen einer Ressourcengruppe'
-              href: cloud-adoption-guide/adoption-intro/resource-group.md
-            - name: 'Anleitungen: Namenskonventionen für Azure-Ressourcen'
-              href: /azure/architecture/best-practices/naming-conventions
-              maintainContext: true
+            - name: Grundlegendes zur Ressourcenzugriffsverwaltung in Azure
+              href: cloud-adoption-guide/adoption-intro/azure-resource-access.md
+            - name: Azure-Governance-Entwurfshandbuch
+              href: cloud-adoption-guide/adoption-intro/governance-how-to.md
         - name: Bereitstellen grundlegender Architekturen in Azure
           items:
             - name: Platform-as-a-Service-Architektur (PaaS)
               items:
-                - name: 'Vorgehensweise: Bereitstellen einer einfachen Webanwendung in Azure'
+                - name: Bereitstellen einer einfachen Webanwendung in Azure
                   href: /azure/app-service
                   maintainContext: true
-                - name: 'Anleitungen: Bewährte Methoden für Webanwendungen in Azure'
+                - name: Bewährte Methoden für Webanwendungen in Azure
                   href: /azure/architecture/reference-architectures/app-service-web-app/basic-web-app
                   maintainContext: true
             - name: Infrastructure-as-a-Service (IaaS)
               items:
-                - name: 'Erläuterungen: Was ist ein virtuelles Azure-Netzwerk?'
+                - name: Was ist ein virtuelles Azure-Netzwerk?
                   href: /azure/virtual-network/virtual-networks-overview
                   maintainContext: true
-                - name: 'Vorgehensweise: Bereitstellen eines virtuellen Netzwerks in Azure'
+                - name: Bereitstellen eines virtuellen Netzwerks in Azure
                   href: /azure/virtual-network/virtual-networks-create-vnet-arm-pportal
                   maintainContext: true
-                - name: 'Vorgehensweise: Bereitstellen einer einzelnen IaaS-Workload für virtuelle Windows-Computer in Azure'
+                - name: Bereitstellen einer einzelnen IaaS-Workload für virtuelle Windows-Computer in Azure
                   href: /azure/virtual-machines/windows/quick-create-portal
                   maintainContext: true
-                - name: 'Anleitungen: Bewährte Methoden für die Bereitstellung eines virtuellen Windows-Computers in Azure'
+                - name: Bewährte Methoden für die Bereitstellung eines virtuellen Windows-Computers in Azure
                   href: /azure/architecture/reference-architectures/virtual-machines-windows/single-vm
                   maintainContext: true
-                - name: 'Vorgehensweise: Bereitstellen einer einzelnen IaaS-Workload für virtuelle Linux-Computer in Azure'
+                - name: Bereitstellen einer einzelnen IaaS-Workload für virtuelle Linux-Computer in Azure
                   href: /azure/virtual-machines/linux/quick-create-portal
                   maintainContext: true
-                - name: 'Anleitungen: Bewährte Methoden für die Bereitstellung eines virtuellen Linux-Computers in Azure'
+                - name: Bewährte Methoden für die Bereitstellung eines virtuellen Linux-Computers in Azure
                   href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm
                   maintainContext: true
     - name: Mittlere Azure-Einführungsphase
