@@ -14,12 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/31/2017
 ms.author: rodend;karlku;tomfitz
-ms.openlocfilehash: 8bc2ed253b951ea04eb25b76f67dcc2092dc94ad
-ms.sourcegitcommit: 4ec010846b9b5545c843a32e08293f906e512302
+ms.openlocfilehash: b0c92667cc7f4cb2349cd87275c0ce63f2604978
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/17/2018
-ms.locfileid: "34299916"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987749"
 ---
 # <a name="azure-enterprise-scaffold---prescriptive-subscription-governance"></a>Azure-Unternehmensgerüst – präskriptive Abonnementgovernance
 Immer mehr Unternehmen führen für Mobilität und Flexibilität eine öffentliche Cloud ein. Sie nutzen die Stärken der Cloud, um Umsatz zu generieren oder Ressourcen für das Unternehmen zu optimieren. Microsoft Azure bietet eine Vielzahl von Diensten, die Unternehmen wie Bausteine zusammenstellen können, um ein großes Spektrum von Workloads und Anwendungen zu berücksichtigen. 
@@ -140,6 +140,21 @@ Um anzuzeigen, wie Ihre Umgebung funktioniert, müssen Sie die Benutzeraktivitä
 
 Mit Aktivitätsprotokollen aus Resource Manager-Bereitstellungen können Sie bestimmen, welche **Vorgänge** ausgeführt wurden und wer sie ausgeführt hat. Aktivitätsprotokolle können mit Tools wie Log Analytics gesammelt und aggregiert werden.
 
+
+## <a name="resource-group"></a>Ressourcengruppe
+Mit Resource Manager können Sie Ressourcen in aussagekräftige Gruppen für Verwaltung, Abrechnung oder natürliche Affinität aufnehmen. Wie bereits erwähnt, weist Azure zwei Bereitstellungsmodelle auf. Im älteren klassischen Modell war die grundlegende Verwaltungseinheit das Abonnement. Es war schwierig, Ressourcen innerhalb eines Abonnements aufzuschlüsseln. Dies hat zur Erstellung einer großen Anzahl von Abonnements geführt. Mit dem Resource Manager-Modell wurden auch Ressourcengruppen eingeführt. Ressourcengruppen sind Container für Ressourcen, die einen gemeinsamen Lebenszyklus aufweisen oder gleiche Attribute wie „alle SQL Server“ oder „Anwendung A“ verwenden.
+
+Ressourcengruppen können nicht ineinander enthalten sein, und Ressourcen können nur einer einzigen Ressourcengruppe angehören. Sie können bestimmte Aktionen auf alle Ressourcen in einer Ressourcengruppe anwenden. Durch das Löschen einer Ressourcengruppe werden beispielsweise alle Ressourcen innerhalb der Ressourcengruppe entfernt. In der Regel nehmen Sie eine vollständige Anwendung oder ein verknüpftes System in die gleiche Ressourcengruppe auf. Beispielsweise würde eine Anwendung mit drei Ebenen namens „Contoso-Webanwendung“ den Webserver, den Anwendungsserver und den SQL-Server in der gleichen Ressourcengruppe enthalten.
+
+> [!TIP]
+> Wie Sie die Ressourcengruppen organisieren, kann je nach Workload der „herkömmlichen IT“ und der „agilen IT“ variieren:
+> 
+> * Workloads der „herkömmlichen IT“ werden meist nach Elementen innerhalb des gleichen Lebenszyklus gruppiert (z.B. eine Anwendung). Eine Gruppierung nach Anwendung ermöglicht die Verwaltung einzelner Anwendungen.
+> * Workloads der „agilen IT“ konzentrieren sich in der Regel auf Cloudanwendungen, die externen Kunden zugänglich sind. Die Ressourcengruppen sollten die Ebenen der Bereitstellung (z.B. Webebene, App-Ebene) und der Verwaltung widerspiegeln.
+> 
+> Das Verständnis Ihrer Workloads erleichtert es Ihnen, eine Strategie für Ressourcengruppen zu entwickeln.
+
+
 ## <a name="resource-tags"></a>Ressourcentags
 Wenn Benutzer in Ihrer Organisation Ressourcen zum Abonnement hinzufügen, wird es zunehmend wichtig, die Ressourcen der entsprechenden Abteilung, dem Kunden und der Umgebung zuzuordnen. Sie können über [Tags](/azure/azure-resource-manager/resource-group-using-tags) Metadaten an Ressourcen anfügen. Verwenden Sie Tags, um Informationen zur Ressource oder zum Besitzer bereitzustellen. Mit Tags können Sie Ressourcen nicht nur auf verschiedene Arten aggregieren und gruppieren, Sie können diese Daten auch für die verbrauchsbasierte Kostenzuteilung verwenden. Sie können Ressourcen mit bis zu 15 Schlüssel-Wert-Paaren markieren. 
 
@@ -166,25 +181,14 @@ Weitere Beispiele für Tags finden Sie unter [Empfohlene Benennungskonventionen 
 > 
 > Durch diese Tagstrategie wird für alle Ihre Abonnements festgelegt, welche Metadaten für die Bereiche Unternehmen, Finanzen, Sicherheit, Risikomanagement und Verwaltung der vollständigen Umgebung benötigt werden. 
 
-## <a name="resource-group"></a>Ressourcengruppe
-Mit Resource Manager können Sie Ressourcen in aussagekräftige Gruppen für Verwaltung, Abrechnung oder natürliche Affinität aufnehmen. Wie bereits erwähnt, weist Azure zwei Bereitstellungsmodelle auf. Im älteren klassischen Modell war die grundlegende Verwaltungseinheit das Abonnement. Es war schwierig, Ressourcen innerhalb eines Abonnements aufzuschlüsseln. Dies hat zur Erstellung einer großen Anzahl von Abonnements geführt. Mit dem Resource Manager-Modell wurden auch Ressourcengruppen eingeführt. Ressourcengruppen sind Container für Ressourcen, die einen gemeinsamen Lebenszyklus aufweisen oder gleiche Attribute wie „alle SQL Server“ oder „Anwendung A“ verwenden.
 
-Ressourcengruppen können nicht ineinander enthalten sein, und Ressourcen können nur einer einzigen Ressourcengruppe angehören. Sie können bestimmte Aktionen auf alle Ressourcen in einer Ressourcengruppe anwenden. Durch das Löschen einer Ressourcengruppe werden beispielsweise alle Ressourcen innerhalb der Ressourcengruppe entfernt. In der Regel nehmen Sie eine vollständige Anwendung oder ein verknüpftes System in die gleiche Ressourcengruppe auf. Beispielsweise würde eine Anwendung mit drei Ebenen namens „Contoso-Webanwendung“ den Webserver, den Anwendungsserver und den SQL-Server in der gleichen Ressourcengruppe enthalten.
-
-> [!TIP]
-> Wie Sie die Ressourcengruppen organisieren, kann je nach Workload der „herkömmlichen IT“ und der „agilen IT“ variieren:
-> 
-> * Workloads der „herkömmlichen IT“ werden meist nach Elementen innerhalb des gleichen Lebenszyklus gruppiert (z.B. eine Anwendung). Eine Gruppierung nach Anwendung ermöglicht die Verwaltung einzelner Anwendungen.
-> * Workloads der „agilen IT“ konzentrieren sich in der Regel auf Cloudanwendungen, die externen Kunden zugänglich sind. Die Ressourcengruppen sollten die Ebenen der Bereitstellung (z.B. Webebene, App-Ebene) und der Verwaltung widerspiegeln.
-> 
-> Das Verständnis Ihrer Workloads erleichtert es Ihnen, eine Strategie für Ressourcengruppen zu entwickeln.
 
 ## <a name="role-based-access-control"></a>Rollenbasierte Zugriffssteuerung
 Sie fragen sich wahrscheinlich, wer Zugriff auf Ressourcen haben sollte und wie dieser Zugriff gesteuert werden kann. Das Zulassen oder Untersagen von Zugriff auf das Azure-Portal und das Steuern des Zugriffs auf Ressourcen im Portal ist entscheidend. 
 
 Als Azure ursprünglich veröffentlicht wurde, waren Zugriffssteuerungen für ein Abonnement einfach: Administrator oder Co-Administrator. Durch den Zugriff auf ein Abonnement im klassischen Modell war Zugriff auf alle Ressourcen im Portal möglich. Dieses Fehlen einer präziseren Steuerung hat zur Zunahme von Abonnements geführt, um eine angemessene Zugriffssteuerung für eine Azure-Registrierung bereitzustellen.
 
-Diese Zunahme von Abonnements ist nicht mehr erforderlich. Mit der rollenbasierten Zugriffssteuerung können Sie Benutzer zu Standardrollen (z.B. zu den allgemeinen Rollentypen „Leser“ und „Autor“) zuweisen. Sie können auch benutzerdefinierte Rollen definieren.
+Diese Zunahme von Abonnements ist nicht mehr erforderlich. Mit der [rollenbasierten Zugriffssteuerung](/azure/role-based-access-control/overview) können Sie Benutzern Standardrollen zuweisen (z.B. den allgemeinen Rollentypen „Leser“ und „Verfasser“). Sie können auch benutzerdefinierte Rollen definieren.
 
 > [!TIP]
 > So implementieren Sie die rollenbasierte Zugriffssteuerung:
@@ -229,7 +233,7 @@ Der Zugriff auf Ressourcen kann intern (innerhalb des Unternehmensnetzwerks) ode
 > 
 > Diese Tipps sollen Sie beim Implementieren sicherer Netzwerkressourcen unterstützen.
 
-### <a name="automation"></a>Automation
+## <a name="automation"></a>Automation
 Das Verwalten von einzelnen Ressourcen ist zeitaufwändig und für bestimmte Vorgänge potenziell fehleranfällig. Azure bietet verschiedene Automatisierungsfunktionen, einschließlich Azure Automation, Logic Apps und Azure Functions. Mit [Azure Automation](/azure/automation/automation-intro) können Administratoren Runbooks erstellen und definieren, um häufige Aufgaben bei der Verwaltung von Ressourcen auszuführen. Sie erstellen Runbooks mithilfe eines PowerShell-Code-Editors oder eines grafischen Editors. Sie können komplexe mehrstufige Workflows erstellen. Azure Automation wird häufig verwendet, um allgemeine Aufgaben wie das Herunterfahren nicht verwendeter Ressourcen oder das Erstellen von Ressourcen als Reaktion auf einen bestimmten Trigger ohne Benutzereingriff auszuführen.
 
 > [!TIP]

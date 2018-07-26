@@ -1,26 +1,26 @@
 ---
-title: Interaktiver Azure-Chatbot für Hotelreservierungen
-description: Bewährte Lösung für die Erstellung eines interaktiven Chatbots für gewerbliche Anwendungen mit Azure Bot Service, Cognitive Services und LUIS, Azure SQL-Datenbank und Application Insights.
+title: Interaktiver Chatbot für Hotelreservierungen in Azure
+description: Bewährtes Szenario für die Erstellung eines interaktiven Chatbots für gewerbliche Anwendungen mit Azure Bot Service, Cognitive Services und LUIS, Azure SQL-Datenbank und Application Insights.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 85bdc3194961bbbd8d89db34e5c56e4baa8d8599
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: b664faf20d806824c2581346aaa592b0d74207da
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37891328"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060862"
 ---
-# <a name="conversational-azure-chatbot-for-hotel-reservations"></a>Interaktiver Azure-Chatbot für Hotelreservierungen
+# <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Interaktiver Chatbot für Hotelreservierungen in Azure
 
-Dieses Beispielszenario richtet sich an Unternehmen, die einen interaktiven Chatbot in Anwendungen integrieren möchten. In dieser Lösung wird ein C#-Chatbot für eine Hotelkette verwendet, mit dem Kunden die Verfügbarkeit prüfen und Zimmer über eine webbasierte oder mobile Anwendung buchen können.
+Dieses Beispielszenario richtet sich an Unternehmen, die einen interaktiven Chatbot in Anwendungen integrieren möchten. In diesem Szenario wird ein C#-Chatbot für eine Hotelkette verwendet, mit dem Kunden die Verfügbarkeit prüfen und Zimmer über eine webbasierte oder mobile Anwendung buchen können.
 
 Kunden erhalten so beispielsweise die Möglichkeit, die Hotelverfügbarkeit anzuzeigen und Zimmer zu buchen, sich auf der Speisekarte eines Restaurants über Speisen zum Mitnehmen zu informieren und Essen zu bestellen oder nach Fotos zu suchen und Abzüge zu bestellen. In der Vergangenheit mussten Unternehmen für solche Kundenanfragen üblicherweise Kundenservicemitarbeiter einstellen und schulen, und Kunden mussten warten, bis ein Mitarbeiter verfügbar war, um ihnen weiterzuhelfen.
 
 Dank Azure-Diensten wie Bot Service und Language Understanding oder der Sprach-API können Unternehmen automatisierte, skalierbare Bots verwenden, um Kunden weiterzuhelfen und Bestellungen/Reservierungen zu bearbeiten.
 
-## <a name="potential-use-cases"></a>Mögliche Anwendungsfälle
+## <a name="related-use-cases"></a>Verwandte Anwendungsfälle
 
-Diese Lösung eignet sich für Folgendes:
+Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 
 * Anzeigen einer Restaurantspeisekarte mit Speisen zum Mitnehmen und Bestellen von Essen
 * Überprüfen der Hotelverfügbarkeit und Reservieren eines Zimmers
@@ -30,7 +30,7 @@ Diese Lösung eignet sich für Folgendes:
 
 ![Übersicht über die Architektur der Azure-Komponenten für einen interaktiven Chatbot][architecture]
 
-Diese Lösung umfasst einen interaktiven Bot, der als Concierge für ein Hotel fungiert. Die Daten durchlaufen die Lösung wie folgt:
+Dieses Szenario umfasst einen interaktiven Bot, der als Concierge für ein Hotel fungiert. Die Daten durchlaufen das Szenario wie folgt:
 
 1. Der Kunde greift über eine mobile oder webbasierte App auf den Chatbot zu.
 2. Der Benutzer wird mithilfe von Azure Active Directory B2C (Business-to-Consumer) authentifiziert.
@@ -58,19 +58,19 @@ Diese Lösung umfasst einen interaktiven Bot, der als Concierge für ein Hotel f
 
 ### <a name="availability"></a>Verfügbarkeit
 
-Diese Lösung speichert Kundenreservierungen in Azure SQL-Datenbank. SQL-Datenbank umfasst zonenredundante Datenbanken, Failovergruppen und Georeplikation. Weitere Informationen finden Sie unter [Verfügbarkeitsfunktionen][sqlavailability-docs].
+In diesem Szenario werden Kundenreservierungen in Azure SQL-Datenbank gespeichert. SQL-Datenbank umfasst zonenredundante Datenbanken, Failovergruppen und Georeplikation. Weitere Informationen finden Sie unter [Verfügbarkeitsfunktionen][sqlavailability-docs].
 
 Weitere Verfügbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
 
 ### <a name="scalability"></a>Skalierbarkeit
 
-Diese Lösung verwendet Azure App Service. Mit App Service können Sie automatisch die Anzahl von Instanzen für die Botausführung skalieren. Dadurch können Sie bei Ihrer Webanwendung und Ihrem Chatbot mit der Kundennachfrage Schritt halten. Weitere Informationen zur automatischen Skalierung finden Sie im Architecture Center unter [Automatische Skalierung][autoscaling].
+Für dieses Szenario wird Azure App Service verwendet. Mit App Service können Sie automatisch die Anzahl von Instanzen für die Botausführung skalieren. Dadurch können Sie bei Ihrer Webanwendung und Ihrem Chatbot mit der Kundennachfrage Schritt halten. Weitere Informationen zur automatischen Skalierung finden Sie im Architecture Center unter [Automatische Skalierung][autoscaling].
 
 Weitere Skalierbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
 
 ### <a name="security"></a>Sicherheit
 
-Diese Lösung verwendet Azure Active Directory B2C (Business-to-Consumer) für die Benutzerauthentifizierung. Mit AAD B2C speichert Ihr Chatbot keine vertraulichen Kundenkonto- oder Anmeldeinformationen. Weitere Informationen finden Sie unter [Azure Active Directory B2C – Übersicht][aadb2c-docs].
+In diesem Szenario wird Azure Active Directory B2C (Business-to-Consumer) für die Benutzerauthentifizierung verwendet. Mit AAD B2C speichert Ihr Chatbot keine vertraulichen Kundenkonto- oder Anmeldeinformationen. Weitere Informationen finden Sie unter [Azure Active Directory B2C – Übersicht][aadb2c-docs].
 
 In Azure SQL-Datenbank gespeicherte Informationen werden im Ruhezustand mit Transparent Data Encryption (TDE) verschlüsselt. SQL-Datenbank bietet auch Always Encrypted, wodurch Daten bei der Abfrage und bei der Verarbeitung verschlüsselt werden. Weitere Informationen zur Sicherheit von SQL-Datenbank finden Sie unter [Erweiterte Sicherheit und Konformität][sqlsecurity-docs].
 
@@ -78,15 +78,15 @@ Allgemeine Informationen zur Entwicklung sicherer Lösungen finden Sie in der [D
 
 ### <a name="resiliency"></a>Resilienz
 
-Diese Lösung speichert Kundenreservierungen in Azure SQL-Datenbank. SQL-Datenbank umfasst zonenredundante Datenbanken, Failovergruppen, Georeplikation und automatische Sicherungen. Diese Features sorgen dafür, dass Ihre Anwendung im Falle eines Wartungsereignisses oder eines Ausfalls weiter ausgeführt werden kann. Weitere Informationen finden Sie unter [Verfügbarkeitsfunktionen][sqlavailability-docs].
+In diesem Szenario werden Kundenreservierungen in Azure SQL-Datenbank gespeichert. SQL-Datenbank umfasst zonenredundante Datenbanken, Failovergruppen, Georeplikation und automatische Sicherungen. Diese Features sorgen dafür, dass Ihre Anwendung im Falle eines Wartungsereignisses oder eines Ausfalls weiter ausgeführt werden kann. Weitere Informationen finden Sie unter [Verfügbarkeitsfunktionen][sqlavailability-docs].
 
-Die Integrität Ihrer Anwendung wird bei dieser Lösung mithilfe von Application Insights überwacht. Mit Application Insights können Sie Warnungen generieren und auf Leistungsprobleme reagieren, die die Benutzerfreundlichkeit und Verfügbarkeit des Chatbots beeinträchtigen. Weitere Informationen finden Sie unter [Was ist Application Insights?][appinsights-docs].
+Die Integrität Ihrer Anwendung wird bei diesem Szenario mithilfe von Application Insights überwacht. Mit Application Insights können Sie Warnungen generieren und auf Leistungsprobleme reagieren, die die Benutzerfreundlichkeit und Verfügbarkeit des Chatbots beeinträchtigen. Weitere Informationen finden Sie unter [Was ist Application Insights?][appinsights-docs].
 
 Allgemeine Informationen zur Entwicklung robuster Lösungen finden Sie unter [Entwerfen robuster Anwendungen für Azure][resiliency].
 
-## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
+## <a name="deploy-the-scenario"></a>Bereitstellen des Szenarios
 
-Diese Lösung ist in drei Komponenten unterteilt, sodass Sie sich auf die Bereiche konzentrieren können, die für Sie besonders interessant sind:
+Dieses Szenario ist in drei Komponenten unterteilt, sodass Sie sich auf die Bereiche konzentrieren können, die für Sie besonders interessant sind:
 
 * [Infrastrukturkomponenten:](#deploy-infrastructure-components) Verwenden Sie eine Azure Resource Manager-Vorlage, um die Hauptkomponenten der Infrastruktur (App Service, Web-App, Application Insights, Speicherkonto, SQL Server und Datenbank) bereitzustellen.
 * [Web-App-Chatbot:](#deploy-web-app-chatbot) Verwenden Sie die Azure-Befehlszeilenschnittstelle, um einen Bot mit Bot Service und LUIS-App (Language Understanding and Intelligent Services) bereitzustellen.
@@ -135,11 +135,11 @@ Auf GitHub ist eine C#-Beispielanwendung verfügbar:
 
 * [C#-Beispiel für einen gewerblichen Bot](https://github.com/Microsoft/AzureBotServices-scenarios/tree/master/CSharp/Commerce/src)
 
-Die Beispielanwendung umfasst die Komponenten für die Azure Active Directory-Authentifizierung sowie die Integration der LUIS-Komponenten (Language Understanding and Intelligent Services) von Cognitive Services. Die Anwendung benötigt Visual Studio, um die Lösung erstellen und bereitstellen zu können. Weitere Informationen zum Konfigurieren von AAD B2C und der LUIS-App finden Sie in der Dokumentation des GitHub-Repositorys.
+Die Beispielanwendung umfasst die Komponenten für die Azure Active Directory-Authentifizierung sowie die Integration der LUIS-Komponenten (Language Understanding and Intelligent Services) von Cognitive Services. Die Anwendung benötigt Visual Studio, um das Szenario erstellen und bereitstellen zu können. Weitere Informationen zum Konfigurieren von AAD B2C und der LUIS-App finden Sie in der Dokumentation des GitHub-Repositorys.
 
 ## <a name="pricing"></a>Preise
 
-Zur Ermittlung der Betriebskosten für diese Lösung sind alle Dienste im Kostenrechner vorkonfiguriert. Wenn Sie wissen möchten, welche Kosten für Ihren spezifischen Anwendungsfall entstehen, passen Sie die entsprechenden Variablen an Ihren voraussichtlichen Datenverkehr an.
+Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kostenrechner vorkonfiguriert. Wenn Sie wissen möchten, welche Kosten für Ihren spezifischen Anwendungsfall entstehen, passen Sie die entsprechenden Variablen an Ihren voraussichtlichen Datenverkehr an.
 
 Auf der Grundlage der Nachrichten, die voraussichtlich von Ihrem Chatbot verarbeitet werden, haben wir drei exemplarische Kostenprofile erstellt:
 
