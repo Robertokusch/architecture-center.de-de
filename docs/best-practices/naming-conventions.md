@@ -4,12 +4,12 @@ description: Enthält die Namenskonventionen für Azure-Ressourcen. Benennen von
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: b9833654f63dc81ff6d05b9c49897e0c58de2683
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: 09bcfa3c0a0c46605f0025adad06f8049f109f1b
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864554"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987732"
 ---
 # <a name="naming-conventions"></a>Benennungskonventionen
 
@@ -17,10 +17,10 @@ ms.locfileid: "37864554"
 
 Dieser Artikel enthält eine Zusammenfassung der Benennungsregeln und -einschränkungen für Azure-Ressourcen und eine Reihe von grundsätzlichen Empfehlungen für Namenskonventionen.  Sie können diese Empfehlungen als Ausgangspunkt für Ihre eigenen, Ihren Bedürfnissen angepassten Konventionen verwenden.
 
-Die Auswahl eines Namens für eine Ressource in Microsoft Azure ist wichtig, da:
+Die Auswahl eines Namens für eine Ressource in Microsoft Azure ist wichtig, da Folgendes gilt:
 
 * Es ist schwierig, einen Namen zu einem späteren Zeitpunkt zu ändern.
-* Namen die Anforderungen ihres bestimmten Ressourcentyps erfüllen müssen.
+* Namen müssen die Anforderungen ihres jeweiligen Ressourcentyps erfüllen.
 
 Durch konsistente Namenskonventionen lassen sich Ressourcen einfacher finden. Außerdem kann damit die Rolle einer Ressource in einer Lösung angegeben werden.
 
@@ -61,7 +61,7 @@ Affixe können auf verschiedene Aspekte verweisen, die die entsprechenden Ressou
 | Aspekt | Beispiel | Notizen |
 | --- | --- | --- |
 | Environment |dev, prod, QA |identifiziert die Umgebung für die Ressource |
-| Speicherort |uw (USA, Westen), ue (USA, Osten) |identifiziert die Region, in welcher die Ressource bereitgestellt wird |
+| Standort |uw (USA, Westen), ue (USA, Osten) |identifiziert die Region, in welcher die Ressource bereitgestellt wird |
 | Instanz |01, 02 |für Ressourcen, die mehr als eine benannte Instanz besitzen (Webdienste usw.) |
 | Produkt oder Dienst |service |identifiziert das Element (Produkt, Anwendung oder Dienst), das von der Ressource unterstützt wird |
 | Rolle |sql, web, messaging |identifiziert die Rolle der zugeordneten Ressource |
@@ -76,15 +76,15 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 
 ### <a name="general"></a>Allgemein
 
-| Entität | Umfang | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
+| Entität | Bereich | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
 | --- | --- | --- | --- | --- | --- | --- |
-|Ressourcengruppe |Abonnement |1-90 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Unterstrich, Klammern, Bindestrich und Punkt (außer am Ende) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|Ressourcengruppe |Abonnement |1-90 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Unterstrich, Klammern, Bindestrich, Punkt (außer am Ende) und Unicode-Zeichen |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |Verfügbarkeitsgruppe |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Unterstrich und Bindestrich |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Tag |Zugeordnete Entität |512 (Name), 256 (Wert) |Groß-/Kleinschreibung nicht beachten |Alphanumerisch |`"key" : "value"` |`"department" : "Central IT"` |
 
 ### <a name="compute"></a>Compute
 
-| Entität | Umfang | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
+| Entität | Bereich | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
 | --- | --- | --- | --- | --- | --- | --- |
 |Virtual Machine |Ressourcengruppe |1 - 15 (Windows), 1 - 64 (Linux) |Groß-/Kleinschreibung nicht beachten |Alphanumerisch und Bindestrich |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
 |Funktionen-App | Global |1 - 60 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch und Bindestrich |`<name>-func` |`calcprofit-func` |
@@ -94,7 +94,7 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 
 ### <a name="storage"></a>Speicher
 
-| Entität | Umfang | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
+| Entität | Bereich | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
 | --- | --- | --- | --- | --- | --- | --- |
 |Speicherkontoname (Daten) |Global |3-24 |Kleinbuchstaben |Alphanumerisch |`<globally unique name><number>` (Funktion verwenden, um eine eindeutige GUID für die Benennung von Speicherkonten zu berechnen) |`profxdata001` |
 |Speicherkontoname (Datenträger) |Global |3-24 |Kleinbuchstaben |Alphanumerisch |`<vm name without hyphens>st<number>` |`profxsql001st0` |
@@ -107,7 +107,7 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 
 ### <a name="networking"></a>Netzwerk
 
-| Entität | Umfang | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
+| Entität | Bereich | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
 | --- | --- | --- | --- | --- | --- | --- |
 |Virtual Network (VNet) |Ressourcengruppe |2 - 64 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<service short name>-vnet` |`profx-vnet` |
 |Subnetz |Übergeordnetes VNet |2-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<descriptive context>` |`web` |
