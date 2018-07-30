@@ -1,20 +1,16 @@
 ---
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 80cb7fde0694257a5c413b702505e27f18aed8d3
-ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
+ms.openlocfilehash: 3a667334be682e7e96c6dd30bd401a7e4c608108
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/23/2018
-ms.locfileid: "31771685"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334265"
 ---
 # <a name="azure-application-architecture-guide"></a>Azure-Anwendungsarchitekturleitfaden
 
 Dieser Leitfaden stellt eine strukturierte Vorgehensweise zum Entwerfen von Anwendungen in Azure vor, die skalierbar, resilient und hochverfügbar sind. Er basiert auf bewährten Methoden, die wir im Rahmen von Kundeninteraktionen erarbeitet haben.
-
-<br/>
-
-<img src="./images/guide-steps.svg" style="max-width:800px;"/>
 
 ## <a name="introduction"></a>Einführung
 
@@ -62,8 +58,7 @@ Der erste Entscheidungspunkt ist gleichzeitig der wichtigste. Welche Art von Arc
 
 Weitere Informationen:
 
-- [Architekturstile][arch-styles]
-- [Azure-Referenzarchitekturen][ref-archs]
+- [Architekturstile](./architecture-styles/index.md)
 
 ### <a name="technology-choices"></a>Auswahl der Technologie
 
@@ -80,36 +75,14 @@ Wir haben zehn allgemeine Entwurfsprinzipien identifiziert, die die Skalierbarke
 
 Weitere Informationen:
 
-- [Entwurfsprinzipien für Azure-Anwendungen][design-principles]
-- [Bewährte Methoden für das Erstellen für die Cloud][best-practices]
+- [Entwurfsprinzipien](./design-principles/index.md)
+
 
 ### <a name="quality-pillars"></a>Qualitätssäulen
 
 Eine gelungene Cloudanwendung basiert auf fünf Säulen der Softwarequalität, nämlich Skalierbarkeit, Verfügbarkeit, Resilienz, Verwaltung und Sicherheit. Verwenden Sie unsere Checklisten zur Entwurfsüberprüfung, um Ihre Architektur im Hinblick auf diese Qualitätssäulen zu überprüfen.
 
-Weitere Informationen:
-
-- [Säulen der Softwarequalität][pillars]
-- [Checklisten für die Entwurfsüberprüfung][checklists] 
-
-### <a name="cloud-design-patterns"></a>Cloudentwurfsmuster
-
-Entwurfsmuster bieten allgemeine Lösungen für häufige Probleme beim Softwareentwurf. Wir haben verschiedene Entwurfsmuster identifiziert, die insbesondere beim Entwerfen verteilter Anwendungen für die Cloud praktisch sind.
-
-Weitere Informationen:
-
-- [Katalog mit Cloudentwurfsmustern](../patterns/index.md)
+- [Qualitätssäulen](./pillars.md)
 
 
-[arch-styles]: ./architecture-styles/index.md
-[best-practices]: ../best-practices/index.md
-[checklists]: ../checklist/index.md
-[compute-options]: ./technology-choices/compute-comparison.md
-[design-principles]: ./design-principles/index.md
 [ebook]: https://azure.microsoft.com/campaigns/cloud-application-architecture-guide/
-[patterns]: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
-[pillars]: ./pillars.md
-[ref-archs]: ../reference-architectures/index.md
-[storage-options]: ./technology-choices/data-store-comparison.md
-[technology-choices]: ./technology-choices/index.md
-
