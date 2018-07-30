@@ -3,12 +3,12 @@ title: Ausführen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure
 description: Enthält eine Beschreibung der bewährten Methoden zum Einrichten einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure.
 author: njray
 ms.date: 07/14/2018
-ms.openlocfilehash: ff690300cb5f4af301bcfac58ac10b9b3c47f96d
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 04c69309e9f96e3bf7cd7faabeedd9b6d9da1ebd
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060896"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334129"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Ausführen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure
 
@@ -66,17 +66,19 @@ Das Gatewaysubnetz muss den Namen *GatewaySubnet* haben. Weisen Sie den Gateways
 
 ### <a name="vm-recommendations"></a>Empfehlungen für virtuelle Computer
 
-Für VM-Größen vom Typ „Standard DSv2“ sind für diese Architektur mindestens 38 Kerne erforderlich:
+Für diese Architektur sind mindestens 44 Kerne erforderlich:
 
 - 8 SharePoint-Server mit Standard_DS3_v2 (jeweils vier Kerne) = 32 Kerne
 - 2 Active Directory-Domänencontroller mit Standard_DS1_v2 (jeweils ein Kern) = 2 Kerne
-- 2 SQL Server-VMs mit Standard_DS1_v2 = 2 Kerne
+- 2 SQL Server-VMs mit Standard_DS3_v2 = 8 Kerne
 - 1 Hauptknoten mit Standard_DS1_v2 = 1 Kern
 - 1 Verwaltungsserver mit Standard_DS1_v2 = 1 Kern
 
-Die Gesamtzahl von Kernen richtet sich nach den VM-Größen, die Sie wählen. Weitere Informationen finden Sie in diesem Artikel unter [SharePoint Server-Empfehlungen](#sharepoint-server-recommendations).
-
 Stellen Sie sicher, dass Ihr Azure-Abonnement ein ausreichendes Kontingent von VM-Kernen für die Bereitstellung aufweist, da bei der Bereitstellung sonst ein Fehler auftritt. Weitere Informationen finden Sie unter [Einschränkungen für Azure-Abonnements und Dienste, Kontingente und Einschränkungen][quotas]. 
+
+Für alle SharePoint-Rollen mit Ausnahme des Suchindexers empfehlen wir die Verwendung der VM-Größe [Standard_DS3_v2][vm-sizes-general]. Die Indexerstellung für die Suche sollte mindestens die Größe [Standard_DS13_v2][vm-sizes-memory] haben. In einer Testbereitstellung ist in den Parameterdateien für diese Referenzarchitektur die kleinere Größe DS3_v2 für die Suchindexerrolle angegeben. Aktualisieren Sie für eine Produktionsbereitstellung die Parameterdateien, um mindestens die Größe DS13 zu verwenden. Weitere Informationen finden Sie unter [Hardware- und Softwareanforderungen für SharePoint Server 2016][sharepoint-reqs]. 
+
+Für die virtuellen SQL Server-Computer werden mindestens vier Kerne und acht GB RAM empfohlen. In den Parameterdateien für diese Referenzarchitektur ist die Größe DS3_v2 angegeben. Für eine Produktionsbereitstellung müssen Sie unter Umständen eine größere VM-Größe angeben. Weitere Informationen finden Sie unter [Speicher- und SQL Server-Kapazitätsplanung und -Konfiguration (SharePoint Server)](/sharepoint/administration/storage-and-sql-server-capacity-planning-and-configuration#estimate-memory-requirements). 
  
 ### <a name="nsg-recommendations"></a>NSG-Empfehlungen
 
@@ -109,18 +111,12 @@ Stellen Sie vor dem Konfigurieren der SharePoint-Farm sicher, dass Sie über ein
 - Administratorkonto für Cache
 - Lese-Administratorkonto für Cache
 
-Für alle Rollen mit Ausnahme der Indexerstellung für die Suche empfehlen wir die Verwendung der VM-Größe [Standard_DS3_v2][vm-sizes-general]. Die Indexerstellung für die Suche sollte mindestens die Größe [Standard_DS13_v2][vm-sizes-memory] haben. 
-
-> [!NOTE]
-> Für die Resource Manager-Vorlage dieser Referenzarchitektur wird die kleinere Größe DS3 für die Indexerstellung zu Suchzwecken verwendet, um die Bereitstellung zu testen. Wählen Sie für eine Produktionsbereitstellung mindestens die Größe DS13. 
-
-Informationen zu Produktionsworkloads finden Sie unter [Hardware- und Softwareanforderungen für SharePoint Server 2016][sharepoint-reqs]. 
-
 Achten Sie darauf, die Search-Architektur richtig zu planen, um die Supportanforderung für den Datenträgerdurchsatz von mindestens 200 MB pro Sekunde zu erfüllen. Informationen hierzu finden Sie unter [Planen der Architektur der Unternehmenssuche in SharePoint Server 2013][sharepoint-search]. Halten Sie sich auch an die Richtlinien unter [Best practices for crawling in SharePoint Server 2016][sharepoint-crawling] (Bewährte Methoden zum Durchsuchen per Crawler in SharePoint Server 2016).
 
 Speichern Sie außerdem die Suchkomponentendaten auf einem separaten Speichervolume oder einer Partition mit hoher Leistung. Konfigurieren Sie die Objektcache-Benutzerkonten, die in dieser Architektur erforderlich sind, um die Last zu reduzieren und den Durchsatz zu verbessern. Teilen Sie die Dateien des Windows Server-Betriebssystems, die SharePoint Server 2016-Programmdateien und die Diagnoseprotokolle auf drei separate Speichervolumes oder Partitionen mit normaler Leistung auf. 
 
 Weitere Informationen zu diesen Empfehlungen finden Sie unter [Erstmalige Bereitstellung von Administrator- und Dienstkonten in SharePoint Server][sharepoint-accounts].
+
 
 ### <a name="hybrid-workloads"></a>Hybrid-Workloads
 
