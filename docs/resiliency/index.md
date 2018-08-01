@@ -4,13 +4,12 @@ description: Es wird beschrieben, wie Sie in Azure robuste Anwendungen mit Hochv
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
-pnp.series.title: Design for Resiliency
-ms.openlocfilehash: 9a6bd1332ea59923b32379018060403024b15e10
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: c32f093da4c47ef655dfca89b0410f063e9fe212
+ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012636"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39352585"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Entwerfen robuster Anwendungen für Azure
 
@@ -47,11 +46,11 @@ Resilienz ist kein Add-On. Sie muss in das System integriert und im Betrieb umge
 4. **Testen** Sie die Implementierung, indem Sie Fehler simulieren und erzwungene Failover auslösen. 
 5. **Stellen Sie die Anwendung in der Produktion bereit**, indem Sie einen zuverlässigen und wiederholbaren Prozess verwenden. 
 6. **Überwachen** Sie die Anwendung, um Fehler zu erkennen. Indem Sie das System überwachen, können Sie die Integrität der Anwendung messen und bei Bedarf auf Vorfälle reagieren. 
-7. **Reagieren** Sie, wenn es zu Vorfällen kommt, für die manuelle Eingriffe erforderlich sind.
+7. **Reagieren** Sie, wenn es zu Fehlern kommt, für die manuelle Eingriffe erforderlich sind.
 
 Im weiteren Verlauf dieses Artikels werden diese Schritte ausführlicher beschrieben.
 
-## <a name="defining-your-resiliency-requirements"></a>Definieren Ihrer Anforderungen an die Resilienz
+## <a name="define-your-availability-requirements"></a>Definieren der Verfügbarkeitsanforderungen
 Die Resilienzplanung beginnt mit den geschäftlichen Anforderungen. Hier sind einige Ansätze beschrieben, die für die Resilienz in diesem Zusammenhang geeignet sind.
 
 ### <a name="decompose-by-workload"></a>Aufteilen von Workloads
@@ -140,7 +139,28 @@ Außerdem wird das Failover nicht sofort durchgeführt, und während eines Failo
 
 Der berechnete SLA-Wert ist ein nützlicher Anhaltspunkt, aber er hat in Bezug auf die Verfügbarkeit keine umfassende Aussagekraft. Häufig kann eine Anwendung korrekt herabgestuft werden, wenn ein nicht kritischer Pfad ausfällt. Stellen Sie sich eine Anwendung vor, in der ein Katalog mit Büchern angezeigt wird. Wenn die Anwendung das Miniaturbild für den Buchdeckel nicht abrufen kann, wird ggf. ein Platzhalterbild angezeigt. In diesem Fall wird die Betriebszeit der Anwendung durch das fehlende Abrufen des Bilds nicht reduziert, obwohl für Benutzer eine Beeinträchtigung besteht.  
 
-## <a name="redundancy-and-designing-for-failure"></a>Redundanz und Ausrichten des Entwurfs auf Fehler
+## <a name="design-for-resiliency"></a>Entwurf mit Blick auf Resilienz
+
+In der Entwurfsphase ist es ratsam, eine Fehlermodusanalyse (Failure Mode Analysis, FMA) durchzuführen. Das Ziel einer FMA ist die Identifizierung von möglichen Fehlerpunkten, und es wird definiert, wie die Anwendung auf diese Fehler reagiert.
+
+* Wie erkennt die Anwendung diese Art von Fehler?
+* Wie reagiert die Anwendung auf diese Art von Fehler?
+* Wie protokollieren und überwachen Sie diese Art von Fehler? 
+
+Weitere Informationen zum FMA-Prozess mit spezifischen Empfehlungen für Azure finden Sie unter [Azure resiliency guidance: Failure mode analysis][fma] (Azure-Leitfaden zur Resilienz: Fehlermodusanalyse).
+
+### <a name="example-of-identifying-failure-modes-and-detection-strategy"></a>Beispiel für die Identifizierung von Fehlermodi und eine Erkennungsstrategie
+**Fehlerpunkt:** Aufruf eines externen Webdiensts bzw. einer API.
+
+| Fehlermodus | Erkennungsstrategie |
+| --- | --- |
+| Dienst nicht verfügbar |HTTP 5xx |
+| Drosselung |HTTP 429 (Zu viele Anforderungen) |
+| Authentifizierung |HTTP 401 (Nicht autorisiert) |
+| Langsame Reaktion |Timeout der Anforderung |
+
+
+### <a name="redundancy-and-designing-for-failure"></a>Redundanz und Ausrichten des Entwurfs auf Fehler
 
 Fehler und Ausfälle können mit unterschiedlichen Auswirkungen verbunden sein. Einige Hardwarefehler, z.B. ein ausgefallener Datenträger, wirken sich ggf. nur auf einen einzelnen Hostcomputer aus. Ein fehlerhafter Netzwerkswitch kann sich auf ein gesamtes Serverrack auswirken. Weniger häufig treten Fehler auf, die zu Störungen für ein gesamtes Rechenzentrum führen, z.B. zu einem Stromausfall im Rechenzentrum. In selten Fällen kann es vorkommen, dass eine gesamte Region nicht mehr verfügbar ist.
 
@@ -163,94 +183,47 @@ Berücksichtigen Sie beim Entwerfen einer Anwendung für mehrere Regionen, dass 
 | &nbsp; | Verfügbarkeitsgruppe | Verfügbarkeitszone | Regionspaar |
 |--------|------------------|-------------------|---------------|
 | Fehlerumfang | Rack | Datacenter | Region |
-| Routinganforderung | Lastenausgleichsmodul | Zonenübergreifender Lastenausgleich | Traffic Manager |
+| Routinganforderung | Load Balancer | Zonenübergreifender Lastenausgleich | Traffic Manager |
 | Netzwerklatenz | Sehr niedrig | Niedrig | Mittel bis hoch |
 | Virtuelles Netzwerk  | VNet | VNet | Regionsübergreifendes VNet-Peering |
 
-## <a name="designing-for-resiliency"></a>Entwerfen mit Blick auf Resilienz
-In der Entwurfsphase ist es ratsam, eine Fehlermodusanalyse (Failure Mode Analysis, FMA) durchzuführen. Das Ziel einer FMA ist die Identifizierung von möglichen Fehlerpunkten, und es wird definiert, wie die Anwendung auf diese Fehler reagiert.
-
-* Wie erkennt die Anwendung diese Art von Fehler?
-* Wie reagiert die Anwendung auf diese Art von Fehler?
-* Wie protokollieren und überwachen Sie diese Art von Fehler? 
-
-Weitere Informationen zum FMA-Prozess mit spezifischen Empfehlungen für Azure finden Sie unter [Azure resiliency guidance: Failure mode analysis][fma] (Azure-Leitfaden zur Resilienz: Fehlermodusanalyse).
-
-### <a name="example-of-identifying-failure-modes-and-detection-strategy"></a>Beispiel für die Identifizierung von Fehlermodi und eine Erkennungsstrategie
-**Fehlerpunkt:** Aufruf eines externen Webdiensts bzw. einer API.
-
-| Fehlermodus | Erkennungsstrategie |
-| --- | --- |
-| Dienst nicht verfügbar |HTTP 5xx |
-| Drosselung |HTTP 429 (Zu viele Anforderungen) |
-| Authentifizierung |HTTP 401 (Nicht autorisiert) |
-| Langsame Reaktion |Timeout der Anforderung |
-
-## <a name="resiliency-strategies"></a>Resilienzstrategien
+## <a name="implement-resiliency-strategies"></a>Implementieren von Resilienzstrategien
 Dieser Abschnitt enthält eine Übersicht über einige häufig verwendete Resilienzstrategien. Die meisten davon sind nicht auf eine bestimmte Technologie beschränkt. In den Beschreibungen in diesem Abschnitt sind jeweils die grundlegenden Ideen jedes Verfahrens mit Links zu weiteren Informationen zusammengefasst.
 
-### <a name="retry-transient-failures"></a>Wiederholen des Vorgangs bei vorübergehenden Fehlern
-Vorübergehende Fehler können durch eine kurze Trennung der Netzwerkverbindung, einen Verlust der Verbindung zur Datenbank oder eine Zeitüberschreitung bei zu hoher Auslastung eines Diensts verursacht werden. Häufig kann ein vorübergehender Fehler einfach gelöst werden, indem versucht wird, die Anforderung erneut zu senden. Für viele Azure-Dienste werden vom Client-SDK automatische Wiederholungen so implementiert, dass dies für den Aufrufer transparent ist. Informationen hierzu finden Sie unter [Anleitung zu dienstspezifischen Wiederholungsmechanismen][retry-service-specific guidance].
+**Wiederholen des Vorgangs bei vorübergehenden Fehlern.** Vorübergehende Fehler können durch eine kurze Trennung der Netzwerkverbindung, einen Verlust der Verbindung zur Datenbank oder eine Zeitüberschreitung bei zu hoher Auslastung eines Diensts verursacht werden. Häufig kann ein vorübergehender Fehler einfach gelöst werden, indem versucht wird, die Anforderung erneut zu senden. Für viele Azure-Dienste werden vom Client-SDK automatische Wiederholungen so implementiert, dass dies für den Aufrufer transparent ist. Informationen hierzu finden Sie unter [Anleitung zu dienstspezifischen Wiederholungsmechanismen][retry-service-specific guidance].
 
-Jeder Wiederholungsversuch trägt zur Gesamtwartezeit bei. Außerdem können zu viele fehlgeschlagene Anforderungsversuche zu einem Engpass führen, wenn sich ausstehende Anforderungen in der Warteschlange ansammeln. Diese blockierten Anforderungen können kritische Systemressourcen belegen, z.B. Arbeitsspeicher, Threads, Datenbankverbindungen usw., sodass es zu kaskadierenden Fehlern kommen kann. Verlängern Sie die Verzögerungszeit zwischen den einzelnen Wiederholungsversuchen, und begrenzen Sie die Gesamtzahl von fehlgeschlagenen Anforderungen, um dies zu verhindern.
+Jeder Wiederholungsversuch trägt zur Gesamtwartezeit bei. Außerdem können zu viele fehlgeschlagene Anforderungsversuche zu einem Engpass führen, wenn sich ausstehende Anforderungen in der Warteschlange ansammeln. Diese blockierten Anforderungen können kritische Systemressourcen belegen, z.B. Arbeitsspeicher, Threads, Datenbankverbindungen usw., sodass es zu kaskadierenden Fehlern kommen kann. Verlängern Sie die Verzögerungszeit zwischen den einzelnen Wiederholungsversuchen, und begrenzen Sie die Gesamtzahl von fehlgeschlagenen Anforderungen, um dies zu verhindern. 
 
-![Zusammengesetzte Vereinbarung zum Servicelevel](./images/retry.png)
+![](./images/retry.png)
 
-Weitere Informationen finden Sie unter [Retry Pattern][retry-pattern] (Wiederholungsmuster).
-
-### <a name="load-balance-across-instances"></a>Übergreifender Lastenausgleich für Instanzen
-Aus Gründen der Skalierbarkeit sollte eine Cloudanwendung horizontal hochskaliert werden können, indem mehr Instanzen hinzugefügt werden. Mit diesem Ansatz wird auch die Resilienz verbessert, da fehlerhafte Instanzen aus der Rotation herausgenommen werden können.  
-
-Beispiel: 
+**Übergreifender Lastenausgleich für Instanzen.** Aus Gründen der Skalierbarkeit sollte eine Cloudanwendung horizontal hochskaliert werden können, indem mehr Instanzen hinzugefügt werden. Mit diesem Ansatz wird auch die Resilienz verbessert, da fehlerhafte Instanzen aus der Rotation herausgenommen werden können. Beispiel: 
 
 * Ordnen Sie mindestens zwei VMs hinter einem Lastenausgleich an. Mit dem Lastenausgleichsmodul wird Datenverkehr auf alle VMs verteilt. Informationen hierzu finden Sie unter [Run load-balanced VMs for scalability and availability][ra-multi-vm] (Ausführen von VMs mit Lastenausgleich, um Skalierbarkeit und Verfügbarkeit zu erzielen).
 * Führen Sie für eine Azure App Service-App das zentrale Hochskalieren auf mehrere Instanzen durch. App Service verteilt die Last automatisch auf die Instanzen. Informationen hierzu finden Sie unter [Basic web application][ra-basic-web] (Einfache Webanwendung).
 * Verwenden Sie [Azure Traffic Manager][tm], um Datenverkehr auf eine Gruppe von Endpunkten zu verteilen.
 
-### <a name="replicate-data"></a>Replizieren von Daten
-Das Replizieren von Daten ist eine allgemeine Strategie zum Verarbeiten von nicht vorübergehenden Fehlern in einem Datenspeicher. Viele Speichertechnologien verfügen über eine integrierte Replikation, z.B. Azure SQL-Datenbank, Cosmos DB und Apache Cassandra.  
-
-Es ist wichtig, dass sowohl der Lese- als auch der Schreibpfad berücksichtigt wird. Je nach Speichertechnologie sind ggf. mehrere beschreibbare Replikate vorhanden (oder ein einzelnes beschreibbares Replikat und mehrere schreibgeschützte Replikate). 
+**Replizieren von Daten.** Das Replizieren von Daten ist eine allgemeine Strategie zum Verarbeiten von nicht vorübergehenden Fehlern in einem Datenspeicher. Viele Speichertechnologien verfügen über eine integrierte Replikation, z.B. Azure SQL-Datenbank, Cosmos DB und Apache Cassandra. Es ist wichtig, dass sowohl der Lese- als auch der Schreibpfad berücksichtigt wird. Je nach Speichertechnologie sind ggf. mehrere beschreibbare Replikate vorhanden (oder ein einzelnes beschreibbares Replikat und mehrere schreibgeschützte Replikate). 
 
 Zur Maximierung der Verfügbarkeit können Replikate in mehreren Regionen angeordnet werden. Hiermit wird aber die Wartezeit beim Replizieren der Daten erhöht. Normalerweise wird das regionsübergreifende Replizieren asynchron durchgeführt. Dies ist mit einem Modell der letztlichen Konsistenz und potenziellem Datenverlust bei einem Ausfall eines Replikats verbunden. 
 
-### <a name="degrade-gracefully"></a>Korrektes Herabstufen
-Wenn ein Dienst ausfällt und kein Failoverpfad vorhanden ist, kann die Anwendung unter Umständen korrekt herabgestuft werden und trotzdem noch eine akzeptable Benutzerfreundlichkeit bieten. Beispiel: 
+**Stufen Sie Funktionalität korrekt herab**. Wenn ein Dienst ausfällt und kein Failoverpfad vorhanden ist, kann die Anwendung unter Umständen korrekt herabgestuft werden und trotzdem noch eine akzeptable Benutzerfreundlichkeit bieten. Beispiel: 
 
 * Reihen Sie ein Arbeitselement zur späteren Verarbeitung in eine Warteschlange ein. 
 * Geben Sie einen geschätzten Wert zurück.
 * Verwenden Sie lokal zwischengespeicherte Daten. 
 * Zeigen Sie eine Fehlermeldung für den Benutzer an. (Diese Option ist besser, als wenn die Anwendung nicht mehr auf Anforderungen reagiert.)
 
-### <a name="throttle-high-volume-users"></a>Drosseln von Benutzern mit hohem Volumen
-Es kann vorkommen, dass eine geringe Zahl von Benutzern für die Erzeugung sehr hoher Lasten verantwortlich ist. Dies kann negative Auswirkungen auf andere Benutzer haben und die Gesamtverfügbarkeit Ihrer Anwendung reduzieren.
+**Drosseln von Benutzern mit hohem Volumen.** Es kann vorkommen, dass eine geringe Zahl von Benutzern für die Erzeugung sehr hoher Lasten verantwortlich ist. Dies kann negative Auswirkungen auf andere Benutzer haben und die Gesamtverfügbarkeit Ihrer Anwendung reduzieren.
 
 Wenn von einem einzelnen Client übermäßig viele Anforderungen ausgehen, kann die Anwendung den Client ggf. für einen bestimmten Zeitraum drosseln. Während des Drosselungszeitraums verweigert die Anwendung einige oder alle Anforderungen dieses Clients (je nach Drosselungsstrategie). Der Schwellenwert für die Drosselung richtet sich unter Umständen nach der Dienstebene des Kunden. 
 
-Die Drosselung muss nicht bedeuten, dass der Client in böser Absicht gehandelt hat, sondern nur, dass das Dienstkontingent überschritten wurde. In einigen Fällen kann es vorkommen, dass ein Consumer das Kontingent ständig überschreitet oder sich auf andere Weise unangemessen verhält. Sie können dann weitere Maßnahmen treffen und den Benutzer blockieren. Normalerweise wird hierzu ein API-Schlüssel oder ein IP-Adressbereich blockiert.
+Die Drosselung muss nicht bedeuten, dass der Client in böser Absicht gehandelt hat, sondern nur, dass das Dienstkontingent überschritten wurde. In einigen Fällen kann es vorkommen, dass ein Consumer das Kontingent ständig überschreitet oder sich auf andere Weise unangemessen verhält. Sie können dann weitere Maßnahmen treffen und den Benutzer blockieren. Normalerweise wird hierzu ein API-Schlüssel oder ein IP-Adressbereich blockiert. Weitere Informationen finden Sie unter [Throttling Pattern][throttling-pattern] (Drosselungsmuster).
 
-Weitere Informationen finden Sie unter [Throttling Pattern][throttling-pattern] (Drosselungsmuster).
+**Verwenden eines Schutzschalters.** Mit einem [Schutzschaltermuster][circuit-breaker-pattern] kann verhindert werden, dass von einer Anwendung wiederholt versucht wird, einen Vorgang auszuführen, der mit hoher Wahrscheinlichkeit fehlschlägt. Der Schutzschalter umschließt Aufrufe an einen Dienst und verfolgt die Anzahl kürzlich aufgetretener Fehler nach. Überschreitet die Fehleranzahl einen Schwellenwert, gibt der Schutzschalter einen Fehlercode zurück, ohne den Dienst aufzurufen. Dadurch hat der Dienst Zeit zur Wiederherstellung. 
 
-### <a name="use-a-circuit-breaker"></a>Verwenden eines Schutzschalters
-Mit einem Schutzschaltermuster kann verhindert werden, dass von einer Anwendung wiederholt versucht wird, einen Vorgang durchzuführen, der mit hoher Wahrscheinlichkeit fehlschlägt. Dies ähnelt der Verwendung eines physischen Schutzschalters, also eines Schalters zum Unterbrechen des Stromflusses, wenn ein Schaltkreis überlastet ist.
+**Verwenden eines Belastungsausgleichs zum Ausgleichen von Datenverkehrsspitzen.** Für Anwendungen kann es zu plötzlichen Datenverkehrsspitzen kommen, die von Diensten auf dem Back-End nicht mehr bewältigt werden können. Wenn ein Back-End-Dienst nicht schnell genug auf Anforderungen reagieren kann, kann dies dazu führen, dass Anforderungen in eine Warteschlange eingereiht werden (Rückstau) oder die Anwendung vom Dienst gedrosselt wird. Sie können eine Warteschlange als Puffer verwenden, um dies zu verhindern. Wenn ein neues Arbeitselement vorhanden ist, reiht die Anwendung ein Arbeitselement für die asynchrone Ausführung in die Warteschlange ein, anstatt sofort den Back-End-Dienst aufzurufen. Die Warteschlange fungiert als Puffer, um Lastspitzen zu glätten. Weitere Informationen finden Sie unter [Queue-Based Load Leveling Pattern][load-leveling-pattern] (Warteschlangenbasiertes Belastungsausgleichsmuster).
 
-Mit dem Schutzschalter werden Aufrufe eines Diensts zusammengefasst: Er kann drei Zustände aufweisen:
-
-* **Geschlossen**: Dies ist der Normalzustand. Der Schutzschalter sendet Anforderungen an den Dienst, und mit einem Zähler wird die Anzahl von kürzlich aufgetretenen Fehlern nachverfolgt. Wenn die Anzahl von Fehlern innerhalb eines angegebenen Zeitraums einen Schwellenwert überschreitet, wechselt der Schutzschalter in den Zustand „Geöffnet“. 
-* **Geöffnet**: In diesem Zustand sorgt der Schutzschalter dafür, dass alle Anforderungen sofort fehlschlagen, ohne dass der Dienst aufgerufen wird. Für die Anwendung sollte ein Lösungspfad verwendet werden, z.B. das Lesen von Daten von einem Replikat oder einfach das Anzeigen eines Fehlers für den Benutzer. Wenn der Schutzschalter zu „Geöffnet“ wechselt, wird ein Timer gestartet. Nachdem der Timer abgelaufen ist, wechselt der Schutzschalter in den Status „Halb geöffnet“.
-* **Halb geöffnet**: In diesem Status lässt der Schutzstatus eine begrenzte Anzahl von Anforderungen für den Dienst passieren. Wenn diese Anforderungen erfolgreich sind, wird angenommen, dass der Dienst wieder betriebsbereit ist. Der Schutzschalter wechselt wieder in den Zustand „Geschlossen“. Andernfalls wechselt er zurück in den Zustand „Geöffnet“. Mit dem Zustand „Halb geöffnet“ wird verhindert, dass ein in der Wiederherstellung befindlicher Dienst plötzlich mit Anforderungen überschwemmt wird.
-
-Weitere Informationen finden Sie unter [Circuit Breaker Pattern][circuit-breaker-pattern] (Schutzschaltermuster).
-
-### <a name="use-load-leveling-to-smooth-out-spikes-in-traffic"></a>Verwenden eines Belastungsausgleichs zum Glätten von Datenverkehrsspitzen
-Für Anwendungen kann es zu plötzlichen Datenverkehrsspitzen kommen, die von Diensten auf dem Back-End nicht mehr bewältigt werden können. Wenn ein Back-End-Dienst nicht schnell genug auf Anforderungen reagieren kann, kann dies dazu führen, dass Anforderungen in eine Warteschlange eingereiht werden (Rückstau) oder die Anwendung vom Dienst gedrosselt wird.
-
-Sie können eine Warteschlange als Puffer verwenden, um dies zu verhindern. Wenn ein neues Arbeitselement vorhanden ist, reiht die Anwendung ein Arbeitselement für die asynchrone Ausführung in die Warteschlange ein, anstatt sofort den Back-End-Dienst aufzurufen. Die Warteschlange fungiert als Puffer, um Lastspitzen zu glätten. 
-
-Weitere Informationen finden Sie unter [Queue-Based Load Leveling Pattern][load-leveling-pattern] (Warteschlangenbasiertes Belastungsausgleichsmuster).
-
-### <a name="isolate-critical-resources"></a>Isolieren von kritischen Ressourcen
-Fehler in einem Subsystem können ggf. zu kaskadierenden Fehlern werden und Fehler in anderen Teilen der Anwendung verursachen. Dies kann passieren, wenn ein Fehler dazu führt, dass einige Ressourcen, z.B. Threads oder Sockets, nicht rechtzeitig freigegeben werden und die Ressourcen erschöpft sind. 
+**Isolieren von kritischen Ressourcen.** Fehler in einem Subsystem können ggf. zu kaskadierenden Fehlern werden und Fehler in anderen Teilen der Anwendung verursachen. Dies kann passieren, wenn ein Fehler dazu führt, dass einige Ressourcen, z.B. Threads oder Sockets, nicht rechtzeitig freigegeben werden und die Ressourcen erschöpft sind. 
 
 Um dies zu vermeiden, können Sie ein System in isolierte Gruppen partitionieren, damit ein Ausfall in einer Partition nicht zum Ausfall des gesamten Systems führt. Dieses Verfahren wird auch als „Bulkhead-Muster“ (Trennwandmuster) bezeichnet.
 
@@ -260,19 +233,13 @@ Beispiele:
 * Verwenden Sie separate Threadpools, um Aufrufe von unterschiedlichen Diensten zu isolieren. Auf diese Weise werden kaskadierende Fehler verhindert, wenn einer der Dienste ausfällt. Ein Beispiel finden Sie in der [Hystrix-Bibliothek][hystrix] von Netflix.
 * Verwenden Sie [Container][containers], um die Ressourcen zu begrenzen, die für ein bestimmtes Subsystem verfügbar sind. 
 
-![Zusammengesetzte Vereinbarung zum Servicelevel](./images/bulkhead.png)
+![](./images/bulkhead.png)
 
-### <a name="apply-compensating-transactions"></a>Anwenden von ausgleichenden Transaktionen
-Mit einer ausgleichenden Transaktion werden die Auswirkungen einer anderen abgeschlossenen Transaktion rückgängig gemacht.
-
-In einem verteilten System kann es sehr schwierig sein, eine hohe Transaktionskonsistenz zu erzielen. Ausgleichende Transaktionen sind eine Möglichkeit, Konsistenz zu erreichen, indem eine Reihe von kleineren einzelnen Transaktionen verwendet wird, die in jedem Schritt rückgängig gemacht werden können.
+**Anwenden von ausgleichenden Transaktionen.** Mit einer [ausgleichenden Transaktion][compensating-transaction-pattern] werden die Auswirkungen einer anderen abgeschlossenen Transaktion rückgängig gemacht. In einem verteilten System kann es sehr schwierig sein, eine hohe Transaktionskonsistenz zu erzielen. Ausgleichende Transaktionen sind eine Möglichkeit, Konsistenz zu erreichen, indem eine Reihe von kleineren einzelnen Transaktionen verwendet wird, die in jedem Schritt rückgängig gemacht werden können.
 
 Beim Buchen einer Reise kann ein Kunde beispielsweise einen Mietwagen, ein Hotelzimmer und einen Flug reservieren. Wenn einer dieser Schritte nicht erfolgreich ist, schlägt der gesamte Vorgang fehl. Anstatt eine einzelne verteilte Transaktion für den gesamten Vorgang zu verwenden, können Sie für jeden Schritt eine ausgleichende Transaktion definieren. Beispielsweise können Sie die Reservierung stornieren, um die Reservierung eines Mietwagens rückgängig zu machen. Ein Koordinator führt die einzelnen Schritte aus, um den gesamten Vorgang abzuschließen. Falls ein Schritt fehlschlägt, wendet der Koordinator ausgleichende Transaktionen an, um abgeschlossene Schritte rückgängig zu machen. 
 
-Weitere Informationen finden Sie unter [Compensating Transaction Pattern][compensating-transaction-pattern] (Muster für eine ausgleichende Transaktion). 
-
-
-## <a name="testing-for-resiliency"></a>Testen mit Blick auf Resilienz
+## <a name="test-for-resiliency"></a>Testen der Resilienz
 Im Allgemeinen können Sie die Resilienz nicht auf die gleiche Weise wie die Anwendungsfunktionalität testen (per Ausführung von Komponententests usw.). Stattdessen müssen Sie testen, wie sich die End-to-End-Workload unter Fehlerbedingungen verhält, die nur zeitweise auftreten.
 
 Der Testvorgang ist ein iterativer Prozess. Testen Sie die Anwendung, messen Sie das Ergebnis, analysieren und beheben Sie alle aufgetretenen Fehler, und wiederholen Sie den Vorgang.
@@ -294,12 +261,12 @@ Dies ist ein weiterer Grund, warum es wichtig ist, mögliche Fehlerpunkte währe
 
 **Auslastungstests**: Führen Sie für die Anwendung einen Auslastungstest durch, indem Sie ein Tool wie [Visual Studio Team Services][vsts] oder [Apache JMeter][jmeter] verwenden. Auslastungstests sind sehr wichtig zur Identifizierung von Fehlern, die nur bei hoher Auslastung auftreten, z.B. eine Überlastung der Back-End-Datenbank oder eine Drosselung des Diensts. Führen Sie Tests für Spitzenlasten durch, indem Sie Produktionsdaten oder synthetische Daten verwenden, die den Produktionsdaten möglichst genau ähneln. Hierbei soll ermittelt werden, wie sich die Anwendung unter realen Bedingungen verhält.   
 
-## <a name="resilient-deployment"></a>Robuste Bereitstellung
+## <a name="deploy-using-reliable-processes"></a>Bereitstellen mithilfe zuverlässiger Prozesse
 Nachdem eine Anwendung in der Produktion bereitgestellt wurde, sind Updates eine mögliche Fehlerquelle. Im schlimmsten Fall kann ein fehlerhaftes Update zu Ausfallzeiten führen. Der Bereitstellungsprozess muss vorhersagbar und wiederholbar sein, um dies zu vermeiden. Die Bereitstellung umfasst auch die Bereitstellung von Azure-Ressourcen und -Anwendungscode und das Anwenden von Konfigurationseinstellungen. Ein Update kann alle drei Vorgänge oder einen Teil davon abdecken. 
 
 Der entscheidende Punkt ist, dass manuelle Bereitstellungen fehleranfällig sind. Daher wird empfohlen, einen automatisierten idempotenten Prozess zu verwenden, den Sie bedarfsabhängig und bei Fehlern auch erneut durchführen können. 
 
-* Nutzen Sie Resource Manager-Vorlagen, um die Bereitstellung von Azure-Ressourcen zu automatisieren.
+* Nutzen Sie Azure Resource Manager-Vorlagen, um die Bereitstellung von Azure-Ressourcen zu automatisieren.
 * Verwenden Sie die [Azure Automation-Konfiguration für den gewünschten Zustand][dsc] (Desired State Configuration, DSC) zum Konfigurieren von VMs.
 * Verwenden Sie einen automatisierten Bereitstellungsprozess für Anwendungscode.
 
@@ -315,7 +282,7 @@ Eine andere Frage ist, wie das Rollout für ein Anwendungsupdate durchgeführt w
 
 Stellen Sie unabhängig vom gewählten Ansatz sicher, dass Sie einen Rollback auf die letzte als fehlerfrei bekannte Bereitstellung durchführen können, falls die neue Version nicht funktioniert. Wenn Fehler auftreten, muss in den Anwendungsprotokollen angegeben werden, welche Version den Fehler verursacht hat. 
 
-## <a name="monitoring-and-diagnostics"></a>Überwachung und Diagnose
+## <a name="monitor-to-detect-failures"></a>Überwachen zur Fehlererkennung
 Die Überwachung und die Diagnose sind für die Resilienz von entscheidender Bedeutung. Wenn ein Fehler auftritt, müssen Sie darüber informiert werden, und Sie müssen über Erkenntnisse zur Fehlerursache verfügen. 
 
 Die Überwachung eines umfangreichen verteilten Systems stellt eine erhebliche Herausforderung dar. Angenommen, eine Anwendung wird auf einigen Dutzend VMs ausgeführt. Es ist nicht effizient, sich einzeln nacheinander an jeder VM anzumelden und sich die Protokolldateien anzusehen, um die Problembehandlung durchzuführen. Die Anzahl von VM-Instanzen ist außerdem wahrscheinlich nicht statisch. VMs werden hinzugefügt und entfernt, wenn die Anwendung horizontal herunter- und hochskaliert wird, und gelegentlich kann es zu einem Ausfall einer Instanz kommen, sodass eine erneute Bereitstellung erforderlich ist. Außerdem können für eine typische Cloudanwendung mehrere Datenspeicher verwendet werden (Azure Storage, SQL-Datenbank, Cosmos DB, Redis Cache), und eine einzelne Benutzeraktion kann auf mehrere Subsysteme verteilt sein. 
@@ -341,7 +308,7 @@ Anwendungsprotokolle sind eine wichtige Quelle für Diagnosedaten. Bewährte Met
 
 Weitere Informationen zur Überwachung und Diagnose finden Sie unter [Anleitung zur Überwachung und Diagnose][monitoring-guidance].
 
-## <a name="manual-failure-responses"></a>Manuelle Reaktionen auf Fehler
+## <a name="respond-to-failures"></a>Reagieren auf Fehler
 In den vorherigen Abschnitten wurden Strategien für die automatisierte Wiederherstellung beschrieben, die für die Hochverfügbarkeit wichtig sind. Aber in einigen Fällen sind manuelle Eingriffe erforderlich.
 
 * **Warnungen**. Überwachen Sie Ihre Anwendung auf Warnsignale, die proaktive Eingriffe nötig machen. Wenn Sie beispielsweise sehen, dass Ihre Anwendung von SQL-Datenbank oder Cosmos DB ständig gedrosselt wird, müssen Sie ggf. Ihre Datenbankkapazität erhöhen oder Ihre Abfragen optimieren. In diesem Beispiel sollte Ihre Telemetrie auch dann eine Warnung auslösen, wenn die Anwendung Drosselungsfehler transparent behandelt, damit Sie Maßnahmen treffen können.  
