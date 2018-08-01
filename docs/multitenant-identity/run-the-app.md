@@ -3,12 +3,12 @@ title: Ausführen der Surveys-Anwendung
 description: Lokales Ausführen der Surveys-Beispielanwendung
 author: MikeWasson
 ms:date: 07/21/2017
-ms.openlocfilehash: 28d976374e5d6dbad434873eef149704f26a1f3f
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: d4fa8122794740e6935293147d999b26d9485d90
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848681"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229098"
 ---
 # <a name="run-the-surveys-application"></a>Ausführen der Surveys-Anwendung
 
@@ -35,7 +35,7 @@ In diesem Schritt erstellen Sie ein Azure AD-Verzeichnis für Tailspin.
 
 1. Melden Sie sich beim [Azure-Portal][portal] an.
 
-2. Klicken Sie auf **Neu** > **Sicherheit und Identität** > **Azure Active Directory**.
+2. Klicken Sie auf **+ Ressource erstellen** > **Identität** > **Azure Active Directory**.
 
 3. Geben Sie für den Organisationsnamen `Tailspin` ein, und geben Sie einen Domänennamen ein. Der Domänenname hat das Format `xxxx.onmicrosoft.com` und muss global eindeutig sein. 
 
@@ -67,7 +67,7 @@ Zum Abschließen des End-to-End-Szenarios benötigen Sie ein zweites Azure AD-Ve
 
 6. Wählen Sie im Blatt **App-Registrierungen** die neue Anwendung **Surveys.WebAPI** aus.
  
-7. Klicken Sie auf **Eigenschaften**.
+7. Klicken Sie auf **Einstellungen** > **Eigenschaften**.
 
 8. Geben Sie im Bearbeitungsfeld **App-ID-URI** `https://<domain>/surveys.webapi` ein, wobei `<domain>` der Domänenname des Verzeichnisses ist. Beispiel: `https://tailspin.onmicrosoft.com/surveys.webapi`
 
@@ -188,13 +188,13 @@ Wiederholen Sie jetzt die gleichen Schritte für die Surveys-App, fügen Sie jed
 
 Die Surveys-Anwendung verwendet zum Zwischenspeichern von OAuth 2-Zugriffstoken Redis. So erstellen Sie den Cache:
 
-1.  Wechseln Sie zum [Azure-Portal](https://portal.azure.com), und klicken Sie auf **Neu** > **Datenbanken** > **Redis Cache**.
+1.  Wechseln Sie zum [Azure-Portal](https://portal.azure.com), und klicken Sie auf **+ Ressource erstellen** > **Datenbanken** > **Redis Cache**.
 
 2.  Geben Sie die erforderlichen Informationen, einschließlich DNS-Name, Ressourcengruppe, Standort und Tarif, ein. Sie können eine neue Ressourcengruppe erstellen oder eine vorhandene Ressourcengruppe verwenden.
 
 3. Klicken Sie auf **Create**.
 
-4. Nachdem der Redis Cache erstellt wurde, navigieren Sie zu der Ressource im Portal.
+4. Navigieren Sie im Portal zur Ressource, nachdem die Redis Cache-Instanz erstellt wurde.
 
 5. Klicken Sie auf **Zugriffsschlüssel**, und kopieren Sie den Primärschlüssel.
 
