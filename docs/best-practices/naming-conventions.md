@@ -4,12 +4,12 @@ description: Enthält die Namenskonventionen für Azure-Ressourcen. Benennen von
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 09bcfa3c0a0c46605f0025adad06f8049f109f1b
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: 6ad71a5ee39b8f1863c51dae0120dbdc7baf1f76
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987732"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229149"
 ---
 # <a name="naming-conventions"></a>Benennungskonventionen
 
@@ -17,10 +17,10 @@ ms.locfileid: "38987732"
 
 Dieser Artikel enthält eine Zusammenfassung der Benennungsregeln und -einschränkungen für Azure-Ressourcen und eine Reihe von grundsätzlichen Empfehlungen für Namenskonventionen.  Sie können diese Empfehlungen als Ausgangspunkt für Ihre eigenen, Ihren Bedürfnissen angepassten Konventionen verwenden.
 
-Die Auswahl eines Namens für eine Ressource in Microsoft Azure ist wichtig, da Folgendes gilt:
+Die Auswahl eines Namens für eine Ressource in Microsoft Azure ist wichtig, da:
 
 * Es ist schwierig, einen Namen zu einem späteren Zeitpunkt zu ändern.
-* Namen müssen die Anforderungen ihres jeweiligen Ressourcentyps erfüllen.
+* Namen die Anforderungen ihres bestimmten Ressourcentyps erfüllen müssen.
 
 Durch konsistente Namenskonventionen lassen sich Ressourcen einfacher finden. Außerdem kann damit die Rolle einer Ressource in einer Lösung angegeben werden.
 
@@ -119,6 +119,13 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 |Konfiguration der Regeln für die Lastenverteilung |Load Balancer |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<descriptive context>` |`http` |
 |Azure Application Gateway |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<service or role>-agw` |`profx-agw` |
 |Traffic Manager-Profil |Ressourcengruppe |1 - 63 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich und Punkt |`<descriptive context>` |`app1` |
+
+### <a name="containers"></a>Container
+
+| Entität | Bereich | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
+| --- | --- | --- | --- | --- | --- | --- |
+|Containerregistrierung | Global |5 - 50 |Groß-/Kleinschreibung nicht beachten | Alphanumerisch |`<service short name>registry` |`app1registry` |
+
 
 ## <a name="organize-resources-with-tags"></a>Organisieren von Ressourcen mit Tags
 
