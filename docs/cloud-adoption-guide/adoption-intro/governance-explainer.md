@@ -1,17 +1,17 @@
 ---
-title: 'Erläuterungen: Was ist Cloud-Governance?'
-description: Enthält eine Beschreibung des Konzepts zur Ressourcenkontrolle für Azure und die Cloud.
+title: Was ist Cloud-Governance?
+description: Enthält eine Erklärung des Konzepts zur Kontrolle des Zugriffs auf Ressourcen in Azure.
 author: petertay
-ms.openlocfilehash: 3404beaa719177ee7638feed8a8442b5c3b455c6
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: 3338ed5652296c5cd01277a51be1cb5893320b65
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206479"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229200"
 ---
-# <a name="explainer-what-is-cloud-resource-governance"></a>Erläuterungen: Was ist die Cloudressourcenkontrolle?
+# <a name="what-is-cloud-resource-governance"></a>Was ist die Cloudressourcenkontrolle?
 
-In der Erläuterung [Wie funktioniert Azure?](azure-explainer.md) haben Sie gelernt, dass es sich bei Azure um eine Sammlung von Servern und Netzwerkhardwarekomponenten handelt, auf denen im Auftrag von Benutzern virtualisierte Hardware und Software ausgeführt wird. Dank Azure kann die Entwicklungs- und IT-Abteilung Ihrer Organisation flexibel arbeiten, weil Ressourcen auf einfache Weise erstellt, gelesen, aktualisiert und gelöscht werden können.
+Unter [Wie funktioniert Azure?](azure-explainer.md) haben Sie gelernt, dass es sich bei Azure um eine Sammlung von Servern und Netzwerkhardwarekomponenten handelt, auf denen im Auftrag von Benutzern virtualisierte Hardware und Software ausgeführt wird. Dank Azure kann die Entwicklungs- und IT-Abteilung Ihrer Organisation flexibel arbeiten, weil Ressourcen auf einfache Weise erstellt, gelesen, aktualisiert und gelöscht werden können.
 
 Wenn Entwickler uneingeschränkten Zugriff auf Ressourcen haben, können sie zwar sehr flexibel vorgehen, aber es können sich auch unerwünschte Kosten ergeben. Beispielsweise kann für ein Entwicklungsteam die Bereitstellung einer Reihe von Ressourcen zu Testzwecken genehmigt werden, wobei dann nach Abschluss des Testens aber vergessen wird, diese zu löschen. Für diese Ressourcen fallen weiterhin Kosten an, obwohl die Nutzung nicht mehr genehmigt oder erforderlich ist. 
 
@@ -29,8 +29,4 @@ Beim Konfigurieren dieser Tools ist es wichtig, die Governance und die Flexibili
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Ihr nächster Schritt bei der Einführung von Azure besteht darin, dass Sie sich [mit der digitalen Identität in Azure](tenant-explainer.md) vertraut machen und [Ihren ersten Benutzer in Azure AD erstellen][docs-add-users-to-aad].
-
-<!-- Links -->
-
-[docs-add-users-to-aad]: /azure/active-directory/add-users-azure-active-directory?toc=/azure/architecture/cloud-adoption-guide/toc.json
+Nachdem Sie sich nun mit dem Konzept der Kontrolle von Cloudressourcen vertraut gemacht haben, können Sie sich über das [Verwalten des Ressourcenzugriffs](azure-resource-access.md) in Azure informieren. Dies ist die Vorbereitung auf das [Entwerfen eines Governance-Modells](governance-how-to.md).

@@ -2,15 +2,15 @@
 title: N-schichtige Anwendung in mehreren Regionen für Hochverfügbarkeit
 description: Erfahren Sie, wie Sie virtuelle Computer für Hochverfügbarkeit und Resilienz in mehreren Regionen in Azure bereitstellen.
 author: MikeWasson
-ms.date: 05/03/2018
+ms.date: 07/19/2018
 pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: 48943094e7847e39b9fdc4c3f71e27f2e6e41293
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: a8dafab9ce8312004e99f0f19d06d6b47b6b19d8
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673572"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229251"
 ---
 # <a name="multi-region-n-tier-application-for-high-availability"></a>N-schichtige Anwendung in mehreren Regionen für Hochverfügbarkeit
 
@@ -80,18 +80,18 @@ Bei Failovern durch Traffic Manager sollten Sie ein manuelles Failback ausführe
 
 Beachten Sie, dass Traffic Manager in der Standardeinstellung automatisch Failbacks ausführt. Um dies zu verhindern, verringern Sie die Priorität der primären Region nach einem Failover manuell. Angenommen, die primäre Region hat die Priorität 1 und die sekundäre Datenbank die Priorität 2. Nach einem Failover legen Sie dann die Priorität der primären Region auf 3 fest, um ein automatisches Failback zu verhindern. Wenn Sie wieder zurück wechseln möchten, ändern Sie die Priorität wieder in 1.
 
-Mit dem folgenden Befehl für die [Azure-Befehlszeilenschnittstelle][install-azure-cli] wird die Priorität aktualisiert:
+Mit dem folgenden Befehl für die [Azure-Befehlszeilenschnittstelle][azure-cli] wird die Priorität aktualisiert:
 
 ```bat
-azure network traffic-manager  endpoint set --resource-group <resource-group> --profile-name <profile>
-    --name <traffic-manager-name> --type AzureEndpoints --priority 3
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
+    --name <endpoint-name> --type azureEndpoints --priority 3
 ```    
 
 Ein anderer Ansatz besteht darin, den Endpunkt vorübergehend zu deaktivieren, bis Sie zum Ausführen eines Failbacks bereit sind:
 
 ```bat
-azure network traffic-manager  endpoint set --resource-group <resource-group> --profile-name <profile>
-    --name <traffic-manager-name> --type AzureEndpoints --status Disabled
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
+    --name <endpoint-name> --type azureEndpoints --endpoint-status Disabled
 ```
 
 Je nach Ursache eines Failovers müssen Sie die Ressourcen innerhalb einer Region möglicherweise erneut bereitstellen. Testen Sie vor dem Failback die Betriebsbereitschaft. Beim Test sollten z.B. folgende Punkte geprüft werden:
@@ -109,10 +109,10 @@ So konfigurieren Sie die Verfügbarkeitsgruppe:
 * Platzieren Sie mindestens zwei Domänencontroller in jeder Region.
 * Weisen Sie jedem Domänencontroller eine statische IP-Adresse zu.
 * Erstellen Sie eine VNet-zu-VNet-Verbindung, um die Kommunikation zwischen den VNets zu ermöglichen.
-* Fügen Sie für jedes VNet die IP-Adressen der Domänencontroller (aus beiden Regionen) zur DNS-Serverliste hinzu. Sie können den folgenden CLI-Befehl verwenden. Weitere Informationen finden Sie unter [Verwalten von DNS-Servern, die von einem virtuellen Netzwerk (VNet) verwendet werden][vnet-dns].
+* Fügen Sie für jedes VNet die IP-Adressen der Domänencontroller (aus beiden Regionen) zur DNS-Serverliste hinzu. Sie können den folgenden CLI-Befehl verwenden. Weitere Informationen finden Sie unter [Ändern von DNS-Servern][vnet-dns].
 
     ```bat
-    azure network vnet set --resource-group dc01-rg --name dc01-vnet --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
+    az network vnet update --resource-group <resource-group> --name <vnet-name> --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
     ```
 
 * Erstellen Sie einen [Windows Server-Failovercluster][wsfc] (WSFC), der die SQL Server-Instanzen in beiden Regionen enthält. 
@@ -171,7 +171,7 @@ Messen Sie die Wiederherstellungszeiten, und stellen Sie sicher, dass diese Ihre
 [azure-sla]: https://azure.microsoft.com/support/legal/sla/
 [azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx
-[install-azure-cli]: /azure/xplat-cli-install
+[azure-cli]: /cli/azure/
 [regional-pairs]: /azure/best-practices-availability-paired-regions
 [resource groups]: /azure/azure-resource-manager/resource-group-overview
 [resource-group-links]: /azure/resource-group-link-resources
@@ -185,7 +185,7 @@ Messen Sie die Wiederherstellungszeiten, und stellen Sie sicher, dass diese Ihre
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
 [traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
-[vnet-dns]: /azure/virtual-network/virtual-networks-manage-dns-in-vnet
+[vnet-dns]: /azure/virtual-network/manage-virtual-network#change-dns-servers
 [vnet-to-vnet]: /azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps
 [vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
 [wsfc]: https://msdn.microsoft.com/library/hh270278.aspx

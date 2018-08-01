@@ -2,12 +2,12 @@
 title: Mittlere Einführungsphase für Azure
 description: Hier wird der Wissensstand beschrieben, den ein Unternehmen in der mittleren Einführungsphase für Azure benötigt.
 author: petertay
-ms.openlocfilehash: 227d9558647ed8076b2832d95e192f2f0c43b9db
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: a1f93616f5f1ecf4f395ce39bbb037ef6ab5991b
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206360"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229234"
 ---
 # <a name="azure-cloud-adoption-guide-intermediate-overview"></a>Handbuch zur Einführung von Azure Cloud: Übersicht über die mittlere Phase
 
@@ -27,7 +27,7 @@ Die Zielgruppe für diese Phase des Handbuchs umfasst folgende Personas in Ihrer
 
 In der grundlegenden Einführungsphase wurden einige Azure-Grundlagen vermittelt, und Sie haben erfahren, wie Ressourcen erstellt, gelesen, aktualisiert und gelöscht werden. Darüber hinaus wurde das Identitätskonzept erläutert, und Sie haben gelernt, dass Azure bei der Authentifizierung und Autorisierung von Benutzern, die Zugriff auf diese Ressourcen benötigen, nur Azure Active Directory (AD) vertraut.
 
-Des Weiteren haben Sie eine Einführung in das Konfigurieren der Governance-Tools von Azure erhalten, um die Azure-Ressourcennutzung Ihrer Organisation zu verwalten. In der grundlegenden Phase haben Sie erfahren, wie Sie den Zugriff eines einzelnen Teams auf die Ressourcen steuern, die zum Bereitstellen einer einfachen Workload erforderlich sind. Tatsächlich befinden sich in Ihrer Organisation jedoch mehrere Teams, die gleichzeitig an verschiedenen Workloads arbeiten. 
+Des Weiteren haben Sie eine Einführung in das Konfigurieren der Governance-Tools von Azure erhalten, um die Azure-Ressourcennutzung Ihrer Organisation zu verwalten. Es wurde beschrieben, wie Sie den Zugriff eines einzelnen Teams auf die Ressourcen steuern, die zum Bereitstellen einer einfachen Workload erforderlich sind. Tatsächlich befinden sich in Ihrer Organisation jedoch mehrere Teams, die gleichzeitig an verschiedenen Workloads arbeiten. 
 
 Bevor wir beginnen, müssen wir kurz auf die Bedeutung des Begriffs **Workload** eingehen. Er bezeichnet in der Regel eine beliebige Funktionseinheit – etwa eine Anwendung oder einen Dienst. Eine Workload kann als Kombination aus den Codeartefakten, die auf einem Server bereitgestellt werden, und jeglichen anderen erforderlichen Diensten (etwa eine Datenbank) betrachtet werden. Diese Definition ist zwar für lokale Anwendungen oder Dienste hilfreich, muss für die Cloud allerdings noch etwas erweitert werden. 
 
