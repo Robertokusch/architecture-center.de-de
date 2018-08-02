@@ -4,20 +4,20 @@ description: Checkliste, die Hinweise zu Überlegungen hinsichtlich der Resilien
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: ca4bf77c9348f6c656348d9cd61d3a1241d69ba8
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 883424d5d3535f822cdba61ecb9520ce05f75ec7
+ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782613"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39352643"
 ---
 # <a name="resiliency-checklist"></a>Checkliste für Resilienz
 
 Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine Wiederherstellung durchzuführen und die Betriebsbereitschaft sicherzustellen. Sie gehört zu den [Säulen der Softwarequalität](../guide/pillars.md). Damit Sie Ihre Anwendung für Resilienz entwerfen können, müssen Sie eine Vielzahl von Fehlermodi, die auftreten können, einplanen und entschärfen. Verwenden Sie diese Prüfliste, um Ihre Anwendungsarchitektur vom Standpunkt der Resilienz aus zu überprüfen. Sehen Sie sich auch die [Checkliste für Resilienz für bestimmte Azure-Dienste](./resiliency-per-service.md) an.
 
-## <a name="requirements"></a>Anforderungen
+## <a name="requirements"></a>Requirements (Anforderungen)
 
-**Definieren Sie die Verfügbarkeitsanforderungen Ihrer Kunden.** Ihre Kunden haben Anforderungen an die Verfügbarkeit der Komponenten in der Anwendung, die Entwurf der Anwendung beeinflussen. Vereinbaren Sie mit den Kunden Verfügbarkeitsziele für die einzelnen Bestandteile der Anwendung, andernfalls erfüllt der Entwurf die Kundenerwartungen möglicherweise nicht. Weitere Informationen finden Sie unter [Definieren Ihrer Anforderungen an die Resilienz](../resiliency/index.md#defining-your-resiliency-requirements).
+**Definieren Sie die Verfügbarkeitsanforderungen Ihrer Kunden.** Ihre Kunden haben Anforderungen an die Verfügbarkeit der Komponenten in der Anwendung, die Entwurf der Anwendung beeinflussen. Vereinbaren Sie mit den Kunden Verfügbarkeitsziele für die einzelnen Bestandteile der Anwendung, andernfalls erfüllt der Entwurf die Kundenerwartungen möglicherweise nicht. Weitere Informationen finden Sie unter [Entwerfen robuster Anwendungen für Azure](../resiliency/index.md).
 
 ## <a name="application-design"></a>Anwendungsentwurf
 
@@ -58,7 +58,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Stellen Sie sicher, dass alle von Ihnen genutzten Dienste von Drittanbietern eine SLA bereitstellen.** Wenn Ihre Anwendung von einem Dienst eines Drittanbieters abhängt, der Drittanbieter aber keine Garantie für die Verfügbarkeit in Form einer SLA bietet, kann die Verfügbarkeit Ihrer Anwendung auch nicht garantiert werden. Ihre SLA ist nur so gut wie die Komponente mit der geringsten Verfügbarkeit in Ihrer Anwendung.
 
-**Implementieren Sie ggf. Resilienzmuster für Remotevorgänge.** Wenn Ihre Anwendung von der Kommunikation zwischen Remotediensten abhängig ist, folgen Sie den Entwurfsmustern für den Umgang mit vorübergehenden Fehlern wie z.B. [Wiederholungsmuster][retry-pattern] und [Trennschalter-Muster][circuit-breaker]. Weitere Informationen finden Sie unter [Resilienzstrategien](../resiliency/index.md#resiliency-strategies).
+**Implementieren Sie ggf. Resilienzmuster für Remotevorgänge.** Wenn Ihre Anwendung von der Kommunikation zwischen Remotediensten abhängig ist, folgen Sie den [Entwurfsmustern](../patterns/category/resiliency.md) für den Umgang mit vorübergehenden Fehlern wie z.B. [Wiederholungsmuster][retry-pattern] und [Trennschalter-Muster][circuit-breaker]. 
 
 **Implementieren Sie nach Möglichkeit asynchrone Vorgänge.** Synchrone Vorgänge können zu einer Monopolisierung von Ressourcen führen und andere Vorgänge blockieren, während der Aufrufer auf den Abschluss des Vorgangs wartet. Entwerfen Sie die einzelnen Teile der Anwendung so, dass nach Möglichkeit asynchrone Vorgänge genutzt werden. Weitere Informationen zum Implementieren der asynchronen Programmierung in C# finden Sie unter [Asynchrone Programmierung mit Async und Await][asynchronous-c-sharp].
 
