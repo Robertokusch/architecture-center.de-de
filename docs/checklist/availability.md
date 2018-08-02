@@ -4,12 +4,12 @@ description: Checkliste, die Hinweise zu Überlegungen hinsichtlich der Verfügb
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: 324d8200d822eb1a7dce95ba4b2a7f29b00fb291
-ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
+ms.openlocfilehash: cea5baf8c37bf793c5de60f6c2be809629df072b
+ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/19/2018
-ms.locfileid: "27973109"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39352626"
 ---
 # <a name="availability-checklist"></a>Checkliste für die Verfügbarkeit
 
@@ -21,7 +21,7 @@ Verfügbarkeit ist der Zeitanteil, in dem ein System funktioniert und erreichbar
 
 **Teilen Sie Workloads nach Servicelevelziel auf.** Wenn ein Dienst wichtige und weniger wichtige Workloads umfasst, verwalten Sie sie unterschiedlich, und legen Sie die Dienstfunktionen und die Anzahl von Instanzen entsprechend den jeweiligen Anforderungen an die Verfügbarkeit fest.
 
-**Minimieren und erkennen Sie Abhängigkeiten des Dienstes.** Minimieren Sie die Anzahl der verschiedenen verwendeten Dienste, wenn möglich, und stellen Sie sicher, dass Sie alle im System vorhandenen Abhängigkeiten von Funktionen und Diensten kennen. Dazu gehört die Art dieser Abhängigkeiten und die Auswirkungen eines Ausfalls oder einer Leistungsbeeinträchtigung auf die Gesamtleistung der Anwendung. Siehe [Definieren Ihrer Anforderungen an die Resilienz](../resiliency/index.md#defining-your-resiliency-requirements).
+**Minimieren und erkennen Sie Abhängigkeiten des Dienstes.** Minimieren Sie die Anzahl der verschiedenen verwendeten Dienste, wenn möglich, und stellen Sie sicher, dass Sie alle im System vorhandenen Abhängigkeiten von Funktionen und Diensten kennen. Dazu gehört die Art dieser Abhängigkeiten und die Auswirkungen eines Ausfalls oder einer Leistungsbeeinträchtigung auf die Gesamtleistung der Anwendung.
 
 **Entwerfen Sie Aufgaben und Nachrichten möglichst so, dass sie idempotent sind.** Ein Vorgang ist idempotent, wenn er mehrere Male wiederholt werden kann und das gleiche Ergebnis erzielt. Idempotenz kann sicherstellen, dass doppelte Anforderungen keine Probleme verursachen. Nachrichtenconsumer und die Vorgänge, die sie ausführen, müssen idempotent sein, damit die Wiederholung eines zuvor ausgeführten Vorgangs nicht zu ungültigen Ergebnissen führt. Dies kann bedeuten, dass doppelte Nachrichten erkannt werden müssen oder dass die Konsistenz durch einen optimistischen Konfliktlösungsansatz gewährleistet sein muss.
 

@@ -4,12 +4,12 @@ description: Spezifische Dienstanleitung für die Festlegung des Wiederholungsme
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 39d342dc96e3d0d923ce159c392d9427359a4639
-ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
+ms.openlocfilehash: 72dfb59c3357c5f14806a33ef5f6cdd3e7937915
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/05/2018
-ms.locfileid: "37843625"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334163"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Wiederholungsanleitung für bestimmte Dienste
 
@@ -23,7 +23,7 @@ In der folgende Tabelle werden die Wiederholungsfunktionen für die in dieser An
 | --- | --- | --- | --- | --- |
 | **[Azure Active Directory](#azure-active-directory)** |Nativ in ADAL-Bibliothek |Eingebettet in ADAL-Bibliothek |Intern |Keine |
 | **[Cosmos DB](#cosmos-db)** |Systemeigen im Dienst |Nicht konfigurierbar |Global |TraceSource |
-| **[Event Hubs](#azure-event-hubs)** |Systemeigen in Client |Programmgesteuert |Client |Keine |
+| **[Event Hubs](#event-hubs)** |Systemeigen in Client |Programmgesteuert |Client |Keine |
 | **[Redis Cache](#azure-redis-cache)** |Systemeigen in Client |Programmgesteuert |Client |TextWriter |
 | **[Search](#azure-search)** |Systemeigen in Client |Programmgesteuert |Client |ETW oder benutzerdefiniert |
 | **[Service Bus](#service-bus)** |Systemeigen in Client |Programmgesteuert |Namespace-Manager, Messaging Factory und Client |ETW |

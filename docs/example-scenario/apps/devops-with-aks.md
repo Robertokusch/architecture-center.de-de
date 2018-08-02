@@ -3,12 +3,12 @@ title: CI/CD-Pipeline für containerbasierte Workloads
 description: Bewährtes Szenario zur Erstellung einer DevOps-Pipeline für eine Node.js-Web-App, für die Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB und Grafana verwendet werden.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: d9f6571234a0c3e67a233cfda1a37f6fb32929a3
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: dceb4ad3c34ec43a54d802772f5817cacdd3929c
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060760"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334214"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>CI/CD-Pipeline für containerbasierte Workloads
 
@@ -26,7 +26,7 @@ Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 * Beschleunigen von Anwendungsentwicklung und Bereitstellungslebenszyklen
 * Automatisieren von Bereitstellungen in Test- oder Akzeptanzumgebungen zu Überprüfungszwecken
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Übersicht über die Architektur der Azure-Komponenten für ein DevOps-Szenario mit Jenkins, Azure Container Registry und Azure Kubernetes Service][architecture]
 
@@ -119,7 +119,7 @@ Der Bereitstellungsvorgang kann zwischen 15 und 20 Minuten dauern.
 
 ## <a name="pricing"></a>Preise
 
-Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kostenrechner vorkonfiguriert. Wenn Sie wissen möchten, welche Kosten für Ihren spezifischen Anwendungsfall entstehen, passen Sie die entsprechenden Variablen an Ihren voraussichtlichen Datenverkehr an. an.
+Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kostenrechner vorkonfiguriert. Wenn Sie wissen möchten, welche Kosten für Ihren spezifischen Anwendungsfall entstehen, passen Sie die entsprechenden Variablen an Ihren voraussichtlichen Datenverkehr an.
 
 Auf der Grundlage der Anzahl der zu speichernden Containerimages und der Kubernetes-Knoten für die Ausführung Ihrer Anwendungen haben wir drei exemplarische Kostenprofile erstellt:
 
