@@ -2,12 +2,12 @@
 title: Azure-Governance-Entwurfshandbuch
 description: Leitfaden zur Konfiguration von Kontrollen in Bezug auf Azure-Governance, um für Benutzer die Bereitstellung einer einfachen Workload zu ermöglichen.
 author: petertay
-ms.openlocfilehash: 78545400fc0b09262dce3d0e577442443468b2ed
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 88cd24a46a6bdaca4e0dd18706af1f7e3fe3bce2
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229500"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016109"
 ---
 # <a name="azure-governance-design-guide"></a>Azure-Governance-Entwurfshandbuch
 
@@ -24,7 +24,7 @@ In der grundlegenden Einführungsphase besteht das Ziel darin, eine einfache Wor
 Bevor wir damit beginnen, das Governance-Modell zu entwerfen, ist es wichtig, dass wir uns mit der Azure-Lizenzierung vertraut machen. Der Grund ist, dass die Administratorkonten, die Ihrer Azure-Lizenz zugeordnet sind, über die höchste Zugriffsebene auf Ihre gesamten Azure-Ressourcen verfügen. Diese Administratorkonten bilden die Grundlage Ihres Governance-Modells.  
 
 > [!NOTE]
-> Wenn Ihre Organisation über ein vorhandenes [Microsoft Enterprise Agreement](https://www.microsoft.com/licensing/licensing-programs/enterprise.aspx) verfügt, in dem Azure nicht enthalten ist, kann Azure hinzugefügt werden, indem Sie vorab eine Zahlungsverpflichtung eingehen. Weitere Informationen finden Sie unter [Lizenzierung von Azure für das Unternehmen](https://azure.microsoft.com/pricing/enterprise-agreement/). 
+> Wenn Ihre Organisation über ein vorhandenes [Microsoft Enterprise Agreement](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx) verfügt, in dem Azure nicht enthalten ist, kann Azure hinzugefügt werden, indem Sie vorab eine Zahlungsverpflichtung eingehen. Weitere Informationen finden Sie unter [Lizenzierung von Azure für das Unternehmen](https://azure.microsoft.com/pricing/enterprise-agreement/). 
 
 Wenn Azure dem Enterprise Agreement Ihrer Organisation hinzugefügt wird, wird Ihre Organisation aufgefordert, ein **Azure-Konto** zu erstellen. Bei der Erstellung des Kontos wurden ein **Azure-Kontobesitzer** und ein Azure Active Directory-Mandant (Azure AD) mit einem Konto vom Typ **Globaler Administrator** erstellt. Ein Azure AD-Mandant ist ein logisches Konstrukt, das eine sichere, dedizierte Instanz von Azure AD darstellt.
 

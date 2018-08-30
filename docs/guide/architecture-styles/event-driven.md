@@ -2,12 +2,12 @@
 title: Ereignisgesteuerter Architekturstil
 description: Dieser Artikel beschreibt die Vorteile, Herausforderungen und bewährten Methoden für ereignisgesteuerte und IoT-Architekturen in Azure.
 author: MikeWasson
-ms.openlocfilehash: 3289bf784b02d62e3d0c1a29b4839c9be3501134
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: dbf6be5ed386d06f96c876993ad03e7cb0e3dded
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29478322"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016036"
 ---
 # <a name="event-driven-architecture-style"></a>Ereignisgesteuerter Architekturstil
 
@@ -55,42 +55,9 @@ In dem logischen Diagramm oben wird jeder Consumertyp als einzelnes Feld angezei
 - Garantierte Übermittlung. In manchen Systemen – insbesondere in IoT-Szenarien – ist es von entscheidender Bedeutung, sicherstellen zu können, dass Ereignisse übermittelt werden.
 - Verarbeitung der Ereignisse in einer bestimmten Reihenfolge oder genau einmal. Jeder Consumertyp wird aus Gründen der Resilienz und Skalierbarkeit in der Regel in mehreren Instanzen ausgeführt. Dies kann zu einer Herausforderung werden, wenn die Ereignisse (innerhalb eines Consumertyps) in einer bestimmten Reihenfolge verarbeitet werden müssen oder die Verarbeitungslogik nicht idempotent ist.
 
-## <a name="iot-architecture"></a>IoT-Architektur
-
-Ereignisgesteuerte Architekturen sind von zentraler Bedeutung für IoT-Lösungen. Das folgende Diagramm zeigt eine mögliche logische Architektur für IoT. Das Diagramm veranschaulicht die Komponenten der Architektur, die Ereignisströme verarbeiten.
-
-![](./images/iot.png)
-
-Das **Cloudgateway** erfasst Geräteereignisse an der Cloudgrenze mithilfe eines zuverlässigen Messagingsystems mit niedriger Latenz.
-
-Geräte können Ereignisse direkt an das Cloudgateway oder über ein **Bereichsgateway**. Ein Bereichsgateway ist ein spezialisiertes Gerät oder Softwareprogramm, das sich üblicherweise am gleichen Ort befindet wie die Geräte. Es empfängt Ereignisse und leitet sie an das Cloudgateway weiter. Das Bereichsgateway kann auch Vorverarbeitungsfunktionen für die Geräteereignisse ausführen, z.B. Filtern, Aggregation oder Protokolltransformation.
-
-Nach dem Erfassen durchlaufen Ereignisse einen oder mehrere **Datenstromprozessoren**, die die Daten weiterleiten (z.B. zum Speicher) oder Analyse- oder andere Verarbeitungsfunktionen ausführen.
-
-Nachfolgend finden Sie einige häufige Verarbeitungsarten. (Diese Liste ist sicherlich nicht vollständig.)
-
-- Schreiben von Ereignisdaten in einen Cold Storage zur Archivierung oder Batchanalyse.
-
-- Analyse des langsamsten Pfads – der Ereignisstrom wird (nahezu) in Echtzeit analysiert, um Anomalien zu erkennen, Muster in rollierenden Zeitfenstern zu ermitteln oder Warnungen auszulösen, wenn eine bestimmte Bedingung im Ereignisstrom auftritt. 
-
-- Verarbeitung bestimmter Arten von nicht telemetriebezogenen Nachrichten von Geräten, z.B. Benachrichtigungen und Warnungen. 
-
-- Machine Learning.
-
-Die grauen Felder stehen für Komponenten eines IoT-Systems, die nicht in direktem Zusammenhang mit der Ereignisstromverarbeitung stehen, sondern der Vollständigkeit halber hier mit aufgeführt werden.
-
-- Die **Geräteregistrierung** ist eine Datenbank der bereitgestellten Geräte und enthält die Geräte-IDs sowie üblicherweise einige Metadaten zu den Geräten, beispielsweise den Standort.
-
-- Die **Bereitstellungs-API** ist eine allgemeine externe Schnittstelle für die Bereitstellung und Registrierung neuer Geräte.
-
-- In einigen IoT-Lösungen können **Nachrichten mit Befehlen und Steuerungsinformationen** an die Geräte gesendet werden.
-
-> Dieser Abschnitt stellt eine sehr allgemeine Übersicht über IoT dar, und es gibt eine Vielzahl von Feinheiten und Herausforderungen, die es in diesem Bereich zu berücksichtigen gilt. Weitere Informationen und Details finden Sie in der als PDF-Download verfügbaren [Microsoft Azure IoT Reference Architecture][iot-ref-arch] (Referenzarchitektur zu Microsoft Azure IoT).
-
  <!-- links -->
 
 [competing-consumers]: ../../patterns/competing-consumers.md
-[iot-ref-arch]: https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/
 [minimize-coordination]: ../design-principles/minimize-coordination.md
 
 
