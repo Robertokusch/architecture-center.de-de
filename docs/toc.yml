@@ -1,516 +1,501 @@
+items:
 - name: Azure Architecture Center
   href: index.md
 - name: Cloudgrundlagen
   items:
-    - name: Anwendungsarchitekturleitfaden
+  - name: Anwendungsarchitekturleitfaden
+    items:
+    - name: Einführung
+      href: guide/index.md
+    - name: Architekturstile
       items:
-        - name: Einführung
-          href: guide/index.md
-        - name: Architekturstile
-          items:
-            - name: Übersicht
-              href: guide/architecture-styles/index.md
-            - name: Anwendung mit n-Schichten
-              href: guide/architecture-styles/n-tier.md
-            - name: Web-Warteschlange-Worker
-              href: guide/architecture-styles/web-queue-worker.md
-            - name: Microservices
-              href: guide/architecture-styles/microservices.md
-            - name: CQRS-Architektur
-              href: guide/architecture-styles/cqrs.md
-            - name: Ereignisgesteuerte Architektur
-              href: guide/architecture-styles/event-driven.md
-            - name: Große Datenmengen
-              href: guide/architecture-styles/big-data.md
-            - name: Big Compute
-              href: guide/architecture-styles/big-compute.md
-        - name: Wählen eines Computediensts
-          items:
-            - name: Übersicht
-              href: guide/technology-choices/compute-overview.md
-            - name: Entscheidungsstruktur
-              href: guide/technology-choices/compute-decision-tree.md
-            - name: Vergleich der Computeoptionen
-              href: guide/technology-choices/compute-comparison.md
-        - name: Auswählen eines Datenspeichers
-          items:
-            - name: Übersicht
-              href: guide/technology-choices/data-store-overview.md
-            - name: Vergleich der Datenspeicher
-              href: guide/technology-choices/data-store-comparison.md
-        - name: Entwurfsprinzipien
-          items:
-            - name: Übersicht
-              href: guide/design-principles/index.md
-            - name: Entwurf mit Blick auf Selbstreparatur
-              href: guide/design-principles/self-healing.md
-            - name: Herstellen von Redundanz für alle Anwendungskomponenten
-              href: guide/design-principles/redundancy.md
-            - name: Minimieren der Koordinierung
-              href: guide/design-principles/minimize-coordination.md
-            - name: Ausrichtung des Entwurfs auf horizontale Skalierung
-              href: guide/design-principles/scale-out.md
-            - name: Umgehung von Beschränkungen durch Partitionierung
-              href: guide/design-principles/partition.md
-            - name: Entwurf mit Blick auf den Betrieb
-              href: guide/design-principles/design-for-operations.md
-            - name: Verwendung verwalteter Dienste
-              href: guide/design-principles/managed-services.md
-            - name: Verwendung des idealen Datenspeichers
-              href: guide/design-principles/use-the-best-data-store.md
-            - name: Entwurf mit Blick auf die Entwicklung
-              href: guide/design-principles/design-for-evolution.md
-            - name: Ausrichtung des Entwurfs auf die Unternehmensanforderungen
-              href: guide/design-principles/build-for-business.md
-        - name: Säulen der Softwarequalität
-          href: guide/pillars.md
-        - name: Bewährte Methoden für Cloudarchitekturen
-          items:
-            - name: API-Design
-              href: best-practices/api-design.md
-            - name: API-Implementierung
-              href: best-practices/api-implementation.md
-            - name: Automatische Skalierung
-              href: best-practices/auto-scaling.md
-            - name: Hintergrundaufträge
-              href: best-practices/background-jobs.md
-            - name: Caching
-              href: best-practices/caching.md
-            - name: Content Delivery Network
-              href: best-practices/cdn.md
-            - name: Datenpartitionierung
-              href: best-practices/data-partitioning.md
-            - name: Überwachung und Diagnose
-              href: best-practices/monitoring.md
-            - name: Benennungskonventionen
-              href: best-practices/naming-conventions.md
-            - name: Behandeln vorübergehender Fehler
-              href: best-practices/transient-faults.md
-            - name: Wiederholungsanleitung für bestimmte Dienste
-              href: best-practices/retry-service-specific.md
-    - name: Datenarchitekturleitfaden
+      - name: Übersicht
+        href: guide/architecture-styles/index.md
+      - name: Anwendung mit n-Schichten
+        href: guide/architecture-styles/n-tier.md
+      - name: Web-Warteschlange-Worker
+        href: guide/architecture-styles/web-queue-worker.md
+      - name: Microservices
+        href: guide/architecture-styles/microservices.md
+      - name: CQRS-Architektur
+        href: guide/architecture-styles/cqrs.md
+      - name: Ereignisgesteuerte Architektur
+        href: guide/architecture-styles/event-driven.md
+      - name: Große Datenmengen
+        href: guide/architecture-styles/big-data.md
+      - name: Big Compute
+        href: guide/architecture-styles/big-compute.md
+    - name: Wählen eines Computediensts
       items:
-        - name: Einführung
-          href: data-guide/index.md
-        - name: Herkömmliche RDMBS-Workloads
-          items:
-            - name: Übersicht
-              href: data-guide/relational-data/index.md
-            - name: Onlinetransaktionsverarbeitung (OLTP)
-              href: data-guide/relational-data/online-transaction-processing.md
-            - name: Data Warehousing
-              href: data-guide/relational-data/data-warehousing.md
-            - name: 'Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)'
-              href: data-guide/relational-data/online-analytical-processing.md
-            - name: 'Extrahieren, Transformieren und Laden (ETL)'
-              href: data-guide/relational-data/etl.md
-        - name: Big Data-Architekturen
-          items:
-            - name: Übersicht
-              href: data-guide/big-data/index.md
-            - name: Batchverarbeitung
-              href: data-guide/big-data/batch-processing.md
-            - name: Verarbeitung in Echtzeit
-              href: data-guide/big-data/real-time-processing.md
-            - name: Bedarfsorientiertes Machine Learning
-              href: data-guide/big-data/machine-learning-at-scale.md
-            - name: Nicht relationale Datenspeicher
-              href: data-guide/big-data/non-relational-data.md
-            - name: Szenarien
-              items:
-                - name: Erweiterte Analyse
-                  href: data-guide/scenarios/advanced-analytics.md
-                - name: Data Lakes
-                  href: data-guide/scenarios/data-lake.md
-                - name: Freiform-Textsuche
-                  href: data-guide/scenarios/search.md
-                - name: Interaktive Datenuntersuchung
-                  href: data-guide/scenarios/interactive-data-exploration.md
-                - name: Verarbeitung natürlicher Sprache
-                  href: data-guide/scenarios/natural-language-processing.md
-                - name: Zeitreihenlösungen
-                  href: data-guide/scenarios/time-series.md
-                - name: Arbeiten mit CSV- und JSON-Dateien
-                  href: data-guide/scenarios/csv-and-json.md
-            - name: Auswahl der Technologie
-              items:
-                - name: Analysedatenspeicher
-                  href: data-guide/technology-choices/analytical-data-stores.md
-                - name: Analysen und Berichte
-                  href: data-guide/technology-choices/analysis-visualizations-reporting.md
-                - name: Batchverarbeitung
-                  href: data-guide/technology-choices/batch-processing.md
-                - name: Cognitive Services
-                  href: data-guide/technology-choices/cognitive-services.md
-                - name: Datenspeicher
-                  href: data-guide/technology-choices/data-storage.md
-                - name: Machine Learning
-                  href: data-guide/technology-choices/data-science-and-machine-learning.md
-                - name: Verarbeitung natürlicher Sprache
-                  href: data-guide/technology-choices/natural-language-processing.md
-                - name: Pipelineorchestrierung
-                  href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
-                - name: Echtzeiterfassung von Nachrichten
-                  href: data-guide/technology-choices/real-time-ingestion.md
-                - name: Durchsuchen von Datenspeichern
-                  href: data-guide/technology-choices/search-options.md
-                - name: Streamverarbeitung
-                  href: data-guide/technology-choices/stream-processing.md
-        - name: Querschnittsthemen
-          items:
-            - name: Datenübertragung
-              href: data-guide/scenarios/data-transfer.md
-            - name: Erweitern lokaler Datenlösungen auf die Cloud
-              href: data-guide/scenarios/hybrid-on-premises-and-cloud.md
-            - name: Schützen von Datenlösungen
-              href: data-guide/scenarios/securing-data-solutions.md
-    - name: Cloudentwurfsmuster
+      - name: Übersicht
+        href: guide/technology-choices/compute-overview.md
+      - name: Entscheidungsstruktur
+        href: guide/technology-choices/compute-decision-tree.md
+      - name: Vergleich der Computeoptionen
+        href: guide/technology-choices/compute-comparison.md
+    - name: Auswählen eines Datenspeichers
       items:
-        - name: Übersicht
-          href: patterns/index.md
-        - name: Categories
-          items:
-            - name: Verfügbarkeit
-              href: patterns/category/availability.md
-            - name: Datenverwaltung
-              href: patterns/category/data-management.md
-            - name: Entwurf und Implementierung
-              href: patterns/category/design-implementation.md
-            - name: Nachrichten
-              href: patterns/category/messaging.md
-            - name: Verwaltung und Überwachung
-              href: patterns/category/management-monitoring.md
-            - name: Leistung und Skalierbarkeit
-              href: patterns/category/performance-scalability.md
-            - name: Resilienz
-              href: patterns/category/resiliency.md
-            - name: Sicherheit
-              href: patterns/category/security.md
-        - name: Ambassador
-          href: patterns/ambassador.md
-        - name: Antikorruptionsschicht
-          href: patterns/anti-corruption-layer.md
-        - name: Back-Ends für Front-Ends
-          href: patterns/backends-for-frontends.md
-        - name: Bulkhead
-          href: patterns/bulkhead.md
-        - name: Cachefremd
-          href: patterns/cache-aside.md
-        - name: Sicherung
-          href: patterns/circuit-breaker.md
-        - name: Command and Query Responsibility Segregation (CQRS)
-          href: patterns/cqrs.md
-        - name: Ausgleichende Transaktion
-          href: patterns/compensating-transaction.md
-        - name: Konkurrierende Consumer
-          href: patterns/competing-consumers.md
-        - name: Computeressourcenkonsolidierung
-          href: patterns/compute-resource-consolidation.md
-        - name: Ereignissourcing
-          href: patterns/event-sourcing.md
-        - name: Externer Konfigurationsspeicher
-          href: patterns/external-configuration-store.md
-        - name: Verbundidentität
-          href: patterns/federated-identity.md
-        - name: Gatekeeper
-          href: patterns/gatekeeper.md
-        - name: Gatewayaggregation
-          href: patterns/gateway-aggregation.md
-        - name: Gatewayabladung
-          href: patterns/gateway-offloading.md
-        - name: Gatewayrouting
-          href: patterns/gateway-routing.md
-        - name: Überwachung des Integritätsendpunkts
-          href: patterns/health-endpoint-monitoring.md
-        - name: Indextabelle
-          href: patterns/index-table.md
-        - name: Auswahl einer übergeordneten Instanz
-          href: patterns/leader-election.md
-        - name: Materialisierte Sicht
-          href: patterns/materialized-view.md
-        - name: Pipes und Filter
-          href: patterns/pipes-and-filters.md
-        - name: Prioritätswarteschlange
-          href: patterns/priority-queue.md
-        - name: Warteschlangenbasierter Lastenausgleich
-          href: patterns/queue-based-load-leveling.md
-        - name: Wiederholen
-          href: patterns/retry.md
-        - name: Scheduler-Agent-Supervisor
-          href: patterns/scheduler-agent-supervisor.md
-        - name: Sharding (Horizontales Partitionieren)
-          href: patterns/sharding.md
-        - name: Sidecar
-          href: patterns/sidecar.md
-        - name: Hosten von statischen Inhalten
-          href: patterns/static-content-hosting.md
-        - name: Strangler
-          href: patterns/strangler.md
-        - name: Drosselung
-          href: patterns/throttling.md
-        - name: Valet-Schlüssel
-          href: patterns/valet-key.md
-    - name: Leistungsbezogene Antimuster
+      - name: Übersicht
+        href: guide/technology-choices/data-store-overview.md
+      - name: Vergleich der Datenspeicher
+        href: guide/technology-choices/data-store-comparison.md
+    - name: Entwurfsprinzipien
       items:
-        - name: Übersicht
-          href: antipatterns/index.md
-        - name: Ausgelastete Datenbank
-          href: antipatterns/busy-database/index.md
-        - name: Ausgelastetes Front-End
-          href: antipatterns/busy-front-end/index.md
-        - name: Zu viele E/A-Vorgänge
-          href: antipatterns/chatty-io/index.md
-        - name: Irrelevante Abrufe
-          href: antipatterns/extraneous-fetching/index.md
-        - name: Ungeeignete Instanziierung
-          href: antipatterns/improper-instantiation/index.md
-        - name: Monolithische Persistenz
-          href: antipatterns/monolithic-persistence/index.md
-        - name: Kein Caching
-          href: antipatterns/no-caching/index.md
-        - name: Synchrone E/A-Vorgänge
-          href: antipatterns/synchronous-io/index.md
-    - name: Erstellen von Microservices in Azure
+      - name: Übersicht
+        href: guide/design-principles/index.md
+      - name: Entwurf mit Blick auf Selbstreparatur
+        href: guide/design-principles/self-healing.md
+      - name: Herstellen von Redundanz für alle Anwendungskomponenten
+        href: guide/design-principles/redundancy.md
+      - name: Minimieren der Koordinierung
+        href: guide/design-principles/minimize-coordination.md
+      - name: Ausrichtung des Entwurfs auf horizontale Skalierung
+        href: guide/design-principles/scale-out.md
+      - name: Umgehung von Beschränkungen durch Partitionierung
+        href: guide/design-principles/partition.md
+      - name: Entwurf mit Blick auf den Betrieb
+        href: guide/design-principles/design-for-operations.md
+      - name: Verwendung verwalteter Dienste
+        href: guide/design-principles/managed-services.md
+      - name: Verwendung des idealen Datenspeichers
+        href: guide/design-principles/use-the-best-data-store.md
+      - name: Entwurf mit Blick auf die Entwicklung
+        href: guide/design-principles/design-for-evolution.md
+      - name: Ausrichtung des Entwurfs auf die Unternehmensanforderungen
+        href: guide/design-principles/build-for-business.md
+    - name: Säulen der Softwarequalität
+      href: guide/pillars.md
+    - name: Bewährte Methoden für Cloudarchitekturen
       items:
-        - name: Einführung
-          href: microservices/index.md
-        - name: Domänenanalyse
-          href: microservices/domain-analysis.md
-        - name: Identifizieren von Microservice-Grenzen
-          href: microservices/microservice-boundaries.md
-        - name: Überlegungen zu Daten
-          href: microservices/data-considerations.md
-        - name: Kommunikation zwischen Diensten
-          href: microservices/interservice-communication.md
-        - name: API-Design
-          href: microservices/api-design.md
-        - name: Erfassung und Workflow
-          href: microservices/ingestion-workflow.md
-        - name: API-Gateways
-          href: microservices/gateway.md
-        - name: Protokollierung und Überwachung
-          href: microservices/logging-monitoring.md
-        - name: CI/CD
-          href: microservices/ci-cd.md
-    - name: Verwalten von mehrinstanzenfähigen Identitäten
+      - name: API-Design
+        href: best-practices/api-design.md
+      - name: API-Implementierung
+        href: best-practices/api-implementation.md
+      - name: Automatische Skalierung
+        href: best-practices/auto-scaling.md
+      - name: Hintergrundaufträge
+        href: best-practices/background-jobs.md
+      - name: Caching
+        href: best-practices/caching.md
+      - name: Content Delivery Network
+        href: best-practices/cdn.md
+      - name: Datenpartitionierung
+        href: best-practices/data-partitioning.md
+      - name: Überwachung und Diagnose
+        href: best-practices/monitoring.md
+      - name: Benennungskonventionen
+        href: best-practices/naming-conventions.md
+      - name: Behandeln vorübergehender Fehler
+        href: best-practices/transient-faults.md
+      - name: Wiederholungsanleitung für bestimmte Dienste
+        href: best-practices/retry-service-specific.md
+  - name: Datenarchitekturleitfaden
+    items:
+    - name: Einführung
+      href: data-guide/index.md
+    - name: Herkömmliche RDMBS-Workloads
       items:
-        - name: Einführung
-          href: multitenant-identity/index.md
-        - name: Das Tailspin-Szenario
-          href: multitenant-identity/tailspin.md
-        - name: Authentifizierung
-          href: multitenant-identity/authenticate.md
-        - name: Anspruchsbasierte Identität
-          href: multitenant-identity/claims.md
-        - name: Mandantenanmeldung
-          href: multitenant-identity/signup.md
-        - name: Anwendungsrollen
-          href: multitenant-identity/app-roles.md
-        - name: Autorisierung
-          href: multitenant-identity/authorize.md
-        - name: Sichern einer Web-API
-          href: multitenant-identity/web-api.md
-        - name: Zwischenspeichern von Zugriffstoken
-          href: multitenant-identity/token-cache.md
-        - name: Clientassertion
-          href: multitenant-identity/client-assertion.md
-        - name: Schützen von Anwendungsgeheimnissen
-          href: multitenant-identity/key-vault.md
-        - name: Herstellen eines Verbunds mit der AD FS-Instanz eines Kunden
-          href: multitenant-identity/adfs.md
-        - name: Ausführen der Surveys-Anwendung
-          href: multitenant-identity/run-the-app.md
-    - name: Migration von Cloud Services zu Service Fabric
+      - name: Übersicht
+        href: data-guide/relational-data/index.md
+      - name: Onlinetransaktionsverarbeitung (OLTP)
+        href: data-guide/relational-data/online-transaction-processing.md
+      - name: Data Warehousing
+        href: data-guide/relational-data/data-warehousing.md
+      - name: Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)
+        href: data-guide/relational-data/online-analytical-processing.md
+      - name: Extrahieren, Transformieren und Laden (ETL)
+        href: data-guide/relational-data/etl.md
+    - name: Big Data-Architekturen
       items:
-        - name: Migrieren einer Cloud Services-Anwendung zu Service Fabric
-          href: service-fabric/migrate-from-cloud-services.md
-        - name: Umgestalten einer Service Fabric-Anwendung
-          href: service-fabric/refactor-migrated-app.md
+      - name: Übersicht
+        href: data-guide/big-data/index.md
+      - name: Batchverarbeitung
+        href: data-guide/big-data/batch-processing.md
+      - name: Verarbeitung in Echtzeit
+        href: data-guide/big-data/real-time-processing.md
+      - name: Bedarfsorientiertes Machine Learning
+        href: data-guide/big-data/machine-learning-at-scale.md
+      - name: Nicht relationale Datenspeicher
+        href: data-guide/big-data/non-relational-data.md
+      - name: Szenarien
+        items:
+        - name: Erweiterte Analyse
+          href: data-guide/scenarios/advanced-analytics.md
+        - name: Data Lakes
+          href: data-guide/scenarios/data-lake.md
+        - name: Freiform-Textsuche
+          href: data-guide/scenarios/search.md
+        - name: Interaktive Datenuntersuchung
+          href: data-guide/scenarios/interactive-data-exploration.md
+        - name: Verarbeitung natürlicher Sprache
+          href: data-guide/scenarios/natural-language-processing.md
+        - name: Zeitreihenlösungen
+          href: data-guide/scenarios/time-series.md
+        - name: Arbeiten mit CSV- und JSON-Dateien
+          href: data-guide/scenarios/csv-and-json.md
+      - name: Auswahl der Technologie
+        items:
+        - name: Analysedatenspeicher
+          href: data-guide/technology-choices/analytical-data-stores.md
+        - name: Analysen und Berichte
+          href: data-guide/technology-choices/analysis-visualizations-reporting.md
+        - name: Batchverarbeitung
+          href: data-guide/technology-choices/batch-processing.md
+        - name: Cognitive Services
+          href: data-guide/technology-choices/cognitive-services.md
+        - name: Datenspeicher
+          href: data-guide/technology-choices/data-storage.md
+        - name: Machine Learning
+          href: data-guide/technology-choices/data-science-and-machine-learning.md
+        - name: Verarbeitung natürlicher Sprache
+          href: data-guide/technology-choices/natural-language-processing.md
+        - name: Pipelineorchestrierung
+          href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
+        - name: Echtzeiterfassung von Nachrichten
+          href: data-guide/technology-choices/real-time-ingestion.md
+        - name: Durchsuchen von Datenspeichern
+          href: data-guide/technology-choices/search-options.md
+        - name: Streamverarbeitung
+          href: data-guide/technology-choices/stream-processing.md
+    - name: Querschnittsthemen
+      items:
+      - name: Datenübertragung
+        href: data-guide/scenarios/data-transfer.md
+      - name: Erweitern lokaler Datenlösungen auf die Cloud
+        href: data-guide/scenarios/hybrid-on-premises-and-cloud.md
+      - name: Schützen von Datenlösungen
+        href: data-guide/scenarios/securing-data-solutions.md
+  - name: Cloudentwurfsmuster
+    items:
+    - name: Übersicht
+      href: patterns/index.md
+    - name: Categories
+      items:
+      - name: Verfügbarkeit
+        href: patterns/category/availability.md
+      - name: Datenverwaltung
+        href: patterns/category/data-management.md
+      - name: Entwurf und Implementierung
+        href: patterns/category/design-implementation.md
+      - name: Nachrichten
+        href: patterns/category/messaging.md
+      - name: Verwaltung und Überwachung
+        href: patterns/category/management-monitoring.md
+      - name: Leistung und Skalierbarkeit
+        href: patterns/category/performance-scalability.md
+      - name: Resilienz
+        href: patterns/category/resiliency.md
+      - name: Sicherheit
+        href: patterns/category/security.md
+    - name: Ambassador
+      href: patterns/ambassador.md
+    - name: Antikorruptionsschicht
+      href: patterns/anti-corruption-layer.md
+    - name: Back-Ends für Front-Ends
+      href: patterns/backends-for-frontends.md
+    - name: Bulkhead
+      href: patterns/bulkhead.md
+    - name: Cachefremd
+      href: patterns/cache-aside.md
+    - name: Sicherung
+      href: patterns/circuit-breaker.md
+    - name: Command and Query Responsibility Segregation (CQRS)
+      href: patterns/cqrs.md
+    - name: Ausgleichende Transaktion
+      href: patterns/compensating-transaction.md
+    - name: Konkurrierende Consumer
+      href: patterns/competing-consumers.md
+    - name: Computeressourcenkonsolidierung
+      href: patterns/compute-resource-consolidation.md
+    - name: Ereignissourcing
+      href: patterns/event-sourcing.md
+    - name: Externer Konfigurationsspeicher
+      href: patterns/external-configuration-store.md
+    - name: Verbundidentität
+      href: patterns/federated-identity.md
+    - name: Gatekeeper
+      href: patterns/gatekeeper.md
+    - name: Gatewayaggregation
+      href: patterns/gateway-aggregation.md
+    - name: Gatewayabladung
+      href: patterns/gateway-offloading.md
+    - name: Gatewayrouting
+      href: patterns/gateway-routing.md
+    - name: Überwachung des Integritätsendpunkts
+      href: patterns/health-endpoint-monitoring.md
+    - name: Indextabelle
+      href: patterns/index-table.md
+    - name: Auswahl einer übergeordneten Instanz
+      href: patterns/leader-election.md
+    - name: Materialisierte Sicht
+      href: patterns/materialized-view.md
+    - name: Pipes und Filter
+      href: patterns/pipes-and-filters.md
+    - name: Prioritätswarteschlange
+      href: patterns/priority-queue.md
+    - name: Warteschlangenbasierter Lastenausgleich
+      href: patterns/queue-based-load-leveling.md
+    - name: Wiederholen
+      href: patterns/retry.md
+    - name: Scheduler-Agent-Supervisor
+      href: patterns/scheduler-agent-supervisor.md
+    - name: Sharding (Horizontales Partitionieren)
+      href: patterns/sharding.md
+    - name: Sidecar
+      href: patterns/sidecar.md
+    - name: Hosten von statischen Inhalten
+      href: patterns/static-content-hosting.md
+    - name: Strangler
+      href: patterns/strangler.md
+    - name: Drosselung
+      href: patterns/throttling.md
+    - name: Valet-Schlüssel
+      href: patterns/valet-key.md
+  - name: Leistungsbezogene Antimuster
+    items:
+    - name: Übersicht
+      href: antipatterns/index.md
+    - name: Ausgelastete Datenbank
+      href: antipatterns/busy-database/index.md
+    - name: Ausgelastetes Front-End
+      href: antipatterns/busy-front-end/index.md
+    - name: Zu viele E/A-Vorgänge
+      href: antipatterns/chatty-io/index.md
+    - name: Irrelevante Abrufe
+      href: antipatterns/extraneous-fetching/index.md
+    - name: Ungeeignete Instanziierung
+      href: antipatterns/improper-instantiation/index.md
+    - name: Monolithische Persistenz
+      href: antipatterns/monolithic-persistence/index.md
+    - name: Kein Caching
+      href: antipatterns/no-caching/index.md
+    - name: Synchrone E/A-Vorgänge
+      href: antipatterns/synchronous-io/index.md
+  - name: Erstellen von Microservices in Azure
+    items:
+    - name: Einführung
+      href: microservices/index.md
+    - name: Domänenanalyse
+      href: microservices/domain-analysis.md
+    - name: Identifizieren von Microservice-Grenzen
+      href: microservices/microservice-boundaries.md
+    - name: Überlegungen zu Daten
+      href: microservices/data-considerations.md
+    - name: Kommunikation zwischen Diensten
+      href: microservices/interservice-communication.md
+    - name: API-Design
+      href: microservices/api-design.md
+    - name: Erfassung und Workflow
+      href: microservices/ingestion-workflow.md
+    - name: API-Gateways
+      href: microservices/gateway.md
+    - name: Protokollierung und Überwachung
+      href: microservices/logging-monitoring.md
+    - name: CI/CD
+      href: microservices/ci-cd.md
+  - name: Verwalten von mehrinstanzenfähigen Identitäten
+    items:
+    - name: Einführung
+      href: multitenant-identity/index.md
+    - name: Das Tailspin-Szenario
+      href: multitenant-identity/tailspin.md
+    - name: Authentifizierung
+      href: multitenant-identity/authenticate.md
+    - name: Anspruchsbasierte Identität
+      href: multitenant-identity/claims.md
+    - name: Mandantenanmeldung
+      href: multitenant-identity/signup.md
+    - name: Anwendungsrollen
+      href: multitenant-identity/app-roles.md
+    - name: Autorisierung
+      href: multitenant-identity/authorize.md
+    - name: Sichern einer Web-API
+      href: multitenant-identity/web-api.md
+    - name: Zwischenspeichern von Zugriffstoken
+      href: multitenant-identity/token-cache.md
+    - name: Clientassertion
+      href: multitenant-identity/client-assertion.md
+    - name: Schützen von Anwendungsgeheimnissen
+      href: multitenant-identity/key-vault.md
+    - name: Herstellen eines Verbunds mit der AD FS-Instanz eines Kunden
+      href: multitenant-identity/adfs.md
+    - name: Ausführen der Surveys-Anwendung
+      href: multitenant-identity/run-the-app.md
+  - name: Migration von Cloud Services zu Service Fabric
+    items:
+    - name: Migrieren einer Cloud Services-Anwendung zu Service Fabric
+      href: service-fabric/migrate-from-cloud-services.md
+    - name: Umgestalten einer Service Fabric-Anwendung
+      href: service-fabric/refactor-migrated-app.md
 - name: Beispielszenarien
   items:
-    - name: Übersicht
-      href: example-scenario/index.md
-    - name: AI
-      items:
-        - name: Bildklassifizierung
-          href: example-scenario/ai/intelligent-apps-image-processing.md
-    - name: Apps
-      items:
-        - name: Chatbot für Hotelreservierung
-          href: example-scenario/apps/commerce-chatbot.md
-        - name: DevOps mit Containern
-          href: example-scenario/apps/devops-with-aks.md
-        - name: DevOps mit VSTS
-          href: example-scenario/apps/devops-dotnet-webapp.md
-        - name: SAP für Dev/Test
-          href: example-scenario/apps/sap-dev-test.md
-        - name: E-Commerce-Front-End
-          href: example-scenario/apps/ecommerce-scenario.md
-    - name: Daten und Analysen
-      items:
-        - name: Betrugsermittlung in Echtzeit
-          href: example-scenario/data/fraud-detection.md
-        - name: Skalierbare Auftragsverarbeitung
-          href: example-scenario/data/ecommerce-order-processing.md
-    - name: Infrastruktur
-      items:
-        - name: Windows mit mehreren Ebenen
-          href: example-scenario/infrastructure/regulated-multitier-app.md
-        - name: Rendern von HPC-Video
-          href: example-scenario/infrastructure/video-rendering.md
+  - name: Übersicht
+    href: example-scenario/index.md
+  - name: AI
+    items:
+    - name: Bildklassifizierung
+      href: example-scenario/ai/intelligent-apps-image-processing.md
+  - name: Apps
+    items:
+    - name: Chatbot für Hotelreservierung
+      href: example-scenario/apps/commerce-chatbot.md
+    - name: DevOps mit Containern
+      href: example-scenario/apps/devops-with-aks.md
+    - name: DevOps mit VSTS
+      href: example-scenario/apps/devops-dotnet-webapp.md
+    - name: SAP für Dev/Test
+      href: example-scenario/apps/sap-dev-test.md
+    - name: E-Commerce-Front-End
+      href: example-scenario/apps/ecommerce-scenario.md
+  - name: Daten und Analysen
+    items:
+    - name: Betrugsermittlung in Echtzeit
+      href: example-scenario/data/fraud-detection.md
+    - name: Skalierbare Auftragsverarbeitung
+      href: example-scenario/data/ecommerce-order-processing.md
+  - name: Infrastruktur
+    items:
+    - name: Windows mit mehreren Ebenen
+      href: example-scenario/infrastructure/regulated-multitier-app.md
+    - name: Rendern von HPC-Video
+      href: example-scenario/infrastructure/video-rendering.md
 - name: Referenzarchitekturen
   items:
+  - name: Übersicht
+    href: reference-architectures/index.md
+  - name: App Service-Webanwendung
+    items:
+    - name: Einfache Webanwendung
+      href: reference-architectures/app-service-web-app/basic-web-app.md
+    - name: Verbesserte Skalierbarkeit
+      href: reference-architectures/app-service-web-app/scalable-web-app.md
+    - name: Bereitstellung in mehreren Regionen
+      href: reference-architectures/app-service-web-app/multi-region.md
+  - name: Große Datenmengen
+    items:
+    - name: Enterprise BI mit SQL Data Warehouse
+      href: reference-architectures/data/enterprise-bi-sqldw.md
+    - name: Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Data Factory
+      href: reference-architectures/data/enterprise-bi-adf.md
+    - name: Datenstromverarbeitung mit Azure Stream Analytics
+      href: reference-architectures/data/stream-processing-stream-analytics.md
+  - name: Hybridnetzwerke
+    items:
     - name: Übersicht
-      href: reference-architectures/index.md
-    - name: App Service-Webanwendung
-      items:
-        - name: Einfache Webanwendung
-          href: reference-architectures/app-service-web-app/basic-web-app.md
-        - name: Verbesserte Skalierbarkeit
-          href: reference-architectures/app-service-web-app/scalable-web-app.md
-        - name: Bereitstellung in mehreren Regionen
-          href: reference-architectures/app-service-web-app/multi-region.md
-    - name: Große Datenmengen
-      items:
-        - name: Enterprise BI mit SQL Data Warehouse
-          href: reference-architectures/data/enterprise-bi-sqldw.md
-        - name: Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Data Factory
-          href: reference-architectures/data/enterprise-bi-adf.md
-    - name: Hybridnetzwerke
-      items:
-        - name: Übersicht
-          href: reference-architectures/hybrid-networking/index.md
-        - name: VPN
-          href: reference-architectures/hybrid-networking/vpn.md
-        - name: ExpressRoute
-          href: reference-architectures/hybrid-networking/expressroute.md
-        - name: ExpressRoute mit VPN-Failover
-          href: reference-architectures/hybrid-networking/expressroute-vpn-failover.md
-        - name: Hub-Spoke-Topologie
-          href: reference-architectures/hybrid-networking/hub-spoke.md
-        - name: Hub-Spoke-Topologie mit gemeinsamen Diensten
-          href: reference-architectures/hybrid-networking/shared-services.md
-    - name: Identitätsverwaltung
-      items:
-        - name: Übersicht
-          href: reference-architectures/identity/index.md
-        - name: Lokales AD-Verzeichnis in Azure AD integrieren
-          href: reference-architectures/identity/azure-ad.md
-        - name: AD DS auf Azure erweitern
-          href: reference-architectures/identity/adds-extend-domain.md
-        - name: AD DS-Gesamtstruktur in Azure erstellen
-          href: reference-architectures/identity/adds-forest.md
-        - name: Erweiterung von AD FS auf Azure
-          href: reference-architectures/identity/adfs.md
-    - name: Anwendung mit n-Schichten
-      items:
-        - name: n-schichtige Anwendung mit SQL Server
-          href: reference-architectures/n-tier/n-tier-sql-server.md
-        - name: n-schichtige Anwendung für mehrere Regionen
-          href: reference-architectures/n-tier/multi-region-sql-server.md
-        - name: n-schichtige Anwendung mit Cassandra
-          href: reference-architectures/n-tier/n-tier-cassandra.md
-        - name: Bereitstellen eines virtuellen Linux-Computers
-          href: reference-architectures/n-tier/linux-vm.md
-        - name: Bereitstellen eines virtuellen Windows-Computers
-          href: reference-architectures/n-tier/windows-vm.md
-    - name: Netzwerk-DMZ
-      items:
-        - name: DMZ zwischen Azure und einem lokalen Netzwerk
-          href: reference-architectures/dmz/secure-vnet-hybrid.md
-        - name: DMZ zwischen Azure und dem Internet
-          href: reference-architectures/dmz/secure-vnet-dmz.md
-        - name: Hochverfügbare virtuelle Netzwerkgeräte
-          href: reference-architectures/dmz/nva-ha.md
-    - name: SAP
-      items:
-        - name: SAP NetWeaver für AnyDB
-          href: reference-architectures/sap/sap-netweaver.md
-        - name: SAP S/4HANA
-          href: reference-architectures/sap/sap-s4hana.md
-        - name: SAP HANA in Azure (große Instanzen)
-          href: reference-architectures/sap/hana-large-instances.md
-    - name: Jenkins-Server
-      href: reference-architectures/jenkins/index.md
-    - name: SharePoint Server 2016
-      href: reference-architectures/sharepoint/index.md
+      href: reference-architectures/hybrid-networking/index.md
+    - name: VPN
+      href: reference-architectures/hybrid-networking/vpn.md
+    - name: ExpressRoute
+      href: reference-architectures/hybrid-networking/expressroute.md
+    - name: ExpressRoute mit VPN-Failover
+      href: reference-architectures/hybrid-networking/expressroute-vpn-failover.md
+    - name: Hub-Spoke-Topologie
+      href: reference-architectures/hybrid-networking/hub-spoke.md
+    - name: Hub-Spoke-Topologie mit gemeinsamen Diensten
+      href: reference-architectures/hybrid-networking/shared-services.md
+  - name: Identitätsverwaltung
+    items:
+    - name: Übersicht
+      href: reference-architectures/identity/index.md
+    - name: Lokales AD-Verzeichnis in Azure AD integrieren
+      href: reference-architectures/identity/azure-ad.md
+    - name: AD DS auf Azure erweitern
+      href: reference-architectures/identity/adds-extend-domain.md
+    - name: AD DS-Gesamtstruktur in Azure erstellen
+      href: reference-architectures/identity/adds-forest.md
+    - name: Erweiterung von AD FS auf Azure
+      href: reference-architectures/identity/adfs.md
+  - name: Anwendung mit n-Schichten
+    items:
+    - name: n-schichtige Anwendung mit SQL Server
+      href: reference-architectures/n-tier/n-tier-sql-server.md
+    - name: n-schichtige Anwendung für mehrere Regionen
+      href: reference-architectures/n-tier/multi-region-sql-server.md
+    - name: n-schichtige Anwendung mit Cassandra
+      href: reference-architectures/n-tier/n-tier-cassandra.md
+    - name: Bereitstellen eines virtuellen Linux-Computers
+      href: reference-architectures/n-tier/linux-vm.md
+    - name: Bereitstellen eines virtuellen Windows-Computers
+      href: reference-architectures/n-tier/windows-vm.md
+  - name: Netzwerk-DMZ
+    items:
+    - name: DMZ zwischen Azure und einem lokalen Netzwerk
+      href: reference-architectures/dmz/secure-vnet-hybrid.md
+    - name: DMZ zwischen Azure und dem Internet
+      href: reference-architectures/dmz/secure-vnet-dmz.md
+    - name: Hochverfügbare virtuelle Netzwerkgeräte
+      href: reference-architectures/dmz/nva-ha.md
+  - name: SAP
+    items:
+    - name: SAP NetWeaver für AnyDB
+      href: reference-architectures/sap/sap-netweaver.md
+    - name: SAP S/4HANA
+      href: reference-architectures/sap/sap-s4hana.md
+    - name: SAP HANA in Azure (große Instanzen)
+      href: reference-architectures/sap/hana-large-instances.md
+  - name: Jenkins-Server
+    href: reference-architectures/jenkins/index.md
+  - name: SharePoint Server 2016
+    href: reference-architectures/sharepoint/index.md
 - name: Entwurf eines Überprüfungsframeworks
   items:
-    - name: Entwurf mit Blick auf Resilienz
-      href: resiliency/index.md
-    - name: Fehlermodusanalyse
-      href: resiliency/failure-mode-analysis.md
-    - name: Checkliste für die Verfügbarkeit
-      href: checklist/availability.md
-    - name: Checkliste für DevOps
-      href: checklist/dev-ops.md
-    - name: Checkliste für Resilienz (allgemein)
-      href: checklist/resiliency.md
-    - name: Checkliste für Resilienz (Azure-Dienste)
-      href: checklist/resiliency-per-service.md
-    - name: Checkliste für die Skalierbarkeit
-      href: checklist/scalability.md
-- name: Handbuch zur Cloudeinführung
+  - name: Entwurf mit Blick auf Resilienz
+    href: resiliency/index.md
+  - name: Fehlermodusanalyse
+    href: resiliency/failure-mode-analysis.md
+  - name: Checkliste für die Verfügbarkeit
+    href: checklist/availability.md
+  - name: Checkliste für DevOps
+    href: checklist/dev-ops.md
+  - name: Checkliste für Resilienz (allgemein)
+    href: checklist/resiliency.md
+  - name: Checkliste für Resilienz (Azure-Dienste)
+    href: checklist/resiliency-per-service.md
+  - name: Checkliste für die Skalierbarkeit
+    href: checklist/scalability.md
+- name: Enterprise Cloud-Einführung
   items:
-    - name: Einführung
-      href: cloud-adoption-guide/index.md
-    - name: Grundlegende Azure-Einführung
-      items:
-        - name: Übersicht
-          href: cloud-adoption-guide/adoption-intro/overview.md
-        - name: Informationen zu Azure
-          items:
-            - name: Wie funktioniert Azure?
-              href: cloud-adoption-guide/adoption-intro/azure-explainer.md
-            - name: Was ist die Cloudressourcenkontrolle?
-              href: cloud-adoption-guide/adoption-intro/governance-explainer.md
-        - name: Informationen zur Kontrolle des Azure-Ressourcenzugriffs
-          items:
-            - name: Grundlegendes zur Ressourcenzugriffsverwaltung in Azure
-              href: cloud-adoption-guide/adoption-intro/azure-resource-access.md
-            - name: Azure-Governance-Entwurfshandbuch
-              href: cloud-adoption-guide/adoption-intro/governance-how-to.md
-        - name: Bereitstellen grundlegender Architekturen in Azure
-          items:
-            - name: Platform-as-a-Service-Architektur (PaaS)
-              items:
-                - name: Bereitstellen einer einfachen Webanwendung in Azure
-                  href: /azure/app-service
-                  maintainContext: true
-                - name: Bewährte Methoden für Webanwendungen in Azure
-                  href: /azure/architecture/reference-architectures/app-service-web-app/basic-web-app
-                  maintainContext: true
-            - name: Infrastructure-as-a-Service (IaaS)
-              items:
-                - name: Was ist ein virtuelles Azure-Netzwerk?
-                  href: /azure/virtual-network/virtual-networks-overview
-                  maintainContext: true
-                - name: Bereitstellen eines virtuellen Netzwerks in Azure
-                  href: /azure/virtual-network/virtual-networks-create-vnet-arm-pportal
-                  maintainContext: true
-                - name: Bereitstellen einer einzelnen IaaS-Workload für virtuelle Windows-Computer in Azure
-                  href: /azure/virtual-machines/windows/quick-create-portal
-                  maintainContext: true
-                - name: Bewährte Methoden für die Bereitstellung eines virtuellen Windows-Computers in Azure
-                  href: /azure/architecture/reference-architectures/virtual-machines-windows/single-vm
-                  maintainContext: true
-                - name: Bereitstellen einer einzelnen IaaS-Workload für virtuelle Linux-Computer in Azure
-                  href: /azure/virtual-machines/linux/quick-create-portal
-                  maintainContext: true
-                - name: Bewährte Methoden für die Bereitstellung eines virtuellen Linux-Computers in Azure
-                  href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm
-                  maintainContext: true
-    - name: Mittlere Azure-Einführungsphase
-      items:
-        - name: Übersicht
-          href: cloud-adoption-guide/intermediate-stage/overview.md
-        - name: Governance-Entwurfshandbuch
-          href: cloud-adoption-guide/intermediate-stage/governance-design-guide.md
+  - name: Einführung
+    href: cloud-adoption/overview.md
+  - name: Erste Schritte
+    items:
+    - name: Übersicht
+      href: cloud-adoption/getting-started/overview.md
+    - name: Wie funktioniert Azure?
+      href: cloud-adoption/getting-started/what-is-azure.md
+    - name: Was ist die Cloudressourcenkontrolle?
+      href: cloud-adoption/getting-started/what-is-governance.md
+    - name: Kontrolle des Ressourcenzugriffs in Azure
+      href: cloud-adoption/getting-started/azure-resource-access.md
+  - name: Governance
+    items:
+    - name: Übersicht
+      href: cloud-adoption/governance/overview.md
+    - name: Governance-Entwurf für ein einzelnes Team
+      href: cloud-adoption/governance/governance-single-team.md
+    - name: Governance-Entwurf für mehrere Teams
+      href: cloud-adoption/governance/governance-multiple-teams.md
+  - name: Infrastruktur
+    items:
+    - name: Bereitstellen einer grundlegenden Workload
+      href: cloud-adoption/infrastructure/basic-workload.md
+  - name: Anhang
+    items:
+    - name: Azure-Unternehmensgerüst
+      href: cloud-adoption/appendix/azure-scaffold.md
+    - name: Implementieren eines Azure-Unternehmensgerüsts
+      href: cloud-adoption/appendix/azure-scaffold-examples.md
 - name: Virtuelles Azure-Rechenzentrum
   href: vdc/index.md
 - name: Azure für AWS-Spezialisten
   items:
-    - name: Übersicht
-      href: aws-professional/index.md
-    - name: Vergleich der Dienste
-      href: aws-professional/services.md
+  - name: Übersicht
+    href: aws-professional/index.md
+  - name: Vergleich der Dienste
+    href: aws-professional/services.md
+ms.openlocfilehash: f82d3e29047cfca1a6a0d3e2e213b074094cc363
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43324839"

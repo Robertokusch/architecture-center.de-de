@@ -2,14 +2,15 @@
 title: Entwurfsprinzipien für Azure-Anwendungen
 description: Entwurfsprinzipien für Azure-Anwendungen
 author: MikeWasson
-ms.openlocfilehash: 462896098c668c0775464ca498925266cd73c6e1
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: 5dd5d02019723ce57ba377d99b3965d0d7ed4079
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206799"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326073"
 ---
-# <a name="design-principles-for-azure-applications"></a>Entwurfsprinzipien für Azure-Anwendungen
+# <a name="ten-design-principles-for-azure-applications"></a>Zehn Entwurfsprinzipien für Azure-Anwendungen
 
 Befolgen Sie die folgenden Entwurfsprinzipien, um die Skalierbarkeit, Resilienz und Verwaltbarkeit Ihrer Anwendung zu optimieren. 
 
