@@ -3,12 +3,12 @@ title: Virtuelles Azure-Rechenzentrum
 description: Ressourcen für das virtuelle Rechenzentrum in Microsoft Azure
 keywords: Azure
 layout: LandingPage
-ms.openlocfilehash: e37ac347247b2960b85832a20a2b57eec18f65a7
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: 9b82122358085c37f89fb258034a4c9a91ecb054
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987511"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43324758"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Virtuelles Azure-Rechenzentrum und die Steuerungsebene für Unternehmen
 
@@ -26,7 +26,7 @@ Mit Azure Virtual Datacenter können Sie die Funktionen der Azure-Cloudplattform
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="/azure/networking/networking-virtual-datacenter"><img src="./images/vdc-network.png" alt="Network Perspective" /></a></td>
     <td>
-        <h3><a href="/azure/networking/networking-virtual-datacenter">Virtuelles Rechenzentrum in Microsoft Azure: Eine Netzwerkperspektive</a></h3>
+        <h3><a href="networking-virtual-datacenter.md">Virtuelles Rechenzentrum in Microsoft Azure: Eine Netzwerkperspektive</a></h3>
         <p>Dieser Onlineartikel bietet einen Überblick über Netzwerkmuster und Designs, mit denen Kunden die architektonischen Herausforderungen hinsichtlich der Skalierung, Leistung und Sicherheit meistern können, die bei einer Migration in die Cloud auf sie zukommen.</p>
     </td>
 </tr>
