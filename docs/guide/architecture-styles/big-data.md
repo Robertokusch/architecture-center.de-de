@@ -2,12 +2,12 @@
 title: Architekturstil für Big Data
 description: Dieser Artikel beschreibt die Vorteile, Herausforderungen und bewährten Methoden für Big Data-Architekturen in Azure.
 author: MikeWasson
-ms.openlocfilehash: 4e8b58d5fa0f6a441d70e05ec7d6a0e668712563
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d76192cf2fc680497ece0123ef412971c025f9dc
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540888"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016105"
 ---
 # <a name="big-data-architecture-style"></a>Architekturstil für Big Data
 
@@ -91,3 +91,39 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 - **Datenerfassung orchestrieren**. In einigen Fällen schreiben vorhandene Geschäftsanwendungen Datendateien für die Batchverarbeitung möglicherweise direkt in Azure Storage-Blobcontainer, wo sie von HDInsight oder Azure Data Lake Analytics genutzt werden können. Sie werden jedoch häufig die Erfassung von Daten aus lokalen oder externen Datenquelle in den Data Lake orchestrieren müssen. Verwenden Sie einen Orchestrierungsworkflow oder eine Orchestrierungspipeline – z.B. diejenigen, die von Azure Data Factory oder Oozie unterstützt werden –, um dieses Ziel auf vorhersehbare und kontrollierbare Weise zu erreichen.
 
 - **Vertrauliche Daten frühzeitig bereinigen**. Der Workflow für die Datenerfassung sollte vertrauliche Daten frühzeitig im Prozess bereinigen, um zu verhindern, dass diese im Data Lake gespeichert werden.
+
+## <a name="iot-architecture"></a>IoT-Architektur
+
+Das Internet der Dinge (Internet of Things, IoT) ist ein spezieller Teilbereich von Big Data-Lösungen. Das folgende Diagramm zeigt eine mögliche logische Architektur für IoT. Das Diagramm veranschaulicht die Komponenten der Architektur, die Ereignisströme verarbeiten.
+
+![](./images/iot.png)
+
+Das **Cloudgateway** erfasst Geräteereignisse an der Cloudgrenze mithilfe eines zuverlässigen Messagingsystems mit niedriger Latenz.
+
+Geräte können Ereignisse direkt an das Cloudgateway oder über ein **Bereichsgateway**. Ein Bereichsgateway ist ein spezialisiertes Gerät oder Softwareprogramm, das sich üblicherweise am gleichen Ort befindet wie die Geräte. Es empfängt Ereignisse und leitet sie an das Cloudgateway weiter. Das Bereichsgateway kann auch Vorverarbeitungsfunktionen für die Geräteereignisse ausführen, z.B. Filtern, Aggregation oder Protokolltransformation.
+
+Nach dem Erfassen durchlaufen Ereignisse einen oder mehrere **Datenstromprozessoren**, die die Daten weiterleiten (z.B. zum Speicher) oder Analyse- oder andere Verarbeitungsfunktionen ausführen.
+
+Nachfolgend finden Sie einige häufige Verarbeitungsarten. (Diese Liste ist sicherlich nicht vollständig.)
+
+- Schreiben von Ereignisdaten in einen Cold Storage zur Archivierung oder Batchanalyse.
+
+- Analyse des langsamsten Pfads – der Ereignisstrom wird (nahezu) in Echtzeit analysiert, um Anomalien zu erkennen, Muster in rollierenden Zeitfenstern zu ermitteln oder Warnungen auszulösen, wenn eine bestimmte Bedingung im Ereignisstrom auftritt. 
+
+- Verarbeitung bestimmter Arten von nicht telemetriebezogenen Nachrichten von Geräten, z.B. Benachrichtigungen und Warnungen. 
+
+- Machine Learning.
+
+Die grauen Felder stehen für Komponenten eines IoT-Systems, die nicht in direktem Zusammenhang mit der Ereignisstromverarbeitung stehen, sondern der Vollständigkeit halber hier mit aufgeführt werden.
+
+- Die **Geräteregistrierung** ist eine Datenbank der bereitgestellten Geräte und enthält die Geräte-IDs sowie üblicherweise einige Metadaten zu den Geräten, beispielsweise den Standort.
+
+- Die **Bereitstellungs-API** ist eine allgemeine externe Schnittstelle für die Bereitstellung und Registrierung neuer Geräte.
+
+- In einigen IoT-Lösungen können **Nachrichten mit Befehlen und Steuerungsinformationen** an die Geräte gesendet werden.
+
+> Dieser Abschnitt stellt eine sehr allgemeine Übersicht über IoT dar, und es gibt eine Vielzahl von Feinheiten und Herausforderungen, die es in diesem Bereich zu berücksichtigen gilt. Weitere Informationen und Details finden Sie in der als PDF-Download verfügbaren [Microsoft Azure IoT Reference Architecture][iot-ref-arch] (Referenzarchitektur zu Microsoft Azure IoT).
+
+ <!-- links -->
+
+[iot-ref-arch]: https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/

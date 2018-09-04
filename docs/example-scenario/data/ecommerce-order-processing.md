@@ -3,12 +3,12 @@ title: Skalierbare Auftragsverarbeitung in Azure
 description: Beispielszenario für die Erstellung einer hoch skalierbaren Pipeline für die Auftragsverarbeitung per Azure Cosmos DB.
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 541b5e9f523c64bc55526e4e2dffc57a5212e67f
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 9fa0dc7c564270ee811b56169e05f7e743664838
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060981"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016110"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Skalierbare Auftragsverarbeitung in Azure
 
@@ -27,7 +27,7 @@ Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 * Systeme für die Auftragserfüllung
 * Weitere Integrationsszenarien, die für eine Pipeline zur Auftragsverarbeitung relevant sind
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Beispielarchitektur für eine skalierbare Pipeline zur Auftragsverarbeitung][architecture-diagram]
 
@@ -41,7 +41,7 @@ Anhand dieser Architektur werden die wichtigsten Komponenten einer Pipeline für
 
 ### <a name="components"></a>Komponenten
 
-* [Cosmos DB][docs-cosmos-db] ist die global verteilte Datenbank von Microsoft mit mehreren Modellen. Hiermit können Ihre Lösungen den Durchsatz und die Speicherung für eine beliebige Zahl von geografischen Regionen elastisch und unabhängig skalieren. Azure Cosmos DB bietet Ihnen mit umfassenden Vereinbarungen zum Servicelevel (Service Level Agreements, SLAs) Durchsatz-, Wartezeit-, Verfügbarkeits- und Konsistenzgarantien. In diesem Szenario wird Cosmos DB für die Speicherung von Ereignisdatenströmen und Momentaufnahmen verwendet, und die Features des Cosmos DB-Änderungsfeeds werden genutzt, um für Datenkonsistenz und die Wiederherstellung nach Fehlern zu sorgen. 
+* [Cosmos DB][docs-cosmos-db] ist die global verteilte Datenbank von Microsoft mit mehreren Modellen. Hiermit können Ihre Lösungen den Durchsatz und die Speicherung für eine beliebige Zahl von geografischen Regionen elastisch und unabhängig skalieren. Azure Cosmos DB bietet Ihnen mit umfassenden Vereinbarungen zum Servicelevel (Service Level Agreements, SLAs) Durchsatz-, Wartezeit-, Verfügbarkeits- und Konsistenzgarantien. In diesem Szenario wird Cosmos DB für die Speicherung von Ereignisdatenströmen und Momentaufnahmen verwendet, und die Features des [Cosmos DB-Änderungsfeeds][docs-cosmos-db-change-feed] werden genutzt, um für Datenkonsistenz und die Wiederherstellung nach Fehlern zu sorgen. 
 * [Apache Kafka in HDInsight][docs-kafka] ist eine Implementierung eines verwalteten Diensts von Apache Kafka. Hierbei handelt es sich um eine verteilte Open-Source-Streamingplattform für die Erstellung von Datenpipelines und Anwendungen mit Echtzeitstreaming. Kafka verfügt auch über Nachrichtenbrokerfunktionen, die einer Nachrichtenwarteschlange zum Veröffentlichen und Abonnieren von benannten Datenströmen ähneln. In diesem Szenario wird Kafka genutzt, um eingehende und nachgeschaltete Ereignisse in der Pipeline für die Auftragsverarbeitung zu verarbeiten. 
 
 ## <a name="considerations"></a>Überlegungen
@@ -107,6 +107,7 @@ Weitere verwandte Ressourcen:
 [architecture-diagram]: ./images/architecture-diagram-cosmos-db.png
 [docs-cosmos-db]: /azure/cosmos-db
 [docs-cosmos-db-change-feed]: /azure/cosmos-db/change-feed
+[docs-cosmos-db-online-backup-and-restore]: /azure/cosmos-db/online-backup-and-restore
 [docs-cosmos-db-regional-failover]: /azure/cosmos-db/regional-failover
 [docs-cosmos-db-guarantees]: /azure/cosmos-db/distribute-data-globally#AvailabilityGuarantees
 [docs-cosmos-db-use-cases]: /azure/cosmos-db/use-cases

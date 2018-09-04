@@ -3,12 +3,12 @@ title: Bereitstellen von SAP NetWeaver (Windows) für AnyDB in Azure Virtual Mac
 description: Bewährte Methoden zum Ausführen von SAP S/4HANA in einer Linux-Umgebung in Azure mit Hochverfügbarkeit.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 90334e4872bdd15d59aa16286a031d07f3d1bb2f
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: f4a33e7a3f30bdd6d8bdd41599a5e3b47501b874
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864537"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016023"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Bereitstellen von SAP NetWeaver (Windows) für AnyDB in Azure Virtual Machines
 
@@ -35,7 +35,7 @@ Diese Architektur umfasst die folgenden Infrastruktur- und Schlüsselsoftwarekom
 - **Jumpbox**: Wird auch als „geschützter Host“ bezeichnet. Dies ist ein geschützter virtueller Computer im Netzwerk, der von Administratoren zum Herstellen von Verbindungen mit anderen virtuellen Computern verwendet wird.
 - **Windows Server Active Directory-Domänencontroller**. Die Domänencontroller werden auf allen virtuellen Computern und für alle Benutzer in der Domäne verwendet.
 
-**Lastenausgleichsmodule**. Sowohl integrierte SAP Lastenausgleichsmodule als auch [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) werden verwendet, um Hochverfügbarkeit zu erreichen. Azure Load Balancer-Instanzen werden dazu verwendet, Datenverkehr auf virtuelle Computer im Logikschichtsubnetz zu verteilen.
+**Lastenausgleichsmodule**. [Azure Load Balancer](/azure/load-balancer/load-balancer-overview)-Instanzen werden dazu verwendet, Datenverkehr auf virtuelle Computer im Logikschichtsubnetz zu verteilen. In der Datenschicht kann Hochverfügbarkeit abhängig vom DBMS mithilfe von integrierten SAP-Lastenausgleichsmodulen, Azure Load Balancer oder anderen Mechanismen erzielt werden. Weitere Informationen finden Sie unter [Azure Virtual Machines – DBMS-Bereitstellung für SAP NetWeaver](/azure/virtual-machines/workloads/sap/dbms-guide). 
 
 **Verfügbarkeitsgruppen**: Virtuelle Computer für die Rollen SAP Web Dispatcher, SAP-Anwendungsserver und (A)SCS werden in getrennten [Verfügbarkeitsgruppen](/azure/virtual-machines/windows/tutorial-availability-sets) gruppiert, und pro Rolle werden mindestens zwei virtuelle Computer bereitgestellt. Dies bewirkt, dass die virtuellen Computer für eine höhere [Vereinbarung zum Servicelevel](https://azure.microsoft.com/support/legal/sla/virtual-machines) (Service Level Agreement, SLA) auswählbar sind.
 

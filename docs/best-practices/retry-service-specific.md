@@ -4,12 +4,12 @@ description: Spezifische Dienstanleitung für die Festlegung des Wiederholungsme
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 72dfb59c3357c5f14806a33ef5f6cdd3e7937915
-ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
+ms.openlocfilehash: 790c933458717f2cb4cde0741b1d22f6ae89cc39
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/29/2018
-ms.locfileid: "39334163"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016011"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Wiederholungsanleitung für bestimmte Dienste
 
@@ -23,7 +23,9 @@ In der folgende Tabelle werden die Wiederholungsfunktionen für die in dieser An
 | --- | --- | --- | --- | --- |
 | **[Azure Active Directory](#azure-active-directory)** |Nativ in ADAL-Bibliothek |Eingebettet in ADAL-Bibliothek |Intern |Keine |
 | **[Cosmos DB](#cosmos-db)** |Systemeigen im Dienst |Nicht konfigurierbar |Global |TraceSource |
+| **Data Lake Store** |Systemeigen in Client |Nicht konfigurierbar |Einzelne Vorgänge |Keine |
 | **[Event Hubs](#event-hubs)** |Systemeigen in Client |Programmgesteuert |Client |Keine |
+| **[IoT Hub](#iot-hub)** |Nativ im Client SDK |Programmgesteuert |Client |Keine |
 | **[Redis Cache](#azure-redis-cache)** |Systemeigen in Client |Programmgesteuert |Client |TextWriter |
 | **[Search](#azure-search)** |Systemeigen in Client |Programmgesteuert |Client |ETW oder benutzerdefiniert |
 | **[Service Bus](#service-bus)** |Systemeigen in Client |Programmgesteuert |Namespace-Manager, Messaging Factory und Client |ETW |
@@ -124,6 +126,25 @@ client.RetryPolicy = RetryPolicy.Default;
 
 ### <a name="more-information"></a>Weitere Informationen
 [.NET Standard client library for Azure Event Hubs](https://github.com/Azure/azure-event-hubs-dotnet) (.NET Standard-Clientbibliothek für Azure Event Hubs)
+
+## <a name="iot-hub"></a>IoT Hub
+
+Azure IoT Hub ist ein Dienst zum Verbinden, Überwachen und Verwalten von Geräten für die Entwicklung von IoT-Anwendungen (Internet of Things, Internet der Dinge).
+
+### <a name="retry-mechanism"></a>Wiederholungsmechanismus
+
+Mit dem Azure IoT-Geräte-SDK können Fehler im Netzwerk, im Protokoll oder in der Anwendung ermittelt werden. Basierend auf dem Fehlertyp überprüft das SDK, ob eine Wiederholung erforderlich ist. Ist der Fehler *behebbar*, beginnt das SDK unter Verwendung der Wiederholungsrichtlinie mit der Wiederholung.
+
+Die standardmäßige Wiederholungsrichtlinie ist *exponentielles Backoff mit zufälligem Jitter*, sie kann jedoch konfiguriert werden.
+
+### <a name="policy-configuration"></a>Richtlinienkonfiguration
+
+Die Richtlinienkonfiguration unterscheidet sich je nach Sprache. Weitere Informationen finden Sie unter [Verwalten von Konnektivität und zuverlässigem Messaging mithilfe von Azure IoT Hub-Geräte-SDKs](/azure/iot-hub/iot-hub-reliability-features-in-sdks#retry-policy-apis).
+
+### <a name="more-information"></a>Weitere Informationen
+
+* [Verwalten von Konnektivität und zuverlässigem Messaging mithilfe von Azure IoT Hub-Geräte-SDKs](/azure/iot-hub/iot-hub-reliability-features-in-sdks)
+* [Erkennen und Behandeln von Problemen bei der Trennung von Geräteverbindungen mit Azure IoT Hub](/azure/iot-hub/iot-hub-troubleshoot-connectivity)
 
 ## <a name="azure-redis-cache"></a>Azure Redis Cache
 Azure Redis Cache ist ein schneller Datenzugriff und ein Cache Service mit niedriger Latenz, der auf dem beliebten Open Source-Redis Cache basiert. Er ist sicher, von Microsoft verwaltet und ist von jeder Anwendung in Azure zugänglich.
