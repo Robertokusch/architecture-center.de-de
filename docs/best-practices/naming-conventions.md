@@ -4,12 +4,12 @@ description: Enthält die Namenskonventionen für Azure-Ressourcen. Benennen von
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 6ad71a5ee39b8f1863c51dae0120dbdc7baf1f76
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 8aa0b46d9f43107cfa4ae4be3160900249365702
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229149"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326319"
 ---
 # <a name="naming-conventions"></a>Benennungskonventionen
 
@@ -111,10 +111,10 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 | --- | --- | --- | --- | --- | --- | --- |
 |Virtual Network (VNet) |Ressourcengruppe |2 - 64 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<service short name>-vnet` |`profx-vnet` |
 |Subnetz |Übergeordnetes VNet |2-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<descriptive context>` |`web` |
-|Netzwerkschnittstelle |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|Netzwerkschnittstelle |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<vmname>-nic<num>` |`profx-sql1-vm1-nic1` |
 |Netzwerksicherheitsgruppen (NSG) |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |Netzwerksicherheitsgruppen-Regel |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<descriptive context>` |`sql-allow` |
-|Öffentliche IP-Adresse |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<vm or service name>-pip` |`profx-sql1-pip` |
+|Öffentliche IP-Adresse |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<vm or service name>-pip` |`profx-sql1-vm1-pip` |
 |Load Balancer |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<service or role>-lb` |`profx-lb` |
 |Konfiguration der Regeln für die Lastenverteilung |Load Balancer |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<descriptive context>` |`http` |
 |Azure Application Gateway |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Bindestrich, Unterstrich und Punkt |`<service or role>-agw` |`profx-agw` |
@@ -195,4 +195,4 @@ Es ist nicht möglich, den Namen eines Speicherkontos oder -containers nach dem 
 
 <!-- links -->
 
-[scaffold]: /azure/azure-resource-manager/resource-manager-subscription-governance
+[scaffold]: /azure/azure-resource-manager/resource-manager-azure-scaffold

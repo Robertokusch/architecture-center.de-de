@@ -2,12 +2,13 @@
 title: Architekturstil „CQRS“
 description: In diesem Artikel werden die Vorteile, Herausforderungen und bewährten Methoden für CQRS-Architekturen beschrieben.
 author: MikeWasson
-ms.openlocfilehash: dd3da5886587159f57646ff1bfffa2094725f798
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.date: 08/30/2018
+ms.openlocfilehash: ba7af25f940a01e184279c4665f8fce8ebb71b23
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24539864"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325923"
 ---
 # <a name="cqrs-architecture-style"></a>Architekturstil „CQRS“
 
@@ -49,7 +50,7 @@ CQRS ist keine Architektur der obersten Ebene, die für ein gesamtes System gilt
 
 ## <a name="challenges"></a>Herausforderungen
 
-- **Komplexität**: Die Grundidee von CQRS ist einfach. Es kann sich aber auch ein komplexeres Anwendungsdesign ergeben, z.B. bei Verwendung des Musters für die Ereignisherkunftsermittlung.
+- **Komplexität**. Die Grundidee von CQRS ist einfach. Es kann sich aber auch ein komplexeres Anwendungsdesign ergeben, z.B. bei Verwendung des Musters für die Ereignisherkunftsermittlung.
 
 - **Messaging**: Für CQRS wird zwar kein Messaging benötigt, aber es wird trotzdem häufig genutzt, um Befehle zu verarbeiten und Aktualisierungsereignisse zu veröffentlichen. In diesem Fall muss die Anwendung Nachrichtenfehler oder doppelte Nachrichten verarbeiten können. 
 
