@@ -2,19 +2,17 @@
 title: 'Enterprise Cloud-Einführung: Governance-Entwurf in Azure für mehrere Teams'
 description: Enthält eine Anleitung zum Konfigurieren von Azure-Governance-Kontrollen für mehrere Teams, mehrere Workloads und mehrere Umgebungen.
 author: petertaylor9999
-ms.openlocfilehash: 2ad9fac6604d2766fed1df828f63e65c8a570888
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: ac2a63ad6ced1039290dc0bf5132b0d87a2c79cf
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327144"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389416"
 ---
 # <a name="enterprise-cloud-adoption-governance-design-for-multiple-teams"></a>Enterprise Cloud-Einführung: Governance-Entwurf für mehrere Teams
 
 Anhand dieser Anleitung können Sie sich mit dem Prozess für das Entwerfen eines Modells zur Ressourcenkontrolle (Governance) in Azure vertraut machen, um mehrere Teams, Workloads und Umgebungen zu unterstützen.  Wir sehen uns eine Reihe von hypothetischen Governance-Anforderungen an und gehen dann mehrere Beispielimplementierungen durch, die diese Anforderungen erfüllen.
-
-> [!NOTE]
-> Ausführlichere Erläuterungen zu **Umgebungen** finden Sie hier: 
 
 Folgende Anforderungen müssen erfüllt sein:
 * Das Unternehmen möchte einer Gruppe von Benutzern neue Cloudrollen und Zuständigkeiten übertragen und benötigt daher eine Identitätsverwaltung für mehrere Teams mit jeweils unterschiedlichen Ressourcenzugriffsanforderungen in Azure. Dieses Identitätsverwaltungssystem wird benötigt, um die Identität folgender Benutzer zu speichern:
