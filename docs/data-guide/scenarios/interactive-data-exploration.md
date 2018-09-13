@@ -3,12 +3,12 @@ title: Interaktive Datenuntersuchung
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 20740a8fe912a63526c847416b832941f4ac33ec
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: 2e3d61fa5e1903c7fee6ebc84db3fa7c28d515cb
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30297955"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325116"
 ---
 # <a name="interactive-data-exploration"></a>Interaktive Datenuntersuchung
 
@@ -82,6 +82,7 @@ Weitere Informationen finden Sie unter [Analysedatenspeicher](../technology-choi
 ### <a name="analytics-and-reporting"></a>Analysen und Berichte
 
 - **Jupyter**: Jupyter-Notebooks verfügen über eine browserbasierte Oberfläche zum Ausführen von Code in Sprachen wie R, Python oder Scala. Bei Verwendung von R Server oder Spark für die Batchverarbeitung von Daten oder von Spark SQL zum Definieren eines Schemas mit Tabellen für Abfragen kann Jupyter eine gute Wahl sein, um Abfragen für die Daten durchzuführen. Bei der Nutzung von Spark können Sie die Spark Dataframe-Standard-API oder die Spark SQL-API sowie eingebettete SQL-Anweisungen verwenden, um die Daten abzufragen und Visualisierungen zu erstellen.
+- **Drill**: [Apache Drill](https://drill.apache.org/) ist eine schemalose SQL-Abfrage-Engine, mit der Sie spontan Daten untersuchen können. Da sie kein Schema benötigt, können Sie Daten aus verschiedensten Datenquellen abfragen. Die Engine kann die Struktur der Daten automatisch nachvollziehen.
 - **Interactive Hive-Clients**: Bei Verwendung eines Interactive Hive-Clusters zum Abfragen der Daten können Sie die Hive-Ansicht im Ambari-Cluster-Dashboard, das Befehlszeilentool Beeline oder ein beliebiges ODBC-basiertes Tool (mit dem Hive ODBC-Treiber) nutzen, z.B. Microsoft Excel oder Power BI.
 
 Weitere Informationen finden Sie im Artikel zur [Technologie für die Datenanalyse und Berichterstellung](../technology-choices/analysis-visualizations-reporting.md).

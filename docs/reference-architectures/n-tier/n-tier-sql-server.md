@@ -3,12 +3,12 @@ title: n-schichtige Anwendung mit SQL Server
 description: Vorgehensweise zur Implementierung einer mehrschichtigen Architektur in Azure für Verfügbarkeit, Sicherheit, Skalierbarkeit und Verwaltbarkeit.
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: 42ba18e9ffef32c6990fbb888cc41e980fb4abea
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: fc761e940a25c4667146db9598d944bac2c32496
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229132"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326055"
 ---
 # <a name="n-tier-application-with-sql-server"></a>n-schichtige Anwendung mit SQL Server
 
@@ -220,7 +220,7 @@ Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folde
     "witnessStorageAccountKey": "[replace-with-storagekey]"
     ```
 
-8. Suchen Sie in der Datei `n-tier-windows.json` nach allen Instanzen von `testPassw0rd!23`, `test$!Passw0rd111` und `AweS0me@SQLServicePW`. Ersetzen Sie sie durch Ihre eigenen Kennwörter, und speichern Sie die Datei.
+8. Suchen Sie in der Datei `n-tier-windows.json` nach allen Vorkommen von `[replace-with-password]`, und ersetzen Sie sie durch ein sicheres Kennwort. Speichern Sie die Datei .
 
     > [!NOTE]
     > Wenn Sie den Administratorbenutzernamen ändern, müssen Sie auch die `extensions`-Blöcke in der JSON-Datei aktualisieren. 

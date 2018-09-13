@@ -7,12 +7,12 @@ pnp.series.title: Network DMZ
 pnp.series.prev: ./index
 pnp.series.next: secure-vnet-dmz
 cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: 45583473ef297b2c7a5b0c4baff52485286dd051
-ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
+ms.openlocfilehash: e397a8691a1b7b37cc0129d914dc85d92c876139
+ms.sourcegitcommit: f4069cf68456b5c74acb1b890dc4e45e11f12b59
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37403163"
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43675806"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>DMZ zwischen Azure und Ihrem lokalen Datencenter
 
@@ -226,6 +226,7 @@ In diesem Schritt verbinden Sie die zwei Gateways des lokalen Netzwerks.
 * Weitere Informationen zum Verwalten der Netzwerksicherheit mit Azure finden Sie unter [Microsoft-Clouddienste und Netzwerksicherheit][cloud-services-network-security].
 * Ausführliche Informationen über den Schutz von Ressourcen in Azure finden Sie unter [Erste Schritte mit Microsoft Azure-Sicherheit][getting-started-with-azure-security]. 
 * Weitere Details zur Behandlung von Sicherheitsrisiken über Azure-Gatewayverbindungen finden Sie unter [Implementieren einer sicheren Hybrid-Netzwerkarchitektur mit Azure und lokalem VPN][guidance-vpn-gateway-security] und [Implementieren einer Hybrid-Netzwerkarchitektur mit Azure ExpressRoute][guidance-expressroute-security].
+* [Behandeln von Problemen mit virtuellen Netzwerkappliances in Azure](/azure/virtual-network/virtual-network-troubleshoot-nva)
   > 
 
 <!-- links -->
