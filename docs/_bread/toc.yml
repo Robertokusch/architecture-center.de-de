@@ -27,7 +27,7 @@ items:
     - name: Cloudentwurfsmuster
       tocHref: /azure/architecture/patterns
       topicHref: /azure/architecture/patterns
-    - name: angeben
+    - name: Ressourcen
       tocHref: /azure/architecture/resources
       topicHref: /azure/architecture/resources
     - name: Enterprise Cloud-Einführung
