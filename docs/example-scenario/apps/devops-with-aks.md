@@ -3,12 +3,12 @@ title: CI/CD-Pipeline für containerbasierte Workloads
 description: Bewährtes Szenario zur Erstellung einer DevOps-Pipeline für eine Node.js-Web-App, für die Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB und Grafana verwendet werden.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: dceb4ad3c34ec43a54d802772f5817cacdd3929c
-ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
+ms.openlocfilehash: d659916e3af0caa2128db25faab441a2af8f3f6a
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/29/2018
-ms.locfileid: "39334214"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389382"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>CI/CD-Pipeline für containerbasierte Workloads
 
@@ -22,7 +22,7 @@ Azure-Dienste wie Azure Kubernetes Service, Container Registry und Cosmos DB bie
 
 Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 
-* Modernisieren der Anwendungsentwicklung mit einem auf Microservices Containern basierenden Ansatz
+* Modernisieren der Anwendungsentwicklung mit einem Microservice- und Container-basierten Ansatz
 * Beschleunigen von Anwendungsentwicklung und Bereitstellungslebenszyklen
 * Automatisieren von Bereitstellungen in Test- oder Akzeptanzumgebungen zu Überprüfungszwecken
 
@@ -44,7 +44,7 @@ Dieses Szenario umfasst eine DevOps-Pipeline für eine Node.js-Webanwendung und 
 ### <a name="components"></a>Komponenten
 
 * [Jenkins][jenkins] ist ein Open-Source-Automatisierungsserver, der sich problemlos in Azure-Dienste integrieren lässt, um Continuous Integration (CI) und Continuous Deployment (CD) zu ermöglichen. In diesem Szenario orchestriert Jenkins die Erstellung neuer Containerimages auf der Grundlage von Commits in der Quellcodeverwaltung, pusht die Images an die Azure Container Registry-Instanz und aktualisiert anschließend Anwendungsinstanzen in Azure Kubernetes Service.
-* [Virtuelle Linux-Computer in Azure][azurevm-docs] werden zum Ausführen der Jenkins- und Grafana-Instanzen verwendet.
+* [Virtuelle Linux-Computer in Azure][azurevm-docs] fungieren als IaaS-Plattform zum Ausführen der Jenkins- und Grafana-Instanzen.
 * [Azure Container Registry][azureacr-docs] speichert und verwaltet Containerimages, die vom Azure Kubernetes Service-Cluster verwendet werden. Images werden sicher gespeichert und können von der Azure-Plattform in anderen Regionen repliziert werden, um die Bereitstellung zu beschleunigen.
 * [Azure Kubernetes Service][azureaks-docs] ist eine verwaltete Kubernetes-Plattform, mit der Sie Containeranwendungen ganz ohne Kenntnisse auf dem Gebiet der Containerorchestrierung bereitstellen und verwalten können. Azure führt als gehosteter Kubernetes-Dienst wichtige Aufgaben für Sie aus, z.B. Systemüberwachung und Wartung.
 * [Azure Cosmos DB][azurecosmosdb-docs] ist eine global verteilte Datenbank, bei der Sie zwischen verschiedenen Datenbank- und Konsistenzmodellen wählen können, um Ihre individuellen Anforderungen zu erfüllen. Mit Cosmos DB können Ihre Daten global repliziert werden, und es müssen keine Komponenten für die Clusterverwaltung oder Replikation bereitgestellt und konfiguriert werden.
@@ -53,7 +53,7 @@ Dieses Szenario umfasst eine DevOps-Pipeline für eine Node.js-Webanwendung und 
 
 ### <a name="alternatives"></a>Alternativen
 
-* [Visual Studio Team Services][vsts] und Team Foundation Server unterstützen Sie bei der Implementierung einer Pipeline für Continuous Integration (CI), Tests und Continuous Deployment (CD) für jede beliebige App.
+* [Azure Pipelines][azure-pipelines] unterstützen Sie bei der Implementierung einer Pipeline für Continuous Integration (CI), Tests und Continuous Deployment (CD) für jede beliebige App.
 * [Kubernetes][kubernetes] kann direkt auf virtuellen Azure-Computern ausgeführt werden und bietet so bei Bedarf ein höheres Maß an Kontrolle als bei der Ausführung über einen verwalteten Dienst.
 * [Service Fabric][service-fabric] ist eine weitere Alternative für einen Containerorchestrator, die AKS ersetzen kann.
 
@@ -65,7 +65,7 @@ Bei diesem Szenario wird Azure Monitor mit Grafana für visuelle Dashboards komb
 
 Der Azure Kubernetes Service-Cluster verfügt über einen Lastenausgleich, der Anwendungsdatenverkehr an Container (Pods) verteilt, die Ihre Anwendung ausführen. Dieses Konzept der Ausführung von Containeranwendungen in Kubernetes stellt eine hochverfügbare Infrastruktur für Ihre Kunden bereit.
 
-Weitere Verfügbarkeitsthemen finden Sie im Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
+Weitere Verfügbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
 
 ### <a name="scalability"></a>Skalierbarkeit
 
@@ -73,7 +73,7 @@ Azure Kubernetes Service ermöglicht die Skalierung der Anzahl von Clusterknoten
 
 Anwendungsdaten werden in Azure Cosmos DB gespeichert. Dabei handelt es sich um eine global verteilte und global skalierbare Datenbank mit mehreren Modellen. Cosmos DB abstrahiert die Notwendigkeit der Infrastrukturskalierung, wie dies bei herkömmlichen Datenbankkomponenten der Fall ist, und Sie haben die Möglichkeit, Ihre Cosmos DB-Instanz global zu replizieren, um den Anforderungen Ihrer Kunden gerecht zu werden.
 
-Weitere Skalierbarkeitsthemen finden Sie im Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
+Weitere Skalierbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
 
 ### <a name="security"></a>Sicherheit
 
@@ -123,9 +123,9 @@ Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kost
 
 Auf der Grundlage der Anzahl der zu speichernden Containerimages und der Kubernetes-Knoten für die Ausführung Ihrer Anwendungen haben wir drei exemplarische Kostenprofile erstellt:
 
-* [Klein:][small-pricing] 1.000 Containerbuildvorgänge pro Monat.
-* [Mittel:][medium-pricing] 100.000 Containerbuildvorgänge pro Monat.
-* [Groß:][large-pricing] 1.000.000 Containerbuildvorgänge pro Monat.
+* [Klein:][small-pricing] Dieses Preisbeispiel entspricht 1.000 Containerbuildvorgängen pro Monat.
+* [Mittel:][medium-pricing] Dieses Preisbeispiel entspricht 100.000 Containerbuildvorgängen pro Monat.
+* [Groß:][large-pricing] Dieses Preisbeispiel entspricht 1.000.000 Containerbuildvorgängen pro Monat.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
@@ -149,7 +149,7 @@ Dieses Szenario verwendet Azure Container Registry und Azure Kubernetes Service,
 [security]: /azure/security/
 [scalability]: ../../checklist/scalability.md
 [sshkeydocs]: /azure/virtual-machines/linux/mac-create-ssh-keys
-[vsts]: /vsts/?view=vsts
+[azure-pipelines]: /azure/devops/pipelines
 [kubernetes]: https://kubernetes.io/
 [service-fabric]: /azure/service-fabric/
 

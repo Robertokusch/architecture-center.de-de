@@ -3,12 +3,12 @@ title: Schützen von Windows-Webanwendungen für Branchen mit Regulierung
 description: Bewährtes Szenario für die Erstellung einer sicheren Webanwendung mit mehreren Ebenen mithilfe von Windows Server in Azure, für die Skalierungsgruppen, Application Gateway und Lastenausgleichsmodule verwendet werden.
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: aba714fc1955341645d0faa400768bc09fb8e50b
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 3572f215d9134a6650d76e1b14458226334c6f42
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060991"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389277"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>Schützen von Windows-Webanwendungen für Branchen mit Regulierung
 
@@ -24,7 +24,7 @@ Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 * Reduzieren der Verwaltung von lokalen Legacyanwendungen und -diensten
 * Verbessern der Gesundheitsversorgung für Patienten und der Benutzerfreundlichkeit neuer Anwendungsplattformen
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Übersicht über die Architektur der Azure-Komponenten von Windows Server-Anwendungen mit mehreren Ebenen für Branchen mit Regulierung][architecture]
 
@@ -47,7 +47,7 @@ In diesem Szenario geht es um eine Anwendung mit mehreren Ebenen für Branchen m
 
 ### <a name="alternatives"></a>Alternativen
 
-* *nix/Windows kann leicht durch verschiedene andere Betriebssysteme ersetzt werden, da für die Infrastruktur keine Abhängigkeiten vom Betriebssystem bestehen.
+* *nix/Windows kann problemlos durch verschiedene andere Betriebssysteme ersetzt werden, da die Infrastruktur nicht vom Betriebssystem abhängig ist.
 
 * [SQL Server für Linux][sql-linux] kann den Back-End-Datenspeicher ersetzen.
 
@@ -86,7 +86,7 @@ Allgemeine Informationen zur Entwicklung robuster Szenarien finden Sie unter [En
 **Voraussetzungen:**
 
 * Sie benötigen ein bestehendes Azure-Konto. Wenn Sie kein Azure-Abonnement besitzen, können Sie ein [kostenloses Konto](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) erstellen, bevor Sie beginnen.
-* Sie benötigen eine Active Directory Domain Services-Domäne, um einen SQL Server-Cluster in der Back-End-Skalierungsgruppe bereitzustellen.
+* Sie benötigen eine Domäne in Azure Active Directory (AD) Domain Services, um einen SQL Server-Cluster in der Back-End-Skalierungsgruppe bereitstellen zu können.
 
 Führen Sie die unten angegebenen Schritte aus, um die Kerninfrastruktur für dieses Szenario mit einer Azure Resource Manager-Vorlage bereitzustellen.
 
@@ -106,13 +106,13 @@ Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kost
 
 Wir haben basierend auf der Anzahl von VM-Instanzen, über die Ihre Anwendungen ausgeführt werden, drei Beispielkostenprofile bereitgestellt.
 
-* [Klein][small-pricing]: Dies entspricht zwei Front-End- und zwei Back-End-VM-Instanzen.
-* [Mittel][medium-pricing]: Dies entspricht 20 Front-End- und fünf Back-End-VM-Instanzen.
-* [Groß][large-pricing]: Dies entspricht 100 Front-End- und zehn Back-End-VM-Instanzen.
+* [Klein][small-pricing]: Dieses Preisbeispiel entspricht zwei Front-End- und zwei Back-End-VM-Instanzen.
+* [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht 20 Front-End- und fünf Back-End-VM-Instanzen.
+* [Groß][large-pricing]: Dieses Preisbeispiel entspricht 100 Front-End- und 10 Back-End-VM-Instanzen.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
-In diesem Szenario wurde eine VM-Back-End-Skalierungsgruppe verwendet, über die ein Microsoft SQL Server-Cluster ausgeführt wird. Azure Cosmos DB kann auch als skalierbare und sichere Datenbankebene für die Anwendungsdaten verwendet werden. Ein [Azure-VNET-Dienstendpunkt][vnetendpoint-docs] ermöglicht es Ihnen, Ihre kritischen Ressourcen von Azure-Diensten auf Ihre virtuellen Netzwerke zu beschränken und so zu schützen. In diesem Szenario können Sie mit VNET-Endpunkten Datenverkehr zwischen der Front-End-Anwendungsebene und Cosmos DB schützen. Weitere Informationen zu Cosmos DB finden Sie unter [Übersicht über Azure Cosmos DB][azurecosmosdb-docs].
+In diesem Szenario wurde eine VM-Back-End-Skalierungsgruppe verwendet, über die ein Microsoft SQL Server-Cluster ausgeführt wird. Azure Cosmos DB kann auch als skalierbare und sichere Datenbankebene für die Anwendungsdaten verwendet werden. Ein [Azure-VNET-Dienstendpunkt][vnetendpoint-docs] ermöglicht es Ihnen, Ihre kritischen Azure-Dienstressourcen auf Ihre virtuellen Netzwerke zu beschränken und so zu schützen. In diesem Szenario können Sie mit VNET-Endpunkten Datenverkehr zwischen der Front-End-Anwendungsebene und Cosmos DB schützen. Weitere Informationen zu Cosmos DB finden Sie unter [Übersicht über Azure Cosmos DB][azurecosmosdb-docs].
 
 Sie können auch eine eingehende [Referenzarchitektur für eine generische Anwendung mit n-Schichten mit SQL Server][ntiersql-ra] anzeigen.
 

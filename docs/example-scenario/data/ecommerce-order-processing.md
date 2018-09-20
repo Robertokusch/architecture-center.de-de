@@ -3,12 +3,12 @@ title: Skalierbare Auftragsverarbeitung in Azure
 description: Beispielszenario für die Erstellung einer hoch skalierbaren Pipeline für die Auftragsverarbeitung per Azure Cosmos DB.
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 9fa0dc7c564270ee811b56169e05f7e743664838
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: aa7281263db7cc72781b740941f3b86dad025baa
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016110"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389110"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Skalierbare Auftragsverarbeitung in Azure
 
@@ -41,7 +41,7 @@ Anhand dieser Architektur werden die wichtigsten Komponenten einer Pipeline für
 
 ### <a name="components"></a>Komponenten
 
-* [Cosmos DB][docs-cosmos-db] ist die global verteilte Datenbank von Microsoft mit mehreren Modellen. Hiermit können Ihre Lösungen den Durchsatz und die Speicherung für eine beliebige Zahl von geografischen Regionen elastisch und unabhängig skalieren. Azure Cosmos DB bietet Ihnen mit umfassenden Vereinbarungen zum Servicelevel (Service Level Agreements, SLAs) Durchsatz-, Wartezeit-, Verfügbarkeits- und Konsistenzgarantien. In diesem Szenario wird Cosmos DB für die Speicherung von Ereignisdatenströmen und Momentaufnahmen verwendet, und die Features des [Cosmos DB-Änderungsfeeds][docs-cosmos-db-change-feed] werden genutzt, um für Datenkonsistenz und die Wiederherstellung nach Fehlern zu sorgen. 
+* [Cosmos DB][docs-cosmos-db] ist die global verteilte Datenbank von Microsoft mit mehreren Modellen. Hiermit können Ihre Lösungen den Durchsatz und die Speicherung für eine beliebige Zahl von geografischen Regionen elastisch und unabhängig skalieren. Azure Cosmos DB bietet Ihnen mit umfassenden Vereinbarungen zum Servicelevel (Service Level Agreements, SLAs) Durchsatz-, Wartezeit-, Verfügbarkeits- und Konsistenzgarantien. In diesem Szenario wird Cosmos DB für die Speicherung von Ereignisdatenströmen und Momentaufnahmen verwendet, und die Features des [Cosmos DB-Änderungsfeeds][docs-cosmos-db-change-feed] werden genutzt, um für Datenkonsistenz und die Wiederherstellung nach Fehlern zu sorgen.
 * [Apache Kafka in HDInsight][docs-kafka] ist eine Implementierung eines verwalteten Diensts von Apache Kafka. Hierbei handelt es sich um eine verteilte Open-Source-Streamingplattform für die Erstellung von Datenpipelines und Anwendungen mit Echtzeitstreaming. Kafka verfügt auch über Nachrichtenbrokerfunktionen, die einer Nachrichtenwarteschlange zum Veröffentlichen und Abonnieren von benannten Datenströmen ähneln. In diesem Szenario wird Kafka genutzt, um eingehende und nachgeschaltete Ereignisse in der Pipeline für die Auftragsverarbeitung zu verarbeiten. 
 
 ## <a name="considerations"></a>Überlegungen
@@ -83,13 +83,13 @@ Die Währung von Azure Cosmos DB ist die Anforderungseinheit (Request Unit, RU).
 
 Auf Grundlage der zu erwartenden Aktivitätsmenge haben wir drei exemplarische Kostenprofile erstellt:
 
-* [Klein][small-pricing]: Entspricht 5 reservierten RUs mit einem 1-TB-Datenspeicher in Cosmos DB und einem kleinen Kafka-Cluster (D3 v2).
-* [Mittel][medium-pricing]: Entspricht 50 reservierten RUs mit einem 10-TB-Datenspeicher in Cosmos DB und einem mittelgroßen Kafka-Cluster (D4 v2).
-* [Groß][large-pricing]: Entspricht 500 reservierten RUs mit einem 30-TB-Datenspeicher in Cosmos DB und einem großen Kafka-Cluster (D5 v2).
+* [Klein][small-pricing]: Dieses Preisbeispiel entspricht fünf reservierten RUs mit einem 1-TB-Datenspeicher in Cosmos DB und einem kleinen Kafka-Cluster (D3 v2).
+* [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht fünf reservierten RUs mit einem 10-TB-Datenspeicher in Cosmos DB und einem mittelgroßen Kafka-Cluster (D4 v2).
+* [Groß][large-pricing]: Dieses Preisbeispiel entspricht fünf reservierten RUs mit einem 30-TB-Datenspeicher in Cosmos DB und einem großen Kafka-Cluster (D5 v2).
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
-Dieses Beispielszenario basiert auf einer umfassenderen Version dieser Architektur, die von [Jet.com](https://jet.com) für die Pipeline zur End-to-End-Auftragsverarbeitung des Unternehmens erstellt wurde. Weitere Informationen finden Sie unter dem [technischen Kundenprofil von jet.com][source-document] und in der [jet.com-Präsentation auf der Build 2018][source-presentation]. 
+Dieses Beispielszenario basiert auf einer umfassenderen Version dieser Architektur, die von [Jet.com](https://jet.com) für die Pipeline zur End-to-End-Auftragsverarbeitung des Unternehmens erstellt wurde. Weitere Informationen finden Sie unter dem [technischen Kundenprofil von jet.com][source-document] und in der [jet.com-Präsentation auf der Build 2018][source-presentation].
 
 Weitere verwandte Ressourcen:
 * _[Designing Data-Intensive Applications](https://dataintensive.net/)_ (Entwerfen von datenintensiven Anwendungen) von Martin Kleppmann (O'Reilly Media, 2017).
@@ -104,10 +104,9 @@ Weitere verwandte Ressourcen:
 [small-pricing]: https://azure.com/e/3d43949ffbb945a88cc0a126dc3a0e6e
 [medium-pricing]: https://azure.com/e/1f1e7bf2a6ad4f7799581211f4369b9b
 [large-pricing]: https://azure.com/e/75207172ece94cf6b5fb354a2252b333
-[architecture-diagram]: ./images/architecture-diagram-cosmos-db.png
+[architecture-diagram]: ./media/architecture-diagram-cosmos-db.png
 [docs-cosmos-db]: /azure/cosmos-db
 [docs-cosmos-db-change-feed]: /azure/cosmos-db/change-feed
-[docs-cosmos-db-online-backup-and-restore]: /azure/cosmos-db/online-backup-and-restore
 [docs-cosmos-db-regional-failover]: /azure/cosmos-db/regional-failover
 [docs-cosmos-db-guarantees]: /azure/cosmos-db/distribute-data-globally#AvailabilityGuarantees
 [docs-cosmos-db-use-cases]: /azure/cosmos-db/use-cases

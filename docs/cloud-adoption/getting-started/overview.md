@@ -2,12 +2,13 @@
 title: 'Enterprise Cloud-Einführung: Erste Schritte'
 description: Übersicht über die erste Phase der digitalen Transformation eines Unternehmens, das Azure-Cloudtechnologien einführt
 author: petertaylor9999
-ms.openlocfilehash: 25d1afe4d048b07a350dfc1b5c463b1d5425a8a4
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: b51e834a56f4d9818ca9475f959c3f888bae20bc
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327215"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389300"
 ---
 # <a name="enterprise-cloud-adoption-getting-started"></a>Enterprise Cloud-Einführung: Erste Schritte 
 
@@ -35,6 +36,8 @@ Ein Cloudstrategieteam kann beispielsweise vom CTO geleitet werden und Mitgliede
 
 Darüber hinaus müssen noch zwei weitere übergeordnete Teams gebildet werden: ein Governance-Team und Sicherheitsteam. Diese Teams sind zuständig für die Gestaltung, die Implementierung und die fortlaufende Überwachung der Governance- und Sicherheitsrichtlinien des Unternehmens. Das Governance-Team muss Personen enthalten, die mit Ressourcenschutz, Kostenverwaltung, Gruppenrichtlinien und Ähnlichem vertraut sind. Die Mitglieder des Sicherheitsteams müssen bestens mit aktuellen branchenspezifischen Sicherheitsstandards sowie mit den Sicherheitsanforderungen des Unternehmens vertraut sein.
 
+![Cloudstrategieteam, mit Governance- und Sicherheitsteams](../_images/getting-started-overview-1.png)
+
 Das Governance-Team ist dafür zuständig, das Governance-Modell des Unternehmens zu entwerfen und in der Cloud zu implementieren sowie die Ressourcen der freigegebenen Infrastruktur, die Teil der digitalen Transformation sind, bereitzustellen und zu verwalten. Hierzu zählen Hardware-, Software- und Cloudressourcen, die benötigt werden, um eine Verbindung zwischen dem lokalen Netzwerk und dem virtuellen Netzwerk in der Cloud herzustellen.
 
 Die Aufgabe des Sicherheitsteams besteht darin, die Sicherheitsrichtlinie des Unternehmens in der Cloud zu entwerfen und zu implementieren. Dabei arbeitet es eng mit dem Governance-Team zusammen. Das Sicherheitsteam ist für die Erweiterung der Sicherheitsgrenze des lokalen Netzwerks auf das virtuelle Netzwerk in der Cloud zuständig. Dazu muss sich das Team unter Umständen um die Firewalls für ein- und ausgehenden Datenverkehr des virtuellen Cloudnetzwerks kümmern sowie sicherstellen, dass Tools und Richtlinien die Bereitstellung nicht autorisierter Ressourcen verhindern.
@@ -42,6 +45,8 @@ Die Aufgabe des Sicherheitsteams besteht darin, die Sicherheitsrichtlinie des Un
 ## <a name="step-2-learn-whats-new-in-the-cloud"></a>Schritt 2: Informieren über Neuerungen in der Cloud
  
 Im nächsten Schritt der digitalen Transformation Ihres Unternehmens müssen sich die Mitglieder des Cloudstrategieteams darüber informieren, inwiefern sich die Cloudtechnologie auf die geschäftlichen Abläufe des Unternehmens auswirkt. Dieser Schritt dient zur Vorbereitung und Planung von Veränderungen für das Unternehmen, die Mitarbeiter und die Technologie. Die Mitglieder des Cloudstrategieteams müssen die Neuerungen und Unterschiede der Cloud im Vergleich zur lokalen Umgebung kennen.
+
+![Cloudstrategie-, Governance- und Sicherheitsteams machen sich mit den Best Practices für die Cloud vertraut.](../_images/getting-started-overview-2.png)
 
 Dazu müssen sie sich zunächst ganz allgemein mit der [Funktionsweise von Azure](what-is-azure.md) vertraut machen. Danach müssen sie sich über die [Grundlagen der Governance in Azure](what-is-governance.md) informieren, bevor sie sich schließlich mit den [Grundlagen der Ressourcenzugriffsverwaltung](azure-resource-access.md) befassen.
 
@@ -53,7 +58,7 @@ In diesem Schritt erstellt das Cloudstrategieteam eine Liste mit den geschäftli
 
 Lücken in der Unternehmensstrategie können wie folgt kategorisiert werden:
 
-|Kategorie|Beschreibung|
+|Category (Kategorie)|BESCHREIBUNG|
 |-----|-----|
 |Kostenverwaltung|Eine Lücke bei der Bezahlung für Technologie durch das Unternehmen.|
 |Governance|Eine Lücke bei den Prozessen, mit denen das Unternehmen seine Ressourcen vor nicht ordnungsgemäßer Verwendung schützt, die möglicherweise zu Budgetüberschreitungen oder zu Sicherheits- oder Kompatibilitätsproblemen führen. | 
@@ -80,6 +85,8 @@ So erhalten Sie eine nach Rangfolge sortierte Liste allgemeiner Lösungen für U
 Nachdem es eine Liste mit den Zielen der digitalen Transformation erstellt sowie die Liste priorisiert und allgemeine Lösungen vorgeschlagen hat, besteht der nächste Schritt für das Cloudstrategieteam darin, die einzelnen allgemeinen Lösungen mit Entwurfs- und Implementierungsteams in den einzelnen Unternehmensgruppen abzugleichen. 
 
 Die Teams arbeiten sich anhand der priorisierten Listen durch die einzelnen allgemeinen Lösungen, um einen entsprechenden Entwurf zu erarbeiten. Der Entwurfsprozess umfasst unter anderem Angaben zu neuer Infrastruktur und neuen Workloads. Unter Umständen verändern sich auch die Rollen der Mitarbeiter sowie die Prozesse, mit denen sie arbeiten. In dieser Phase ist es zudem äußerst wichtig, dass jedes Entwurfsteam sowohl das Governance- als auch das Sicherheitsteam in die Prüfung der jeweiligen Entwürfe mit einbezieht. Jeder Entwurf muss sich innerhalb der Richtlinien und Verfahren bewegen, die das Governance- und das Sicherheitsteam definiert haben, und diese Teams müssen in die endgültige Freigabe des jeweiligen Entwurfs eingebunden werden.
+
+![Cloudstrategieteam übergibt die allgemeinen Lösungen an Entwurfs- und Implementierungsteams.](../_images/getting-started-overview-3.png)
 
 Das Entwerfen einer Lösung ist eine anspruchsvolle Aufgabe, und der Entwurf muss jeweils im Kontext anderer Lösungsentwürfe von anderen Teams betrachtet werden. Wenn beispielsweise mehrere der Entwürfe die Migration bereits vorhandener lokaler Anwendungen und Dienste in die Cloud vorsehen, ist es unter Umständen effizienter, diese zusammenzufassen und eine allgemeine Migrationsstrategie zu erarbeiten. In einem anderen Fall können beispielsweise einige vorhandene lokale Anwendungen und Dienste nicht migriert werden, und die Lösung besteht darin, sie entweder durch Neuentwicklungen oder durch Dienste von Drittanbietern zu ersetzen. In diesem Fall ist es ggf. effizienter, sie zusammenzufassen und die Überschneidung zwischen ihnen zu ermitteln, um zu bestimmen, ob ein Drittanbieterdienst für mehrere Lösungen verwendet werden kann.
 

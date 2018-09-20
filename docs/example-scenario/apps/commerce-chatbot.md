@@ -3,12 +3,12 @@ title: Interaktiver Chatbot für Hotelreservierungen in Azure
 description: Bewährtes Szenario für die Erstellung eines interaktiven Chatbots für gewerbliche Anwendungen mit Azure Bot Service, Cognitive Services und LUIS, Azure SQL-Datenbank und Application Insights.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: b664faf20d806824c2581346aaa592b0d74207da
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 95a0fd77a99a348704a1d916de534a98d0b03448
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060862"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389331"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Interaktiver Chatbot für Hotelreservierungen in Azure
 
@@ -26,7 +26,7 @@ Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 * Überprüfen der Hotelverfügbarkeit und Reservieren eines Zimmers
 * Suchen nach verfügbaren Fotos und Bestellen von Abzügen
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Übersicht über die Architektur der Azure-Komponenten für einen interaktiven Chatbot][architecture]
 
@@ -64,7 +64,7 @@ Weitere Verfügbarkeitsthemen finden Sie im Azure Architecture Center in der [Ch
 
 ### <a name="scalability"></a>Skalierbarkeit
 
-Für dieses Szenario wird Azure App Service verwendet. Mit App Service können Sie automatisch die Anzahl von Instanzen für die Botausführung skalieren. Dadurch können Sie bei Ihrer Webanwendung und Ihrem Chatbot mit der Kundennachfrage Schritt halten. Weitere Informationen zur automatischen Skalierung finden Sie im Architecture Center unter [Automatische Skalierung][autoscaling].
+Für dieses Szenario wird Azure App Service verwendet. Mit App Service können Sie automatisch die Anzahl von Instanzen für die Botausführung skalieren. Dadurch können Sie bei Ihrer Webanwendung und Ihrem Chatbot mit der Kundennachfrage Schritt halten. Weitere Informationen zur automatischen Skalierung finden Sie im Azure Architecture Center unter [Automatische Skalierung][autoscaling].
 
 Weitere Skalierbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
 
@@ -78,7 +78,7 @@ Allgemeine Informationen zur Entwicklung sicherer Lösungen finden Sie in der [D
 
 ### <a name="resiliency"></a>Resilienz
 
-In diesem Szenario werden Kundenreservierungen in Azure SQL-Datenbank gespeichert. SQL-Datenbank umfasst zonenredundante Datenbanken, Failovergruppen, Georeplikation und automatische Sicherungen. Diese Features sorgen dafür, dass Ihre Anwendung im Falle eines Wartungsereignisses oder eines Ausfalls weiter ausgeführt werden kann. Weitere Informationen finden Sie unter [Verfügbarkeitsfunktionen][sqlavailability-docs].
+In diesem Szenario werden Kundenreservierungen in Azure SQL-Datenbank gespeichert. SQL-Datenbank umfasst zonenredundante Datenbanken, Failovergruppen, Georeplikation und automatische Sicherungen. Diese Features sorgen dafür, dass Ihre Anwendung im Falle eines Wartungsereignisses oder Ausfalls weiter ausgeführt werden kann. Weitere Informationen finden Sie unter [Verfügbarkeitsfunktionen][sqlavailability-docs].
 
 Die Integrität Ihrer Anwendung wird bei diesem Szenario mithilfe von Application Insights überwacht. Mit Application Insights können Sie Warnungen generieren und auf Leistungsprobleme reagieren, die die Benutzerfreundlichkeit und Verfügbarkeit des Chatbots beeinträchtigen. Weitere Informationen finden Sie unter [Was ist Application Insights?][appinsights-docs].
 
@@ -141,11 +141,11 @@ Die Beispielanwendung umfasst die Komponenten für die Azure Active Directory-Au
 
 Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kostenrechner vorkonfiguriert. Wenn Sie wissen möchten, welche Kosten für Ihren spezifischen Anwendungsfall entstehen, passen Sie die entsprechenden Variablen an Ihren voraussichtlichen Datenverkehr an.
 
-Auf der Grundlage der Nachrichten, die voraussichtlich von Ihrem Chatbot verarbeitet werden, haben wir drei exemplarische Kostenprofile erstellt:
+Auf der Grundlage der Anzahl von Nachrichten, die voraussichtlich von Ihrem Chatbot verarbeitet werden, haben wir drei exemplarische Kostenprofile erstellt:
 
-* [Klein:][small-pricing] Verarbeitung von < 10.000 Nachrichten pro Monat.
-* [Mittel:][medium-pricing] Verarbeitung von < 500.000 Nachrichten pro Monat.
-* [Groß:][large-pricing] Verarbeitung von < 10 Millionen Nachrichten pro Monat.
+* [Klein][small-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von < 10.000 Nachrichten pro Monat.
+* [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von < 500.000 Nachrichten pro Monat.
+* [Groß][large-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von < 10 Millionen Nachrichten pro Monat.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 

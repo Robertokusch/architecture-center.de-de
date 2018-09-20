@@ -3,12 +3,12 @@ title: 3D-Videorendering in Azure
 description: Ausführen von nativen HPC-Workloads in Azure mit dem Azure Batch-Dienst
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: e629e2ba0b9490e534057fee33f7bededa9656af
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 723d437671c52dc9f717bef9641663d0e7a8fbc4
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229183"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389348"
 ---
 # <a name="3d-video-rendering-on-azure"></a>3D-Videorendering in Azure
 
@@ -47,24 +47,26 @@ Azure Batch basiert auf der folgenden Azure-Technologie:
 * [Ressourcengruppen][resource-groups] sind logische Container für Azure-Ressourcen.
 * [Virtuelle Netzwerke][vnet] werden sowohl für den Hauptknoten als auch für die Computeressourcen verwendet.
 * [Storage][storage]-Konten werden für die Synchronisierung und Datenaufbewahrung verwendet.
-* [Virtual Machine Scale Sets][vmss] (VM-Skalierungsgruppen) werden von CycleCloud für Computeressourcen genutzt.
+* [VM-Skalierungsgruppen][vmss] werden von CycleCloud für Computeressourcen genutzt.
 
 ## <a name="considerations"></a>Überlegungen
 
 ### <a name="machine-sizes-available-for-azure-batch"></a>Verfügbare Computergrößen für Azure Batch
-Die meisten Renderingkunden entscheiden sich zwar für Ressourcen mit einer hohen CPU-Leistung, aber für andere Workloads mit Verwendung von VM Scale Sets werden virtuelle Computer ggf. anders ausgewählt und sind von verschiedenen Faktoren abhängig:
-  - Ist die ausgeführte Anwendung speichergebunden?
-  - Müssen für die Anwendung GPUs verwendet werden? 
-  - Gilt für die Auftragstypen eine hohe Parallelität, oder ist für eng gekoppelte Aufträge eine Infiniband-Konnektivität erforderlich?
-  - Erzwingen einer hohen E/A-Geschwindigkeit für die Speicherung auf den Computeknoten
 
-Azure verfügt über einen weiten Bereich von VM-Größen, mit denen alle oben beschriebenen Anwendungsanforderungen erfüllt werden können. Einige gelten speziell für HPC, aber auch die kleinsten Größen können genutzt werden, um für eine effektive Rasterimplementierung zu sorgen:
+Die meisten Renderingkunden entscheiden sich zwar für Ressourcen mit hoher CPU-Leistung, für andere Workloads mit VM-Skalierungsgruppen werden virtuelle Computer aber ggf. anders ausgewählt und sind von verschiedenen Faktoren abhängig:
 
-  - [HPC-VM-Größen][compute-hpc] Aufgrund der CPU-Bindung des Renderns empfiehlt Microsoft normalerweise die Verwendung von Azure-VMs der H-Serie.  Diese VMs sind speziell auf Highend-Computeranforderungen ausgelegt und verfügen über vCPU-Größen mit 8 oder 16 Kernen sowie DDR4-Arbeitsspeicher, temporären SSD-Speicher und Haswell E5 Intel-Technologie.
-  - [GPU-VM-Größen][compute-gpu] GPU-optimierte VM-Größen sind für spezialisierte virtuelle Computer mit einzelnen oder mehreren NVIDIA-GPUs verfügbar. Diese Größen sind für rechenintensive, grafikintensive und visualisierungsorientierte Workloads vorgesehen.
-    - Die Größen NC, NCv2, NCv3 und ND sind für rechen- und netzwerkintensive Anwendungen und Algorithmen wie CUDA- und OpenCL-basierte Anwendungen und Simulationen sowie für KI und Deep Learning optimiert. NV-Größen sind für Remotevisualisierung, Streaming, Spiele, Codierung und VDI-Szenarien mit Frameworks wie OpenGL und DirectX optimiert und konzipiert.
-  - [Arbeitsspeicheroptimierte VM-Größen][compute-memory] Wenn mehr Arbeitsspeicher erforderlich ist, ermöglichen die arbeitsspeicheroptimierten VM-Größen ein höheres Arbeitsspeicher/CPU-Verhältnis.
-  - [Universelle VM-Größen][compute-general] Es sind auch universelle VM-Größen mit einem ausgewogenen Verhältnis von CPU zu Arbeitsspeicher verfügbar.
+* Ist die ausgeführte Anwendung speichergebunden?
+* Müssen für die Anwendung GPUs verwendet werden? 
+* Gilt für die Auftragstypen eine hohe Parallelität, oder ist für eng gekoppelte Aufträge eine Infiniband-Konnektivität erforderlich?
+* Erzwingen einer hohen E/A-Geschwindigkeit für Speicher auf den Computeknoten
+
+Azure verfügt über ein breites Spektrum an VM-Größen, mit denen alle oben beschriebenen Anwendungsanforderungen erfüllt werden können. Einige gelten speziell für HPC, aber auch die kleinsten Größen können genutzt werden, um eine effektive Rasterimplementierung zu erreichen:
+
+* [HPC-VM-Größen][compute-hpc] Aufgrund der CPU-Bindung des Renderns empfiehlt Microsoft normalerweise die Verwendung von virtuellen Azure-Computern der H-Serie.  Diese Art von virtuellem Computer ist speziell auf Highend-Computeranforderungen ausgelegt und verfügt über vCPU-Größen mit 8 oder 16 Kernen sowie über DDR4-Arbeitsspeicher, temporären SSD-Speicher und Haswell E5 Intel-Technologie.
+* [GPU-VM-Größen][compute-gpu] GPU-optimierte VM-Größen sind für spezialisierte virtuelle Computer mit einzelnen oder mehreren NVIDIA-GPUs verfügbar. Diese Größen sind für rechenintensive, grafikintensive und visualisierungsorientierte Workloads vorgesehen.
+* Die Größen NC, NCv2, NCv3 und ND sind für rechen- und netzwerkintensive Anwendungen und Algorithmen wie CUDA- und OpenCL-basierte Anwendungen und Simulationen sowie für KI und Deep Learning optimiert. NV-Größen sind für Remotevisualisierung, Streaming, Spiele, Codierung und VDI-Szenarien mit Frameworks wie OpenGL und DirectX optimiert und konzipiert.
+* [Arbeitsspeicheroptimierte VM-Größen][compute-memory] Wenn mehr Arbeitsspeicher erforderlich ist, ermöglichen die arbeitsspeicheroptimierten VM-Größen ein höheres Arbeitsspeicher/CPU-Verhältnis.
+* [Universelle VM-Größen][compute-general] Es sind auch universelle VM-Größen mit einem ausgewogenen Verhältnis von CPU zu Arbeitsspeicher verfügbar.
 
 ### <a name="alternatives"></a>Alternativen
 
@@ -74,11 +76,11 @@ Eine vollständige Übersicht über alle HPC-Lösungen, die für Sie in Azure ve
 
 ### <a name="availability"></a>Verfügbarkeit
 
-Die Überwachung der Azure Batch-Komponenten ist über unterschiedliche Dienste, Tools und APIs verfügbar. Weitere Informationen hierzu finden Sie im Artikel [Überwachen von Batch-Lösungen][batch-monitor].
+Die Überwachung der Azure Batch-Komponenten ist über unterschiedliche Dienste, Tools und APIs möglich. Weitere Informationen zur Überwachung finden Sie im Artikel [Überwachen von Batch-Lösungen][batch-monitor].
 
 ### <a name="scalability"></a>Skalierbarkeit
 
-Pools eines Azure Batch-Kontos können entweder per manuellem Eingriff oder mit einer Formel basierend auf Azure Batch-Metriken automatisch skaliert werden. Weitere Informationen hierzu finden Sie im Artikel [Create an automatic scaling formula for scaling nodes in a Batch pool][batch-scaling] (Erstellen einer Formel für die automatische Skalierung zum Skalieren von Knoten in einem Batch-Pool).
+Pools eines Azure Batch-Kontos können entweder per manuellem Eingriff oder automatisch mit einer auf Azure Batch-Metriken basierenden Formel skaliert werden. Weitere Informationen zur Skalierbarkeit finden Sie im Artikel [Erstellen einer Formel für die automatische Skalierung von Computeknoten in einem Batch-Pool][batch-scaling].
 
 ### <a name="security"></a>Sicherheit
 
@@ -86,7 +88,7 @@ Allgemeine Informationen zur Entwicklung sicherer Lösungen finden Sie in der [D
 
 ### <a name="resiliency"></a>Resilienz
 
-Da in Azure Batch derzeit keine Failoverfunktion verfügbar ist, empfehlen wir die folgenden Schritte, um sicherzustellen, dass bei einem ungeplanten Ausfall für Verfügbarkeit gesorgt ist:
+Da in Azure Batch derzeit keine Failoverfunktion verfügbar ist, empfehlen wir die folgenden Schritte, um die Verfügbarkeit auch bei einem ungeplanten Ausfall sicherzustellen:
 
 * Erstellen eines Azure Batch-Kontos an einem anderen Azure-Standort mit einem anderen Speicherkonto
 * Erstellen der gleichen Knotenpools mit dem gleichen Namen und null zugeordneten Knoten
@@ -97,49 +99,49 @@ Da in Azure Batch derzeit keine Failoverfunktion verfügbar ist, empfehlen wir d
 
 ### <a name="creating-an-azure-batch-account-and-pools-manually"></a>Manuelles Erstellen eines Azure Batch-Kontos und der Pools
 
-In diesem Beispielszenario wird veranschaulicht, wie Azure Batch funktioniert, und Azure Batch Labs wird als SaaS-Beispiellösung verwendet, die für Ihre eigenen Kunden entwickelt werden kann:
+In diesem Beispielszenario wird die Funktionsweise von Azure Batch veranschaulicht und Azure Batch Labs als SaaS-Beispiellösung verwendet, die für Ihre eigenen Kunden entwickelt werden kann:
 
 [Azure Batch – Masterclass][batch-labs-masterclass]
 
-### <a name="deploying-the-sample-scenario-using-an-azure-resource-manager-arm-template"></a>Bereitstellen des Beispielszenarios mit einer ARM-Vorlage (Azure Resource Manager)
+### <a name="deploying-the-sample-scenario-using-an-azure-resource-manager-template"></a>Bereitstellen des Beispielszenarios mit einer Azure Resource Manager-Vorlage
 
 Über die Vorlage wird Folgendes bereitgestellt:
-  - Ein neues Azure Batch-Konto
-  - Ein Speicherkonto
-  - Einen Knotenpool, der dem Batch-Konto zugeordnet ist
-  - Knotenpool wird für die Verwendung von A2 v2-VMs mit Canonical Ubuntu-Images konfiguriert
-  - Knotenpool enthält anfänglich 0 VMs, und zum Hinzufügen von VMs ist eine manuelle Skalierung erforderlich
+
+* Ein neues Azure Batch-Konto
+* Ein Speicherkonto
+* Einen Knotenpool, der dem Batch-Konto zugeordnet ist
+* Knotenpool wird für die Verwendung von A2 v2-VMs mit Canonical Ubuntu-Images konfiguriert
+* Der Knotenpool enthält anfänglich null virtuelle Computer, und zum Hinzufügen von virtuellen Computern ist eine manuelle Skalierung erforderlich.
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fhpc%2Fbatchcreatewithpools.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-[Weitere Informationen zu ARM-Vorlagen][azure-arm-templates]
+Weitere Informationen zu Resource Manager-Vorlagen finden Sie [hier][azure-arm-templates].
 
 ## <a name="pricing"></a>Preise
 
-Die Kosten für die Nutzung von Azure Batch richten sich nach den VM-Größen, die für die Pools verwendet werden, und nach der Dauer der Zuordnung und Ausführung. Für die Erstellung eines Azure Batch-Kontos werden keine Kosten berechnet. Speicher und ausgehende Daten sollten ebenfalls berücksichtigt werden, da hierfür weitere Kosten anfallen.
+Die Kosten für die Nutzung von Azure Batch richten sich nach den VM-Größen, die für die Pools verwendet werden, sowie nach der Dauer der Zuordnung und Ausführung der virtuellen Computer. Für die Erstellung eines Azure Batch-Kontos fallen keine Kosten an. Speicher und ausgehende Daten sollten berücksichtigt werden, da hierfür weitere Kosten anfallen.
 
 Hier sind Beispiele für Kosten angegeben, die für einen Auftrag anfallen können, der innerhalb von acht Stunden abgeschlossen wird, indem eine andere Zahl von Servern genutzt wird:
 
+* 100 virtuelle Computer mit Hochleistungs-CPU: [Kostenschätzung][hpc-est-high]
 
-- 100 VMs mit Hochleistungs-CPU: [Kostenschätzung][hpc-est-high]
+  100 x H16m (16 Kerne, 225 GB RAM, 512 GB Storage Premium), 2 TB Blobspeicher, 1 TB ausgehender Datenverkehr
 
-  100 x H16m (16 Kerne, 225 GB RAM, Storage Premium 512 GB), 2 TB Blobspeicher, 1 TB ausgehender Datenverkehr
+* 50 virtuelle Computer mit Hochleistungs-CPU: [Kostenschätzung][hpc-est-med]
 
-- 50 VMs mit Hochleistungs-CPU: [Kostenschätzung][hpc-est-med]
+  50 x H16m (16 Kerne, 225 GB RAM, 512 GB Storage Premium), 2 TB Blobspeicher, 1 TB ausgehender Datenverkehr
 
-  50 x H16m (16 Kerne, 225 GB RAM, Storage Premium 512 GB), 2 TB Blobspeicher, 1 TB ausgehender Datenverkehr
-
-- 10 VMs mit Hochleistungs-CPU: [Kostenschätzung][hpc-est-low]
+* 10 virtuelle Computer mit Hochleistungs-CPU: [Kostenschätzung][hpc-est-low]
   
-  10 x H16m (16 Kerne, 225 GB RAM, Storage Premium 512 GB), 2 TB Blobspeicher, 1 TB ausgehender Datenverkehr
+  10 x H16m (16 Kerne, 225 GB RAM, 512 GB Storage Premium), 2 TB Blobspeicher, 1 TB ausgehender Datenverkehr
 
-### <a name="low-priority-vm-pricing"></a>Preise für VMs mit niedriger Priorität
+### <a name="low-priority-vm-pricing"></a>Preise für virtuelle Computer mit niedriger Priorität
 
-Azure Batch unterstützt auch die Verwendung von VMs mit niedriger Priorität* in den Knotenpools, und dies kann unter Umständen zu erheblichen Kosteneinsparungen führen. Einen Preisvergleich zwischen Standard-VMs und VMs mit niedriger Priorität sowie weitere Informationen zu VMs mit niedriger Priorität finden Sie unter [Batch – Preise][batch-pricing].
+Azure Batch unterstützt auch die Verwendung virtueller Computer mit niedriger Priorität* in den Knotenpools, was zu erheblichen Kosteneinsparungen führen kann. Einen Preisvergleich zwischen virtuellen Standardcomputern und virtuellen Computern mit niedriger Priorität sowie weitere Informationen zu virtuellen Computern mit niedriger Priorität finden Sie unter [Batch – Preise][batch-pricing].
 
-\* Beachten Sie, dass nur bestimmte Anwendungen und Workloads für die Ausführung auf VMs mit niedriger Priorität geeignet sind.
+\* Beachten Sie, dass nur bestimmte Anwendungen und Workloads für die Ausführung auf virtuellen Computern mit niedriger Priorität geeignet sind.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 

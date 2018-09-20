@@ -3,12 +3,12 @@ title: SAP für Dev/Test-Workloads
 description: SAP-Szenario für eine Dev/Test-Umgebung
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: 675a5cb4b1ee4001ca50d24c145ce1a177f90da4
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: d0f266e40969cf4782e69041889a686387499722
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060961"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389178"
 ---
 # <a name="sap-for-devtest-workloads"></a>SAP für Dev/Test-Workloads
 
@@ -27,14 +27,14 @@ Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 * Nicht kritische SAP-Workloads, die nicht für die Produktion bestimmt sind (Sandbox, Entwicklung, Test, Qualitätssicherung)
 * Nicht kritische SAP Business One-Workloads
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Diagramm](media/sap-2tier/SAP-Infra-2Tier_finalversion.png)
 
 Mit diesem Szenario wird die Bereitstellung einer einzelnen SAP-Systemdatenbank und eines SAP-Anwendungsservers auf einem einzelnen virtuellen Computer behandelt. Die Daten durchlaufen das Szenario wie folgt:
 
 1. Kunden auf der Präsentationsebene verwenden ihre SAP-GUI oder andere Benutzeroberflächen (Internet Explorer, Excel oder eine andere Webanwendung) lokal, um auf das Azure-basierte SAP-System zuzugreifen.
-2. Die Konnektivität wird über die eingerichtete ExpressRoute-Verbindung bereitgestellt. Die Express Route-Verbindung endet in Azure auf dem ExpressRoute-Gateway. Netzwerkdatenverkehr wird über das ExpressRoute-Gateway an das Gatewaysubnetz und von dort an das Spoke-Subnetz auf der Anwendungsebene geleitet (siehe [Hub-Spoke][hub-spoke]-Muster). Anschließend fließt der Datenverkehr über ein Netzwerksicherheitsgateway an den virtuellen Computer der SAP-Anwendung.
+2. Die Konnektivität wird über eine eingerichtete ExpressRoute-Verbindung bereitgestellt. Die ExpressRoute-Verbindung endet in Azure auf dem ExpressRoute-Gateway. Netzwerkdatenverkehr wird über das ExpressRoute-Gateway an das Gatewaysubnetz und von dort an das Spoke-Subnetz auf der Anwendungsebene geleitet (siehe [Hub-Spoke][hub-spoke]-Muster). Anschließend fließt der Datenverkehr über ein Netzwerksicherheitsgateway an den virtuellen Computer der SAP-Anwendung.
 3. Die Server für die Identitätsverwaltung stellen Authentifizierungsdienste bereit.
 4. Über die Jumpbox sind lokale Verwaltungsfunktionen verfügbar.
 
@@ -77,12 +77,12 @@ Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir vier exem
 Groß|32000|E32s_v3|3 x P20, 1 x P10|[Groß](https://azure.com/e/ada2e849d68b41c3839cc976000c6931)|
 Sehr groß|64000|M64s|4 x P20, 1 x P10|[Sehr groß](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef)|
 
-Hinweis: Die Preise sollen als Anhaltspunkte gelten und geben nur die Kosten für VMs und Speicher an (ohne Gebühren für Netzwerk, Sicherungsspeicher und Datenein- und -ausgang).
+Hinweis: Die Preise sind als Orientierungshilfe gedacht und geben nur die Kosten für virtuelle Computer und Speicher an (ohne Gebühren für Netzwerk, Sicherungsspeicher und ein-/ausgehende Daten).
 
-* [Klein](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1): Ein kleines System umfasst den VM-Typ D8s_v3 mit 8 vCPUs, 32 GB RAM und 200 GB temporärem Speicher sowie zusätzlich zwei Premium-Speicherdatenträgern mit 512 GB und einem mit 128 GB.
-* [Mittel](https://azure.com/e/465bd07047d148baab032b2f461550cd): Ein mittelgroßes System umfasst den VM-Typ D16s_v3 mit 16 vCPUs, 64 GB RAM und 400 GB temporärem Speicher sowie zusätzlich drei Premium-Speicherdatenträgern mit 512 GB und einem mit 128 GB.
-* [Groß](https://azure.com/e/ada2e849d68b41c3839cc976000c6931): Ein großes System umfasst den VM-Typ E32s_v3 mit 32 vCPUs, 256 GB RAM und 512 GB temporärem Speicher sowie zusätzlich drei Premium-Speicherdatenträgern mit 512 GB und einem mit 128 GB.
-* [Sehr groß](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef): Ein sehr großes System umfasst den VM-Typ M64s mit 64 vCPUs, 1.024 GB RAM und 2.000 GB temporärem Speicher sowie zusätzlich vier Premium-Speicherdatenträgern mit 512 GB und einem mit 128 GB.
+* [Klein](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1): Ein kleines System umfasst den VM-Typ „D8s_v3“ mit acht vCPUs, 32 GB RAM und 200 GB temporärem Speicher sowie zusätzlich drei Storage Premium-Datenträger (zwei mit 512 GB, einer mit 128 GB).
+* [Mittel](https://azure.com/e/465bd07047d148baab032b2f461550cd): Ein mittleres System umfasst den VM-Typ „D16s_v3“ mit 16 vCPUs, 64 GB RAM und 400 GB temporärem Speicher sowie zusätzlich vier Storage Premium-Datenträger (drei mit 512 GB, einer mit 128 GB).
+* [Groß](https://azure.com/e/ada2e849d68b41c3839cc976000c6931): Ein großes System umfasst den VM-Typ „E32s_v3“ mit 32 vCPUs, 256 GB RAM und 512 GB temporärem Speicher sowie zusätzlich vier Storage Premium-Datenträger (drei mit 512 GB, einer mit 128 GB).
+* [Sehr groß](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef): Ein sehr großes System umfasst den VM-Typ „M64s“ mit 64 vCPUs, 1.024 GB RAM und 2.000 GB temporärem Speicher sowie zusätzlich fünf Storage Premium-Datenträger (vier mit 512 GB, einer mit 128 GB).
 
 ## <a name="deployment"></a>Bereitstellung
 
@@ -92,7 +92,7 @@ Verwenden Sie die Schaltfläche „Bereitstellen“, um die zugrunde liegende In
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-\* SAP wird nicht installiert. Sie müssen dies durchführen, nachdem die Infrastruktur manuell erstellt wurde.
+\* SAP wird nicht automatisch installiert. Installieren Sie es nach Erstellung der Infrastruktur manuell.
 
 <!-- links -->
 [reference architecture]:  /azure/architecture/reference-architectures/sap

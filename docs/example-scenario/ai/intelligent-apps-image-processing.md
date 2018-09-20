@@ -3,12 +3,12 @@ title: Bildklassifizierung für Versicherungsansprüche in Azure
 description: Bewährtes Szenario zur Integration einer Bildverarbeitung in Ihre Azure-Anwendungen.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 361a88234fd9ed918ab7664893f86666b4328b8c
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 0ca0b46e83219afc5e22c2ac6467bf4be945c97a
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060828"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389161"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Bildklassifizierung für Versicherungsansprüche in Azure
 
@@ -16,7 +16,7 @@ Dieses Beispielszenario richtet sich an Unternehmen, die eine Bildverarbeitung b
 
 Mögliche Anwendungsbereiche wären etwa die Klassifizierung von Bildern für eine Modewebsite, die Analyse von Text und Bildern für Versicherungsansprüche oder die Interpretation von Telemetriedaten aus Screenshots von Spielen. In der Vergangenheit mussten sich Unternehmen in der Regel ausführlich mit Machine Learning-Modellen vertraut machen, die Modelle trainieren und die Bilder schließlich durch ihren benutzerdefinierten Prozess schleusen, um die Daten aus den Bildern zu extrahieren.
 
-Durch die Verwendung von Azure-Diensten wie Maschinelles Sehen-API und Azure Functions müssen Unternehmen keine einzelnen Server mehr verwalten und können gleichzeitig ihre Kosten senken und von der Erfahrung profitieren, über die Microsoft im Bereich der Bildverarbeitung mit Cognitive Services verfügt. In diesem Szenario geht es speziell um die Bildverarbeitung. Sollten Sie andere KI-Anforderungen haben, ziehen Sie ggf. die Verwendung der vollständigen Suite von [Cognitive Services][cognitive-docs] in Betracht.
+Durch die Verwendung von Azure-Diensten wie Maschinelles Sehen-API und Azure Functions müssen Unternehmen keine einzelnen Server mehr verwalten und können gleichzeitig ihre Kosten senken und von der Erfahrung profitieren, über die Microsoft im Bereich der Bildverarbeitung mit Cognitive Services verfügt. In diesem Beispielszenario geht es speziell um einen Anwendungsfall mit Bildverarbeitung. Sollten Sie andere KI-Anforderungen haben, ziehen Sie ggf. die Verwendung der vollständigen Suite von [Cognitive Services][cognitive-docs] in Betracht.
 
 ## <a name="related-use-cases"></a>Verwandte Anwendungsfälle
 
@@ -25,7 +25,7 @@ Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 * Klassifizieren von Bildern auf einer Modewebsite
 * Klassifizieren von Telemetriedaten aus Screenshots von Spielen
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Architektur für intelligente Apps: maschinelles Sehen][architecture-computer-vision]
 
@@ -65,9 +65,9 @@ Dieses Szenario umfasst die Back-End-Komponenten einer webbasierten oder mobilen
 
 Bei den Komponenten dieses Szenarios handelt es sich größtenteils um verwaltete Dienste mit automatischer Skalierung. Es gibt jedoch ein paar Ausnahmen: Die maximale Anzahl von Azure Functions-Instanzen ist auf 200 beschränkt. Sollten Ihre Skalierungsanforderungen über diesen Grenzwert hinausgehen, erwägen Sie die Verwendung mehrerer Regionen oder App-Pläne.
 
-Bei Cosmos DB erfolgt keine automatische Skalierung der bereitgestellten Anforderungseinheiten (Request Units, RUs).  Einen Leitfaden für die Schätzung Ihrer Anforderungen finden Sie in unserer Dokumentation unter [Anforderungseinheiten][request-units]. Zur optimalen Nutzung der Skalierung in Cosmos DB empfiehlt sich zudem ein Blick auf [Partitionsschlüssel][partition-key].
+Bei Cosmos DB erfolgt keine automatische Skalierung der bereitgestellten Anforderungseinheiten (Request Units, RUs).  Einen Leitfaden für die Schätzung Ihrer Anforderungen finden Sie in unserer Dokumentation unter [Anforderungseinheiten][request-units]. Machen Sie sich zur optimalen Nutzung der Skalierung in Cosmos DB mit [Partitionsschlüsseln][partition-key] vertraut.
 
-Bei NoSQL-Datenbanken gehen Verfügbarkeit, Skalierbarkeit und Partitionierung häufig zulasten der Konsistenz (im Sinne des CAP-Theorems).  Im Falle von Schlüssel-Wert-Datenmodellen, wie sie in diesem Szenario verwendet werden, kann die Transaktionskonsistenz meist vernachlässigt werden, da die meisten Vorgänge per Definition atomisch sind. Weitere Informationen zur [Wahl des richtigen Datenspeichers](../../guide/technology-choices/data-store-overview.md) finden Sie im Architecture Center.
+Bei NoSQL-Datenbanken gehen Verfügbarkeit, Skalierbarkeit und Partitionierung häufig zulasten der Konsistenz (im Sinne des CAP-Theorems).  In diesem Beispielszenario wird ein Schlüssel-Wert-Datenmodell verwendet, sodass die Transaktionskonsistenz meist vernachlässigt werden kann, da die meisten Vorgänge per Definition atomisch sind. Weitere Informationen zur [Wahl des richtigen Datenspeichers](../../guide/technology-choices/data-store-overview.md) finden Sie im Azure Architecture Center.
 
 Allgemeine Informationen zur Entwicklung skalierbarer Lösungen finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
 
@@ -89,15 +89,15 @@ Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kost
 
 Auf der Grundlage des Datenverkehrs (und unter der Annahme, dass alle Bilder 100 KB groß sind) haben wir drei exemplarische Kostenprofile erstellt:
 
-* [Klein:][pricing] Verarbeitung von &lt; 5.000 Bildern pro Monat.
-* [Mittel:][medium-pricing] Verarbeitung von 500.000 Bildern pro Monat.
-* [Groß:][large-pricing] Verarbeitung von 50 Millionen Bildern pro Monat.
+* [Klein][pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von &lt; 5.000 Bildern pro Monat.
+* [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von 500.000 Bildern pro Monat.
+* [Groß][large-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von 50 Millionen Bildern pro Monat.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
 Einen geführten Lernpfad für dieses Szenario finden Sie unter [Build a serverless web app in Azure][serverless] (Erstellen einer serverlosen Web-App in Azure).  
 
-Machen Sie sich vor der Bereitstellung in einer Produktionsumgebung mit den [bewährten Methoden][functions-best-practices] für Azure Functions vertraut.
+Machen Sie sich mit den [bewährten Methoden][functions-best-practices] für Azure Functions vertraut, bevor Sie dieses Beispielszenario in einer Produktionsumgebung bereitstellen.
 
 <!-- links -->
 [pricing]: https://azure.com/e/f9b59d238b43423683db73f4a31dc380

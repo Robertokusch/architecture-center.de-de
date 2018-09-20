@@ -3,12 +3,12 @@ title: Notfallwiederherstellung für Azure-Anwendungen
 description: Technische Übersicht und ausführliche Informationen zum Entwerfen von Anwendungen für die Notfallwiederherstellung in Microsoft Azure.
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: 2d890e479e008e03dcfce9b7240f8bcbaf270372
-ms.sourcegitcommit: e8f4786b187697b1bea374e5f35f217c65d2dfe0
+ms.openlocfilehash: faae658d91ec0cb2dd5dc436e67aa9b494fd4b49
+ms.sourcegitcommit: 46ed67297e6247f9a80027cfe891a5e51ee024b4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37343378"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45556681"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Notfallwiederherstellung für Azure-Anwendungen
 
@@ -299,7 +299,10 @@ In den folgenden Themen werden die spezifischen Azure-Dienste für die Notfallwi
 
 | Dienst | Thema |
 |---------|-------|
+| Azure Database for MySQL | [Übersicht über die Geschäftskontinuität mit Azure Database for MySQL](/azure/mysql/concepts-business-continuity) |
+| Azure Database for PostgreSQL | [Übersicht über die Geschäftskontinuität mit Azure Database for PostgreSQL](/azure/postgresql/concepts-business-continuity)
 | Cloud Services | [Vorgehensweise bei einer Azure-Dienstunterbrechung mit Auswirkungen auf Azure Cloud Services](/azure/cloud-services/cloud-services-disaster-recovery-guidance) |
+| Cosmos DB | [Automatische regionale Failover für die Geschäftskontinuität in Azure Cosmos DB](/azure/cosmos-db/regional-failover)
 | Key Vault | [Azure Key Vault: Verfügbarkeit und Redundanz](/azure/key-vault/key-vault-disaster-recovery-guidance) |
 |Speicher | [Vorgehensweise beim Ausfall von Azure Storage](/azure/storage/storage-disaster-recovery-guidance) |
 | SQL-Datenbank | [Wiederherstellen einer Azure SQL-Datenbank oder Failover auf eine sekundäre Datenbank](/azure/sql-database/sql-database-disaster-recovery) |
