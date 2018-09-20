@@ -3,12 +3,12 @@ title: Ausführen eines virtuellen Linux-Computers in Azure
 description: Hier erfahren Sie, wie Sie eine Linux-VM unter Azure ausführen und die Skalierbarkeit, Resilienz, Verwaltbarkeit und Sicherheit im Blick behalten.
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: 3d0492d05280e8c296cdfc4157aa0387a70337bf
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: b53db016a594bace880aaac4e16f0586fe3057b1
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142317"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584730"
 ---
 # <a name="run-a-linux-vm-on-azure"></a>Ausführen eines virtuellen Linux-Computers in Azure
 
@@ -132,6 +132,8 @@ Verwenden Sie [Azure Security Center][security-center], um sich eine zentrale Ü
 Verwenden Sie [Überwachungsprotokolle][audit-logs], um Bereitstellungsaktionen und andere VM-Ereignisse anzuzeigen.
 
 **Datenverschlüsselung.** Ziehen Sie [Azure Disk Encryption][disk-encryption] in Betracht, wenn Sie die Datenträger für Betriebssystem und Daten verschlüsseln müssen. 
+
+**DDoS Protection**. Es wird empfohlen, [DDoS Protection Standard](/azure/virtual-network/ddos-protection-overview) zu aktivieren. Dieser Dienst bietet zusätzliche DDoS-Risikominderung für Ressourcen in einem VNET. DDoS Protection Basic wird automatisch als Teil der Azure-Plattform aktiviert. DDoS Protection Standard bietet jedoch Funktionen zur Risikominderung, die speziell für Azure Virtual Network-Ressourcen optimiert sind.  
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 

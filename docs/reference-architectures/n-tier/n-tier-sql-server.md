@@ -3,12 +3,12 @@ title: n-schichtige Anwendung mit SQL Server
 description: Vorgehensweise zur Implementierung einer mehrschichtigen Architektur in Azure für Verfügbarkeit, Sicherheit, Skalierbarkeit und Verwaltbarkeit.
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: fc761e940a25c4667146db9598d944bac2c32496
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 3a291b9492c94450a42de96bea2135190c163fe7
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326055"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584747"
 ---
 # <a name="n-tier-application-with-sql-server"></a>n-schichtige Anwendung mit SQL Server
 
@@ -154,6 +154,8 @@ Für die Erstellung einer DMZ zwischen dem Internet und dem virtuellen Azure-Net
 
 Verschlüsseln Sie sensible ruhende Daten, und verwalten Sie die Datenbankverschlüsselungsschlüssel mithilfe von [Azure Key Vault][azure-key-vault]. Key Vault kann Verschlüsselungsschlüssel in Hardwaresicherheitsmodulen (HSMs) speichern. Weitere Informationen finden Sie unter [Konfigurieren der Azure Key Vault-Integration für SQL Server auf virtuellen Azure-Computern (Resource Manager)][sql-keyvault]. Es empfiehlt sich außerdem, Anwendungsgeheimnisse wie Datenbankverbindungszeichenfolgen in Key Vault zu speichern.
 
+Es wird empfohlen, [DDoS Protection Standard](/azure/virtual-network/ddos-protection-overview) zu aktivieren. Dieser Dienst bietet zusätzliche DDoS-Risikominderung für Ressourcen in einem VNET. DDoS Protection Basic wird automatisch als Teil der Azure-Plattform aktiviert. DDoS Protection Standard bietet jedoch Funktionen zur Risikominderung, die speziell für Azure Virtual Network-Ressourcen optimiert sind.  
+
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
 Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folder] verfügbar. Beachten Sie, dass die gesamte Bereitstellung bis zu zwei Stunden dauern kann. Dies umfasst die Ausführung der Skripts zum Konfigurieren von AD DS, des Windows Server-Failoverclusters und der SQL Server-Verfügbarkeitsgruppe.
@@ -220,7 +222,7 @@ Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folde
     "witnessStorageAccountKey": "[replace-with-storagekey]"
     ```
 
-8. Suchen Sie in der Datei `n-tier-windows.json` nach allen Vorkommen von `[replace-with-password]`, und ersetzen Sie sie durch ein sicheres Kennwort. Speichern Sie die Datei .
+8. Suchen Sie in der Datei `n-tier-windows.json` nach allen Vorkommen von `[replace-with-password]` und `[replace-with-sql-password]`, und ersetzen Sie sie durch ein sicheres Kennwort. Speichern Sie die Datei .
 
     > [!NOTE]
     > Wenn Sie den Administratorbenutzernamen ändern, müssen Sie auch die `extensions`-Blöcke in der JSON-Datei aktualisieren. 

@@ -2,13 +2,13 @@
 title: Notfallwiederherstellung für Azure-Anwendungen
 description: Technische Übersicht und ausführliche Informationen zum Entwerfen von Anwendungen für die Notfallwiederherstellung in Microsoft Azure.
 author: adamglick
-ms.date: 05/26/2017
-ms.openlocfilehash: faae658d91ec0cb2dd5dc436e67aa9b494fd4b49
-ms.sourcegitcommit: 46ed67297e6247f9a80027cfe891a5e51ee024b4
+ms.date: 09/12/2018
+ms.openlocfilehash: 4f879445154e37502bbeeeb90939737b6072e6ec
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45556681"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584798"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Notfallwiederherstellung für Azure-Anwendungen
 
@@ -118,6 +118,9 @@ Sie können auch einen stärker manuellen Ansatz für die Sicherung und Wiederhe
 
 Die integrierte Redundanz von Azure Storage erstellt zwei Replikate der Sicherungsdatei in einer Region. Jedoch bestimmt die Häufigkeit der Ausführung des Sicherungsvorgangs Ihre RPO, also den Umfang an Daten, die Sie bei einem Notfall verlieren können. Beispiel: Angenommen, Sie führen eine Sicherung zur vollen Stunde aus, und der Notfall tritt zwei Minuten vorher ein. Sie verlieren die aufgezeichneten Daten von 58 Minuten seit der letzten Sicherung. Darüber hinaus sollten Sie zum Schutz vor einer regionsweiten Dienstunterbrechung die BACPAC-Dateien in eine alternative Region kopieren. Sie können dann diese Sicherungen in der alternativen Region wiederherstellen. Weitere Details finden Sie unter [Übersicht: Geschäftskontinuität für die Cloud und Notfallwiederherstellung für Datenbanken mit SQL-Datenbank](/azure/sql-database/sql-database-business-continuity/).
 
+#### <a name="sql-data-warehouse"></a>SQL Data Warehouse
+Verwenden Sie für SQL Data Warehouse [Geosicherungen](/azure/sql-data-warehouse/backup-and-restore#geo-backups), um zur Notfallwiederherstellung die Wiederherstellung in einer gekoppelten Region durchzuführen. Diese Sicherungen werden alle 24 Stunden erstellt und können innerhalb von 20 Minuten in der gekoppelten Region wiederhergestellt werden. Dieses Feature ist standardmäßig für alle SQL Data Warehouse-Instanzen aktiviert. Weitere Informationen zum Wiederherstellen Ihres Data Warehouse finden Sie unter [Wiederherstellen von Azure SQL Data Warehouse](/azure/sql-data-warehouse/sql-data-warehouse-restore#restore-from-an-azure-geographical-region-using-powershell).
+
 #### <a name="azure-storage"></a>Azure Storage
 Für Azure Storage können Sie einen eigenen benutzerdefinierten Sicherungsprozess entwickeln. Sie können aber auch eines der vielen Sicherungstools von Drittanbietern verwenden. Beachten Sie, dass in den meisten Anwendungsentwürfen, in denen Speicherressourcen aufeinander verweisen, zusätzliche Komplexität vorliegt. Stellen Sie sich beispielsweise eine SQL-Datenbank vor, die über eine Spalte mit einem Link zu einem Blob in Azure Storage verfügt. Wenn die Sicherungen nicht gleichzeitig erfolgen, enthält die Datenbank möglicherweise einen Zeiger auf ein Blob, das vor dem Ausfall nicht gesichert wurde. Die Anwendung oder der Notfallwiederherstellungsplan muss Prozesse implementieren, damit diese Inkonsistenz nach einer Wiederherstellung behandelt wird.
 
@@ -127,7 +130,7 @@ Andere gehostete IaaS-Datenplattformen (Infrastructure-as-a-Service), wie z.B. E
 ### <a name="reference-data-pattern-for-disaster-recovery"></a>Verweisdatenmuster für die Notfallwiederherstellung
 Verweisdaten sind schreibgeschützte Daten, die die Anwendungsfunktionalität unterstützen. Sie werden in der Regel nicht häufig geändert. Sicherung und Wiederherstellung stellen eine Methode zum Behandeln von regionsweiten Dienstunterbrechungen dar, jedoch ist die RTO relativ lang. Wenn Sie die Anwendung in einer sekundären Region bereitstellen, gibt es einige Strategien, die RTO für Verweisdaten zu verbessern.
 
-Da Verweisdaten nur selten geändert werden, können Sie die RTO verbessern, indem Sie eine dauerhafte Kopie der Verweisdaten in der sekundären Region verwalten. Dadurch wird der Zeitaufwand für die Wiederherstellung von Sicherungen bei einem Notfall beseitigt. Um die Anforderungen der Notfallwiederherstellung in mehreren Regionen zu erfüllen, müssen Sie die Anwendung und die Verweisdaten zusammen in mehreren Regionen bereitstellen. Wie unter [Verweisdatenmuster für Hochverfügbarkeit](high-availability-azure-applications.md#reference-data-pattern-for-high-availability) dargestellt, können Sie Verweisdaten in der Rolle selbst, in einem externen Speicher oder in einer Kombination aus beidem bereitstellen.
+Da Verweisdaten nur selten geändert werden, können Sie die RTO verbessern, indem Sie eine dauerhafte Kopie der Verweisdaten in der sekundären Region verwalten. Dadurch wird der Zeitaufwand für die Wiederherstellung von Sicherungen bei einem Notfall beseitigt. Um die Anforderungen der Notfallwiederherstellung in mehreren Regionen zu erfüllen, müssen Sie die Anwendung und die Verweisdaten zusammen in mehreren Regionen bereitstellen. Sie können Verweisdaten in der Rolle selbst, in einem externen Speicher oder in einer Kombination aus beidem bereitstellen.
 
 Mit dem Modell zur Bereitstellung von Verweisdaten in Computeknoten werden die Anforderungen an die Notfallwiederherstellung implizit erfüllt. Die Bereitstellung von Verweisdaten in der SQL-Datenbank erfordert, dass Sie eine Kopie der Verweisdaten in jeder Region bereitstellen. Die gleiche Strategie gilt für Azure Storage. Sie müssen eine Kopie aller Verweisdaten, die in Azure Storage gespeichert sind, in der primären und den sekundären Regionen bereitstellen.
 
@@ -153,7 +156,7 @@ Bei einer möglichen Implementierung kann die zwischengeschaltete Warteschlange 
 
 > [!NOTE]
 > Dieser Artikel beschäftigt sich schwerpunktmäßig mit PaaS (Platform as a Service). Es gibt jedoch zusätzliche Replikations- und Verfügbarkeitsoptionen für Hybridanwendungen, die Azure Virtual Machines verwenden. Diese Hybridanwendungen nutzen IaaS (Infrastructure as a Service), um SQL Server auf virtuellen Computern in Azure zu hosten. Dadurch werden herkömmliche Verfügbarkeitsansätze in SQL Server ermöglicht, z.B. AlwaysOn-Verfügbarkeitsgruppen oder Protokollversand. Einige Techniken, wie z.B. AlwaysOn, funktionieren nur zwischen lokalen SQL Server-Instanzen und virtuellen Azure-Computern. Weitere Informationen finden Sie unter [Hochverfügbarkeit und Notfallwiederherstellung für SQL Server auf virtuellen Azure-Computern](/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-high-availability-dr/).
-> 
+>
 > 
 
 #### <a name="reduced-application-functionality-for-transaction-capture"></a>Eingeschränkte Anwendungsfunktionalität für die Transaktionserfassung
@@ -308,5 +311,4 @@ In den folgenden Themen werden die spezifischen Azure-Dienste für die Notfallwi
 | SQL-Datenbank | [Wiederherstellen einer Azure SQL-Datenbank oder Failover auf eine sekundäre Datenbank](/azure/sql-database/sql-database-disaster-recovery) |
 | Virtuelle Computer | [Vorgehensweise bei einer Azure-Dienstunterbrechung mit Auswirkungen auf virtuelle Azure-Computer](/azure/virtual-machines/virtual-machines-disaster-recovery-guidance) |
 | Virtuelle Netzwerke | [Virtuelles Netzwerk: Geschäftskontinuität](/azure/virtual-network/virtual-network-disaster-recovery-guidance) |
-
 

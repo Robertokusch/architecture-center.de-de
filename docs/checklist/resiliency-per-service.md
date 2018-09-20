@@ -4,12 +4,12 @@ description: Checkliste mit einer Anleitung zur Resilienz für verschiedene Azur
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 25d961d6bb753b1f515fc073e51bbb912cc59db7
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 735d4466f53ff03b67063b49b86f4184bbf1af41
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29783509"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584764"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Checkliste für Resilienz für bestimmte Azure-Dienste
 
@@ -61,7 +61,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Implementieren Sie die Notfallwiederherstellung per Failover zu einem sekundären Event Hubs-Namespace.** Weitere Informationen finden Sie unter [Georedundante Notfallwiederherstellung in Azure Event Hubs](/azure/event-hubs/event-hubs-geo-dr).
 
-## <a name="redis-cache"></a>Redis-Cache
+## <a name="redis-cache"></a>Redis Cache
 
 **Konfigurieren der Georeplikation.** Die Georeplikation bietet einen Mechanismus zum Verknüpfen von zwei Azure Redis Cache-Instanzen im Premium-Tarif. In den primären Cache geschriebene Daten werden in einen sekundären schreibgeschützten Cache repliziert. Weitere Informationen finden Sie unter [Konfigurieren der Georeplikation für Azure Redis Cache](/azure/redis-cache/cache-how-to-geo-replication).
 
@@ -100,6 +100,10 @@ Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als p
 
 **Verwenden Sie die Geowiederherstellung für die Wiederherstellung nach einem Dienstausfall.** Mit der Geowiederherstellung wird eine Datenbank auf der Basis einer georedundanten Sicherung wiederhergestellt.  Weitere Informationen finden Sie unter [Wiederherstellen einer Azure SQL-Datenbank mit automatisierten Datenbanksicherungen][sql-restore].
 
+## <a name="sql-data-warehouse"></a>SQL Data Warehouse
+
+**Deaktivieren Sie die Geosicherung nicht.** SQL Data Warehouse erstellt standardmäßig alle 24 Stunden eine vollständige Sicherung Ihrer Daten für die Notfallwiederherstellung. Die Deaktivierung dieser Funktion wird nicht empfohlen. Weitere Informationen finden Sie unter [Sicherung und Wiederherstellung in Azure SQL Data Warehouse](/azure/sql-data-warehouse/backup-and-restore#geo-backups).
+
 ## <a name="sql-server-running-in-a-vm"></a>SQL Server auf einem virtuellen Computer
 
 **Replizieren Sie die Datenbank.** Verwenden Sie SQL Server AlwaysOn-Verfügbarkeitsgruppen, um die Datenbank zu replizieren. Dadurch erreichen Sie hohe Verfügbarkeit, wenn eine SQL Server-Instanz ausfällt. Weitere Informationen finden Sie unter [Ausführen von Windows-VMs für eine n-schichtige Anwendung](../reference-architectures/virtual-machines-windows/n-tier.md).
@@ -132,7 +136,7 @@ Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als p
 
 **Verwenden Sie die AzureLogCollector-Erweiterung.** (Nur Windows-VMs.) Diese Erweiterung aggregiert Azure Platform-Protokolle und lädt sie in Azure-Speicher hoch, ohne dass eine Remoteanmeldung des Operators auf der VM erforderlich ist. Weitere Informationen finden Sie unter [AzureLogCollector-Erweiterung](/azure/virtual-machines/virtual-machines-windows-log-collector-extension/?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-## <a name="virtual-network"></a>Virtuelles Netzwerk
+## <a name="virtual-network"></a>Virtual Network
 
 **Um öffentliche IP-Adressen einer Whitelist hinzuzufügen oder zu sperren, fügen Sie dem Subnetz eine NSG hinzu.** Blockieren Sie den Zugriff von böswilligen Benutzern, oder lassen Sie nur Benutzer, die über Zugriffsberechtigungen verfügen, auf die Anwendung zugreifen.  
 

@@ -3,12 +3,12 @@ title: N-schichtige Anwendung mit Apache Cassandra
 description: Vorgehensweise zum Ausführen von Linux-VMs in einer n-schichtigen Architektur in Microsoft Azure
 author: MikeWasson
 ms.date: 05/03/2018
-ms.openlocfilehash: 7ee14088a2fae3cfc5c1119daf717236c75ecc6a
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: fa5faeda4ef1dcae46181c0a3be8f4e139dc27d0
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142232"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584713"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a>N-schichtige Anwendung mit Apache Cassandra
 
@@ -137,6 +137,8 @@ Für eingehenden Internetdatenverkehr definieren die Lastenausgleichsregeln, wel
 Für die Erstellung einer DMZ zwischen dem Internet und dem virtuellen Azure-Netzwerk sollten Sie eventuell eine virtuelle Netzwerkappliance (Network Virtual Appliance, NVA) hinzufügen. NVA ist ein Oberbegriff für eine virtuelle Appliance, die netzwerkbezogene Aufgaben wie Erstellung von Firewalls, Paketüberprüfung, Überwachung und benutzerdefiniertes Routing ausführen kann. Weitere Informationen finden Sie unter [Implementieren einer DMZ zwischen Azure und dem Internet][dmz].
 
 Verschlüsseln Sie sensible ruhende Daten, und verwalten Sie die Datenbankverschlüsselungsschlüssel mithilfe von [Azure Key Vault][azure-key-vault]. Key Vault kann Verschlüsselungsschlüssel in Hardwaresicherheitsmodulen (HSMs) speichern. Es empfiehlt sich außerdem, Anwendungsgeheimnisse wie Datenbankverbindungszeichenfolgen in Key Vault zu speichern.
+
+Es wird empfohlen, [DDoS Protection Standard](/azure/virtual-network/ddos-protection-overview) zu aktivieren. Dieser Dienst bietet zusätzliche DDoS-Risikominderung für Ressourcen in einem VNET. DDoS Protection Basic wird automatisch als Teil der Azure-Plattform aktiviert. DDoS Protection Standard bietet jedoch Funktionen zur Risikominderung, die speziell für Azure Virtual Network-Ressourcen optimiert sind.  
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 

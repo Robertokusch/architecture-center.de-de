@@ -5,10 +5,10 @@ author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
 ms.openlocfilehash: d1d9c1b3cf07f724eb010fc260d86ceb84b789ca
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/13/2018
 ms.locfileid: "29059971"
 ---
 # <a name="data-partitioning"></a>Datenpartitionierung
@@ -186,7 +186,7 @@ Verschiedene Datenspeicherungstechnologien bieten in der Regel ihre eigenen Funk
 Azure SQL-Datenbank ist eine relationale Datenbank-as-a-Service, die in der Cloud ausgeführt wird. Sie basiert auf dem Microsoft SQL Server. Eine relationale Datenbank teilt die Informationen in Tabellen und jede Tabelle enthält Informationen zu Entitäten als eine Reihe von Zeilen. Jede Zeile enthält Spalten, die die Daten für die einzelnen Felder einer Entität enthalten. Im Artikel [Was ist SQL-Datenbank?] auf der Microsoft-Website finden Sie ausführliche Informationen zum Erstellen und Verwenden von SQL-Datenbanken.
 
 ## <a name="horizontal-partitioning-with-elastic-database"></a>Horizontale Partitionierung mit elastischer Datenbank
-Die Datenmenge, die eine einzelne SQL-­Datenbank enthalten kann, ist begrenzt. Der Durchsatz wird durch architekturbezogene Faktoren sowie die Anzahl von gleichzeitigen Verbindungen eingeschränkt, die von der Datenbank unterstützt werden. Das Feature für elastische Datenbanken der SQL-Datenbank unterstützt die horizontale Skalierung für eine SQL-Datenbank. Mithilfe einer elastischen Datenbank können Sie Ihre Daten in Shards partitionieren, die über mehrere SQL-Datenbanken verteilt sind. Sie können Shards auch hinzufügen oder entfernen, wenn die zu verarbeitende Datenmenge wächst oder schrumpft. Eine elastische Datenbank kann auch zur Verringerung von Konflikten beitragen, indem die Last auf mehrere Datenbanken verteilt wird.
+Eine einzelne SQL-Datenbank kann jeweils nur eine bestimmte Datenmenge enthalten. Der Durchsatz wird durch architekturbezogene Faktoren sowie die Anzahl von gleichzeitigen Verbindungen eingeschränkt, die von der Datenbank unterstützt werden. Das Feature für elastische Datenbanken der SQL-Datenbank unterstützt die horizontale Skalierung für eine SQL-Datenbank. Mithilfe einer elastischen Datenbank können Sie Ihre Daten in Shards partitionieren, die über mehrere SQL-Datenbanken verteilt sind. Sie können Shards auch hinzufügen oder entfernen, wenn die zu verarbeitende Datenmenge wächst oder schrumpft. Eine elastische Datenbank kann auch zur Verringerung von Konflikten beitragen, indem die Last auf mehrere Datenbanken verteilt wird.
 
 > [!NOTE]
 > Die elastische Datenbank ist ein Ersatz für das Verbundfeature der Azure SQL-Datenbank. Bestehende Installationen mit Azure SQL-Datenbankverbund können mithilfe des Federations Migration Utility (Hilfsprogramm zur Verbundmigration) zu einer elastischen Datenbank migriert werden. Alternativ können Sie Ihren eigenen Shardingmechanismus implementieren, falls sich Ihr Szenario nicht von sich aus für die elastischen Datenbankfeatures eignet.
@@ -314,7 +314,7 @@ Berücksichtigen Sie die folgenden Punkte beim Entwerfen der Entitäten für den
 Weitere Informationen zum Partitionieren von Daten im Azure-Tabellenspeicher finden Sie auf der Microsoft-Website im Artikel [Azure-Speichertabelle – Entwurfshandbuch] .
 
 ## <a name="partitioning-azure-blob-storage"></a>Partitionierung von Azure Blob Storage
-Azure Blob Storage ermöglicht die Speicherung großer Binärobjekte – zurzeit bis zu 5 TB für Blockblobs oder 1 TB für Seitenblobs. (Aktuelle Informationen finden Sie auf der Microsoft-Website im Artikel [Skalierbarkeits- und Leistungsziele für Azure Storage].) Verwenden Sie die Block-Blobs in Szenarien wie z. B. Streaming, in denen Sie große Datenmengen schnell hoch- oder herunterladen müssen. Verwenden Sie Seitenblobs für Anwendungen, die eher zufälligen als seriellen Zugriff auf Teile der Daten erfordern.
+Azure Blob Storage ermöglicht die Speicherung großer Binärobjekte – zurzeit bis zu 5 TB für Blockblobs oder 1 TB für Seitenblobs. (Aktuelle Informationen finden Sie auf der Microsoft-Website im Artikel [Skalierbarkeits- und Leistungsziele für Azure Storage] .) Verwenden Sie die Block-Blobs in Szenarien wie z. B. Streaming, in denen Sie große Datenmengen schnell hoch- oder herunterladen müssen. Verwenden Sie Seitenblobs für Anwendungen, die eher zufälligen als seriellen Zugriff auf Teile der Daten erfordern.
 
 Jedes Blob (Block oder Seite), wird in einem Container in einem Azure-Speicherkonten aufrechterhalten. Sie können Container verwenden, um verwandte Blobs zu gruppieren, für die die gleichen Sicherheitsanforderungen gelten. Diese Gruppierung ist nicht physischer, sondern logischer Art. In einem Container hat jedes Blob einen eindeutigen Namen.
 
@@ -322,7 +322,7 @@ Der Partitionsschlüssel für ein Blob setzt sich aus dem Kontonamen, Containern
 
 Die Aktionen des Schreibens eines einzelnen Blocks (Block-Blob) oder einer Seite (Seitenblob) sind atomar, aber Vorgänge, die Blöcke, Seiten oder Blobs umfassen, hingegen nicht. Wenn Sie bei der Ausführung von Schreibvorgängen Konsistenz zwischen Blöcken, Seiten und Blobs gewährleisten müssen, richten Sie mithilfe einer Bloblease eine Schreibsperre ein.
 
-Für Azure Blob Storage werden Übertragungsraten von bis zu 60 MB pro Sekunde oder 500 Anforderungen pro Sekunde für jedes Blob angestrebt. Wenn Sie erwarten, diese Grenzwerte zu überschreiten und die Blobdaten relativ statisch sind, sollten Sie die Replikation von Blobs mithilfe von Azure Content Delivery Network erwägen. Weitere Informationen finden Sie auf der Microsoft-Website unter [Übersicht über das Azure Content Delivery Network (CDN)]. Weitere Anleitungen und Überlegungen finden Sie im Artikel [Erste Schritte mit Azure CDN].
+Für Azure Blob Storage werden Übertragungsraten von bis zu 60 MB pro Sekunde oder 500 Anforderungen pro Sekunde für jedes Blob angestrebt. Wenn Sie erwarten, diese Grenzwerte zu überschreiten und die Blobdaten relativ statisch sind, sollten Sie die Replikation von Blobs mithilfe von Azure Content Delivery Network erwägen. Weitere Informationen finden Sie auf der Microsoft-Website unter [Übersicht über das Azure Content Delivery Network (CDN)]. Weitere Anleitungen und Überlegungen finden Sie im Artikel [Verwenden von Azure CDN].
 
 ## <a name="partitioning-azure-storage-queues"></a>Partitionierung von Azure-Speicherwarteschlangen
 Azure-Speicherwarteschlangen ermöglichen Ihnen asynchrones Messaging zwischen Prozessen. Ein Azure-Speicherkonto kann eine beliebige Anzahl an Warteschlangen enthalten und jede Warteschlange kann eine beliebige Anzahl an Nachrichten enthalten. Die einzige Beschränkung ist der im Speicherkonto verfügbare Platz. Die maximale Größe einer einzelnen Nachricht beträgt 64 KB. Falls Sie größere Nachrichten erfordern, dann sollten Sie in Betracht ziehen, stattdessen Azure Service Bus-Warteschlangen zu verwenden.
@@ -395,7 +395,7 @@ Um Konflikte zu reduzieren, kann der von Azure Search verwendete Speicher in 1, 
 
 Jede SU, die Ihrem Dienst zugeordnet wird, wird Ihnen berechnet. Wenn die Menge an durchsuchbaren Inhalten oder die Rate der Suchanforderungen wächst, können Sie einer vorhandenen Azure Search-Instanz SUs hinzufügen, um die zusätzliche Last zu verarbeiten. Azure Search selbst verteilt die Dokumente gleichmäßig über die Partitionen. Zurzeit werden keine manuellen Partitionierungsstrategien unterstützt.
 
-Jede Partition kann maximal 15 Millionen Dokumente enthalten oder 300 GB Speicherplatz belegen (je nachdem, welche Menge geringer ist). Sie können bis zu 50 Indizes generieren. Die Leistung des Diensts variiert und ist abhängig von der Komplexität der Dokumente, den verfügbaren Indizes und den Auswirkungen von Netzwerklatenz. Im Durchschnitt sollte ein einzelnes Replikat (1 SU) 15 Abfragen pro Sekunde (Queries Per Second, QPS) verarbeiten können. Es empfiehlt sich allerdings, ein Benchmarking mit Ihren eigenen Daten durchzuführen, um ein genaueres Maß für den Durchsatz zu erhalten. Weitere Informationen finden Sie auf der Microsoft-Website im Artikel [Grenzwerte für den Azure Search-Dienst] .
+Jede Partition kann maximal 15 Millionen Dokumente enthalten oder 300 GB Speicherplatz belegen (je nachdem, welche Menge geringer ist). Sie können bis zu 50 Indizes generieren. Die Leistung des Diensts variiert und ist abhängig von der Komplexität der Dokumente, den verfügbaren Indizes und den Auswirkungen von Netzwerklatenz. Im Durchschnitt sollte ein einzelnes Replikat (1 SU) 15 Abfragen pro Sekunde (Queries Per Second, QPS) verarbeiten können. Es empfiehlt sich allerdings, ein Benchmarking mit Ihren eigenen Daten durchzuführen, um ein genaueres Maß für den Durchsatz zu erhalten. Weitere Informationen finden Sie auf der Microsoft-Website im Artikel [Grenzwerte für den Azure Search-Dienst] .
 
 > [!NOTE]
 > Sie können eine begrenzte Anzahl von Datentypen in durchsuchbaren Dokumenten speichern, z. B. Zeichenfolgen, boolesche Werte, numerische Daten, Datums-/Uhrzeitdaten und einige geografische Daten. Weitere Informationen finden Sie auf der Microsoft-Website im Artikel [Unterstützte Datentypen (Azure Search)].
@@ -453,7 +453,7 @@ Berücksichtigen Sie folgende Punkte bei der Entscheidung, wie Daten mit Azure R
 >
 
 * Sie können die vertikale Partitionierung durch das Speichern von verwandten Informationen in anderen Aggregationen in derselben Datenbank implementieren. Sie können z. B. in einer E-Commerce-Anwendung häufig abgerufene Informationen zu Produkten in einem Redis-Hash speichern und weniger häufig verwendete Detailinformationen in einem anderen.
-  Beide Hashes können die gleiche Produkt-ID als Teil des Schlüssels verwenden. Sie können beispielsweise „Produkt: *nn*“ für die allgemeinen Produktinformationen (*nn* ist die Produkt-ID) und „Produktdetails: *nn*“ für die Detailinformationen verwenden. Mit dieser Strategie lässt sich die Datenmenge reduzieren, die bei den meisten Abfragen wahrscheinlich abgerufen werden.
+  Beide Hashes können die gleiche Produkt-ID als Teil des Schlüssels verwenden. Sie können z.B. „Produkt:*nn*“ für die allgemeinen Produktinformationen (*nn* ist die Produkt-ID) und „Produktdetails:*nn*“ für die Detailinformationen verwenden. Mit dieser Strategie lässt sich die Datenmenge reduzieren, die bei den meisten Abfragen wahrscheinlich abgerufen werden.
 * Sie können einen Redis-Datenspeicher neu partitionieren, denken Sie jedoch daran, dass dies eine komplexe und zeitaufwendige Aufgabe ist. Redis-Clustering kann Daten automatisch neu partitionieren, diese Funktion ist allerdings mit Azure Redis Cache nicht verfügbar. Daher sollten Sie beim Entwerfen Ihres Partitionierungsschemas für ausreichend freien Speicherplatz in jeder Partition sorgen, um den langfristig zu erwartenden Datenzuwachs zu ermöglichen. Denken Sie jedoch daran, dass Azure Redis Cache zur vorübergehenden Zwischenspeicherung von Daten vorgesehen ist, und dass im Cache gehaltene Daten eine begrenzte Lebensdauer haben, die als Time-to-live (TTL) Wert angegeben wird. Für relativ flüchtige Daten sollte der TTL-Wert klein, für statische Daten kann er jedoch wesentlich größer sein. Vermeiden Sie die Speicherung großer Mengen langlebiger Daten im Cache, wenn die Datenmenge wahrscheinlich den kompletten Cache belegen wird. Sie können eine Entfernungsrichtlinie angeben, die bewirkt, dass Azure Redis Cache die Daten entfernt, wenn der Speicherplatz knapp bemessen ist.
 
   > [!NOTE]
@@ -463,7 +463,7 @@ Berücksichtigen Sie folgende Punkte bei der Entscheidung, wie Daten mit Azure R
 * Redis-Batches und -Transaktionen können sich nicht über mehrere Verbindungen erstrecken, d. h. alle Daten, die von einem Batch- oder Transaktionsvorgang betroffen sind, sollten in der gleichen Datenbank (Shard) gespeichert werden.
 
   > [!NOTE]
-  > Eine Abfolge von Operationen in einer Redis-Transaktion ist nicht unbedingt atomar. Die Befehle, die eine Transaktion bilden, werden vor der Ausführung überprüft und in eine Warteschlange eingereiht. Wenn während dieser Phase ein Fehler auftritt, wird die gesamte Warteschlange verworfen. Nachdem die Transaktion jedoch erfolgreich übermittelt wurde, werden die Befehle in der Warteschlange der Reihenfolge nach ausgeführt. Wenn bei einem Befehl ein Fehler auftritt, wird nur die Ausführung dieses Befehls beendet. Alle vorherigen und nachfolgenden Befehle in der Warteschlange werden ausgeführt. Weitere Informationen finden Sie auf der Redis-Website unter [Transactions] (Transaktionen).
+  > Eine Abfolge von Operationen in einer Redis-Transaktion ist nicht unbedingt atomar. Die Befehle, die eine Transaktion bilden, werden vor der Ausführung überprüft und in eine Warteschlange eingereiht. Wenn während dieser Phase ein Fehler auftritt, wird die gesamte Warteschlange verworfen. Nachdem die Transaktion jedoch erfolgreich übermittelt wurde, werden die Befehle in der Warteschlange der Reihenfolge nach ausgeführt. Wenn bei einem Befehl ein Fehler auftritt, wird nur die Ausführung dieses Befehls beendet. Alle vorherigen und nachfolgenden Befehle in der Warteschlange werden ausgeführt. Weitere Informationen finden Sie auf der Redis-Website unter [Transaktionen].
   >
   >
 * Redis unterstützt eine begrenzte Anzahl von atomischen Vorgängen. Die einzige Vorgänge dieser Art, die mehrere Schlüssel und Werte unterstützen, sind MGET und MSET. MGET-Vorgänge geben eine Auflistung von Werten für eine angegebene Liste von Schlüsseln zurück, und MSET-Vorgänge speichern eine Auflistung von Werten für eine angegebene Liste von Schlüsseln. Wenn Sie diese Vorgänge verwenden müssen, müssen die Schlüssel-Wert-Paare, auf die durch die MSET- und MGET-Befehle verwiesen wird, in derselben Datenbank gespeichert sein.
@@ -530,7 +530,7 @@ Wenn Sie Strategien zum Implementieren der Datenkonsistenz in Betracht ziehen, k
 * Im Artikel [Sharding Pattern] (Shardingmuster) auf der Microsoft-Website sind einige allgemeine Strategien für das Sharding von Daten zusammengefasst.
 * Im Artikel [Index Table Pattern] (Indextabellenmuster) auf der Microsoft-Website wird veranschaulicht, wie Sie sekundäre Indizes für Daten erstellen. Mit diesem Ansatz kann eine Anwendung Daten durch Abfragen, die nicht auf den Primärschlüssel einer Sammlung verweisen, schnell abrufen.
 * Im Artikel [Materialized View Pattern] (Muster für materialisierte Sichten) auf der Microsoft-Website wird erläutert, wie Sie vorab aufgefüllte Ansichten generieren können, die Daten zusammenfassen, um schnelle Abfragevorgänge zu unterstützen. Dieser Ansatz kann in einem partitionierten Datenspeicher hilfreich sein, wenn die Partitionen, die die Daten enthalten, die zusammengefasst werden, über mehrere Standorte verteilt sind.
-* Der Artikel [Erste Schritte mit Azure CDN] auf der Microsoft-Website stellt zusätzliche Anleitungen zum Konfigurieren und Verwenden eines Content Delivery Network mit Azure bereit.
+* Der Artikel [Verwenden von Azure CDN] auf der Microsoft-Website stellt zusätzliche Anleitungen zum Konfigurieren und Verwenden eines Content Delivery Network mit Azure bereit.
 
 ## <a name="more-information"></a>Weitere Informationen
 * Im Artikel [Was ist SQL-Datenbank?] auf der Microsoft-Website finden Sie ausführliche Informationen zum Erstellen und Verwenden von SQL-Datenbanken.
@@ -538,10 +538,10 @@ Wenn Sie Strategien zum Implementieren der Datenkonsistenz in Betracht ziehen, k
 * Im Artikel [Skalierung mit dem Split-Merge-Tool für elastische Datenbanken] auf der Microsoft-Website erhalten Sie Informationen zur Verwaltung elastischer Datenbanken mithilfe des Diensts zum Aufteilen/Zusammenführen.
 * Im Artikel [Skalierbarkeits- und Leistungsziele für Azure Storage](https://msdn.microsoft.com/library/azure/dn249410.aspx) auf der Microsoft-Website sind die aktuellen Größen- und Durchsatzgrenzen vom Azure Storage dokumentiert.
 * Im Artikel [Ausführen von Entitätsgruppentransaktionen] auf der Microsoft-Website erhalten Sie detaillierte Informationen zur Implementierung der Transaktionsvorgänge für Entitäten, die im Azure-Tabellenspeicher gespeichert sind.
-* Im Artikel [Azure-Speichertabellen – Entwurfshandbuch] auf der Microsoft-Website finden Sie ausführliche Informationen zum Partitionieren von Daten im Azure-Tabellenspeicher.
-* Im Artikel [Erste Schritte mit Azure CDN] auf der Microsoft Website wird beschrieben, wie Daten in Azure Blob Storage mithilfe von Azure Content Delivery Network (CDN) repliziert werden können.
+* Im Artikel [Azure-Speichertabelle – Entwurfshandbuch] auf der Microsoft-Website finden Sie ausführliche Informationen zum Partitionieren von Daten im Azure-Tabellenspeicher.
+* Im Artikel [Verwenden von Azure CDN] auf der Microsoft Website wird beschrieben, wie Daten in Azure Blob Storage mithilfe von Azure Content Delivery Network (CDN) repliziert werden können.
 * Im Artikel [Was ist Azure Search?] auf der Microsoft-Website finden Sie eine vollständige Beschreibung der Funktionen von Azure Search.
-* Im Artikel [Grenzwerte für den Azure Search-Dienst] auf der Microsoft-Website finden Sie Informationen zur Kapazität der einzelnen Instanzen von Azure Search.
+* Im Artikel [Grenzwerte für den Azure Search-Dienst] auf der Microsoft-Website finden Sie Informationen zur Kapazität der einzelnen Instanzen von Azure Search.
 * Im Artikel [Unterstützte Datentypen (Azure Search)] auf der Microsoft-Website sind die Datentypen zusammengefasst, die Sie in durchsuchbaren Dokumenten und Indizes verwenden können.
 * Im Artikel [Azure Redis Cache] auf der Microsoft-Website erhalten Sie eine Einführung in Azure Redis Cache.
 * Auf der Seite [Partitioning: how to split data among multiple Redis instances] (Partitionierung: Aufteilen von Daten auf mehrere Redis-Instanzen) auf der Redis-Website finden Sie weitere Informationen zur Implementierung der Partitionierung mit Redis.
@@ -552,8 +552,8 @@ Wenn Sie Strategien zum Implementieren der Datenkonsistenz in Betracht ziehen, k
 [azure-limits]: /azure/azure-subscription-service-limits
 [Übersicht über das Azure Content Delivery Network (CDN)]: /azure/cdn/cdn-overview
 [Azure Redis Cache]: http://azure.microsoft.com/services/cache/
-[Azure Storage Scalability and Performance Targets]: /azure/storage/storage-scalability-targets
-[Azure Storage Table Design Guide]: /azure/storage/storage-table-design-guide
+[Skalierbarkeits- und Leistungsziele für Azure Storage]: /azure/storage/storage-scalability-targets
+[Azure-Speichertabelle – Entwurfshandbuch]: /azure/storage/storage-table-design-guide
 [Building a Polyglot Solution]: https://msdn.microsoft.com/library/dn313279.aspx (Erstellen einer Polyglot-Lösung)
 [cosmos-db-ru]: /azure/cosmos-db/request-units
 [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx (Datenzugriff für hoch skalierbare Lösungen: Verwenden von SQL, NoSQL und Polyglot Persistence)
@@ -571,17 +571,17 @@ Wenn Sie Strategien zum Implementieren der Datenkonsistenz in Betracht ziehen, k
 [Übersicht über Azure Service Fabric]: /azure/service-fabric/service-fabric-overview
 [Partitionieren von Service Fabric Reliable Services]: /azure/service-fabric/service-fabric-concepts-partitioning
 [Partitioning: how to split data among multiple Redis instances]: http://redis.io/topics/partitioning
-[Performing Entity Group Transactions]: https://msdn.microsoft.com/library/azure/dd894038.aspx
+[Ausführen von Entitätsgruppentransaktionen]: https://msdn.microsoft.com/library/azure/dd894038.aspx
 [Redis-Cluster-Lernprogramm]: http://redis.io/topics/cluster-tutorial
 [Running Redis on a CentOS Linux VM in Azure]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
 [Skalierung mit dem Split-Merge-Tool für elastische Datenbanken]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
-[Erste Schritte mit Azure CDN]: /azure/cdn/cdn-create-new-endpoint
+[Verwenden von Azure CDN]: /azure/cdn/cdn-create-new-endpoint
 [Service Bus-Kontingente]: /azure/service-bus-messaging/service-bus-quotas
 [service-fabric-reliable-collections]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections
-[Grenzwerte für den Azure Search-Dienst]:  /azure/search/search-limits-quotas-capacity
+[Grenzwerte für den Azure Search-Dienst]:  /azure/search/search-limits-quotas-capacity
 [Sharding Pattern]: http://aka.ms/Sharding-Pattern
 [Unterstützte Datentypen (Azure Search)]:  https://msdn.microsoft.com/library/azure/dn798938.aspx
-[Transactions]: http://redis.io/topics/transactions
+[Transaktionen]: http://redis.io/topics/transactions
 [Was ist Event Hubs?]: /azure/event-hubs/event-hubs-what-is-event-hubs
 [Was ist Azure Search?]: /azure/search/search-what-is-azure-search
 [Was ist SQL-Datenbank?]: /azure/sql-database/sql-database-technical-overview

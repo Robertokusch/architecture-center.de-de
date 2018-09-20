@@ -3,12 +3,12 @@ title: Ausführen eines virtuellen Windows-Computers in Azure
 description: Erfahren Sie, wie Sie einen virtuellen Windows-Computer unter Azure ausführen und dabei die Skalierbarkeit, Resilienz, Verwaltbarkeit und Sicherheit im Blick behalten.
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: d790c9a6693dca751e0ba05f1fd3c23756cf53bb
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: a20359f90e7b20486defce3110b2db6f7e0027ba
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142215"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584696"
 ---
 # <a name="run-a-windows-vm-on-azure"></a>Ausführen eines virtuellen Windows-Computers in Azure
 
@@ -115,6 +115,8 @@ Verwenden Sie [Azure Security Center][security-center], um sich eine zentrale Ü
 Verwenden Sie [Überwachungsprotokolle][audit-logs], um Bereitstellungsaktionen und andere VM-Ereignisse anzuzeigen.
 
 **Datenverschlüsselung.** Ziehen Sie [Azure Disk Encryption][disk-encryption] in Betracht, wenn Sie die Datenträger für Betriebssystem und Daten verschlüsseln müssen. 
+
+**DDoS Protection**. Es wird empfohlen, [DDoS Protection Standard](/azure/virtual-network/ddos-protection-overview) zu aktivieren. Dieser Dienst bietet zusätzliche DDoS-Risikominderung für Ressourcen in einem VNET. DDoS Protection Basic wird automatisch als Teil der Azure-Plattform aktiviert. DDoS Protection Standard bietet jedoch Funktionen zur Risikominderung, die speziell für Azure Virtual Network-Ressourcen optimiert sind.  
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
