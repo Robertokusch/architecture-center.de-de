@@ -5,12 +5,12 @@ keywords: AWS experts, Azure comparison, AWS comparison, difference between azur
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 0af0890d383d22db0ed9d3b445cdd5b561b498ae
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: f90186ba36f035871ec918c65b05eebe44190ffa
+ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012619"
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46329894"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure für AWS-Spezialisten
 
@@ -117,7 +117,7 @@ Die einzelnen Optionen sind in der folgenden Tabelle zusammengefasst:
 | &nbsp; | Verfügbarkeitsgruppe | Verfügbarkeitszone | Regionspaar |
 |--------|------------------|-------------------|---------------|
 | Fehlerumfang | Rack | Datacenter | Region |
-| Routinganforderung | Lastenausgleichsmodul | Zonenübergreifender Lastenausgleich | Traffic Manager |
+| Routinganforderung | Load Balancer | Zonenübergreifender Lastenausgleich | Traffic Manager |
 | Netzwerklatenz | Sehr niedrig | Niedrig | Mittel bis hoch |
 | Virtuelle Netzwerke  | VNet | VNet | Regionsübergreifendes VNet-Peering |
 
@@ -156,7 +156,7 @@ Im Gegensatz zu Verfügbarkeitszonen, bei denen es sich um physisch getrennte Re
 
 ## <a name="services"></a>Dienste
 
-Eine vollständige Auflistung bezüglich der Zuordnung sämtlicher Dienste zwischen den Plattformen finden sie in der [umfassenden Vergleichsmatrix zu AWS- und Azure-Diensten](https://aka.ms/azure4aws-services).
+Informationen zur Zuordnung von Diensten zwischen verschiedenen Plattformen finden Sie unter [Vergleich von AWS mit Azure-Diensten](./services.md).
 
 Es sind nicht alle Azure-Produkte und -Dienste in allen Regionen verfügbar. Weitere Informationen finden Sie auf der Seite [Produkte nach Region](https://azure.microsoft.com/regions/services/). Auf der Seite [Vereinbarungen zum Servicelevel (SLAs)](https://azure.microsoft.com/support/legal/sla/) finden Sie die Richtlinien zu Garantien für Betriebszeiten und Downtimegutschriften für die einzelnen Azure-Produkte oder -Dienste.
 
@@ -175,8 +175,6 @@ Obwohl die Größen von AWS-Instanztypen und virtuellen Azure-Computern eine äh
 -   [Größen für virtuelle Computer in Azure (Linux)](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/)
 
 Im Gegensatz zur sekundengenauen Abrechnung in AWS werden On-Demand-VMs von Azure minutengenau abgerechnet.
-
-In Azure sind keine Pendants zu EC2 Spot Instances oder Dedicated Hosts vorhanden.
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>EBS und Azure Storage für VM-Datenträger
 
@@ -428,8 +426,6 @@ Notification Hubs unterstützt nicht das Senden von SMS oder E-Mail-Nachrichten.
 
 ## <a name="next-steps"></a>Nächste Schritte
 
--   [Umfassende Vergleichsmatrix zu AWS- und Azure-Diensten](https://aka.ms/azure4aws-services)
-
 -   [Interaktives Azure Platform Big Picture](http://azureplatform.azurewebsites.net/)
 
 -   [Erste Schritte mit Azure](https://azure.microsoft.com/get-started/)
@@ -437,8 +433,6 @@ Notification Hubs unterstützt nicht das Senden von SMS oder E-Mail-Nachrichten.
 -   [Azure-Lösungsarchitekturen](https://azure.microsoft.com/solutions/architecture/)
 
 -   [Azure-Referenzarchitekturen](https://azure.microsoft.com/documentation/articles/guidance-architecture/)
-
--   [Muster und Übungen: Anweisungen zu Azure](https://azure.microsoft.com/documentation/articles/guidance/)
 
 -   [Kostenloser Onlinekurs: Microsoft Azure for AWS Experts](http://aka.ms/azureforaws)
 
