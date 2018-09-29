@@ -1,24 +1,24 @@
 ---
-title: Identitätsverwaltung für mehrmandantenfähige Anwendungen
+title: Identitätsverwaltung für mehrinstanzenfähige Anwendungen
 description: Bewährte Methoden für die Authentifizierung, Autorisierung und Identitätsverwaltung mehrmandantenfähiger Apps.
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.next: tailspin
-ms.openlocfilehash: c363ac01e798b522fa95f39586e28fe3af5fae4a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9c2efe9aea9da53177478161b90406d0c2021550
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541672"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429433"
 ---
-# <a name="manage-identity-in-multitenant-applications"></a>Verwalten der Identität in mehrmandantenfähigen Anwendungen
+# <a name="manage-identity-in-multitenant-applications"></a>Verwalten der Identität in mehrinstanzenfähigen Anwendungen
 
 In dieser Artikelreihe werden bewährte Methoden für Mehrmandantenfähigkeit bei Verwendung von Azure AD für die Authentifizierung und Identitätsverwaltung beschrieben.
 
 [![GitHub](../_images/github.png)-Beispielcode][sample application]
 
-Beim Erstellen einer mehrmandantenfähigen Anwendung besteht eine der ersten Herausforderungen in der Verwaltung der Benutzeridentitäten, da jeder Benutzer nun zu einem Mandanten gehört. Beispiel:
+Beim Erstellen einer mehrmandantenfähigen Anwendung besteht eine der ersten Herausforderungen in der Verwaltung der Benutzeridentitäten, da jeder Benutzer nun zu einem Mandanten gehört. Beispiel: 
 
 * Benutzer melden sich bei der App mit den Anmeldeinformationen ihrer Organisation an.
 * Benutzer sollten Zugriff auf Daten der eigenen Organisation haben, dürfen jedoch nicht auf Daten anderer Mandanten zugreifen.
@@ -93,7 +93,7 @@ Andere Aspekte der Mehrmandantenfähigkeit (z. B. Datenpartitionierung, Einzelma
 
 
 <!-- Links -->
-[ADConnect]: /azure/active-directory/active-directory-aadconnect
+[ADConnect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [AzureAD]: /azure/active-directory
 
 [Federating with a customer's AD FS]: adfs.md (Herstellen eines Verbunds mit den AD FS eines Kunden)

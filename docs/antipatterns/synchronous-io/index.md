@@ -3,12 +3,12 @@ title: Antimuster „Synchrone E/A-Vorgänge“
 description: Ein Blockieren des aufrufenden Threads, während ein E/A-Vorgang abgeschlossen wird, kann die Leistung senken und sich auf die vertikale Skalierbarkeit auswirken.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: d5b3635565c6b71ef7716f54ee8cccc76093c3a3
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 961eacb82344ec7e71aaa96fb4cd8bc530721e96
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538552"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429008"
 ---
 # <a name="synchronous-io-antipattern"></a>Antimuster „Synchrone E/A-Vorgänge“
 
@@ -32,7 +32,7 @@ Dieses Antimuster tritt üblicherweise aus folgenden Gründen auf:
 - Die Anwendung verwendet eine Bibliothek, die nur synchrone Methoden für E/A-Vorgänge bereitstellt. 
 - Eine externe Bibliothek führt intern synchrone E/A-Vorgänge aus. Ein einziger synchroner E/A-Aufruf kann eine vollständige Aufrufkette blockieren.
 
-Der folgende Code lädt eine Datei in einen Azure-Blobspeicher hoch. Es gibt zwei Stellen, an denen der Code blockiert wird, weil er auf die synchrone E/A-Verarbeitung wartet: die `CreateIfNotExists`-Methode und die `UploadFromStream`-Methode.
+Der folgende Code lädt eine Datei in Azure Blob Storage hoch. Es gibt zwei Stellen, an denen der Code blockiert wird, weil er auf die synchrone E/A-Verarbeitung wartet: die `CreateIfNotExists`-Methode und die `UploadFromStream`-Methode.
 
 ```csharp
 var blobClient = storageAccount.CreateCloudBlobClient();
@@ -79,7 +79,7 @@ Den vollständigen Code für beide Beispiele finden Sie [hier][sample-app].
 
 Ersetzen Sie synchrone E/A-Vorgänge durch asynchrone Vorgänge. Dadurch wird der aktuelle Thread wieder frei und kann weiterhin sinnvolle Tasks ausführen, anstatt zu blockieren. So lässt sich die Auslastung der Computeressourcen verbessern. Die asynchrone Ausführung von E/A-Vorgängen ist insbesondere dann effizient, wenn ein unerwarteter Anstieg der Anforderungen von Clientanwendungen verarbeitet werden muss. 
 
-Viele Bibliotheken bieten sowohl synchrone als auch asynchrone Versionen von Methoden. Verwenden Sie nach Möglichkeit die asynchronen Versionen. Hier ist die asynchrone Version des vorherigen Beispiels, das eine Datei in einen Azure-Blobspeicher hochlädt.
+Viele Bibliotheken bieten sowohl synchrone als auch asynchrone Versionen von Methoden. Verwenden Sie nach Möglichkeit die asynchronen Versionen. Hier ist die asynchrone Version des vorherigen Beispiels, das eine Datei in Azure Blob Storage hochlädt.
 
 ```csharp
 var blobClient = storageAccount.CreateCloudBlobClient();
@@ -166,7 +166,7 @@ In den folgenden Abschnitten werden diese Schritte auf die zuvor beschriebene Be
 
 ### <a name="monitor-web-server-performance"></a>Überwachen der Webserverleistung
 
-Bei Azure-Webanwendungen und -Webrollen lohnt es sich, die Leistung des IIS-Webservers zu überwachen. Achten Sie besonders auf die Länge der Anforderungswarteschlange, um herauszufinden, ob Anforderungen in Zeiträumen hoher Aktivität dadurch blockiert werden, dass sie auf verfügbare Threads warten. Sie können diese Informationen erfassen, indem Sie die Azure-Diagnose aktivieren. Weitere Informationen finden Sie unter:
+Bei Azure-Webanwendungen und -Webrollen lohnt es sich, die Leistung des IIS-Webservers zu überwachen. Achten Sie besonders auf die Länge der Anforderungswarteschlange, um herauszufinden, ob Anforderungen in Zeiträumen hoher Aktivität dadurch blockiert werden, dass sie auf verfügbare Threads warten. Sie können diese Informationen erfassen, indem Sie die Azure-Diagnose aktivieren. Weitere Informationen finden Sie unter
 
 - [Überwachen von Apps in Azure App Service][web-sites-monitor]
 - [Erstellen und Verwenden von Leistungsindikatoren in einer Azure-Anwendung][performance-counters]
@@ -197,7 +197,7 @@ Der Durchsatz ist wesentlich höher. Im gleichen Zeitraum wie beim vorherigen Te
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/SynchronousIO
 
 
-[async-wrappers]: http://blogs.msdn.com/b/pfxteam/archive/2012/03/24/10287244.aspx
+[async-wrappers]: https://blogs.msdn.microsoft.com/pfxteam/2012/03/24/should-i-expose-asynchronous-wrappers-for-synchronous-methods/
 [performance-counters]: /azure/cloud-services/cloud-services-dotnet-diagnostics-performance-counters
 [web-sites-monitor]: /azure/app-service-web/web-sites-monitor
 

@@ -3,12 +3,12 @@ title: Antimuster „Zu viele E/A-Vorgänge“
 description: Eine sehr hohe Anzahl von E/A-Anforderungen kann die Leistung und Reaktionsfähigkeit beeinträchtigen.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: daa0c581d31c9389e2853f84075dc44d1e5ba78b
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 17193198918cc742b2e3f30e77dfc5c3f2726ebf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325875"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428566"
 ---
 # <a name="chatty-io-antipattern"></a>Antimuster „Zu viele E/A-Vorgänge“
 
@@ -217,7 +217,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - Vermeiden Sie es beim Schreiben von Daten, Ressourcen länger als notwendig zu sperren, um das Risiko von Konflikten während eines Vorgangs mit langer Ausführungsdauer zu mindern. Wenn ein Schreibvorgang mehrere Datenspeicher, Dateien oder Dienste umfasst, wenden Sie einen letztlich konsistenten Ansatz an. Weitere Informationen finden Sie unter [Data Consistency guidance][data-consistency-guidance] (Leitfaden zur Datenkonsistenz).
 
-- Wenn Sie Daten vor dem Schreiben im Arbeitsspeicher puffern, sind die Daten gefährdet, wenn der Prozess abstürzt. Wenn die Datenrate in der Regel verhältnismäßig gering ist oder Lastspitzen aufweist, ist es möglicherweise sicherer, die Daten in einer externen dauerhaften Warteschlange wie z.B. [Event Hubs](http://azure.microsoft.com/services/event-hubs/) zu puffern.
+- Wenn Sie Daten vor dem Schreiben im Arbeitsspeicher puffern, sind die Daten gefährdet, wenn der Prozess abstürzt. Wenn die Datenrate in der Regel verhältnismäßig gering ist oder Lastspitzen aufweist, ist es möglicherweise sicherer, die Daten in einer externen dauerhaften Warteschlange wie z.B. [Event Hubs](https://azure.microsoft.com/services/event-hubs/) zu puffern.
 
 - Erwägen Sie, Daten, die Sie aus einem Dienst oder einer Datenbank abrufen, zwischenzuspeichern. So lässt sich die Menge an E/A-Vorgängen verringern, da wiederholte Anforderungen für die gleichen Daten vermieden werden. Weitere Informationen finden Sie in den [bewährten Methoden für das Caching][caching-guidance].
 
@@ -308,7 +308,7 @@ Die Ablaufverfolgung der SQL-Anweisung zeigt, dass alle Daten in einer einzigen 
 [api-design]: ../../best-practices/api-design.md
 [caching-guidance]: ../../best-practices/caching.md
 [code-sample]:  https://github.com/mspnp/performance-optimization/tree/master/ChattyIO
-[data-consistency-guidance]: http://https://msdn.microsoft.com/library/dn589800.aspx
+[data-consistency-guidance]: https://msdn.microsoft.com/library/dn589800.aspx
 [ef]: /ef/
 [extraneous-fetching]: ../extraneous-fetching/index.md
 [new-relic]: https://newrelic.com/application-monitoring

@@ -5,12 +5,12 @@ keywords: AWS experts, Azure comparison, AWS comparison, difference between azur
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: f90186ba36f035871ec918c65b05eebe44190ffa
-ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
+ms.openlocfilehash: 04157b9a647779ae47ad0aff8132289a30544acf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46329894"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429637"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure für AWS-Spezialisten
 
@@ -96,7 +96,7 @@ Azure bietet verschiedene Möglichkeiten zur Verwaltung Ihrer Ressourcen:
 
 Bei beiden Schnittstellen spielen Ressourcengruppen eine zentrale Rolle für die Art und Weise, wie Azure-Ressourcen erstellt, bereitgestellt oder geändert werden. Dies lässt sich mit der Rolle eines „Stapels“ vergleichen, die dieser bei der Gruppierung von AWS-Ressourcen bei CloudFormation-Bereitstellungen spielt.
 
-Die Syntax und Struktur dieser Schnittstellen unterscheiden sich von ihren Pendants in AWS, bieten jedoch eine vergleichbare Funktionalität. Darüber hinaus sind viele Verwaltungstools von Drittanbietern, die in AWS verwendet werden (z.B. [Terraform von Hashicorp](https://www.terraform.io/docs/providers/azurerm/) und [Netflix Spinnaker](http://www.spinnaker.io/)), auch in Azure verfügbar.
+Die Syntax und Struktur dieser Schnittstellen unterscheiden sich von ihren Pendants in AWS, bieten jedoch eine vergleichbare Funktionalität. Darüber hinaus sind viele Verwaltungstools von Drittanbietern, die in AWS verwendet werden (z.B. [Terraform von Hashicorp](https://www.terraform.io/docs/providers/azurerm/) und [Netflix Spinnaker](https://www.spinnaker.io/)), auch in Azure verfügbar.
 
 ### <a name="see-also"></a>Weitere Informationen
 
@@ -426,15 +426,11 @@ Notification Hubs unterstützt nicht das Senden von SMS oder E-Mail-Nachrichten.
 
 ## <a name="next-steps"></a>Nächste Schritte
 
--   [Interaktives Azure Platform Big Picture](http://azureplatform.azurewebsites.net/)
-
 -   [Erste Schritte mit Azure](https://azure.microsoft.com/get-started/)
 
 -   [Azure-Lösungsarchitekturen](https://azure.microsoft.com/solutions/architecture/)
 
 -   [Azure-Referenzarchitekturen](https://azure.microsoft.com/documentation/articles/guidance-architecture/)
-
--   [Kostenloser Onlinekurs: Microsoft Azure for AWS Experts](http://aka.ms/azureforaws)
 
 
 <!-- links -->

@@ -3,12 +3,12 @@ title: Antimuster der monolithischen Persistenz
 description: Das Speichern sämtlicher Daten einer Anwendung in einem einzigen Datenspeicher kann die Leistung beeinträchtigen.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 7f04b9f0805c281068b6b2edaf040683773e6f6e
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 8cc67a41adf7ca4e3c5475eea86e38b75dd65d4d
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538680"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429110"
 ---
 # <a name="monolithic-persistence-antipattern"></a>Antimuster der monolithischen Persistenz
 
@@ -23,7 +23,7 @@ Moderne cloudbasierte Systeme weisen meist zusätzliche funktionelle und nicht f
 - Das Speichern und Abrufen großer Mengen nicht in Zusammenhang stehender Daten im gleichen Datenspeicher kann zu Konflikten führen, was wiederum lange Antwortzeiten und Verbindungsfehler zur Folge hat.
 - Unabhängig davon, welcher Datenspeicher ausgewählt wird, er wird sich vermutlich nicht ideal für all die verschiedenen Arten von Daten eignen oder nicht für die Vorgänge optimiert sein, die von der Anwendung ausgeführt werden. 
 
-Das folgende Beispiel zeigt einen ASP.NET-Web-API-Controller, der einen neuen Datensatz zu einer Datenbank hinzufügt und das Ergebnis in einem Protokoll aufzeichnet. Das Protokoll wird in der gleichen Datenbank gespeichert wie die Geschäftsdaten. Das vollständige Codebeispiel finden Sie [hier][sample-app].
+Das folgende Beispiel zeigt einen ASP.NET-Web-API-Controller, der einen neuen Datensatz zu einer Datenbank hinzufügt und das Ergebnis in einem Protokoll aufzeichnet. Das Protokoll wird in der gleichen Datenbank gespeichert wie die Geschäftsdaten. Das vollständige Beispiel finden Sie [hier][sample-app].
 
 ```csharp
 public class MonoController : ApiController
@@ -142,7 +142,7 @@ Ebenso erreicht die maximale DTU-Auslastung der Protokolldatenbank nur etwa 70 %
 - [Data partitioning][DataPartitioningGuidance] (Datenpartitionierung)
 
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/MonolithicPersistence
-[CosmosDB]: http://azure.microsoft.com/services/cosmos-db/
+[CosmosDB]: https://azure.microsoft.com/services/cosmos-db/
 [Azure-cache]: /azure/redis-cache/
 [Data-Access-Guide]: https://msdn.microsoft.com/library/dn271399.aspx
 [DataPartitioningGuidance]: ../../best-practices/data-partitioning.md
