@@ -3,23 +3,23 @@ title: Virtuelles Azure-Rechenzentrum
 description: Ressourcen für das virtuelle Rechenzentrum in Microsoft Azure
 keywords: Azure
 layout: LandingPage
-ms.openlocfilehash: 9b82122358085c37f89fb258034a4c9a91ecb054
-ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
+ms.openlocfilehash: 5b5b6f58911e39ae1296722194b58c601b9baea8
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/18/2018
-ms.locfileid: "43324758"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428090"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Virtuelles Azure-Rechenzentrum und die Steuerungsebene für Unternehmen
 
 Mit Azure Virtual Datacenter können Sie die Funktionen der Azure-Cloudplattform optimal nutzen und gleichzeitig Ihren bereits vorhandenen Sicherheits- und Netzwerkrichtlinien gerecht werden. Bei der Bereitstellung von Unternehmensworkloads in der Cloud müssen IT-Organisationen und Unternehmenseinheiten die richtige Balance zwischen Governance und Entwickleragilität finden. Mit den Modellen des virtuellen Azure-Rechenzentrums können Sie diese Balance erreichen, wobei die Governance im Vordergrund steht.
  
-## <a name="resources"></a>angeben
+## <a name="resources"></a>Ressourcen
 <table>
 <tr>
-    <td style="width: 64px; vertical-align: middle;"><a href="http://aka.ms/VDC/Concepts"><img src="../_images/virtual-datacenter.svg" alt="Virtual Datacenter eBook" /></a></td>
+    <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Concepts"><img src="../_images/virtual-datacenter.svg" alt="Virtual Datacenter eBook" /></a></td>
     <td>
-        <h3><a href="http://aka.ms/VDC/Concepts">Azure Virtual Datacenter: Concepts</a> (Virtuelles Azure-Rechenzentrum: Konzepte)</h3>
+        <h3><a href="https://aka.ms/VDC/Concepts">Azure Virtual Datacenter: Concepts</a> (Virtuelles Azure-Rechenzentrum: Konzepte)</h3>
         <p>In diesem E-Book erfahren Sie, wie Sie Unternehmensworkloads unter Berücksichtigung Ihrer bereits vorhandenen Sicherheits- und Netzwerkrichtlinien für die Azure-Cloudplattform bereitstellen.</p>
     </td>
 </tr>
@@ -31,16 +31,16 @@ Mit Azure Virtual Datacenter können Sie die Funktionen der Azure-Cloudplattform
     </td>
 </tr>
 <tr>
-    <td style="width: 64px; vertical-align: middle;"><a href="http://aka.ms/VDC/Lift"><img src="./images/vdc-lift-and-shift.png" alt="Lift and Shift Guide" /></a></td>
+    <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Lift"><img src="./images/vdc-lift-and-shift.png" alt="Lift and Shift Guide" /></a></td>
     <td>
-        <h3><a href="http://aka.ms/VDC/Lift">Azure Virtual Datacenter: Lift and Shift Guide</a> (Virtuelles Azure-Rechenzentrum: Lift and Shift-Leitfaden)</h3>
+        <h3><a href="https://aka.ms/VDC/Lift">Azure Virtual Datacenter: Lift and Shift Guide</a> (Virtuelles Azure-Rechenzentrum: Lift and Shift-Leitfaden)</h3>
         <p>In diesem Whitepaper erfahren Sie, wie IT-Mitarbeiter und Entscheidungsträger in Unternehmen die Lift and Shift-Migration von Anwendungen und Servern zu Azure vorbereiten und planen sowie zusätzliche Entwicklungskosten beim Optimieren von Cloudhostingoptionen minimieren können.</p>
     </td>
 </tr>
 <tr>
-    <td style="width: 64px; vertical-align: middle;"><a href="http://aka.ms/VDC/Deck"><img src="./images/vdc-deck.png" alt="Presentation Deck" /></a></td>
+    <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Deck"><img src="./images/vdc-deck.png" alt="Presentation Deck" /></a></td>
     <td>
-        <h3><a href="http://aka.ms/VDC/Deck">Azure Virtual Datacenter: Presentation Deck</a> (Virtuelles Azure-Rechenzentrum: Präsentation)</h3>
+        <h3><a href="https://aka.ms/VDC/Deck">Azure Virtual Datacenter: Presentation Deck</a> (Virtuelles Azure-Rechenzentrum: Präsentation)</h3>
         <p>Diese Präsentation behandelt den Leitfaden und die Tools für das virtuelle Azure-Rechenzentrum (Virtual Datacenter, VDC). Sie erläutert, was Kunden antreibt, geht auf VDC-Ziele, Azure-Regionen, die Elemente einer VDC-Automatisierung sowie auf industrialisierte und vertrauenswürdige Azure VDCs ein und endet mit einem Aktionsplan für CIOs. Außerdem werden Support- und Schulungsinformationen bereitgestellt.</p>
     </td>
 </tr>
@@ -57,4 +57,4 @@ Das virtuelle Azure-Rechenzentrum basiert auf vier Komponenten: Identität, Vers
 Im Modell des virtuellen Azure-Rechenzentrums können Sie Isolationsrichtlinien anwenden, die Cloud ähnlich wie ein vertrautes physisches Datencenter gestalten und das nötige Maß an Sicherheit und Vertrauen erreichen. Dies wird durch vier Komponenten ermöglicht, die jedem IT-Team eines Unternehmens bekannt sein dürften: softwaredefiniertes Netzwerk, Verschlüsselung, Identitätsverwaltung und die der Azure-Plattform zugrunde liegenden Compliancestandards und -zertifizierungen. Diese vier Komponenten machen ein virtuelles Datencenter zu einer vertrauenswürdigen Erweiterung Ihrer bestehenden Infrastruktur.
 
 
-Weitere Informationen erhalten Sie im E-Book <a href="http://aka.ms/VDC/eBook">Azure Virtual Datacenter: Concepts</a> (Virtuelles Azure-Rechenzentrum: Konzepte).
+Weitere Informationen erhalten Sie im E-Book <a href="https://aka.ms/VDC/eBook">Azure Virtual Datacenter: Concepts</a> (Virtuelles Azure-Rechenzentrum: Konzepte).
