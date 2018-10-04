@@ -3,12 +3,12 @@ title: API-Design
 description: Entwerfen von APIs für Microservices
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: d85407f3092ddb5f77aacfea8def2784c4741eb9
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.openlocfilehash: e3524fca177d8c15b280d0f8a706539369c1773a
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26653197"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429127"
 ---
 # <a name="designing-microservices-api-design"></a>Entwerfen von Microservices: API-Design
 
@@ -124,10 +124,10 @@ Berücksichtigen Sie beim Entwerfen Ihrer APIs, dass diese nicht nur die Daten i
 | DDD-Konzept | REST-Entsprechung | Beispiel | 
 |-------------|-----------------|---------|
 | Aggregat | Ressource | `{ "1":1234, "status":"pending"... }` | 
-| Identität | URL | `http://delivery-service/deliveries/1` |
+| Identity | URL | `https://delivery-service/deliveries/1` |
 | Untergeordnete Entitäten | Links | `{ "href": "/deliveries/1/confirmation" }` |
-| Aktualisierung von Wertobjekten | PUT oder PATCH | `PUT http://delivery-service/deliveries/1/dropoff` |
-| Repository | Sammlung | `http://delivery-service/deliveries?status=pending` |
+| Aktualisierung von Wertobjekten | PUT oder PATCH | `PUT https://delivery-service/deliveries/1/dropoff` |
+| Repository | Sammlung | `https://delivery-service/deliveries?status=pending` |
 
 
 ## <a name="api-versioning"></a>API-Versionsverwaltung

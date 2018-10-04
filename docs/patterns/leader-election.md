@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - resiliency
-ms.openlocfilehash: 8c8efa0846550557bb53ea81f85ac0e303a77b19
-ms.sourcegitcommit: f19314f18cd794ebe380fa722ca92066b8735b56
+ms.openlocfilehash: 6cc4b19e889cc9fc692e388498cc16ea56b1c981
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37348268"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429195"
 ---
 # <a name="leader-election-pattern"></a>Muster für die Auswahl einer übergeordneten Instanz
 
@@ -43,7 +43,7 @@ Das System muss einen stabilen Mechanismus für die Auswahl der übergeordneten 
 Für die Wahl einer übergeordneten Instanz zwischen mehreren in einer verteilten Umgebung gibt es mehrere Strategien, einschließlich:
 - Auswählen der Aufgabeninstanz mit der niedrigsten Instanz- oder Prozess-ID.
 - Wettbewerb um den Abruf eines verteilten gegenseitigen Ausschlusses. Die erste Aufgabeninstanz, die den gegenseitigen Ausschluss abruft, ist die übergeordnete Instanz. Das System muss jedoch sicherstellen, dass beim Beenden oder Trennen der übergeordneten Instanz vom restlichen System der gegenseitige Ausschluss aufgehoben wird, sodass eine andere Aufgabeninstanz die übergeordnete Instanz werden kann.
-- Implementieren eines der verbreiteten Algorithmen für die Wahl der übergeordneten Instanz, z.B. [Bullyalgorithmus](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) oder [Ringalgorithmus](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html). Bei diesen Algorithmen wird davon ausgegangen, dass jeder Kandidat im Wahlverfahren eine eindeutige ID aufweist und zuverlässig mit den anderen Kandidaten kommunizieren kann.
+- Implementieren eines der verbreiteten Algorithmen für die Wahl der übergeordneten Instanz, z.B. [Bullyalgorithmus](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) oder [Ringalgorithmus](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html). Bei diesen Algorithmen wird davon ausgegangen, dass jeder Kandidat im Wahlverfahren eine eindeutige ID aufweist und zuverlässig mit den anderen Kandidaten kommunizieren kann.
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
@@ -198,7 +198,7 @@ Die folgenden Richtlinien sind unter Umständen beim Implementieren dieses Muste
 - [Richtlinien für die automatische Skalierung:](https://msdn.microsoft.com/library/dn589774.aspx) Instanzen der Aufgabenhosts können gestartet und beendet werden, wenn sich die Auslastung Anwendung ändert. Automatische Skalierung kann dabei helfen, den Durchsatz und die Leistung während Zeiten maximaler Verarbeitung beizubehalten.
 - [Richtlinien zur Computepartitionierung:](https://msdn.microsoft.com/library/dn589773.aspx) In diesen Richtlinien wird beschrieben, wie Aufgaben in einem Clouddienst so Hosts zugewiesen werden, dass die Betriebskosten minimiert und gleichzeitig die Skalierbarkeit, Leistung, Verfügbarkeit und Sicherheit des Diensts beibehalten werden.
 - Das [aufgabenbasierte asynchrone Muster](https://msdn.microsoft.com/library/hh873175.aspx)
-- Ein Beispiel zur Veranschaulichung des [Bullyalgorithmus](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)
-- Ein Beispiel zur Veranschaulichung des [Ringalgorithmus](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)
-- [Apache Curator](http://curator.apache.org/), eine Clientbibliothek für Apache ZooKeeper
+- Ein Beispiel zur Veranschaulichung des [Bullyalgorithmus](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)
+- Ein Beispiel zur Veranschaulichung des [Ringalgorithmus](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)
+- [Apache Curator](https://curator.apache.org/), eine Clientbibliothek für Apache ZooKeeper
 - Der Artikel [Leasen eines Blobs (REST-API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) bei MSDN

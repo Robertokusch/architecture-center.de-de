@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: a4e35a19851f4742b5c154197c22bb1fe13de108
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: bc2b6aeb6966d14327a21849adbbfe635eae59df
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091103"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428855"
 ---
 # <a name="sharding-pattern"></a>Sharding-Muster
 
@@ -219,6 +219,3 @@ Die folgenden Muster und Anweisungen können für die Implementierung dieses Mus
 - [Leitfaden zur Datenpartitionierung](https://msdn.microsoft.com/library/dn589795.aspx): Das Sharding eines Datenspeichers kann eine Reihe von zusätzlichen Problemen mit sich bringen. Beschreibt diese Probleme in Bezug auf die Partitionierung von Datenspeichern in der Cloud, um die Skalierbarkeit zu verbessern, Konflikte zu verringern und die Leistung zu optimieren.
 - [Index Table Pattern (Indextabellenmuster)](index-table.md): Mitunter ist es nicht möglich, Abfragen allein durch die Gestaltung des Shard-Schlüssels vollständig zu unterstützen. Ermöglicht einer Anwendung das schnelle Abrufen von Daten aus einem großen Datenspeicher durch die Angabe eines anderen Schlüssels als des Shard-Schlüssels.
 - [Muster für materialisierte Sichten](materialized-view.md): Um die Leistung einiger Abfragevorgänge aufrechtzuerhalten, ist es sinnvoll, materialisierte Ansichten zu erstellen, die Daten aggregieren und zusammenfassen. Dies ist insbesondere hilfreich, wenn diese zusammenfassenden Daten auf Informationen basieren, die über Shards verteilt sind. Beschreibt das Erstellen und Füllen dieser Ansichten.
-- [Shard Lessons](http://www.addsimplicity.com/adding_simplicity_an_engi/2008/08/shard-lessons.html) (Shard-Lektionen) zum Blog „Adding Simplicity“ (Hinzufügen der Einfachheit).
-- [Database Sharding](http://dbshards.com/database-sharding/) (Datenbank-Sharding) auf der CodeFutures-Website.
-- [Building Scalable Databases: Pros and Cons of Various Database Sharding Schemes](http://www.25hoursaday.com/weblog/2009/01/16/BuildingScalableDatabasesProsAndConsOfVariousDatabaseShardingSchemes.aspx) (Erstellen von skalierbaren Datenbanken: Vor- und Nachteile verschiedener Schemas zum Datenbank-Sharding) im Blog von Dare Obasanjo.

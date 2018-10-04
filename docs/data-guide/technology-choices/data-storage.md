@@ -3,12 +3,12 @@ title: Auswählen einer Datenspeichertechnologie
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: b14611a2dc34bcb145cf420441795d4124e7baeb
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 496df68024aef0dcf030bb7e0138639610aa8a79
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847208"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429348"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>Auswählen einer Big Data-Speichertechnologie in Azure
 
@@ -26,7 +26,7 @@ Daten können auf verschiedene Arten in Azure erfasst werden. Für welche Option
 **NoSQL-Datenbanken**
 
 - [Azure Cosmos DB](/azure/cosmos-db/)
-- [HBase in HDInsight](http://hbase.apache.org/)
+- [HBase in HDInsight](https://hbase.apache.org/)
 
 ## <a name="azure-storage-blobs"></a>Azure Storage-Blobs
 
@@ -69,7 +69,7 @@ Features von Azure Cosmos DB:
 
 ## <a name="hbase-on-hdinsight"></a>HBase in HDInsight
 
-[Apache HBase](http://hbase.apache.org/) ist eine Open-Source-NoSQL-Datenbank, die auf Hadoop basiert und nach dem Vorbild von Google BigTable erstellt wurde. HBase bietet wahlfreien Zugriff und starke Konsistenz für große Mengen unstrukturierter und teilweise strukturierter Daten in einer schemalosen Datenbank, die nach Spaltenfamilien gegliedert ist.
+[Apache HBase](https://hbase.apache.org/) ist eine Open-Source-NoSQL-Datenbank, die auf Hadoop basiert und nach dem Vorbild von Google BigTable erstellt wurde. HBase bietet wahlfreien Zugriff und starke Konsistenz für große Mengen unstrukturierter und teilweise strukturierter Daten in einer schemalosen Datenbank, die nach Spaltenfamilien gegliedert ist.
 
 Daten werden in den Zeilen einer Tabelle gespeichert und die Daten in einer Zeile zu einer Spaltenfamilie zusammengefasst. HBase ist insofern schemalos, als weder die Spalten noch der Typ der darin gespeicherten Daten vor der Verwendung definiert werden müssen. Der Open-Source-Code lässt sich linear skalieren, sodass Petabytes von Daten auf Tausenden von Knoten verarbeitet werden können. HBase nutzt Datenredundanz, Stapelverarbeitung und andere Funktionen, die von verteilten Anwendungen im Hadoop-Ökosystem zur Verfügung gestellt werden.
 
@@ -113,8 +113,8 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 |                                    |                                           Azure Cosmos DB                                           |                                                             HBase in HDInsight                                                             |
 |------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 |       Primäres Datenbankmodell       |                      Dokumentspeicher, Diagramm, Schlüssel-Wert-Speicherung, Wide Columnstore                      |                                                             Wide Columnstore                                                              |
-|         Sekundäre Indizes          |                                                 Ja                                                 |                                                                     Nein                                                                      |
-|        SQL-Sprachunterstützung        |                                                 Ja                                                 |                                     Ja (mit dem [Phoenix](http://phoenix.apache.org/)-JDBC-Treiber)                                      |
+|         Sekundäre Indizes          |                                                 JA                                                 |                                                                     Nein                                                                      |
+|        SQL-Sprachunterstützung        |                                                 JA                                                 |                                     Ja (mit dem [Phoenix](https://phoenix.apache.org/)-JDBC-Treiber)                                      |
 |            Konsistenz             |                   Stark, begrenzte Veraltung, Sitzung, Präfixkonsistenz, letztlich                   |                                                                   STARK (Strong)                                                                   |
 | Native Azure Functions-Integration |                        [Ja](/azure/cosmos-db/serverless-computing-database)                        |                                                                     Nein                                                                      |
 |   Automatische globale Verteilung    |                          [Ja](/azure/cosmos-db/distribute-data-globally)                           | Nein. Die [HBase-Clusterreplikation kann so konfiguriert werden](/azure/hdinsight/hbase/apache-hbase-replication), dass sie sich über Regionen mit letztlicher Konsistenz erstreckt. |

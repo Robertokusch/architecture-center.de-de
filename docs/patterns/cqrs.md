@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: c2832aa806909c6f0aab8b6345ffb8162eb59903
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 9a2eecdff7494fb627ea5c4655e6edc789bd5bdf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33811048"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429688"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>Muster „CQRS“ (Command and Query Responsibility Segregation)
 
@@ -248,8 +248,6 @@ Die folgenden Muster und Anweisungen könnten für die Implementierung dieses Mu
 
 - [Muster „Materialisierte Sichten“](materialized-view.md): Das Lesemodell einer CQRS-Implementierung kann materialisierte Sichten der Daten des Schreibmodells enthalten. Das Modell kann alternativ auch zur Generierung materialisierter Sichten verwendet werden.
 
-- Muster und Vorgehensweisen zu [CQRS](http://aka.ms/cqrs): Im Artikel [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Einführung zum Command Query Responsibility Segregation-Muster) werden insbesondere das Muster und die entsprechenden Anwendungsfälle erläutert. Der Artikel [Epilog: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) (Epilog: Gesammelte Erfahrungen) enthält Informationen zu einigen Problemen, die bei der Verwendung dieses Musters auftreten.
+- Muster und Vorgehensweisen zu [CQRS](https://aka.ms/cqrs): Im Artikel [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Einführung zum Command Query Responsibility Segregation-Muster) werden insbesondere das Muster und die entsprechenden Anwendungsfälle erläutert. Der Artikel [Epilog: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) (Epilog: Gesammelte Erfahrungen) enthält Informationen zu einigen Problemen, die bei der Verwendung dieses Musters auftreten.
 
-- In dem Beitrag [CQRS](http://martinfowler.com/bliki/CQRS.html) von Martin Fowler werden die Grundlagen des Musters erklärt und Links zu anderen nützlichen Ressourcen angegeben.
-
-- In dem [Beitrag von Greg Young](http://codebetter.com/gregyoung/) werden die zahlreichen Aspekte des Musters „CQRS“ erläutert.
+- In dem Beitrag [CQRS](https://martinfowler.com/bliki/CQRS.html) von Martin Fowler werden die Grundlagen des Musters erklärt und Links zu anderen nützlichen Ressourcen angegeben.

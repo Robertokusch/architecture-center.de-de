@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: e85817626675cec4d126921c19a31a0983ecd62d
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 70f4a96369c207740400b9dfe72e1e964507f729
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359254"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428124"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>Authentifizieren mithilfe von Azure AD und OpenID Connect
 
@@ -61,7 +61,7 @@ app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions {
 Beachten Sie, dass einige der Einstellungen aus Optionen der Laufzeitkonfiguration entnommen werden. Die Middlewareoptionen bedeuten Folgendes:
 
 * **ClientId**. Dies ist die Client-ID der Anwendung, die Sie erhalten haben, als Sie die Anwendung in Azure AD registriert haben.
-* **Authority**. Legen Sie diese Einstellung für eine mehrinstanzenfähige Anwendung auf `https://login.microsoftonline.com/common/` fest. Dies ist die URL für den gemeinsamen Azure AD-Endpunkt, über den sich Benutzer aller Azure AD-Mandanten anmelden können. Weitere Informationen über den gemeinsamen Endpunkt finden Sie in diesem [Blogbeitrag](http://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/).
+* **Authority**. Legen Sie diese Einstellung für eine mehrinstanzenfähige Anwendung auf `https://login.microsoftonline.com/common/` fest. Dies ist die URL für den gemeinsamen Azure AD-Endpunkt, über den sich Benutzer aller Azure AD-Mandanten anmelden können. Weitere Informationen über den gemeinsamen Endpunkt finden Sie in diesem [Blogbeitrag](https://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/).
 * Legen Sie unter **TokenValidationParameters** den Parameter **ValidateIssuer** auf „false“ fest. Dies bedeutet, dass die App für die Überprüfung des Ausstellerwerts im ID-Token zuständig ist. (Die Middleware überprüft das Token weiterhin selbst.) Weitere Informationen zum Überprüfen des Ausstellers finden Sie unter [Überprüfung des Ausstellers](claims.md#issuer-validation).
 * **PostLogoutRedirectUri**. Geben Sie eine URL an, an die Benutzer nach dem Abmelden weitergeleitet werden. Hierbei sollte es sich um eine Seite handeln, die anonyme Anforderungen zulässt – typischerweise die Startseite.
 * **SignInScheme**. Legen Sie diesen Eintrag auf `CookieAuthenticationDefaults.AuthenticationScheme`fest. Diese Einstellung bedeutet, dass die Benutzeransprüche nach der Authentifizierung des Benutzers lokal in einem Cookie gespeichert werden. Dieses Cookie legt fest, wie der Benutzer während der Browsersitzung angemeldet bleibt.

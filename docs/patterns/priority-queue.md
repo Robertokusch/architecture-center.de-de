@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
 - performance-scalability
-ms.openlocfilehash: ecfbb38304bb95587e9ca15523ad9594898d9b32
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 400bfbc03cf5640ff32a551636b01d60e6c0ec50
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24543144"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428498"
 ---
 # <a name="priority-queue-pattern"></a>Muster „Prioritätswarteschlange“
 
@@ -164,11 +164,11 @@ this.queueManager.SendBatchAsync(highMessages).Wait();
 
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
-Die folgenden Muster und Anweisungen können ebenfalls für die Implementierung dieses Musters relevant sein:
+Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
 
 - Ein Beispiel für dieses Muster steht auf [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/priority-queue).
 
-- [Primer für asynchrone Nachrichten](https://msdn.microsoft.com/library/dn589781.aspx): Ein Consumerdienst, der eine Anforderung verarbeitet, muss möglicherweise eine Antwort an die Instanz der Anwendung senden, die die Anforderung bereitgestellt hat. Dieser Primer stellt Informationen zu den Strategien bereit, die Sie zur Implementierung von Anforderung/Antwort-Nachrichten implementieren können.
+- [Einführung in asynchrone Nachrichten](https://msdn.microsoft.com/library/dn589781.aspx). Ein Consumerdienst, der eine Anforderung verarbeitet, muss möglicherweise eine Antwort an die Instanz der Anwendung senden, die die Anforderung bereitgestellt hat. Dieser Primer stellt Informationen zu den Strategien bereit, die Sie zur Implementierung von Anforderung/Antwort-Nachrichten implementieren können.
 
 - [Muster „Konkurrierende Consumer“](competing-consumers.md): Um den Durchsatz der Warteschlangen zu erhöhen, können mehrere Consumer auf die gleiche Warteschlange lauschen und die Aufgaben parallel verarbeiten. Diese Consumer konkurrieren um Nachrichten, doch nur ein Consumer sollte in der Lage sein, die einzelnen Nachrichten zu verarbeiten. Dieses Muster bietet weitere Informationen über die Vor- und Nachteile, die sich bei der Implementierung dieser Vorgehensweise ergeben.
 
@@ -176,5 +176,5 @@ Die folgenden Muster und Anweisungen können ebenfalls für die Implementierung 
 
 - [Leitfaden für die automatische Skalierung](https://msdn.microsoft.com/library/dn589774.aspx): Die Größe des Pools von Consumerprozessen, die eine Warteschlange verarbeiten, kann abhängig von der Länge der Warteschlange skaliert werden. Diese Strategie kann helfen, um die Leistung insbesondere bei Pools zu verbessern, die Nachrichten mit hoher Priorität verarbeiten.
 
-- [Enterprise Integration Patterns with Service Bus](http://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) (Unternehmensintegrationsmuster mit Service Bus) im Blog von Abhishek Lal
+- [Enterprise Integration Patterns with Service Bus](https://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) (Unternehmensintegrationsmuster mit Service Bus) im Blog von Abhishek Lal
 

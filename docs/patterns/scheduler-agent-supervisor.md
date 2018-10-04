@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
 - resiliency
-ms.openlocfilehash: 03bfe2fe96b3b81d547cfedb075bcf855846b668
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 7914708413d68689e2326df28ced00e5fc3a5dd8
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542424"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428668"
 ---
 # <a name="scheduler-agent-supervisor-pattern"></a>Muster „Scheduler-Agent-Supervisor“
 
@@ -23,7 +23,7 @@ Koordinieren Sie eine Reihe von verteilten Aktionen als einen einzelnen Vorgang.
 
 ## <a name="context-and-problem"></a>Kontext und Problem
 
-Eine Anwendung führt Tasks aus, die eine Reihe von Schritten umfassen, von denen einige möglicherweise Remotedienste aufrufen oder auf Remoteressourcen zugreifen. Die einzelnen Schritte können voneinander unabhängig sein, aber sie werden von der Anwendungslogik orchestriert, die den Task implementiert.
+Eine Anwendung führt Tasks aus, die eine Reihe von Schritten umfassen, von denen einige möglicherweise Remotedienste aufrufen oder auf Remoteressourcen zugreifen. Die einzelnen Schritte können voneinander unabhängig sein, aber sie werden von der Anwendungslogik orchestriert, die die Aufgabe implementiert.
 
 Wann immer dies möglich ist, sollte die Anwendung sicherstellen, dass der Task bis zum Abschluss ausgeführt wird, und alle Fehler beheben, die beim Zugriff auf Remotedienste oder Ressourcen auftreten können. Fehler können verschiedenste Ursachen haben. Beispielsweise kann das Netzwerk ausgefallen sein, die Kommunikation unterbrochen werden, ein Remotedienst reagiert möglicherweise nicht oder befindet sich in einem instabilen Zustand, oder eine Remoteressource ist vielleicht aufgrund von Ressourcenbeschränkungen vorübergehend nicht erreichbar. In vielen Fällen sind die Fehler vorübergehend und können mithilfe des [Musters „Wiederholung“][retry-pattern] behandelt werden.
 
@@ -35,7 +35,7 @@ Das Muster „Scheduler-Agent-Supervisor“ definiert die folgenden Akteure. Die
 
 - Der **Scheduler** handhabt die Schritte für den auszuführenden Task und orchestriert deren Ausführung. Diese Schritte können in einer Pipeline oder einem Workflow kombiniert werden. Der Scheduler muss dafür Sorge tragen, dass die Schritte in diesem Workflow in der richtigen Reihenfolge ausgeführt werden. Während jeder Schritt ausgeführt wird, zeichnet der Scheduler den Zustand des Workflows auf, wie z.B. „Schritt noch nicht gestartet“, „Schritt wird ausgeführt“ oder „Schritt beendet“. Die Zustandsinformationen müssen außerdem eine Obergrenze für die Zeit enthalten, die für die Beendigung des Schritts zur Verfügung steht, die so genannte Zeit bis zum Abschluss. Wenn ein Schritt den Zugriff auf einen Remotedienst oder eine Ressource erfordert, ruft der Scheduler den entsprechenden Agent auf und übergibt ihm die Details der auszuführenden Arbeit. Der Scheduler kommuniziert typischerweise über asynchrone Anforderungs-/Antwortnachrichten mit dem Agent. Diese können mithilfe von Warteschlangen realisiert werden, es können aber auch andere verteilte Messagingtechnologien verwendet werden.
 
-    > Der Scheduler hat eine ähnliche Funktion wie der Prozess-Manager im [Muster „Prozess-Manager“](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html). Der tatsächliche Workflow wird typischerweise durch ein Workflowmodul definiert und implementiert, das über den Scheduler gesteuert wird. Dieser Ansatz entkoppelt die Geschäftslogik im Workflow vom Scheduler.
+    > Der Scheduler hat eine ähnliche Funktion wie der Prozess-Manager im [Muster „Prozess-Manager“](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html). Der tatsächliche Workflow wird typischerweise durch eine Workflow-Engine definiert und implementiert, die über den Scheduler gesteuert wird. Dieser Ansatz entkoppelt die Geschäftslogik im Workflow vom Scheduler.
 
 - Der **Agent** umfasst Logik, die einen Aufruf an einen Remotedienst oder den Zugriff auf eine Remoteressource kapselt, auf die durch einen Schritt in einem Task verwiesen wird. Jeder Agent umschließt Aufrufe an einen einzelnen Dienst oder eine einzelne Ressource und implementiert die entsprechende Fehlerbehandlung und Wiederholungslogik (abhängig von einer Timeoutbeschränkung, die später beschrieben wird). Wenn die Schritte im Workflow, die vom Scheduler ausgeführt werden, mehrere Dienste und Ressourcen über verschiedene Schritte hinweg verwenden, kann jeder Schritt einen anderen Agent referenzieren (dies ist ein Implementierungsdetail des Musters).
 
@@ -142,7 +142,7 @@ Die folgenden Muster und Anweisungen können für die Implementierung dieses Mus
 - [Einführung in asynchrone Nachrichten](https://msdn.microsoft.com/library/dn589781.aspx). Die Komponenten im Muster „Scheduler-Agent-Supervisor“ werden typischerweise entkoppelt voneinander ausgeführt und kommunizieren asynchron. Hier werden einige der Ansätze beschrieben, mit denen eine asynchrone Kommunikation auf der Basis von Nachrichtenwarteschlangen realisiert werden kann.
 - [Muster für die Auswahl einer übergeordneten Instanz](leader-election.md). Die Aktionen mehrerer Instanzen eines Supervisors müssen ggf. koordiniert werden, damit nicht versucht wird, dieselben fehlerhaften Prozesse wiederherzustellen. Das Muster für die Auswahl einer übergeordneten Instanz beschreibt, wie dies erreicht wird.
 - [Cloud Architecture: The Scheduler-Agent-Supervisor Pattern](https://blogs.msdn.microsoft.com/clemensv/2010/09/27/cloud-architecture-the-scheduler-agent-supervisor-pattern/) (Cloudarchitektur: Das Scheduler-Agent-Supervisor-Muster) im Blog von Clements Vasters
-- [Muster „Prozess-Manager“](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)
+- [Muster „Prozess-Manager“](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)
 - [Reference 6: A Saga on Sagas](https://msdn.microsoft.com/library/jj591569.aspx) (Referenz 6: Eine Saga zur Saga). In diesem Beispiel wird gezeigt, wie das CQRS-Muster einen Prozess-Manager verwendet (Teil des CQRS Journey-Leitfadens).
 - [Microsoft Azure Scheduler](https://azure.microsoft.com/services/scheduler/)
 

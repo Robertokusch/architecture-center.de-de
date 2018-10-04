@@ -7,12 +7,12 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute-vpn-failover
 pnp.series.prev: vpn
 cardTitle: ExpressRoute
-ms.openlocfilehash: ada07f399925da6da28b24260f5c73f1e106fd7d
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: efaf1ef479f24d51a19236d401cbe5765d052235
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270318"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429518"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>Verbinden eines lokalen Netzwerks mit Azure über ExpressRoute
 
@@ -246,7 +246,7 @@ Wenn Sie Verwaltungsendpunkte für VMs gegenüber einem externen Netzwerk offenl
 
 Führen Sie die folgenden Schritte aus, um die Lösung bereitzustellen.
 
-1. Klicken Sie auf diese Schaltfläche:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+1. Klicken Sie auf diese Schaltfläche:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. Warten Sie, bis der Link im Azure-Portal geöffnet wird, und gehen Sie dann folgendermaßen vor:
    * Der Name der **Ressourcengruppe** ist bereits in der Parameterdatei definiert. Wählen Sie also **Neu erstellen**, und geben Sie im Textfeld `ra-hybrid-er-rg` ein.
    * Wählen Sie im Dropdownfeld **Standort** die Region aus.
@@ -254,7 +254,7 @@ Führen Sie die folgenden Schritte aus, um die Lösung bereitzustellen.
    * Überprüfen Sie die allgemeinen Geschäftsbedingungen, und aktivieren Sie dann das Kontrollkästchen **Ich stimme den oben genannten Geschäftsbedingungen zu**.
    * Klicken Sie auf die Schaltfläche **Kaufen**.
 3. Warten Sie, bis die Bereitstellung abgeschlossen ist.
-4. Klicken Sie auf diese Schaltfläche:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+4. Klicken Sie auf diese Schaltfläche:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 5. Warten Sie, bis der Link im Azure-Portal geöffnet wird, und gehen Sie dann folgendermaßen vor:
    * Wählen Sie im Abschnitt **Ressourcengruppe** die Option **Vorhandene verwenden** aus, und geben Sie im Textfeld `ra-hybrid-er-rg` ein.
    * Wählen Sie im Dropdownfeld **Standort** die Region aus.

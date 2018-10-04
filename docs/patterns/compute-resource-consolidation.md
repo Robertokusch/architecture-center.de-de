@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
-ms.openlocfilehash: 6e05a30245fbf5183a4e50a54650505f5a5f2aa8
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: bd212b8b4406a08058f811db030843f732e08cdc
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252923"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428838"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>Muster „Computeressourcenkonsolidierung“
 
@@ -85,7 +85,7 @@ Dieses Muster eignet sich möglicherweise nicht für Tasks, die kritische fehler
 
 Beim Erstellen eines Clouddiensts in Azure ist es möglich, die Verarbeitung mehrerer Tasks in einer einzigen Rolle zu konsolidieren. Typischerweise handelt es sich dabei um eine Workerrolle, die Hintergrund- oder asynchrone Verarbeitungstasks ausführt.
 
-> In einigen Fällen ist es möglich, Hintergrund- oder asynchrone Verarbeitungsaufgaben in die Webrolle einzubinden. Diese Technik trägt zur Kostensenkung bei und vereinfacht die Bereitstellung, wenngleich sie sich auf die Skalierbarkeit und Reaktionsfähigkeit der öffentlich zugänglichen Schnittstelle auswirken kann, die von der Webrolle bereitgestellt wird. Der Artikel [Combining Multiple Azure Worker Roles into an Azure Web Role](http://www.31a2ba2a-b718-11dc-8314-0800200c9a66.com/2012/02/combining-multiple-azure-worker-roles.html) (Kombinieren mehrerer Azure-Workerrollen in einer Azure-Webrolle) enthält eine detaillierte Beschreibung der Implementierung von Hintergrund- oder asynchronen Verarbeitungstasks in einer Webrolle.
+> In einigen Fällen ist es möglich, Hintergrund- oder asynchrone Verarbeitungsaufgaben in die Webrolle einzubinden. Diese Technik trägt zur Kostensenkung bei und vereinfacht die Bereitstellung, wenngleich sie sich auf die Skalierbarkeit und Reaktionsfähigkeit der öffentlich zugänglichen Schnittstelle auswirken kann, die von der Webrolle bereitgestellt wird. 
 
 Die Rolle ist für das Starten und Beenden der Tasks verantwortlich. Wenn der Azure Fabric Controller eine Rolle lädt, löst er das Ereignis `Start` für die Rolle aus. Sie können die Methode `OnStart` der Klasse `WebRole` oder `WorkerRole` überschreiben, um dieses Ereignis zu behandeln – um beispielsweise die Daten und andere Ressourcen zu initialisieren, von denen die Tasks in dieser Methode abhängen.
 

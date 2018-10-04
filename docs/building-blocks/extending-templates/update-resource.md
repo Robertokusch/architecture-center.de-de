@@ -3,12 +3,12 @@ title: Aktualisieren einer Ressource in einer Azure Resource Manager-Vorlage
 description: Beschreibt das Erweitern der Funktionalität der Azure Resource Manager-Vorlagen für das Aktualisieren einer Ressource.
 author: petertay
 ms.date: 06/09/2017
-ms.openlocfilehash: fc2565819c66ee7695224ef5793e7276e6e552e0
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: f235f0b4d54d65ccc2fa67876916e922d75f6d07
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538472"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429037"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a>Aktualisieren einer Ressource in einer Azure Resource Manager-Vorlage
 
@@ -80,7 +80,7 @@ Sehen wir uns eine Beispielvorlage an, die dies veranschaulicht. Unsere Vorlage 
         "mode": "Incremental",
         "parameters": {},
         "template": {
-          "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
           "contentVersion": "1.0.0.0",
           "parameters": {},
           "variables": {},
@@ -118,7 +118,7 @@ Sehen wir uns eine Beispielvorlage an, die dies veranschaulicht. Unsere Vorlage 
 }
 ```
 
-Werfen wir zunächst einen Blick auf das Ressourcenobjekt für unsere `firstVNet`-Ressource. Beachten Sie, dass wir neue Einstellungen für `firstVNet` in einer geschachtelten Vorlage angeben, da Resource Manager keine gleichnamige Bereitstellung innerhalb einer Vorlage erlaubt und geschachtelte Vorlagen als eine andere Vorlage gelten. Durch die neuen Angaben für die Werte unserer `firstSubnet`-Ressource weisen wir Resource Manager an, die vorhandene Ressource zu aktualisieren, anstatt sie zu löschen und erneut bereitzustellen. Abschließend werden unsere neuen Einstellungen für `secondSubnet` während des Updates übernommen.
+Werfen wir zunächst einen Blick auf das Ressourcenobjekt für unsere `firstVNet`-Ressource. Beachten Sie, dass wir neue Einstellungen für `firstVNet` in einer geschachtelten Vorlage&mdash; angeben, da Resource Manager keine gleichnamige Bereitstellung innerhalb einer Vorlage erlaubt und geschachtelte Vorlagen als eine andere Vorlage gelten. Durch die neuen Angaben für die Werte unserer `firstSubnet`-Ressource weisen wir Resource Manager an, die vorhandene Ressource zu aktualisieren, anstatt sie zu löschen und erneut bereitzustellen. Abschließend werden unsere neuen Einstellungen für `secondSubnet` während des Updates übernommen.
 
 ## <a name="try-the-template"></a>Testen der Vorlage
 

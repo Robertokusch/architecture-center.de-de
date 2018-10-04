@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - availability
 - management-monitoring
 - resiliency
-ms.openlocfilehash: 3b3bce46b460148af17bfe6064cd052a5f9a6458
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 22a4e47c4dd8dd3dd11a4238e859acbea49f9d1b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847848"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428974"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>Muster für Überwachung der Integrität von Endpunkten
 
@@ -89,7 +89,7 @@ Konfigurieren der Sicherheit der Überwachungsendpunkte zum Schutz vor öffentli
 
      >  DoS-Angriffe haben wahrscheinlich weniger Auswirkungen auf einen separaten Endpunkt, auf dem grundlegende Funktionstests durchgeführt werden, ohne den Betrieb der Anwendung zu beeinträchtigen. Vermeiden Sie im Idealfall Tests, die vertrauliche Informationen preisgeben. Wenn Sie Informationen zurückgeben müssen, die für einen Angreifer nützlich sein könnten, überlegen Sie, wie Sie den Endpunkt und die Daten vor unbefugtem Zugriff schützen können. In diesem Fall reicht es nicht aus, sich nur auf Verschleierung zu verlassen. Außerdem sollten Sie in Erwägung ziehen, eine HTTPS-Verbindung zu verwenden und sensible Daten zu verschlüsseln, obwohl dies die Verarbeitungslast des Servers erhöht.
 
-- Zugreifen auf einen Endpunkt, der durch Authentifizierung geschützt ist. Nicht alle Tools und Frameworks können so konfiguriert werden, dass Anmeldeinformationen in die Anforderung der Integritätsprüfung einbezogen werden. Beispielsweise können die in Microsoft Azure integrierten Funktionen zur Integritätsprüfung keine Authentifizierungsinformationen bereitstellen. Einige Alternativen von Drittanbietern sind [Pingdom](https://www.pingdom.com/), [Panopta](http://www.panopta.com/), [NewRelic](https://newrelic.com/) und [Statuscake](https://www.statuscake.com/).
+- Zugreifen auf einen Endpunkt, der durch Authentifizierung geschützt ist. Nicht alle Tools und Frameworks können so konfiguriert werden, dass Anmeldeinformationen in die Anforderung der Integritätsprüfung einbezogen werden. Beispielsweise können die in Microsoft Azure integrierten Funktionen zur Integritätsprüfung keine Authentifizierungsinformationen bereitstellen. Einige Alternativen von Drittanbietern sind [Pingdom](https://www.pingdom.com/), [Panopta](https://www.panopta.com/), [NewRelic](https://newrelic.com/) und [Statuscake](https://www.statuscake.com/).
 
 - Sicherstellen, dass der Überwachungs-Agent richtig funktioniert. Ein Ansatz sieht vor, einen Endpunkt verfügbar zu machen, der einfach einen Wert aus der Anwendungskonfiguration oder einen Zufallswert zurückgibt, der zum Testen des Agents verwendet werden kann.
 

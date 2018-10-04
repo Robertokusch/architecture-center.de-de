@@ -3,12 +3,12 @@ title: Auswählen einer Technologie für die Datenanalyse und Berichterstellung
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 830c61bba64a6971c815330887e5cdcc4f2b5f56
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 05e33a3da0933036a604d2bc4cc5a20ae70fe772
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288912"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428313"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>Auswählen einer Technologie für die Datenanalyse in Azure
 
@@ -54,7 +54,7 @@ Hauptvorteile:
 * Verwalten Sie Ihre eigenen Onlinebibliotheken, und greifen Sie von einem beliebigen Gerät aus darauf zu.
 * Geben Sie Ihre Notebooks für Projektmitarbeiter frei.
 
-Zu berücksichtigende Aspekte:
+Überlegungen:
 
 * Die Notebooks stehen offline nicht zur Verfügung.
 * Die eingeschränkten Verarbeitungsfunktionen des kostenlosen Notebookdiensts reichen für umfangreiche oder komplexe Modelle unter Umständen nicht aus.
@@ -73,28 +73,28 @@ Beantworten Sie zunächst die folgenden Fragen, um die Auswahlmöglichkeiten ein
 
 ## <a name="capability-matrix"></a>Funktionsmatrix
 
-In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst: 
+In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst. 
 
 ### <a name="general-capabilities"></a>Allgemeine Funktionen
 
 | | Power BI | Jupyter-Notebooks | Zeppelin-Notebooks | Microsoft Azure Notebooks |
 | --- | --- | --- | --- | --- |
-| Verbindungsherstellung mit einem Big Data-Cluster zur erweiterten Verarbeitung | Ja | Ja | Ja | Nein  |
-| Verwalteter Dienst | Ja | Ja <sup>1</sup> | Ja <sup>1</sup> | Ja |
-| Verbindungsherstellung mit Hunderten von Datenquellen | Ja | Nein  | Nein  | Nein  |
-| Offlinefunktionen | Ja <sup>2</sup> | Nein  | Nein  | Nein  |
-| Einbettung von Funktionen | Ja | Nein  | Nein  | Nein  |
-| Automatische Datenaktualisierung | Ja | Nein  | Nein  | Nein  |
-| Zugriff auf eine große Zahl von Open-Source-Paketen | Nein  | Ja <sup>3</sup> | Ja <sup>3</sup> | Ja <sup>4</sup> |
+| Verbindungsherstellung mit einem Big Data-Cluster zur erweiterten Verarbeitung | JA | Ja | JA | Nein  |
+| Verwalteter Dienst | JA | Ja<sup>1</sup> | Ja<sup>1</sup> | JA |
+| Verbindungsherstellung mit Hunderten von Datenquellen | JA | Nein  | Nein  | Nein  |
+| Offlinefunktionen | Ja<sup>2</sup> | Nein  | Nein  | Nein  |
+| Einbettung von Funktionen | JA | Nein  | Nein  | Nein  |
+| Automatische Datenaktualisierung | JA | Nein  | Nein  | Nein  |
+| Zugriff auf eine große Zahl von Open-Source-Paketen | Nein  | Ja<sup>3</sup> | Ja <sup>3</sup> | Ja <sup>4</sup> |
 | Optionen für Datentransformation/-bereinigung | [Power Query](https://powerbi.microsoft.com/blog/getting-started-with-power-query-part-i/), R | 40 Sprachen, z.B. Python, R, Julia und Scala | 20+ Interpreter, z.B. Python, JDBC und R | Python, F#, R |
 | Preise | Kostenlos für Power BI Desktop (Erstellung), siehe Hostingoptionen unter [Preise](https://powerbi.microsoft.com/pricing/) | Kostenlos | Kostenlos | Kostenlos |
-| Kollaboration mehrerer Benutzer | [Ja](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | Ja (per Freigabe oder über einen Mehrbenutzer-Server wie [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | Ja | Ja (per Freigabe) |
+| Kollaboration mehrerer Benutzer | [Ja](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | Ja (per Freigabe oder über einen Mehrbenutzer-Server wie [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | JA | Ja (per Freigabe) |
 
 [1] Bei Verwendung als Teil eines verwalteten HDInsight-Clusters.
 
 [2] Bei Verwendung von Power BI Desktop.
 
-[2] Sie können das [Maven-Repository](http://search.maven.org/) nach Paketen durchsuchen, die von der Community bereitgestellt wurden.
+[2] Sie können das [Maven-Repository](https://search.maven.org/) nach Paketen durchsuchen, die von der Community bereitgestellt wurden.
 
 [3] Python-Pakete können entweder per pip oder conda installiert werden. R-Pakete können über CRAN oder GitHub installiert werden. Pakete in F# können über „nuget.org“ mit dem [Paket-Abhängigkeits-Manager](https://fsprojects.github.io/Paket/) installiert werden.
 

@@ -3,12 +3,12 @@ title: 'Enterprise Cloud-Einführung: Ressourcenzugriffsverwaltung in Azure'
 description: 'Erklärung der Konstrukte für die Verwaltung des Ressourcenzugriffs in Azure: Azure Resource Manager, Abonnements, Ressourcengruppen und Ressourcen'
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 2e64d8828574ebe216da1e76b19ec3ce5aeda993
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: c26b01d207bc4eb100653a826a053b394d03d1e6
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389076"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428702"
 ---
 # <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>Enterprise Cloud-Einführung: Ressourcenzugriffsverwaltung in Azure
 
@@ -84,7 +84,7 @@ Die nächste Kontrolle ist eine Überprüfung, ob der Benutzer über ausreichend
 
 Mit einer RBAC-Rolle wird ein Satz mit Berechtigungen angegeben, die einem Benutzer für eine bestimmte Ressource zur Verfügung stehen. Wenn die Rolle dem Benutzer zugewiesen wird, werden diese Berechtigungen angewendet. Mit der [integrierten Rolle**Besitzer**](/azure/role-based-access-control/built-in-roles#owner) kann ein Benutzer für eine Ressource beispielsweise alle Aktionen durchführen.
 
-Die nächste Kontrolle umfasst eine Überprüfung, ob die Anforderung gemäß den Einstellungen, die für die [Azure-Ressourcenrichtlinie](/azure/azure-policy/) angegeben wurden, zulässig ist. Mit Azure-Ressourcenrichtlinien werden die Vorgänge angegeben, die für eine bestimmte Ressource zulässig sind. Mithilfe einer Azure-Ressourcenrichtlinie kann beispielsweise angegeben werden, dass Benutzer nur einen bestimmten Typ eines virtuellen Computers bereitstellen dürfen.
+Die nächste Kontrolle umfasst eine Überprüfung, ob die Anforderung gemäß den Einstellungen, die für die [Azure-Ressourcenrichtlinie](/azure/governance/policy/) angegeben wurden, zulässig ist. Mit Azure-Ressourcenrichtlinien werden die Vorgänge angegeben, die für eine bestimmte Ressource zulässig sind. Mithilfe einer Azure-Ressourcenrichtlinie kann beispielsweise angegeben werden, dass Benutzer nur einen bestimmten Typ eines virtuellen Computers bereitstellen dürfen.
 
 ![](../_images/governance-1-19.png)   
 *Abbildung 11: Azure-Ressourcenrichtlinie*

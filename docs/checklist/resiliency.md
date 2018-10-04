@@ -4,12 +4,12 @@ description: Checkliste, die Hinweise zu Überlegungen hinsichtlich der Resilien
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 883424d5d3535f822cdba61ecb9520ce05f75ec7
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: 17612ee08e2329ea648fd21d6764e7bae1ca20e2
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352643"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429093"
 ---
 # <a name="resiliency-checklist"></a>Checkliste für Resilienz
 
@@ -81,7 +81,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 ## <a name="security"></a>Sicherheit
 
-**Implementieren Sie Schutz auf Anwendungsebene vor verteilten Denial-of-Service-Angriffen (DDoS).** Azure-Dienste sind auf Netzwerkebene vor DDos-Angriffen geschützt. Allerdings kann Azure nicht vor Angriffen auf Anwendungsebene schützten, da es schwierig ist, zwischen echten und böswilligen Benutzeranforderungen zu unterscheiden. Weitere Informationen zum Schutz vor DDoS-Angriffen auf Anwendungsebene finden Sie im Abschnitt über den Schutz vor DDoS im Dokument [Microsoft Azure-Netzwerksicherheit](http://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf) (PDF-Download).
+**Implementieren Sie Schutz auf Anwendungsebene vor verteilten Denial-of-Service-Angriffen (DDoS).** Azure-Dienste sind auf Netzwerkebene vor DDos-Angriffen geschützt. Allerdings kann Azure nicht vor Angriffen auf Anwendungsebene schützten, da es schwierig ist, zwischen echten und böswilligen Benutzeranforderungen zu unterscheiden. Weitere Informationen zum Schutz vor DDoS-Angriffen auf Anwendungsebene finden Sie im Abschnitt über den Schutz vor DDoS im Dokument [Microsoft Azure-Netzwerksicherheit](https://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf) (PDF-Download).
 
 **Implementieren Sie das Prinzip der geringsten Rechte für den Zugriff auf die Ressourcen der Anwendung.** Die Standardeinstellung für den Zugriff auf die Ressourcen der Anwendung sollte möglichst restriktiv sein. Erteilen Sie höhere Berechtigungen über spezielle Genehmigungen. Das standardmäßige Gewähren von übermäßigem Zugriff auf Ressourcen der Anwendung kann dazu führen, dass eine Person absichtlich oder versehentlich Ressourcen löscht. Azure bietet [rollenbasierte Zugriffssteuerung](/azure/active-directory/role-based-access-built-in-roles/) zum Verwalten von Benutzerberechtigungen. Aber es ist wichtig sicherzustellen, dass die geringsten Berechtigungen für solche Ressourcen gewährt werden, die eigene Berechtigungssysteme aufweisen, wie z.B. SQL Server.
 
@@ -99,7 +99,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Automatisieren Sie den Bereitstellungsprozess für Ihre Anwendung.** Wenn Ihr Betriebspersonal zum manuellen Bereitstellen der Anwendung erforderlich ist, können Benutzerfehler dazu führen, dass die Bereitstellung fehlschlägt. 
 
-**Entwerfen Sie den Freigabeprozess so, dass die Verfügbarkeit der Anwendung maximiert wird.** Wenn es für Ihren Freigabeprozess erforderlich ist, dass Dienste während der Bereitstellung offline geschaltet werden, ist die Anwendung erst wieder verfügbar, wenn sie wieder online geschaltet werden. Verwenden Sie die Bereitstellungsverfahren [Blau/Grün](http://martinfowler.com/bliki/BlueGreenDeployment.html) oder [Canary-Release](http://martinfowler.com/bliki/CanaryRelease.html) zum Bereitstellen der Anwendung in der Produktion. Beide Verfahren umfassen das Bereitstellen des Freigabecodes zusammen mit dem Produktionscode, damit Benutzer des Freigabecodes im Fall eines Fehlers an den Produktionscode umgeleitet werden können.
+**Entwerfen Sie den Freigabeprozess so, dass die Verfügbarkeit der Anwendung maximiert wird.** Wenn es für Ihren Freigabeprozess erforderlich ist, dass Dienste während der Bereitstellung offline geschaltet werden, ist die Anwendung erst wieder verfügbar, wenn sie wieder online geschaltet werden. Verwenden Sie die Bereitstellungsverfahren [Blau/Grün](https://martinfowler.com/bliki/BlueGreenDeployment.html) oder [Canary-Release](https://martinfowler.com/bliki/CanaryRelease.html) zum Bereitstellen der Anwendung in der Produktion. Beide Verfahren umfassen das Bereitstellen des Freigabecodes zusammen mit dem Produktionscode, damit Benutzer des Freigabecodes im Fall eines Fehlers an den Produktionscode umgeleitet werden können.
 
 **Protokollieren und überwachen Sie die Bereitstellungen Ihrer Anwendung.** Bei Verwendung der Verfahren für Stagingbereitstellungen wie Blau/Grün oder Canary-Releases gibt es mehr als eine Version der Anwendung, die in der Produktion ausgeführt wird. Wenn ein Problem auftreten sollte, ist es entscheidend zu ermitteln, welche Version der Anwendung ein Problem verursacht. Implementieren Sie eine stabile Protokollierungsstrategie, um so viele versionsspezifische Informationen wie möglich zu erfassen.
 

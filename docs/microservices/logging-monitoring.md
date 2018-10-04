@@ -3,12 +3,12 @@ title: Protokollieren und Überwachen in Microservices
 description: Protokollieren und Überwachen in Microservices
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 1da67047daa9ae87cda5dd7dd581d6081183c428
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.openlocfilehash: b7206e2f35b9f227ff298f077ddafef1c6015b15
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26652993"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428770"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>Entwerfen von Microservices: Protokollieren und Überwachen
 
@@ -64,7 +64,7 @@ Im Artikel [Überwachung und Diagnose](../best-practices/monitoring.md) werden a
 
 ## <a name="distributed-tracing"></a>Verteilte Ablaufverfolgung
 
-Wie bereits erwähnt, besteht bei Microservices eine Herausforderung darin, den Fluss der Ereignisse über Dienste hinweg zu verstehen. Ein einzelner Vorgang bzw. eine Transaktion kann Aufrufe mehrerer Dienste umfassen. Um die gesamte Schrittsequenz neu zu erstellen, sollte jeder Dienst eine *Korrelations-ID* verteilen, die als eindeutiger Bezeichner für diesen Vorgang dient. Die Korrelations-ID ermöglicht die [verteilte Ablaufverfolgung](http://microservices.io/patterns/observability/distributed-tracing.html) über Dienste hinweg.
+Wie bereits erwähnt, besteht bei Microservices eine Herausforderung darin, den Fluss der Ereignisse über Dienste hinweg zu verstehen. Ein einzelner Vorgang bzw. eine Transaktion kann Aufrufe mehrerer Dienste umfassen. Um die gesamte Schrittsequenz neu zu erstellen, sollte jeder Dienst eine *Korrelations-ID* verteilen, die als eindeutiger Bezeichner für diesen Vorgang dient. Die Korrelations-ID ermöglicht die [verteilte Ablaufverfolgung](https://microservices.io/patterns/observability/distributed-tracing.html) über Dienste hinweg.
 
 Der erste Dienst, der eine Clientanforderung empfängt, sollte die Korrelations-ID generieren. Wenn der Dienst einen HTTP-Aufruf eines anderen Diensts durchführt, wird die Korrelations-ID in einem Anforderungsheader angeordnet. Entsprechend wird die Korrelations-ID in die Nachricht eingefügt, falls der Dienst eine asynchrone Nachricht sendet. Nachgeschaltete Dienste setzen die Verteilung der Korrelations-ID fort, sodass diese im gesamten System weitergegeben wird. Außerdem sollte der gesamte Code, mit dem Anwendungsmetriken oder Protokollereignisse geschrieben werden, die Korrelations-ID enthalten.
 
@@ -114,7 +114,7 @@ Eine andere Möglichkeit ist das Senden von Protokollen an Operations Management
 
 ## <a name="example-logging-with-correlation-ids"></a>Beispiel: Protokollierung mit Korrelations-IDs
 
-Hier ist ein erweitertes Beispiel dafür angegeben, wie die Protokollierung vom Paketdienst implementiert wird, um einige in diesem Kapitel beschriebene Punkte zu verdeutlichen. Der Paketdienst wurde in TypeScript geschrieben und nutzt das [Koa](http://koajs.com/)-Webframework für Node.js. Sie können zwischen mehreren Node.js-Protokollierungsbibliotheken wählen. Wir haben uns für [Winston](https://github.com/winstonjs/winston) entschieden. Dies ist eine beliebte Protokollierungsbibliothek, die beim Testen unsere Leistungsanforderungen erfüllt hat.
+Hier ist ein erweitertes Beispiel dafür angegeben, wie die Protokollierung vom Paketdienst implementiert wird, um einige in diesem Kapitel beschriebene Punkte zu verdeutlichen. Der Paketdienst wurde in TypeScript geschrieben und nutzt das [Koa](https://koajs.com/)-Webframework für Node.js. Sie können zwischen mehreren Node.js-Protokollierungsbibliotheken wählen. Wir haben uns für [Winston](https://github.com/winstonjs/winston) entschieden. Dies ist eine beliebte Protokollierungsbibliothek, die beim Testen unsere Leistungsanforderungen erfüllt hat.
 
 Zum Kapseln der Implementierungsdetails haben wir eine abstrakte `ILogger`-Schnittstelle definiert:
 

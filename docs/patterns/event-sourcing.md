@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: 9a0bf170c9b54c3b2ee9cc91d6dcb5c55a13b96a
-ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
+ms.openlocfilehash: 1cb63b61f5eb97726e266f797dfe13011907c95f
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/17/2018
-ms.locfileid: "29963209"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429331"
 ---
 # <a name="event-sourcing-pattern"></a>Muster „Ereignissourcing“
 
@@ -82,7 +82,7 @@ Möglicherweise speichern Anwendungen mit mehreren Threads und mehrere Instanzen
 
 Es gibt keine Standardmethode oder vorhandene Mechanismen wie beispielsweise SQL-Abfragen, um Informationen aus Ereignissen auszulesen. Die einzigen Daten, die extrahiert werden können, sind Ereignisströme. Hierbei wird ein Ereignisbezeichner als Kriterium verwendet. Die Ereignis-ID lässt sich in der Regel einzelnen Entitäten zuordnen. Der aktuelle Zustand einer Entität kann nur bestimmt werden, indem alle Ereignisse, die sich auf sie beziehen, im Vergleich zum ursprünglichen Zustand der Entität wiedergegeben werden.
 
-Die Länge der einzelnen Ereignisströme wirkt sich auf die Verwaltung und Aktualisierung des Systems aus. Wenn die Ströme umfangreich sind, kann es sinnvoll sein, in bestimmten Intervallen – z.B. nach einer bestimmten Anzahl von Ereignissen – Momentaufnahmen zu erstellen. Der aktuelle Zustand der Entität kann aus der Momentaufnahme abgerufen werden, indem alle Ereignisse wiedergegeben werden, die nach diesem Zeitpunkt aufgetreten sind. Weitere Informationen zum Erstellen von Momentaufnahmen von Daten finden Sie auf der [Enterprise Application Architecture-Website von Martin Fowler unter „Snapshot“](http://martinfowler.com/eaaDev/Snapshot.html) und im Artikel [Master-Subordinate Snapshot Replication](https://msdn.microsoft.com/library/ff650012.aspx) (Momentaufnahmereplikation mit Masterelementen und untergeordneten Elementen).
+Die Länge der einzelnen Ereignisströme wirkt sich auf die Verwaltung und Aktualisierung des Systems aus. Wenn die Ströme umfangreich sind, kann es sinnvoll sein, in bestimmten Intervallen – z.B. nach einer bestimmten Anzahl von Ereignissen – Momentaufnahmen zu erstellen. Der aktuelle Zustand der Entität kann aus der Momentaufnahme abgerufen werden, indem alle Ereignisse wiedergegeben werden, die nach diesem Zeitpunkt aufgetreten sind. Weitere Informationen zum Erstellen von Momentaufnahmen von Daten finden Sie auf der [Enterprise Application Architecture-Website von Martin Fowler unter „Snapshot“](https://martinfowler.com/eaaDev/Snapshot.html) und im Artikel [Master-Subordinate Snapshot Replication](https://msdn.microsoft.com/library/ff650012.aspx) (Momentaufnahmereplikation mit Masterelementen und untergeordneten Elementen).
 
 Auch wenn das Ereignissourcing das Risiko von Aktualisierungskonflikten bei den Daten minimiert, muss die Anwendung dennoch weiterhin in der Lage sein, Inkonsistenzen zu bewältigen, die aus der letztlichen Konsistenz und dem Fehlen von Transaktionen entstehen. Ein Beispiel: Ein Ereignis, das eine Reduzierung des Lagerbestands für diesen Artikel angibt, wird in den Datenspeicher übermittelt, während eine Bestellung für einen Artikel platziert wird. Daraus entsteht eine Anforderung, die beiden Vorgänge in Einklang zu bringen – entweder durch eine Nachricht an den Kunden oder durch Nachbestellen des Artikels.
 
@@ -162,5 +162,3 @@ Die folgenden Muster und Anweisungen können für die Implementierung dieses Mus
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Grundlagen der Datenkonsistenz). Wenn das Ereignissourcing mit einem separaten Lesespeicher oder materialisierten Sichten verwendet wird, sind die gelesenen Daten nicht sofort, sondern nur letztlich konsistent. Das Muster bietet eine Übersicht über die Probleme bei der Gewährleistung von Konsistenz bei verteilten Daten.
 
 - [Data Partitioning Guidance](https://msdn.microsoft.com/library/dn589795.aspx) (Leitfaden zur Datenpartitionierung). Beim Ereignissourcing werden Daten häufig partitioniert, um die Skalierbarkeit zu verbessern, Konflikte zu reduzieren und die Leistung zu optimieren. Das Muster beschreibt, wie Daten auf getrennte Partitionen aufgeteilt werden, und erläutert mögliche Probleme.
-
-- Greg Youngs Beitrag [Why use Event Sourcing?](http://codebetter.com/gregyoung/2010/02/20/why-use-event-sourcing/) (Welche Gründe sprechen für das Ereignissourcing?)

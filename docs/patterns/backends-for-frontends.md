@@ -3,12 +3,12 @@ title: Muster „Back-Ends für Front-Ends“
 description: Erstellen Sie separate Back-End-Dienste zur Nutzung durch bestimmte Front-End-Anwendungen oder -Schnittstellen.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 2991d7a3e05b3ce6cd5148a552bae6d4ba8f7c4c
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: a0dbc9ab58aa218f6faf40b70dad1bdc22d71458
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270018"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428787"
 ---
 # <a name="backends-for-frontends-pattern"></a>Muster „Back-Ends für Front-Ends“
 
@@ -34,7 +34,7 @@ Erstellen Sie ein Back-End pro Benutzeroberfläche. Optimieren Sie das Verhalten
 
 Da jedes Back-End spezifisch für eine Benutzeroberfläche gilt, kann es für diese Schnittstelle optimiert werden. Das Ergebnis ist, dass es kleiner, weniger komplex und meist auch schneller als ein generisches Back-End ist, mit dem versucht wird, die Anforderungen aller Benutzeroberflächen zu erfüllen. Jedes Benutzeroberflächenteam kann das eigene Back-End selbst steuern und ist nicht von einem zentralen Back-End-Entwicklungsteam abhängig. So kann das Benutzeroberflächenteam in den Bereichen Sprachwahl, Release-Rhythmus, Priorisierung der Workload und Featureintegration auf seinem Back-End jeweils flexibel vorgehen.
 
-Weitere Informationen finden Sie unter [Muster: Back-Ends für Front-Ends](http://samnewman.io/patterns/architectural/bff/).
+Weitere Informationen finden Sie unter [Muster: Back-Ends für Front-Ends](https://samnewman.io/patterns/architectural/bff/).
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 

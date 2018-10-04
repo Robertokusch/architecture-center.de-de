@@ -4,12 +4,12 @@ description: Enthält die Namenskonventionen für Azure-Ressourcen. Benennen von
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 625f672c80b0256e93932b72367768f37c1e72f4
-ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
+ms.openlocfilehash: 96402b86b9dc0c57599aae585b41d0d03581c333
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46329877"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429654"
 ---
 # <a name="naming-conventions"></a>Benennungskonventionen
 
@@ -176,7 +176,7 @@ Es gibt zwei vorrangige Anwendungsfälle für Speicherkonten: Sicherung von Date
 
 Es ist möglich, einen benutzerdefinierten Domänennamen zu konfigurieren, mit dem Sie auf Blobdaten in Ihrem Azure Storage-Konto zugreifen können. Der Standardendpunkt für den Blob-Dienst lautet „https://\<Name\>.blob.core.windows.net“.
 
-Aber wenn Sie dem Blobendpunkt für Ihr Speicherkonto eine benutzerdefinierte Domäne zuordnen (z.B. www.contoso.com), können Sie auch unter Verwendung dieser Domäne auf Blobdaten in Ihrem Speicherkonto zugreifen. Mit einem benutzerdefinierten Domänennamen kann auf `http://mystorage.blob.core.windows.net/mycontainer/myblob` beispielsweise mit `http://www.contoso.com/mycontainer/myblob` zugegriffen werden.
+Aber wenn Sie dem Blobendpunkt für Ihr Speicherkonto eine benutzerdefinierte Domäne zuordnen (z.B. www.contoso.com), können Sie auch unter Verwendung dieser Domäne auf Blobdaten in Ihrem Speicherkonto zugreifen. Mit einem benutzerdefinierten Domänennamen kann auf `https://mystorage.blob.core.windows.net/mycontainer/myblob` beispielsweise mit `https://www.contoso.com/mycontainer/myblob` zugegriffen werden.
 
 Weitere Informationen zum Konfigurieren dieser Funktion finden Sie unter [Konfigurieren eines benutzerdefinierten Domänennamens für Ihren Blob Storage-Endpunkt](/azure/storage/storage-custom-domain-name/).
 

@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: deb15001bea2598d56a2793be78bbc3e7473bdf3
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 450d0c4c08098c1ba48e4c0dac3d058a46e3709b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541688"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428209"
 ---
 # <a name="static-content-hosting-pattern"></a>Muster für das Hosten von statischen Inhalten
 
@@ -74,7 +74,7 @@ Dieses Muster ist in den folgenden Situationen eventuell nicht hilfreich:
 
 Auf statische Inhalte in Azure Blob Storage kann von einem Webbrowser direkt zugegriffen werden. Azure stellt eine HTTP-basierte Schnittstelle für Speicher bereit, die für Clients öffentlich verfügbar gemacht werden kann. Beispielsweise können Inhalte in einem Azure Blob Storage-Container über eine URL im folgenden Format verfügbar gemacht werden:
 
-`http://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
+`https://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
 
 
 Beim Hochladen der Inhalte müssen einer oder mehrere BLOB-Container für die Dateien und Dokumente erstellt werden. Beachten Sie, dass die Standardberechtigung für einen neuen Container „Privat“ lautet und in „Öffentlich“ geändert werden muss, um Clients Zugriff auf die Inhalte zu gewähren. Wenn die Inhalte vor anonymem Zugriff geschützt werden müssen, können Sie das [Valet-Schlüssel-Muster](valet-key.md) implementieren, damit Benutzer ein gültiges Token vorlegen müssen, um die Ressourcen herunterzuladen.
@@ -89,7 +89,7 @@ Die Links auf den einzelnen Seiten geben die URL der Ressource an, und der Clien
 Die Links auf den Seiten, die an den Client übermittelt werden, müssen die vollständige URL des BLOB-Containers und der Ressource angeben. Beispielsweise kann eine Seite, die einen Link zu einem Bild in einem öffentlichen Container enthält, den folgenden HTML-Code enthalten.
 
 ```html
-<img src="http://mystorageaccount.blob.core.windows.net/myresources/image1.png"
+<img src="https://mystorageaccount.blob.core.windows.net/myresources/image1.png"
      alt="My image" />
 ```
 
@@ -169,5 +169,4 @@ Die Datei „Index.cshtml“ im Ordner „Views\Home“ enthält ein image-Eleme
 
 - Ein Beispiel für dieses Muster steht auf [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting).
 - [Valet-Schlüssel-Muster](valet-key.md). Wenn die Zielressourcen nicht für anonyme Benutzer verfügbar sein sollen, muss Sicherheit für den Speicher implementiert werden, in dem sich die statischen Inhalte befinden. In diesem Artikel wird beschrieben, wie ein Token oder Schlüssel verwendet wird, das bzw. der Clients eingeschränkten Direktzugriff auf eine bestimmte Ressource oder einen bestimmten Dienst, z.B. einen in der Cloud gehosteten Speicherdienst, bietet.
-- [An efficient way of deploying a static web site on Azure](http://www.infosysblogs.com/microsoft/2010/06/an_efficient_way_of_deploying.html) (Eine effiziente Möglichkeit zum Bereitstellen einer statischen Website in Azure, in englischer Sprache) im Infosys-Blog.
 - [Konzepte des Blob-Diensts](https://msdn.microsoft.com/library/azure/dd179376.aspx)

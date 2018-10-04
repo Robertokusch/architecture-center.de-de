@@ -4,12 +4,12 @@ description: Bewährte Methoden für die Überwachung verteilter Anwendungen in 
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 8dd3979233b03db800bd9514263d9c6fedefa074
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 4de9ce80a17a0ad429166ac2aa7f7f7f66c26db1
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24539016"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429671"
 ---
 # <a name="monitoring-and-diagnostics"></a>Überwachung und Diagnose
 [!INCLUDE [header](../_includes/header.md)]
@@ -503,7 +503,7 @@ Für Azure-Anwendungen und -Dienste bietet die Azure-Diagnose eine mögliche Lö
 * .NET-EventSource
 * Manifestbasierte ETW
 
-Weitere Informationen finden Sie im Artikel [Azure: Telemetry Basics and Troubleshooting](http://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)(Azure: Telemetrie-Grundlagen und Problembehandlung).
+Weitere Informationen finden Sie im Artikel [Azure: Telemetry Basics and Troubleshooting](https://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)(Azure: Telemetrie-Grundlagen und Problembehandlung).
 
 ### <a name="strategies-for-collecting-instrumentation-data"></a>Strategien zum Erfassen von Instrumentierungsdaten
 Angesichts der Elastizität der Cloud und um zu vermeiden, dass Telemetriedaten manuell von jedem Knoten im System abgerufen werden müssen, sollten Sie dafür sorgen, dass Daten an einen zentralen Standort übertragen und dort konsolidiert werden können. In einem System, das mehrere Rechenzentren umfasst, kann es hilfreich sein, Daten zunächst zu sammeln, zu konsolidieren und je nach Region zu speichern und dann die regionalen Daten in einem einzigen zentralen System zu aggregieren.
@@ -548,7 +548,7 @@ Die vom Datensammlungsdienst aus einer einzelnen Instanz einer Anwendung abgeruf
 ### <a name="storing-instrumentation-data"></a>Speichern von Instrumentierungsdaten
 Die vorherigen Diskussionen haben auf eher simple Weise dargestellt, wie Instrumentierungsdaten gespeichert werden. In der Realität kann es sinnvoll sein, die verschiedenen Arten von Informationen mithilfe von Technologien zu speichern, die am besten für die Art der Verwendung geeignet sind.
 
-Beispielsweise weisen Azure-Blob- und -Tabellenspeicher Gemeinsamkeiten im Hinblick auf den Zugriff auf. Es gibt jedoch Einschränkungen in den Vorgängen, die Sie damit ausführen können, und die Granularität der darin enthaltenen Daten ist sehr unterschiedlich. Wenn Sie weitere analytische Vorgänge durchführen müssen oder Volltext-Suchfunktionen für die Daten erforderlich sind, ist möglicherweise die Nutzung einer Datenspeicherung besser geeignet, die für bestimmte Typen von Abfragen und Datenzugriff optimierte Funktionen bietet. Beispiel:
+Beispielsweise weisen Azure-Blob- und -Tabellenspeicher Gemeinsamkeiten im Hinblick auf den Zugriff auf. Es gibt jedoch Einschränkungen in den Vorgängen, die Sie damit ausführen können, und die Granularität der darin enthaltenen Daten ist sehr unterschiedlich. Wenn Sie weitere analytische Vorgänge durchführen müssen oder Volltext-Suchfunktionen für die Daten erforderlich sind, ist möglicherweise die Nutzung einer Datenspeicherung besser geeignet, die für bestimmte Typen von Abfragen und Datenzugriff optimierte Funktionen bietet. Beispiel: 
 
 * Leistungsindikatordaten können in einer SQL-Datenbank gespeichert werden, um eine Ad-hoc-Analyse zu ermöglichen.
 * Ablaufverfolgungsprotokolle sollten eher in Azure Cosmos DB gespeichert werden.
@@ -602,7 +602,7 @@ Einige Arten der Überwachung generieren langfristigere Daten. Diese Analyse kan
 Ein Operator kann die kalte Analyse auch zum Bereitstellen von Daten für die vorausschauende Integritätsanalyse verwenden. Der Operator kann historische Informationen über einen angegebenen Zeitraum sammeln und in Verbindung mit den aktuellen Integritätsdaten verwenden (abgerufen vom heißen Pfad), um Trends zu ermitteln, die bald zu Integritätsproblemen führen könnten. In diesen Fällen kann es erforderlich sein, eine Warnung auszulösen, damit Korrekturmaßnahmen eingeleitet werden können.
 
 ### <a name="correlating-data"></a>Korrelieren von Daten
-Die von der Instrumentierung erfassten Daten können eine Momentaufnahme des Systemzustands bereitstellen, allerdings besteht der Zweck der Analyse darin, die Daten als Aktionsgrundlage verwenden zu können. Zum Beispiel:
+Die von der Instrumentierung erfassten Daten können eine Momentaufnahme des Systemzustands bereitstellen, allerdings besteht der Zweck der Analyse darin, die Daten als Aktionsgrundlage verwenden zu können. Beispiel: 
 
 * Wodurch wurde z. B. zu einem bestimmten Zeitpunkt eine ressourcenintensive E/A-Last auf Systemebene verursacht?
 * Ist sie das Ergebnis einer großen Anzahl von Datenbankvorgängen?
@@ -688,7 +688,7 @@ In vielen Fällen können Batchprozesse Berichte nach einem definierten Zeitplan
 
 ## <a name="more-information"></a>Weitere Informationen
 * [Microsoft Azure-Speicher: Überwachung, Diagnose und Problembehandlung](/azure/storage/storage-monitoring-diagnosing-troubleshooting)
-* [Azure: Telemetry Basics and Troubleshooting (Telemetriegrundlagen und Problembehandlung)](http://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)
+* [Azure: Telemetry Basics and Troubleshooting (Telemetriegrundlagen und Problembehandlung)](https://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)
 * [Aktivieren der Diagnose in Azure Cloud Services und Virtual Machines](/azure/cloud-services/cloud-services-dotnet-diagnostics)
 * [Azure Redis Cache](https://azure.microsoft.com/services/cache/), [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) und [HDInsight](https://azure.microsoft.com/services/hdinsight/)
 * [Verwenden von Service Bus-Warteschlangen](/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues)

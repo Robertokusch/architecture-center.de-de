@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - resiliency
-ms.openlocfilehash: a822de990d6ce933024207073b110e98f8da40bf
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 3d58537d9c77b97332bcabf762b9af7ed2f20421
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359400"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428141"
 ---
 # <a name="compensating-transaction-pattern"></a>Muster „Kompensierende Transaktion“
 
@@ -38,9 +38,9 @@ Die Lösung besteht darin, eine kompensierende Transaktion zu implementieren. Di
 
 Eine übliche Vorgehensweise besteht darin, einen Workflow einzusetzen, um einen letztlich konsistenten Vorgang zu implementieren, der eine Kompensierung erfordert. Im weiteren Verlauf des ursprünglichen Vorgangs zeichnet das System Informationen über jeden einzelnen Schritt auf und zeigt an, wie die in diesem Schritt durchgeführten Aufgaben rückgängig gemacht werden können. Wenn beim Vorgang an irgendeiner Stelle ein Fehler auftritt, geht der Workflow die abgeschlossenen Schritte rückwärts durch und führt die Aufgabe zum Rückgängigmachen jedes Schritts durch. Beachten Sie, dass eine kompensierende Transaktion die Aufgabe möglicherweise nicht in genau der umgekehrten Reihenfolge des ursprünglichen Vorgangs rückgängig machen muss, und dass es möglich ist, einige der Schritte zum Rückgängigmachen parallel auszuführen.
 
-> Diese Vorgehensweise ähnelt der Sagas-Strategie, die im [Blog von Clemens Vasters](http://vasters.com/clemensv/2012/09/01/Sagas.aspx) diskutiert wird.
+> Diese Vorgehensweise ähnelt der Sagas-Strategie, die im [Blog von Clemens Vasters](https://vasters.com/clemensv/2012/09/01/Sagas.aspx) diskutiert wird.
 
-Eine kompensierende Transaktion ist auch ein letztlich konsistenter Vorgang und kann auch Fehler verursachen. Das System sollte in der Lage sein, die kompensierende Transaktion an der Stelle, an der der Fehler aufgetreten ist, wieder aufzunehmen und fortzusetzen. Da ein fehlerhafter Schritt eventuell wiederholt werden muss, sollten die Schritte in einer kompensierenden Transaktion als idempotente Befehle definiert werden. Weitere Informationen finden Sie unter [Idempotenzmuster](http://blog.jonathanoliver.com/idempotency-patterns/) im Blog von Jonathan Oliver.
+Eine kompensierende Transaktion ist auch ein letztlich konsistenter Vorgang und kann auch Fehler verursachen. Das System sollte in der Lage sein, die kompensierende Transaktion an der Stelle, an der der Fehler aufgetreten ist, wieder aufzunehmen und fortzusetzen. Da ein fehlerhafter Schritt eventuell wiederholt werden muss, sollten die Schritte in einer kompensierenden Transaktion als idempotente Befehle definiert werden. Weitere Informationen finden Sie unter [Idempotenzmuster](https://blog.jonathanoliver.com/idempotency-patterns/) im Blog von Jonathan Oliver.
 
 In einigen Fällen kann eine Wiederherstellung nach einem fehlerhaften Schritt nur durch manuelles Eingreifen durchgeführt werden. In diesen Situationen sollte das System eine Warnung auslösen und so viele Informationen wie möglich über die Ursache des Fehlers bereitstellen.
 

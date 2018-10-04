@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
-ms.openlocfilehash: d72a09ef7613bebe3701634e4eac0716400e471d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: aea172dcdb33c0d8513fb69715f1549b4a20f5e6
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542408"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428376"
 ---
 # <a name="competing-consumers-pattern"></a>Muster „Konkurrierende Consumer“
 
@@ -48,7 +48,7 @@ Diese Lösung hat folgende Vorteile:
 
 Beachten Sie die folgenden Punkte bei der Entscheidung, wie dieses Muster implementiert werden soll:
 
-- **Nachrichtensortierung:** Die Reihenfolge, in der Consumerdienstinstanzen Nachrichten empfangen, ist nicht garantiert und entspricht nicht unbedingt der Reihenfolge, in der die Nachrichten erstellt wurden. Entwerfen Sie das System so, dass die Verarbeitung von Nachrichten mit Sicherheit idempotent ist, da auf diese Weise jede Abhängigkeit von der Reihenfolge der Nachrichtenverarbeitung vermieden werden kann. Weitere Informationen finden Sie unter [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/) (Idempotenzmuster) im Blog von Jonathan Oliver.
+- **Nachrichtensortierung:** Die Reihenfolge, in der Consumerdienstinstanzen Nachrichten empfangen, ist nicht garantiert und entspricht nicht unbedingt der Reihenfolge, in der die Nachrichten erstellt wurden. Entwerfen Sie das System so, dass die Verarbeitung von Nachrichten mit Sicherheit idempotent ist, da auf diese Weise jede Abhängigkeit von der Reihenfolge der Nachrichtenverarbeitung vermieden werden kann. Weitere Informationen finden Sie unter [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/) (Idempotenzmuster) im Blog von Jonathan Oliver.
 
     > Microsoft Azure Service Bus-Warteschlangen können eine garantierte FIFO-Sortierung (First In, First Out) von Nachrichten mithilfe von Nachrichtensitzungen implementieren. Weitere Informationen finden Sie unter [Messagingmuster mithilfe von Sitzungen](https://msdn.microsoft.com/magazine/jj863132.aspx).
 
@@ -182,7 +182,7 @@ Die folgenden Muster und Anweisungen könnten für die Implementierung dieses Mu
 
 - [Einführung in asynchrone Nachrichten:](https://msdn.microsoft.com/library/dn589781.aspx) Warteschlangen sind ein Mechanismus für asynchrone Kommunikation. Wenn ein Consumerdienst eine Antwort an eine Anwendung senden muss, kann es erforderlich sein, ein Antwortmessaging zu implementieren. Die Einführung in asynchrone Nachrichten enthält Informationen zum Implementieren des Anforderung-Antwort-Messaging mithilfe von Nachrichtenwarteschlangen.
 
-- [Richtlinien für die automatische Skalierung:](https://msdn.microsoft.com/library/dn589774.aspx) Es kann möglich sein, Instanzen eines Consumerdiensts zu starten und zu beenden, da die Länge der Warteschlange, in die Anwendungen Nachrichten senden, variiert. Automatische Skalierung kann dabei helfen, den Durchsatz während Zeiten hoher Verarbeitung beizubehalten.
+- [Leitfaden für die automatische Skalierung](https://msdn.microsoft.com/library/dn589774.aspx). Es kann möglich sein, Instanzen eines Consumerdiensts zu starten und zu beenden, da die Länge der Warteschlange, in die Anwendungen Nachrichten senden, variiert. Automatische Skalierung kann dabei helfen, den Durchsatz während Zeiten hoher Verarbeitung beizubehalten.
 
 - [Computeressourcen-Konsolidierungsmuster:](compute-resource-consolidation.md) Eventuell ist es möglich, mehrere Instanzen eines Consumerdiensts in einem einzelnen Prozess zusammenzuführen, um Kosten und Verwaltungsaufwand zu reduzieren. Das Computeressourcen-Konsolidierungsmuster beschreibt die Vor- und Nachteile dieses Ansatzes.
 

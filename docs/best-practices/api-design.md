@@ -4,12 +4,12 @@ description: Leitfaden zum Erstellen einer gut konzipierten Web-API
 author: dragon119
 ms.date: 01/12/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 68ed3f59e1fd63ae754ceabf27a182daa0de0e5d
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: 1bd53a7ccc54d086978891f1df5fdc2e25a5d638
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016030"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429379"
 ---
 # <a name="api-design"></a>API-Design
 
@@ -34,7 +34,7 @@ Hier finden Sie einige der wichtigsten Entwurfsprinzipien von RESTful-APIs mit H
 - Eine Ressource weist einen *Bezeichner* auf. Dies ist ein URI, der die Ressource eindeutig identifiziert. Der URI für eine bestimmte Kundenbestellung kann z.B. wie folgt aussehen: 
  
     ```http
-    http://adventure-works.com/orders/1
+    https://adventure-works.com/orders/1
     ```
  
 - Clients interagieren mit einem Dienst durch den Austausch von *Darstellungen* von Ressourcen. Viele Web-APIs verwenden JSON als Austauschformat. Beispielsweise könnte eine GET-Anforderung an den oben aufgeführten URI diesen Antworttext zurückgeben:
@@ -56,8 +56,8 @@ Hier finden Sie einige der wichtigsten Entwurfsprinzipien von RESTful-APIs mit H
         "quantity":4,
         "orderValue":16.60,
         "links": [
-            {"rel":"product","href":"http://adventure-works.com/customers/3", "action":"GET" },
-            {"rel":"product","href":"http://adventure-works.com/customers/3", "action":"PUT" } 
+            {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"GET" },
+            {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"PUT" } 
         ]
     } 
     ```
@@ -77,9 +77,9 @@ Ebene 3 entspricht einer echten RESTful-API gemäß der Definition von Fielding.
 Konzentrieren sich auf die Geschäftseinheiten, die die Web-API verfügbar macht. In einem E-Commerce-System können die primären Entitäten beispielsweise Kunden und Bestellungen sein. Eine Bestellung kann durch Senden einer HTTP POST-Anforderung erstellt werden, welche die Bestellinformationen enthält. Die HTTP-Antwort gibt an, ob die Bestellung erfolgreich aufgegeben wurde oder nicht. Sofern möglich sollten Ressourcen-URIs auf Nomen (Ressource) und nicht auf Verben (die Vorgänge für die Ressource) basieren. 
 
 ```HTTP
-http://adventure-works.com/orders // Good
+https://adventure-works.com/orders // Good
 
-http://adventure-works.com/create-order // Avoid
+https://adventure-works.com/create-order // Avoid
 ```
 
 Eine Ressource muss nicht auf einem einzelnen physischen Datenelement basieren. Beispielsweise kann eine Bestellressource intern als mehrere Tabellen in einer relationalen Datenbank implementiert werden, auf dem Client jedoch als einzelne Entität angezeigt werden. Vermeiden Sie das Erstellen von APIs, die einfach die interne Struktur einer Datenbank widerspiegeln. Der Zweck von REST ist das Modellieren von Entitäten und der Vorgänge, die eine Anwendung für diese Entitäten ausführen kann. Ein Client sollte nicht für die interne Implementierung verfügbar gemacht werden.
@@ -87,7 +87,7 @@ Eine Ressource muss nicht auf einem einzelnen physischen Datenelement basieren. 
 Entitäten sind häufig in Sammlungen (Bestellungen, Kunden) gruppiert. Eine Sammlung ist als Ressource vom Element innerhalb der Sammlung getrennt und muss über einen eigenen URI verfügen. Der folgende URI könnte z.B. die Sammlung von Bestellungen darstellen: 
 
 ```HTTP
-http://adventure-works.com/orders
+https://adventure-works.com/orders
 ```
 
 Durch Senden einer HTTP GET-Anforderung an den URI der Sammlung wird eine Liste von Elementen in der Sammlung abgerufen. Jedes Element in der Sammlung verfügt auch über einen eigenen eindeutigen URI. Eine HTTP GET-Anforderung an den URI eines Elements gibt die Details dieses Elements zurück. 
@@ -148,7 +148,7 @@ Im HTTP-Protokoll werden Formate durch die Verwendung von *Medientypen* angegebe
 Der Content-Type-Header in einer Anforderung oder Antwort gibt das Format der Darstellung an. Hier ist ein Beispiel für eine POST-Anforderung, die JSON-Daten enthält:
 
 ```HTTP
-POST http://adventure-works.com/orders HTTP/1.1
+POST https://adventure-works.com/orders HTTP/1.1
 Content-Type: application/json; charset=utf-8
 Content-Length: 57
 
@@ -160,7 +160,7 @@ Wenn der Server den Medientyp nicht unterstützt, muss er den HTTP-Statuscode 41
 Eine Clientanforderung kann einen Accept-Header beinhalten, der eine Liste von Medientypen enthält, die der Client in der Antwortnachricht vom Server akzeptiert. Beispiel: 
 
 ```HTTP
-GET http://adventure-works.com/orders/2 HTTP/1.1
+GET https://adventure-works.com/orders/2 HTTP/1.1
 Accept: application/json
 ```
 
@@ -273,7 +273,7 @@ GET-Anforderungen über Sammlungsressourcen geben u.U. eine große Anzahl von El
 /orders?limit=25&offset=50
 ```
 
-Erwägen Sie auch das Festlegen einer Obergrenze für die Anzahl der zurückgegebenen Elemente, um Denial-of-Service-Angriffe zu verhindern. Zur Unterstützung von Clientanwendungen sollten GET-Anforderungen, die paginierte Daten zurückgeben, auch Metadaten enthalten, die die Gesamtanzahl der in der Auflistung verfügbaren Ressourcen angeben. Ziehen Sie auch andere intelligente Pagingstrategien in Betracht. Weitere Informationen hierzu finden Sie unter [API-Designhinweise: Smart Paging](http://bizcoder.com/api-design-notes-smart-paging).
+Erwägen Sie auch das Festlegen einer Obergrenze für die Anzahl der zurückgegebenen Elemente, um Denial-of-Service-Angriffe zu verhindern. Zur Unterstützung von Clientanwendungen sollten GET-Anforderungen, die paginierte Daten zurückgeben, auch Metadaten enthalten, die die Gesamtanzahl der in der Auflistung verfügbaren Ressourcen angeben. 
 
 Sie können eine ähnliche Strategie zum Sortieren von Daten während des Abrufvorgangs nutzen. Dazu stellen Sie einen Sortierparameter bereit, der einen Feldnamen als Wert verwendet, z.B. */orders?sort=ProductID*. Dieser Ansatz kann jedoch die Zwischenspeicherung beeinträchtigen, da Abfragezeichenfolgen-Parameter einen Teil des Ressourcenbezeichners darstellen, der von zahlreichen Cacheimplementierungen als Schlüssel für zwischengespeicherte Daten verwendet wird.
 
@@ -288,7 +288,7 @@ Eine Ressource kann große binäre Felder wie z.B. Dateien oder Bilder enthalten
 Erwägen Sie auch die Implementierung von HTTP HEAD-Anforderungen für diese Ressourcen. Eine HEAD-Anforderung ähnelt einer GET-Anforderung, gibt jedoch nur die HTTP-Header zurück, welche die Ressource beschreiben, sowie einen leeren Nachrichtentext. Eine Clientanwendung kann eine HEAD-Anforderung ausgeben, um zu bestimmen, ob eine Ressource mithilfe von partiellen GET-Anforderungen abgerufen wird. Beispiel: 
 
 ```HTTP
-HEAD http://adventure-works.com/products/10?fields=productImage HTTP/1.1
+HEAD https://adventure-works.com/products/10?fields=productImage HTTP/1.1
 ```
 
 Hier ist ein Beispiel für eine Antwortnachricht: 
@@ -304,7 +304,7 @@ Content-Length: 4580
 Der Content-Length-Header gibt die Gesamtgröße der Ressource an, und der Accept-Ranges-Header gibt an, dass der entsprechende GET-Vorgang Teilergebnisse unterstützt. Die Clientanwendung kann diese Informationen verwenden, um das Bild in kleineren Blöcken abzurufen. Die erste Anforderung Ruft die ersten 2500 Bytes mithilfe des Range-Headers ab:
 
 ```HTTP
-GET http://adventure-works.com/products/10?fields=productImage HTTP/1.1
+GET https://adventure-works.com/products/10?fields=productImage HTTP/1.1
 Range: bytes=0-2499
 ```
 
@@ -343,44 +343,44 @@ Beispielsweise kann die Darstellung einer Bestellung zur Verarbeitung der Bezieh
   "links":[
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3", 
+      "href":"https://adventure-works.com/customers/3", 
       "action":"GET",
       "types":["text/xml","application/json"] 
     },
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3", 
+      "href":"https://adventure-works.com/customers/3", 
       "action":"PUT",
       "types":["application/x-www-form-urlencoded"]
     },
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3",
+      "href":"https://adventure-works.com/customers/3",
       "action":"DELETE",
       "types":[]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"GET",
       "types":["text/xml","application/json"]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"PUT",
       "types":["application/x-www-form-urlencoded"]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"DELETE",
       "types":[]
     }]
 }
 ```
 
-In diesem Beispiel weist das `links`-Array einen Satz von Links auf. Jeder Link stellt einen Vorgang für eine verknüpfte Entität dar. Die Daten für jeden Link beinhalten die Beziehung („Kunde“), den URI (`http://adventure-works.com/customers/3`), die HTTP-Methode und die unterstützten MIME-Typen. Dies sind alle Informationen, die eine Clientanwendung zum Aufrufen des Vorgangs benötigt. 
+In diesem Beispiel weist das `links`-Array einen Satz von Links auf. Jeder Link stellt einen Vorgang für eine verknüpfte Entität dar. Die Daten für jeden Link beinhalten die Beziehung („Kunde“), den URI (`https://adventure-works.com/customers/3`), die HTTP-Methode und die unterstützten MIME-Typen. Dies sind alle Informationen, die eine Clientanwendung zum Aufrufen des Vorgangs benötigt. 
 
 Das `links`-Array enthält auch auf sich selbst verweisende Informationen über die abgerufene Ressource selbst. Diese weisen die Beziehung *self* (selbst) auf.
 
@@ -395,7 +395,7 @@ Die Versionsverwaltung ermöglicht einer Web-API das Angeben der Funktionen und 
 ### <a name="no-versioning"></a>Keine Versionsverwaltung
 Dies ist der einfachste Ansatz und ist möglicherweise für einige interne APIs akzeptabel. Umfassende Änderungen können als neue Ressourcen oder neue Links dargestellt werden.  Das Hinzufügen von Inhalt zu vorhandenen Ressourcen stellt möglicherweise keine fehlerhafte Änderung dar, da Clientanwendungen, die diesen Inhalt nicht erwarten, ihn einfach ignorieren.
 
-Beispielsweise sollte eine Anforderung an den URI *http://adventure-works.com/customers/3* die Details eines einzelnen Kunden mit den von der Clientanwendung erwarteten Feldern `id`, `name` und `address` zurückgeben:
+Beispielsweise sollte eine Anforderung an den URI *https://adventure-works.com/customers/3* die Details eines einzelnen Kunden mit den von der Clientanwendung erwarteten Feldern `id`, `name` und `address` zurückgeben:
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -423,7 +423,7 @@ Vorhandene Clientanwendungen werden möglicherweise weiterhin ordnungsgemäß au
 ### <a name="uri-versioning"></a>URI-Versionsverwaltung
 Bei jeder Änderung der Web-API oder des Ressourcenschemas fügen Sie eine für jede Ressource eine Versionsnummer für den URI hinzu. Die bereits vorhandenen URIs sollten weiterhin Ressourcen zurückgeben, die ihrem ursprünglichen Schema entsprechen.
 
-Erweiterung des vorherigen Beispiels: Wenn das Feld `address` in untergeordnete Felder umstrukturiert wird, die jeweils einzelne Teile der Adresse enthalten (etwa `streetAddress`, `city`, `state` und `zipCode`), kann diese Version der Ressource über einen URI verfügbar gemacht werden, der eine Versionsnummer enthält (Beispiel: http://adventure-works.com/v2/customers/3:).
+Erweiterung des vorherigen Beispiels: Wenn das Feld `address` in untergeordnete Felder umstrukturiert wird, die jeweils einzelne Teile der Adresse enthalten (etwa `streetAddress`, `city`, `state` und `zipCode`), kann diese Version der Ressource über einen URI verfügbar gemacht werden, der eine Versionsnummer enthält (Beispiel: https://adventure-works.com/v2/customers/3:).
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -435,7 +435,7 @@ Content-Type: application/json; charset=utf-8
 Dieser Versionsverwaltungsmechanismus ist sehr einfach, hängt jedoch vom Server ab, der die Anforderung an das entsprechende Endgerät weiterleitet. Dieser Mechanismus kann jedoch schwerfällig werden, wenn die API mehrere Iterationen durchläuft und der Server eine Reihe von verschiedenen Versionen unterstützen muss. Aus der Sicht einer Puristen rufen die Clientanwendungen außerdem in allen Fällen dieselben Daten (Kunde 3) ab; daher sollte sich der URI im Grunde nicht abhängig von der Version unterscheiden. Dieses Schema erschwert zudem die Implementierung von HATEOAS, da alle Links die Versionsnummer in den URIs enthalten müssen.
 
 ### <a name="query-string-versioning"></a>Versionsverwaltung der Abfragezeichenfolge
-Anstatt mehrere URIs bereitzustellen, können Sie auch die Version der Ressource angeben, indem Sie in der Abfragezeichenfolge einen Parameter an die HTTP-Anforderung anfügen (Beispiel: *http://adventure-works.com/customers/3?version=2*). Der Versionsparameter sollte einen aussagekräftigen Standardwert wie z. B. „1“ aufweisen, wenn er von älteren Clientanwendungen weggelassen wird.
+Anstatt mehrere URIs bereitzustellen, können Sie auch die Version der Ressource angeben, indem Sie in der Abfragezeichenfolge einen Parameter an die HTTP-Anforderung anfügen (Beispiel: *https://adventure-works.com/customers/3?version=2*). Der Versionsparameter sollte einen aussagekräftigen Standardwert wie z. B. „1“ aufweisen, wenn er von älteren Clientanwendungen weggelassen wird.
 
 Dieser Ansatz hat den semantischen Vorteil, dass dieselbe Ressource immer vom gleichen URI abgerufen wird; er hängt jedoch davon ab, dass der Code, der die Anforderung behandelt, die Abfragezeichenfolge analysiert und die entsprechende HTTP-Antwort zurücksendet. Dieser Ansatz bringt beim Implementieren von HATEOAS dieselben Schwierigkeiten mit sich, wie der Mechanismus für die URI-Versionsverwaltung.
 
@@ -450,7 +450,7 @@ Anstatt die Versionsnummer als Abfragezeichenfolgen-Parameter hinzuzufügen, kö
 Version 1:
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Custom-Header: api-version=1
 ```
 
@@ -464,7 +464,7 @@ Content-Type: application/json; charset=utf-8
 Version 2:
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Custom-Header: api-version=2
 ```
 
@@ -481,7 +481,7 @@ Beachten Sie, dass die HATEOAS-Implementierung wie auch bei den beiden vorhergeh
 Wenn eine Clientanwendung eine HTTP GET-Anforderung an einen Webserver sendet, sollte sie wie weiter oben in diesem Handbuch beschrieben anhand eines Accept-Headers das Format des Inhalts vorgeben, den sie verarbeiten kann. Der Zweck des *Accept*-Headers besteht häufig darin, dass die Clientanwendung angeben kann, ob der Text der Antwort im XML-, JSON- oder einem anderen gängigen Format vorliegt, das der Client analysieren kann. Allerdings ist es möglich, benutzerdefinierte Medientypen zu definieren, die Informationen enthalten, die es der Clientanwendung ermöglichen, die erwartete Version einer Ressource anzugeben. Das folgende Beispiel zeigt eine Anforderung die einen *Accept*-Header mit dem Wert *application/vnd.adventure-works.v1+json* angibt. Das Element *vnd.adventure works.v1* weist den Webserver an, Version 1 der Ressource zurückzugeben, während das Element *json* angibt, dass der Antworttext im JSON-Format zurückgegeben werden soll:
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Accept: application/vnd.adventure-works.v1+json
 ```
 
@@ -516,6 +516,5 @@ Es kann ratsam sein, OpenAPI für Ihre Web-APIs zu nutzen. Zu berücksichtigende
 
 ## <a name="more-information"></a>Weitere Informationen
 * [REST-API-Richtlinien von Microsoft](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md). Ausführliche Empfehlungen für das Entwerfen von öffentlichen REST-APIs.
-* [Das REST-Cookbook](http://restcookbook.com/). Einführung in das Erstellen von RESTful-APIs.
 * [Web-API-Checkliste](https://mathieu.fenniak.net/the-api-checklist/). Eine nützliche Liste der zu berücksichtigenden Punkte beim Entwerfen und Implementieren einer Web-API.
 * [Open API Initiative](https://www.openapis.org/). Dokumentation und Implementierungsdetails zu Open-API.
