@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: 08bf567085a940287de310f61b9f447d0ce5d5ec
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 4b54f031d13449e4d87075af5606967da8b5d3df
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477443"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428923"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Einrichten eines Verbunds mit der AD FS-Instanz eines Kunden
 
@@ -59,7 +59,7 @@ Standardmäßig empfängt die Anwendung der vertrauenden Seite nur einen festgel
 | Anspruch | BESCHREIBUNG |
 | --- | --- |
 | aud |Zielgruppe. Die Anwendung, für die die Ansprüche ausgegeben wurden |
-| authenticationinstant |[Authentifizierungszeitpunkt]. Der Zeitpunkt, zu dem die Authentifizierung erfolgt ist. |
+| authenticationinstant |[Authentication-Instanz]. Der Zeitpunkt, zu dem die Authentifizierung erfolgt ist. |
 | c_hash |Codehashwert. Dies ist ein Hash der Tokeninhalte. |
 | exp |[Ablaufzeit]. Der Zeitpunkt, nach dem das Token nicht mehr akzeptiert wird. |
 | iat |Ausgestellt um. Der Zeitpunkt, zu dem das Token ausgestellt wurde. |
@@ -180,15 +180,15 @@ Kunden müssen wie folgt vorgehen:
 
 
 <!-- Links -->
-[Azure AD Connect]: /azure/active-directory/active-directory-aadconnect/
+[Azure AD Connect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [Verbundvertrauensstellung]: https://technet.microsoft.com/library/cc770993(v=ws.11).aspx
 [Kontopartner]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
 [Ressourcenpartner]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
-[Authentifizierungszeitpunkt]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.authenticationinstant%28v=vs.110%29.aspx
-[Ablaufzeit]: http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.
+[Authentication-Instanz]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.authenticationinstant%28v=vs.110%29.aspx
+[Ablaufzeit]: https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.
 [Namensbezeichner]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.nameidentifier(v=vs.110).aspx
 [active-directory-on-azure]: https://msdn.microsoft.com/library/azure/jj156090.aspx
-[Blogbeitrag]: http://www.cloudidentity.com/blog/2015/08/21/OPENID-CONNECT-WEB-SIGN-ON-WITH-ADFS-IN-WINDOWS-SERVER-2016-TP3/
+[Blogbeitrag]: https://www.cloudidentity.com/blog/2015/08/21/OPENID-CONNECT-WEB-SIGN-ON-WITH-ADFS-IN-WINDOWS-SERVER-2016-TP3/
 [Anpassen der AD FS-Sign-in-Webseiten]: https://technet.microsoft.com/library/dn280950.aspx
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance
 [client assertion]: client-assertion.md
