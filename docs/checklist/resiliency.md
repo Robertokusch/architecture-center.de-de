@@ -4,12 +4,12 @@ description: Checkliste, die Hinweise zu Überlegungen hinsichtlich der Resilien
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 17612ee08e2329ea648fd21d6764e7bae1ca20e2
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 15ad749c12dc8a45c9e7e08376452685d8ad7c9b
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429093"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819022"
 ---
 # <a name="resiliency-checklist"></a>Checkliste für Resilienz
 
@@ -39,7 +39,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Verwenden Sie den Lastenausgleich, um Anforderungen zu verteilen.** Mit dem Lastenausgleich werden die Anforderungen Ihrer Anwendung auf fehlerfreie Dienstinstanzen verteilt, indem fehlerhafte Instanzen aus der Rotation entfernt werden. Wenn der Dienst Azure App Service oder Azure Cloud Services verwendet, erfolgt bereits ein Lastenausgleich. Wenn Ihre Anwendung allerdings Azure-VMs verwendet, müssen Sie einen Lastenausgleich bereitstellen. Weitere Informationen finden Sie in der Übersicht über [Azure Load Balancer](/azure/load-balancer/load-balancer-overview/).
 
-**Konfigurieren Sie Azure-Anwendungsgateways für die Verwendung mehrerer Instanzen.** Abhängig von den Anforderungen Ihrer Anwendung kann [Azure Application Gateway](/azure/application-gateway/application-gateway-introduction/) für die Verteilung von Anforderungen an die Dienste der Anwendung besser geeignet sein. Allerdings sind einzelne Instanzen des Application Gateway-Diensts nicht durch einen SLA garantiert. Daher ist es möglich, dass bei einem Ausfall der Application Gateway-Instanz die Anwendung ausfällt. Stellen Sie mehr als eine mittlere oder größere Application Gateway-Instanz bereit, um die Verfügbarkeit des Diensts gemäß den Bedingungen der [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/) zu gewährleisten.
+**Konfigurieren Sie Azure-Anwendungsgateways für die Verwendung mehrerer Instanzen.** Abhängig von den Anforderungen Ihrer Anwendung kann [Azure Application Gateway](/azure/application-gateway/application-gateway-introduction/) für die Verteilung von Anforderungen an die Dienste der Anwendung besser geeignet sein. Allerdings sind einzelne Instanzen des Application Gateway-Diensts nicht durch einen SLA garantiert. Daher ist es möglich, dass bei einem Ausfall der Application Gateway-Instanz die Anwendung ausfällt. Stellen Sie mehr als eine mittlere oder größere Application Gateway-Instanz bereit, um die Verfügbarkeit des Diensts gemäß den Bedingungen der [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/) zu gewährleisten.
 
 **Verwenden Sie Verfügbarkeitsgruppen für jede Logikschicht.** Das Platzieren Ihrer Instanzen in einer [Verfügbarkeitsgruppe][availability-sets] bietet eine höhere [SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/). 
 
