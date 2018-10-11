@@ -3,12 +3,12 @@ title: Auswählen eines Suchdatenspeichers
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: ead07e307e96696faa5ddf48505eee378027523c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 9576bbba9609a04ccc7851d55dd28853ffc6b701
+ms.sourcegitcommit: f6be2825bf2d37dfe25cfab92b9e3973a6b51e16
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848613"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48858179"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>Auswählen eines Suchdatenspeichers in Azure
 
@@ -46,35 +46,35 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank | 
 | --- | --- | --- | --- | --- | 
-| Verwalteter Dienst | Ja | Nein | Ja | Ja |  
-| REST-API | Ja | Ja | Ja | Nein  |
+| Verwalteter Dienst | JA | Nein | Ja | JA |  
+| REST-API | JA | Ja | JA | Nein  |
 | Programmierbarkeit | .NET | Java | Java | T-SQL | 
-| Dokumentindexer für allgemeine Dateitypen (PDF, DOCX, TXT usw.) | Ja | Nein | Ja | Nein  |
+| Dokumentindexer für allgemeine Dateitypen (PDF, DOCX, TXT usw.) | JA | Nein | Ja | Nein  |
 
 ### <a name="manageability-capabilities"></a>Verwaltbarkeitsfeatures
 
 | | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank | 
 | --- | --- | --- | --- | --- |
-| Aktualisierbares Schema | Nein  | Ja | Ja | Ja |
-| Unterstützung für horizontales Hochskalieren  | Ja | Ja | Ja | Nein  |
+| Aktualisierbares Schema | Nein  | Ja | Ja | JA |
+| Unterstützung für horizontales Hochskalieren  | JA | Ja | JA | Nein  |
 
 ### <a name="analytic-workload-capabilities"></a>Funktionen für Analyseworkloads
 
-| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL Databash | 
+| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank | 
 | --- | --- | --- | --- | --- | 
-| Unterstützung von Analysen über die Volltextsuche hinaus | Nein  | Ja | Ja | Ja |
+| Unterstützung von Analysen über die Volltextsuche hinaus | Nein  | Ja | Ja | JA |
 | Teil eines Protokollanalysestapels | Nein  | Ja (ELK) |  Nein  | Nein  |
-| Unterstützung der semantischen Suche | Ja (nur Suche von ähnlichen Dokumenten) | Ja | Ja | Ja | 
+| Unterstützung der semantischen Suche | Ja (nur Suche von ähnlichen Dokumenten) | JA | Ja | JA | 
 
 ### <a name="security-capabilities"></a>Sicherheitsfunktionen
 
-| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL Databash | 
+| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank | 
 | --- | --- | --- | --- | --- | 
-| Sicherheit auf Zeilenebene | Teilweise (Anwendungsabfrage zum Filtern nach Gruppen-ID erforderlich) | Teilweise (Anwendungsabfrage zum Filtern nach Gruppen-ID erforderlich) | Ja | Ja | 
-| Transparent Data Encryption | Nein  | Nein  | Nein  | Ja |  
-| Beschränken des Zugriffs auf bestimmte IP-Adressen | Nein  | Ja | Ja | Ja |   
-| Beschränken des Zugriffs, um nur den Zugriff auf virtuelle Netzwerke zuzulassen | Nein  | Ja | Ja | Ja |  
-| Active Directory-Authentifizierung (integrierte Authentifizierung) | Nein  | Nein  | Nein  | Ja | 
+| Sicherheit auf Zeilenebene | Teilweise (Anwendungsabfrage zum Filtern nach Gruppen-ID erforderlich) | Teilweise (Anwendungsabfrage zum Filtern nach Gruppen-ID erforderlich) | JA | JA | 
+| Transparent Data Encryption | Nein  | Nein  | Nein  | JA |  
+| Beschränken des Zugriffs auf bestimmte IP-Adressen | Nein  | Ja | Ja | JA |   
+| Beschränken des Zugriffs, um nur den Zugriff auf virtuelle Netzwerke zuzulassen | Nein  | Ja | Ja | JA |  
+| Active Directory-Authentifizierung (integrierte Authentifizierung) | Nein  | Nein  | Nein  | JA | 
 
 ## <a name="see-also"></a>Weitere Informationen
 
