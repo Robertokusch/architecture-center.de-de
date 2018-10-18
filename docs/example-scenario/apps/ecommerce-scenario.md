@@ -1,22 +1,22 @@
 ---
 title: E-Commerce-Front-End in Azure
-description: Bewährtes Szenario für das Hosten einer E-Commerce-Site in Azure
+description: Hosten Sie eine E-Commerce-Website in Azure.
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 340f60628bf932489a9fbd11ac3ff1be723a685c
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 6ca85665a5bf63bf71f5badc16406db5df2a34c2
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428073"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819090"
 ---
-# <a name="e-commerce-frontend-on-azure"></a>E-Commerce-Front-End in Azure
+# <a name="an-e-commerce-front-end-on-azure"></a>Ein E-Commerce-Front-End in Azure
 
 In diesem Beispielszenario wird die Implementierung eines E-Commerce-Front-Ends mit Azure-PaaS-Tools (Platform-as-a-Service) Schritt für Schritt beschrieben. Für viele E-Commerce-Websites müssen Anforderungen in Bezug auf die Saisonalität und die Variabilität des Datenverkehrs erfüllt werden. Wenn die Nachfrage nach Ihren Produkten oder Diensten steigt (vorhersehbar oder unvorhersehbar), können Sie mit PaaS-Tools automatisch eine größere Anzahl von Kunden verwalten und mehr Transaktionen durchführen. Darüber hinaus kommt Ihnen bei diesem Szenario der Cloudvorteil zugute, indem Sie nur für die genutzte Kapazität zahlen.
 
 In diesem Dokument werden verschiedene Azure-PaaS-Komponenten und -Aspekte beschrieben, die für die Bereitstellung der E-Commerce-Anwendung *Relecloud Concerts*, einer Onlineplattform für Konzerttickets, gelten.
 
-## <a name="potential-use-cases"></a>Mögliche Anwendungsfälle
+## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
 Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 
@@ -25,7 +25,7 @@ Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 
 ## <a name="architecture"></a>Architecture
 
-![Beispielarchitektur eines Szenarios für eine E-Commerce-Anwendung][architecture-diagram]
+![Beispielarchitektur eines Szenarios für eine E-Commerce-Anwendung][architecture]
 
 Bei diesem Szenario geht es um den Kauf von Tickets über eine E-Commerce-Website. Die Daten durchlaufen das Szenario wie folgt:
 
@@ -69,7 +69,7 @@ Weitere Optionen für die Webebene und Funktionen sind:
 
 Andere Optionen für die Datenschicht:
 
-* [Cosmos DB][docs-cosmosdb]: Eine global verteilte Datenbank von Microsoft mit mehreren Modellen. Dieser Dienst bietet eine Plattform für die Ausführung anderer Datenmodelle. Hierzu zählen etwa Mongo DB, Cassandra, Graphdaten oder ein einfacher Tabellenspeicher.
+* [Cosmos DB](/azure/cosmos-db/introduction): Die global verteilte Datenbank von Microsoft mit mehreren Modellen. Dieser Dienst bietet eine Plattform für die Ausführung anderer Datenmodelle. Hierzu zählen etwa Mongo DB, Cassandra, Graphdaten oder ein einfacher Tabellenspeicher.
 
 ## <a name="considerations"></a>Überlegungen
 
@@ -120,11 +120,11 @@ Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir drei exem
 * [Referenz zu eShop in Containern – Beispiel][microservices-ecommerce]
 
 <!-- links -->
+[architecture]: ./media/architecture-ecommerce-scenario.png
 [small-pricing]: https://azure.com/e/90fbb6a661a04888a57322985f9b34ac
 [medium-pricing]: https://azure.com/e/38d5d387e3234537b6859660db1c9973
 [large-pricing]: https://azure.com/e/f07f99b6c3134803a14c9b43fcba3e2f
 [app-service-reference-architecture]: ../../reference-architectures/app-service-web-app/basic-web-app.md
-[architecture-diagram]: ./media/architecture-diagram-ecommerce-solution.png
 [availability]: /azure/architecture/checklist/availability
 [circuit-breaker]: /azure/architecture/patterns/circuit-breaker
 [design-patterns-availability]: /azure/architecture/patterns/category/availability
@@ -136,7 +136,6 @@ Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir drei exem
 [docs-cdn]: /azure/cdn/cdn-overview
 [docs-container-instances]: /azure/container-instances/
 [docs-kubernetes-service]: /azure/aks/
-[docs-cosmosdb]: /azure/cosmos-db/
 [docs-functions]: /azure/azure-functions/functions-overview
 [docs-redis-cache]: /azure/redis-cache/cache-overview
 [docs-search]: /azure/search/search-what-is-azure-search
@@ -154,6 +153,6 @@ Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir drei exem
 [resiliency-app-service]: /azure/architecture/checklist/resiliency-per-service#app-service
 [resiliency]: /azure/architecture/checklist/resiliency
 [scalability]: /azure/architecture/checklist/scalability
-[secure-development]: https://www.microsoft.com/en-us/SDL/process/design.aspx
+[secure-development]: https://www.microsoft.com/SDL/process/design.aspx
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
 [storage-geo-redudancy]: /azure/storage/common/storage-redundancy-grs

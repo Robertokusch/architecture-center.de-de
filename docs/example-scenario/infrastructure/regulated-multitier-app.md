@@ -1,14 +1,14 @@
 ---
 title: Schützen von Windows-Webanwendungen für Branchen mit Regulierung
-description: Bewährtes Szenario für die Erstellung einer sicheren Webanwendung mit mehreren Ebenen mithilfe von Windows Server in Azure, für die Skalierungsgruppen, Application Gateway und Lastenausgleichsmodule verwendet werden.
+description: Erstellen Sie mithilfe von Windows Server eine sichere Webanwendung mit mehreren Ebenen in Azure, für die Skalierungsgruppen, Application Gateway und Lastenausgleichsmodule verwendet werden.
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: 780b82791510b6ca06ef918b66d2547794dfcf87
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 584b5891f9b3d8e174c3eb29835a525ae4a4f156
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428753"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819005"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>Schützen von Windows-Webanwendungen für Branchen mit Regulierung
 
@@ -16,7 +16,7 @@ Dieses Beispielszenario gilt für Branchen mit Regulierung, in denen Anwendungen
 
 Zu den Beispielszenarien für Anwendungen gehören die Ausführung von Anwendungen für Operationssäle, Patiententermine und -aufzeichnungen oder Medikamentenabholung und -bestellung auf Rezeptbasis. Bisher mussten Organisationen für diese Zwecke lokale Legacyanwendungen und -dienste betreiben. Da diese Windows Server-Anwendungen auf sichere und skalierbare Weise in Azure bereitgestellt werden können, können Organisationen ihre Bereitstellungen modernisieren und die lokalen Betriebskosten und den Verwaltungsaufwand reduzieren.
 
-## <a name="related-use-cases"></a>Verwandte Anwendungsfälle
+## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
 Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 
@@ -34,7 +34,7 @@ In diesem Szenario geht es um eine Anwendung mit mehreren Ebenen für Branchen m
 2. Das Application Gateway verteilt Datenverkehr auf VM-Instanzen in einer Azure-VM-Skalierungsgruppe.
 3. Die ASP.NET-Anwendung stellt eine Verbindung mit dem Microsoft SQL Server-Cluster auf einer Back-End-Ebene über einen Azure Load Balancer her. Diese SQL Server-Back-End-Instanzen befinden sich in einem separaten virtuellen Azure-Netzwerk, die durch Netzwerksicherheitsgruppen-Regeln zur Beschränkung des Datenverkehrsflusses geschützt sind.
 4. Das Lastenausgleichsmodul verteilt SQL Server-Datenverkehr auf VM-Instanzen in einer anderen VM-Skalierungsgruppe.
-5. Azure Blob Storage dient als Cloudzeuge für den SQL Server-Cluster auf der Back-End-Ebene.  Die Verbindung aus dem VNET wird mit einem VNET-Dienstendpunkt für Azure Storage aktiviert.
+5. Azure Blob Storage dient als Cloudzeuge für den SQL Server-Cluster auf der Back-End-Ebene. Die Verbindung aus dem VNET wird mit einem VNET-Dienstendpunkt für Azure Storage aktiviert.
 
 ### <a name="components"></a>Komponenten
 
@@ -51,7 +51,7 @@ In diesem Szenario geht es um eine Anwendung mit mehreren Ebenen für Branchen m
 
 * [SQL Server für Linux][sql-linux] kann den Back-End-Datenspeicher ersetzen.
 
-* [Cosmos DB][cosmos] ist eine weitere Alternative für den Datenspeicher.
+* [Cosmos DB](/azure/cosmos-db/introduction) ist eine weitere Alternative für den Datenspeicher.
 
 ## <a name="considerations"></a>Überlegungen
 
@@ -102,7 +102,7 @@ Der Bereitstellungsvorgang kann zwischen 15 und 20 Minuten dauern.
 
 ## <a name="pricing"></a>Preise
 
-Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kostenrechner vorkonfiguriert.  Wenn Sie wissen möchten, welche Kosten für Ihren spezifischen Anwendungsfall entstehen, passen Sie die entsprechenden Variablen an Ihren voraussichtlichen Datenverkehr an.
+Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kostenrechner vorkonfiguriert. Wenn Sie wissen möchten, welche Kosten für Ihren spezifischen Anwendungsfall entstehen, passen Sie die entsprechenden Variablen an Ihren voraussichtlichen Datenverkehr an.
 
 Wir haben basierend auf der Anzahl von VM-Instanzen, über die Ihre Anwendungen ausgeführt werden, drei Beispielkostenprofile bereitgestellt.
 
@@ -112,17 +112,16 @@ Wir haben basierend auf der Anzahl von VM-Instanzen, über die Ihre Anwendungen 
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
-In diesem Szenario wurde eine VM-Back-End-Skalierungsgruppe verwendet, über die ein Microsoft SQL Server-Cluster ausgeführt wird. Azure Cosmos DB kann auch als skalierbare und sichere Datenbankebene für die Anwendungsdaten verwendet werden. Ein [Azure-VNET-Dienstendpunkt][vnetendpoint-docs] ermöglicht es Ihnen, Ihre kritischen Azure-Dienstressourcen auf Ihre virtuellen Netzwerke zu beschränken und so zu schützen. In diesem Szenario können Sie mit VNET-Endpunkten Datenverkehr zwischen der Front-End-Anwendungsebene und Cosmos DB schützen. Weitere Informationen zu Cosmos DB finden Sie unter [Übersicht über Azure Cosmos DB][azurecosmosdb-docs].
+In diesem Szenario wurde eine VM-Back-End-Skalierungsgruppe verwendet, über die ein Microsoft SQL Server-Cluster ausgeführt wird. Cosmos DB kann auch als skalierbare und sichere Datenbankebene für die Anwendungsdaten verwendet werden. Ein [Azure-VNET-Dienstendpunkt][vnetendpoint-docs] ermöglicht es Ihnen, Ihre kritischen Azure-Dienstressourcen auf Ihre virtuellen Netzwerke zu beschränken und so zu schützen. In diesem Szenario können Sie mit VNET-Endpunkten Datenverkehr zwischen der Front-End-Anwendungsebene und Cosmos DB schützen. Weitere Informationen finden Sie in der [Übersicht zu Azure Cosmos DB][docs-cosmos-db](/azure/cosmos-db/introduction).
 
-Sie können auch eine eingehende [Referenzarchitektur für eine generische Anwendung mit n-Schichten mit SQL Server][ntiersql-ra] anzeigen.
+Sie können auch eine detaillierte [Referenzarchitektur für eine generische Anwendung mit n-Schichten mithilfe SQL Server][ntiersql-ra] anzeigen.
 
 <!-- links -->
 [appgateway-docs]: /azure/application-gateway/overview
-[architecture]: ./media/regulated-multitier-app/architecture-regulated-multitier-app.png
+[architecture]: ./media/architecture-regulated-multitier-app.png
 [autoscaling]: /azure/architecture/best-practices/auto-scaling
 [availability]: ../../checklist/availability.md
 [azureaz-docs]: /azure/availability-zones/az-overview
-[azurecosmosdb-docs]: /azure/cosmos-db/introduction
 [cloudwitness-docs]: /windows-server/failover-clustering/deploy-cloud-witness
 [loadbalancer-docs]: /azure/load-balancer/load-balancer-overview
 [nsg-docs]: /azure/virtual-network/security-overview
@@ -137,7 +136,6 @@ Sie können auch eine eingehende [Referenzarchitektur für eine generische Anwen
 [vnetendpoint-docs]: /azure/virtual-network/virtual-network-service-endpoints-overview
 [pci-dss]: /azure/security/blueprints/pcidss-iaaswa-overview
 [dmz]: /azure/virtual-network/virtual-networks-dmz-nsg
-[cosmos]: /azure/cosmos-db/
 [sql-linux]: /sql/linux/sql-server-linux-overview?view=sql-server-linux-2017
 
 [small-pricing]: https://azure.com/e/711bbfcbbc884ef8aa91cdf0f2caff72

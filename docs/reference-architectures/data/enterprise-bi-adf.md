@@ -3,12 +3,12 @@ title: Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Dat
 description: Automatisieren eines ELT-Workflows in Azure mithilfe von Azure Data Factory
 author: MikeWasson
 ms.date: 07/01/2018
-ms.openlocfilehash: ffd75ba8c57a9afbc6abad61f21f738c644c9bc8
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: f004c02da93335e74b07b9720236832ad7f744db
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142280"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876901"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Data Factory
 
@@ -202,15 +202,15 @@ Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][ref-arch-rep
 
 Die folgenden Schritte enthalten einige benutzerdefinierte Variablen. Sie müssen diese durch von Ihnen definierte Werte ersetzen.
 
-- `<data_factory_name>`(Fixierte Verbindung) festgelegt ist(Fixierte Verbindung) festgelegt ist. Data Factory-Name.
-- `<analysis_server_name>`(Fixierte Verbindung) festgelegt ist(Fixierte Verbindung) festgelegt ist. Name des Analysis Services-Servers.
-- `<active_directory_upn>`(Fixierte Verbindung) festgelegt ist(Fixierte Verbindung) festgelegt ist. Ihr Azure Active Directory-Benutzerprinzipalname (User Principal Name, UPN). Beispiel: `user@contoso.com`.
-- `<data_warehouse_server_name>`(Fixierte Verbindung) festgelegt ist(Fixierte Verbindung) festgelegt ist. Name des SQL Data Warehouse-Servers.
-- `<data_warehouse_password>`(Fixierte Verbindung) festgelegt ist(Fixierte Verbindung) festgelegt ist. SQL Data Warehouse-Administratorkennwort.
-- `<resource_group_name>`(Fixierte Verbindung) festgelegt ist(Fixierte Verbindung) festgelegt ist. Der Name der Ressourcengruppe.
-- `<region>`(Fixierte Verbindung) festgelegt ist(Fixierte Verbindung) festgelegt ist. Die Azure-Region, in der die Ressourcen bereitgestellt werden.
-- `<storage_account_name>`(Fixierte Verbindung) festgelegt ist(Fixierte Verbindung) festgelegt ist. Name des Speicherkontos. Die [Benennungsregeln](../../best-practices/naming-conventions.md#naming-rules-and-restrictions) für Storage-Konten müssen eingehalten werden.
-- `<sql-db-password>`(Fixierte Verbindung) festgelegt ist(Fixierte Verbindung) festgelegt ist. Kennwort für die SQL Server-Anmeldung.
+- `<data_factory_name>`. Data Factory-Name.
+- `<analysis_server_name>`. Name des Analysis Services-Servers.
+- `<active_directory_upn>`. Ihr Azure Active Directory-Benutzerprinzipalname (User Principal Name, UPN). Beispiel: `user@contoso.com`.
+- `<data_warehouse_server_name>`. Name des SQL Data Warehouse-Servers.
+- `<data_warehouse_password>`. SQL Data Warehouse-Administratorkennwort.
+- `<resource_group_name>`. Der Name der Ressourcengruppe.
+- `<region>`. Die Azure-Region, in der die Ressourcen bereitgestellt werden.
+- `<storage_account_name>`. Name des Speicherkontos. Die [Benennungsregeln](../../best-practices/naming-conventions.md#naming-rules-and-restrictions) für Storage-Konten müssen eingehalten werden.
+- `<sql-db-password>`. Kennwort für die SQL Server-Anmeldung.
 
 ### <a name="deploy-azure-data-factory"></a>Bereitstellen von Azure Data Factory
 

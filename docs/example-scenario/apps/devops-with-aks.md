@@ -1,14 +1,14 @@
 ---
 title: CI/CD-Pipeline für containerbasierte Workloads
-description: Bewährtes Szenario zur Erstellung einer DevOps-Pipeline für eine Node.js-Web-App, für die Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB und Grafana verwendet werden.
+description: Erstellen Sie eine DevOps-Pipeline für eine Node.js-Web-App mit Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB und Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: d659916e3af0caa2128db25faab441a2af8f3f6a
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 3212fae2c68eef3a5ed4963d28c0d97ac8f332e0
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389382"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818733"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>CI/CD-Pipeline für containerbasierte Workloads
 
@@ -18,7 +18,7 @@ Beispielszenarien für diese Anwendung wären etwa die Bereitstellung einer auto
 
 Azure-Dienste wie Azure Kubernetes Service, Container Registry und Cosmos DB bieten Unternehmen die neuesten Techniken und Tools für die Anwendungsentwicklung und vereinfachen die Implementierung von Hochverfügbarkeit.
 
-## <a name="related-use-cases"></a>Verwandte Anwendungsfälle
+## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
 Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 
@@ -38,17 +38,17 @@ Dieses Szenario umfasst eine DevOps-Pipeline für eine Node.js-Webanwendung und 
 4. Der Jenkins-Buildauftrag verwendet einen dynamischen Build-Agent in Azure Kubernetes Service, um einen Containerbuildprozess auszuführen.
 5. Auf der Grundlage des Codes in der Quellcodeverwaltung wird ein Containerimage erstellt und anschließend an Azure Container Registry gepusht.
 6. Über Continuous Deployment (CD) stellt Jenkins dieses aktualisierte Containerimage im Kubernetes-Cluster bereit.
-7. Die Node.js-Webanwendung verwendet Azure Cosmos DB als Back-End. Sowohl Cosmos DB als auch Azure Kubernetes Service übermitteln Metriken an Azure Monitor.
+7. Die Node.js-Webanwendung verwendet Cosmos DB als Back-End. Sowohl Cosmos DB als auch Azure Kubernetes Service übermitteln Metriken an Azure Monitor.
 8. Eine Grafana-Instanz bietet visuelle Dashboards zur Anwendungsleistung, die auf den Daten von Azure Monitor basieren.
 
 ### <a name="components"></a>Komponenten
 
 * [Jenkins][jenkins] ist ein Open-Source-Automatisierungsserver, der sich problemlos in Azure-Dienste integrieren lässt, um Continuous Integration (CI) und Continuous Deployment (CD) zu ermöglichen. In diesem Szenario orchestriert Jenkins die Erstellung neuer Containerimages auf der Grundlage von Commits in der Quellcodeverwaltung, pusht die Images an die Azure Container Registry-Instanz und aktualisiert anschließend Anwendungsinstanzen in Azure Kubernetes Service.
-* [Virtuelle Linux-Computer in Azure][azurevm-docs] fungieren als IaaS-Plattform zum Ausführen der Jenkins- und Grafana-Instanzen.
-* [Azure Container Registry][azureacr-docs] speichert und verwaltet Containerimages, die vom Azure Kubernetes Service-Cluster verwendet werden. Images werden sicher gespeichert und können von der Azure-Plattform in anderen Regionen repliziert werden, um die Bereitstellung zu beschleunigen.
-* [Azure Kubernetes Service][azureaks-docs] ist eine verwaltete Kubernetes-Plattform, mit der Sie Containeranwendungen ganz ohne Kenntnisse auf dem Gebiet der Containerorchestrierung bereitstellen und verwalten können. Azure führt als gehosteter Kubernetes-Dienst wichtige Aufgaben für Sie aus, z.B. Systemüberwachung und Wartung.
-* [Azure Cosmos DB][azurecosmosdb-docs] ist eine global verteilte Datenbank, bei der Sie zwischen verschiedenen Datenbank- und Konsistenzmodellen wählen können, um Ihre individuellen Anforderungen zu erfüllen. Mit Cosmos DB können Ihre Daten global repliziert werden, und es müssen keine Komponenten für die Clusterverwaltung oder Replikation bereitgestellt und konfiguriert werden.
-* [Azure Monitor][azuremonitor-docs] dient zum Nachverfolgen der Leistung, Gewährleisten der Sicherheit und Identifizieren von Trends. Metriken von Monitor können von anderen Ressourcen und Tools (etwa von Grafana) verwendet werden.
+* [Virtuelle Linux-Computer in Azure][docs-virtual-machines] fungieren als IaaS-Plattform zum Ausführen der Jenkins- und Grafana-Instanzen.
+* [Azure Container Registry][docs-acr] speichert und verwaltet Containerimages, die vom Azure Kubernetes Service-Cluster verwendet werden. Images werden sicher gespeichert und können von der Azure-Plattform in anderen Regionen repliziert werden, um die Bereitstellung zu beschleunigen.
+* [Azure Kubernetes Service][docs-aks] ist eine verwaltete Kubernetes-Plattform, mit der Sie Containeranwendungen ganz ohne Kenntnisse auf dem Gebiet der Containerorchestrierung bereitstellen und verwalten können. Azure führt als gehosteter Kubernetes-Dienst wichtige Aufgaben für Sie aus, z.B. Systemüberwachung und Wartung.
+* [Azure Cosmos DB][docs-cosmos-db] ist eine global verteilte Datenbank, bei der Sie zwischen verschiedenen Datenbank- und Konsistenzmodellen wählen können, um Ihre individuellen Anforderungen zu erfüllen. Mit Cosmos DB können Ihre Daten global repliziert werden, und es müssen keine Komponenten für die Clusterverwaltung oder Replikation bereitgestellt und konfiguriert werden.
+* [Azure Monitor][docs-azure-monitor] dient zum Nachverfolgen der Leistung, Gewährleisten der Sicherheit und Identifizieren von Trends. Metriken von Monitor können von anderen Ressourcen und Tools (etwa von Grafana) verwendet werden.
 * [Grafana][grafana] ist eine Open-Source-Lösung für Abfragen, Visualisierungen und Warnungen sowie zum Nachvollziehen von Metriken. Dank eines Datenquellen-Plug-Ins für Azure Monitor kann Grafana visuelle Dashboards zur Überwachung der Leistung Ihrer Anwendungen erstellen, die in Azure Kubernetes Service ausgeführt werden und Cosmos DB verwenden.
 
 ### <a name="alternatives"></a>Alternativen
@@ -129,18 +129,18 @@ Auf der Grundlage der Anzahl der zu speichernden Containerimages und der Kuberne
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
-Dieses Szenario verwendet Azure Container Registry und Azure Kubernetes Service, um Ihre containerbasierten Anwendungen zu speichern und auszuführen. Azure Container Instances kann ebenfalls zum Ausführen containerbasierter Anwendungen verwendet werden, ohne dafür Orchestrierungskomponenten bereitstellen zu müssen. Weitere Informationen finden Sie in der [Übersicht über Azure Container Instances][azureaci-docs].
+Dieses Szenario verwendet Azure Container Registry und Azure Kubernetes Service, um eine containerbasierte Anwendung zu speichern und auszuführen. Azure Container Instances kann ebenfalls zum Ausführen containerbasierter Anwendungen verwendet werden, ohne dafür Orchestrierungskomponenten bereitstellen zu müssen. Weitere Informationen finden Sie in der [Übersicht über Azure Container Instances][docs-aci].
 
 <!-- links -->
-[architecture]: ./media/devops-with-aks/architecture-devops-with-aks.png
+[architecture]: ./media/architecture-devops-with-aks.png
 [autoscaling]: ../../best-practices/auto-scaling.md
 [availability]: ../../checklist/availability.md
-[azureaci-docs]: /azure/container-instances/container-instances-overview
-[azureacr-docs]: /azure/container-registry/container-registry-intro
-[azurecosmosdb-docs]: /azure/cosmos-db/introduction
-[azureaks-docs]: /azure/aks/intro-kubernetes
-[azuremonitor-docs]: /azure/monitoring-and-diagnostics/monitoring-overview
-[azurevm-docs]: /azure/virtual-machines/linux/overview
+[docs-aci]: /azure/container-instances/container-instances-overview
+[docs-acr]: /azure/container-registry/container-registry-intro
+[docs-aks]: /azure/aks/intro-kubernetes
+[docs-azure-monitor]: /azure/monitoring-and-diagnostics/monitoring-overview
+[docs-cosmos-db]: /azure/cosmos-db/introduction
+[docs-virtual-machines]: /azure/virtual-machines/linux/overview
 [createsp]: /cli/azure/ad/sp#az-ad-sp-create
 [grafana]: https://grafana.com/
 [jenkins]: https://jenkins.io/

@@ -1,50 +1,50 @@
 ---
-title: SAP für Dev/Test-Workloads
-description: SAP-Szenario für eine Dev/Test-Umgebung
+title: Entwicklungs-/Testumgebungen für SAP-Workloads in Azure
+description: Erstellen Sie eine Dev/Test-Umgebung für SAP-Workloads.
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: d0f266e40969cf4782e69041889a686387499722
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: b47e4cb527d3e4ecd74bee7bcf08f2794da56d6c
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389178"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876797"
 ---
-# <a name="sap-for-devtest-workloads"></a>SAP für Dev/Test-Workloads
+# <a name="devtest-environments-for-sap-workloads-on-azure"></a>Entwicklungs-/Testumgebungen für SAP-Workloads in Azure
 
-Dieses Beispiel enthält eine Anleitung für die Durchführung einer Dev/Test-Implementierung von SAP NetWeaver in einer Windows- oder Linux-Umgebung in Azure. Als Datenbank wird AnyDB verwendet. Dies ist der SAP-Begriff für alle unterstützten Datenbank-Managementsysteme, bei denen es sich nicht um SAP HANA handelt. Da diese Architektur nicht für Produktionsumgebungen ausgelegt ist, sondern nur für andere Umgebungen, wird sie mit nur einem virtuellen Computer (VM) bereitgestellt. Die Größe kann geändert werden, um die jeweiligen Anforderungen Ihrer Organisation zu erfüllen.
+Dieses Beispiel zeigt, wie Sie eine Entwicklungs-/Testumgebung für SAP NetWeaver in einer Windows- oder Linux-Umgebung in Azure einrichten. Als Datenbank wird AnyDB verwendet. Dies ist der SAP-Begriff für alle unterstützten Datenbank-Managementsysteme, bei denen es sich nicht um SAP HANA handelt. Da diese Architektur nicht für Produktionsumgebungen ausgelegt ist, sondern nur für andere Umgebungen, wird sie mit nur einem virtuellen Computer (VM) bereitgestellt. Die Größe kann geändert werden, um die jeweiligen Anforderungen Ihrer Organisation zu erfüllen.
 
 Sehen Sie sich für Anwendungsfälle für die Produktion die hier angegebenen SAP-Referenzarchitekturen an:
 
 * [SAP NetWeaver für AnyDB][sap-netweaver]
-* [SAP S/4Hana][sap-hana]
+* [SAP S/4HANA][sap-hana]
 * [SAP in Azure (große Instanzen)][sap-large]
 
-## <a name="related-use-cases"></a>Verwandte Anwendungsfälle
+## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
 Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 
 * Nicht kritische SAP-Workloads, die nicht für die Produktion bestimmt sind (Sandbox, Entwicklung, Test, Qualitätssicherung)
-* Nicht kritische SAP Business One-Workloads
+* Nicht kritische geschäftliche SAP-Workloads
 
 ## <a name="architecture"></a>Architecture
 
-![Diagramm](media/sap-2tier/SAP-Infra-2Tier_finalversion.png)
+![Architekturdiagramm für Entwicklungs-/Testumgebungen für SAP-Workloads](media/architecture-sap-dev-test.png)
 
-Mit diesem Szenario wird die Bereitstellung einer einzelnen SAP-Systemdatenbank und eines SAP-Anwendungsservers auf einem einzelnen virtuellen Computer behandelt. Die Daten durchlaufen das Szenario wie folgt:
+Dieses Szenario veranschaulicht die Bereitstellung einer einzelnen SAP-Systemdatenbank und eines SAP-Anwendungsservers auf einer einzelnen VM. Die Daten durchlaufen das Szenario wie folgt:
 
-1. Kunden auf der Präsentationsebene verwenden ihre SAP-GUI oder andere Benutzeroberflächen (Internet Explorer, Excel oder eine andere Webanwendung) lokal, um auf das Azure-basierte SAP-System zuzugreifen.
-2. Die Konnektivität wird über eine eingerichtete ExpressRoute-Verbindung bereitgestellt. Die ExpressRoute-Verbindung endet in Azure auf dem ExpressRoute-Gateway. Netzwerkdatenverkehr wird über das ExpressRoute-Gateway an das Gatewaysubnetz und von dort an das Spoke-Subnetz auf der Anwendungsebene geleitet (siehe [Hub-Spoke][hub-spoke]-Muster). Anschließend fließt der Datenverkehr über ein Netzwerksicherheitsgateway an den virtuellen Computer der SAP-Anwendung.
+1. Kunden verwenden die SAP-Benutzeroberfläche oder andere Clienttools (Excel, einen Webbrowser oder andere Webanwendungen), um auf das Azure-basierte SAP-System zuzugreifen.
+2. Die Konnektivität wird über eine eingerichtete ExpressRoute-Verbindung bereitgestellt. Die ExpressRoute-Verbindung endet in Azure auf dem ExpressRoute-Gateway. Netzwerkdatenverkehr wird über das ExpressRoute-Gateway an das Gatewaysubnetz und von dort an das Spokesubnetz auf der Anwendungsebene geleitet (siehe [Hub-Spoke][hub-spoke]-Muster). Anschließend fließt der Datenverkehr über ein Netzwerksicherheitsgateway zur VM mit der SAP-Anwendung.
 3. Die Server für die Identitätsverwaltung stellen Authentifizierungsdienste bereit.
 4. Über die Jumpbox sind lokale Verwaltungsfunktionen verfügbar.
 
 ### <a name="components"></a>Komponenten
 
-* [Ressourcengruppen](/azure/azure-resource-manager/resource-group-overview#resource-groups) sind logische Container für Azure-Ressourcen.
 * [Virtuelle Netzwerke](/azure/virtual-network/virtual-networks-overview) sind die Grundlage für die Netzwerkkommunikation innerhalb von Azure.
-* Mit [Azure Virtual Machines](/azure/virtual-machines/windows/overview) wird eine auf Windows- oder Linux-Servern basierende sichere, virtualisierte On-Demand-Infrastruktur mit umfangreicher Skalierung bereitgestellt.
+* [Azure Virtual Machines](/azure/virtual-machines/windows/overview) stellt eine auf Windows- oder Linux-Servern basierende hochgradig skalierbare, sichere, virtualisierte On-Demand-Infrastruktur bereit.
 * Mit [ExpressRoute](/azure/expressroute/expressroute-introduction) können Sie Ihre lokalen Netzwerke über eine private Verbindung, die von einem Konnektivitätsanbieter bereitgestellt wird, auf die Microsoft Cloud ausdehnen.
 * Mit [Netzwerksicherheitsgruppen](/azure/virtual-network/security-overview) können Sie den Netzwerkdatenverkehr auf Ressourcen in einem virtuellen Netzwerk beschränken. Eine Netzwerksicherheitsgruppe enthält eine Liste mit Sicherheitsregeln, die ein- oder ausgehenden Netzwerkdatenverkehr basierend auf IP-Adresse, Port und Protokoll (für die Quelle bzw. das Ziel) zulassen oder ablehnen. 
+* [Ressourcengruppen](/azure/azure-resource-manager/resource-group-overview#resource-groups) fungieren als logische Container für Azure-Ressourcen.
 
 ## <a name="considerations"></a>Überlegungen
 
@@ -66,7 +66,7 @@ Allgemeine Informationen zur Entwicklung robuster Lösungen finden Sie unter [En
 
 ## <a name="pricing"></a>Preise
 
-Hier können Sie die Betriebskosten für dieses Szenario ermitteln. Alle Dienste sind im Kostenrechner vorkonfiguriert.  Wenn Sie wissen möchten, welche Kosten für Ihren spezifischen Anwendungsfall entstehen, passen Sie die entsprechenden Variablen an Ihren voraussichtlichen Datenverkehr an.
+Um Ihnen die Ermittlung der Betriebskosten für dieses Szenario zu erleichtern, sind alle Dienste in den unten stehenden Kostenrechnerbeispielen vorkonfiguriert. Wenn Sie wissen möchten, welche Kosten für Ihren spezifischen Anwendungsfall entstehen, passen Sie die entsprechenden Variablen an Ihren voraussichtlichen Datenverkehr an.
 
 Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir vier exemplarische Kostenprofile erstellt:
 
@@ -77,7 +77,8 @@ Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir vier exem
 Groß|32000|E32s_v3|3 x P20, 1 x P10|[Groß](https://azure.com/e/ada2e849d68b41c3839cc976000c6931)|
 Sehr groß|64000|M64s|4 x P20, 1 x P10|[Sehr groß](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef)|
 
-Hinweis: Die Preise sind als Orientierungshilfe gedacht und geben nur die Kosten für virtuelle Computer und Speicher an (ohne Gebühren für Netzwerk, Sicherungsspeicher und ein-/ausgehende Daten).
+> [!NOTE]
+> Die Preise sind als Orientierungshilfe gedacht und geben nur die Kosten für VMs und Speicher an. Gebühren für Netzwerk, Sicherungsspeicher und ein-/ausgehende Daten sind nicht enthalten.
 
 * [Klein](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1): Ein kleines System umfasst den VM-Typ „D8s_v3“ mit acht vCPUs, 32 GB RAM und 200 GB temporärem Speicher sowie zusätzlich drei Storage Premium-Datenträger (zwei mit 512 GB, einer mit 128 GB).
 * [Mittel](https://azure.com/e/465bd07047d148baab032b2f461550cd): Ein mittleres System umfasst den VM-Typ „D16s_v3“ mit 16 vCPUs, 64 GB RAM und 400 GB temporärem Speicher sowie zusätzlich vier Storage Premium-Datenträger (drei mit 512 GB, einer mit 128 GB).
@@ -86,16 +87,16 @@ Hinweis: Die Preise sind als Orientierungshilfe gedacht und geben nur die Kosten
 
 ## <a name="deployment"></a>Bereitstellung
 
-Verwenden Sie die Schaltfläche „Bereitstellen“, um die zugrunde liegende Infrastruktur ähnlich wie im obigen Szenario bereitzustellen.
+Klicken Sie hier, um die zugrunde liegende Infrastruktur für dieses Szenario bereitzustellen.
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fsap-2tier%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
+    <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
 
-\* SAP wird nicht automatisch installiert. Installieren Sie es nach Erstellung der Infrastruktur manuell.
+> [!NOTE]
+> SAP und Oracle werden während dieser Bereitstellung nicht installiert. Sie müssen diese Komponenten separat bereitstellen.
 
 <!-- links -->
-[reference architecture]:  /azure/architecture/reference-architectures/sap
 [resiliency]: /azure/architecture/resiliency/
 [security]: /azure/security/
 [scalability]: /azure/architecture/checklist/scalability

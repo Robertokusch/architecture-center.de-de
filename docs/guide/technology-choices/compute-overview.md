@@ -3,12 +3,12 @@ title: Übersicht über Azure-Computeoptionen
 description: Übersicht über Azure-Computeoptionen
 author: MikeWasson
 ms.date: 06/13/2018
-ms.openlocfilehash: ceb70f8eeff42e6cadb8a63c2f36986f26322201
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: cb59c4472b183d9a14031497f0b6db673938c9a9
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206558"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818818"
 ---
 # <a name="overview-of-azure-compute-options"></a>Übersicht über Azure-Compute-Optionen
 
@@ -18,7 +18,7 @@ Der Begriff *Compute* bezieht sich auf das Hostingmodell für die Computeressour
 
 An einem Ende des Spektrums befindet sich IaaS (**Infrastructure-as-a-Service**). Bei IaaS stellen Sie die benötigten VMs zusammen mit den zugeordneten Netzwerk- und Speicherkomponenten bereit. Anschließend stellen Sie die Software und Anwendungen bereit, die für diese VMs jeweils vorgesehen sind. Dieses Modell weist die größte Ähnlichkeit mit einer herkömmlichen lokalen Umgebung auf – mit der Ausnahme, dass die Infrastruktur von Microsoft verwaltet wird. Sie verwalten weiterhin die einzelnen VMs.  
 
-Bei PaaS (**Platform-as-a-Service**) ist eine verwaltete Hostingumgebung vorhanden, in der Sie Ihre Anwendung bereitstellen können, ohne VMs oder Netzwerkressourcen verwalten zu müssen. Anstatt beispielsweise einzelne VMs zu erstellen, geben Sie eine Instanzanzahl an, und der Dienst übernimmt das Bereitstellen, Konfigurieren und Verwalten der erforderlichen Ressourcen. Azure App Service ist ein Beispiel für einen PaaS-Dienst.
+**PaaS (Platform-as-a-Service)** bietet eine verwaltete Hostingumgebung, in der Sie Ihre Anwendung ohne Verwaltung von virtuellen Computern oder Netzwerkressourcen bereitstellen können. Anstatt beispielsweise einzelne VMs zu erstellen, geben Sie eine Instanzanzahl an, und der Dienst übernimmt das Bereitstellen, Konfigurieren und Verwalten der erforderlichen Ressourcen. Azure App Service ist ein Beispiel für einen PaaS-Dienst.
 
 Es wird ein Spektrum von IaaS bis zu PaaS in Reinform abgedeckt. Für Azure-VMs kann beispielsweise mithilfe von VM Scale Sets die automatische Skalierung durchgeführt werden. Diese Funktion für die automatische Skalierung entspricht nicht genau PaaS, aber es handelt sich um die Art von Verwaltungsfeature, das Teil eines PaaS-Diensts sein kann.
 

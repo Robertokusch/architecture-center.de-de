@@ -1,24 +1,24 @@
 ---
 title: Bildklassifizierung für Versicherungsansprüche in Azure
-description: Bewährtes Szenario zur Integration einer Bildverarbeitung in Ihre Azure-Anwendungen.
+description: Integrieren Sie Bildverarbeitung in Ihre Azure-Anwendungen.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 0ca0b46e83219afc5e22c2ac6467bf4be945c97a
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 31d328f8e5e27ea255024b7f461f2bfaeffc3ca7
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389161"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818532"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Bildklassifizierung für Versicherungsansprüche in Azure
 
-Dieses Beispielszenario richtet sich an Unternehmen, die eine Bildverarbeitung benötigen.
+Dieses Szenario richtet sich an Unternehmen, die eine Bildverarbeitung benötigen.
 
 Mögliche Anwendungsbereiche wären etwa die Klassifizierung von Bildern für eine Modewebsite, die Analyse von Text und Bildern für Versicherungsansprüche oder die Interpretation von Telemetriedaten aus Screenshots von Spielen. In der Vergangenheit mussten sich Unternehmen in der Regel ausführlich mit Machine Learning-Modellen vertraut machen, die Modelle trainieren und die Bilder schließlich durch ihren benutzerdefinierten Prozess schleusen, um die Daten aus den Bildern zu extrahieren.
 
-Durch die Verwendung von Azure-Diensten wie Maschinelles Sehen-API und Azure Functions müssen Unternehmen keine einzelnen Server mehr verwalten und können gleichzeitig ihre Kosten senken und von der Erfahrung profitieren, über die Microsoft im Bereich der Bildverarbeitung mit Cognitive Services verfügt. In diesem Beispielszenario geht es speziell um einen Anwendungsfall mit Bildverarbeitung. Sollten Sie andere KI-Anforderungen haben, ziehen Sie ggf. die Verwendung der vollständigen Suite von [Cognitive Services][cognitive-docs] in Betracht.
+Durch die Verwendung von Azure-Diensten wie Maschinelles Sehen-API und Azure Functions müssen Unternehmen keine einzelnen Server mehr verwalten und können gleichzeitig ihre Kosten senken und von der Erfahrung profitieren, über die Microsoft im Bereich der Bildverarbeitung mit Cognitive Services verfügt. In diesem Beispielszenario geht es speziell um einen Anwendungsfall mit Bildverarbeitung. Sollten Sie andere KI-Anforderungen haben, ziehen Sie ggf. die Verwendung der vollständigen Suite von [Cognitive Services](/azure/#pivot=products&panel=ai) in Betracht.
 
-## <a name="related-use-cases"></a>Verwandte Anwendungsfälle
+## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
 Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 
@@ -27,37 +27,28 @@ Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 
 ## <a name="architecture"></a>Architecture
 
-![Architektur für intelligente Apps: maschinelles Sehen][architecture-computer-vision]
+![Architektur für Bildklassifizierung][architecture]
 
 Dieses Szenario umfasst die Back-End-Komponenten einer webbasierten oder mobilen Anwendung. Die Daten durchlaufen das Szenario wie folgt:
 
-1. Azure Functions fungiert als API-Schicht. Diese APIs ermöglichen es der Anwendung, Bilder hochzuladen und Daten aus Cosmos DB abzurufen.
-
+1. Die API-Schicht wird mithilfe von Azure Functions erstellt. Diese APIs ermöglichen es der Anwendung, Bilder hochzuladen und Daten aus Cosmos DB abzurufen.
 2. Wenn ein Bild über einen API-Aufruf hochgeladen wird, wird es in Blob Storage gespeichert.
-
 3. Das Hinzufügen von neuen Dateien zu Blob Storage löst eine Event Grid-Benachrichtigung aus, die an eine Azure-Funktion gesendet wird.
-
 4. Azure Functions sendet einen Link für die neu hochgeladene Datei zur Analyse an die Maschinelles Sehen-API.
-
 5. Nachdem die Daten von der Maschinelles Sehen-API zurückgegeben wurden, erstellt Azure Functions einen Eintrag in Cosmos DB, um die Ergebnisse der Analyse zusammen mit den Bildmetadaten zu speichern.
 
 ### <a name="components"></a>Komponenten
 
-* [Maschinelles Sehen-API][computer-vision-docs] ist Teil der Cognitive Services-Suite und dient zum Abrufen von Informationen zu den einzelnen Bildern.
-
-* [Azure Functions][functions-docs] stellt die Back-End-API für die Webanwendung sowie die Ereignisverarbeitung für hochgeladene Bilder bereit.
-
-* [Event Grid][eventgrid-docs] löst ein Ereignis aus, wenn ein neues Bild in Blob Storage hochgeladen wird. Das Bild wird dann mit Azure Functions verarbeitet.
-
-* [Blob Storage][storage-docs] speichert alle in die Webanwendung hochgeladenen Bilddateien sowie alle statischen Dateien, die von der Webanwendung genutzt werden.
-
-* [Cosmos DB][cosmos-docs] speichert Metadaten zu den einzelnen hochgeladenen Bildern sowie die Verarbeitungsergebnisse der Maschinelles Sehen-API.
+* [Maschinelles Sehen-API](/azure/cognitive-services/computer-vision/home) ist Teil der Cognitive Services-Suite und dient zum Abrufen von Informationen zu den einzelnen Bildern.
+* [Azure Functions](/azure/azure-functions/functions-overview) stellt die Back-End-API für die Webanwendung sowie die Ereignisverarbeitung für hochgeladene Bilder bereit.
+* [Event Grid](/azure/event-grid/overview) löst ein Ereignis aus, wenn ein neues Bild in Blob Storage hochgeladen wird. Das Bild wird dann mit Azure Functions verarbeitet.
+* [Blob Storage](/azure/storage/blobs/storage-blobs-introduction) speichert alle in die Webanwendung hochgeladenen Bilddateien sowie alle statischen Dateien, die von der Webanwendung genutzt werden.
+* [Cosmos DB](/azure/cosmos-db/introduction) speichert Metadaten zu den einzelnen hochgeladenen Bildern sowie die Verarbeitungsergebnisse der Maschinelles Sehen-API.
 
 ## <a name="alternatives"></a>Alternativen
 
-* [Custom Vision Service:][custom-vision-docs] Die Maschinelles Sehen-API gibt eine Reihe [taxonomiebasierter Kategorien][cv-categories] zurück. Falls Sie Informationen verarbeiten müssen, die nicht von der Maschinelles Sehen-API zurückgegeben werden, ziehen Sie ggf. die Verwendung von Custom Vision Service in Betracht. Dieser Dienst ermöglicht die Erstellung benutzerdefinierter Bildklassifizierungen.
-
-* [Azure Search:][azure-search-docs] Wenn in Ihrem Szenario die Metadaten abgefragt werden müssen, um Bilder zu finden, die bestimmten Kriterien entsprechen, empfiehlt sich ggf. die Verwendung von Azure Search. [Cognitive Search][cognitive-search] (momentan in der Vorschauphase) ermöglicht die nahtlose Integration dieses Workflows.
+* [Custom Vision Service](/azure/cognitive-services/custom-vision-service/home). Die Maschinelles Sehen-API gibt eine Reihe [taxonomiebasierter Kategorien][cv-categories] zurück. Falls Sie Informationen verarbeiten müssen, die nicht von der Maschinelles Sehen-API zurückgegeben werden, ziehen Sie ggf. die Verwendung von Custom Vision Service in Betracht. Dieser Dienst ermöglicht die Erstellung benutzerdefinierter Bildklassifizierungen.
+* [Azure Search](/azure/search/search-what-is-azure-search). Wenn in Ihrem Szenario die Metadaten abgefragt werden müssen, um Bilder zu finden, die bestimmten Kriterien entsprechen, empfiehlt sich ggf. die Verwendung von Azure Search. [Cognitive Search](/azure/search/cognitive-search-concept-intro) (momentan in der Vorschauphase) ermöglicht die nahtlose Integration dieses Workflows.
 
 ## <a name="considerations"></a>Überlegungen
 
@@ -65,15 +56,15 @@ Dieses Szenario umfasst die Back-End-Komponenten einer webbasierten oder mobilen
 
 Bei den Komponenten dieses Szenarios handelt es sich größtenteils um verwaltete Dienste mit automatischer Skalierung. Es gibt jedoch ein paar Ausnahmen: Die maximale Anzahl von Azure Functions-Instanzen ist auf 200 beschränkt. Sollten Ihre Skalierungsanforderungen über diesen Grenzwert hinausgehen, erwägen Sie die Verwendung mehrerer Regionen oder App-Pläne.
 
-Bei Cosmos DB erfolgt keine automatische Skalierung der bereitgestellten Anforderungseinheiten (Request Units, RUs).  Einen Leitfaden für die Schätzung Ihrer Anforderungen finden Sie in unserer Dokumentation unter [Anforderungseinheiten][request-units]. Machen Sie sich zur optimalen Nutzung der Skalierung in Cosmos DB mit [Partitionsschlüsseln][partition-key] vertraut.
+Bei Cosmos DB erfolgt keine automatische Skalierung der bereitgestellten Anforderungseinheiten (Request Units, RUs). Einen Leitfaden für die Schätzung Ihrer Anforderungen finden Sie in unserer Dokumentation unter [Anforderungseinheiten](/azure/cosmos-db/request-units). Machen Sie sich zur optimalen Nutzung der Skalierung in Cosmos DB mit der Funktionsweise von [Partitionsschlüsseln](/azure/cosmos-db/partition-data) in Cosmos DB vertraut.
 
-Bei NoSQL-Datenbanken gehen Verfügbarkeit, Skalierbarkeit und Partitionierung häufig zulasten der Konsistenz (im Sinne des CAP-Theorems).  In diesem Beispielszenario wird ein Schlüssel-Wert-Datenmodell verwendet, sodass die Transaktionskonsistenz meist vernachlässigt werden kann, da die meisten Vorgänge per Definition atomisch sind. Weitere Informationen zur [Wahl des richtigen Datenspeichers](../../guide/technology-choices/data-store-overview.md) finden Sie im Azure Architecture Center.
+Bei NoSQL-Datenbanken gehen Verfügbarkeit, Skalierbarkeit und Partitionierung häufig zulasten der Konsistenz (im Sinne des CAP-Theorems). In diesem Beispielszenario wird ein Schlüssel-Wert-Datenmodell verwendet, sodass die Transaktionskonsistenz meist vernachlässigt werden kann, da die meisten Vorgänge per Definition atomisch sind. Weitere Informationen zur [Wahl des richtigen Datenspeichers](../../guide/technology-choices/data-store-overview.md) finden Sie im Azure Architecture Center.  Wenn für Ihre Implementierung eine hohe Konsistenz erforderlich ist, können Sie [Ihre Konsistenzebene](/azure/cosmos-db/consistency-levels) in CosmosDB wählen.
 
 Allgemeine Informationen zur Entwicklung skalierbarer Lösungen finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
 
 ### <a name="security"></a>Sicherheit
 
-[Verwaltete Dienstidentitäten][msi] (Managed Service Identities, MSIs) ermöglichen den Zugriff auf andere interne Ressourcen Ihres Kontos und werden Ihren Azure-Funktionen zugewiesen. Lassen Sie nur den Zugriff auf die erforderlichen Ressourcen in diesen Identitäten zu, um sicherzustellen, dass für Ihre Funktionen (und möglicherweise für Ihre Kunden) keine zusätzlichen Elemente verfügbar gemacht werden.  
+[Verwaltete Identitäten für Azure-Ressourcen][msi] ermöglichen den Zugriff auf andere interne Ressourcen Ihres Kontos und werden Ihrer Azure Functions-Instanz zugewiesen. Lassen Sie nur den Zugriff auf die erforderlichen Ressourcen in diesen Identitäten zu, um sicherzustellen, dass für Ihre Funktionen (und möglicherweise für Ihre Kunden) keine zusätzlichen Elemente verfügbar gemacht werden.
 
 Allgemeine Informationen zur Entwicklung sicherer Lösungen finden Sie in der [Dokumentation zur Azure-Sicherheit][security].
 
@@ -89,36 +80,26 @@ Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kost
 
 Auf der Grundlage des Datenverkehrs (und unter der Annahme, dass alle Bilder 100 KB groß sind) haben wir drei exemplarische Kostenprofile erstellt:
 
-* [Klein][pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von &lt; 5.000 Bildern pro Monat.
+* [Klein][small-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von &lt; 5.000 Bildern pro Monat.
 * [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von 500.000 Bildern pro Monat.
 * [Groß][large-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von 50 Millionen Bildern pro Monat.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
-Einen geführten Lernpfad für dieses Szenario finden Sie unter [Build a serverless web app in Azure][serverless] (Erstellen einer serverlosen Web-App in Azure).  
+Einen geführten Lernpfad für dieses Szenario finden Sie unter [Build a serverless web app in Azure][serverless] (Erstellen einer serverlosen Web-App in Azure).
 
 Machen Sie sich mit den [bewährten Methoden][functions-best-practices] für Azure Functions vertraut, bevor Sie dieses Beispielszenario in einer Produktionsumgebung bereitstellen.
 
 <!-- links -->
-[pricing]: https://azure.com/e/f9b59d238b43423683db73f4a31dc380
+[architecture]: ./media/architecture-intelligent-apps-image-processing.png
+[small-pricing]: https://azure.com/e/f9b59d238b43423683db73f4a31dc380
 [medium-pricing]: https://azure.com/e/7c7fc474db344b87aae93bc29ae27108
 [large-pricing]: https://azure.com/e/cbadbca30f8640d6a061f8457a74ba7d
-[functions-docs]: /azure/azure-functions/
-[computer-vision-docs]: /azure/cognitive-services/computer-vision/home
-[storage-docs]: /azure/storage/
-[azure-search-docs]: /azure/search/
 [cognitive-search]: /azure/search/cognitive-search-concept-intro
-[architecture-computer-vision]: ./media/architecture-computer-vision.png
 [serverless]: /azure/functions/tutorial-static-website-serverless-api-with-database
-[cosmos-docs]: /azure/cosmos-db/
-[eventgrid-docs]: /azure/event-grid/
-[cognitive-docs]: /azure/#pivot=products&panel=ai
-[custom-vision-docs]: /azure/cognitive-services/Custom-Vision-Service/home
 [cv-categories]: /azure/cognitive-services/computer-vision/home#the-86-category-concept
 [resiliency]: /azure/architecture/resiliency/
 [security]: /azure/security/
 [scalability]: /azure/architecture/checklist/scalability
 [functions-best-practices]: /azure/azure-functions/functions-best-practices
 [msi]: /azure/app-service/app-service-managed-service-identity
-[request-units]: /azure/cosmos-db/request-units
-[partition-key]: /azure/cosmos-db/partition-data

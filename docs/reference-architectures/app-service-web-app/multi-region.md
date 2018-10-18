@@ -4,12 +4,12 @@ description: Empfohlene Architektur für Webanwendungen mit Hochverfügbarkeit, 
 author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 2efcc591695e1c592053ea32832fe15e624df2e1
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: 5493deea871f25fb6ea3531a22d92d83916930b1
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016094"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876816"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Ausführen einer Webanwendung in mehreren Regionen
 [!INCLUDE [header](../../_includes/header.md)]
@@ -96,7 +96,7 @@ Traffic Manager führt automatisch ein Failover aus, wenn die primäre Region ni
 
 Weitere Informationen finden Sie unter [Traffic Manager-Überwachung][tm-monitoring].
 
-Traffic Manager ist eine mögliche Schwachstelle im System. Wenn beim Dienst ein Fehler auftritt, können Clients während der Ausfallzeit nicht auf Ihre Anwendung zugreifen. In der [Vereinbarung zum Servicelevel (SLA) für Traffic Manager][tm-sla] erfahren Sie, ob Ihre geschäftlichen Anforderungen für Hochverfügbarkeit mit Traffic Manager allein erfüllt werden. Wenn dies nicht der Fall ist, erwägen Sie als Failback eine andere Verwaltungslösung für den Datenverkehr. Wenn der Azure Traffic Manager-Dienst fehlerhaft ist, ändern Sie die kanonischen Namensdatensätze (CNAME) im DNS, sodass sie auf die andere Verwaltungslösung für den Datenverkehr verweisen. Dieser Schritt muss manuell durchgeführt werden. Bis die DNS-Änderungen weitergegeben wurden, ist die Anwendung nicht verfügbar.
+Traffic Manager ist eine mögliche Schwachstelle im System. Wenn beim Dienst ein Fehler auftritt, können Clients während der Ausfallzeit nicht auf Ihre Anwendung zugreifen. In der [Vereinbarung zum Servicelevel (SLA) für Traffic Manager][tm-sla] erfahren Sie, ob Ihre geschäftlichen Anforderungen für Hochverfügbarkeit mit Traffic Manager allein erfüllt werden. Wenn dies nicht der Fall ist, erwägen Sie als Alternative eine andere Verwaltungslösung für den Datenverkehr. Wenn der Azure Traffic Manager-Dienst fehlerhaft ist, ändern Sie die kanonischen Namensdatensätze (CNAME) im DNS, sodass sie auf die andere Verwaltungslösung für den Datenverkehr verweisen. Dieser Schritt muss manuell durchgeführt werden. Bis die DNS-Änderungen weitergegeben wurden, ist die Anwendung nicht verfügbar.
 
 ### <a name="sql-database"></a>SQL-Datenbank
 Die Recovery Point Objective (RPO) und die geschätzte Wiederherstellungszeit (ERT) für SQL-Datenbank sind in [Übersicht über die Geschäftskontinuität mit Azure SQL-Datenbank][sql-rpo] dokumentiert. 
@@ -165,6 +165,6 @@ Wenn die primäre Datenbank fehlerhaft ist, führen Sie ein manuelles Failover z
 [tm-monitoring]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-ps]: /powershell/module/azurerm.trafficmanager
 [tm-routing]: /azure/traffic-manager/traffic-manager-routing-methods
-[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
-[traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
+[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
+[traffic-manager]: https://azure.microsoft.com/services/traffic-manager
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx

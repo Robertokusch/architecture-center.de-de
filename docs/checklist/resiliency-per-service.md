@@ -4,12 +4,12 @@ description: Checkliste mit einer Anleitung zur Resilienz für verschiedene Azur
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 735d4466f53ff03b67063b49b86f4184bbf1af41
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: 50808a837132e905cc89c3c43d40852a04f4885c
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584764"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819192"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Checkliste für Resilienz für bestimmte Azure-Dienste
 
@@ -39,11 +39,11 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Erstellen Sie ein separates Speicherkonto für Protokolle.** Verwenden Sie nicht das gleiche Speicherkonto für Protokolle und Anwendungsdaten. Dadurch wird verhindert, dass die Protokollierung die Anwendungsleistung verringert.
 
-**Überwachen Sie die Leistung.** Verwenden Sie einen Leistungsüberwachungsdienst wie [New Relic](http://newrelic.com/) oder [Application Insights](/azure/application-insights/app-insights-overview/), um Leistung und Verhalten der Anwendung unter Last zu überwachen.  Durch die Leistungsüberwachung erhalten Sie in Echtzeit Einblicke in die Anwendung. Dadurch können Sie Probleme diagnostizieren und eine Ursachenanalyse von Fehlern durchführen.
+**Überwachen Sie die Leistung.** Verwenden Sie einen Leistungsüberwachungsdienst wie [New Relic](https://newrelic.com/) oder [Application Insights](/azure/application-insights/app-insights-overview/), um Leistung und Verhalten der Anwendung unter Last zu überwachen.  Durch die Leistungsüberwachung erhalten Sie in Echtzeit Einblicke in die Anwendung. Dadurch können Sie Probleme diagnostizieren und eine Ursachenanalyse von Fehlern durchführen.
 
 ## <a name="application-gateway"></a>Application Gateway
 
-**Stellen Sie mindestens zwei Instanzen bereit.** Stellen Sie Application Gateway mit mindestens zwei Instanzen bereit. Eine einzelne Instanz ist ein Single Point of Failure. Verwenden Sie zwei oder mehr Instanzen für Redundanz und Skalierbarkeit. Um sich für die [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/) zu qualifizieren, müssen Sie zwei oder mehr mittelgroße oder größere Instanzen bereitstellen.
+**Stellen Sie mindestens zwei Instanzen bereit.** Stellen Sie Application Gateway mit mindestens zwei Instanzen bereit. Eine einzelne Instanz ist ein Single Point of Failure. Verwenden Sie zwei oder mehr Instanzen für Redundanz und Skalierbarkeit. Um sich für die [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway) zu qualifizieren, müssen Sie zwei oder mehr mittelgroße oder größere Instanzen bereitstellen.
 
 ## <a name="cosmos-db"></a>Cosmos DB
 
@@ -77,6 +77,21 @@ Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als p
 
   * Wenn die Datenquelle georepliziert wird, sollten Sie im Allgemeinen die Indexer der einzelnen regionalen Azure Search-Dienste auf das eigene lokale Datenquellenreplikat verweisen. Dieser Ansatz wird jedoch für große Datasets, die in Azure SQL-Datenbank gespeichert sind, nicht empfohlen. Der Grund ist, dass Azure Search keine inkrementelle Indizierung für sekundäre SQL-Datenbankreplikate ausführen kann. Dies ist nur für primäre Replikate möglich. Verweisen Sie stattdessen alle Indexer auf das primäre Replikat. Verweisen Sie den Azure Search-Indexer nach einem Failover auf das neue primäre Replikat.  
   * Wenn die Datenquelle nicht georepliziert wird, verweisen Sie mehrere Indexer auf die gleiche Datenquelle, damit Azure Search-Dienste in mehreren Regionen kontinuierlich und unabhängig die Datenquelle indizieren. Weitere Informationen finden Sie unter [Überlegungen zur Leistung und Optimierung von Azure Search][search-optimization].
+
+## <a name="service-bus"></a>Service Bus
+
+**Verwendung des Premium-Tarifs für Produktionsworkloads**: [Service Bus Premium-Messaging](/azure/service-bus-messaging/service-bus-premium-messaging) verfügt über dedizierte und reservierte Verarbeitungsressourcen sowie über Speicherkapazität zur Unterstützung der Vorhersagbarkeit von Leistung und Durchsatz. Mit dem Tarif für Premium-Messaging haben Sie außerdem Zugriff auf neue Features, die zunächst nur für Premium-Kunden verfügbar sind. Sie können die Anzahl von Messagingeinheiten basierend auf den erwarteten Workloads festlegen.
+
+**Umgang mit doppelten Nachrichten**: Wenn für einen Herausgeber sofort nach dem Senden einer Nachricht ein Fehler auftritt oder es zu Netzwerk- oder Systemproblemen kommt, wird die Zustellung der Nachricht ggf. nicht aufgezeichnet, sodass sie unter Umständen zweimal an das System gesendet wird. Dieses Problem kann für Service Bus gelöst werden, indem die Duplikaterkennung aktiviert wird. Weitere Informationen finden Sie unter [Duplikaterkennung](/azure/service-bus-messaging/duplicate-detection).
+
+**Umgang mit Ausnahmen**: Messaging-APIs generieren Ausnahmen, wenn ein Benutzerfehler, Konfigurationsfehler oder anderer Fehler auftritt. Im Clientcode (Absender und Empfänger) sollten diese Ausnahmen per Code verarbeitet werden. Dies ist besonders bei der Batchverarbeitung wichtig, bei der die Verarbeitung von Ausnahmen genutzt werden kann, um zu vermeiden, dass ein gesamter Batch mit Nachrichten verloren geht. Weitere Informationen finden Sie unter [Service Bus-Messagingausnahmen](/azure/service-bus-messaging/service-bus-messaging-exceptions).
+
+**Wiederholungsrichtlinie**: Mit Service Bus können Sie die beste Wiederholungsrichtlinie für Ihre Anwendungen auswählen. Bei der Standardrichtlinie sind maximal neun Wiederholungsversuche zulässig, und die Wartezeit beträgt 30 Sekunden. Diese Werte können aber angepasst werden. Weitere Informationen finden Sie unter [Wiederholungsrichtlinie – Service Bus](/azure/architecture/best-practices/retry-service-specific#service-bus).
+
+**Verwendung einer Warteschlange für unzustellbare Nachrichten**: Wenn eine Nachricht auch nach mehreren Wiederholungsversuchen nicht verarbeitet oder an einen Empfänger zugestellt werden kann, wird sie in eine Warteschlange für unzustellbare Nachrichten verschoben. Implementieren Sie einen Prozess zum Lesen von Nachrichten aus der Warteschlange für unzustellbare Nachrichten, Durchführen einer Überprüfung und Beheben des Problems. Je nach Szenario können Sie einen Wiederholungsversuch mit der unveränderten Nachricht durchführen, vor der Wiederholung zuerst Änderungen vornehmen oder die Nachricht verwerfen. Weitere Informationen finden Sie unter [Übersicht über Service Bus-Warteschlangen für unzustellbare Nachrichten](/azure/service-bus-messaging/service-bus-dead-letter-queues).
+
+**Verwendung der georedundanten Notfallwiederherstellung**: Mit der georedundanten Notfallwiederherstellung wird sichergestellt, dass die Verarbeitung der Daten auch in einer anderen Region bzw. einem anderen Rechenzentrum weiterhin funktioniert, wenn aufgrund einer Katastrophe eines gesamte Azure-Region bzw. ein Rechenzentrum ausfällt. Weitere Informationen finden Sie unter [Georedundante Notfallwiederherstellung in Azure Service Bus](/azure/service-bus-messaging/service-bus-geo-dr).
+
 
 ## <a name="storage"></a>Speicher
 

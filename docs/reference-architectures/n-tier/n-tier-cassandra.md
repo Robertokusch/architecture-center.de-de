@@ -3,12 +3,12 @@ title: N-schichtige Anwendung mit Apache Cassandra
 description: Vorgehensweise zum Ausführen von Linux-VMs in einer n-schichtigen Architektur in Microsoft Azure
 author: MikeWasson
 ms.date: 05/03/2018
-ms.openlocfilehash: 9c186527a7f7980a5232186a52f9b0089612226f
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 2c5a80309e5d4d180cc83422de0b462c8dffcd90
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429044"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876918"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a>N-schichtige Anwendung mit Apache Cassandra
 
@@ -154,7 +154,7 @@ Um die Linux VMs für eine n-schichtige Anwendungsreferenzarchitektur bereitzust
 
 1. Navigieren Sie zum `virtual-machines\n-tier-linux`-Ordner für das Repository, das Sie oben in Schritt 1 der Voraussetzungen als Klon erstellt haben.
 
-2. Die Parameterdatei gibt einen Standard-Administratorbenutzernamen und ein Standardkennwort für jede VM in der Bereitstellung an. Sie müssen diese vor der Bereitstellung der Referenzarchitektur ändern. Öffnen Sie die `n-tier-linux.json`-Datei, und ersetzen Sie jedes Feld **adminUsername** und **adminPassword** durch neue Einstellungen.   Speichern Sie die Datei .
+2. Die Parameterdatei gibt einen Standard-Administratorbenutzernamen und ein Standardkennwort für jeden virtuellen Computer in der Bereitstellung an. Sie müssen diese vor der Bereitstellung der Referenzarchitektur ändern. Öffnen Sie die `n-tier-linux.json`-Datei, und ersetzen Sie jedes Feld **adminUsername** und **adminPassword** durch neue Einstellungen.   Speichern Sie die Datei .
 
 3. Stellen Sie die Referenzarchitektur mithilfe des Befehlszeilentools **azbb** bereit, wie unten dargestellt.
 

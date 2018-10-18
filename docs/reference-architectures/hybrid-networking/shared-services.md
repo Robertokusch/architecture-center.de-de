@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 06/19/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: 283251d5b11f76985405410c5c237e5a64ee98fe
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 0238c5d6f28bacbc32268d4586b30395de36384b
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060794"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876867"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementieren einer Hub-Spoke-Netzwerktopologie mit gemeinsamen Diensten in Azure
 
@@ -32,7 +32,7 @@ Typische Einsatzmöglichkeiten für diese Architektur sind Folgende:
 * Workloads, bei denen keine Konnektivität untereinander bestehen muss, die jedoch Zugriff auf gemeinsame Dienste erfordern
 * Unternehmen, die auf eine zentrale Steuerung von Sicherheitsmechanismen (z.B. eine Firewall im Hub als DMZ) und eine getrennte Verwaltung von Workloads in den einzelnen Spokes angewiesen sind
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 Die Architektur umfasst die folgenden Komponenten.
 
@@ -116,7 +116,7 @@ In diesem Schritt wird das simulierte lokale Datencenter als Azure-VNET bereitge
 
 2. Öffnen Sie die Datei `onprem.json` . 
 
-3. Suchen Sie nach allen Instanzen von `Password` und `adminPassword`. Geben Sie in den Parametern Werte für den Benutzernamen und das Kennwort ein, und speichern Sie die Datei. 
+3. Suchen Sie nach allen Instanzen von `UserName`, `adminUserName`, `Password` und `adminPassword`. Geben Sie in den Parametern Werte für den Benutzernamen und das Kennwort ein, und speichern Sie die Datei. 
 
 4. Führen Sie den folgenden Befehl aus:
 
