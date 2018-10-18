@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: 61788d9759715b21ef1bdda59c5b54d923fd8f62
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 46c43c9bfa4514f206b5e7eabd9223ad4c61628b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541912"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429371"
 ---
 # <a name="work-with-claims-based-identities"></a>Arbeiten mit anspruchsbasierten Identitäten
 
@@ -31,11 +31,11 @@ In OpenID Connect wird der Satz von Ansprüchen, den Sie erhalten, durch den [Be
 
 Hier sind einige der Ansprüche aus AAD, die eine App in der Regel interessieren:
 
-| Typ des Anspruchs im ID-Token | Beschreibung |
+| Typ des Anspruchs im ID-Token | BESCHREIBUNG |
 | --- | --- |
 | aud |Der Empfänger, für den das Token ausgestellt wurde. Dies ist die Client-ID der Anwendung. Im Allgemeinen müssen Sie sich nicht um diesen Anspruch kümmern, da er von der Middleware automatisch überprüft wird. Beispiel: `"91464657-d17a-4327-91f3-2ed99386406f"` |
 | groups |Eine Liste mit AAD-Gruppen, deren Mitglied der Benutzer ist. Beispiel: `["93e8f556-8661-4955-87b6-890bc043c30f", "fc781505-18ef-4a31-a7d5-7d931d7b857e"]` |
-| iss |Der [Aussteller] des OIDC-Tokens. Beispiel: `https://sts.windows.net/b9bd2162-77ac-4fb2-8254-5c36e9c0a9c4/` |
+| iss |Der [Zertifikataussteller] des OIDC-Tokens. Beispiel: `https://sts.windows.net/b9bd2162-77ac-4fb2-8254-5c36e9c0a9c4/` |
 | name |Anzeigename des Benutzers. Beispiel: `"Alice A."` |
 | oid |Der Objektbezeichner des Benutzers im AAD. Dieser Wert ist der unveränderliche und nicht wiederverwendbare Bezeichner des Benutzers. Verwenden Sie diesen Wert, nicht „email“, als eindeutigen Bezeichner für Benutzer, denn E-Mail-Adressen können sich ändern. Wenn Sie die Azure AD Graph-API in Ihrer App verwenden, ist die Objekt-ID der Wert, der zum Abfragen von Profilinformationen verwendet wird. Beispiel: `"59f9d2dc-995a-4ddf-915e-b3bb314a7fa4"` |
 | roles |Eine Liste der App-Rollen des Benutzers.    Beispiel: `["SurveyCreator"]` |
@@ -70,7 +70,7 @@ Hier einige Beispiele für die Transformation von Ansprüchen:
 * Hinzufügen **standardmäßiger Anspruchswerte** für Ansprüche, die nicht vorhanden sind, z. B. Zuweisen eines Benutzers zu einer Standardrolle. In einigen Fällen kann dies die Autorisierungslogik vereinfachen.
 * Hinzufügen **benutzerdefinierter Anspruchstypen** mit anwendungsspezifischen Informationen über den Benutzer. Beispielsweise können Sie einige Informationen über den Benutzer in einer Datenbank speichern und einen benutzerdefinierten Anspruch mit diesen Informationen zum Authentifizierungsticket hinzufügen. Der Anspruch wird in einem Cookie gespeichert, sodass Sie ihn nur einmal pro Anmeldesitzung aus der Datenbank abrufen müssen. Andererseits sollte auch die Erstellung übermäßig großer Cookies verhindert werden, sodass Sie zwischen Cookiegröße und Datenbanksuchen abwägen müssen.   
 
-Nach Abschluss des Authentifizierungsvorgangs stehen die Ansprüche in `HttpContext.User` zur Verfügung. An diesem Punkt sollten Sie sie als eine schreibgeschützte Auflistung behandeln und z. B. zum Treffen von Autorisierungsentscheidungen verwenden.
+Nach Abschluss des Authentifizierungsvorgangs stehen die Ansprüche in `HttpContext.User`zur Verfügung. An diesem Punkt sollten Sie sie als eine schreibgeschützte Auflistung behandeln und z. B. zum Treffen von Autorisierungsentscheidungen verwenden.
 
 ## <a name="issuer-validation"></a>Überprüfung des Ausstellers
 In OpenID Connect (OIDC) identifiziert der Ausstelleranspruch (iss) den Identitätsanbieter, der das ID-Token ausgestellt hat. Im Rahmen des OIDC-Authentifizierungsvorgangs muss überprüft werden, ob der Ausstelleranspruch dem tatsächlichen Aussteller entspricht. Dies übernimmt die OIDC-Middleware für Sie.
@@ -117,9 +117,9 @@ Weitere Informationen finden Sie unter [Rollen- und ressourcenbasierte Autorisie
 
 <!-- Links -->
 
-[Bereichsparameter]: http://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
+[Bereichsparameter]: https://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
 [Unterstützte Token- und Anspruchstypen]: /azure/active-directory/active-directory-token-and-claims/
-[Aussteller]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
+[Zertifikataussteller]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [Authentifizierungsereignisse]: authenticate.md#authentication-events
 [signup]: signup.md
 [Claims-Based Authorization]: /aspnet/core/security/authorization/claims

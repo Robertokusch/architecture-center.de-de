@@ -3,12 +3,12 @@ title: Erfassung und Workflow in Microservices
 description: Erfassung und Workflow in Microservices
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 6477c3f2b0cc6d37dcd4637dc0dde4f7a6e3cc74
-ms.sourcegitcommit: 94c769abc3d37d4922135ec348b5da1f4bbcaa0a
+ms.openlocfilehash: 1851d979ed23b35046474f299128064d1abb375e
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/13/2017
-ms.locfileid: "26678729"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429484"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>Entwerfen von Microservices: Erfassung und Workflow
 
@@ -32,7 +32,7 @@ Dies ist der Kern der gesamten Anwendung, und der End-to-End-Prozess muss eine h
 
 - **Garantierte Übermittlung**: Um zu verhindern, dass Clientanforderungen verloren gehen, muss für die Erfassungskomponente eine einmalige Zustellung garantiert sein. 
 
-- **Fehlerbehandlung**: Wenn für einen Dienst ein Fehlercode oder ein nicht vorübergehender Fehler auftritt, kann die Zustellung nicht geplant werden. Ein Fehlercode kann auf einen erwarteten Fehlerzustand (z.B. die Aussetzung des Kundenkontos) oder einen unerwarteten Serverfehler (HTTP 5xx) hinweisen. Ein Dienst kann auch ggf. nicht verfügbar sein, sodass es für den Netzwerkaufruf zu einer Zeitüberschreitung kommt. 
+- **Fehlerbehandlung**. Wenn für einen Dienst ein Fehlercode oder ein nicht vorübergehender Fehler auftritt, kann die Zustellung nicht geplant werden. Ein Fehlercode kann auf einen erwarteten Fehlerzustand (z.B. die Aussetzung des Kundenkontos) oder einen unerwarteten Serverfehler (HTTP 5xx) hinweisen. Ein Dienst kann auch ggf. nicht verfügbar sein, sodass es für den Netzwerkaufruf zu einer Zeitüberschreitung kommt. 
 
 Zuerst sehen wir uns die Erfassungsseite der Gleichung an, also wie das System eingehende Benutzeranforderungen bei hohem Durchsatz erfassen kann. Anschließend beschäftigen wir uns damit, wie mit der Anwendung für die Drohnenlieferung ein zuverlässiger Workflow implementiert werden kann. Wir kommen zu der Erkenntnis, dass sich der Entwurf des Subsystems für die Erfassung auf das Workflow-Back-End auswirkt. 
 
@@ -58,7 +58,7 @@ Mit einer Warteschlange kann ein einzelner Consumer eine Nachricht aus der Warte
 
 Für Event Hubs wird dagegen eine Streamingsemantik genutzt. Consumer lesen den Datenstrom unabhängig mit ihrer eigenen Geschwindigkeit. Jeder Consumer ist dafür verantwortlich, seine aktuelle Position im Datenstrom nachzuverfolgen. Ein Consumer sollte seine aktuelle Position in vordefinierten Intervallen in einen beständigen Speicher schreiben. Falls für den Consumer ein Fehler auftritt (z.B. ein Absturz des Consumers oder Ausfall des Hosts), kann eine neue Instanz das Lesen des Datenstroms dann ab der zuletzt aufgezeichneten Position fortsetzen. Dieser Prozess wird als *Setzen von Prüfpunkten* bezeichnet. 
 
-Aus Leistungsgründen führt ein Consumer das Setzen von Prüfpunkten nicht nach jeder Nachricht durch. Stattdessen erfolgt dies in festen Intervallen, z.B. nach der Verarbeitung von *n* Nachrichten oder alle *n* Sekunden. Aus diesem Grund werden einige Ereignisse bei einem Ausfall eines Consumers ggf. zweimal verarbeitet, da eine neue Instanz den Vorgang immer ab dem letzten Prüfpunkt fortsetzt. Dies ist mit einem Nachteil verbunden: Häufige Prüfpunkte können die Leistung beeinträchtigen, und eine geringe Zahl von Prüfpunkten bedeutet, dass Sie nach einem Fehler mehr Ereignisse wiederholen müssen.  
+Aus Leistungsgründen führt ein Consumer das Setzen von Prüfpunkten nicht nach jeder Nachricht durch. Stattdessen erfolgt dies in festen Intervallen, z.B. nach dem Verarbeiten von *n* Nachrichten oder alle *n* Sekunden. Aus diesem Grund werden einige Ereignisse bei einem Ausfall eines Consumers ggf. zweimal verarbeitet, da eine neue Instanz den Vorgang immer ab dem letzten Prüfpunkt fortsetzt. Dies ist mit einem Nachteil verbunden: Häufige Prüfpunkte können die Leistung beeinträchtigen, und eine geringe Zahl von Prüfpunkten bedeutet, dass Sie nach einem Fehler mehr Ereignisse wiederholen müssen.  
 
 ![](./images/stream-semantics.png)
  
@@ -83,7 +83,7 @@ In der Drohnenanwendung kann ein Batch mit Nachrichten parallel verarbeitet werd
 
 ### <a name="iothub-react"></a>IotHub React 
 
-[IotHub React](https://github.com/Azure/toketi-iothubreact) ist eine Akka Streams-Bibliothek zum Lesen von Ereignissen aus Event Hub. Akka Streams ist ein datenstrombasiertes Programmierframework, mit dem die [Reactive Streams](http://www.reactive-streams.org/)-Spezifikation implementiert wird. Es ermöglicht die Erstellung von effizienten Streamingpipelines, bei denen alle Streamingvorgänge asynchron durchgeführt werden und die Pipeline Rückstaus korrekt verarbeiten kann. Zu Rückstaus kommt es, wenn eine Ereignisquelle Ereignisse schneller produziert, als diese von nachgeschalteten Consumern empfangen werden können. Dies ist genau die Situation, in der für das System für die Drohnenlieferung eine Datenverkehrsspitze auftritt. Wenn sich die Back-End-Dienste verlangsamen, gilt dies auch für IoTHub React. Wenn die Kapazität erhöht wird, sendet IoTHub React mehr Nachrichten über die Pipeline.
+[IotHub React](https://github.com/Azure/toketi-iothubreact) ist eine Akka Streams-Bibliothek zum Lesen von Ereignissen aus Event Hub. Akka Streams ist ein datenstrombasiertes Programmierframework, mit dem die [Reactive Streams](https://www.reactive-streams.org/)-Spezifikation implementiert wird. Es ermöglicht die Erstellung von effizienten Streamingpipelines, bei denen alle Streamingvorgänge asynchron durchgeführt werden und die Pipeline Rückstaus korrekt verarbeiten kann. Zu Rückstaus kommt es, wenn eine Ereignisquelle Ereignisse schneller produziert, als diese von nachgeschalteten Consumern empfangen werden können. Dies ist genau die Situation, in der für das System für die Drohnenlieferung eine Datenverkehrsspitze auftritt. Wenn sich die Back-End-Dienste verlangsamen, gilt dies auch für IoTHub React. Wenn die Kapazität erhöht wird, sendet IoTHub React mehr Nachrichten über die Pipeline.
 
 Akka Streams ist außerdem ein außerordentlich natürliches Programmiermodell zum Streamen von Ereignissen aus Event Hubs. Anstatt eine Schleife durch einen Batch mit Ereignissen durchzuführen, definieren Sie eine Gruppe von Vorgängen, die auf jedes Ereignis angewendet werden, und überlassen Akka Streams das Streaming. Von Akka Streams wird eine Streamingpipeline basierend auf *Quellen*, *Datenflüssen* und *Senken* definiert. Eine Quelle generiert einen Ausgabestream, ein Datenfluss verarbeitet einen Eingabestream und erstellt einen Ausgabestream, und eine Senke nutzt einen Datenstrom, ohne eine Ausgabe zu produzieren.
 

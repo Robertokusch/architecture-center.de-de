@@ -3,12 +3,12 @@ title: Überwachung von Webanwendungen in Azure
 description: Überwachen Sie eine in Azure App Service gehostete Webanwendung.
 author: adamboeglin
 ms.date: 09/12/2018
-ms.openlocfilehash: b1beb5cf5e29ab1ceb760bf95eab85d819b69342
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: ea57ba50f4e9390d5527587752c3bebad01b6139
+ms.sourcegitcommit: 42797fffb82bbbf86f6deb1da52c61d456be631e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876850"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49313215"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Überwachung von Webanwendungen in Azure
 
@@ -24,7 +24,7 @@ Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 - Sammeln von Front-End- und Back-End-Telemetriedaten für eine unter Azure bereitgestellte Anwendung
 - Überwachen von Metriken und Kontingenten, die Diensten unter Azure zugeordnet sind
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![App-Überwachungsarchitektur – Diagramm][architecture]
 
@@ -99,7 +99,7 @@ Telemetriedaten von Application Insights werden beim Debuggen und nach dem Verö
 
 Nach der Bereitstellung können Sie sich einen [Live Metrics Stream][Live Metrics Stream] mit Leistungsindikatoren ansehen. Diese Daten werden nicht gespeichert – Sie zeigen Echtzeitmetriken an –, aber die Telemetriedaten können gesammelt und später analysiert werden. Für Live Stream-Daten fallen keine Gebühren an.
 
-Die Abrechnung von Log Analytics erfolgt pro GB an Daten, die im Dienst erfasst werden. Die ersten 5 GB an Daten, die jeden Monat mit dem Azure Log Analytics-Dienst erfasst werden, sind kostenlos. Die Daten werden für die ersten 31 Tage ohne Gebühren in Ihrem Log Analytics-Arbeitsbereich aufbewahrt.
+Die Abrechnung von Log Analytics erfolgt pro GB an Daten, die im Dienst erfasst werden. Die ersten 5 GB an Daten, die jeden Monat mit dem Azure Log Analytics-Dienst erfasst werden, sind kostenlos. Die Daten werden für die ersten 31 Tage ohne Gebühren in Ihrem Log Analytics-Arbeitsbereich aufbewahrt. 
 
 ## <a name="next-steps"></a>Nächste Schritte
 

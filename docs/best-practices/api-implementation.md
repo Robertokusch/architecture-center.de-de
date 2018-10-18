@@ -4,12 +4,12 @@ description: Anleitung zur Implementierung einer API
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: cc28864de36afdeed2f8a7155a307e312c3a398e
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: fff377d347ce93e9fb83fff1f5a44fe1c7b4dbea
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/05/2018
-ms.locfileid: "27596018"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429399"
 ---
 # <a name="api-implementation"></a>API-Implementierung
 
@@ -24,7 +24,7 @@ Beachten Sie die folgenden Punkte, wenn Sie den Code zum Behandeln von Anforderu
 Der Code, mit dem diese Anforderungen implementiert werden, sollte nicht mit Nebeneffekten verbunden sein. Eine Anforderung, die für eine Ressource wiederholt ausgeführt wird, sollte zum gleichen Ergebnis führen. Das Senden von mehreren DELETE-Anforderungen an denselben URI sollte die gleiche Auswirkung haben, aber der HTTP-Statuscode in den Antwortnachrichten kann sich unterscheiden. Für die erste DELETE-Anforderung wird ggf. der Statuscode 204 (Kein Inhalt) zurückgegeben, während für eine nachfolgende DELETE-Anforderung unter Umständen der Statuscode 404 (Nicht gefunden) zurückgegeben wird.
 
 > [!NOTE]
-> Der Artikel [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/) (Muster der Idempotenz) im Blog von Jonathan Oliver enthält eine Übersicht über die Idempotenz und ihre Verbindung mit Datenverwaltungsvorgängen.
+> Der Artikel [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/) (Muster der Idempotenz) im Blog von Jonathan Oliver enthält eine Übersicht über die Idempotenz und ihre Verbindung mit Datenverwaltungsvorgängen.
 >
 
 ### <a name="post-actions-that-create-new-resources-should-not-have-unrelated-side-effects"></a>Bei POST-Aktionen, mit denen neue Ressourcen erstellt werden, sollten keine nicht relevanten Nebeneffekte auftreten
@@ -35,7 +35,7 @@ Wenn mit einer POST-Anforderung eine neue Ressource erstellt werden soll, sollte
 
 Bauen Sie die Unterstützung von POST-, PUT- und DELETE-Anforderungen über Ressourcenauflistungen ein. Eine POST-Anforderung kann die Details für mehrere neue Ressourcen enthalten und diese derselben Auflistung hinzufügen. Mit einer PUT-Anforderung kann der gesamte Ressourcensatz in einer Auflistung ersetzt werden, und mit einer DELETE-Anforderung kann eine gesamte Auflistung entfernt werden.
 
-Die in der ASP.NET-Web-API 2 enthaltene OData-Unterstützung ermöglicht das Zusammenfassen von Anforderungen in Batches. Eine Clientanwendung kann mehrere Web-API-Anforderungen verpacken und in einer einzelnen HTTP-Anforderung an den Server senden. Sie erhält dann eine einzelne HTTP-Antwort mit den Antworten für die einzelnen Anforderungen. Weitere Informationen finden Sie unter [Introducing Batch Support in Web API and Web API OData](http://blogs.msdn.com/b/webdev/archive/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata.aspx) (Einführung der Batchunterstützung für die Web-API und Web-API-OData).
+Die in der ASP.NET-Web-API 2 enthaltene OData-Unterstützung ermöglicht das Zusammenfassen von Anforderungen in Batches. Eine Clientanwendung kann mehrere Web-API-Anforderungen verpacken und in einer einzelnen HTTP-Anforderung an den Server senden. Sie erhält dann eine einzelne HTTP-Antwort mit den Antworten für die einzelnen Anforderungen. Weitere Informationen finden Sie unter [Introducing Batch Support in Web API and Web API OData](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/) (Einführung der Batchunterstützung für die Web-API und Web-API-OData).
 
 ### <a name="follow-the-http-specification-when-sending-a-response"></a>Befolgen der HTTP-Spezifikation beim Senden einer Antwort 
 
@@ -56,7 +56,7 @@ Mit dem HATEOAS-Ansatz kann ein Client von einem Startpunkt aus zu Ressourcen na
 Derzeit gibt es keine Standards, mit denen die Implementierung von HATEOAS geregelt wird, aber im folgenden Beispiel wird ein möglicher Ansatz veranschaulicht. In diesem Beispiel wird mit einer HTTP GET-Anforderung zum Suchen nach den Details für einen Kunden eine Antwort zurückgegeben, die HATEOAS-Links enthält, mit denen auf die Bestellungen des Kunden verwiesen wird:
 
 ```HTTP
-GET http://adventure-works.com/customers/2 HTTP/1.1
+GET https://adventure-works.com/customers/2 HTTP/1.1
 Accept: text/json
 ...
 ```
@@ -69,23 +69,23 @@ Content-Type: application/json; charset=utf-8
 Content-Length: ...
 {"CustomerID":2,"CustomerName":"Bert","Links":[
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"GET",
     "types":["text/xml","application/json"]},
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"PUT",
     "types":["application/x-www-form-urlencoded"]},
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"DELETE",
     "types":[]},
     {"rel":"orders",
-    "href":"http://adventure-works.com/customers/2/orders",
+    "href":"https://adventure-works.com/customers/2/orders",
     "action":"GET",
     "types":["text/xml","application/json"]},
     {"rel":"orders",
-    "href":"http://adventure-works.com/customers/2/orders",
+    "href":"https://adventure-works.com/customers/2/orders",
     "action":"POST",
     "types":["application/x-www-form-urlencoded"]}
 ]}
@@ -120,11 +120,11 @@ Der HTTP GET-Vorgang ruft die Kundendaten aus dem Speicher ab und erstellt ein `
 
 Mit den HATEOAS-Links in der HTTP-Beispielantwort wird angegeben, dass eine Clientanwendung die folgenden Vorgänge durchführen kann:
 
-* Eine HTTP GET-Anforderung an den URI `http://adventure-works.com/customers/2`, um die Details des Kunden abzurufen (erneut). Die Daten können im XML- oder JSON-Format zurückgegeben werden.
-* Eine HTTP PUT-Anforderung an den URI `http://adventure-works.com/customers/2`, um die Details des Kunden zu ändern. Die neuen Daten müssen in der Anforderungsnachricht im Format „x-www-form-urlencoded“ bereitgestellt werden.
-* Eine HTTP DELETE-Anforderung an den URI `http://adventure-works.com/customers/2`, um den Kunden zu löschen. Die Anforderung erwartet keine zusätzlichen Informationen oder Rückgabedaten im Text der Antwortnachricht.
-* Eine HTTP GET-Anforderung an den URI `http://adventure-works.com/customers/2/orders`, um alle Bestellungen des Kunden per Suche zu ermitteln. Die Daten können im XML- oder JSON-Format zurückgegeben werden.
-* Eine HTTP PUT-Anforderung an den URI `http://adventure-works.com/customers/2/orders`, um eine neue Bestellung für den Kunden zu erstellen. Die Daten müssen in der Anforderungsnachricht im Format „x-www-form-urlencoded“ bereitgestellt werden.
+* Eine HTTP GET-Anforderung an den URI `https://adventure-works.com/customers/2`, um die Details des Kunden abzurufen (erneut). Die Daten können im XML- oder JSON-Format zurückgegeben werden.
+* Eine HTTP PUT-Anforderung an den URI `https://adventure-works.com/customers/2`, um die Details des Kunden zu ändern. Die neuen Daten müssen in der Anforderungsnachricht im Format „x-www-form-urlencoded“ bereitgestellt werden.
+* Eine HTTP DELETE-Anforderung an den URI `https://adventure-works.com/customers/2`, um den Kunden zu löschen. Die Anforderung erwartet keine zusätzlichen Informationen oder Rückgabedaten im Text der Antwortnachricht.
+* Eine HTTP GET-Anforderung an den URI `https://adventure-works.com/customers/2/orders`, um alle Bestellungen des Kunden per Suche zu ermitteln. Die Daten können im XML- oder JSON-Format zurückgegeben werden.
+* Eine HTTP PUT-Anforderung an den URI `https://adventure-works.com/customers/2/orders`, um eine neue Bestellung für den Kunden zu erstellen. Die Daten müssen in der Anforderungsnachricht im Format „x-www-form-urlencoded“ bereitgestellt werden.
 
 ## <a name="handling-exceptions"></a>Behandeln von Ausnahmen
 
@@ -132,7 +132,7 @@ Berücksichtigen Sie die folgenden Punkte, wenn ein Vorgang eine nicht abgefange
 
 ### <a name="capture-exceptions-and-return-a-meaningful-response-to-clients"></a>Erfassen von Ausnahmen und Zurückgeben einer aussagekräftigen Antwort an Clients
 
-Mit dem Code zum Implementieren eines HTTP-Vorgangs sollte eine umfassende Ausnahmebehandlung bereitgestellt werden, anstatt zuzulassen, dass unerwartete Ausnahmen ins Framework gelangen. Wenn eine Ausnahme den erfolgreichen Abschluss des Vorgangs verhindert, kann die Ausnahme in der Antwortnachricht zurück übergeben werden. Sie sollte aber eine aussagekräftige Beschreibung des Fehlers enthalten, der die Ausnahme verursacht hat. Außerdem sollte die Ausnahme den passenden HTTP-Statuscode enthalten, anstatt einfach für jede Situation den Statuscode 500 zurückzugeben. Wenn eine Benutzeranforderung beispielsweise eine Datenbankaktualisierung bewirkt, die eine Verletzung einer Einschränkung darstellt (z. B. das versuchte Löschen eines Kunden, für den noch Bestellungen ausstehen), sollten Sie den Statuscode 409 (Conflict) und einen Nachrichtentext zurückgeben, um die Ursache des Konflikts anzugeben. Falls die Anforderung aufgrund einer anderen Bedingung nicht durchführbar ist, können Sie den Statuscode 400 (Bad Request) zurückgeben. Eine vollständige Liste mit HTTP-Statuscodes finden Sie auf der W3C-Website im Thema zu den [Statuscodedefinitionen](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+Mit dem Code zum Implementieren eines HTTP-Vorgangs sollte eine umfassende Ausnahmebehandlung bereitgestellt werden, anstatt zuzulassen, dass unerwartete Ausnahmen ins Framework gelangen. Wenn eine Ausnahme den erfolgreichen Abschluss des Vorgangs verhindert, kann die Ausnahme in der Antwortnachricht zurück übergeben werden. Sie sollte aber eine aussagekräftige Beschreibung des Fehlers enthalten, der die Ausnahme verursacht hat. Außerdem sollte die Ausnahme den passenden HTTP-Statuscode enthalten, anstatt einfach für jede Situation den Statuscode 500 zurückzugeben. Wenn eine Benutzeranforderung beispielsweise eine Datenbankaktualisierung bewirkt, die eine Verletzung einer Einschränkung darstellt (z. B. das versuchte Löschen eines Kunden, für den noch Bestellungen ausstehen), sollten Sie den Statuscode 409 (Conflict) und einen Nachrichtentext zurückgeben, um die Ursache des Konflikts anzugeben. Falls die Anforderung aufgrund einer anderen Bedingung nicht durchführbar ist, können Sie den Statuscode 400 (Bad Request) zurückgeben. Eine vollständige Liste mit HTTP-Statuscodes finden Sie auf der W3C-Website im Thema zu den [Statuscodedefinitionen](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 Im Codebeispiel werden unterschiedliche Bedingungen abgefangen, und es wird eine entsprechende Antwort zurückgegeben.
 
@@ -198,7 +198,7 @@ In einer verteilten Umgebung, z. B. mit einem Webserver und Clientanwendungen, 
 Das HTTP 1.1-Protokoll unterstützt die Zwischenspeicherung auf Clients und Zwischenservern, über die eine Anforderung mit Cache-Control-Header weitergeleitet wird. Wenn eine Clientanwendung eine HTTP GET-Anforderung an die Web-API sendet, kann die Antwort einen Cache-Control-Header enthalten. Hiermit wird angegeben, ob die Daten im Text der Antwort vom Client oder einem Zwischenserver, über den die Anforderung weitergeleitet wurde, sicher zwischengespeichert werden können. Außerdem wird angegeben, nach welchem Zeitraum die Daten ablaufen und als veraltet angesehen werden. Das folgende Beispiel enthält eine HTTP GET-Anforderung und die dazugehörige Antwort mit einem Cache-Control-Header:
 
 ```HTTP
-GET http://adventure-works.com/orders/2 HTTP/1.1
+GET https://adventure-works.com/orders/2 HTTP/1.1
 ```
 
 ```HTTP
@@ -339,7 +339,7 @@ Eine Clientanwendung kann eine nachfolgende GET-Anforderung ausgeben, um jederze
 * Der Client erstellt eine GET-Anforderung mit dem ETag für die derzeit zwischengespeicherte Version der Ressource, auf die in einem If-None-Match-HTTP-Header verwiesen wird:
 
     ```HTTP
-    GET http://adventure-works.com/orders/2 HTTP/1.1
+    GET https://adventure-works.com/orders/2 HTTP/1.1
     If-None-Match: "2147483648"
     ```
 * Der GET-Vorgang in der Web-API ruft das aktuelle ETag für die angeforderten Daten ab („Order 2“ im obigen Beispiel) und vergleicht es mit dem Wert im If-None-Match-Header.
@@ -452,7 +452,7 @@ Zum Ermöglichen von Updates für zuvor zwischengespeicherte Daten unterstützt 
 * Der Client erstellt eine PUT-Anforderung mit den neuen Details für die Ressource und dem ETag für die derzeit zwischengespeicherte Version der Ressource, auf die in einem If-Match-HTTP-Header verwiesen wird. Das folgende Beispiel enthält eine PUT-Anforderung, mit der eine Bestellung aktualisiert wird:
 
     ```HTTP
-    PUT http://adventure-works.com/orders/1 HTTP/1.1
+    PUT https://adventure-works.com/orders/1 HTTP/1.1
     If-Match: "2282343857"
     Content-Type: application/x-www-form-urlencoded
     Content-Length: ...
@@ -571,7 +571,7 @@ Wenn Sie einen Dienst per IIS hosten, werden Expect: 100-Continue-Header vom Tre
 Wenn Sie Clientanwendungen mit dem .NET Framework erstellen, werden für alle POST- und PUT-Nachrichten standardmäßig zuerst Nachrichten mit Expect: 100-Continue-Headern gesendet. Wie auf der Serverseite auch, wird der Prozess vom .NET Framework transparent behandelt. Dieser Prozess führt aber dazu, dass jede POST- und PUT-Anforderung zwei Roundtrips zum Server verursacht. Dies gilt auch für kleine Anforderungen. Wenn von Ihrer Anwendung keine Anforderungen mit großen Datenmengen gesendet werden, können Sie dieses Feature deaktivieren. Verwenden Sie hierzu die `ServicePointManager`-Klasse, um `ServicePoint`-Objekte in der Clientanwendung zu erstellen. Ein `ServicePoint`-Objekt behandelt die Verbindungen, die der Client basierend auf dem Schema und den Hostfragmenten von URIs, mit denen Ressourcen auf dem Server identifiziert werden, mit einem Server herstellt. Sie können die `Expect100Continue`-Eigenschaft des `ServicePoint`-Objekts dann auf „false“ festlegen. Alle nachfolgenden POST- und PUT-Anforderungen, die vom Client über einen URI gesendet werden, der mit dem Schema und den Hostfragmenten des `ServicePoint`-Objekts übereinstimmt, werden ohne Expect: 100-Continue-Header gesendet. Im folgenden Code wird veranschaulicht, wie Sie ein `ServicePoint`-Objekt konfigurieren, mit dem alle an URIs gesendeten Anforderungen mit dem Schema `http` und dem Host `www.contoso.com` konfiguriert werden.
 
 ```csharp
-Uri uri = new Uri("http://www.contoso.com/");
+Uri uri = new Uri("https://www.contoso.com/");
 ServicePoint sp = ServicePointManager.FindServicePoint(uri);
 sp.Expect100Continue = false;
 ```
@@ -601,7 +601,7 @@ public class OrdersController : ApiController
 }
 ```
 
-Eine Clientanwendung kann eine Anforderung senden, um 30 Bestellungen ab Offset 50 abzurufen, indem der URI `http://www.adventure-works.com/api/orders?limit=30&offset=50` verwendet wird.
+Eine Clientanwendung kann eine Anforderung senden, um 30 Bestellungen ab Offset 50 abzurufen, indem der URI `https://www.adventure-works.com/api/orders?limit=30&offset=50` verwendet wird.
 
 > [!TIP]
 > Sie sollten verhindern, dass Clientanwendungen Abfragezeichenfolgen angeben können, die zu einem URI mit einer Länge von mehr als 2.000 Zeichen führen. Viele Webclients und -server können keine URIs dieser Länge verarbeiten.
@@ -631,7 +631,7 @@ Optionen zur Implementierung von Benachrichtigungen:
 
 - Verwenden Sie ein Azure Notification Hub, um asynchrone Antworten per Pushvorgang an Clientanwendungen zu übertragen. Weitere Informationen finden Sie unter [Azure Notification Hubs – Benachrichtigen von Benutzern über .NET-Back-End](/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification/).
 - Verwenden Sie das Comet-Modell, um eine dauerhafte Netzwerkverbindung zwischen dem Client und dem Hostserver der Web-API aufrechtzuerhalten. Nutzen Sie diese Verbindung, um Nachrichten vom Server zurück an den Client zu übertragen. Eine Beispiellösung ist im Artikel [Erstellen einer einfachen Comet-Anwendung in Microsoft .NET Framework](https://msdn.microsoft.com/magazine/jj891053.aspx) des MSDN-Magazins enthalten.
-- Verwenden Sie SignalR, um Daten über eine dauerhafte Netzwerkverbindung in Echtzeit vom Webserver auf den Client zu übertragen. SignalR ist für ASP.NET-Webanwendungen als NuGet-Paket verfügbar. Weitere Informationen finden Sie auf der Website [ASP.NET SignalR](http://signalr.net/).
+- Verwenden Sie SignalR, um Daten über eine dauerhafte Netzwerkverbindung in Echtzeit vom Webserver auf den Client zu übertragen. SignalR ist für ASP.NET-Webanwendungen als NuGet-Paket verfügbar. Weitere Informationen finden Sie auf der Website [ASP.NET SignalR](https://www.asp.net/signalr).
 
 ### <a name="ensure-that-each-request-is-stateless"></a>Sicherstellen, dass jede Anforderung zustandslos ist
 
@@ -662,7 +662,7 @@ Die Web-API muss in einer Hostumgebung bereitgestellt werden, um sie für Client
 * Unter Umständen ist es gesetzlich vorgeschrieben, alle Anforderungen und Antworten zu protokollieren und zu überwachen.
 * Zum Sicherstellen der Verfügbarkeit kann es erforderlich sein, die Integrität des Servers zu überwachen, auf dem die Web-API gehostet wird, und ihn bei Bedarf neu zu starten.
 
-Es ist hilfreich, diese Probleme von den technischen Problemen in Bezug auf die Implementierung der Web-API abkoppeln zu können. Erwägen Sie deshalb das Erstellen einer [Fassade](http://en.wikipedia.org/wiki/Facade_pattern), die als separater Prozess ausgeführt wird und Anforderungen an die Web-API umleitet. Mit dieser Fassade können die Verwaltungsvorgänge bereitgestellt und geprüfte Anforderungen an die Web-API weitergeleitet werden. Die Nutzung einer Fassade ist ferner mit vielen funktionellen Vorteilen verbunden, z. B.:
+Es ist hilfreich, diese Probleme von den technischen Problemen in Bezug auf die Implementierung der Web-API abkoppeln zu können. Erwägen Sie deshalb das Erstellen einer [Fassade](https://en.wikipedia.org/wiki/Facade_pattern), die als separater Prozess ausgeführt wird und Anforderungen an die Web-API umleitet. Mit dieser Fassade können die Verwaltungsvorgänge bereitgestellt und geprüfte Anforderungen an die Web-API weitergeleitet werden. Die Nutzung einer Fassade ist ferner mit vielen funktionellen Vorteilen verbunden, z. B.:
 
 * Sie dient als Integrationspunkt für mehrere Web-APIs.
 * Sie ermöglicht das Transformieren von Nachrichten und das Übersetzen von Kommunikationsprotokollen für Clients, die mit unterschiedlicher Technologie erstellt wurden.
@@ -701,7 +701,7 @@ Außerdem sollten Sie Leistungstests erstellen und ausführen, um zu überprüfe
 
 ## <a name="using-azure-api-management"></a>Verwenden von Azure API Management 
 
-Erwägen Sie in Azure die Verwendung von [Azue API Management](https://azure.microsoft.com/documentation/services/api-management/) zum Veröffentlichen und Verwalten einer Web-API. Hiermit können Sie einen Dienst generieren, der für eine oder mehrere Web-APIs als „Fassade“ (Façade) dient. Bei diesem Dienst handelt es sich selbst um einen skalierbaren Webdienst, den Sie mit dem Azure-Verwaltungsportal erstellen und konfigurieren können. Sie können diesen Dienst verwenden, um eine Web-API wie folgt zu veröffentlichen und zu verwalten:
+Erwägen Sie in Azure die Verwendung von [Azue API Management](https://azure.microsoft.com/documentation/services/api-management/) zum Veröffentlichen und Verwalten einer Web-API. Mit dieser Funktion können Sie einen Dienst generieren, der als Fassade für mindestens eine Web-API dient. Bei diesem Dienst handelt es sich selbst um einen skalierbaren Webdienst, den Sie mit dem Azure-Verwaltungsportal erstellen und konfigurieren können. Sie können diesen Dienst verwenden, um eine Web-API wie folgt zu veröffentlichen und zu verwalten:
 
 1. Stellen Sie die Web-API auf einer Website, in einem Azure-Clouddienst oder auf einem virtuellen Azure-Computer bereit.
 2. Verbinden Sie den API Management-Dienst mit der Web-API. Anforderungen, die an die URL der Verwaltungs-API gesendet werden, werden den URIs in der Web-API zugeordnet. Ein und derselbe API Management-Dienst kann Anforderungen an mehr als eine Web-API weiterleiten. So können Sie mehrere Web-APIs zu einem zentralen Management-Dienst zusammenfassen. Außerdem kann von mehr als einem API Management-Dienst auf dieselbe Web-API verwiesen werden, wenn Sie die Funktionalität, die für unterschiedliche Anwendungen verfügbar ist, einschränken oder partitionieren müssen.
@@ -784,10 +784,10 @@ Anhand dieser Informationen können Sie bestimmen, ob eine bestimmte Web-API ode
 >
 
 ## <a name="more-information"></a>Weitere Informationen
-* [ASP.NET-Web-API-OData](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api) enthält Beispiele und weitere Informationen zur Implementierung einer OData-Web-API per ASP.NET.
-* Unter [Einführung der Batchunterstützung für die Web-API und Web-API-OData](http://blogs.msdn.com/b/webdev/archive/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata.aspx) wird beschrieben, wie Sie Batchvorgänge in einer Web-API mit OData implementieren.
-* [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/) (Muster der Idempotenz) im Blog von Jonathan Oliver enthält eine Übersicht über die Idempotenz und ihre Verbindung mit Datenverwaltungsvorgängen.
-* [Statuscodedefinitionen](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) auf der W3C-Website enthält eine vollständige Liste mit HTTP-Statuscodes und den dazugehörigen Beschreibungen.
+* [ASP.NET-Web-API-OData](https://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api) enthält Beispiele und weitere Informationen zur Implementierung einer OData-Web-API per ASP.NET.
+* Unter [Einführung der Batchunterstützung für die Web-API und Web-API-OData](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/) wird beschrieben, wie Sie Batchvorgänge in einer Web-API mit OData implementieren.
+* [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/) (Muster der Idempotenz) im Blog von Jonathan Oliver enthält eine Übersicht über die Idempotenz und ihre Verbindung mit Datenverwaltungsvorgängen.
+* [Statuscodedefinitionen](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) auf der W3C-Website enthält eine vollständige Liste mit HTTP-Statuscodes und den dazugehörigen Beschreibungen.
 * Unter [Ausführen von Hintergrundaufgaben mit WebJobs in Azure App Service](/azure/app-service-web/web-sites-create-web-jobs/) finden Sie Informationen und Beispiele zur Verwendung von WebJobs für die Durchführung von Hintergrundvorgängen.
 * Unter [Azure Notification Hubs – Benachrichtigen von Benutzern](/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification/) wird beschrieben, wie Sie einen Azure Notification Hub zum Übertragen von asynchronen Antworten per Pushvorgang auf Clientanwendungen verwenden.
 * Unter [API Management](https://azure.microsoft.com/services/api-management/) wird beschrieben, wie Sie ein Produkt veröffentlichen, das kontrollierten und sicheren Zugriff auf eine Web-API ermöglicht.
