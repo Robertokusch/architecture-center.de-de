@@ -2,13 +2,13 @@
 title: Entwerfen, Erstellen und Betreiben von Microservices in Azure mit Kubernetes
 description: Entwerfen, Erstellen und Betreiben von Microservices in Azure
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: 857e91a8eeefec18b459f2e66fde9a4f8bbe7b21
-ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
+ms.date: 10/23/2018
+ms.openlocfilehash: cac16c9212432c72aeaecac1a578828a00838431
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2018
-ms.locfileid: "27701101"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962771"
 ---
 # <a name="designing-building-and-operating-microservices-on-azure"></a>Entwerfen, Erstellen und Betreiben von Microservices in Azure
 
@@ -85,7 +85,7 @@ Dieses Szenario beinhaltet eine recht komplizierte Domäne. Zu den Anliegen des 
 > [!NOTE]
 > Hilfreiche Informationen zur Wahl einer Microservices-Architektur oder eines anderen Architekturstils finden Sie im [Azure-Anwendungsarchitekturleitfaden](../guide/index.md).
 
-Unsere Referenzimplementierung verwendet Kubernetes mit [Azure Container Service (ACS)](/azure/container-service/kubernetes/). Viele der allgemeinen architekturbezogenen Entscheidungen und Herausforderungen gelten jedoch für alle Containerorchestratoren (einschließlich [Azure Service Fabric](/azure/service-fabric/)). 
+Unsere Referenzimplementierung verwendet Kubernetes mit [Azure Kubernetes Service (AKS)](/azure/aks/). Viele der allgemeinen architekturbezogenen Entscheidungen und Herausforderungen gelten jedoch für alle Containerorchestratoren (einschließlich [Azure Service Fabric](/azure/service-fabric/)). 
 
 > [!div class="nextstepaction"]
 > [Domänenanalyse](./domain-analysis.md)
