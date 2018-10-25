@@ -2,13 +2,13 @@
 title: Kommunikation zwischen Diensten in Microservices
 description: Kommunikation zwischen Diensten in Microservices
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: aff2fb7b2be25ca32d6224cee15363880cfb1488
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.date: 10/23/2018
+ms.openlocfilehash: 19a54ffc362a1fc88c3255c9346bd697a319b143
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/29/2017
-ms.locfileid: "27549126"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962958"
 ---
 # <a name="designing-microservices-interservice-communication"></a>Entwerfen von Microservices: Kommunikation zwischen Diensten
 
@@ -66,7 +66,7 @@ Die effektive Verwendung von asynchronem Messaging ist jedoch auch mit gewissen 
 
 - **Kosten:** Bei hohem Durchsatz können durch die Messaginginfrastruktur erhebliche Kosten entstehen.
 
-- **Komplexität:** Der Umgang mit asynchronem Messaging ist keine leichte Aufgabe. So müssen Sie beispielsweise duplizierte Nachrichten behandeln – entweder mittels Deduplizierung oder durch Verwendung idempotenter Vorgänge. Auch ist es mit asynchronem Messaging nicht ganz einfach, eine Anforderung/Antwort-Semantik zu implementieren. Sie benötigen eine weitere Warteschlange zum Senden einer Antwort sowie eine Möglichkeit zum Korrelieren von Anforderungs- und Antwortnachrichten.
+- **Komplexität**. Der Umgang mit asynchronem Messaging ist keine leichte Aufgabe. So müssen Sie beispielsweise duplizierte Nachrichten behandeln – entweder mittels Deduplizierung oder durch Verwendung idempotenter Vorgänge. Auch ist es mit asynchronem Messaging nicht ganz einfach, eine Anforderung/Antwort-Semantik zu implementieren. Sie benötigen eine weitere Warteschlange zum Senden einer Antwort sowie eine Möglichkeit zum Korrelieren von Anforderungs- und Antwortnachrichten.
 
 - **Durchsatz:** Wenn Nachrichten eine *Warteschlangensemantik* erfordern, kann sich die Warteschlange zu einem Engpass im System entwickeln. Für jede Nachricht ist mindestens ein Vorgang zum Hinzufügen in die Warteschlange und ein Vorgang zum Entfernen aus der Warteschlange erforderlich. Darüber hinaus wird für eine Warteschlangensemantik in der Regel eine Art von Sperre in der Messaginginfrastruktur benötigt. Wenn es sich bei der Warteschlange um einen verwalteten Dienst handelt, ist unter Umständen mit einer höheren Wartezeit zu rechnen, da sich die Warteschlange außerhalb des virtuellen Netzwerks des Clusters befindet. Als Gegenmaßnahme für diese Probleme können Sie Nachrichten zu Batches zusammenfassen. Dies macht den Code jedoch komplizierter. Wenn die Nachrichten keine Warteschlangensemantik erfordern, können Sie anstelle einer Warteschlange ggf. einen *Stream* für Ereignisse verwenden. Weitere Informationen finden Sie unter [Ereignisgesteuerter Architekturstil](../guide/architecture-styles/event-driven.md).  
 
@@ -99,7 +99,7 @@ Ein *Dienstnetz* ist eine Softwareschicht für die Kommunikation zwischen Dienst
 > [!NOTE]
 > Ein Dienstnetz ist ein Beispiel für das [Botschaftermuster](../patterns/ambassador.md) – ein Hilfsdienst, der Netzwerkanforderungen im Auftrag der Anwendung sendet. 
 
-Als Dienstnetzoptionen stehen in Kubernetes momentan hauptsächlich [linkerd](https://linkerd.io/) und [Istio](https://istio.io/) zur Verfügung. Beide Technologien entwickeln sich rasant weiter. Als dieser Leitfaden erstellt wurde, war gerade die Istio-Version 0.2 aktuell. Es handelt sich also noch um eine sehr neue Technologie. Linkerd und Istio haben jedoch unter anderem folgende Features gemeinsam: 
+Als Dienstnetzoptionen stehen in Kubernetes momentan hauptsächlich [linkerd](https://linkerd.io/) und [Istio](https://istio.io/) zur Verfügung. Beide Technologien entwickeln sich rasant weiter. Linkerd und Istio haben jedoch unter anderem folgende Features gemeinsam: 
 
 - Lastenausgleich auf Sitzungsebene – basierend auf den ermittelten Wartezeiten oder der Anzahl ausstehender Anforderungen. Dies kann die Leistung über den von Kubernetes bereitgestellten Layer-4-Lastenausgleich verbessern. 
 

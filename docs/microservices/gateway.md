@@ -2,13 +2,13 @@
 title: API-Gateways
 description: API-Gateways in Microservices
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: 6483d416363e24f4084d6b856847a740bf4054d9
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.date: 10/23/2018
+ms.openlocfilehash: 41554e6abf4db61d1fa6e501419425d331495afc
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/29/2017
-ms.locfileid: "27549177"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962822"
 ---
 # <a name="designing-microservices-api-gateways"></a>Entwerfen von Microservices: API-Gateways
 
@@ -57,25 +57,21 @@ In diesem Abschnitt finden Sie einige Optionen für die Implementierung eines AP
 
 - [Azure Application Gateway:](/azure/application-gateway/) Application Gateway ist ein verwalteter Lastenausgleichsdienst, der für Layer-7-Routing und SSL-Beendigung geeignet ist. Darüber hinaus verfügt er über eine Web Application Firewall (WAF).
 
-- [Azure API Management:](/azure/api-management/) API Management ist eine sofort einsatzbereite Lösung zum Veröffentlichen von APIs für externe und interne Kunden. Sie bietet hilfreiche Features für die Verwaltung einer öffentlichen API wie Ratenbeschränkung, IP-Whitelisting und Authentifizierung mit Azure Active Directory oder anderen Identitätsanbietern. Da API Management über keinen Lastenausgleich verfügt, sollte die Lösung mit einem Lastenausgleich wie Application Gateway oder einem Reverseproxy kombiniert werden.
+- [Azure API Management:](/azure/api-management/) API Management ist eine sofort einsatzbereite Lösung zum Veröffentlichen von APIs für externe und interne Kunden. Sie bietet hilfreiche Features für die Verwaltung einer öffentlichen API wie Ratenbeschränkung, IP-Whitelisting und Authentifizierung mit Azure Active Directory oder anderen Identitätsanbietern. Da API Management über keinen Lastenausgleich verfügt, sollte die Lösung mit einem Lastenausgleich wie Application Gateway oder einem Reverseproxy kombiniert werden. Informationen zur Verwendung von API Management mit Application Gateway finden Sie unter [Integrieren von API Management in ein internes VNET mit Application Gateway](/azure/api-management/api-management-howto-integrate-internal-vnet-appgateway).
 
 Berücksichtigen Sie bei der Wahl einer Gatewaytechnologie Folgendes:
 
 **Features:** Die oben aufgeführten Optionen unterstützen alle Layer-7-Routing. Die Unterstützung anderer Features variiert. Je nach benötigten Features können Sie mehrere Gateways bereitstellen. 
 
-**Bereitstellung:** Azure Application Gateway und API Management sind verwaltete Dienste. Nginx und HAProxy werden in der Regel in Containern innerhalb des Clusters ausgeführt, können aber auch auf dedizierten virtuellen Computern außerhalb des Clusters bereitgestellt werden. Dadurch wird das Gateway vom Rest der Workload isoliert, verursacht aber auch einen höheren Verwaltungsaufwand.
+**Bereitstellung**. Azure Application Gateway und API Management sind verwaltete Dienste. Nginx und HAProxy werden in der Regel in Containern innerhalb des Clusters ausgeführt, können aber auch auf dedizierten virtuellen Computern außerhalb des Clusters bereitgestellt werden. Dadurch wird das Gateway vom Rest der Workload isoliert, verursacht aber auch einen höheren Verwaltungsaufwand.
 
-**Verwaltung:** Wenn Dienste aktualisiert oder neue Dienste hinzugefügt werden, müssen ggf. die Gatewayroutingregeln aktualisiert werden. Überlegen Sie sich, wie dieser Prozess gehandhabt werden soll. Ähnliche Überlegungen müssen für den Umgang mit SSL-Zertifikaten, IP-Whitelists und anderen Konfigurationsaspekten angestellt werden.
+**Verwaltung**. Wenn Dienste aktualisiert oder neue Dienste hinzugefügt werden, müssen ggf. die Gatewayroutingregeln aktualisiert werden. Überlegen Sie sich, wie dieser Prozess gehandhabt werden soll. Ähnliche Überlegungen müssen für den Umgang mit SSL-Zertifikaten, IP-Whitelists und anderen Konfigurationsaspekten angestellt werden.
 
-## <a name="deployment-considerations"></a>Überlegungen zur Bereitstellung
-
-### <a name="deploying-nginx-or-haproxy-to-kubernetes"></a>Bereitstellen von Nginx oder HAProxy für Kubernetes
+## <a name="deploying-nginx-or-haproxy-to-kubernetes"></a>Bereitstellen von Nginx oder HAProxy für Kubernetes
 
 Sie können Nginx oder HAProxy für Kubernetes als [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) oder [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) bereitstellen, das das Nginx- oder HAProxy-Containerimage angibt. Speichern Sie die Konfigurationsdatei für den Proxy mithilfe eines ConfigMap-Elements, und binden Sie dieses als Volume ein. Erstellen Sie einen LoadBalancer-Dienst, um das Gateway über einen Azure Load Balancer verfügbar zu machen. 
 
-<!-- - Configure a readiness probe that serves a static file from the gateway (rather than routing to another service). -->
-
-Alternativ können Sie auch einen Eingangscontroller erstellen. Ein Eingangscontroller ist eine Kubernetes-Ressource, die einen Lastenausgleich oder Reverseproxyserver bereitstellt. Hierfür stehen mehrere Implementierungen (unter anderem Nginx und HAProxy) zur Verfügung. Eine separate Ressource namens „Ingress“ (Eingang) definiert die Einstellungen für den Eingangscontroller (beispielsweise Routingregeln und TLS-Zertifikate). Dadurch müssen Sie keine komplexen spezifischen Konfigurationsdateien für eine bestimmte Proxyservertechnologie verwalten. Eingangscontroller von Kubernetes befinden sich zum Zeitpunkt der Artikelerstellung noch in der Betaphase. Ihre Entwicklung ist also noch nicht abgeschlossen.
+Alternativ können Sie auch einen Eingangscontroller erstellen. Ein Eingangscontroller ist eine Kubernetes-Ressource, die einen Lastenausgleich oder Reverseproxyserver bereitstellt. Hierfür stehen mehrere Implementierungen (unter anderem Nginx und HAProxy) zur Verfügung. Eine separate Ressource namens „Ingress“ (Eingang) definiert die Einstellungen für den Eingangscontroller (beispielsweise Routingregeln und TLS-Zertifikate). Dadurch müssen Sie keine komplexen spezifischen Konfigurationsdateien für eine bestimmte Proxyservertechnologie verwalten.
 
 Das Gateway ist ein potenzieller Engpass oder Single Point of Failure des Systems. Stellen Sie daher immer mindestens zwei Replikate bereit, um eine hohe Verfügbarkeit zu gewährleisten. Abhängig von der Last müssen die Replikate ggf. weiter horizontal hochskaliert werden. 
 
@@ -85,36 +81,7 @@ Unter Umständen empfiehlt es sich auch, das Gateway auf einer dedizierten Grupp
 
 - Stabile Konfiguration: Im Falle einer falschen Gatewaykonfiguration ist möglicherweise die gesamte Anwendung nicht verfügbar. 
 
-- Leistung: Aus Leistungsgründen empfiehlt sich unter Umständen die Verwendung einer bestimmten VM-Konfiguration für das Gateway.
-
-<!-- - Load balancing. You can configure the external load balancer so that requests always go to a gateway node. That can save a network hop, which would otherwise happen whenever a request lands on a node that isn't running a gateway pod. This consideration applies mainly to large clusters, where the gateway runs on a relatively small fraction of the total nodes. In Azure Container Service (ACS), this approach currently requires [ACS Engine](https://github.com/Azure/acs-engine)) which allows you to create multiple agent pools. Then you can deploy the gateway as a DaemonSet to the front-end pool. -->
-
-### <a name="azure-application-gateway"></a>Azure Application Gateway
-
-So verbinden Sie Application Gateway mit einem Kubernetes-Cluster in Azure:
-
-1. Erstellen Sie im Cluster-VNet ein leeres Subnetz.
-2. Stellen Sie Application Gateway bereit.
-3. Erstellen Sie einen Kubernetes-Dienst vom Typ [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport). Dadurch wird der Dienst auf jedem Knoten verfügbar gemacht, sodass er von außerhalb des Clusters erreichbar ist. Ein Lastenausgleich wird nicht erstellt.
-5. Rufen Sie die zugewiesene Portnummer für den Dienst ab.
-6. Fügen Sie eine Application Gateway-Regel hinzu, die folgende Kriterien erfüllt:
-    - Der Back-End-Adresspool enthält die virtuellen Agent-Computer.
-    - Die HTTP-Einstellung gibt die Dienstportnummer an.
-    - Der Gatewaylistener lauscht an den Ports 80/443.
-    
-Legen Sie die Instanzanzahl mindestens auf „2“ fest, um für hohe Verfügbarkeit zu sorgen.
-
-### <a name="azure-api-management"></a>Azure API Management 
-
-So verbinden Sie API Management mit einem Kubernetes-Cluster in Azure:
-
-1. Erstellen Sie im Cluster-VNet ein leeres Subnetz.
-2. Stellen Sie in diesem Subnetz API Management bereit.
-3. Erstellen Sie einen Kubernetes-Dienst vom Typ „LoadBalancer“. Verwenden Sie die [Anmerkung für einen internen Lastenausgleich](https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer), um anstelle des standardmäßigen Lastenausgleichs mit Internetzugriff einen internen Lastenausgleich zu erstellen.
-4. Ermitteln Sie mithilfe von kubectl oder der Azure-Befehlszeilenschnittstelle die private IP-Adresse des internen Lastenausgleichs.
-5. Erstellen Sie mithilfe von API Management eine API für die Weiterleitung an die private IP-Adresse des Lastenausgleichs.
-
-Kombinieren Sie API Management ggf. mit einem Reverseproxy (Nginx, HAProxy oder Azure Application Gateway). Informationen zur Verwendung von API Management mit Application Gateway finden Sie unter [Integrieren von API Management in ein internes VNET mit Application Gateway](/azure/api-management/api-management-howto-integrate-internal-vnet-appgateway).
+- Leistung. Aus Leistungsgründen empfiehlt sich unter Umständen die Verwendung einer bestimmten VM-Konfiguration für das Gateway.
 
 > [!div class="nextstepaction"]
 > [Protokollierung und Überwachung](./logging-monitoring.md)

@@ -3,12 +3,12 @@ title: Auswählen einer Technologie für die Datenstromverarbeitung
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: fd93418c62b584e79f229e9f42703d148aeb0eca
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: b78ebe253e927eece38930ba7f6186f485a956f7
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091062"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962913"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>Auswählen einer Technologie für die Datenstromverarbeitung in Azure
 
@@ -60,13 +60,12 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Azure Stream Analytics | HDInsight mit Spark Streaming | Apache Spark in Azure Databricks | HDInsight mit Storm | Azure-Funktionen | WebJobs in Azure App Service |
 | --- | --- | --- | --- | --- | --- | --- | 
-| Unterstützung für integrierte temporal Verarbeitung/Windowing | Ja | Ja | Ja | Ja | Nein  | Nein  |
+| Unterstützung für integrierte temporal Verarbeitung/Windowing | JA | Ja | Ja | JA | Nein  | Nein  |
 | Datenformate für die Eingabe | Avro, JSON oder CSV, UTF-8-codiert | Jedes Format mit benutzerdefiniertem Code | Jedes Format mit benutzerdefiniertem Code | Jedes Format mit benutzerdefiniertem Code | Jedes Format mit benutzerdefiniertem Code | Jedes Format mit benutzerdefiniertem Code |
 | Skalierbarkeit | [Abfragepartitionen](/azure/stream-analytics/stream-analytics-parallelization) | Durch die Clustergröße begrenzt | Durch Konfiguration der Databricks-Clusterskalierung begrenzt | Durch die Clustergröße begrenzt | Parallele Verarbeitung von bis zu 200 Funktions-App-Instanzen | Durch die Kapazität des App Service-Plans begrenzt | 
-| Unterstützung für verspäteten Eingang und Behandlung von Ereignissen mit falscher Reihenfolge | Ja | Ja | Ja | Ja | Nein  | Nein  |
+| Unterstützung für verspäteten Eingang und Behandlung von Ereignissen mit falscher Reihenfolge | JA | Ja | Ja | JA | Nein  | Nein  |
 
 Weitere Informationen:
 
 - [Choosing a real-time message ingestion technology](./real-time-ingestion.md) (Auswählen einer Technologie für die Echtzeiterfassung von Nachrichten)
-- [Auswählen einer Stream Analytics-Plattform: Vergleich von Apache Storm und Azure Stream Analytics](/azure/stream-analytics/stream-analytics-comparison-storm)
 - [Verarbeitung in Echtzeit](../big-data/real-time-processing.md)

@@ -2,13 +2,13 @@
 title: Entscheidungsstruktur für Azure-Computedienste
 description: Ein Flussdiagramm zur Auswahl eines Computediensts
 author: MikeWasson
-ms.date: 06/13/2018
-ms.openlocfilehash: 689ec3f265e563273a75ad98268d03624a7b4536
-ms.sourcegitcommit: ce2fa8ac2d310f7078317cade12f1b89db1ffe06
+ms.date: 10/23/2018
+ms.openlocfilehash: 35002b4840b80bcc35b5baf36ec8e414ed8f20be
+ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/23/2018
-ms.locfileid: "36338182"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50001897"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Entscheidungsstruktur für Azure-Computedienste
 
@@ -33,10 +33,6 @@ Weitere Informationen zu den Optionen für das Hosten von Containern in Azure fi
 ![](../images/compute-decision-tree.svg)
 
 ## <a name="definitions"></a>Definitionen
-
-- **Greenfield** beschreibt ein völlig neues Softwareprojekt, das von Grund auf neu erstellt wird. Es enthält keinen Legacycode. 
-
-- **Brownfield** beschreibt ein Softwareprojekt, das auf einer vorhandenen Anwendung basiert. Es enthält unter Umständen Legacycode oder -frameworks.
 
 - **Lift und Shift** ist eine Strategie zum Migrieren einer Workload zur Cloud ohne Überarbeitung der Anwendung oder Änderung des Codes. Dies wird auch als *erneutes Hosten* bezeichnet. Weitere Informationen finden Sie im [Azure-Migrationscenter](https://azure.microsoft.com/migration/).
 
