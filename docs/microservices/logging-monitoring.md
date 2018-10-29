@@ -2,13 +2,13 @@
 title: Protokollieren und Überwachen in Microservices
 description: Protokollieren und Überwachen in Microservices
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: b7206e2f35b9f227ff298f077ddafef1c6015b15
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/23/2018
+ms.openlocfilehash: c2a935f51c57936977fb4402de2113938351069c
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428770"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962873"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>Entwerfen von Microservices: Protokollieren und Überwachen
 
@@ -18,19 +18,19 @@ In jeder komplexen Anwendung geht irgendwann etwas schief. In einer Microservice
 
 In einer Microservices-Architektur kann es eine besondere Herausforderung darstellen, die genaue Ursache von Fehlern oder Leistungsengpässen zu ermitteln. Ein einzelner Benutzervorgang kann mehrere Dienste betreffen. Dienste können im Cluster an Netzwerk-E/A-Grenzen stoßen. Eine Kette von übergreifenden Aufrufen für Dienste kann im System zu Rückstaus und somit zu langen Wartezeiten oder kaskadierenden Fehlern führen. Außerdem wissen Sie im Allgemeinen nicht, auf welchem Knoten ein bestimmter Container ausgeführt wird. Container, die auf demselben Knoten angeordnet sind, konkurrieren ggf. um begrenzte CPU- oder Arbeitsspeicherkapazität. 
 
-Damit ermittelt werden kann, was vor sich geht, muss die Anwendung Telemetrieereignisse ausgeben. Sie können für diese Ereignisse eine Kategorisierung in Metriken und textbasierte Protokolle vornehmen. 
+Damit ermittelt werden kann, was vor sich geht, müssen Sie Telemetriedaten aus der Anwendung erfassen.  Telemetrie kann in *Protokolle* und *Metriken* unterteilt werden. [Azure Monitor](/azure/monitoring-and-diagnostics/monitoring-overview) erfasst sowohl Protokolle als auch Metriken auf der gesamten Azure-Plattform.
 
-*Metriken* sind numerische Werte, die analysiert werden können. Sie können sie verwenden, um das System in Echtzeit (bzw. nahezu in Echtzeit) zu beobachten oder Leistungstrends im Zeitverlauf zu analysieren. Beispiele für Metriken:
+**Protokolle** sind textbasierte Datensätze mit Ereignissen, die eintreten, während die Anwendung ausgeführt wird. Sie enthalten Dinge wie Anwendungsprotokolle (Überwachungsanweisungen) oder Webserverprotokolle. Protokolle sind hauptsächlich für forensische Zwecke und die Analyse der Grundursache hilfreich. 
 
-- Systemmetriken auf Knotenebene, z.B. Auslastung von CPU, Arbeitsspeicher, Netzwerk, Datenträger und Dateisystem. Systemmetriken fördern das Verständnis der Ressourcenzuteilung für die einzelnen Knoten im Cluster und ermöglichen die Problembehandlung bei Ausreißern.
- 
-- Kubernetes-Metriken: Da Dienste in Containern ausgeführt werden, müssen Sie Metriken nicht nur auf der VM-Ebene, sondern auch auf der Containerebene sammeln. In Kubernetes ist „cAdvisor“ (Container Advisor) der Agent, mit dem Statistiken zu CPU, Arbeitsspeicher, Dateisystem und Netzwerkressourcen jedes Containers gesammelt werden. Mit dem Kubelet-Daemon werden Ressourcenstatistiken von cAdvisor gesammelt und per REST-API verfügbar gemacht.
-   
-- Anwendungsmetriken: Hierzu gehören alle Metriken, die für das Verständnis des Verhaltens eines Diensts relevant sind. Beispiele hierfür sind die Anzahl von in die Warteschlange eingereihten eingehenden HTTP-Anforderungen, die Anforderungswartezeit, Länge der Nachrichtenwarteschlange oder Anzahl von verarbeiteten Transaktionen pro Sekunde.
+**Metriken** sind numerische Werte, die analysiert werden können. Sie können sie verwenden, um das System in Echtzeit (bzw. nahezu in Echtzeit) zu beobachten oder Leistungstrends im Zeitverlauf zu analysieren. Metriken lassen sich in folgende Unterkategorien weiter unterteilen:
 
-- Metriken abhängiger Dienste: Dienste innerhalb des Clusters rufen ggf. externe Dienste auf, die sich außerhalb des Clusters befinden, z.B. verwaltete PaaS-Dienste. Sie können Azure-Dienste überwachen, indem Sie [Azure Monitor](/azure/monitoring-and-diagnostics/monitoring-overview) verwenden. Von Drittanbieterdiensten werden Metriken bereitgestellt oder auch nicht. Falls nicht, müssen Sie Ihre eigenen Anwendungsmetriken verwenden, um Statistiken in Bezug auf die Wartezeit und Fehlerrate nachzuverfolgen.
+- Metriken auf **Knotenebene**, z.B. Auslastung von CPU, Arbeitsspeicher, Netzwerk, Datenträger und Dateisystem. Systemmetriken fördern das Verständnis der Ressourcenzuteilung für die einzelnen Knoten im Cluster und ermöglichen die Problembehandlung bei Ausreißern.
 
-*Protokolle* sind Datensätze mit Ereignissen, die eintreten, während die Anwendung ausgeführt wird. Sie enthalten Dinge wie Anwendungsprotokolle (Überwachungsanweisungen) oder Webserverprotokolle. Protokolle sind hauptsächlich für forensische Zwecke und die Analyse der Grundursache hilfreich. 
+- **Containermetriken** Wenn Dienste innerhalb von Containern ausgeführt werden, müssen Sie Metriken nicht nur auf der VM-Ebene, sondern auch auf der Containerebene sammeln. Sie können Azure Monitor für die Überwachung von Containerworkloads in Azure Kubernetes Service (AKS) einrichten. Weitere Informationen finden Sie unter [Azure Monitor für Container – Übersicht](/azure/monitoring/monitoring-container-insights-overview). Verwenden Sie für andere Containerorchestratoren die [Containerüberwachungslösung in Log Analytics](/azure/log-analytics/log-analytics-containers).
+
+- **Anwendungsmetriken**. Hierzu gehören alle Metriken, die für das Verständnis des Verhaltens eines Diensts relevant sind. Beispiele hierfür sind die Anzahl von in die Warteschlange eingereihten eingehenden HTTP-Anforderungen, die Anforderungswartezeit oder die Länge der Nachrichtenwarteschlange. Anwendungen können auch benutzerdefinierte Metriken für die jeweilige Domäne erstellen, z.B. die Anzahl der pro Minute verarbeiteten Geschäftstransaktionen. Aktivieren Sie Anwendungsmetriken mithilfe von [Application Insights](/azure/application-insights/app-insights-overview). 
+
+- Metriken **abhängiger Dienste**. Dienste können externe Dienste oder Endpunkte aufrufen, z.B. verwaltete PaaS-Dienste oder SaaS-Dienste. Von Drittanbieterdiensten werden Metriken bereitgestellt oder auch nicht. Falls nicht, müssen Sie Ihre eigenen Anwendungsmetriken verwenden, um Statistiken in Bezug auf die Wartezeit und Fehlerrate nachzuverfolgen.
 
 ## <a name="considerations"></a>Überlegungen
 
