@@ -3,12 +3,12 @@ title: Auswählen einer Technologie zur Verarbeitung von natürlicher Sprache
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: dacf7bf9cf3e9efed212f34da93c1470954965cf
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: bac0318a587a944c104360eb31223cc8755c1860
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288852"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251769"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>Auswählen einer Technologie zur Verarbeitung von natürlicher Sprache in Azure
 
@@ -19,7 +19,8 @@ Die Freiformtextverarbeitung wird für Dokumente durchgeführt, die Absätze mit
 In Azure verfügen die folgenden Dienste über Funktionen zur Verarbeitung natürlicher Sprache:
 
 - [Azure HDInsight mit Spark und Spark MLlib](/azure/hdinsight/spark/apache-spark-overview)
-- [Microsoft Cognitive Services](/azure/#pivot=products&panel=cognitive)
+- [Azure Databricks](/azure/azure-databricks/what-is-azure-databricks)
+- [Microsoft Cognitive Services](/azure/cognitive-services/welcome)
 
 ## <a name="key-selection-criteria"></a>Wichtige Auswahlkriterien
 
@@ -35,16 +36,16 @@ Beantworten Sie zunächst die folgenden Fragen, um die Auswahlmöglichkeiten ein
 
 ## <a name="capability-matrix"></a>Funktionsmatrix
 
-In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst:  
+In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst.  
 
 ### <a name="general-capabilities"></a>Allgemeine Funktionen
 
 | | Azure HDInsight | Microsoft Cognitive Services |
 | --- | --- | --- |
-| Bereitstellung von vortrainierten Modellen als Dienst | Nein  | Ja |
-| REST-API | Ja | Ja |
+| Bereitstellung von vortrainierten Modellen als Dienst | Nein  | JA |
+| REST-API | JA | JA |
 | Programmierbarkeit | Python, Scala, Java | C#, Java, Node.js, Python, PHP, Ruby |
-| Unterstützung der Verarbeitung von umfangreichen Datasets und großen Dokumenten | Ja | Nein  |
+| Unterstützung der Verarbeitung von umfangreichen Datasets und großen Dokumenten | JA | Nein  |
 
 ### <a name="low-level-natural-language-processing-capabilities"></a>Funktionen zur speziellen Verarbeitung von natürlicher Sprache
 

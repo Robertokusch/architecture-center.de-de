@@ -4,12 +4,12 @@ description: Anleitungen zum Caching zur Verbesserung von Leistung und Skalierba
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 4db85df7331c805af6acbe0673dbcb993a895e03
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: e1c47c735bd618fc46fef3f1ee234f83d3b15bdf
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429467"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251990"
 ---
 # <a name="caching"></a>Caching
 
@@ -288,7 +288,7 @@ Weitere Informationen finden Sie unter [ASP.NET-Sitzungszustandsanbieter für Az
 Auf ähnliche Weise ermöglicht Ihnen der Ausgabecacheanbieter für Azure Redis Cache das Speichern der von einer ASP.NET-Webanwendung generierten HTTP-Antworten. Azure Redis Cache mit dem Ausgabecacheanbieter kann die Reaktionszeiten von Anwendungen verbessern, die komplexe HTML-Ausgaben rendern. Anwendungsinstanzen, die ähnliche Antworten generieren, können die freigegebenen Ausgabefragmente im Cache nutzen, anstatt HTML-Ausgabe neu zu generieren. Weitere Informationen finden Sie unter [ASP.NET-Ausgabecacheanbieter für Azure Redis Cache](/azure/redis-cache/cache-aspnet-output-cache-provider/).
 
 ## <a name="building-a-custom-redis-cache"></a>Erstellen eines benutzerdefinierten Redis-Cache
-Azure Redis Cache fungiert als Fassade für die zu Grunde liegenden Redis-Server. Derzeit unterstützt er einen festen Satz an Konfigurationen, jedoch kein Redis-Clustering. Wenn Sie eine erweiterte Konfiguration benötigen, die nicht vom Azure Redis-Cache bereitgestellt wird (z. B. einen Cache mit mehr als 53 GB), können Sie mit virtuellen Azure-Computern eigene Redis-Server erstellen und bereitstellen.
+Azure Redis Cache fungiert als Fassade für die zu Grunde liegenden Redis-Server. Wenn Sie eine erweiterte Konfiguration benötigen, die nicht vom Azure Redis-Cache bereitgestellt wird (z. B. einen Cache mit mehr als 53 GB), können Sie mit virtuellen Azure-Computern eigene Redis-Server erstellen und bereitstellen.
 
 Das hierzu erforderliche Verfahren ist unter Umständen recht komplex, da Sie eventuell mehrere virtuelle Computer als Master- und Slaveknoten erstellen müssen, wenn Sie auch Replikation implementieren möchten. Außerdem benötigen Sie mehrere Master und untergeordnete Server, wenn Sie einen Cluster erstellen möchten. Für die Mindestversion einer Clustertopologie mit Replikation, die ein hohes Maß an Verfügbarkeit und Skalierbarkeit bietet, sind mindestens sechs virtuelle Computer erforderlich, die in drei Paare mit jeweils einem Master- und einem untergeordneten Server organisiert sind (ein Cluster muss mindestens drei Masterknoten enthalten).
 
