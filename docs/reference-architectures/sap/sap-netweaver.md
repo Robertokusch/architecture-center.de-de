@@ -2,13 +2,13 @@
 title: Bereitstellen von SAP NetWeaver (Windows) für AnyDB in Azure Virtual Machines
 description: Bewährte Methoden zum Ausführen von SAP S/4HANA in einer Linux-Umgebung in Azure mit Hochverfügbarkeit.
 author: lbrader
-ms.date: 05/11/2018
-ms.openlocfilehash: b4a254980dd9aac2847bb194f22f99f3f05376de
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 08/03/2018
+ms.openlocfilehash: 3a8c59b63d55dea520f807efbe72ff56e678ec8e
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428804"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916582"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Bereitstellen von SAP NetWeaver (Windows) für AnyDB in Azure Virtual Machines
 
@@ -174,6 +174,6 @@ Communitys können Fragen beantworten und Sie beim Einrichten einer erfolgreiche
 - [Running SAP Applications on the Microsoft Platform (Blog)](https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/)
 - [Azure-Communitysupport](https://azure.microsoft.com/support/community/)
 - [SAP Community](https://www.sap.com/community.html)
-- [Stapelüberlauf](https://stackoverflow.com/tags/sap/)
+- [Stack Overflow](https://stackoverflow.com/tags/sap/)
 
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

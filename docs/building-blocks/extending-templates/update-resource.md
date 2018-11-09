@@ -2,13 +2,13 @@
 title: Aktualisieren einer Ressource in einer Azure Resource Manager-Vorlage
 description: Beschreibt das Erweitern der Funktionalität der Azure Resource Manager-Vorlagen für das Aktualisieren einer Ressource.
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: f235f0b4d54d65ccc2fa67876916e922d75f6d07
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/31/2018
+ms.openlocfilehash: dc97534e658c9728ac617b4e52031e2553600458
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429037"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251820"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a>Aktualisieren einer Ressource in einer Azure Resource Manager-Vorlage
 
@@ -122,16 +122,13 @@ Werfen wir zunächst einen Blick auf das Ressourcenobjekt für unsere `firstVNet
 
 ## <a name="try-the-template"></a>Testen der Vorlage
 
-Befolgen Sie die nachfolgenden Schritte, wenn Sie diese Vorlage testen möchten:
+Eine Beispielvorlage finden Sie [auf GitHub][github]. Führen Sie zum Bereitstellen der Vorlage die folgenden Befehle der [Azure-Befehlszeilenschnittstelle][cli] aus:
 
-1.  Wechseln Sie zum Azure-Portal, wählen Sie das Pluszeichen (**+**) aus, suchen Sie nach dem Ressourcentyp **Vorlagenbereitstellung**, und wählen Sie ihn aus.
-2.  Navigieren Sie zur Seite **Vorlagenbereitstellung**, und wählen Sie die Schaltfläche **Erstellen** aus. Mit dieser Schaltfläche öffnen Sie das Blatt **Benutzerdefinierte Bereitstellung**.
-3.  Wählen Sie das Symbol **Bearbeiten** aus.
-4.  Löschen Sie die leere Vorlage.
-5.  Kopieren Sie die Beispielvorlage, und fügen Sie sie im rechten Bereich ein.
-6.  Wählen Sie die Schaltfläche **Speichern** aus.
-7.  Sie kehren zum Bereich **Benutzerdefinierte Bereitstellung** zurück, aber dieses Mal sind einige Dropdownfelder verfügbar. Wählen Sie Ihr Abonnement aus, erstellen Sie eine neue oder vorhandene Ressourcengruppe, und wählen Sie dann einen Speicherort aus. Lesen Sie die Nutzungsbedingungen, und wählen Sie die Schaltfläche **Ich stimme zu**.
-8.  Wählen Sie die Schaltfläche **Kaufen** aus.
+```bash
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example1-update/deploy.json
+```
 
 Nachdem die Bereitstellung abgeschlossen ist, öffnen Sie die Ressourcengruppe, die Sie im Verwaltungsportal angegeben haben. Sie sehen ein virtuelles Netzwerk mit dem Namen `firstVNet` und eine NIC mit dem Namen `nic1`. Klicken Sie auf `firstVNet` und dann auf `subnets`. Sie sehen das ursprünglich erstellte `firstSubnet` und das `secondSubnet`, das in der `updateVNet`-Ressource hinzugefügt wurde. 
 
@@ -145,4 +142,7 @@ Das ursprüngliche `firstVNet` wurde nicht neu erstellt, sondern aktualisiert. W
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-* Dieses Verfahren ist im [Vorlagenbaustein-Projekt](https://github.com/mspnp/template-building-blocks) und in den [Azure-Referenzarchitekturen](/azure/architecture/reference-architectures/) implementiert. Sie können es verwenden, um Ihre eigene Architektur zu erstellen oder eine unserer Referenzarchitekturen bereitzustellen.
+* Lesen Sie, wie Sie eine Ressource bedingungsbasiert bereitstellen (also beispielsweise in Abhängigkeit davon, ob ein Parameterwert vorhanden ist). Informationen finden Sie unter [Bedingtes Bereitstellen einer Ressource in einer Azure Resource Manager-Vorlage](./conditional-deploy.md).
+
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

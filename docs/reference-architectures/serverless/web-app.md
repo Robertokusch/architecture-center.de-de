@@ -3,12 +3,12 @@ title: Serverlose Webanwendung
 description: Referenzarchitektur zur Veranschaulichung einer serverlosen Webanwendung und Web-API
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: c2b46a60a57381ac3fd3f77cffe53b2dab2dacd6
-ms.sourcegitcommit: 113a7248b9793c670b0f2d4278d30ad8616abe6c
+ms.openlocfilehash: d1af03811bda6267fd40ee17823ac8357829f988
+ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49349954"
+ms.lasthandoff: 11/05/2018
+ms.locfileid: "50983395"
 ---
 # <a name="serverless-web-application"></a>Serverlose Webanwendung 
 
@@ -29,7 +29,7 @@ Für beide Definitionen steckt die Idee dahinter, dass Entwickler und DevOps-Ben
 
 Die Funktionen werden ausgeführt, wenn ein externer Auslöser vorliegt, z.B. eine HTTP-Anforderung oder der Empfang einer Nachricht in einer Warteschlange. Daher ist ein [ereignisgesteuerter Architekturstil][event-driven] die natürliche Wahl für serverlose Architekturen. Für die Koordinierung der Arbeit zwischen den Komponenten der Architektur können Sie erwägen, Nachrichtenbroker oder Pub/Sub-Muster zu nutzen. Hilfe zur Wahl zwischen Messagingtechnologien in Azure finden Sie unter [Wählen zwischen Azure-Diensten für die Nachrichtenübermittlung][azure-messaging].
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 Die Architektur umfasst die folgenden Komponenten.
 
 **Blobspeicher**. Statische Webinhalte, z.B. HTML-, CSS- und JavaScript-Dateien, werden in Azure Blob Storage gespeichert und für Clients bereitgestellt, indem das [Hosten von statischen Websites][static-hosting] verwendet wird. Alle dynamischen Interaktionen erfolgen über JavaScript-Code, mit dem die Back-End-APIs aufgerufen werden. Es ist kein serverseitiger Code zum Rendern der Webseite vorhanden. Für das Hosten statischer Websites werden Indexdokumente und benutzerdefinierte 404-Fehlerseiten unterstützt.
@@ -113,7 +113,7 @@ Aufgrund der Nutzung von Bindungen müssen Sie keinen Code schreiben, der direkt
 
 **Funktionen**. Für den Verbrauchstarif wird der HTTP-Trigger basierend auf dem Datenverkehr skaliert. Es gilt ein Limit für die Anzahl von gleichzeitigen Funktionsinstanzen, aber jede Instanz kann mehr als eine Anforderung gleichzeitig verarbeiten. Für einen App Service-Plan wird der HTTP-Trigger gemäß der Anzahl von VM-Instanzen skaliert. Dies kann ein fester Wert sein, oder es kann eine automatische Skalierung basierend auf einem Satz mit entsprechenden Regeln durchgeführt werden. Informationen hierzu finden Sie unter [Skalierung und Hosting von Azure Functions][functions-scale]. 
 
-**Cosmos DB**: Die Durchsatzkapazität für Cosmos DB wird in [Anforderungseinheiten][ru] (RU) gemessen. Ein Durchsatz von einer Anforderungseinheit (1 RU) entspricht dem Durchsatz für das Abrufen eines 1-KB-Dokuments per GET-Anforderung. Um einen Cosmos DB-Container auf eine Kapazität von mehr als 10.000 RU zu skalieren, müssen Sie beim Erstellen des Containers einen [Partitionsschlüssel][partition-key] angeben und diesen in jedes von Ihnen erstellte Dokument einfügen. Weitere Informationen zu Partitionsschlüsseln finden Sie unter [Partitionieren und Skalieren in Azure Cosmos DB][cosmosdb-scale].
+**Cosmos DB**: Die Durchsatzkapazität für Cosmos DB wird in [Anforderungseinheiten][ru] (RUs) gemessen. Ein Durchsatz von einer Anforderungseinheit (1 RU) entspricht dem Durchsatz für das Abrufen eines 1-KB-Dokuments per GET-Anforderung. Um einen Cosmos DB-Container auf eine Kapazität von mehr als 10.000 RU zu skalieren, müssen Sie beim Erstellen des Containers einen [Partitionsschlüssel][partition-key] angeben und diesen in jedes von Ihnen erstellte Dokument einfügen. Weitere Informationen zu Partitionsschlüsseln finden Sie unter [Partitionieren und Skalieren in Azure Cosmos DB][cosmosdb-scale].
 
 **API Management**. API Management ermöglicht das horizontale Hochskalieren und unterstützt die regelbasierte automatische Skalierung. Beachten Sie, dass der Skalierungsvorgang mindestens 20 Minuten dauert. Wenn Ihr Datenverkehr Spitzen („Bursts“) aufweist, sollten Sie entsprechende Ressourcen bereitstellen, um den erwarteten maximalen Burstdatenverkehr abzudecken. Die automatische Skalierung ist aber für die Verarbeitung von stündlichen oder täglichen Schwankungen beim Datenverkehr nützlich. Weitere Informationen finden Sie unter [Automatisches Skalieren einer Azure API Management-Instanz][apim-scale].
 
@@ -148,20 +148,13 @@ Konfigurieren Sie die Authentifizierung wie folgt:
 
 - Aktivieren Sie die Azure AD-Authentifizierung in der Funktions-App. Weitere Informationen finden Sie unter [Authentifizierung und Autorisierung in Azure App Service][app-service-auth].
 
-- Fügen Sie API Management eine Richtlinie hinzu, um die Anforderung durch die Überprüfung des Zugriffstokens vorab zu autorisieren:
-
-    ```xml
-    <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
-        <openid-config url="https://login.microsoftonline.com/[Azure AD tenant ID]/.well-known/openid-configuration" />
-        <required-claims>
-            <claim name="aud">
-                <value>[Application ID]</value>
-            </claim>
-        </required-claims>
-    </validate-jwt>
-    ```
+- Fügen Sie API Management die [Richtlinie „validate-jwt“][apim-validate-jwt] hinzu, um die Anforderung durch Überprüfung des Zugriffstokens vorab zu autorisieren.
 
 Weitere Informationen finden Sie in der [GitHub-Infodatei][readme].
+
+Es wird empfohlen, für die Clientanwendung und die Back-End-API separate App-Registrierungen in Azure AD zu erstellen. Erteilen Sie der Clientanwendung Berechtigungen zum Aufrufen der API. Bei diesem Ansatz können Sie ganz flexibel mehrere APIs und Clients definieren und die einzelnen Berechtigungen dafür steuern. 
+
+Verwenden Sie innerhalb einer API [Bereiche][scopes], damit Anwendungen präzise steuern können, welche Berechtigungen sie bei einem Benutzer voraussetzen. So kann eine API beispielsweise über die Bereiche `Read` und `Write` verfügen und eine bestimmte Client-App den Benutzer lediglich zur Autorisierung von Berechtigungen des Typs `Read` auffordern.
 
 ### <a name="authorization"></a>Autorisierung
 
@@ -275,11 +268,21 @@ Alternativ hierzu können Sie Anwendungsgeheimnisse in Key Vault speichern. Dies
 
 ## <a name="devops-considerations"></a>Überlegungen zu DevOps
 
+### <a name="deployment"></a>Bereitstellung
+
+Für die Bereitstellung der Funktions-App wird die Verwendung von [Paketdateien][functions-run-from-package] („Aus Paket ausführen“) empfohlen. Bei diesem Ansatz laden Sie eine ZIP-Datei in einen Blob Storage-Container hoch, und die Functions-Runtime bindet die ZIP-Datei als schreibgeschütztes Dateisystem ein. Dieser atomische Vorgang verringert die Wahrscheinlichkeit, dass die Anwendung aufgrund einer fehlerhaften Bereitstellung in einem inkonsistenten Zustand verbleibt. Er kann darüber hinaus Kaltstartzeiten verbessern (insbesondere für Node.js-Apps), da alle Dateien auf einmal ausgetauscht werden.
+
 ### <a name="api-versioning"></a>API-Versionsverwaltung
 
-Eine API ist ein Vertrag zwischen einem Dienst und den Clients oder Consumern dieses Diensts. Unterstützen Sie die Versionsverwaltung in Ihrem API-Vertrag. Wenn Sie eine grundlegende API-Änderung einführen, verbinden Sie dies mit der Einführung einer neuen API-Version. Stellen Sie die neue Version parallel zur Originalversion in einer separaten Funktions-App bereit. So können Sie vorhandene Clients zur neuen API migrieren, ohne die Funktion von Clientanwendungen zu beeinträchtigen. Letztendlich können Sie die frühere Version dann als veraltet deklarieren. Weitere Informationen zur API-Versionsverwaltung finden Sie unter [Versionsverwaltung einer RESTful-Web-API][api-versioning].
+Eine API ist ein Vertrag zwischen einem Dienst und Clients. In dieser Architektur wird der API-Vertrag auf API Management-Ebene festgelegt. API Management unterstützt zwei unterschiedliche, sich jedoch ergänzende [Versionierungskonzepte][apim-versioning]:
 
-Stellen Sie für Updates, die keine grundlegenden API-Änderungen darstellen, die neue Version in einem Stagingslot in der derselben Funktions-App bereit. Überprüfen Sie, ob die Bereitstellung erfolgreich war, und ersetzen Sie dann die bereitgestellte Version durch die Produktionsversion.
+- *Versionen* bieten API-Consumern die Möglichkeit, eine API-Version basierend auf ihren Anforderungen zu wählen, z.B. v1 oder v2. 
+
+- *Revisionen* ermöglichen API-Administratoren das Vornehmen geringfügiger Änderungen in einer API und das Bereitstellen dieser Änderungen zusammen mit einem Änderungsprotokoll, um API-Benutzer über die Änderungen zu informieren.
+
+Wenn Sie eine grundlegende Änderung in einer API vornehmen, veröffentlichen Sie eine neue Version in API Management. Stellen Sie die neue Version parallel zur Originalversion in einer separaten Funktions-App bereit. So können Sie vorhandene Clients zur neuen API migrieren, ohne die Funktion von Clientanwendungen zu beeinträchtigen. Letztendlich können Sie die frühere Version dann als veraltet deklarieren. API Management unterstützt mehrere [Versionsverwaltungsschemas][apim-versioning-schemes]: URL-Pfad, HTTP-Header oder Abfragezeichenfolge. Weitere Informationen zur API-Versionsverwaltung im Allgemeinen finden Sie unter [Versionsverwaltung einer RESTful-Web-API][api-versioning].
+
+Stellen Sie für Updates, die keine grundlegenden API-Änderungen darstellen, die neue Version in einem Stagingslot in der derselben Funktions-App bereit. Überprüfen Sie, ob die Bereitstellung erfolgreich war, und ersetzen Sie dann die bereitgestellte Version durch die Produktionsversion. Veröffentlichen Sie eine Revision in API Management.
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
@@ -292,6 +295,9 @@ Zeigen Sie zum Bereitstellen dieser Referenzarchitektur die [GitHub-Infodatei][r
 [apim-ip]: /azure/api-management/api-management-faq#is-the-api-management-gateway-ip-address-constant-can-i-use-it-in-firewall-rules
 [api-geo]: /azure/api-management/api-management-howto-deploy-multi-region
 [apim-scale]: /azure/api-management/api-management-howto-autoscale
+[apim-validate-jwt]: /azure/api-management/api-management-access-restriction-policies#ValidateJWT
+[apim-versioning]: /azure/api-management/api-management-get-started-publish-versions
+[apim-versioning-schemes]: /azure/api-management/api-management-get-started-publish-versions#choose-a-versioning-scheme
 [app-service-auth]: /azure/app-service/app-service-authentication-overview
 [app-service-ip-restrictions]: /azure/app-service/app-service-ip-restrictions
 [app-service-security]: /azure/app-service/app-service-security
@@ -310,9 +316,11 @@ Zeigen Sie zum Bereitstellen dieser Referenzarchitektur die [GitHub-Infodatei][r
 [functions-bindings]: /azure/azure-functions/functions-triggers-bindings
 [functions-cold-start]: https://blogs.msdn.microsoft.com/appserviceteam/2018/02/07/understanding-serverless-cold-start/
 [functions-https]: /azure/app-service/app-service-web-tutorial-custom-ssl#enforce-https
-[functions-proxy]: /azure-functions/functions-proxies
+[functions-proxy]: /azure/azure-functions/functions-proxies
+[functions-run-from-package]: /azure/azure-functions/run-functions-from-deployment-package
 [functions-scale]: /azure/azure-functions/functions-scale
 [functions-timeout]: /azure/azure-functions/functions-scale#consumption-plan
+[functions-zip-deploy]: /azure/azure-functions/deployment-zip-push
 [graph]: https://developer.microsoft.com/graph/docs/concepts/overview
 [key-vault-web-app]: /azure/key-vault/tutorial-web-application-keyvault
 [microservices-domain-analysis]: ../../microservices/domain-analysis.md
@@ -321,6 +329,7 @@ Zeigen Sie zum Bereitstellen dieser Referenzarchitektur die [GitHub-Infodatei][r
 [partition-key]: /azure/cosmos-db/partition-data
 [pipelines]: /azure/devops/pipelines/index
 [ru]: /azure/cosmos-db/request-units
+[scopes]: /azure/active-directory/develop/v2-permissions-and-consent
 [static-hosting]: /azure/storage/blobs/storage-blob-static-website
 [static-hosting-preview]: https://azure.microsoft.com/blog/azure-storage-static-web-hosting-public-preview/
 [storage-https]: /azure/storage/common/storage-require-secure-transfer

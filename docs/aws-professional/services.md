@@ -5,20 +5,18 @@ keywords: Vergleich von Clouddiensten, vergleichen von Clouddiensten, Multi-Clou
 author: lbrader
 ms.date: 11/30/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: d665adb946b9c93827fbc55243edc3a558668416
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 33b67f57c8c725cfb68c400b4e2b67102e5d4872
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819226"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251956"
 ---
 # <a name="aws-to-azure-services-comparison"></a>Vergleich von AWS mit Azure -Diensten
 
 Dieser Artikel hilft Ihnen die Unterschiede zwischen Microsoft Azure-Diensten und Amazon Web Services (AWS) zu verstehen. Unabhängig davon, ob Sie eine Multi-Cloud-Lösung mit Azure und AWS planen oder zu Azure migrieren, können Sie die IT-Funktionen von Azure- und AWS-Diensten in allen Kategorien vergleichen.
 
 In den folgenden Tabellen sind für einige AWS-Dienste mehrere Azure-Dienste aufgeführt. Die Azure-Dienste sind untereinander ähnlich, aber Tiefe und Breite der Fähigkeiten variieren.
-
-[PDF-Datei der Clouddienstzuordnung für Azure und AWS herunterladen](https://aka.ms/awsazureguide)
 
 ## <a name="azure-and-aws-for-multicloud-solutions"></a>Azure und AWS für Multi-Cloud-Lösungen
 
@@ -102,7 +100,7 @@ Eine Übersicht über Azure für AWS-Benutzer finden Sie unter [Einführung in A
 | <strong>&nbsp;</strong> |          Keine           |                                                                                       [Power BI Embedded](https://azure.microsoft.com/services/power-bi-embedded/)                                                                                       |                                                               Ermöglicht die Einbindung von Visualisierungs- und Datenanalysetools in Anwendungen.                                                               |
 |         Suchen,          |  Elasticsearch Service  |                                                                     [Marketplace – Elasticsearch](https://azuremarketplace.microsoft.com/marketplace/apps?page=1&search=Elasticsearch)                                                                     |                                                                             Ein skalierbarer Suchserver auf Basis von Apache Lucene.                                                                             |
 | <strong>&nbsp;</strong> |       CloudSearch       |                                                                                               [Azure Search](https://azure.microsoft.com/services/search/)                                                                                               |                                                                 Bietet eine Volltextsuche sowie verknüpfte Suchanalysen und -funktionen.                                                                 |
-|    Machine Learning     |    Machine Learning     |                          [Azure Machine Learning Studio](https://azure.microsoft.com/services/machine-learning/) <br/><br/>[Azure Machine Learning Workbench](https://azure.microsoft.com/services/machine-learning-services/):                           |                    Erstellt einen End-to-End-Workflow für die Erstellung, Verarbeitung, Optimierung und Veröffentlichung von Vorhersagemodellen, um anhand komplexer Datasets Prognosen treffen zu können.                    |
+|    Machine Learning     |    Machine Learning     |                          [Azure Machine Learning Studio](https://azure.microsoft.com/services/machine-learning/) <br/><br/>[Azure Machine Learning Service](https://azure.microsoft.com/services/machine-learning-services/)                           |                    Erstellt einen End-to-End-Workflow für die Erstellung, Verarbeitung, Optimierung und Veröffentlichung von Vorhersagemodellen, um anhand komplexer Datasets Prognosen treffen zu können.                    |
 |     Datenermittlung      |          Keine           |                                                                                            [Data Catalog](https://azure.microsoft.com/services/data-catalog/)                                                                                            |                                                     Bietet die Möglichkeit, Datenquellen besser zu registrieren, zu erweitern, zu ermitteln, zu verstehen und zu nutzen.                                                     |
 | <strong>&nbsp;</strong> |      Amazon Athena      |                                                                                  [Azure Data Lake Analytics](https://azure.microsoft.com/services/data-lake-analytics/)                                                                                  |                                                     Bietet einen serverlosen interaktiven Abfragedienst, der Standard-SQL für die Analyse von Datenbanken verwendet.                                                      |
 

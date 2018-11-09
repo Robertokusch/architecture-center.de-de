@@ -2,14 +2,14 @@
 title: Anleitung zu dienstspezifischen Wiederholungsmechanismen
 description: Spezifische Dienstanleitung für die Festlegung des Wiederholungsmechanismus.
 author: dragon119
-ms.date: 07/13/2016
+ms.date: 08/13/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: c5a9bc99c4693f35c38dabcf07b3465add6a8cb1
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 801bcc6e7a296cc9d68a46231461a6b37ebd7de5
+ms.sourcegitcommit: ca5283af555189e830eed7884c83d058fa7ebaa0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429547"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50757806"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Wiederholungsanleitung für bestimmte Dienste
 
@@ -666,7 +666,7 @@ Sie können die Wiederholungskonfigurationsklasse für einen Kontext angeben, in
 public class BloggingContext : DbContext
 ```
 
-Wenn Sie unterschiedliche Wiederholungsstrategien für bestimmte Vorgänge verwenden oder Wiederholungen für bestimmte Vorgänge deaktivieren müssen, können Sie eine Konfigurationsklasse erstellen, mit der Sie Strategien anhalten oder austauschen können, indem ein Flag in **CallContext**setzen. Die Konfigurationsklasse kann dieses Flag verwenden, um Strategien zu wechseln oder die Strategie zu deaktivieren, die Sie bereitstellen und eine Standardstrategie verwenden. Weitere Informationen finden Sie unter [Anhalten der Ausführungsstrategie](/ef/ef6/fundamentals/connection-resiliency/retry-logic#workaround-suspend-execution-strategy) (EF6 und höher).
+Wenn Sie unterschiedliche Wiederholungsstrategien für bestimmte Vorgänge verwenden oder Wiederholungen für bestimmte Vorgänge deaktivieren müssen, können Sie eine Konfigurationsklasse erstellen, mit der Sie Strategien anhalten oder  austauschen können, indem ein Flag in **CallContext**setzen. Die Konfigurationsklasse kann dieses Flag verwenden, um Strategien zu wechseln oder die Strategie zu deaktivieren, die Sie bereitstellen und eine Standardstrategie verwenden. Weitere Informationen finden Sie unter [Anhalten der Ausführungsstrategie](/ef/ef6/fundamentals/connection-resiliency/retry-logic#workaround-suspend-execution-strategy) (EF6 und höher).
 
 Eine andere Technik für die Verwendung von bestimmten Wiederholungsstrategien für einzelne Vorgänge ist das Erstellen einer Instanz der erforderlichen Strategieklasse und das Liefern der gewünschten Einstellungen mithilfe von Parametern. Rufen Sie dann die **ExecuteAsync** -Methode auf.
 

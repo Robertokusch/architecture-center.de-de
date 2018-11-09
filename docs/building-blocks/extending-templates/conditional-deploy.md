@@ -2,23 +2,23 @@
 title: Bedingtes Bereitstellen einer Ressource in einer Azure Resource Manager-Vorlage
 description: Erfahren Sie, wie Sie die Funktionalität von Azure Resource Manager-Vorlagen erweitern, um eine bedingte Bereitstellung einer Ressource in Abhängigkeit vom Wert eines Parameters zu erzielen.
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: e911e7dc41b4f71ebfaf13a00f8cdbb5b4e2578b
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.date: 10/30/2018
+ms.openlocfilehash: 2c74e17a5f38f9225b696640a23b55b1285276bb
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538392"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251837"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a>Bedingtes Bereitstellen einer Ressource in einer Azure Resource Manager-Vorlage
 
 Es gibt Situationen, in denen Sie Ihre Vorlage für die Bereitstellung einer Ressource auf Grundlage einer Bedingung, z.B. des Vorhandenseins eines Parameterwerts, entwerfen müssen. Ihre Vorlage kann beispielsweise ein virtuelles Netzwerk bereitstellen und Parameter enthalten, die andere virtuelle Netzwerke für das Peering angeben. Wenn Sie keine Parameterwerte für das Peering angegeben haben, möchten Sie nicht, dass Resource Manager die Peeringressource bereitstellt.
 
-Um dies zu erreichen, verwenden Sie das [`condition`-Element][azure-resource-manager-condition] in der Ressource, um die Länge des Parameterarrays zu testen. Wenn die Länge 0 (null) ist, geben Sie `false` zurück, um die Bereitstellung zu verhindern. Bei sämtlichen Werten größer 0 geben Sie hingegen `true` zurück, um die Bereitstellung zu ermöglichen.
+Um dies zu erreichen, verwenden Sie das [Element „condition“][azure-resource-manager-condition] in der Ressource, um die Länge des Parameterarrays zu testen. Wenn die Länge 0 (null) ist, geben Sie `false` zurück, um die Bereitstellung zu verhindern. Bei sämtlichen Werten größer 0 geben Sie hingegen `true` zurück, um die Bereitstellung zu ermöglichen.
 
 ## <a name="example-template"></a>Beispielvorlage
 
-Sehen wir uns eine Beispielvorlage an, die dies veranschaulicht. Unsere Vorlage verwendet das [`condition`-Element][azure-resource-manager-condition] zum Steuern der Bereitstellung der Ressource `Microsoft.Network/virtualNetworks/virtualNetworkPeerings`. Diese Ressource erstellt ein Peering zwischen zwei virtuellen Azure-Netzwerken in derselben Region.
+Sehen wir uns eine Beispielvorlage an, die dies veranschaulicht. Unsere Vorlage verwendet das [Element „condition“][azure-resource-manager-condition] zum Steuern der Bereitstellung der Ressource `Microsoft.Network/virtualNetworks/virtualNetworkPeerings`. Diese Ressource erstellt ein Peering zwischen zwei virtuellen Azure-Netzwerken in derselben Region.
 
 Werfen wir einen Blick auf die einzelnen Abschnitte der Vorlage.
 
@@ -40,12 +40,15 @@ Unser `virtualNetworkPeerings`-Parameter ist ein `array` mit dem folgenden Schem
 ```json
 "virtualNetworkPeerings": [
     {
-        "remoteVirtualNetwork": {
-            "name": "my-other-virtual-network"
-        },
-        "allowForwardedTraffic": true,
-        "allowGatewayTransit": true,
-        "useRemoteGateways": false
+      "name": "firstVNet/peering1",
+      "properties": {
+          "remoteVirtualNetwork": {
+              "id": "[resourceId('Microsoft.Network/virtualNetworks','secondVNet')]"
+          },
+          "allowForwardedTraffic": true,
+          "allowGatewayTransit": true,
+          "useRemoteGateways": false
+      }
     }
 ]
 ```
@@ -60,7 +63,7 @@ Die Eigenschaften in unserem Parameter geben die [Einstellungen im Zusammenhang 
       "name": "[concat('vnp-', copyIndex())]",
       "condition": "[greater(length(parameters('virtualNetworkPeerings')), 0)]",
       "dependsOn": [
-        "virtualNetworks"
+        "firstVNet", "secondVNet"
       ],
       "copy": {
           "name": "iterator",
@@ -119,11 +122,23 @@ Unsere `peerings`-Variable verwendet unsere `workaround`-Variable, indem sie ern
 
 Nachdem wir das Überprüfungsproblem umgangen haben, können wir einfach die Bereitstellung der `Microsoft.Network/virtualNetworks/virtualNetworkPeerings`-Ressource in der geschachtelten Vorlage angeben, indem wir `name` und `properties` aus unserem `virtualNetworkPeerings`-Parameterarray übergeben. Sie können dies auch im `template`-Element erkennen, das im `properties`-Element unserer Ressource geschachtelt ist.
 
+## <a name="try-the-template"></a>Testen der Vorlage
+
+Eine Beispielvorlage finden Sie [auf GitHub][github]. Führen Sie zum Bereitstellen der Vorlage die folgenden Befehle der [Azure-Befehlszeilenschnittstelle][cli] aus:
+
+```bash
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example2-conditional/deploy.json
+```
+
 ## <a name="next-steps"></a>Nächste Schritte
 
-* Dieses Verfahren ist im [Vorlagenbaustein-Projekt](https://github.com/mspnp/template-building-blocks) und in den [Azure-Referenzarchitekturen](/azure/architecture/reference-architectures/) implementiert. Sie können es verwenden, um Ihre eigene Architektur zu erstellen oder eine unserer Referenzarchitekturen bereitzustellen.
+* Verwenden Sie anstelle von Skalarwerten Objekte als Vorlagenparameter. Informationen finden Sie unter [Verwenden eines Objekts als Parameter in einer Azure Resource Manager-Vorlage](./objects-as-parameters.md).
 
 <!-- links -->
 [azure-resource-manager-condition]: /azure/azure-resource-manager/resource-group-authoring-templates#resources
 [azure-resource-manager-variable]: /azure/azure-resource-manager/resource-group-authoring-templates#variables
 [vnet-peering-resource-schema]: /azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

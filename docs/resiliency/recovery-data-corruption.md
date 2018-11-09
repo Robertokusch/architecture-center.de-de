@@ -2,13 +2,13 @@
 title: Wiederherstellung nach Datenbeschädigung oder unbeabsichtigtem Löschen
 description: In diesem Leitfaden erfahren Sie, wie Sie nach Datenbeschädigung oder versehentlichem Löschen eine Wiederherstellung ausführen, ausfallsichere, hochverfügbare und fehlertolerante Anwendungen erstellen und die Notfallwiederherstellung planen
 author: MikeWasson
-ms.date: 01/10/2018
-ms.openlocfilehash: b0716de39fe69d607b9a63e51356d28bbcdbfeae
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.date: 11/11/2018
+ms.openlocfilehash: 1f3dd448ac6172727481c437fb8a113f25d83464
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012425"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916267"
 ---
 # <a name="recover-from-data-corruption-or-accidental-deletion"></a>Wiederherstellung nach Datenbeschädigung oder unbeabsichtigtem Löschen 
 
@@ -32,7 +32,7 @@ Azure Storage bietet Datenresilienz durch automatisierte Replikate. Allerdings v
 
 ### <a name="azure-sql-database"></a>Azure SQL-Datenbank 
 
-SQL-Datenbank führt automatisch eine Kombination aus wöchentlichen vollständigen Datenbanksicherungen, stündlichen differenziellen Datenbanksicherungen sowie Transaktionsprotokollsicherungen im Abstand von fünf bis zehn Minuten durch, um Ihr Unternehmen vor Datenverlusten zu schützen. Verwenden Sie die Point-in-Time-Wiederherstellung, um eine Datenbank zu einem früheren Zeitpunkt wiederherzustellen. Weitere Informationen finden Sie unter 
+SQL-Datenbank führt automatisch eine Kombination aus wöchentlichen vollständigen Datenbanksicherungen, stündlichen differenziellen Datenbanksicherungen sowie Transaktionsprotokollsicherungen im Abstand von fünf bis zehn Minuten durch, um Ihr Unternehmen vor Datenverlusten zu schützen. Verwenden Sie die Point-in-Time-Wiederherstellung, um eine Datenbank zu einem früheren Zeitpunkt wiederherzustellen. Weitere Informationen finden Sie unter
 
 - [Wiederherstellen einer Azure SQL-Datenbank mit automatisierten Datenbanksicherungen](/azure/sql-database/sql-database-recovery-using-backups)
 
@@ -48,7 +48,7 @@ Azure Cosmos DB erstellt in regelmäßigen Abständen automatisch Sicherungen. S
 
 ### <a name="azure-database-for-mysql-azure-database-for-postresql"></a>Azure Database for MySQL, Azure Database for PostgreSQL
 
-Bei der Verwendung von Azure Database for MySQL oder Azure Database for PostgreSQL erstellt der Datenbankdienst automatisch alle fünf Minuten eine Sicherung des Diensts. Mithilfe dieses automatischen Sicherungsfeatures können Sie einen früheren Zustand des Servers und aller seiner Datenbanken wiederherstellen. Weitere Informationen finden Sie unter 
+Bei der Verwendung von Azure Database for MySQL oder Azure Database for PostgreSQL erstellt der Datenbankdienst automatisch alle fünf Minuten eine Sicherung des Diensts. Mithilfe dieses automatischen Sicherungsfeatures können Sie einen früheren Zustand des Servers und aller seiner Datenbanken wiederherstellen. Weitere Informationen finden Sie unter
 
 - [Sichern und Wiederherstellen eines Servers in Azure Database for MySQL mit dem Azure-Portal](/azure/mysql/howto-restore-server-portal)
 

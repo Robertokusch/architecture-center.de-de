@@ -2,14 +2,14 @@
 title: Webanwendungen für mehrere Regionen
 description: Empfohlene Architektur für Webanwendungen mit Hochverfügbarkeit, die in Microsoft Azure ausgeführt werden
 author: MikeWasson
-ms.date: 11/23/2016
+ms.date: 10/25/2018
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 5493deea871f25fb6ea3531a22d92d83916930b1
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 1ed69f4f7e79fe2025e2a10d50e851ac4c02f1a6
+ms.sourcegitcommit: 065fa8ecb37c8be1827da861243ad6a33c75c99d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876816"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50136657"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Ausführen einer Webanwendung in mehreren Regionen
 [!INCLUDE [header](../../_includes/header.md)]
@@ -70,9 +70,7 @@ Andererseits sollten Sie den Integritätstest nicht zum Überprüfen von Dienste
 Verwenden Sie die [aktive Georeplikation][sql-replication], um ein lesbares sekundäres Replikat in einer anderen Region zu erstellen. Sie können bis zu vier lesbare sekundäre Replikate nutzen. Führen Sie ein Failover zu einer sekundären Datenbank aus, wenn die primäre Datenbank ausfällt oder offline geschaltet werden muss. Die aktive Georeplikation kann für jede Datenbank in einem beliebigen Pool für elastische Datenbanken konfiguriert werden.
 
 ### <a name="cosmos-db"></a>Cosmos DB
-Cosmos DB unterstützt die Georeplikation zwischen Regionen. Eine Region wird als schreibbar festgelegt, während die anderen lediglich lesbare Replikate sind.
-
-Fällt eine Region aus, können Sie ein Failover ausführen, indem Sie eine andere Region als schreibbare Region festlegen. Das Client-SDK sendet Schreibanforderungen automatisch an die aktuell schreibbare Region, daher müssen Sie die Clientkonfiguration nach einem Failover nicht aktualisieren. Weitere Informationen finden Sie unter [Wie werden Daten mit Azure Cosmos DB global verteilt?][cosmosdb-geo].
+Cosmos DB unterstützt die regionsübergreifende Georeplikation mit Multimaster (mehrere Schreibregionen). Alternativ können Sie eine Region als die schreibbare Region und die andere als schreibgeschützte Replikate festlegen. Fällt eine Region aus, können Sie ein Failover ausführen, indem Sie eine andere Region als schreibbare Region festlegen. Das Client-SDK sendet Schreibanforderungen automatisch an die aktuell schreibbare Region, daher müssen Sie die Clientkonfiguration nach einem Failover nicht aktualisieren. Weitere Informationen finden Sie unter [Globale Datenverteilung mit Azure Cosmos DB][cosmosdb-geo].
 
 > [!NOTE]
 > Alle Replikate gehören derselben Ressourcengruppe an.
@@ -136,10 +134,11 @@ Set-AzureRmTrafficManagerEndpoint -TrafficManagerEndpoint $endpoint
 
 Weitere Informationen finden Sie unter [Azure Traffic Manager-Cmdlets][tm-ps].
 
-**Azure-Befehlszeilenschnittstelle (CLI)**
+**Azure-Befehlszeilenschnittstelle**
 
 ```bat
-azure network traffic-manager endpoint set --name <endpoint> --profile-name <profile> --resource-group <resource-group> --type AzureEndpoints --priority 3
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile> \
+    --name <endpoint-name> --type azureEndpoints --priority 3
 ```    
 
 ### <a name="sql-database"></a>SQL-Datenbank

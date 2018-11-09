@@ -2,13 +2,13 @@
 title: Verwenden eines Objekts als Parameter in einer Azure Resource Manager-Vorlage
 description: Beschreibt das Erweitern der Funktionalität der Azure Resource Manager-Vorlagen für die Verwendung von Objekten als Parameter.
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: dd53c55a26b2452c375d8d1e1a98886b15febaeb
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.date: 10/30/2018
+ms.openlocfilehash: c1955823b3474efa0abea1d9634add5f13d02eda
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876754"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251888"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>Verwenden eines Objekts als Parameter in einer Azure Resource Manager-Vorlage
 
@@ -301,25 +301,21 @@ Wir werfen einen genaueren Blick darauf, wie wir die Eigenschaftswerte in der un
 
 ## <a name="try-the-template"></a>Testen der Vorlage
 
-Befolgen Sie die nachfolgenden Schritte, wenn Sie diese Vorlage testen möchten: 
+Eine Beispielvorlage finden Sie [auf GitHub][github]. Klonen Sie zum Bereitstellen der Vorlage das Repository, und führen Sie die folgenden Befehle der [Azure-Befehlszeilenschnittstelle][cli] aus:
 
-1.  Wechseln Sie zum Azure-Portal, wählen Sie das Pluszeichen (**+**) aus, suchen Sie nach dem Ressourcentyp **Vorlagenbereitstellung**, und wählen Sie ihn aus.
-2.  Navigieren Sie zur Seite **Vorlagenbereitstellung**, und wählen Sie die Schaltfläche **Erstellen** aus. Mit dieser Schaltfläche öffnen Sie das Blatt **Benutzerdefinierte Bereitstellung**.
-3.  Wählen Sie die Schaltfläche **Vorlage bearbeiten**.
-4.  Löschen Sie die leere Vorlage. 
-5.  Kopieren Sie die Beispielvorlage, und fügen Sie sie im rechten Bereich ein.
-6.  Wählen Sie die Schaltfläche **Speichern** aus.
-7.  Wenn Sie in den Bereich **Benutzerdefinierte Bereitstellung** zurückgekehrt sind, wählen Sie die Schaltfläche **Parameter bearbeiten** aus.
-8.  Löschen Sie auf dem Blatt **Parameter bearbeiten** die vorhandene Vorlage.
-9.  Kopieren Sie die Beispielparametervorlage, und fügen Sie sie ein.
-10. Wählen Sie die Schaltfläche **Speichern**, sodass Sie wieder zum Blatt **Benutzerdefinierte Bereitstellung** gelangen.
-11. Wählen Sie auf dem Blatt **Benutzerdefinierte Bereitstellung** Ihr Abonnement aus, erstellen Sie entweder eine neue oder verwenden Sie eine vorhandene Ressourcengruppe, und wählen Sie einen Speicherort aus. Lesen Sie die Nutzungsbedingungen, und aktivieren Sie das Kontrollkästchen **Ich stimme zu**.
-12. Wählen Sie die Schaltfläche **Kaufen** aus.
+```bash
+git clone https://github.com/mspnp/template-examples.git
+cd template-examples/example3-object-param
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example3-object-param/deploy.json \
+    --parameters deploy.parameters.json
+```
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-* Sie können diese Verfahren ausweiten, um einen [Transformer und Collector für Eigenschaftsobjekte](./collector.md) zu implementieren. Die Transformer- und Collector-Verfahren sind allgemeingültiger und können über Ihre Vorlagen verknüpft werden.
-* Dieses Muster ist auch im [Vorlagenbaustein-Projekt](https://github.com/mspnp/template-building-blocks) und in den [Azure-Referenzarchitekturen](/azure/architecture/reference-architectures/) implementiert. Sie können sich unsere Vorlagen ansehen, um zu ermitteln, wie wir dieses Verfahren implementiert haben.
+- Erfahren Sie, wie Sie eine Vorlage erstellen, die ein Objektarray durchläuft und es in ein JSON-Schema transformiert. Informationen finden Sie unter [Implementieren eines Transformers und Collectors für Eigenschaften in eine Azure Resource Manager-Vorlage](./collector.md).
+
 
 <!-- links -->
 [azure-resource-manager-authoring-templates]: /azure/azure-resource-manager/resource-group-authoring-templates
@@ -327,3 +323,5 @@ Befolgen Sie die nachfolgenden Schritte, wenn Sie diese Vorlage testen möchten:
 [azure-resource-manager-create-multiple-instances]: /azure/azure-resource-manager/resource-group-create-multiple
 [azure-resource-manager-functions]: /azure/azure-resource-manager/resource-group-template-functions-resource
 [nsg]: /azure/virtual-network/virtual-networks-nsg
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

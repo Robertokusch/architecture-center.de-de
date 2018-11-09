@@ -3,12 +3,12 @@ title: Verarbeiten von CSV- und JSON-Dateien
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 02e684d562cfe555f9e3596ad0a2f1a00d05c7a7
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: b9a0deae5499a4df4e43e15914490b89e0e3a50c
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298608"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251803"
 ---
 # <a name="working-with-csv-and-json-files-for-data-solutions"></a>Verwenden von CSV- und JSON-Dateien für Datenlösungen
 
@@ -44,6 +44,8 @@ Sowohl das CSV- als auch das JSON-Dateiformat vereinfacht den Austausch von Date
 ## <a name="working-with-csv-and-json-data-in-azure"></a>Verwenden von CSV- und JSON-Daten in Azure
 
 Azure bietet mehrere Lösungen für die Verwendung von CSV- und JSON-Dateien, um verschiedenste Anforderungen zu erfüllen. Dateien dieser Art befinden sich in erster Linie in Azure Storage oder in Azure Data Lake Store. Die meisten Azure-Dienste, die diese und andere textbasierte Dateien verwenden, sind in beide Objektspeicherdienste integriert. In bestimmten Fällen sollen die Daten jedoch möglicherweise direkt in Azure SQL oder in einen anderen Datenspeicher importiert werden. SQL Server unterstützt die Speicherung und Verwendung von JSON-Dokumenten nativ, was das [Importieren und Verarbeiten dieser Dateitypen](/sql/relational-databases/json/import-json-documents-into-sql-server) vereinfacht. Mit einem Hilfsprogramm wie SQL Bulk Import können Sie ganz einfach [CSV-Dateien importieren](/sql/relational-databases/json/import-json-documents-into-sql-server).
+
+Sie können JSON-Dateien auch direkt über Azure Blob Storage abfragen, ohne sie in Azure SQL zu importieren. Ein vollständiges Beispiel für diesen Ansatz finden Sie unter [Work with JSON files with Azure SQL](https://medium.com/@mauridb/work-with-json-files-with-azure-sql-8946f066ddd4) (Verwenden von JSON-Dateien mit Azure SQL). Derzeit ist diese Option nicht für CSV-Dateien verfügbar.
 
 Abhängig vom jeweiligen Szenario können Sie für die Daten eine [Batchverarbeitung](../big-data/batch-processing.md) oder eine [Echtzeitverarbeitung](../big-data/real-time-processing.md) durchführen.
 
