@@ -2,23 +2,25 @@
 title: Enterprise BI mit SQL Data Warehouse
 description: Verwenden von Azure, um aus lokal gespeicherten relationalen Daten Einblicke in Geschäftsvorgänge zu gewinnen
 author: MikeWasson
-ms.date: 07/01/2018
-ms.openlocfilehash: e3542e40b4b6d1f604f93bb21528f34ba7f22fc6
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.date: 11/06/2018
+ms.openlocfilehash: d5b680346267a17b5016b8897dc03ddcf18a7fe9
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142334"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263812"
 ---
 # <a name="enterprise-bi-with-sql-data-warehouse"></a>Enterprise BI mit SQL Data Warehouse
 
-Diese Referenzarchitektur implementiert eine [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)-Pipeline (Extract-Load-Transform), die Daten aus einer lokalen SQL Server-Datenbank in SQL Data Warehouse verschiebt und die Daten für die Analyse transformiert. [**So stellen Sie diese Lösung bereit**.](#deploy-the-solution)
+Diese Referenzarchitektur implementiert eine [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)-Pipeline (Extract-Load-Transform), die Daten aus einer lokalen SQL Server-Datenbank in SQL Data Warehouse verschiebt und die Daten für die Analyse transformiert. 
+
+Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github-folder] verfügbar.
 
 ![](./images/enterprise-bi-sqldw.png)
 
 **Szenario**: Ein großes OLTP-Dataset einer Organisation ist in einer SQL Server-Datenbank lokal gespeichert. Die Organisation möchte mittels SQL Data Warehouse eine Analyse mit Power BI ausführen. 
 
-Diese Referenzarchitektur ist für einmalige oder bedarfsgesteuerte Aufträge bestimmt. Wenn Sie fortlaufend (stündlich oder täglich) Daten verschieben müssen, sollten Sie mit Azure Data Factory einen automatisierten Workflow definieren. Eine Referenzarchitektur, die Data Factory verwendet, finden Sie unter [Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Data Factory](./enterprise-bi-adf.md).
+Diese Referenzarchitektur ist für einmalige oder bedarfsgesteuerte Aufträge bestimmt. Wenn Sie fortlaufend (stündlich oder täglich) Daten verschieben müssen, sollten Sie mit Azure Data Factory einen automatisierten Workflow definieren. Eine Referenzarchitektur, die Data Factory verwendet, finden Sie unter [Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Data Factory][adf-ra].
 
 ## <a name="architecture"></a>Architecture
 
@@ -187,232 +189,21 @@ Weitere Informationen finden Sie unter [Verwalten von Datenbankrollen und Benutz
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][ref-arch-repo-folder] verfügbar. Folgendes wird bereitgestellt:
+Führen Sie zum Bereitstellen und Ausführen der Referenzimplementierung die Schritte in der [GitHub-Infodatei][github-folder] aus. Folgendes wird bereitgestellt:
 
   * Eine Windows-VM, um einen lokalen Datenbankserver zu simulieren. Sie enthält SQL Server 2017 und zugehörige Tools zusammen mit Power BI Desktop.
   * Ein Azure Storage-Konto, das Blobspeicher zum Speichern von Daten bereitstellt, die aus SQL Server-Datenbank exportiert wurden.
   * Eine Instanz von Azure SQL Data Warehouse.
   * Eine Azure Analysis Services-Instanz.
 
-### <a name="prerequisites"></a>Voraussetzungen
-
-[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
-
-### <a name="deploy-the-simulated-on-premises-server"></a>Bereitstellen des simulierten lokalen Servers
-
-Zuerst stellen Sie einen virtuellen Computer als simulierten lokalen Server bereit, auf dem SQL Server 2017 und die zugehörigen Tools vorhanden sind. Dieser Schritt lädt auch die [OLTP-Datenbank von Wide World Importers][wwi] in SQL Server.
-
-1. Navigieren Sie zum Ordner `data\enterprise_bi_sqldw\onprem\templates` des Repositorys.
-
-2. Ersetzen Sie in der `onprem.parameters.json`-Datei die Werte für `adminUsername` und `adminPassword`. Ändern Sie auch die Werte im Abschnitt `SqlUserCredentials` mit entsprechendem Benutzernamen und Kennwort. Beachten Sie das `.\\`-Präfix in der userName-Eigenschaft.
-    
-    ```bash
-    "SqlUserCredentials": {
-      "userName": ".\\username",
-      "password": "password"
-    }
-    ```
-
-3. Führen Sie `azbb` wie unten dargestellt aus, um den lokalen Server bereitzustellen.
-
-    ```bash
-    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.parameters.json --deploy
-    ```
-
-    Geben Sie eine Region an, die SQL Data Warehouse und Azure Analysis Services unterstützt. Informationen finden Sie unter [Azure-Produkte nach Region](https://azure.microsoft.com/global-infrastructure/services/).
-
-4. Die Bereitstellung kann inklusive der Ausführung des [DSC](/powershell/dsc/overview)-Skripts zum Installieren der Tools und Wiederherstellen der Datenbank 20 bis 30 Minuten dauern. Überprüfen Sie die Bereitstellung im Azure-Portal, indem Sie die Ressourcen in der Ressourcengruppe überprüfen. Die VM `sql-vm1` und die zugehörigen Ressourcen sollten angezeigt werden.
-
-### <a name="deploy-the-azure-resources"></a>Bereitstellen der Azure-Ressourcen
-
-Dieser Schritt stellt SQL Data Warehouse und Azure Analysis Services zusammen mit einem Storage-Konto bereit. Wenn Sie möchten, können Sie diesen Schritt parallel zu dem vorherigen Schritt ausführen.
-
-1. Navigieren Sie zum Ordner `data\enterprise_bi_sqldw\azure\templates` des Repositorys.
-
-2. Führen Sie den folgenden Azure CLI-Befehl aus, um eine Ressourcengruppe zu erstellen: Sie können in einer anderen Ressourcengruppe als im vorherigen Schritt bereitstellen, wählen Sie jedoch die gleiche Region. 
-
-    ```bash
-    az group create --name <resource_group_name> --location <region>  
-    ```
-
-3. Führen Sie den folgenden Azure CLI-Befehl aus, um die Azure-Ressourcen bereitzustellen: Ersetzen Sie die Parameterwerte in spitzen Klammern. 
-
-    ```bash
-    az group deployment create --resource-group <resource_group_name> \
-     --template-file azure-resources-deploy.json \
-     --parameters "dwServerName"="<server_name>" \
-     "dwAdminLogin"="<admin_username>" "dwAdminPassword"="<password>" \ 
-     "storageAccountName"="<storage_account_name>" \
-     "analysisServerName"="<analysis_server_name>" \
-     "analysisServerAdmin"="user@contoso.com"
-    ```
-
-    - Beim `storageAccountName`-Parameter müssen Sie die [Benennungsregeln](../../best-practices/naming-conventions.md#naming-rules-and-restrictions) für Speicherkonten befolgen.
-    - Verwenden Sie für den `analysisServerAdmin`-Parameter Ihren Azure Active Directory-Benutzerprinzipalnamen (User Principal Name, UPN).
-
-4. Überprüfen Sie die Bereitstellung im Azure-Portal, indem Sie die Ressourcen in der Ressourcengruppe überprüfen. Ein Speicherkonto, die Azure SQL Data Warehouse-Instanz und die Analysis Services-Instanz sollten angezeigt werden.
-
-5. Rufen Sie den Zugriffsschlüssel für das Speicherkonto über das Azure-Portal ab. Wählen Sie das Speicherkonto aus, um es zu öffnen. Wählen Sie unter **Einstellungen** die Option **Zugriffsschlüssel** aus. Kopieren Sie den Primärschlüsselwert. Sie werden ihn im nächsten Schritt verwenden.
-
-### <a name="export-the-source-data-to-azure-blob-storage"></a>Exportieren der Quelldaten in Azure Blob Storage 
-
-In diesem Schritt führen Sie ein PowerShell-Skript aus, das mit BCP die SQL-Datenbank in Flatfiles auf dem virtuellen Computer exportiert und diese Dateien anschließend mit AzCopy in Azure Blob Storage kopiert.
-
-1. Stellen Sie mit Remotedesktop eine Verbindung mit dem simulierten lokalen virtuellen Computer her.
-
-2. Während Sie bei der VM angemeldet sind, führen Sie die folgenden Befehle in einem PowerShell-Fenster aus.  
-
-    ```powershell
-    cd 'C:\SampleDataFiles\reference-architectures\data\enterprise_bi_sqldw\onprem'
-
-    .\Load_SourceData_To_Blob.ps1 -File .\sql_scripts\db_objects.txt -Destination 'https://<storage_account_name>.blob.core.windows.net/wwi' -StorageAccountKey '<storage_account_key>'
-    ```
-
-    Ersetzen Sie für den `Destination`-Parameter `<storage_account_name>` mit dem Namen des Speicherkontos, das Sie zuvor erstellt haben. Verwenden Sie für den `StorageAccountKey`-Parameter den Zugriffsschlüssel für das Speicherkonto.
-
-3. Stellen Sie im Azure-Portal sicher, dass die Quelldaten in den Blobspeicher kopiert wurden, indem zum Speicherkonto navigieren, den Blobdienst auswählen und den `wwi`-Container öffnen. Daraufhin sollte eine Liste von Tabellen mit vorangestelltem `WorldWideImporters_Application_*` angezeigt werden.
-
-### <a name="run-the-data-warehouse-scripts"></a>Ausführen der Data Warehouse-Skripts
-
-1. Starten Sie SQL Server Management Studio (SSMS) über die Remotedesktopsitzung. 
-
-2. Herstellen einer Verbindung mit SQL Data Warehouse
-
-    - Servertyp: Datenbank-Engine
-    
-    - Servername: `<dwServerName>.database.windows.net`, wobei `<dwServerName>` der Name ist, den Sie beim Bereitstellen der Azure-Ressourcen angegeben haben. Sie können diesen Namen im Azure-Portal abrufen.
-    
-    - Authentifizierung: SQL Server-Authentifizierung. Verwenden Sie die Anmeldeinformationen, die Sie beim Bereitstellen der Azure-Ressourcen angegeben haben, in den Parametern `dwAdminLogin` und `dwAdminPassword`.
-
-2. Navigieren Sie auf der VM zum Ordner `C:\SampleDataFiles\reference-architectures\data\enterprise_bi_sqldw\azure\sqldw_scripts`. Führen Sie die Skripts in diesem Ordner in numerischer Reihenfolge aus, `STEP_1` bis `STEP_7`.
-
-3. Wählen Sie die `master`-Datenbank in SSMS aus, und öffnen Sie das `STEP_1`-Skript. Ändern Sie den Wert des Kennworts in der folgenden Zeile, und führen Sie das Skript aus.
-
-    ```sql
-    CREATE LOGIN LoaderRC20 WITH PASSWORD = '<change this value>';
-    ```
-
-4. Wählen Sie die `wwi`-Datenbank in SSMS aus. Öffnen Sie das `STEP_2`-Skript, und führen Sie das Skript aus. Wenn Sie eine Fehlermeldung erhalten, stellen Sie sicher, dass Sie das Skript für die Datenbank `wwi` und nicht `master` ausführen.
-
-5. Öffnen Sie eine neue Verbindung mit SQL Data Warehouse unter Verwendung des `LoaderRC20`-Benutzers und des im `STEP_1`-Skript angegebenen Kennworts.
-
-6. Öffnen Sie mithilfe dieser Verbindung das `STEP_3`-Skript. Legen Sie die folgenden Werte im Skript fest:
-
-    - SECRET: Verwenden Sie den Zugriffsschlüssel für Ihr Speicherkonto.
-    - LOCATION: Verwenden Sie den Namen des Speicherkontos wie folgt: `wasbs://wwi@<storage_account_name>.blob.core.windows.net`.
-
-7. Führen Sie mithilfe derselben Verbindung die Skripts `STEP_4` bis `STEP_7` sequenziell aus. Stellen Sie sicher, dass jedes Skript vor der Ausführung des nächsten erfolgreich abgeschlossen wird.
-
-In SMSS sollte eine Reihe von `prd.*`-Tabellen in der `wwi`-Datenbank angezeigt werden. Führen Sie die folgende Abfrage aus, um sicherzustellen, dass die Daten generiert wurden: 
-
-```sql
-SELECT TOP 10 * FROM prd.CityDimensions
-```
-
-## <a name="build-the-analysis-services-model"></a>Erstellen des Analysis Services-Modells
-
-In diesem Schritt erstellen Sie ein tabellarisches Modell, das Daten aus dem Data Warehouse importiert. Sie werden dann das Modell für Azure Analysis Services bereitstellen.
-
-1. Starten Sie SQL Server Data Tools 2015 über die Remotedesktopsitzung.
-
-2. Wählen Sie **Datei** > **Neu** > **Projekt**.
-
-3. Wählen Sie im Dialogfeld **Neues Projekt** unter **Vorlagen** die Option **Business  Intelligence** > **Analysis Services** > **Analysis Services-Projekt für tabellarische Modelle** aus. 
-
-4. Benennen Sie das Projekt, und klicken Sie auf **OK**.
-
-5. Wählen Sie im Dialogfeld **Designer für tabellarische Modelle** die Option **Integrierter Arbeitsbereich** aus, und legen Sie für **Kompatibilitätsgrad** `SQL Server 2017 / Azure Analysis Services (1400)` fest. Klicken Sie auf **OK**.
-
-6. Klicken Sie im Fenster **Tabellarischer Modell-Explorer** mit der rechten Maustaste auf das Projekt, und wählen Sie **Aus Datenquelle importieren** aus.
-
-7. Wählen Sie **Azure SQL Data Warehouse** aus, und klicken Sie auf **Verbinden**.
-
-8. Geben Sie für **Server** den vollqualifizierten Namen Ihres Azure SQL Data Warehouse-Servers ein. Geben Sie für **Datenbank** `wwi` ein. Klicken Sie auf **OK**.
-
-9. Wählen Sie im nächsten Dialogfeld **Datenbank**-Authentifizierung aus, geben Sie Ihren Benutzernamen und Ihr Kennwort für Azure SQL Data Warehouse ein, und klicken Sie auf **OK**.
-
-10. Aktivieren Sie im Dialogfeld **Navigator** die Kontrollkästchen für **prd.CityDimensions**, **prd.DateDimensions** und **prd.SalesFact**. 
-
-    ![](./images/analysis-services-import.png)
-
-11. Klicken Sie auf **Laden**. Wenn die Verarbeitung abgeschlossen ist, klicken Sie auf **Schließen**. Jetzt sollte eine tabellarische Ansicht der Daten angezeigt werden.
-
-12. Klicken Sie im Fenster **Tabellarischer Modell-Explorer** mit der rechten Maustaste auf das Projekt, und wählen Sie **Modellansicht** > **Diagrammansicht** aus.
-
-13. Ziehen Sie das Feld **[prd.SalesFact].[WWI City ID]** auf das Feld **[prd.CityDimensions].[WWI City ID]**, um eine Beziehung zu erstellen.  
-
-14. Ziehen Sie das Feld **[prd.SalesFact].[Invoice Date Key]** auf das Feld **[prd.DateDimensions].[Date]**.  
-    ![](./images/analysis-services-relations.png)
-
-15. Klicken Sie im Menü **Datei** auf **Alle speichern**.  
-
-16. Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt, und wählen Sie **Eigenschaften** aus. 
-
-17. Geben Sie unter **Server** die URL Ihrer Azure Analysis Services-Instanz ein. Diesen Wert können Sie im Azure-Portal ermitteln. Wählen Sie im Portal die Analysis Services-Ressource aus, klicken Sie auf den Bereich „Übersicht“, und suchen Sie nach der Eigenschaft **Servername**. Sie ähnelt `asazure://westus.asazure.windows.net/contoso`. Klicken Sie auf **OK**.
-
-    ![](./images/analysis-services-properties.png)
-
-18. Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt, und wählen Sie **Bereitstellen** aus. Melden Sie sich bei Azure an, wenn Sie aufgefordert werden. Wenn die Verarbeitung abgeschlossen ist, klicken Sie auf **Schließen**.
-
-19. Zeigen Sie im Azure-Portal die Details für Ihre Azure Analysis Services-Instanz an. Stellen Sie sicher, dass Ihr Modell in der Liste der Modelle angezeigt wird.
-
-    ![](./images/analysis-services-models.png)
-
-## <a name="analyze-the-data-in-power-bi-desktop"></a>Analysieren der Daten in Power BI Desktop
-
-In diesem Schritt verwenden Sie Power BI zum Erstellen eines Berichts aus den Daten in Analysis Services.
-
-1. Starten Sie Power BI Desktop über die Remotedesktopsitzung.
-
-2. Klicken Sie auf dem Begrüßungsbildschirm auf **Daten abrufen**.
-
-3. Wählen Sie **Azure** > **Azure Analysis Services-Datenbank** aus. Klicken Sie auf das Menü **Verbinden**
-
-    ![](./images/power-bi-get-data.png)
-
-4. Geben Sie die URL Ihrer Analysis Services-Instanz ein, und klicken Sie auf **OK**. Melden Sie sich bei Azure an, wenn Sie aufgefordert werden.
-
-5. Erweitern Sie im Dialogfeld **Navigator** das Projekt für tabellarische Modelle, das Sie bereitgestellt haben, wählen Sie das Modell aus, das Sie erstellt haben, und klicken Sie auf **OK**.
-
-2. Wählen Sie im Bereich **Visualisierungen** das Symbol **Gestapeltes Balkendiagramm** aus. Vergrößern Sie in der Berichtsansicht die Visualisierung.
-
-6. Erweitern Sie im Bereich **Felder** **prd.CityDimensions**.
-
-7. Ziehen Sie **prd.CityDimensions** > **WWI City ID** auf **Achse**.
-
-8. Ziehen Sie **prd.CityDimensions** > **City** auf **Legende**.
-
-9. Erweitern Sie **prd.SalesFact** im Bereich **Felder**.
-
-10. Ziehen Sie **prd.SalesFact** > **Total Excluding Tax** auf **Wert**.
-
-    ![](./images/power-bi-visualization.png)
-
-11. Wählen Sie unter **Filter auf visueller Ebene** die Option **WWI City ID** aus.
-
-12. Legen Sie für **Filtertyp** `Top N` fest und für **Elemente anzeigen** `Top 10`.
-
-13. Ziehen Sie **prd.SalesFact** > **Total Excluding Tax** auf **Nach Wert**.
-
-    ![](./images/power-bi-visualization2.png)
-
-14. Klicken Sie auf **Filter anwenden**. Die Visualisierung zeigt die obersten 10 Gesamtumsätze nach Stadt.
-
-    ![](./images/power-bi-report.png)
-
-Weitere Informationen zu Power BI Desktop finden Sie unter [Erste Schritte mit Power BI Desktop](/power-bi/desktop-getting-started).
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-- Weitere Informationen zu dieser Referenzarchitektur finden Sie in unserem [GitHub-Repository][ref-arch-repo-folder].
-- Informieren Sie sich über die [Azure-Bausteine][azbb-repo].
+- Verwenden Sie Azure Data Factory, um die ELT-Pipeline zu automatisieren. Siehe [Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Data Factory][adf=ra].
 
 <!-- links -->
 
-[azure-cli-2]: /azure/install-azure-cli
-[azbb-repo]: https://github.com/mspnp/template-building-blocks
-[azbb-wiki]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
+[adf-ra]: ./enterprise-bi-adf.md
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw
-[ref-arch-repo]: https://github.com/mspnp/reference-architectures
-[ref-arch-repo-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw
 [wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database
+

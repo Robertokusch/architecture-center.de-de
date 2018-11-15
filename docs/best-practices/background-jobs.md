@@ -2,17 +2,15 @@
 title: Anleitungen für Hintergrundaufträge
 description: Anleitungen für Hintergrundaufgaben, die unabhängig von der Benutzeroberfläche ausgeführt werden.
 author: dragon119
-ms.date: 05/24/2017
-pnp.series.title: Best Practices
-ms.openlocfilehash: 57fd7a6cc400b53e51e08fb5a1377dce4ae61327
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.date: 11/05/2018
+ms.openlocfilehash: 0c48121a0d5cff33893a8f242c70f4a275c46f73
+ms.sourcegitcommit: d59e2631fb08665bc30f6b65bfc7e1b75935cbd5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251922"
+ms.lasthandoff: 11/05/2018
+ms.locfileid: "51021932"
 ---
 # <a name="background-jobs"></a>Hintergrundaufträge
-[!INCLUDE [header](../_includes/header.md)]
 
 Viele Arten von Anwendungen erfordern Hintergrundaufgaben, die unabhängig von der Benutzeroberfläche (UI) ausgeführt werden. Beispiele hierfür sind Batchaufträge, rechenintensive Aufgaben und langwierige Prozesse wie Workflows. Hintergrundaufträge können ohne Benutzerinteraktion ausgeführt werden. Die Anwendung kann den Auftrag starten und dann mit der Verarbeitung interaktiver Benutzeranforderungen fortfahren. Damit kann die Arbeitsauslastung der Anwendungsbenutzeroberfläche minimiert werden, was zu einer höheren Verfügbarkeit und zu kürzeren interaktiven Antwortzeiten beitragen kann.
 
@@ -74,8 +72,7 @@ Hintergrundaufgaben können mithilfe einer Reihe von verschiedenen Azure Platfor
 * [**Azure-Web-Apps und WebJobs**](#azure-web-apps-and-webjobs). Mit WebJobs können benutzerdefinierte Aufträge basierend auf einer Reihe verschiedener Typen von Skripts oder ausführbaren Programmen im Kontext einer Web-App ausgeführt werden.
 * [**Azure Virtual Machines**](#azure-virtual-machines). Wenn Sie einen Windows-Dienst haben oder die Windows-Aufgabenplanung verwenden möchten, ist es üblich, die Hintergrundaufgaben auf einem dedizierten virtuellen Computer zu hosten.
 * [**Azure Batch**](#azure-batch). Batch ist ein Plattformdienst, mit dem rechenintensive Arbeitsschritte auf einer verwalteten Sammlung virtueller Computer ausgeführt werden. Sie ermöglicht das automatische Skalieren von Computeressourcen.
-* [**Azure Container Service**](#azure-container-service). Bei Azure Container Service wird in Azure eine Umgebung zum Hosten von Containern bereitgestellt. 
-* [**Azure Cloud Services**](#azure-cloud-services). Sie können Code in einer Rolle schreiben, der als Hintergrundaufgabe ausgeführt wird.
+* [**Azure Kubernetes Service**](#azure-kubernetes-service) (AKS). Azure Kubernetes Service stellt eine verwaltete Hostingumgebung für Kubernetes in Azure bereit. 
 
 In den folgenden Abschnitten werden diese einzelnen Optionen und zu berücksichtigende Aspekte ausführlich beschrieben, um Ihnen die Auswahl der geeigneten Option zu erleichtern.
 
@@ -110,11 +107,8 @@ Azure WebJobs weisen folgende Merkmale auf:
 * Standardmäßig werden WebJobs mit der Web-App skaliert. Allerdings können Sie Aufträge für die Ausführung in einer einzelnen Instanz konfigurieren, indem Sie die Konfigurationseigenschaft **is_singleton** auf **true** festlegen. Einzelinstanz-WebJobs sind für Aufgaben sinnvoll, die nicht skaliert oder gleichzeitig in mehreren Instanzen ausgeführt werden sollen, z. B. eine erneute Indizierung, Datenanalyse oder ähnliche Aufgaben.
 * Damit die Leistung der Web-App durch die Aufträge möglichst minimal beeinträchtigt wird, sollten Sie in Betracht ziehen, eine leere Azure-Web-App-Instanz in einem neuen App Service-Plan zum Hosten von WebJobs zu erstellen, die langwierig oder ressourcenintensiv sind.
 
-### <a name="more-information"></a>Weitere Informationen
-* [Dokumentationsressourcen zu Azure WebJobs](/azure/app-service-web/websites-webjobs-resources) enthält viele nützliche Ressourcen, Downloads und Beispiele für WebJobs.
-
 ### <a name="azure-virtual-machines"></a>Azure Virtual Machines
-Hintergrundaufgaben können so implementiert werden, dass sie nicht in Azure-Web-Apps oder Cloud Services bereitgestellt werden können oder sich dazu nicht eignen. Typische Beispiele sind Windows-Dienste sowie Hilfsprogramme und ausführbare Programme von Drittanbietern. Ein weiteres Beispiel sind Programme, die für eine Ausführungsumgebung geschrieben wurden, die sich von der Umgebung unterscheidet, in der die Anwendung gehostet wird. Beispielsweise kann dies ein UNIX- oder Linux-Programm sein, das von einer Windows- oder .NET-Anwendung ausgeführt werden soll. Sie können eines von verschiedenen Betriebssystemen für einen virtuellen Azure-Computer auswählen und den Dienst oder die ausführbare Datei dann auf diesem virtuellen Computer ausführen.
+Hintergrundaufgaben können so implementiert werden, dass sie nicht in Azure-Web-Apps bereitgestellt werden können oder sich dazu nicht eignen. Typische Beispiele sind Windows-Dienste sowie Hilfsprogramme und ausführbare Programme von Drittanbietern. Ein weiteres Beispiel sind Programme, die für eine Ausführungsumgebung geschrieben wurden, die sich von der Umgebung unterscheidet, in der die Anwendung gehostet wird. Beispielsweise kann dies ein UNIX- oder Linux-Programm sein, das von einer Windows- oder .NET-Anwendung ausgeführt werden soll. Sie können eines von verschiedenen Betriebssystemen für einen virtuellen Azure-Computer auswählen und den Dienst oder die ausführbare Datei dann auf diesem virtuellen Computer ausführen.
 
 Informationen dazu, wann sich die Verwendung von Virtual Machines anbietet, finden Sie unter [Azure App Service, Cloud Services und Virtual Machines im Vergleich](/azure/app-service-web/choose-web-site-cloud-service-vm/). Die Virtual Machines-Optionen werden unter [Größen für Windows-VMs in Azure](/azure/virtual-machines/windows/sizes) erläutert. Weitere Informationen zu den verfügbaren Betriebssystemen und vorgefertigten Images für virtuelle Computer finden Sie im [Marketplace für virtuelle Azure-Computer](https://azure.microsoft.com/gallery/virtual-machines/).
 
@@ -133,8 +127,9 @@ Berücksichtigen Sie die folgenden Punkte, wenn Sie entscheiden, ob Hintergrunda
 * Es ist keine Funktion zum Überwachen der Aufgaben im Azure-Portal verfügbar, und es gibt auch keine Funktion zum automatischen Neustarten fehlgeschlagener Aufgaben. Sie können allerdings den grundlegenden Status des virtuellen Computers mithilfe der [Azure Resource Manager-Cmdlets](https://msdn.microsoft.com/library/mt125356.aspx) überwachen und verwalten. Es gibt jedoch keine Möglichkeit, die Prozesse und Threads in Serverknoten zu steuern. In der Regel erfordert die Verwendung eines virtuellen Computers zusätzlichen Aufwand zur Implementierung eines Mechanismus, um Daten von der Instrumentierung der Aufgabe und vom Betriebssystem des virtuellen Computers zu sammeln. Eine möglicherweise geeignete Lösung besteht darin, das [System Center Management Pack für Azure](https://www.microsoft.com/download/details.aspx?id=50013) zu verwenden.
 * Sie sollten die Erstellung von Überwachungsprüfmodulen, die über HTTP-Endpunkte verfügbar gemacht werden, in Betracht ziehen. Der Code für diese Tests könnte Integritätsprüfungen durchführen, operative Informationen und Statistiken sammeln oder Fehlerinformationen sortieren und diese Daten an die Verwaltungsanwendung zurückgeben. Weitere Informationen finden Sie unter [Überwachungsmuster für den Integritätsendpunkt](../patterns/health-endpoint-monitoring.md).
 
-#### <a name="more-information"></a>Weitere Informationen
-* [Virtuelle Computer in Azure](https://azure.microsoft.com/services/virtual-machines/)
+Weitere Informationen finden Sie unter
+
+* [Virtuelle Computer](https://azure.microsoft.com/services/virtual-machines/)
 * [Virtuelle Computer in Azure – häufig gestellte Fragen](/azure/virtual-machines/virtual-machines-linux-classic-faq?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="azure-batch"></a>Azure Batch 
@@ -149,15 +144,15 @@ Batch funktioniert gut für intrinsisch parallele Workloads. Es können auch par
 
 Ein Azure Batch-Auftrag führt einen Pool mit Knoten (VMs) aus. Ein Ansatz besteht darin, einen Pool nur bei Bedarf zuzuordnen und dann zu löschen, nachdem der Auftrag abgeschlossen wurde. Hierdurch wird die Auslastung maximiert, da die Knoten nicht ungenutzt bleiben, aber für den Auftrag muss gewartet werden, bis die Knoten zugeordnet wurden. Alternativ hierzu können Sie schon vorher einen Pool erstellen. Bei diesem Ansatz wird die Zeit verringert, die zum Starten eines Auftrags benötigt wird, aber er kann auch dazu führen, dass Knoten nicht genutzt werden. Weitere Informationen finden Sie unter [Gültigkeitsdauer für Pools und Computeknoten](/azure/batch/batch-api-basics#pool-and-compute-node-lifetime).
 
-#### <a name="more-information"></a>Weitere Informationen 
+Weitere Informationen finden Sie unter
 
-* [Ausführen intrinsisch paralleler Workloads mit Batch](/azure/batch/batch-technical-overview) 
+* [Was ist Azure Batch?](/azure/batch/batch-technical-overview) 
 * [Entwickeln von parallelen Computelösungen in größerem Umfang mit Batch](/azure/batch/batch-api-basics) 
 * [HPC-, Batch- und Big Compute-Lösungen, mit Azure-VMs](/azure/batch/batch-hpc-solutions)
 
-### <a name="azure-container-service"></a>Azure Container Service 
+### <a name="azure-kubernetes-service"></a>Azure Kubernetes Service
 
-Mit Azure Container Service können Sie einen Cluster mit VMs in Azure konfigurieren und verwalten, um Anwendungen in Containern auszuführen. Der Dienst ermöglicht die Auswahl von Docker Swarm, DC/OS oder Kubernetes zur Orchestrierung. 
+Azure Kubernetes Service (AKS) verwaltet Ihre gehostete Kubernetes-Umgebung und ermöglicht so die schnelle und einfache Bereitstellung und Verwaltung von Containeranwendungen. 
 
 Container können zum Ausführen von Hintergrundaufträgen nützlich sein. Es ergeben sich beispielsweise folgende Vorteile: 
 
@@ -168,92 +163,15 @@ Container können zum Ausführen von Hintergrundaufträgen nützlich sein. Es er
 
 #### <a name="considerations"></a>Überlegungen
 
-- Sie müssen mit der Nutzung eines Containerorchestrators vertraut sein. Je nach den Fähigkeiten Ihres DevOps-Teams kann dies ein Problem sein.  
-- Der Containerdienst wird in einer IaaS-Umgebung ausgeführt. Er stellt einen Cluster mit VMs in einem dedizierten VNet bereit. 
+- Sie müssen mit der Nutzung eines Containerorchestrators vertraut sein. Je nach den Fähigkeiten Ihres DevOps-Teams kann dies ein Problem sein.
 
-#### <a name="more-information"></a>Weitere Informationen 
+Weitere Informationen finden Sie unter
 
-* [Einführung in Docker-Containerhostinglösungen mit Azure Container Service](/azure/container-service/container-service-intro) 
+* [Übersicht über Container in Azure](https://azure.microsoft.com/overview/containers/) 
 * [Einführung in private Docker-Containerregistrierungen](/azure/container-registry/container-registry-intro) 
 
-### <a name="azure-cloud-services"></a>Azure Cloud Services 
-Sie können Hintergrundaufgaben in einer Webrolle oder in einer separaten Workerrolle ausführen. Wenn Sie entscheiden, ob Sie eine Workerrolle verwenden möchten, sollten Sie die Anforderungen an Skalierbarkeit und Elastizität, die Lebensdauer der Aufgabe, Freigaberhythmus, Sicherheit, Fehlertoleranz, Konflikte, Komplexität und die logische Architektur berücksichtigen. Weitere Informationen finden Sie unter [Serverressourcen-Konsolidierungsmuster](../patterns/compute-resource-consolidation.md).
-
-Hintergrundaufgaben können auf verschiedene Weise in einer Cloud Services-Rolle implementiert werden.
-
-* Erstellen Sie eine Implementierung der **RoleEntryPoint** -Klasse in der Rolle, und verwenden Sie deren Methoden zum Ausführen der Hintergrundaufgaben. Die Aufgaben werden im Kontext von „WaIISHost.exe“ ausgeführt. Sie können die **GetSetting**-Methode der **CloudConfigurationManager**-Klasse zum Laden der Konfigurationseinstellungen verwenden. Weitere Informationen finden Sie unter [Lebenszyklus](#lifecycle).
-* Verwenden Sie Startaufgaben, um Hintergrundaufgaben beim Starten der Anwendung auszuführen. Um die weitere Ausführung der Aufgaben im Hintergrund zu erzwingen, legen Sie die **taskType**-Eigenschaft auf **background** fest (falls Sie dies nicht tun, wird der Startprozess der Anwendung angehalten und wartet, bis die Aufgabe abgeschlossen ist). Weitere Informationen finden Sie unter [Ausführen von Startaufgaben in Azure](/azure/cloud-services/cloud-services-startup-tasks).
-* Verwenden Sie das WebJobs SDK, um Hintergrundaufgaben wie WebJobs zu implementieren, die als Startaufgabe initiiert werden. Weitere Informationen finden Sie unter [Create a .NET WebJob in Azure App Service](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started) (Erstellen eines .NET-Webauftrags in Azure App Service).
-* Verwenden Sie eine Startaufgabe, um einen Windows-Dienst zu installieren, der eine oder mehrere Hintergrundaufgaben ausführt. Sie müssen die **taskType**-Eigenschaft auf **background** festlegen, damit der Dienst im Hintergrund ausgeführt wird. Weitere Informationen finden Sie unter [Ausführen von Startaufgaben in Azure](/azure/cloud-services/cloud-services-startup-tasks).
-
-Der Hauptvorteil der Ausführung von Hintergrundaufgaben in der Webrolle besteht in der Einsparung von Hostingkosten, da keine weiteren Rollen bereitgestellt werden müssen.
-
-Die Ausführung von Hintergrundaufgaben in einer Workerrolle bietet verschiedene Vorteile:
-
-* Sie ermöglicht es, die Skalierung für jeden Rollentyp getrennt zu verwalten. Es kann beispielsweise möglich sein, dass Sie zusätzlich Instanzen einer Webrolle zur Unterstützung der aktuellen Last benötigen, jedoch weniger Instanzen der Workerrolle, die Hintergrundaufgaben ausführt. Durch die von den Rollen für die Benutzeroberfläche getrennte Skalierung der Compute-Instanzen für Hintergrundaufgaben können die Hostingkosten reduziert und gleichzeitig eine akzeptable Leistung aufrechterhalten werden.
-* Die Webrolle wird dadurch von dem mit Hintergrundaufgaben verbundenen Verarbeitungsaufwand entlastet. Die Webrolle, die die Benutzeroberfläche bereitstellt, kann reaktionsfähig bleiben, und es kann bedeuten, dass weniger Instanzen erforderlich sind, um ein bestimmtes Volumen an Benutzeranforderungen zu unterstützen.
-* Sie ermöglicht Ihnen die Implementierung einer Trennung von Zuständigkeiten. Jeder Rollentyp kann einen bestimmten Satz von klar definierten und verwandten Aufgaben implementieren. Dies erleichtert das Entwerfen und Verwalten des Codes, da es zwischen den einzelnen Rollen weniger wechselseitige Abhängigkeiten bezüglich des Codes und der Funktionalität gibt.
-* Vertrauliche Prozesse und Daten können leichter isoliert werden. Beispielsweise müssen die Webrollen, die die Benutzeroberfläche implementieren, nicht auf Daten zugreifen, die von einer Workerrolle verwaltet und gesteuert werden. Dies kann bei der Verstärkung der Sicherheit nützlich sein, insbesondere bei Verwendung eines Musters wie dem [Gatekeeper-Muster](../patterns/gatekeeper.md).  
-
-#### <a name="considerations"></a>Überlegungen
-Beachten Sie die folgenden Punkte bei der Entscheidung, wie und wo Hintergrundaufgaben bei Verwendung von Cloud Services-Web- und Workerrollen bereitgestellt werden sollen:
-
-* Durch das Hosten von Hintergrundaufgaben in einer vorhandenen Webrolle können die Kosten der Ausführung einer separaten Workerrolle eigens für diese Aufgaben eingespart werden. Allerdings wird dadurch wahrscheinlich die Leistung und die Verfügbarkeit der Anwendung beeinflusst, wenn Konflikte zwischen Verarbeitungsressourcen und anderen Ressourcen bestehen. Durch die Verwendung einer separaten Workerrolle wird die Webrolle vor den Auswirkungen von langwierigen oder ressourcenintensiven Hintergrundaufgaben geschützt.
-* Wenn Sie Hintergrundaufgaben mithilfe der **RoleEntryPoint**-Klasse hosten, können Sie dies problemlos auf eine andere Rolle übertragen. Wenn Sie z.B. die Klasse in einer Webrolle erstellen und später entscheiden, dass die Aufgaben in einer Workerrolle ausgeführt werden müssen, können Sie die **RoleEntryPoint**-Klassenimplementierung in die Workerrolle verschieben.
-* Startaufgaben sind auf die Ausführung eines Programms oder Skripts ausgelegt. Die Bereitstellung eines Hintergrundauftrags als ausführbares Programm kann u. U. schwieriger sein, insbesondere dann, wenn dazu auch abhängige Assemblys bereitgestellt werden müssen. Bei Verwendung von Startaufgaben ist es möglicherweise einfacher, ein Skript bereitzustellen und zu verwenden, um einen Hintergrundauftrag zu definieren.
-* Ausnahmen, die zum Fehlschlagen einer Hintergrundaufgabe führen, haben unterschiedliche Auswirkungen, je nachdem, wie sie gehostet werden:
-  * Bei Verwendung der **RoleEntryPoint** -Klasse führt eine fehlgeschlagene Aufgabe dazu, dass die Rolle neu gestartet wird, damit die Aufgabe automatisch neu gestartet wird. Dies kann sich auf die Verfügbarkeit der Anwendung auswirken. Um dies zu verhindern, müssen Sie eine robuste Ausnahmebehandlung innerhalb der **RoleEntryPoint** -Klasse und in allen Hintergrundaufgaben sicherstellen. Verwenden Sie dort, wo es zweckmäßig ist, Code, um fehlgeschlagene Aufgaben neu zu starten, und lösen Sie nur dann eine Ausnahme aus, um die Rolle neu zu starten, wenn sich der Fehler nicht innerhalb des Codes ordnungsgemäß beheben lässt.
-  * Wenn Sie Startaufgaben verwenden, sind Sie für die Verwaltung der Aufgabenausführung und die Überprüfung auf Fehler verantwortlich.
-* Das Verwalten und Überwachen von Startaufgaben ist schwieriger als die Verwendung der **RoleEntryPoint** -Klasse. Das Azure WebJobs SDK enthält jedoch ein Dashboard, das die Verwaltung von WebJobs, die über Startaufgaben gestartet werden, erleichtert.
-
-#### <a name="lifecycle"></a>Lebenszyklus 
- Wenn Sie sich dazu entscheiden, Hintergrundaufträge für Cloud Services-Anwendungen zu implementieren, die mithilfe der **RoleEntryPoint** -Klasse Web-und Workerrollen verwenden, müssen Sie den Lebenszyklus dieser Klasse kennen, um sie ordnungsgemäß verwenden zu können.
-
-Web- und Workerrollen durchlaufen unterschiedliche Phasen, während sie gestartet, ausgeführt und beendet werden. Die **RoleEntryPoint** -Klasse stellt eine Reihe von Ereignissen zur Verfügung, die anzeigen, wann diese Phasen auftreten. Sie können diese Ereignisse zum Initialisieren, Ausführen und Beenden von benutzerdefinierten Hintergrundaufgaben verwenden. Der vollständige Zyklus sieht so aus:
-
-* Azure lädt die Rollenassembly und sucht nach einer von **RoleEntryPoint**abgeleiteten Klasse.
-* Wenn diese Klasse gefunden wird, wird **RoleEntryPoint.OnStart()** aufgerufen. Sie überschreiben diese Methode, um die Hintergrundaufgaben zu initialisieren.
-* Nach Abschluss der **OnStart**-Methode ruft Azure in der globalen Datei der Anwendung **Application_Start()** auf, sofern die Datei vorhanden ist (z.B. „Global.asax“ in einer Webrolle unter ASP.NET).
-* Azure ruft **RoleEntryPoint.Run()** in einem neuen Vordergrundthread auf, der parallel zu **OnStart()** ausgeführt wird. Sie überschreiben diese Methode, um die Hintergrundaufgaben zu starten.
-* Wenn die Run-Methode beendet wird, ruft Azure zuerst **Application_End()** in der globalen Datei der Anwendung, sofern diese vorhanden ist, und anschließend **RoleEntryPoint.OnStop()** auf. Sie überschreiben die **OnStop** -Methode, um die Hintergrundaufgaben zu beenden, Ressourcen zu bereinigen, Objekte zu löschen und die Verbindungen zu schließen, die von den Aufgaben möglicherweise verwendet wurden.
-* Der Hostprozess für die Azure-Workerrolle wird beendet. An diesem Punkt wird die Rolle wiederverwendet und neu gestartet.
-
-Weitere Einzelheiten und ein Beispiel für die Verwendung der Methoden der **RoleEntryPoint** -Klasse finden Sie unter [Muster für die Konsolidierung von Compute-Ressourcen](../patterns/compute-resource-consolidation.md).
-
-#### <a name="implementation-considerations"></a>Überlegungen zur Implementierung
-
-Berücksichtigen Sie die folgenden Punkte, wenn Sie Hintergrundaufgaben in einer Web- oder Workerrolle implementieren:
-
-* Die Standardimplementierung der **Run**-Methode in der **RoleEntryPoint**-Klasse enthält einen **Thread.Sleep(Timeout.Infinite)**-Aufruf, durch den die Rolle auf unbestimmte Zeit aktiv bleibt. Wenn Sie die **Run**-Methode überschreiben (die in der Regel zum Ausführen von Hintergrundaufgaben erforderlich ist), dürfen Sie dem Code nicht die Möglichkeit geben, die Methode zu beenden. Eine Ausnahme ist ein Fall, in dem Sie die Rolleninstanz wiederverwenden möchten.
-* Eine typische Implementierung der **Run** -Methode enthält Code zum Starten der einzelnen Hintergrundaufgaben und ein Schleifenkonstrukt, mit dem regelmäßig der Status aller Hintergrundaufgaben überprüft wird. Aufgaben, die fehlschlagen, können neu gestartet werden, oder es kann Abbruchtoken überwacht werden, die darauf hinweisen, dass Aufträge abgeschlossen wurden.
-* Wenn eine Hintergrundaufgabe eine nicht behandelte Ausnahme auslöst, sollte diese Aufgabe wiederverwendet werden, während andere Hintergrundaufgaben in der Rolle weiter ausgeführt werden können. Wird die Ausnahme jedoch durch eine Beschädigung von Objekten außerhalb der Aufgabe, z.B. freigegebenen Speicher, verursacht, dann sollte die Ausnahme von der **RoleEntryPoint**-Klasse behandelt werden, alle Aufgaben sollten abgebrochen werden, und die **Run**-Methode sollte beendet werden können. Azure startet die Rolle dann neu.
-* Verwenden Sie die **OnStop** -Methode zum Anhalten oder Beenden von Hintergrundaufgaben und zum Bereinigen von Ressourcen. Dazu kann auch das Beenden von lang andauernden oder aus mehreren Schritten bestehenden Aufgaben gehören. Sie müssen überlegen, wie dies umgesetzt werden kann, um Dateninkonsistenzen zu vermeiden. Wenn eine Rolleninstanz aus einem anderen Grund als dem vom Benutzer eingeleiteten Herunterfahren beendet wird, muss die Ausführung des Codes, der in der **OnStop** -Methode ausgeführt wird, innerhalb von fünf Minuten vor seiner erzwungenen Beendigung abgeschlossen sein. Stellen Sie sicher, dass Ihr Code in diesem Zeitraum vollständig ausgeführt werden kann oder gefahrlos vorzeitig beendet werden kann.  
-* Der Azure Load Balancer beginnt, Datenverkehr an die Rolleninstanz weiterzuleiten, wenn die **RoleEntryPoint.OnStart**-Methode den Wert **true** zurückgibt. Daher sollten Sie den gesamten Initialisierungscode in die **OnStart** -Methode einfügen, damit Rolleninstanzen, die nicht erfolgreich initialisiert werden, keinen Datenverkehr empfangen.
-* Sie können Startaufgaben zusätzlich zu den Methoden der **RoleEntryPoint** -Klasse verwenden. Sie sollten Startaufgaben verwenden, um Einstellungen zu initialisieren, die im Azure-Lastenausgleich geändert werden müssen, da diese Aufgaben ausgeführt werden, bevor die Rolle Anforderungen empfängt. Weitere Informationen finden Sie unter [Ausführen von Startaufgaben in Azure](/azure/cloud-services/cloud-services-startup-tasks/).
-* Wenn in einer Startaufgabe ein Fehler auftritt, kann die Rolle dadurch zu fortwährenden Neustarts gezwungen werden. Dies kann verhindern, dass ein Austausch der virtuellen IP-Adresse (VIP) auf eine zuvor bereitgestellte Version ausgeführt wird, da hierfür exklusiver Zugriff auf die Rolle erforderlich ist. Dieser kann nicht abgerufen werden, während die Rolle neu gestartet wird. Problembehebung:
-  
-  * Fügen Sie den folgenden Code am Anfang der **OnStart**- und **Run**-Methoden in die Rolle ein:
-    
-    ```C#
-    var freeze = CloudConfigurationManager.GetSetting("Freeze");
-    if (freeze != null)
-    {
-      if (Boolean.Parse(freeze))
-      {
-        Thread.Sleep(System.Threading.Timeout.Infinite);
-      }
-    }
-    ```
-    
-  * Fügen Sie die Definition der **Freeze**-Einstellung den Dateien „ServiceDefinition.csdef“ und „ServiceConfiguration.\*.cscfg“ für die Rolle als booleschen Wert hinzu, und legen Sie sie auf **false** fest. Wenn die Rolle in einen wiederholten Neustartmodus wechselt, können Sie diese Einstellung in **true** ändern, um die Ausführung der Rolle anzuhalten und zuzulassen, dass sie gegen eine frühere Version ausgetauscht wird.
-
-#### <a name="more-information"></a>Weitere Informationen
-* [Serverressourcen-Konsolidierungsmuster](../patterns/compute-resource-consolidation.md)
-* [Erste Schritte mit dem Azure WebJobs SDK](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started/)
-
-
 ## <a name="partitioning"></a>Partitionierung
-Wenn Sie Hintergrundaufgaben in eine vorhandene Compute-Instanz (z. B. eine Web-App, Webrolle, vorhandene Workerrolle oder einen virtuellen Computer) aufnehmen möchten, müssen Sie berücksichtigen, wie sich dies auf die Qualitätsattribute der Compute-Instanz und auf die Hintergrundaufgabe selbst auswirken wird. Anhand dieser Faktoren können Sie entscheiden, ob die Aufgaben in der vorhandenen Compute-Instanz oder in einer separaten Compute-Instanz ausgeführt werden sollen:
+Wenn Sie Hintergrundaufgaben in eine vorhandene Compute-Instanz aufnehmen möchten, müssen Sie berücksichtigen, wie sich dies auf die Qualitätsattribute der Compute-Instanz und auf die Hintergrundaufgabe selbst auswirken wird. Anhand dieser Faktoren können Sie entscheiden, ob die Aufgaben in der vorhandenen Compute-Instanz oder in einer separaten Compute-Instanz ausgeführt werden sollen:
 
 * **Verfügbarkeit**: Für Hintergrundaufgaben ist möglicherweise nicht dasselbe Maß an Verfügbarkeit wie für andere Teile der Anwendung erforderlich, insbesondere die Benutzeroberfläche und andere Teile, die direkt an der Interaktion mit dem Benutzer beteiligt sind. Hintergrundaufgaben können toleranter gegenüber Latenz, wiederholten Verbindungsfehlern und anderen Faktoren sein, die sich auf die Verfügbarkeit auswirken, da die Vorgänge in eine Warteschlange eingefügt werden können. Allerdings muss genügend Kapazität vorhanden sein, um die Sicherung von Anforderungen zu verhindern, wodurch Warteschlangen blockiert werden könnten und die Anwendung als Ganzes beeinträchtigt werden könnte.
 * **Skalierbarkeit**: Für Hintergrundaufgaben gelten häufig andere Anforderungen an die Skalierbarkeit als für die Benutzeroberfläche und die interaktiven Teile der Anwendung. Eine Skalierung der Benutzeroberfläche kann erforderlich sein, um Nachfragespitzen zu bedienen, während ausstehende Hintergrundaufgaben in Zeiten mit weniger starker Auslastung von einer geringeren Anzahl von Compute-Instanzen abgeschlossen werden können.
@@ -285,9 +203,8 @@ Die Koordination mehrerer Aufgaben und Schritte kann schwierig sein, aber es gib
 ## <a name="resiliency-considerations"></a>Überlegungen zur Resilienz
 Hintergrundaufgaben müssen stabil sein, um der Anwendung zuverlässige Dienste zur Verfügung stellen zu können. Berücksichtigen Sie beim Planen und Entwerfen von Hintergrundaufgaben die folgenden Punkte:
 
-* Hintergrundaufgaben müssen in der Lage sein, Neustarts der Rolle oder des Dienstes ordnungsgemäß zu verarbeiten, ohne Daten zu beschädigen oder Inkonsistenzen in die Anwendung einzuführen. Bei langwierigen oder aus mehreren Schritten bestehenden Aufgaben sollten Sie die Verwendung von *Prüfpunkten* in Betracht ziehen, um den Status von Aufträgen im beständigen Speicher oder als Nachrichten in einer Warteschlange zu speichern, wenn dies zweckmäßig ist. Beispielsweise können Sie Statusinformationen in einer Nachricht in einer Warteschlange speichern und diese Statusinformationen inkrementell mit dem Aufgabenstatus aktualisieren, sodass die Aufgabe ab dem letzten bekannten fehlerfreien Prüfpunkt verarbeitet werden kann, statt sie ganz von vorn neu starten zu müssen. Bei Verwendung von Azure Service Bus-Warteschlangen können Sie dieses Szenario mithilfe von Nachrichtensitzungen ermöglichen. Sitzungen ermöglichen Ihnen, den Anwendungsverarbeitungsstatus mithilfe der Methoden [SetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.setstate?view=azureservicebus-4.0.0) und [GetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.getstate?view=azureservicebus-4.0.0) zu speichern und abzurufen. Weitere Informationen zum Entwerfen von zuverlässigen mehrstufigen Prozessen und Workflows finden Sie unter [Muster für Scheduler-Agent-Supervisor](../patterns/scheduler-agent-supervisor.md).
-* Wenn Sie Web- oder Workerrollen zum Hosten mehrerer Hintergrundaufgaben verwenden, sollten Sie Ihre Überschreibung der **Run** -Methode so entwerfen, dass fehlgeschlagene oder angehaltene Aufgaben erkannt und neu gestartet werden. Falls dies nicht praktikabel ist und Sie eine Workerrolle verwenden, erzwingen Sie den Neustart der Workerrolle, indem Sie die **Run** -Methode beenden.
-* Wenn Sie Warteschlangen zur Kommunikation mit Hintergrundaufgaben verwenden, können die Warteschlangen in Zeiten, in denen die Auslastung der Anwendung höher als üblich ist, als Puffer zum Speichern von Anforderungen, die an die Aufgaben gesendet werden, fungieren. Dadurch können die Aufgaben in Zeiträumen mit einer geringeren Auslastung mit der Benutzeroberfläche gleich ziehen. Es bedeutet auch, dass die Benutzeroberfläche nicht durch die Wiederverwendung der Rolle blockiert wird. Weitere Informationen finden Sie unter [Warteschlangenbasiertes Lastenausgleichsmuster](../patterns/queue-based-load-leveling.md). Wenn einige Aufgaben wichtiger als andere sind, ziehen Sie in Betracht, durch eine Implementierung des [Prioritätswarteschlangenmusters](../patterns/priority-queue.md) sicherzustellen, dass diese Aufgaben vor den weniger wichtigen Aufgaben ausgeführt werden.
+* Hintergrundaufgaben müssen in der Lage sein, Neustarts ordnungsgemäß zu verarbeiten, ohne Daten zu beschädigen oder Inkonsistenzen in die Anwendung einzuführen. Bei langwierigen oder aus mehreren Schritten bestehenden Aufgaben sollten Sie die Verwendung von *Prüfpunkten* in Betracht ziehen, um den Status von Aufträgen im beständigen Speicher oder als Nachrichten in einer Warteschlange zu speichern, wenn dies zweckmäßig ist. Beispielsweise können Sie Statusinformationen in einer Nachricht in einer Warteschlange speichern und diese Statusinformationen inkrementell mit dem Aufgabenstatus aktualisieren, sodass die Aufgabe ab dem letzten bekannten fehlerfreien Prüfpunkt verarbeitet werden kann, statt sie ganz von vorn neu starten zu müssen. Bei Verwendung von Azure Service Bus-Warteschlangen können Sie dieses Szenario mithilfe von Nachrichtensitzungen ermöglichen. Sitzungen ermöglichen Ihnen, den Anwendungsverarbeitungsstatus mithilfe der Methoden [SetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.setstate?view=azureservicebus-4.0.0) und [GetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.getstate?view=azureservicebus-4.0.0) zu speichern und abzurufen. Weitere Informationen zum Entwerfen von zuverlässigen mehrstufigen Prozessen und Workflows finden Sie unter [Muster für Scheduler-Agent-Supervisor](../patterns/scheduler-agent-supervisor.md).
+* Wenn Sie Warteschlangen zur Kommunikation mit Hintergrundaufgaben verwenden, können die Warteschlangen in Zeiten, in denen die Auslastung der Anwendung höher als üblich ist, als Puffer zum Speichern von Anforderungen, die an die Aufgaben gesendet werden, fungieren. Dadurch können die Aufgaben in Zeiträumen mit einer geringeren Auslastung mit der Benutzeroberfläche gleich ziehen. Es bedeutet auch, dass die Benutzeroberfläche nicht durch Neustarts blockiert wird. Weitere Informationen finden Sie unter [Warteschlangenbasiertes Lastenausgleichsmuster](../patterns/queue-based-load-leveling.md). Wenn einige Aufgaben wichtiger als andere sind, ziehen Sie in Betracht, durch eine Implementierung des [Prioritätswarteschlangenmusters](../patterns/priority-queue.md) sicherzustellen, dass diese Aufgaben vor den weniger wichtigen Aufgaben ausgeführt werden.
 * Hintergrundaufgaben, die durch Nachrichten ausgelöst werden oder Nachrichten verarbeiten, müssen so entworfen werden, dass sie Inkonsistenzen behandeln können. Dies sind beispielsweise Nachrichten, die nicht in der richtigen Reihenfolge eintreffen, Nachrichten, die wiederholt einen Fehler verursachen (so genannte *nicht verarbeitbare Nachrichten*), und Nachrichten, die mehrmals übermittelt werden. Beachten Sie Folgendes:
   * Nachrichten, die in einer bestimmten Reihenfolge verarbeitet werden müssen, z. B. Nachrichten, die Daten basierend auf dem vorhandenen Datenwert (z. B. durch Hinzufügen eines Werts zu einem vorhandenen Wert) ändern, treffen möglicherweise nicht in der ursprünglichen Reihenfolge ein, in der sie gesendet wurden. Stattdessen können sie auch von anderen Instanzen einer Hintergrundaufgabe in einer anderen Reihenfolge je nach Auslastung der verschiedenen Instanzen behandelt werden. Nachrichten, die in einer bestimmten Reihenfolge verarbeitet werden müssen, sollten eine Sequenznummer, einen Schlüssel oder einen anderen Indikator enthalten, damit in Hintergrundaufgaben sichergestellt werden kann, dass sie in der richtigen Reihenfolge verarbeitet werden. Bei Verwendung von Azure Service Bus können Sie mit Nachrichtensitzungen die Reihenfolge der Bereitstellung gewährleisten. Es ist in der Regel jedoch effizienter, den Prozess möglichst so zu entwerfen, dass die Reihenfolge der Nachrichten nicht von Bedeutung ist.
   * In der Regel sieht eine Hintergrundaufgabe Nachrichten in der Warteschlange ein. Dadurch sind sie vorübergehend vor anderen Nachrichtenconsumern verborgen. Dann löscht sie die Nachrichten, nachdem sie erfolgreich verarbeitet wurden. Wenn eine Hintergrundaufgabe beim Verarbeiten einer Nachricht fehlschlägt, wird die Nachricht in der Warteschlange erneut angezeigt, sobald das Timeout für das Einsehen erreicht ist. Sie wird von einer anderen Instanz der Aufgabe oder während des nächsten Verarbeitungszyklus dieser Instanz verarbeitet. Wenn die Nachricht beständig einen Fehler im Consumer verursacht, blockiert sie die Aufgabe, die Warteschlange und schließlich die Anwendung selbst, wenn die Warteschlange voll ist. Daher ist es wichtig, dass nicht verarbeitbare Nachrichten erkannt und aus der Warteschlange entfernt werden. Bei Verwendung von Azure Service Bus können Nachrichten, die einen Fehler verursachen, automatisch oder manuell an eine zugeordnete Warteschlange für unzustellbare Nachrichten verschoben werden.
@@ -297,31 +214,20 @@ Hintergrundaufgaben müssen stabil sein, um der Anwendung zuverlässige Dienste 
 ## <a name="scaling-and-performance-considerations"></a>Überlegungen zur Skalierung und Leistung
 Hintergrundaufgaben müssen ausreichend Leistung bieten, damit sichergestellt ist, dass sie nicht die Anwendung blockieren oder durch eine verzögerte Verarbeitung bei einem stark ausgelasteten System zu Inkonsistenzen führen. In der Regel wird die Leistung durch die Skalierung der Serverinstanzen, die die Hintergrundaufgaben hosten, verbessert. Berücksichtigen Sie beim Planen und Entwerfen von Hintergrundaufgaben die folgenden Punkte in Bezug auf Skalierbarkeit und Leistung:
 
-* Azure unterstützt die automatische Skalierung (horizontales Hoch- und Herunterskalieren) basierend auf der aktuellen Nachfrage und Last oder nach einem vordefinierten Zeitplan für Web-Apps, Web- und Workerrollen von Cloud Services sowie Bereitstellungen, die auf virtuellen Computern gehostet werden. Nutzen Sie diese Funktion, um sicherzustellen, dass die Anwendung als Ganzes über ausreichend Leistungsfähigkeit verfügt, und gleichzeitig die Laufzeitkosten zu minimieren.
-* Wenn Hintergrundaufgaben eine andere Leistungsfähigkeit als andere Teile einer Cloud Services-Anwendung haben (z. B. die Benutzeroberfläche oder Komponenten wie die Datenzugriffsschicht), kann durch das gemeinsame Hosten der Hintergrundaufgaben in einer separaten Workerrolle erreicht werden, dass die Benutzeroberfläche und die Hintergrundaufgabenrollen unabhängig voneinander skaliert werden, um die Last zu verwalten. Wenn sich die Leistungsfähigkeit verschiedener Hintergrundaufgaben deutlich voneinander unterscheidet, sollten Sie in Erwägung ziehen, diese in verschiedene Workerrollen aufzuteilen und die verschiedenen Rollentypen getrennt voneinander zu skalieren. Verglichen mit der Kombination aller Aufgaben in einer kleineren Anzahl von Rollen kann dies jedoch zu höheren Laufzeitkosten führen.
-* Eine einfache Skalierung der Rollen ist u. U. nicht ausreichend, um Leistungsverluste unter Last zu verhindern. Sie müssen möglicherweise auch Speicherwarteschlangen und andere Ressourcen skalieren, um zu vermeiden, dass ein einzelner Punkt in der gesamten Verarbeitungskette zum Engpass wird. Berücksichtigen Sie auch andere Einschränkungen, z. B. den maximalen Durchsatz des Speichers sowie anderer Dienste, von denen die Anwendung und die Hintergrundaufgaben abhängen.
+* Azure unterstützt die automatische Skalierung (horizontales Hoch- und Herunterskalieren) basierend auf der aktuellen Nachfrage und Last oder nach einem vordefinierten Zeitplan für Web-Apps und Bereitstellungen, die auf virtuellen Computern gehostet werden. Nutzen Sie diese Funktion, um sicherzustellen, dass die Anwendung als Ganzes über ausreichend Leistungsfähigkeit verfügt, und gleichzeitig die Laufzeitkosten zu minimieren.
+* Wenn Hintergrundaufgaben eine andere Leistungsfähigkeit als andere Teile einer Anwendung haben (z.B. die Benutzeroberfläche oder Komponenten wie die Datenzugriffsschicht), kann durch das gemeinsame Hosten der Hintergrundaufgaben in einem separaten Computedienst erreicht werden, dass die Benutzeroberfläche und die Hintergrundaufgaben unabhängig voneinander skaliert werden, um die Last zu verwalten. Wenn sich die Leistungsfähigkeit verschiedener Hintergrundaufgaben deutlich voneinander unterscheidet, sollten Sie in Erwägung ziehen, diese aufzuteilen und die verschiedenen Typen getrennt voneinander zu skalieren. Beachten Sie jedoch, dass dies die Laufzeitkosten erhöhen kann.
+* Eine einfache Skalierung der Computeressourcen ist u.U. nicht ausreichend, um Leistungsverluste unter Last zu verhindern. Sie müssen möglicherweise auch Speicherwarteschlangen und andere Ressourcen skalieren, um zu vermeiden, dass ein einzelner Punkt in der gesamten Verarbeitungskette zum Engpass wird. Berücksichtigen Sie auch andere Einschränkungen, z. B. den maximalen Durchsatz des Speichers sowie anderer Dienste, von denen die Anwendung und die Hintergrundaufgaben abhängen.
 * Hintergrundaufgaben müssen für die Skalierung konzipiert werden. Beispielsweise müssen sie dynamisch die Anzahl der verwendeten Speicherwarteschlangen erkennen können, um Nachrichten überwachen oder an die entsprechende Warteschlange senden zu können.
 * In der Standardeinstellung werden WebJobs zusammen mit ihrer zugehörigen Azure-Web-Apps-Instanz skaliert. Wenn ein WebJob jedoch nur als einzelne Instanz ausgeführt werden soll, können Sie eine Datei namens „Settings.job“ erstellen, in der die JSON-Daten **{"Is_singleton": true}** enthalten sind. Dadurch wird Azure gezwungen, nur eine Instanz des WebJob auszuführen, auch wenn mehrere Instanzen der zugeordneten Web-App vorhanden sind. Dies kann eine nützliche Technik für geplante Aufträge sein, die nur als einzelne Instanz ausgeführt werden müssen.
 
 ## <a name="related-patterns"></a>Verwandte Muster
-* [Einführung in asynchrone Nachrichten](https://msdn.microsoft.com/library/dn589781.aspx)
-* [Anleitungen für die automatische Skalierung](https://msdn.microsoft.com/library/dn589774.aspx)
 * [Muster für eine ausgleichende Transaktion](../patterns/compensating-transaction.md)
 * [Muster für konkurrierende Consumer](../patterns/competing-consumers.md)
 * [Leitfaden zur Serverpartitionierung](https://msdn.microsoft.com/library/dn589773.aspx)
-* [Serverressourcen-Konsolidierungsmuster](https://msdn.microsoft.com/library/dn589778.aspx)
 * [Gatekeeper-Muster](../patterns/gatekeeper.md)
 * [Muster für die Auswahl einer übergeordneten Instanz](../patterns/leader-election.md)
 * [Muster für Pipes und Filter](../patterns/pipes-and-filters.md)
 * [Prioritätswarteschlangenmuster](../patterns/priority-queue.md)
 * [Warteschlangenbasiertes Lastenausgleichsmuster](../patterns/queue-based-load-leveling.md)
 * [Muster für Scheduler-Agent-Supervisor](../patterns/scheduler-agent-supervisor.md)
-
-## <a name="more-information"></a>Weitere Informationen
-* [Ausführen von Hintergrundaufgaben](https://msdn.microsoft.com/library/ff803365.aspx)
-* [Lebenszyklus von Azure Cloud Services-Rollen](https://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle) (Video)
-* [Was ist das Azure WebJobs SDK?](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk)
-* [Ausführen von Hintergrundaufgaben mit WebJobs](https://docs.microsoft.com/azure/app-service-web/web-sites-create-web-jobs)
-* [Azure-Warteschlangen und Service Bus-Warteschlangen – Vergleich und Gegenüberstellung](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
-* [Aktivieren der Diagnose in einem Clouddienst](https://docs.microsoft.com/azure/cloud-services/cloud-services-dotnet-diagnostics)
 

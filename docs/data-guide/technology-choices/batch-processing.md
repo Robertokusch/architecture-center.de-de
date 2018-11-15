@@ -2,13 +2,13 @@
 title: Auswählen einer Batchverarbeitungstechnologie
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 0117798af82f2caa6704dc86e88be57f09c381ea
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms:date: 11/03/2018
+ms.openlocfilehash: 2314a1413fa674f43bd7a4bcb868a5322ad99497
+ms.sourcegitcommit: 225251ee2dd669432a9c9abe3aa8cd84d9e020b7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848664"
+ms.lasthandoff: 11/04/2018
+ms.locfileid: "50981996"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>Auswählen einer Batchverarbeitungstechnologie in Azure
 
@@ -16,15 +16,50 @@ Big Data-Lösungen nutzen häufig Batchaufträge mit langer Ausführungszeit, um
 
 Die wichtigste Anforderung bei diesen Batchverarbeitungs-Engines ist die Möglichkeit zur Skalierung von Berechnungen, um große Datenvolumen zu verarbeiten. Im Gegensatz zur Echtzeitverarbeitung werden bei der Batchverarbeitung Wartezeiten (die Zeit zwischen der Datenerfassung und der Berechnung eines Ergebnisses) erwartet, die in Minuten oder Stunden angegeben werden.
 
-## <a name="what-are-your-options-when-choosing-a-batch-processing-technology"></a>Welche Batchverarbeitungstechnologien stehen zur Verfügung?
+## <a name="technology-choices-for-batch-processing"></a>Technologieoptionen für die Batchverarbeitung
 
-In Azure erfüllen alle folgenden Datenspeicher die grundlegenden Anforderungen für die Batchverarbeitung:
+### <a name="azure-sql-data-warehouse"></a>Azure SQL Data Warehouse
 
-- [Azure Data Lake Analytics](/azure/data-lake-analytics/)
-- [Azure SQL Data Warehouse](/azure/sql-data-warehouse/sql-data-warehouse-overview-what-is)
-- [HDInsight mit Spark](/azure/hdinsight/spark/apache-spark-overview)
-- [HDInsight mit Hive](/azure/hdinsight/hadoop/hdinsight-use-hive)
-- [HDInsight mit Hive LLAP](/azure/hdinsight/interactive-query/apache-interactive-query-get-started)
+[SQL Data Warehouse](/azure/sql-data-warehouse/) ist ein verteiltes System für die Analyse großer Datenmengen. Es unterstützt massive Parallelverarbeitung (Massive Parallel Processing, MPP), die die Ausführung von Hochleistungsanalysen ermöglicht. Sie sollten SQL Data Warehouse verwenden, wenn Sie große Datenmengen (mehr als 1 TB) haben und eine Analyseworkload ausführen, die von der Parallelität profitiert.
+
+### <a name="azure-data-lake-analytics"></a>Azure Data Lake Analytics
+
+[Data Lake Analytics](/azure/data-lake-analytics/data-lake-analytics-overview) ist ein bedarfsgesteuerter Dienst für Analyseaufträge. Er ist für die verteilte Verarbeitung von sehr großen, in Azure Data Lake Store gespeicherten Datasets optimiert. 
+
+- Sprachen: [U-SQL](/azure/data-lake-analytics/data-lake-analytics-u-sql-get-started) (einschließlich Python-, R-, und C#-Erweiterungen).
+-  Lässt sich in Azure Data Lake Store, Azure Storage-Blobs, Azure SQL-Datenbank und SQL Data Warehouse integrieren.
+- Das Preismodell ist auftragsbasiert.
+
+### <a name="hdinsight"></a>HDInsight
+
+HDInsight ist ein verwalteter Hadoop-Dienst. Verwenden Sie ihn zum Bereitstellen und Verwalten von Hadoop-Clustern in Azure. Für die Batchverarbeitung können Sie [Spark](/azure/hdinsight/spark/apache-spark-overview), [Hive](/azure/hdinsight/hadoop/hdinsight-use-hive), [Hive LLAP](/azure/hdinsight/interactive-query/apache-interactive-query-get-started) und [MapReduce](/azure/hdinsight/hadoop/hdinsight-use-mapreduce) verwenden.
+
+- Sprachen: R, Python, Java, Scala, SQL
+- Kerberos-Authentifizierung mit Active Directory, Apache Ranger-basierte Zugriffssteuerung
+- Bietet Ihnen volle Kontrolle über den Hadoop-Cluster
+
+### <a name="azure-databricks"></a>Azure Databricks 
+
+[Azure Databricks](/azure/azure-databricks/) ist eine Apache Spark-basierte Analyseplattform. Sie können es sich als „Spark-as-a-Service“ vorstellen. Es ist die einfachste Möglichkeit zum Verwenden von Spark auf der Azure-Plattform.  
+
+- Sprachen: R, Python, Java, Scala, Spark SQL
+- Schnellere Startzeiten für Cluster, automatische Beendigung, automatische Skalierung.
+- Verwaltet den Spark-Cluster für Sie.
+- Integrierte Integration in Azure Blob Storage, Azure Data Lake Storage (ADLS), Azure SQL Data Warehouse (SQL DW) und andere Dienste. Siehe [Datenquellen](https://docs.azuredatabricks.net/spark/latest/data-sources/index.html).
+- Benutzerauthentifizierung mit Azure Active Directory
+- Webbasierte [Notebooks](https://docs.azuredatabricks.net/user-guide/notebooks/index.html) für Zusammenarbeit und das Durchsuchen von Daten 
+- Unterstützt [GPU-fähige Cluster](https://docs.azuredatabricks.net/user-guide/clusters/gpu.html)
+
+### <a name="azure-distributed-data-engineering-toolkit"></a>Azure Distributed Data Engineering Toolkit 
+
+Das [Distributed Data Engineering Toolkit](https://github.com/azure/aztk) (AZTK) ist ein Tool für die Bereitstellung von bedarfsgesteuerten Spark-Instanzen in Docker-Clustern in Azure. 
+
+AZTK ist kein Azure-Dienst. Es handelt sich vielmehr um ein clientseitiges Tool mit einer CLI und einer Python-SDK-Schnittstelle, das auf Azure Batch basiert. Diese Option bietet Ihnen beim Bereitstellen eines Spark-Clusters die größtmögliche Kontrolle über die Infrastruktur.
+
+- Verwenden Sie Ihr eigenes Docker-Image.
+- Verwenden Sie virtuelle Computer mit niedriger Priorität für einen Rabatt von 80%.
+- Cluster im gemischten Modus, die virtuelle Computer mit niedriger Priorität sowie dedizierte virtuelle Computer verwenden.
+- Integrierte Unterstützung für Azure Blob Storage und Azure Data Lake-Verbindung.
 
 ## <a name="key-selection-criteria"></a>Wichtige Auswahlkriterien
 
@@ -34,7 +69,7 @@ Beantworten Sie die folgenden Fragen, um die Auswahl einzuschränken:
 
 - Möchten Sie Batchverarbeitungslogik deklarativ oder imperativ erstellen?
 
-- Führen Sie Batchaufträge schubweise aus? Falls ja, ziehen Sie Optionen in Erwägung, bei denen Sie den Cluster anhalten können bzw. bei denen die Kosten pro Batchauftrag abgerechnet werden.
+- Führen Sie Batchaufträge schubweise aus? Falls ja, ziehen Sie Optionen in Erwägung, bei denen Sie den Cluster automatisch beenden können bzw. bei denen die Kosten pro Batchauftrag abgerechnet werden.
 
 - Müssen Sie bei der Batchverarbeitung auch relationale Datenspeicher abfragen, etwa zum Nachschlagen von Referenzdaten? Falls ja, ziehen Sie Optionen in Erwägung, die das Abfragen von externen relationalen Speichern ermöglichen.
 
@@ -44,47 +79,30 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 ### <a name="general-capabilities"></a>Allgemeine Funktionen
 
-| | Azure Data Lake Analytics | Azure SQL Data Warehouse | HDInsight mit Spark | HDInsight mit Hive | HDInsight mit Hive LLAP |
+| | Azure Data Lake Analytics | Azure SQL Data Warehouse | HDInsight | Azure Databricks |
 | --- | --- | --- | --- | --- | --- |
-| Verwalteter Dienst | Ja | Ja | Ja<sup>1</sup> | Ja<sup>1</sup> | Ja <sup>1</sup> |
-| Unterstützung des Anhaltens von Computevorgängen | Nein  | Ja | Nein  | Nein  | Nein  |
-| Relationaler Datenspeicher | Ja | Ja | Nein  | Nein  | Nein  |
-| Programmierbarkeit | U-SQL | T-SQL | Python, Scala, Java, R | HiveQL | HiveQL |
-| Programmierparadigma | Mischung aus deklarativ und imperativ  | Deklarativ | Mischung aus deklarativ und imperativ | Deklarativ | Deklarativ | 
-| Preismodell | Pro Batchauftrag | Nach Clusterstunde | Nach Clusterstunde | Nach Clusterstunde | Nach Clusterstunde |  
+| Verwalteter Dienst | JA | JA | Ja<sup>1</sup> | JA | 
+| Relationaler Datenspeicher | JA | JA | Nein  | Nein  |
+| Preismodell | Pro Batchauftrag | Nach Clusterstunde | Nach Clusterstunde | Databricks-Einheit<sup>2</sup> + Clusterstunde |
 
 [1] Mit manueller Konfiguration und Skalierung
 
-### <a name="integration-capabilities"></a>Integrationsfunktionen
+[2] Eine Databricks-Einheit (Databricks Unit, DBU) ist eine Einheit für die Verarbeitungskapazität pro Stunde.
 
-| | Azure Data Lake Analytics | SQL Data Warehouse | HDInsight mit Spark | HDInsight mit Hive | HDInsight mit Hive LLAP |
-| --- | --- | --- | --- | --- | --- |
-| Zugriff über Azure Data Lake Store | Ja | Ja | Ja | Ja | Ja |
-| Abfragen über Azure Storage | Ja | Ja | Ja | Ja | Ja |
-| Abfragen über externe relationale Speicher | Ja | Nein | Ja | Nein  | Nein  |
+### <a name="capabilities"></a>Funktionen
 
-### <a name="scalability-capabilities"></a>Skalierbarkeitsfunktionen
-
-| | Azure Data Lake Analytics | SQL Data Warehouse | HDInsight mit Spark | HDInsight mit Hive | HDInsight mit Hive LLAP |
-| --- | --- | --- | --- | --- | --- |
-| Granularität bei der horizontalen Skalierung  | Pro Auftrag | Pro Cluster | Pro Cluster | Pro Cluster | Pro Cluster |
-| Schnelles horizontales Hochskalieren (weniger als 1 Minute) | Ja | Ja | Nein  | Nein  | Nein  |
-| Speicherinternes Zwischenspeichern | Nein  | Ja | Ja | Nein | Ja | 
-
-### <a name="security-capabilities"></a>Sicherheitsfunktionen
-
-| | Azure Data Lake Analytics | SQL Data Warehouse | HDInsight mit Spark | Apache Hive in HDInsight | Hive LLAP in HDInsight |
-| --- | --- | --- | --- | --- | --- |
-| Authentifizierung  | Azure Active Directory (Azure AD) | SQL/Azure AD | Nein  | Lokal/Azure AD <sup>1</sup> | Lokal/Azure AD <sup>1</sup> |
-| Autorisierung  | Ja | Ja| Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> |
-| Überwachung  | Ja | Ja | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> |
-| Datenverschlüsselung ruhender Daten | Ja| Ja<sup>2</sup> | Ja | Ja | Ja |
-| Sicherheit auf Zeilenebene | Nein  | Ja | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> |
-| Unterstützung von Firewalls | Ja | Ja | Ja | Ja<sup>3</sup> | Ja<sup>3</sup> |
-| Dynamische Datenmaskierung | Nein  | Nein  | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> |
+| | Azure Data Lake Analytics | SQL Data Warehouse | HDInsight mit Spark | HDInsight mit Hive | HDInsight mit Hive LLAP | Azure Databricks |
+| --- | --- | --- | --- | --- | --- | --- |
+| Automatische Skalierung | Nein  | Nein  | Nein  | Nein  | Nein  | JA |
+| Granularität bei der horizontalen Skalierung  | Pro Auftrag | Pro Cluster | Pro Cluster | Pro Cluster | Pro Cluster | Pro Cluster |
+| Speicherinternes Zwischenspeichern | Nein  | Ja | JA | Nein | Ja | JA |
+| Abfragen über externe relationale Speicher | JA | Nein | Ja | Nein  | Nein  | JA |
+| Authentifizierung  | Azure AD | SQL/Azure AD | Nein  | Azure AD<sup>1</sup> | Azure AD<sup>1</sup> | Azure AD |
+| Überwachung  | JA | JA | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> | JA |
+| Sicherheit auf Zeilenebene | Nein  | Nein  | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> | Nein  |
+| Unterstützung von Firewalls | JA | Ja | JA | Ja<sup>2</sup> | Ja<sup>2</sup> | Nein  |
+| Dynamische Datenmaskierung | Nein  | Nein  | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> | Nein  |
 
 [1] Erfordert die Verwendung eines [in die Domäne eingebundenen HDInsight-Clusters](/azure/hdinsight/domain-joined/apache-domain-joined-introduction).
 
-[2] Erfordert die Verwendung von Transparent Data Encryption (TDE) zum Verschlüsseln und Entschlüsseln ruhender Daten.
-
-[3] Unterstützt bei [Verwendung in einem virtuellen Azure-Netzwerk](/azure/hdinsight/hdinsight-extend-hadoop-virtual-network)
+[2] Unterstützt bei [Verwendung in einem virtuellen Azure-Netzwerk](/azure/hdinsight/hdinsight-extend-hadoop-virtual-network)

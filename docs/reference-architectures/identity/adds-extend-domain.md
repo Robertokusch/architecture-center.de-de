@@ -6,12 +6,12 @@ ms.date: 05/02/2018
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: 1e19d03998a18d997c2840f573e7bc79b24efbbc
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: a96f13f8c7f3e79c6e5d50f17e662176257fdab3
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47427971"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263711"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Erweitern von Active Directory Domain Services (AD DS) auf Azure
 
@@ -46,7 +46,7 @@ Die folgenden Empfehlungen gelten für die meisten Szenarios. Sofern Sie keine b
 
 Sie bestimmen die Anforderungen an die [VM-Größe][vm-windows-sizes] anhand der erwarteten Menge von Authentifizierungsanforderungen. Nutzen Sie die Spezifikationen des Computers, auf dem AD DS lokal ausgeführt wird, als Ausgangspunkt, und passen Sie die Azure-VM-Größen entsprechend an. Nach der Bereitstellung überwachen Sie die Auslastung und führen anhand der tatsächlichen Last auf den virtuellen Computern eine zentrale Hoch- oder Herunterskalierung durch. Weitere Informationen zum Ändern der Größe von AD DS-Domänencontrollern finden Sie unter [Kapazitätsplanung für Active Directory Domain Services][capacity-planning-for-adds].
 
-Erstellen Sie einen separaten virtuellen Datenträger zum Speichern der Datenbank, der Protokolle und von SYSVOL für Active Directory. Speichern Sie diese Elemente nicht auf demselben Datenträger wie das Betriebssystem. Standardmäßig verwenden die Datenträger, die an eine VM angefügt sind, einen Durchschreibcache (Write-Through Caching). Allerdings kann diese Form des Cachings zu Konflikten mit den Anforderungen von AD DS führen. Legen Sie daher unter *Hostcacheeinstellungen* für den Datenträger *Keine* fest. Weitere Informationen finden Sie unter [Platzierung der Windows Server AD DS-Datenbank und von SYSVOL][adds-data-disks].
+Erstellen Sie einen separaten virtuellen Datenträger zum Speichern der Datenbank, der Protokolle und von SYSVOL für Active Directory. Speichern Sie diese Elemente nicht auf demselben Datenträger wie das Betriebssystem. Standardmäßig verwenden die Datenträger, die an eine VM angefügt sind, einen Durchschreibcache (Write-Through Caching). Allerdings kann diese Form des Cachings zu Konflikten mit den Anforderungen von AD DS führen. Legen Sie daher unter *Hostcacheeinstellungen* für den Datenträger *Keine* fest. Weitere Informationen finden Sie unter [Richtlinien zum Bereitstellen von Windows Server Active Directory auf Azure Virtual Machines][adds-data-disks].
 
 Stellen Sie mindestens zwei virtuelle Computer mit AD DS als Domänencontroller bereit, und fügen Sie sie einer [Verfügbarkeitsgruppe][availability-set] hinzu.
 
@@ -169,7 +169,7 @@ Nach Abschluss der Bereitstellung können Sie die Konnektivität zwischen der si
 [implementing-a-secure-hybrid-network-architecture]: ../dmz/secure-vnet-hybrid.md
 [implementing-a-secure-hybrid-network-architecture-with-internet-access]: ../dmz/secure-vnet-dmz.md
 
-[adds-data-disks]: https://msdn.microsoft.com/library/azure/jj156090.aspx#BKMK_PlaceDB
+[adds-data-disks]: https://msdn.microsoft.com/en-us/library/mt674703.aspx
 [ad-ds-operations-masters]: https://technet.microsoft.com/library/cc779716(v=ws.10).aspx
 [ad-ds-ports]: https://technet.microsoft.com/library/dd772723(v=ws.11).aspx
 [availability-set]: /azure/virtual-machines/virtual-machines-windows-create-availability-set
