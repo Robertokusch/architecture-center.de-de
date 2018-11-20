@@ -3,14 +3,14 @@ title: Enterprise BI mit SQL Data Warehouse
 description: Verwenden von Azure, um aus lokal gespeicherten relationalen Daten Einblicke in Geschäftsvorgänge zu gewinnen
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: d5b680346267a17b5016b8897dc03ddcf18a7fe9
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.openlocfilehash: 2822cf6d2a75d521f182c267f4bf2bac462d2b7f
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263812"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527710"
 ---
-# <a name="enterprise-bi-with-sql-data-warehouse"></a>Enterprise BI mit SQL Data Warehouse
+# <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Enterprise BI in Azure mit SQL Data Warehouse
 
 Diese Referenzarchitektur implementiert eine [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)-Pipeline (Extract-Load-Transform), die Daten aus einer lokalen SQL Server-Datenbank in SQL Data Warehouse verschiebt und die Daten für die Analyse transformiert. 
 
@@ -199,7 +199,7 @@ Führen Sie zum Bereitstellen und Ausführen der Referenzimplementierung die Sch
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-- Verwenden Sie Azure Data Factory, um die ELT-Pipeline zu automatisieren. Siehe [Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Data Factory][adf=ra].
+- Verwenden Sie Azure Data Factory, um die ELT-Pipeline zu automatisieren. Siehe [Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Data Factory][adf-ra].
 
 <!-- links -->
 
