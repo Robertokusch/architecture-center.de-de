@@ -3,12 +3,12 @@ title: Hochgradig skalierbare und sichere WordPress-Websites in Azure
 description: Erstellen Sie eine hochgradig skalierbare und sichere WordPress-Website für Medienereignisse.
 author: david-stanford
 ms.date: 09/18/2018
-ms.openlocfilehash: f7dd73524b2b63cd7d38e8e03bfd4b8edac251a9
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 6ff39d09fa301c8c68ce2a644cc489c0e87a22fa
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818478"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610600"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>Hochgradig skalierbare und sichere WordPress-Websites
 
@@ -16,7 +16,7 @@ Dieses Beispielszenario richtet sich an Unternehmen, die eine hochgradig skalier
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Medienereignisse, die einen raschen Datenverkehrsanstieg verursachen
 * Blogs, die WordPress als Content Management-System nutzen

@@ -3,12 +3,12 @@ title: Bedarfsorientiertes Machine Learning
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4e584da18893ac7405fa00863fe034e45b2e3903
-ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
+ms.openlocfilehash: a44785b61faec8a45160fa2895fbc03e2c580a77
+ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/11/2018
-ms.locfileid: "34062815"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51577139"
 ---
 # <a name="machine-learning-at-scale"></a>Bedarfsorientiertes Machine Learning
 
@@ -59,7 +59,7 @@ Bevor Sie die Entscheidung treffen, welche ML-Dienste für das Training und die 
 - Verwenden Sie die vortrainierten neuronalen Netzwerkmodelle des Cognitive Toolkit.
 - Betten Sie die serialisierten Modelle ein, die von Core ML für iOS-Apps bereitgestellt werden. 
 
-Falls ein vordefiniertes Modell für Ihre Daten oder Ihr Szenario nicht geeignet ist, können Sie in Azure die Optionen Azure Machine Learning, HDInsight mit Spark MLlib und MMLSpark, Cognitive Toolkit und SQL Machine Learning Services verwenden. Falls Sie sich für die Nutzung eines benutzerdefinierten Modells entscheiden, müssen Sie eine Pipeline entwerfen, die das Modelltraining und die Operationalisierung umfasst. 
+Falls ein vordefiniertes Modell für Ihre Daten oder Ihr Szenario nicht geeignet ist, stehen Ihnen in Azure die Optionen Azure Machine Learning, HDInsight mit Spark MLlib und MMLSpark, Azure Databricks, Cognitive Toolkit und SQL Machine Learning Services zur Verfügung. Falls Sie sich für die Nutzung eines benutzerdefinierten Modells entscheiden, müssen Sie eine Pipeline entwerfen, die das Modelltraining und die Operationalisierung umfasst. 
 
 ![Modelloptionen in Azure](./images/machine-learning-model-training-and-deployment.png)
 

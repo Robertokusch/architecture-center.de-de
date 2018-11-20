@@ -3,12 +3,12 @@ title: Schützen von Windows-Webanwendungen für Branchen mit Regulierung
 description: Erstellen Sie mithilfe von Windows Server eine sichere Webanwendung mit mehreren Ebenen in Azure, für die Skalierungsgruppen, Application Gateway und Lastenausgleichsmodule verwendet werden.
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: 584b5891f9b3d8e174c3eb29835a525ae4a4f156
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: c7137988bd9b5e26718b4fe0955a3dca3dc638b8
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819005"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610718"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>Schützen von Windows-Webanwendungen für Branchen mit Regulierung
 
@@ -18,7 +18,7 @@ Zu den Beispielszenarien für Anwendungen gehören die Ausführung von Anwendung
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Modernisieren von Anwendungsbereitstellungen in einer sicheren Cloudumgebung
 * Reduzieren der Verwaltung von lokalen Legacyanwendungen und -diensten

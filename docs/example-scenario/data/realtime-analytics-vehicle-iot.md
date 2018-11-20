@@ -1,14 +1,14 @@
 ---
 title: Erfassung und Verarbeitung von IoT-Daten für die Automobilindustrie in Echtzeit
 description: Erfassen und verarbeiten Sie Fahrzeugdaten mithilfe von IoT in Echtzeit.
-author: meeral
+author: msdpalam
 ms.date: 09/12/2018
-ms.openlocfilehash: 663332185f64987215384a1d4af4b7ed9b50847c
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 6562e3277e6b6eb38993132284ad43542ef4c0d3
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876884"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610735"
 ---
 # <a name="ingestion-and-processing-of-real-time-automotive-iot-data"></a>Erfassung und Verarbeitung von IoT-Daten für die Automobilindustrie in Echtzeit
 
@@ -23,13 +23,13 @@ In dieser Demo verwenden wir als Beispiel einen Automobilhersteller, der ein Ech
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Berücksichtigen Sie dieses Szenario für die folgenden Anwendungsfälle sowie in Verbindung mit den oben genannten Zielen, wenn Sie ein System für die Telematikerfassung und -verarbeitung erstellen:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Erinnerungen und Warnungen im Zusammenhang mit der Fahrzeugwartung
 * Standortbasierte Dienste für Fahrzeuginsassen (Notruf)
 * Autonome (selbstfahrende) Fahrzeuge
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Screenshot](media/architecture-realtime-analytics-vehicle-data1.png)
 

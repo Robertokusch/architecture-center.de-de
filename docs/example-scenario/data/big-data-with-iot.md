@@ -3,12 +3,12 @@ title: IoT und Datenanalyse in der Bauindustrie
 description: Verwenden Sie IoT-Geräte und Datenanalysen für eine umfassende Verwaltung und den Betrieb bei Bauprojekten.
 author: alexbuckgit
 ms.date: 08/29/2018
-ms.openlocfilehash: 7ab0de50b0eba1ab420e450f3408fe5dc45f04ac
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 74868191687e63a54a69fdacb7276983d98faf74
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818495"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610922"
 ---
 # <a name="iot-and-data-analytics-in-the-construction-industry"></a>IoT und Datenanalyse in der Bauindustrie
 
@@ -29,13 +29,13 @@ Durch die Verwendung verwalteter Azure-Dienste wie IoT Hub und HDInsight kann de
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Diese Lösung eignet sich für Folgendes:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Bauwesen, Bergbau oder Herstellung von Baugeräten
 * Sammlung umfangreicher Gerätedaten zur Speicherung und Analyse
 * Erfassung und Analyse umfangreicher Datasets
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Architektur für IoT und Datenanalyse in der Bauindustrie][architecture]
 
@@ -47,7 +47,7 @@ Die Daten durchlaufen die Lösung wie folgt:
 4. Die gesammelten Rohdaten werden von IoT Hub direkt an Azure Blob Storage gesendet und können sofort angezeigt und analysiert werden.
 5. Über IoT Hub gesammelte Daten werden nahezu in Echtzeit durch einen Azure Stream Analytics-Auftrag verarbeitet und in einer Azure SQL-Datenbank gespeichert.
 6. Über die Webanwendung „Smart Construction Cloud“ können Analysten und Endbenutzer Sensordaten und Bilder anzeigen und analysieren. 
-7. Batchaufträge werden bei Bedarf von Benutzern der Webanwendung initiiert. Der Batchauftrag wird in Apache Spark in HDInsight ausgeführt und analysiert neue Daten, die im Cassandra-Cluster gespeichert wurden. 
+7. Batchaufträge werden bei Bedarf von Benutzern der Webanwendung initiiert. Der Batchauftrag wird in Apache Spark in HDInsight ausgeführt und analysiert neue Daten, die im Cassandra-Cluster gespeichert wurden. 
 
 ### <a name="components"></a>Komponenten
 

@@ -3,12 +3,12 @@ title: Virtuelle Linux-Desktops mit Citrix
 description: Erstellen Sie mithilfe von Citrix eine VDI-Umgebung für Linux-Desktops in Azure.
 author: miguelangelopereira
 ms.date: 09/12/2018
-ms.openlocfilehash: 374d59f7a528bd89870baa601a49a30ea00a08f1
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 383642b05926c5a09abf0b2f95fef10539d95aec
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819141"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610650"
 ---
 # <a name="linux-virtual-desktops-with-citrix"></a>Virtuelle Linux-Desktops mit Citrix
 
@@ -28,7 +28,7 @@ Dieses Szenario eignet sich für den folgenden Anwendungsfall:
 
 * Bereitstellen von sicherem Zugriff auf geschäftskritische spezialisierte Linux-VDI-Desktops über Linux-basierte und Linux-fremde Geräte
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 [![](./media/azure-citrix-sample-diagram.png "Architekturdiagramm")](./media/azure-citrix-sample-diagram.png#lightbox)
 
@@ -96,7 +96,7 @@ Informationen zur Bereitstellung finden Sie in der offiziellen [Citrix-Dokumenta
 
 ## <a name="pricing"></a>Preise
 
-- Die Citrix XenDestop-Lizenzen sind in den Gebühren für Azure-Dienste nicht enthalten.
+- Die Citrix XenDesktop-Lizenzen sind in den Gebühren für Azure-Dienste nicht enthalten.
 - Die Citrix NetScaler-Lizenz ist in einem Modell mit nutzungsbasierter Bezahlung enthalten.
 - Durch die Nutzung reservierter Instanzen verringern sich die Computekosten für die Lösung erheblich.
 - ExpressRoute-Kosten sind nicht enthalten.

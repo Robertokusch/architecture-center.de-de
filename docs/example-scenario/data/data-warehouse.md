@@ -3,12 +3,12 @@ title: Data Warehousing und Analysen für Vertrieb und Marketing
 description: Fassen Sie Daten aus mehreren Quellen zusammen, um die Datenanalyse zu optimieren.
 author: alexbuckgit
 ms.date: 09/15/2018
-ms.openlocfilehash: f9ca9785b65f18098a91aedc1f3157f49456a6e1
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: e4c0a37f61f3edfb1f29d26df546f02d31fd40f7
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818648"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610701"
 ---
 # <a name="data-warehousing-and-analytics-for-sales-and-marketing"></a>Data Warehousing und Analysen für Vertrieb und Marketing
 
@@ -24,13 +24,13 @@ Das Unternehmen benötigt einen modernen Ansatz für die Datenanalyse, um Entsch
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Sie können diesen Ansatz auch für Folgendes verwenden:
+Dieser Ansatz kann auch für folgende Zwecke verwendet werden:
 
 * Einrichten eines Data Warehouse als alleingültige Quelle für Ihre Daten
 * Integrieren relationaler Datenquellen in andere unstrukturierte Datasets
 * Verwenden von Semantikmodellen und leistungsstarken Visualisierungstools zur Vereinfachung der Datenanalyse
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Architektur für ein Szenario mit Data Warehouse und Datenanalyse in Azure][architecture]
 

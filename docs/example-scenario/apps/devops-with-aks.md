@@ -3,12 +3,12 @@ title: CI/CD-Pipeline für containerbasierte Workloads
 description: Erstellen Sie eine DevOps-Pipeline für eine Node.js-Web-App mit Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB und Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 3212fae2c68eef3a5ed4963d28c0d97ac8f332e0
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: db8de674ee2789c5b41cebebee5745ecc8544122
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818733"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610837"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>CI/CD-Pipeline für containerbasierte Workloads
 
@@ -20,7 +20,7 @@ Azure-Dienste wie Azure Kubernetes Service, Container Registry und Cosmos DB bie
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Modernisieren der Anwendungsentwicklung mit einem Microservice- und Container-basierten Ansatz
 * Beschleunigen von Anwendungsentwicklung und Bereitstellungslebenszyklen

@@ -3,16 +3,14 @@ title: N-schichtige Anwendung in mehreren Regionen für Hochverfügbarkeit
 description: Erfahren Sie, wie Sie virtuelle Computer für Hochverfügbarkeit und Resilienz in mehreren Regionen in Azure bereitstellen.
 author: MikeWasson
 ms.date: 07/19/2018
-pnp.series.title: Windows VM workloads
-pnp.series.prev: n-tier
-ms.openlocfilehash: 34dd47175e7fd0002cba577ad6c1034968ed4098
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 3b1c419182322b2fa0b555230465f41562e8e6c1
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819124"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527625"
 ---
-# <a name="multi-region-n-tier-application-for-high-availability"></a>N-schichtige Anwendung in mehreren Regionen für Hochverfügbarkeit
+# <a name="n-tier-application-in-multiple-azure-regions-for-high-availability"></a>n-schichtige Anwendung in mehreren Azure-Regionen für Hochverfügbarkeit
 
 Diese Referenzarchitektur zeigt eine Reihe bewährter Methoden zum Ausführen einer n-schichtigen Anwendung in mehreren Azure-Regionen, um Verfügbarkeit und eine stabile Infrastruktur für die Notfallwiederherstellung zu erzielen. 
 

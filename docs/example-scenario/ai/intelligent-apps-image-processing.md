@@ -3,12 +3,12 @@ title: Bildklassifizierung für Versicherungsansprüche in Azure
 description: Integrieren Sie Bildverarbeitung in Ihre Azure-Anwendungen.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 31d328f8e5e27ea255024b7f461f2bfaeffc3ca7
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 9640f8b5454891ed00f669bada9f7c9c69b89734
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818532"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610531"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Bildklassifizierung für Versicherungsansprüche in Azure
 
@@ -20,7 +20,7 @@ Durch die Verwendung von Azure-Diensten wie Maschinelles Sehen-API und Azure Fun
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Klassifizieren von Bildern auf einer Modewebsite
 * Klassifizieren von Telemetriedaten aus Screenshots von Spielen
@@ -58,7 +58,7 @@ Bei den Komponenten dieses Szenarios handelt es sich größtenteils um verwaltet
 
 Bei Cosmos DB erfolgt keine automatische Skalierung der bereitgestellten Anforderungseinheiten (Request Units, RUs). Einen Leitfaden für die Schätzung Ihrer Anforderungen finden Sie in unserer Dokumentation unter [Anforderungseinheiten](/azure/cosmos-db/request-units). Machen Sie sich zur optimalen Nutzung der Skalierung in Cosmos DB mit der Funktionsweise von [Partitionsschlüsseln](/azure/cosmos-db/partition-data) in Cosmos DB vertraut.
 
-Bei NoSQL-Datenbanken gehen Verfügbarkeit, Skalierbarkeit und Partitionierung häufig zulasten der Konsistenz (im Sinne des CAP-Theorems). In diesem Beispielszenario wird ein Schlüssel-Wert-Datenmodell verwendet, sodass die Transaktionskonsistenz meist vernachlässigt werden kann, da die meisten Vorgänge per Definition atomisch sind. Weitere Informationen zur [Wahl des richtigen Datenspeichers](../../guide/technology-choices/data-store-overview.md) finden Sie im Azure Architecture Center.  Wenn für Ihre Implementierung eine hohe Konsistenz erforderlich ist, können Sie [Ihre Konsistenzebene](/azure/cosmos-db/consistency-levels) in CosmosDB wählen.
+Bei NoSQL-Datenbanken gehen Verfügbarkeit, Skalierbarkeit und Partitionierung häufig zulasten der Konsistenz (im Sinne des CAP-Theorems). In diesem Beispielszenario wird ein Schlüssel-Wert-Datenmodell verwendet, sodass die Transaktionskonsistenz meist vernachlässigt werden kann, da die meisten Vorgänge per Definition atomisch sind. Weitere Informationen zur [Wahl des richtigen Datenspeichers](../../guide/technology-choices/data-store-overview.md) finden Sie im Azure Architecture Center. Wenn für Ihre Implementierung eine hohe Konsistenz erforderlich ist, können Sie [Ihre Konsistenzebene](/azure/cosmos-db/consistency-levels) in CosmosDB wählen.
 
 Allgemeine Informationen zur Entwicklung skalierbarer Lösungen finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
 
@@ -86,9 +86,9 @@ Auf der Grundlage des Datenverkehrs (und unter der Annahme, dass alle Bilder 100
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
-Einen geführten Lernpfad für dieses Szenario finden Sie unter [Build a serverless web app in Azure][serverless] (Erstellen einer serverlosen Web-App in Azure).
+Einen geführten Lernpfad finden Sie unter [Erstellen einer serverlosen Web-App in Azure][serverless].
 
-Machen Sie sich mit den [bewährten Methoden][functions-best-practices] für Azure Functions vertraut, bevor Sie dieses Beispielszenario in einer Produktionsumgebung bereitstellen.
+Informieren Sie sich vor dem Bereitstellen dieses Beispielszenarios in einer Produktionsumgebung über die empfohlenen Methoden zum [Optimieren der Leistung und Zuverlässigkeit von Azure Functions][functions-best-practices].
 
 <!-- links -->
 [architecture]: ./media/architecture-intelligent-apps-image-processing.png

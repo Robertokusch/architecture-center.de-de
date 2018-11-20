@@ -3,12 +3,12 @@ title: Migrieren einer älteren Webanwendung zu einer API-basierten Architektur 
 description: Modernisieren Sie eine ältere Webanwendung mithilfe von Azure API Management.
 author: begim
 ms.date: 09/13/2018
-ms.openlocfilehash: 1aa7ea6dc895146e13677dd9867fb2530f0a8f04
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: f468b3c6dc1c58e03555613b152882316ae2a017
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876788"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610582"
 ---
 # <a name="migrating-a-legacy-web-application-to-an-api-based-architecture-on-azure"></a>Migrieren einer älteren Webanwendung zu einer API-basierten Architektur in Azure
 
@@ -20,7 +20,7 @@ Zu den Zielen für das Projekt zählen der Abbau technischer Schulden, die Verbe
 * Das interne Entwicklungsteam wird neue Geschäftsfunktionen entwickeln, die über neue HTTP-APIs verfügbar gemacht werden.
 * Ein externes Entwicklungsteam wird eine neue browserbasierte Benutzeroberfläche erstellen, die in Azure gehostet wird.
 
-Neue Anwendungsfeatures werden in mehreren Phasen bereitgestellt. Die vorhandene (lokal gehostete) browserbasierte Client/Server-Benutzeroberfläche, die gegenwärtig für das E-Commerce-Geschäft des Unternehmens genutzt wird, wird *schrittweise ersetzt*.
+Neue Anwendungsfeatures werden in mehreren Phasen bereitgestellt. Diese Features werden die vorhandene (lokal gehostete) browserbasierte Client/Server-Benutzeroberfläche, die gegenwärtig für das E-Commerce-Geschäft des Unternehmens genutzt wird, schrittweise ersetzen.
 
 Das Managementteam möchte unnötige Modernisierungen vermeiden. Außerdem möchte es die Kontrolle über den Umfang und die Kosten des Projekts behalten. Aus diesem Grund hat sich das Unternehmen entschieden, die vorhandenen SOAP-HTTP-Dienste beizubehalten. Zudem sollen Änderungen an der vorhandenen Benutzeroberfläche auf ein Minimum beschränkt werden. Mit [Azure API Management (APIM)][apim] können viele der Anforderungen und Auflagen des Projekts erfüllt werden.
 
@@ -86,6 +86,7 @@ Im [Azure-Preisrechner][pricing-calculator] können Sie die voraussichtlichen Ko
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
 Zu Azure API Management stehen Ihnen eine umfangreiche [Dokumentation und Referenzartikel][apim] zur Verfügung.
+
 
 <!-- links -->
 [architecture]: ./media/architecture-apim-api-scenario.png

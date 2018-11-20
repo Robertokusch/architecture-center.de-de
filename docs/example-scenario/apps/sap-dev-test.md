@@ -3,12 +3,12 @@ title: Entwicklungs-/Testumgebungen für SAP-Workloads in Azure
 description: Erstellen Sie eine Dev/Test-Umgebung für SAP-Workloads.
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: b47e4cb527d3e4ecd74bee7bcf08f2794da56d6c
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 1cfd15b0287a1979ae5ad60e41a0b1627a2e115c
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876797"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610803"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Entwicklungs-/Testumgebungen für SAP-Workloads in Azure
 
@@ -22,7 +22,7 @@ Sehen Sie sich für Anwendungsfälle für die Produktion die hier angegebenen SA
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Nicht kritische SAP-Workloads, die nicht für die Produktion bestimmt sind (Sandbox, Entwicklung, Test, Qualitätssicherung)
 * Nicht kritische geschäftliche SAP-Workloads
@@ -42,7 +42,7 @@ Dieses Szenario veranschaulicht die Bereitstellung einer einzelnen SAP-Systemdat
 
 * [Virtuelle Netzwerke](/azure/virtual-network/virtual-networks-overview) sind die Grundlage für die Netzwerkkommunikation innerhalb von Azure.
 * [Azure Virtual Machines](/azure/virtual-machines/windows/overview) stellt eine auf Windows- oder Linux-Servern basierende hochgradig skalierbare, sichere, virtualisierte On-Demand-Infrastruktur bereit.
-* Mit [ExpressRoute](/azure/expressroute/expressroute-introduction) können Sie Ihre lokalen Netzwerke über eine private Verbindung, die von einem Konnektivitätsanbieter bereitgestellt wird, auf die Microsoft Cloud ausdehnen.
+* Mit [ExpressRoute](/azure/expressroute/expressroute-introduction) können Sie Ihre lokalen Netzwerke über eine private Verbindung, die von einem Konnektivitätsanbieter bereitgestellt wird, auf die Cloud von Microsoft ausdehnen.
 * Mit [Netzwerksicherheitsgruppen](/azure/virtual-network/security-overview) können Sie den Netzwerkdatenverkehr auf Ressourcen in einem virtuellen Netzwerk beschränken. Eine Netzwerksicherheitsgruppe enthält eine Liste mit Sicherheitsregeln, die ein- oder ausgehenden Netzwerkdatenverkehr basierend auf IP-Adresse, Port und Protokoll (für die Quelle bzw. das Ziel) zulassen oder ablehnen. 
 * [Ressourcengruppen](/azure/azure-resource-manager/resource-group-overview#resource-groups) fungieren als logische Container für Azure-Ressourcen.
 

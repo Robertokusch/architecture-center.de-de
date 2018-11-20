@@ -3,24 +3,24 @@ title: Intelligente Produktsuchmaschine für E-Commerce
 description: Stellen Sie eine erstklassige Sucherfahrung in einer E-Commerce-Anwendung bereit.
 author: jelledruyts
 ms.date: 09/14/2018
-ms.openlocfilehash: f18e9fd3705c24da71da747c46ab42f263fd06af
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a57477c26665b4560671550f6fdd81c2d9505e71
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818751"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610667"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>Intelligente Produktsuchmaschine für E-Commerce
 
 In diesem Beispielszenario wird veranschaulicht, wie durch die Verwendung eines dedizierten Suchdiensts die Relevanz der Suchergebnisse für Ihre E-Commerce-Kunden erheblich verbessert werden kann.
 
-Die Suche ist der wichtigste Mechanismus, mit dem Kunden Produkte finden und diese dann erwerben. Daher ist es von wesentlicher Bedeutung, dass Suchergebnisse in Bezug auf die _Absicht_ der Suchabfrage relevant sind und dass die End-to-End-Suchumgebung den Umgebungen von großen Suchanbietern gleicht, indem Ergebnisse nahezu sofort bereitgestellt werden und Funktionen wie linguistische Analyse, Abgleich des geografischen Standorts, Filterung, Faceting, automatische Vervollständigung, Treffermarkierung usw. vorhanden sind.
+Die Suche ist der wichtigste Mechanismus, mit dem Kunden Produkte finden und diese dann erwerben. Daher ist es von entscheidender Bedeutung, dass Suchergebnisse in Bezug auf die _Absicht_ der Suchabfrage relevant sind und die End-to-End-Suchumgebung den Umgebungen von großen Suchanbietern entspricht (nahezu sofortige Anzeige von Ergebnissen und Funktionen wie linguistische Analyse, Abgleich des geografischen Standorts, Filterung, Faceting, automatische Vervollständigung, Treffermarkierung usw.).
 
 Stellen Sie sich eine typische E-Commerce-Webanwendung vor, bei der die Produktdaten in einer relationalen Datenbank wie SQL Server oder Azure SQL-Datenbank gespeichert sind. Suchabfragen werden häufig innerhalb der Datenbank verarbeitet, indem Features wie `LIKE`-Abfragen oder die [Volltextsuche][docs-sql-fts] genutzt werden. Wenn Sie stattdessen [Azure Search][docs-search] verwenden, befreien Sie Ihre Betriebsdatenbank von der Verarbeitung der Abfragen und können auf einfache Weise die Vorteile der schwierig zu implementierenden Features nutzen, mit denen Ihre Kunden die bestmögliche Suchumgebung erhalten. Da Azure Search eine PaaS-Komponente (Platform-as-a-Service) ist, müssen Sie sich auch nicht um die Verwaltung der Infrastruktur kümmern oder zu einem Suchexperten werden.
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Folgende Anwendungsfälle verfügen über ähnliche Entwurfsmuster:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Suchen nach Immobilienangeboten/-maklern in der Nähe des physischen Standorts des Benutzers
 * Suchen nach Artikeln auf einer Nachrichtenwebsite oder nach Sportergebnissen, wobei _aktuelle_ Informationen bevorzugt werden
@@ -28,7 +28,7 @@ Folgende Anwendungsfälle verfügen über ähnliche Entwurfsmuster:
 
 Letztendlich können _alle_ Anwendungen, die über eine Art von Suchfunktionalität verfügen, von einem dedizierten Suchdienst profitieren.
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Architekturübersicht über die Azure-Komponenten, die an einer intelligenten Suchmaschine für Produkte im E-Commerce-Bereich beteiligt sind][architecture]
 
@@ -42,7 +42,7 @@ Mit diesem Szenario wird eine E-Commerce-Lösung abgedeckt, bei der Kunden einen
 
 ### <a name="components"></a>Komponenten
 
-* Mit [App Services – Web-Apps][docs-webapps] werden Webanwendungen gehostet, um die automatische Skalierung und Hochverfügbarkeit zu ermöglichen, ohne dass die Infrastruktur verwaltet werden muss.
+* [App Services – Web-Apps][docs-webapps] hostet Webanwendungen und ermöglicht die automatische Skalierung und Bereitstellung von Hochverfügbarkeit, ohne eine Infrastruktur verwalten zu müssen.
 * [SQL-Datenbank][docs-sql-database] ist ein relationaler verwalteter Datenbankdienst in Microsoft Azure für allgemeine Zwecke, der Strukturen wie relationale Daten, JSON, räumliche Daten und XML unterstützt.
 * [Azure Search][docs-search] ist eine Search-as-a-Service-Cloudlösung, die umfangreiche Suchfunktionen für private, heterogene Inhalte in Web- und Unternehmensanwendungen sowie in mobilen Anwendungen ermöglicht.
 * [Bot Service][docs-botservice] bietet Tools zum Erstellen, Testen, Bereitstellen und Verwalten intelligenter Bots.

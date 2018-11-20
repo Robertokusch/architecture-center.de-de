@@ -3,12 +3,12 @@ title: 3D-Videorendering in Azure
 description: Führen Sie native HPC-Workloads in Azure mit dem Azure Batch-Dienst aus.
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 1206fa7d931fca635118929d433abe232ec5ca9a
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 1ffdaa5467fec73a01b8caa18b71c2bc4e49abbe
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818626"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610684"
 ---
 # <a name="3d-video-rendering-on-azure"></a>3D-Videorendering in Azure
 
@@ -18,14 +18,14 @@ Mit Batch erhalten Sie unabhängig davon, ob Sie Windows Server- oder Linux-Comp
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für ähnliche Anwendungsfälle:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * 3D-Modellierung
 * VFX-Rendering (Visual FX)
 * Videotranscodierung
 * Bildverarbeitung, Farbkorrektur und Größenänderung
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Architekturübersicht über die Komponenten einer cloudbasierten HPC-Lösung mit Azure Batch][architecture]
 

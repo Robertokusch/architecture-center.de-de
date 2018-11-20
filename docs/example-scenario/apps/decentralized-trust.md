@@ -3,12 +3,12 @@ title: Dezentralisierte Vertrauensstellung zwischen Banken in Azure
 description: Richten Sie eine vertrauenswürdige Umgebung für die Kommunikation und gemeinsame Nutzung von Informationen ein, ohne auf eine zentrale Datenbank zurückzugreifen.
 author: vitoc
 ms.date: 09/09/2018
-ms.openlocfilehash: fe27f885635ce5ae4ce368992affa1a85d7af416
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: bc472bc5bafc3eb20e583f41d71ed783725a039e
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876755"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610565"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Dezentralisierte Vertrauensstellung zwischen Banken in Azure
 
@@ -18,19 +18,19 @@ Die Banken innerhalb eines Finanzsystems beziehen Informationen zur Kreditwürdi
 
 Mit DLTs (Distributed Ledger-Technologie) kann ein Bankenkonsortium ein dezentrales System aufbauen, das effizienter arbeitet, besser vor Angriffen geschützt ist und als neue Plattform fungiert, auf der innovative Strukturen implementiert werden können, um traditionelle Herausforderungen in den Bereichen Datenschutz, Geschwindigkeit und Kosten zu lösen.
 
-In diesem Beispiel erfahren Sie, wie Azure-Dienste wie VM-Skalierungsgruppe, Virtual Network, Key Vault, Storage, Load Balancer und Monitor für die schnelle Bereitstellung einer effizienten privaten Ethereum-PoA-Blockchain bereitgestellt werden können, die es den teilnehmenden Banken ermöglicht, ihre eigenen Knoten zu erstellen.
+In diesem Beispiel erfahren Sie, wie Azure-Dienste wie VM-Skalierungsgruppen, Virtual Network, Key Vault, Storage, Load Balancer und Monitor für die schnelle Bereitstellung einer effizienten privaten Ethereum-PoA-Blockchain bereitgestellt werden können, die es den teilnehmenden Banken ermöglicht, ihre eigenen Knoten zu erstellen.
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Folgende Anwendungsfälle verfügen über ähnliche Entwurfsmuster:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Verschieben zugeteilter Budgets zwischen verschiedenen Unternehmenseinheiten eines multinationalen Konzerns
 * Grenzüberschreitende Zahlungen
 * Handelsfinanzierungsszenarien
 * Treuesysteme mit verschiedenen Unternehmen
-* Lieferkettensysteme und vieles mehr
+* Lieferkettensysteme
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Diagramm einer dezentralisierten Architektur von Vertrauensstellungen für Banken](./media/architecture-decentralized-trust.png)
 
@@ -44,7 +44,7 @@ In diesem Szenario werden die Back-End-Komponenten behandelt, die erforderlich s
 
 ### <a name="components"></a>Komponenten
 
-* Virtual Machines in VM-Skalierungsgruppen stellt bedarfsgerechte Computeressourcen zum Hosten der Überprüfungsprozesse für die Blockchain bereit.
+* VMs in VM-Skalierungsgruppen stellen bedarfsgerechte Computeressourcen zum Hosten der Validierungsprozesse für die Blockchain bereit.
 * Key Vault wird als sicherer Speicher für die privaten Schlüssel der einzelnen Überprüfungen verwendet.
 * Load Balancer verteilt die RPC-, Peering- und Governance-DApp-Anforderungen.
 * Storage hostet persistente Netzwerkinformationen und koordiniert das Leasing.
@@ -72,7 +72,7 @@ Weitere Verfügbarkeitsthemen finden Sie im Azure Architecture Center in der [Ch
 
 Eine verbreitete Sorge bei Blockchains ist häufig die Anzahl von Transaktionen, die eine Blockchain in einem vordefinierten Zeitraum enthalten kann. In diesem Szenario wird Proof-of-Authority verwendet, um im Vergleich zu Proof-of-Work eine bessere Verwaltung der Skalierbarkeit zu ermöglichen. In Proof-of-Authority-basierten Netzwerken sind die Konsensteilnehmer bekannt und werden verwaltet. Dadurch eignen sie sich besser für private Blockchains eines Konsortiums von Organisationen, die sich untereinander kennen. Parameter wie durchschnittliche Blockzeit, Transaktionen pro Minute und Auslastung von Computeressourcen lassen sich komfortabel über das benutzerdefinierte Dashboard überwachen. Ressourcen können dann auf der Grundlage der Skalierungsanforderungen angepasst werden.
 
-Allgemeine Informationen zur Entwicklung skalierbarer Szenarien finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
+Allgemeine Informationen zur Entwicklung skalierbarer Lösungen finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
 
 ### <a name="security"></a>Sicherheit
 
@@ -100,7 +100,7 @@ Die oben aufgeführten Preise gelten für ein einzelnes Konsortiumsmitglied, das
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Wenn Sie sich ein Beispiel für dieses Szenario ansehen möchten, stellen Sie die [Demoanwendung für die Ethereum-PoA-Blockchain][deploy] in Azure bereit, und lesen Sie sich anschließend die [Infodatei des Quellcodes für das Szenario][source] durch.
+Wenn Sie sich ein Beispiel für dieses Szenario ansehen möchten, stellen Sie die [Demoanwendung für die Ethereum-PoA-Blockchain][deploy] in Azure bereit. Lesen Sie anschließend die [Infodatei des Quellcodes für das Szenario][source].
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 

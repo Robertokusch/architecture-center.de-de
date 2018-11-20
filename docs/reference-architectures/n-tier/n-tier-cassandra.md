@@ -2,15 +2,15 @@
 title: N-schichtige Anwendung mit Apache Cassandra
 description: Vorgehensweise zum Ausführen von Linux-VMs in einer n-schichtigen Architektur in Microsoft Azure
 author: MikeWasson
-ms.date: 09/13/2018
-ms.openlocfilehash: 2eceb0b5d939c0aa2cc9fc3209d0f86449fdd72b
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.date: 11/12/2018
+ms.openlocfilehash: ec2d6f8310e5b7ae5b135aa0e16f14f572149f7f
+ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916565"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51577173"
 ---
-# <a name="n-tier-application-with-apache-cassandra"></a>N-schichtige Anwendung mit Apache Cassandra
+# <a name="linux-n-tier-application-in-azure-with-apache-cassandra"></a>n-schichtige Linux-Anwendung in Azure mit Apache Cassandra
 
 Diese Referenzarchitektur zeigt, wie Sie für eine n-schichtige Anwendung konfigurierte virtuelle Computer und ein entsprechendes virtuelles Netzwerk mit Apache Cassandra unter Linux für die Datenebene bereitstellen. [**So stellen Sie diese Lösung bereit**.](#deploy-the-solution) 
 
@@ -24,25 +24,25 @@ Die Architektur besteht aus den folgenden Komponenten:
 
 * **Ressourcengruppe:** [Ressourcengruppen][resource-manager-overview] dienen zum Gruppieren von Ressourcen, damit sie nach Lebensdauer, Besitzer oder anderen Kriterien verwaltet werden können.
 
-* **Virtuelles Netzwerk (VNet) und Subnetze:** Jeder virtuelle Azure-Computer wird in einem virtuellen Netzwerk (VNet) bereitgestellt, das in mehrere Subnetze segmentiert werden kann. Erstellen Sie für jede Schicht ein separates Subnetz. 
+* **Virtuelles Netzwerk (VNet) und Subnetze:** Jede Azure-VM wird in einem virtuellen Netzwerk (VNET) bereitgestellt, das in Subnetze segmentiert werden kann. Erstellen Sie für jede Schicht ein separates Subnetz. 
 
-* **NSGs:** Verwenden Sie [Netzwerksicherheitsgruppen][nsg] (NSGs), um den Netzwerkdatenverkehr im VNET zu beschränken. In der hier gezeigten 3-schichtigen Architektur akzeptiert die Datenbankschicht beispielsweise keinen Datenverkehr vom Web-Front-End, sondern nur von der Unternehmensschicht und dem Verwaltungssubnetz.
+* **NSGs:** Verwenden Sie [Netzwerksicherheitsgruppen][nsg] (NSGs), um den Netzwerkdatenverkehr im VNET zu beschränken. In der hier gezeigten dreischichtigen Architektur akzeptiert die Datenbankschicht beispielsweise Datenverkehr von der Unternehmensschicht und dem Verwaltungssubnetz, aber nicht vom Web-Front-End.
+
+* **DDoS Protection**. Obwohl die Azure-Plattform Schutz vor verteilten Denial-of-Service-Angriffen (DDoS) beinhaltet, empfehlen wir die Verwendung der Dienstebene [DDoS Protection Standard][ddos], die erweiterte Funktionen für die DDoS-Entschärfung bietet. Weitere Informationen finden Sie unter [Sicherheitshinweise](#security-considerations).
 
 * **Virtuelle Computer:** Empfehlungen zum Konfigurieren von virtuellen Computern finden Sie unter [Run a Windows VM on Azure](./windows-vm.md) (Ausführen eines virtuellen Windows-Computers in Azure) sowie unter [Run a Linux VM on Azure](./linux-vm.md) (Ausführen eines virtuellen Linux-Computers in Azure).
 
-* **Verfügbarkeitsgruppen:** Erstellen Sie eine [Verfügbarkeitsgruppe][azure-availability-sets] für jede Schicht, und stellen Sie mindestens zwei VMs in jeder Schicht bereit. Dies berechtigt die VMs zu einer höheren [Vereinbarung zum Servicelevel (SLA)][vm-sla] für VMs. 
-
-* **VM-Skalierungsgruppe** (nicht im Bild): Eine [VM-Skalierungsgruppe][vmss] stellt eine Alternative zur Verwendung einer Verfügbarkeitsgruppe dar. Mit einer Skalierungsgruppe lassen sich die virtuellen Computer einer Ebene ganz einfach horizontal hochskalieren – entweder manuell oder automatisch auf der Grundlage vordefinierter Regeln.
+* **Verfügbarkeitsgruppen:** Erstellen Sie eine [Verfügbarkeitsgruppe][azure-availability-sets] für jede Schicht, und stellen Sie mindestens zwei VMs in jeder Schicht bereit. Dadurch ist die VM für eine höhere [Vereinbarung zum Servicelevel (SLA)][vm-sla] qualifiziert.
 
 * **Azure Load Balancer-Instanzen:** Die [Load Balancer-Instanzen][load-balancer] verteilen eingehende Internetanforderungen an die VM-Instanzen. Verwenden Sie einen [öffentlichen Load Balancer][load-balancer-external], um eingehenden Internetdatenverkehr auf die Webschicht zu verteilen, und einen [internen Load Balancer][load-balancer-internal], um Netzwerkdatenverkehr von der Webschicht auf die Unternehmensschicht zu verteilen.
 
 * **Öffentliche IP-Adresse:** Für den Empfang von Internetdatenverkehr benötigt der öffentliche Load Balancer eine öffentliche IP-Adresse.
 
-* **Jumpbox:** Wird auch als [geschützter Host] bezeichnet. Dies ist eine geschützte VM im Netzwerk, die von Administratoren zum Herstellen der Verbindung mit anderen VMs verwendet wird. Die Jumpbox verfügt über eine NSG, die Remotedatenverkehr nur von öffentlichen IP-Adressen zulässt, die in einer Liste mit sicheren Absendern aufgeführt sind. Die NSG muss SSH-Datenverkehr zulassen.
+* **Jumpbox:** Wird auch als [geschützter Host] bezeichnet. Dies ist eine geschützte VM im Netzwerk, die von Administratoren zum Herstellen der Verbindung mit anderen VMs verwendet wird. Die Jumpbox verfügt über eine NSG, die Remotedatenverkehr nur von öffentlichen IP-Adressen zulässt, die in einer Liste mit sicheren Absendern aufgeführt sind. Die Netzwerksicherheitsgruppe (NSG) muss SSH-Datenverkehr zulassen.
 
 * **Apache Cassandra-Datenbank**: Stellt Hochverfügbarkeit in der Datenschicht durch Replikation und Failover bereit.
 
-* **Azure DNS:** [Azure DNS][azure-dns] ist ein Hostingdienst für DNS-Domänen, der die Namensauflösung unter Verwendung der Microsoft Azure-Infrastruktur durchführt. Durch das Hosten Ihrer Domänen in Azure können Sie Ihre DNS-Einträge mithilfe der gleichen Anmeldeinformationen, APIs, Tools und Abrechnung wie für die anderen Azure-Dienste verwalten.
+* **Azure DNS:** [Azure DNS][azure-dns] ist ein Hostingdienst für DNS-Domänen. Er ermöglicht eine Namensauflösung mithilfe der Microsoft Azure-Infrastruktur. Durch das Hosten Ihrer Domänen in Azure können Sie Ihre DNS-Einträge mithilfe der gleichen Anmeldeinformationen, APIs, Tools und Abrechnung wie für die anderen Azure-Dienste verwalten.
 
 ## <a name="recommendations"></a>Empfehlungen
 
@@ -52,19 +52,19 @@ Ihre Anforderungen können von der hier beschriebenen Architektur abweichen. Ver
 
 Legen Sie bei der Erstellung des VNET fest, wie viele IP-Adressen Ihre Ressourcen in jedem Subnetz benötigen. Geben Sie mithilfe der [CIDR] eine Subnetzmaske und einen VNET-Adressbereich an, der für die erforderlichen IP-Adressen groß genug ist. Verwenden Sie einen Adressraum, der in die standardmäßigen [privaten IP-Adressblöcke][private-ip-space] 10.0.0.0/8, 172.16.0.0/12 und 192.168.0.0/16 fällt.
 
-Wählen Sie einen Adressbereich, der sich nicht mit Ihrem lokalen Netzwerk überschneidet, für den Fall, dass Sie später ein Gateway zwischen dem VNET und dem lokalen Netzwerk einrichten müssen. Sobald Sie das VNET erstellt haben, können Sie den Adressbereich nicht mehr ändern.
+Wählen Sie einen Adressbereich aus, der sich nicht mit Ihrem lokalen Netzwerk überschneidet, für den Fall, dass Sie später ein Gateway zwischen dem VNET und dem lokalen Netzwerk einrichten müssen. Sobald Sie das VNET erstellt haben, können Sie den Adressbereich nicht mehr ändern.
 
 Entwerfen Sie Subnetze unter Berücksichtigung der Funktionalität und Sicherheitsanforderungen. Alle VMs innerhalb derselben Schicht oder Rolle sollten im selben Subnetz platziert werden, was eine Sicherheitsbegrenzung darstellen kann. Weitere Informationen zum Entwerfen von VNETs und Subnetzen finden Sie unter [Planen und Entwerfen von Azure Virtual Networks][plan-network].
 
 ### <a name="load-balancers"></a>Load Balancer
 
-Machen Sie die virtuellen Computer nicht direkt über das Internet verfügbar, sondern weisen Sie jedem virtuellen Computer stattdessen eine private IP-Adresse zu. Clients verwenden für die Verbindungsherstellung die IP-Adresse des öffentlichen Load Balancers.
+Machen Sie die VMs nicht direkt über das Internet verfügbar. Weisen Sie stattdessen jeder VM eine private IP-Adresse zu. Clients verwenden für die Verbindungsherstellung die IP-Adresse des öffentlichen Load Balancers.
 
-Definieren Sie Lastenausgleichsregeln, um Netzwerkdatenverkehr an die virtuellen Computer weiterzuleiten. Um beispielsweise HTTP-Datenverkehr zu aktivieren, erstellen Sie eine Regel, die Port 80 aus der Front-End-Konfiguration Port 80 im Back-End-Adresspool zuordnet. Wenn ein Client eine HTTP-Anforderung an Port 80 sendet, wählt der Lastenausgleich mithilfe eines [Hashalgorithmus][load-balancer-hashing], der die Quell-IP-Adresse enthält, eine Back-End-IP-Adresse aus. Auf diese Weise werden die Clientanforderungen auf die virtuellen Computer verteilt.
+Definieren Sie Lastenausgleichsregeln, um Netzwerkdatenverkehr an die virtuellen Computer weiterzuleiten. Um beispielsweise HTTP-Datenverkehr zu aktivieren, erstellen Sie eine Regel, die Port 80 aus der Front-End-Konfiguration Port 80 im Back-End-Adresspool zuordnet. Wenn ein Client eine HTTP-Anforderung an Port 80 sendet, wählt der Lastenausgleich mithilfe eines [Hashalgorithmus][load-balancer-hashing], der die Quell-IP-Adresse enthält, eine Back-End-IP-Adresse aus. So werden Clientanforderungen auf alle VMs verteilt.
 
 ### <a name="network-security-groups"></a>Netzwerksicherheitsgruppen
 
-Verwenden Sie NSG-Regeln, um den Datenverkehr zwischen den Schichten zu beschränken. In der oben gezeigten 3-schichtigen Architektur kommuniziert die Internetschicht beispielsweise nicht direkt mit der Datenbankschicht. Um dies zu erzwingen, sollte die Datenbankschicht eingehenden Datenverkehr aus dem Subnetz der Internetschicht blockieren.  
+Verwenden Sie NSG-Regeln, um den Datenverkehr zwischen den Schichten zu beschränken. In der oben gezeigten dreischichtigen Architektur kommuniziert die Internetschicht beispielsweise nicht direkt mit der Datenbankschicht. Um dies zu erzwingen, sollte die Datenbankschicht eingehenden Datenverkehr aus dem Subnetz der Internetschicht blockieren.  
 
 1. Lehen Sie sämtlichen eingehenden Datenverkehr aus dem VNet ab. (Verwenden Sie den `VIRTUAL_NETWORK`-Tag in der Regel.) 
 2. Lassen Sie eingehenden Datenverkehr aus dem Subnetz der Unternehmensschicht zu.  
@@ -85,12 +85,12 @@ Konfigurieren Sie Knoten im rackfähigen Modus. Ordnen Sie Fehlerdomänen den Ra
 
 Es ist kein vor dem Cluster geschaltetes Lastenausgleichsmodul erforderlich. Der Client stellt eine direkte Verbindung mit einem Knoten im Cluster her.
 
-Stellen Sie Cassandra in mehreren Azure-Regionen bereit, um eine hohe Verfügbarkeit zu erzielen. In jeder Region werden die Knoten in unterschiedlichen Racks und in Fehler- und Upgradedomänen konfiguriert, um Resilienz innerhalb der Region zu erreichen.
+Stellen Sie Cassandra in mehreren Azure-Regionen bereit, um eine hohe Verfügbarkeit zu erzielen. Knoten in jeder Region werden in unterschiedlichen Racks und in Fehler- und Upgradedomänen konfiguriert, um Resilienz innerhalb der Region sicherzustellen.
 
 
 ### <a name="jumpbox"></a>Jumpbox
 
-Verweigern Sie den SSH-Zugriff über das öffentliche Internet auf die virtuellen Computer, auf denen die Anwendungsworkload ausgeführt wird. Der gesamte SSH-Zugriff auf diese virtuellen Computer muss stattdessen über die Jumpbox erfolgen. Ein Administrator meldet sich bei der Jumpbox und von der Jumpbox aus dann bei der anderen VM an. Die Jumpbox lässt SSH-Datenverkehr aus dem Internet zu, allerdings nur von bekannten, sicheren IP-Adressen.
+Verweigern Sie den SSH-Zugriff über das öffentliche Internet auf die VMs, auf denen die Anwendungsworkload ausgeführt wird. Der gesamte SSH-Zugriff auf diese virtuellen Computer muss stattdessen über die Jumpbox erfolgen. Ein Administrator meldet sich bei der Jumpbox und von der Jumpbox aus dann bei der anderen VM an. Die Jumpbox lässt SSH-Datenverkehr aus dem Internet zu, allerdings nur von bekannten, sicheren IP-Adressen.
 
 Die Jumpbox hat sehr geringe Leistungsanforderungen. Wählen Sie daher einen virtuellen Computer mit geringer Größe. Erstellen Sie eine [öffentliche IP-Adresse] für die Jumpbox. Platzieren Sie die Jumpbox in dasselbe VNET wie die anderen VMs, jedoch in ein separates Verwaltungssubnetz.
 
@@ -98,15 +98,15 @@ Fügen Sie zum Schutz der Jumpbox eine NSG-Regel hinzu, die ausschließlich SSH-
 
 ## <a name="scalability-considerations"></a>Überlegungen zur Skalierbarkeit
 
-[VM-Skalierungsgruppen][vmss] ermöglichen die Bereitstellung und Verwaltung einer Gruppe identischer virtueller Computer. Skalierungsgruppen unterstützen die automatische Skalierung basierend auf Leistungsmetriken. Mit zunehmender Last auf den virtuellen Computern werden dem Lastenausgleich automatisch zusätzliche virtuelle Computer hinzugefügt. Erwägen Sie die Verwendung von Skalierungsgruppen, wenn Sie VMs schnell horizontal hochskalieren müssen oder eine automatische Skalierung benötigen.
+Erwägen Sie für die Internet- und Unternehmensschichten die Verwendung von [VM-Skalierungsgruppen][vmss], anstatt separate VMs in einer Verfügbarkeitsgruppe bereitzustellen. Eine Skalierungsgruppe erleichtert die Bereitstellung und Verwaltung einer Gruppe identischer VMs und ermöglicht die automatische Skalierung der VMs auf der Grundlage von Leistungsmetriken. Mit zunehmender Last auf den virtuellen Computern werden dem Lastenausgleich automatisch zusätzliche virtuelle Computer hinzugefügt. Erwägen Sie die Verwendung von Skalierungsgruppen, wenn Sie VMs schnell horizontal hochskalieren müssen oder eine automatische Skalierung benötigen.
 
 Es gibt zwei grundlegende Methoden für das Konfigurieren von virtuellen Computern in einer Skalierungsgruppe:
 
-- Verwenden Sie die Erweiterungen, um den virtuellen Computer zu konfigurieren, nachdem er bereitgestellt wurde. Bei diesem Ansatz dauert das Starten neuer VM-Instanzen länger als bei virtuellen Computern ohne Erweiterungen.
+- Verwenden Sie Erweiterungen, um die VM nach ihrer Bereitstellung zu konfigurieren. Bei diesem Ansatz dauert das Starten neuer VM-Instanzen länger als bei virtuellen Computern ohne Erweiterungen.
 
-- Stellen Sie einen [verwalteten Datenträger](/azure/storage/storage-managed-disks-overview) mit einem benutzerdefinierten Datenträgerimage bereit. Diese Option kann möglicherweise schneller bereitgestellt werden. Allerdings müssen Sie das Abbild auf dem neuesten Stand halten.
+- Stellen Sie einen [verwalteten Datenträger](/azure/storage/storage-managed-disks-overview) mit einem benutzerdefinierten Datenträgerimage bereit. Diese Option kann möglicherweise schneller bereitgestellt werden. Allerdings müssen Sie das Image auf dem neuesten Stand halten.
 
-Weitere Überlegungen finden Sie unter [Überlegungen zum Entwurf von Skalierungsgruppen][vmss-design].
+Weitere Informationen finden Sie unter [Überlegungen zum Entwurf von Skalierungsgruppen][vmss-design].
 
 > [!TIP]
 > Wenn Sie eine Lösung für die automatische Skalierung verwenden, testen Sie diese im Voraus mit Workloads auf Produktionsebene.
@@ -115,30 +115,30 @@ Jedes Azure-Abonnement verfügt über Standardeinschränkungen, zu denen auch ei
 
 ## <a name="availability-considerations"></a>Überlegungen zur Verfügbarkeit
 
-Wenn Sie keine VM-Skalierungsgruppen verwenden, platzieren Sie virtuelle Computer auf der gleichen Ebene in einer Verfügbarkeitsgruppe. Erstellen Sie zur Unterstützung der [Verfügbarkeits-SLA für Azure-VMs][vm-sla] mindestens zwei VMs in der Verfügbarkeitsgruppe. Weitere Informationen finden Sie unter [Verwalten der Verfügbarkeit virtueller Computer][availability-set]. 
+Wenn Sie keine VM-Skalierungsgruppen verwenden, platzieren Sie VMs für die gleiche Schicht in einer Verfügbarkeitsgruppe. Erstellen Sie zur Unterstützung der [Verfügbarkeits-SLA für Azure-VMs][vm-sla] mindestens zwei VMs in der Verfügbarkeitsgruppe. Weitere Informationen finden Sie unter [Verwalten der Verfügbarkeit virtueller Computer][availability-set]. Skalierungsgruppen verwenden automatisch *Platzierungsgruppen*, die als eine implizite Verfügbarkeitsgruppe fungieren.
 
-Der Lastenausgleich verwendet [Integritätstests][health-probes] zur Überwachung der Verfügbarkeit von VM-Instanzen. Wenn eine Instanz bei einem Test nicht innerhalb eines Timeoutzeitraums erreicht werden kann, beendet der Lastenausgleich das Senden von Datenverkehr an diesen virtuellen Computer. Der Lastenausgleich führt aber weiterhin Tests durch, und wenn der virtuelle Computer wieder erreichbar ist, sendet der Lastenausgleich auch wieder Datenverkehr an diese VM.
+Der Lastenausgleich verwendet [Integritätstests][health-probes] zur Überwachung der Verfügbarkeit von VM-Instanzen. Kann eine Instanz bei einem Test nicht innerhalb des jeweiligen Zeitlimits erreicht werden, beendet der Lastenausgleich das Senden von Datenverkehr an diese VM. Der Lastenausgleich führt weiterhin Tests durch, und wenn die VM wieder erreichbar ist, sendet er auch wieder Datenverkehr an diese VM.
 
 Empfehlungen für Integritätstests durch den Lastenausgleich:
 
 * Die Tests können für HTTP oder TCP durchgeführt werden. Wenn auf Ihren virtuellen Computern ein HTTP-Server ausgeführt wird, erstellen Sie einen HTTP-Test. Erstellen Sie andernfalls einen TCP-Test.
 * Geben Sie für einen HTTP-Test den Pfad zu einem HTTP-Endpunkt an. Der Test überprüft, ob von diesem Pfad eine HTTP-200-Antwort empfangen wird. Dies kann den Stammpfad („/“) oder ein Endpunkt zur Integritätsüberwachung sein, der benutzerdefinierte Logik zum Überprüfen der Integrität der Anwendung implementiert. Der Endpunkt muss anonyme HTTP-Anforderungen zulassen.
-* Der Test wird von einer [bekannten][health-probe-ip] IP-Adresse (168.63.129.16) gesendet. Stellen Sie sicher, dass Datenverkehr zu oder von dieser IP-Adresse in keiner Firewallrichtlinie und keinen NSG-Regeln (Netzwerksicherheitsgruppe) blockiert wird.
-* Verwenden Sie die [Protokolle der Integritätstests][health-probe-log], um den Status der Integritätstests anzuzeigen. Aktivieren Sie die Protokollierung für jeden Lastenausgleich im Azure-Portal. Die Protokolle werden in Azure Blob Storage geschrieben. Die Protokolle zeigen, wie viele virtuelle Computer am Back-End aufgrund fehlerhafter Testantworten keinen Netzwerkdatenverkehr empfangen.
+* Der Test wird von einer [bekannten][health-probe-ip] IP-Adresse (168.63.129.16) gesendet. Stellen Sie sicher, dass Sie den an oder von diese(r) IP-Adresse gesendeten Datenverkehr nicht in Firewallrichtlinien oder NSG-Regeln blockieren.
+* Verwenden Sie die [Protokolle der Integritätstests][health-probe-log], um den Status der Integritätstests anzuzeigen. Aktivieren Sie die Protokollierung für jeden Lastenausgleich im Azure-Portal. Die Protokolle werden in Azure Blob Storage geschrieben. Die Protokolle zeigen, wie viele VMs aufgrund von fehlerhaften Testantworten keinen Netzwerkdatenverkehr empfangen.
 
-Für den Cassandra-Cluster hängen die relevanten Failoverszenarien von den Konsistenzebenen, die von der Anwendung verwendet werden, und der Anzahl der verwendeten Replikate ab. Weitere Informationen zu Konsistenzebenen und der Verwendung in Cassandra finden Sie unter [Konfigurieren der Datenkonsistenz][cassandra-consistency] und [Cassandra: Wie viele Knoten kommunizieren mit Quorum?][cassandra-consistency-usage]. Die Verfügbarkeit der Daten wird in Cassandra durch die Konsistenzebene, die von der Anwendung verwendet wird, und vom Replikationsverfahren bestimmt. Weitere Informationen zur Replikation in Cassandra finden Sie unter [Datenreplikation in NoSQL-Datenbanken im Überblick][cassandra-replication].
+Für den Cassandra-Cluster hängen die Failoverszenarien von den Konsistenzebenen, die von der Anwendung verwendet werden, und von der Anzahl von Replikaten ab. Weitere Informationen zu Konsistenzebenen und der Verwendung in Cassandra finden Sie unter [Konfigurieren der Datenkonsistenz][cassandra-consistency] und [Cassandra: Wie viele Knoten kommunizieren mit Quorum?][cassandra-consistency-usage]. Die Verfügbarkeit der Daten wird in Cassandra durch die Konsistenzebene, die von der Anwendung verwendet wird, und vom Replikationsverfahren bestimmt. Weitere Informationen zur Replikation in Cassandra finden Sie unter [Datenreplikation in NoSQL-Datenbanken im Überblick][cassandra-replication].
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
-Virtuelle Netzwerke stellen in Azure eine Isolationsbegrenzung für Datenverkehr dar. Virtuelle Computer in einem VNET können nicht direkt mit virtuellen Computern in einem anderen VNET kommunizieren. VMs im selben VNET können miteinander kommunizieren, sofern Sie den Datenverkehr nicht durch die Erstellung von [Netzwerksicherheitsgruppen][nsg] (NSGs) beschränken. Weitere Informationen finden Sie unter [Microsoft Cloud Services und Netzwerksicherheit][network-security].
+Virtuelle Netzwerke stellen in Azure eine Isolationsbegrenzung für Datenverkehr dar. VMs in einem VNET können nicht direkt mit VMs in einem anderen VNET kommunizieren. VMs im selben VNET können miteinander kommunizieren, sofern Sie den Datenverkehr nicht durch die Erstellung von [Netzwerksicherheitsgruppen][nsg] (NSGs) beschränken. Weitere Informationen finden Sie unter [Microsoft Cloud Services und Netzwerksicherheit][network-security].
 
 Für eingehenden Internetdatenverkehr definieren die Lastenausgleichsregeln, welcher Datenverkehr an das Back-End weitergeleitet wird. Allerdings unterstützen Lastenausgleichsregeln keine IP-Sicherheitslisten. Wenn Sie also einer Sicherheitsliste bestimmte öffentliche IP-Adressen hinzufügen möchten, fügen Sie dem Subnetz eine NSG hinzu.
 
-Für die Erstellung einer DMZ zwischen dem Internet und dem virtuellen Azure-Netzwerk sollten Sie eventuell eine virtuelle Netzwerkappliance (Network Virtual Appliance, NVA) hinzufügen. NVA ist ein Oberbegriff für eine virtuelle Appliance, die netzwerkbezogene Aufgaben wie Erstellung von Firewalls, Paketüberprüfung, Überwachung und benutzerdefiniertes Routing ausführen kann. Weitere Informationen finden Sie unter [Implementieren einer DMZ zwischen Azure und dem Internet][dmz].
+**DMZ**. Für die Erstellung einer DMZ zwischen dem Internet und dem virtuellen Azure-Netzwerk sollten Sie eventuell eine virtuelle Netzwerkappliance (Network Virtual Appliance, NVA) hinzufügen. NVA ist ein Oberbegriff für eine virtuelle Appliance, die netzwerkbezogene Aufgaben wie Erstellung von Firewalls, Paketüberprüfung, Überwachung und benutzerdefiniertes Routing ausführen kann. Weitere Informationen finden Sie unter [Implementieren einer DMZ zwischen Azure und dem Internet][dmz].
 
-Verschlüsseln Sie sensible ruhende Daten, und verwalten Sie die Datenbankverschlüsselungsschlüssel mithilfe von [Azure Key Vault][azure-key-vault]. Key Vault kann Verschlüsselungsschlüssel in Hardwaresicherheitsmodulen (HSMs) speichern. Es empfiehlt sich außerdem, Anwendungsgeheimnisse wie Datenbankverbindungszeichenfolgen in Key Vault zu speichern.
+**Verschlüsselung**. Verschlüsseln Sie sensible ruhende Daten, und verwalten Sie die Datenbankverschlüsselungsschlüssel mithilfe von [Azure Key Vault][azure-key-vault]. Key Vault kann Verschlüsselungsschlüssel in Hardwaresicherheitsmodulen (HSMs) speichern. Es empfiehlt sich außerdem, Anwendungsgeheimnisse wie Datenbankverbindungszeichenfolgen in Key Vault zu speichern.
 
-Es wird empfohlen, [DDoS Protection Standard](/azure/virtual-network/ddos-protection-overview) zu aktivieren. Dieser Dienst bietet zusätzliche DDoS-Risikominderung für Ressourcen in einem VNET. DDoS Protection Basic wird automatisch als Teil der Azure-Plattform aktiviert. DDoS Protection Standard bietet jedoch Funktionen zur Risikominderung, die speziell für Azure Virtual Network-Ressourcen optimiert sind.  
+**DDoS Protection**. Die Azure-Plattform stellt DDoS Protection Basic-Schutz standardmäßig bereit. Dieser Basisschutz ist dafür ausgelegt, die Azure-Infrastruktur als Ganzes zu schützen. Obwohl der DDoS Protection Basic-Schutz automatisch aktiviert ist, empfehlen wir die Verwendung von [DDoS Protection Standard][ddos]. DDoS Protection Standard wendet basierend auf den Mustern des Netzwerkdatenverkehrs Ihrer Anwendung eine adaptive Optimierung an, um Bedrohungen zu erkennen. Dadurch können DDoS-Angriffe entschärft werden, die von den infrastrukturweiten DDoS-Richtlinien möglicherweise nicht erkannt werden. DDoS Protection Standard stellt über Azure Monitor auch Warnungen, Telemetrie und Analysen bereit. Weitere Informationen finden Sie unter [Azure DDoS Protection – empfohlene Methoden und Referenzarchitekturen][ddos-best-practices].
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
@@ -154,9 +154,9 @@ Um die Linux VMs für eine n-schichtige Anwendungsreferenzarchitektur bereitzust
 
 1. Navigieren Sie zum `virtual-machines\n-tier-linux`-Ordner für das Repository, das Sie oben in Schritt 1 der Voraussetzungen als Klon erstellt haben.
 
-2. Die Parameterdatei gibt einen Standard-Administratorbenutzernamen und ein Standardkennwort für jeden virtuellen Computer in der Bereitstellung an. Sie müssen diese vor der Bereitstellung der Referenzarchitektur ändern. Öffnen Sie die `n-tier-linux.json`-Datei, und ersetzen Sie jedes Feld **adminUsername** und **adminPassword** durch neue Einstellungen.   Speichern Sie die Datei .
+2. Die Parameterdatei gibt einen Standard-Administratorbenutzernamen und ein Standardkennwort für jeden virtuellen Computer in der Bereitstellung an. Ändern Sie diese Informationen, bevor Sie die Referenzarchitektur bereitstellen. Öffnen Sie die `n-tier-linux.json`-Datei, und ersetzen Sie jedes Feld **adminUsername** und **adminPassword** durch neue Einstellungen.   Speichern Sie die Datei .
 
-3. Stellen Sie die Referenzarchitektur mithilfe des Befehlszeilentools **azbb** bereit, wie unten dargestellt.
+3. Stellen Sie die Referenzarchitektur wie unten dargestellt mit dem Tool **azbb** bereit.
 
    ```bash
    azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-linux.json --deploy
@@ -168,10 +168,7 @@ Weitere Informationen zum Bereitstellen dieser Beispielreferenzarchitektur mithi
 [dmz]: ../dmz/secure-vnet-dmz.md
 [multi-vm]: ./multi-vm.md
 [naming conventions]: /azure/guidance/guidance-naming-conventions
-[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
-[azure-administration]: /azure/automation/automation-intro
 [azure-availability-sets]: /azure/virtual-machines/virtual-machines-linux-manage-availability
-[azure-cli-2]: https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest
 [azure-dns]: /azure/dns/dns-overview
 [azure-key-vault]: https://azure.microsoft.com/services/key-vault
 
@@ -182,28 +179,20 @@ Weitere Informationen zum Bereitstellen dieser Beispielreferenzarchitektur mithi
 [cassandra-consistency-usage]: https://medium.com/@foundev/cassandra-how-many-nodes-are-talked-to-with-quorum-also-should-i-use-it-98074e75d7d5#.b4pb4alb2
 
 [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
-[chef]: https://www.chef.io/solutions/azure/
 [datastax]: https://www.datastax.com/products/datastax-enterprise
+[ddos]: /azure/virtual-network/ddos-protection-overview
+[ddos-best-practices]: /azure/security/azure-ddos-best-practices
 [git]: https://github.com/mspnp/template-building-blocks
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/n-tier-linux
-[lb-external-create]: /azure/load-balancer/load-balancer-get-started-internet-portal
-[lb-internal-create]: /azure/load-balancer/load-balancer-get-started-ilb-arm-portal
 [load-balancer-external]: /azure/load-balancer/load-balancer-internet-overview
 [load-balancer-internal]: /azure/load-balancer/load-balancer-internal-overview
 [nsg]: /azure/virtual-network/virtual-networks-nsg
 [nsg-rules]: /azure/azure-resource-manager/best-practices-resource-manager-security#network-security-groups
-[operations-management-suite]: https://www.microsoft.com/server-cloud/operations-management-suite/overview.aspx
 [plan-network]: /azure/virtual-network/virtual-network-vnet-plan-design-arm
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
 [öffentliche IP-Adresse]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
-[puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
-[ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
-[vnet faq]: /azure/virtual-network/virtual-networks-faq
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
-[Nagios]: https://www.nagios.org/
-[Zabbix]: https://www.zabbix.com/
-[Icinga]: https://www.icinga.org/
 [0]: ./images/n-tier-cassandra.png "n-schichtige Architektur mit Microsoft Azure"
 
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 

@@ -3,22 +3,22 @@ title: Überwachung von Webanwendungen in Azure
 description: Überwachen Sie eine in Azure App Service gehostete Webanwendung.
 author: adamboeglin
 ms.date: 09/12/2018
-ms.openlocfilehash: ea57ba50f4e9390d5527587752c3bebad01b6139
-ms.sourcegitcommit: 42797fffb82bbbf86f6deb1da52c61d456be631e
+ms.openlocfilehash: ba008035c37d1d4e2d2f823463344e4941c0b4c4
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/13/2018
-ms.locfileid: "49313215"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610752"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Überwachung von Webanwendungen in Azure
 
-Mit den PaaS-Angeboten (Platform-as-a-Service) von Azure werden Computeressourcen für Sie verwaltet, und sie bewirken teilweise einer Veränderung der Vorgehensweise, die Sie für das Überwachen von Bereitstellungen nutzen. Azure umfasst mehrere Überwachungsdienste, die jeweils eine bestimmte Rolle haben. Zusammen bieten diese Dienste eine umfassende Lösung für das Sammeln, Übertragen und Analysieren von Telemetriedaten aus Ihrer Anwendung und den zugrunde liegenden Azure-Ressourcen, die verwendet werden.
+Azure-PaaS-Angebote (Platform-as-a-Service) verwalten Computeressourcen für Sie und verändern die Art und Weise, wie Sie Bereitstellungen überwachen. Azure umfasst mehrere Überwachungsdienste, die jeweils eine bestimmte Rolle haben. Zusammen bieten diese Dienste eine umfassende Lösung für das Erfassen, Übertragen und Analysieren von Telemetriedaten von Ihrer Anwendung und den von ihnen genutzten Azure-Ressourcen.
 
 In diesem Szenario geht es um die Überwachungsdienste, die Sie nutzen können, und es wird ein Datenflussmodell für die Verwendung mit mehreren Datenquellen beschrieben. In Bezug auf die Überwachung funktionieren viele Tools und Dienste für Azure-Bereitstellungen. In diesem Szenario wählen wir gezielt problemlos verfügbare Dienste aus, da sie auf einfache Weise genutzt werden können. Weitere Überwachungsoptionen werden weiter unten in diesem Artikel beschrieben.
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 - Instrumentieren einer Webanwendung für die Überwachung von Telemetriedaten
 - Sammeln von Front-End- und Back-End-Telemetriedaten für eine unter Azure bereitgestellte Anwendung
@@ -48,7 +48,7 @@ In diesem Szenario wird eine verwaltete Azure-Umgebung verwendet, um eine Anwend
 
 ## <a name="considerations"></a>Überlegungen
 
-Eine bewährte Methode besteht darin, Ihrem Code während der Entwicklung Application Insights hinzuzufügen, indem Sie die [Application Insights SDKs][Application Insights SDKs] verwenden, und die Anpassung pro Anwendung durchzuführen. Diese Open-Source-SDKs sind für die meisten Anwendungsframeworks verfügbar. Binden Sie die Nutzung der SDKs sowohl für Test- als auch für Produktionsbereitstellungen in Ihren Entwicklungsprozess ein, um die von Ihnen gesammelten Daten zu erweitern und zu steuern. Die wichtigste Voraussetzung besteht darin, dass für die App eine direkte oder indirekte „Sichtverbindung“ mit dem Applications Insights-Erfassungsendpunkt besteht, der mit einer über das Internet zugänglichen Adresse gehostet wird. Sie können dann Telemetriedaten hinzufügen oder eine vorhandene Telemetriedatensammlung erweitern.
+Eine empfohlene Methode besteht darin, Ihrem Code während der Entwicklung mit den [Application Insights SDKs][Application Insights SDKs] Application Insights hinzuzufügen und die Anpassung für jede Anwendung einzeln vorzunehmen. Diese Open Source-SDKs sind für die meisten Anwendungsframeworks verfügbar. Binden Sie die Nutzung der SDKs sowohl für Test- als auch für Produktionsbereitstellungen in Ihren Entwicklungsprozess ein, um die von Ihnen gesammelten Daten zu erweitern und zu steuern. Die wichtigste Voraussetzung besteht darin, dass für die App eine direkte oder indirekte „Sichtverbindung“ mit dem Applications Insights-Erfassungsendpunkt besteht, der mit einer über das Internet zugänglichen Adresse gehostet wird. Sie können dann Telemetriedaten hinzufügen oder eine vorhandene Telemetriedatensammlung erweitern.
 
 Die Überwachung der Laufzeit ist eine weitere einfache Einstiegsmöglichkeit. Die gesammelten Telemetriedaten müssen mit Konfigurationsdateien gesteuert werden. Beispielsweise können Sie Laufzeitmethoden einfügen, mit denen Tools, z.B. [Application Insights-Statusmonitor][Application Insights Status Monitor], die SDKs im richtigen Ordner bereitstellen und die richtigen Konfigurationen hinzufügen können, um mit der Überwachung zu beginnen.
 
@@ -60,7 +60,7 @@ Azure Monitor, Application Insights und Log Analytics senden [Warnungen](/azure/
 
 ### <a name="alternatives"></a>Alternativen
 
-In diesem Artikel werden problemlos verfügbare Überwachungsoptionen mit beliebten Features beschrieben, aber Sie haben eine große Auswahl, z.B. die Option zur Erstellung Ihrer eigenen Protokollierungsmechanismen. Eine bewährte Methode ist das Hinzufügen von Überwachungsdiensten, wenn Sie in einer Lösung Ebenen erstellen. Hier sind einige mögliche Erweiterungen und Alternativen aufgeführt:
+In diesem Artikel werden problemlos verfügbare Überwachungsoptionen mit beliebten Features beschrieben, aber Sie haben eine große Auswahl, z.B. die Option zur Erstellung Ihrer eigenen Protokollierungsmechanismen. Eine empfohlene Methode ist das Hinzufügen von Überwachungsdiensten, wenn Sie in einer Lösung Ebenen erstellen. Hier sind einige mögliche Erweiterungen und Alternativen aufgeführt:
 
 - Konsolidieren von Azure Monitor- und Application Insights-Metriken in Grafana per [Azure Monitor Data Source For Grafana][Azure Monitor Data Source For Grafana] (Azure Monitor-Datenquelle für Grafana)
 - [Data Dog][data-dog] enthält einen Connector für Azure Monitor
@@ -72,7 +72,7 @@ In diesem Artikel werden problemlos verfügbare Überwachungsoptionen mit belieb
 
 In diesem Szenario liegt der Schwerpunkt vor allem auf PaaS-Lösungen für die Überwachung, da Sie damit bequem für Verfügbarkeit und Skalierbarkeit sorgen können und dafür Vereinbarungen zum Servicelevel (SLAs) vorhanden sind. App Services verfügt beispielsweise über eine garantierte [SLA][SLA] für die Verfügbarkeit.
 
-Für Application Insights gelten [Grenzwerte][app-insights-limits] für die Anzahl von Anforderungen, die pro Sekunde verarbeitet werden können. Wenn der Grenzwert für die Anforderungen überschritten wird, kommt es ggf. zu einer Drosselung der Nachrichten. Sie können dies verhindern, indem Sie die [Filterung][message-filtering] oder [Stichprobenentnahme][message-sampling] implementieren, um die Datenrate zu reduzieren.
+Für Application Insights gelten [Grenzwerte][app-insights-limits] für die Anzahl von Anforderungen, die pro Sekunde verarbeitet werden können. Wenn der Grenzwert für die Anforderungen überschritten wird, kommt es ggf. zu einer Drosselung der Nachrichten. Um eine Drosselung zu verhindern, können Sie eine [Filterung][message-filtering] oder [Sampling][message-sampling] zum Reduzieren der Datenrate implementieren.
 
 Für die Aspekte der Hochverfügbarkeit für die von Ihnen ausgeführte App ist aber der Entwickler verantwortlich. Informationen zur Skalierung finden Sie beispielsweise im Abschnitt [Überlegungen zur Skalierbarkeit](#scalability-considerations) in der Referenzarchitektur für einfache Webanwendungen. Nachdem eine App bereitgestellt wurde, können Sie Tests zum [Überwachen der Verfügbarkeit][monitor its availability] einrichten, indem Sie Application Insights verwenden.
 
@@ -86,7 +86,7 @@ Unter Umständen gelten auch die folgenden Sicherheitsaspekte:
 - Berücksichtigen Sie die Datenaufbewahrung. Für Application Insights werden Telemetriedaten beispielsweise 90 Tage lang aufbewahrt. Archivieren Sie Daten, auf die der Zugriff längere Zeit möglich sein soll, mit Microsoft Power BI, dem fortlaufenden Export oder der REST-API. Hierfür gelten die Speichergebühren.
 - Beschränken Sie den Zugriff auf Azure-Ressourcen, um den Datenzugriff zu steuern und festzulegen, wer Telemetriedaten über eine bestimmte Anwendung anzeigen kann. Informationen zum Sperren des Zugriffs auf Telemetriedaten der Überwachung finden Sie unter [Ressourcen, Rollen und Zugriffssteuerung in Application Insights][Resources, roles, and access control in Application Insights].
 - Überlegen Sie, ob der Lese-/Schreibzugriff im Anwendungscode gesteuert werden sollte. So wird verhindert, dass Benutzer Versions- oder Tagmarkierungen hinzufügen, mit denen die Datenerfassung für die Anwendung eingeschränkt wird. Bei Application Insights können einzelne Datenelemente nach dem Senden an eine Ressource nicht mehr gesteuert werden. Wenn ein Benutzer also Zugriff auf Daten hat, hat er auch Zugriff auf alle Daten einer einzelnen Ressource.
-- Fügen Sie Mechanismen für [Governance](/azure/security/governance-in-azure) hinzu, um bei Bedarf Richtlinien- oder Kostenkontrollen für Azure-Ressourcen zu erzwingen. Nutzen Sie beispielsweise Log Analytics für die sicherheitsbezogene Überwachung, z.B. Richtlinien und die rollenbasierte Zugriffssteuerung, oder verwenden Sie [Azure Policy](/azure/azure-policy/azure-policy-introduction), um Richtliniendefinitionen zu erstellen, zuzuweisen und zu verwalten.
+- Fügen Sie Mechanismen für [Governance](/azure/security/governance-in-azure) hinzu, um bei Bedarf Richtlinien- oder Kostenkontrollen für Azure-Ressourcen zu erzwingen. Nutzen Sie beispielsweise Log Analytics für die sicherheitsbezogene Überwachung, z. B. Richtlinien und die rollenbasierte Zugriffssteuerung, oder verwenden Sie [Azure Policy](/azure/azure-policy/azure-policy-introduction), um Richtliniendefinitionen zu erstellen, zuzuweisen und zu verwalten.
 - Zum Überwachen potenzieller Sicherheitsprobleme und Erlangen eines zentralen Überblicks über den Sicherheitszustand Ihrer Azure-Ressourcen können Sie auch [Azure Security Center](/azure/security-center/security-center-intro) nutzen.
 
 ## <a name="pricing"></a>Preise
@@ -97,7 +97,7 @@ Verwenden Sie als Einstiegshilfe den [Preisrechner][pricing], um die Kosten zu s
 
 Telemetriedaten von Application Insights werden beim Debuggen und nach dem Veröffentlichen Ihrer App an das Azure-Portal gesendet. Zu Testzwecken und zur Vermeidung von Gebühren wird eine begrenzte Menge von Telemetriedaten instrumentiert. Sie können den Grenzwert für die Telemetriedaten erhöhen, um weitere Indikatoren hinzuzufügen. Informationen zu einer präziseren Steuerung finden Sie unter [Erstellen von Stichproben in Application Insights][Sampling in Application Insights].
 
-Nach der Bereitstellung können Sie sich einen [Live Metrics Stream][Live Metrics Stream] mit Leistungsindikatoren ansehen. Diese Daten werden nicht gespeichert – Sie zeigen Echtzeitmetriken an –, aber die Telemetriedaten können gesammelt und später analysiert werden. Für Live Stream-Daten fallen keine Gebühren an.
+Nach der Bereitstellung können Sie sich einen [Live Metrics Stream][Live Metrics Stream] mit Leistungsindikatoren ansehen. Diese Daten werden nicht gespeichert (Sie zeigen Echtzeitmetriken an), die Telemetriedaten können jedoch erfasst und später analysiert werden. Für Live Stream-Daten fallen keine Gebühren an.
 
 Die Abrechnung von Log Analytics erfolgt pro GB an Daten, die im Dienst erfasst werden. Die ersten 5 GB an Daten, die jeden Monat mit dem Azure Log Analytics-Dienst erfasst werden, sind kostenlos. Die Daten werden für die ersten 31 Tage ohne Gebühren in Ihrem Log Analytics-Arbeitsbereich aufbewahrt. 
 

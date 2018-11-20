@@ -3,12 +3,12 @@ title: E-Commerce-Front-End in Azure
 description: Hosten Sie eine E-Commerce-Website in Azure.
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 6ca85665a5bf63bf71f5badc16406db5df2a34c2
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 7baaf4d2986a00ab72b60a540bcd9d864893b109
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819090"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610820"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Ein E-Commerce-Front-End in Azure
 
@@ -18,7 +18,7 @@ In diesem Dokument werden verschiedene Azure-PaaS-Komponenten und -Aspekte besch
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Erstellen einer Anwendung mit elastischer Skalierung zur Verarbeitung von variierenden Benutzerzahlen (Bursts) zu unterschiedlichen Zeiten
 * Erstellen einer Anwendung für den Betrieb mit Hochverfügbarkeit in unterschiedlichen Azure-Regionen weltweit
@@ -45,7 +45,7 @@ Bei diesem Szenario geht es um den Kauf von Tickets über eine E-Commerce-Websit
 
 * [Azure CDN][docs-cdn] stellt statische zwischengespeicherte Inhalte von Standorten bereit, die sich in der Nähe der Benutzer befinden, um die Latenz zu reduzieren.
 * Mit [Azure Traffic Manager][docs-traffic-manager] wird die Verteilung von Benutzerdatenverkehr für Dienstendpunkte in unterschiedlichen Azure-Regionen gesteuert.
-* Mit [App Services – Web-Apps][docs-webapps] werden Webanwendungen gehostet, um die automatische Skalierung und Hochverfügbarkeit zu ermöglichen, ohne dass die Infrastruktur verwaltet werden muss.
+* [App Services – Web-Apps][docs-webapps] hostet Webanwendungen und ermöglicht die automatische Skalierung und Bereitstellung von Hochverfügbarkeit, ohne eine Infrastruktur verwalten zu müssen.
 * [Azure Active Directory – B2C][docs-b2c] ist ein Identitätsverwaltungsdienst, mit dem Sie die Kundenregistrierung und -anmeldung anpassen und steuern und die Kundenprofile in einer Anwendung verwalten können.
 * In [Speicherwarteschlangen][docs-storage-queues] wird eine große Zahl von Warteschlangennachrichten gespeichert, auf die mit einer Anwendung zugegriffen werden kann.
 * [Functions][docs-functions] sind serverlose Computeoptionen, mit denen Anwendungen bedarfsgesteuert ausgeführt werden können, ohne dass die Infrastruktur verwaltet werden muss.

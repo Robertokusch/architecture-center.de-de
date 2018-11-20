@@ -3,12 +3,12 @@ title: Interaktiver Chatbot für Hotelreservierungen in Azure
 description: Erstellen Sie einen interaktiven Chatbot für gewerbliche Anwendungen mit Azure Bot Service.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 826aa36da5f30a871abd90fd8ab2b202ffdf93f0
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a922a75d621672fcac95296b1d99112d68c91107
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819657"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610769"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Interaktiver Chatbot für Hotelreservierungen in Azure
 
@@ -20,7 +20,7 @@ Dank Azure-Diensten wie Bot Service und Language Understanding oder der Sprach-A
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Anzeigen einer Restaurantspeisekarte mit Speisen zum Mitnehmen und Bestellen von Essen
 * Überprüfen der Hotelverfügbarkeit und Reservieren eines Zimmers
@@ -96,7 +96,7 @@ Dieses Szenario ist in drei Komponenten unterteilt, sodass Sie sich auf die Bere
 
 ### <a name="deploy-infrastructure-components"></a>Bereitstellen der Infrastrukturkomponenten
 
-Gehen Sie wie folgt vor, um die Infrastrukturkomponenten mit einer Azure Resource Manager-Vorlage bereitzustellen.
+Gehen Sie wie folgt vor, um die Infrastrukturkomponenten mit einer Resource Manager-Vorlage bereitzustellen.
 
 1. Klicken Sie auf die Schaltfläche **Deploy to Azure** (In Azure bereitstellen):<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fcommerce-chatbot.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. Warten Sie, bis die Vorlagenbereitstellung im Azure-Portal geöffnet wurde, und führen Sie anschließend folgende Schritte aus:
@@ -149,7 +149,8 @@ Auf der Grundlage der Anzahl von Nachrichten, die voraussichtlich von Ihrem Chat
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
-Eine Reihe geführter Tutorials zur Nutzung von Azure Bot Service finden Sie unter dem [Tutorialknoten][botservice-docs] der Dokumentation.
+Eine Reihe geführter Tutorials für Azure Bot Service finden Sie im [Abschnitt „Tutorials“][botservice-docs] der Dokumentation.
+
 
 <!-- links -->
 [aadb2c-docs]: /azure/active-directory-b2c/active-directory-b2c-overview

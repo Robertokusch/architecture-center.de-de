@@ -3,12 +3,12 @@ title: Ein CAE-Dienst in Azure
 description: Stellen Sie eine SaaS-Plattform (Software-as-a-Service) für computergestützte Entwicklung (Computer-Aided Engineering) in Azure bereit.
 author: alexbuckgit
 ms.date: 08/22/2018
-ms.openlocfilehash: d17ac218052c5b98e8790f1386be035618a2d957
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 8bdf7198223f7194d0cd717949699bb3a508674e
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818682"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610548"
 ---
 # <a name="a-computer-aided-engineering-service-on-azure"></a>Ein CAE-Dienst in Azure
 
@@ -26,13 +26,13 @@ Das Unternehmen hat folgende Ziele:
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Diese Architektur kann beispielsweise auch in folgenden Szenarien verwendet werden:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Genomforschung
 * Wettersimulation
 * Computergestützte Chemieanwendungen
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Architektur für eine SaaS-Lösung mit HPC-Funktionen][architecture]
 
@@ -54,7 +54,7 @@ Diese Architektur kann beispielsweise auch in folgenden Szenarien verwendet werd
 
 * [Azure CycleCloud](/azure/cyclecloud/overview) vereinfacht das Erstellen, Verwalten, Betreiben und Optimieren von HPC-Clustern. Die Lösung bietet erweiterte Richtlinien- und Governancefeatures. CycleCloud unterstützt jeden beliebigen Auftragsplaner oder Softwarestapel.
 * [HPC Pack](/azure/virtual-machines/windows/hpcpack-cluster-options) kann einen Azure-HPC-Cluster für Windows Server-basierte Workloads erstellen und verwalten. Für Linux-basierte Workloads ist HPC Pack dagegen nicht geeignet.
-* [Azure Automation State Configuration](/azure/automation/automation-dsc-overview) bietet einen Infrastructure-as-Code-Ansatz zum Definieren der bereitzustellenden virtuellen Computer und Software. Virtuelle Computer können als Teil einer VM-Skalierungsgruppe mit Regeln für die automatische Skalierung für Computeknoten auf der Grundlage der Anzahl von Aufträgen bereitgestellt werden, die an die Auftragswarteschlange übermittelt werden. Wird ein neuer virtueller Computer benötigt, wird er unter Verwendung des neuesten gepatchten Images aus dem Azure-Imagekatalog bereitgestellt. Anschließend wird die benötigte Software installiert und über ein PowerShell DSC-Konfigurationsskript konfiguriert.
+* [Azure Automation State Configuration](/azure/automation/automation-dsc-overview) bietet einen Infrastructure-as-Code-Ansatz zum Definieren der bereitzustellenden virtuellen Computer und Software. VMs können als Teil einer VM-Skalierungsgruppe mit Regeln für die automatische Skalierung für Computeknoten auf der Grundlage der Anzahl von Aufträgen bereitgestellt werden, die an die Auftragswarteschlange übermittelt werden. Wird ein neuer virtueller Computer benötigt, wird er unter Verwendung des neuesten gepatchten Images aus dem Azure-Imagekatalog bereitgestellt. Anschließend wird die benötigte Software installiert und über ein PowerShell DSC-Konfigurationsskript konfiguriert.
 * [Azure-Funktionen](/azure/azure-functions/functions-overview)
 
 ## <a name="considerations"></a>Überlegungen

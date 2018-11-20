@@ -3,12 +3,12 @@ title: Betrugserkennung in Echtzeit in Azure
 description: Erkennen Sie betrügerische Aktivitäten mithilfe von Azure Event Hubs und Stream Analytics in Echtzeit.
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: 4de988731aa1c5b0e4c0ba06fa5aed59e2bb7d81
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: bd9eb4d572651c4e57a0043226860623cd8d17e1
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818665"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610606"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Betrugserkennung in Echtzeit in Azure
 
@@ -22,7 +22,7 @@ Dieses Beispiel ist Teil einer umfassenderen Datenverarbeitungsarchitektur und -
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
+Zu den weiteren relevanten Anwendungsfällen zählen:
 
 * Erkennen betrügerischer Mobiltelefonanrufe in Telekommunikationsszenarien
 * Identifizieren betrügerischer Kreditkartentransaktionen für Banken
@@ -63,7 +63,7 @@ Weitere Überlegungen zur Verfügbarkeit finden Sie im Azure Architecture Center
 
 Die Komponenten dieses Szenarios sind für die Erfassung mit Hyperskalierung sowie für hochgradig parallelisierte Echtzeitanalysen konzipiert. Azure Event Hubs ist hochgradig skalierbar und kann pro Sekunde Millionen von Ereignissen mit geringer Wartezeit empfangen und verarbeiten. Event Hubs kann die Anzahl von Durchsatzeinheiten bei Bedarf [automatisch zentral hochskalieren](/azure/event-hubs/event-hubs-auto-inflate). Azure Stream Analytics kann große Mengen von Streamingdaten aus zahlreichen Quellen analysieren. Sie können Stream Analytics zentral hochskalieren, indem Sie die Anzahl von [Streamingeinheiten](/azure/stream-analytics/stream-analytics-streaming-unit-consumption) erhöhen, die für die Ausführung Ihres Streamingauftrags zugeteilt sind.
 
-Allgemeine Informationen zur Entwicklung skalierbarer Szenarien finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
+Allgemeine Informationen zur Entwicklung skalierbarer Lösungen finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
 
 ### <a name="security"></a>Sicherheit
 

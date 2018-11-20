@@ -3,12 +3,12 @@ title: Ausführen von Simulationen numerischer Strömungsmechaniken (Computation
 description: Führen Sie Simulationen numerischer Strömungsmechaniken (Computational Fluid Dynamics, CFD) in Azure aus.
 author: mikewarr
 ms.date: 09/20/2018
-ms.openlocfilehash: 5734e6fe707e3beb5e23f2ad2b4344ba289803bb
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: f32e055838d6c62584130f61a0d92b06cc46ec63
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818572"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610633"
 ---
 # <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>Ausführen von Simulationen numerischer Strömungsmechaniken (Computational Fluid Dynamics, CFD) in Azure
 
@@ -20,7 +20,7 @@ Um die Erstellung, Verwaltung und Optimierung von HPC-Clustern (High Performance
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Erwägen Sie dieses Szenario für die folgenden Branchen, in denen CFD-Anwendungen verwendet werden können:
+Weitere relevante Branchen für CFD-Anwendungen sind:
 
 * Luft- und Raumfahrt
 * Automobilbau

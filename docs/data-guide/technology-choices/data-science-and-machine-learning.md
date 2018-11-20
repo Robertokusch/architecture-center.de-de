@@ -3,12 +3,12 @@ title: Auswählen einer Machine Learning-Technologie
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 995349c795066ec3067b20ad2615e40b0fb152db
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 50167bafa49f8e6016f6ec12680db016830e2b81
+ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288932"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51577156"
 ---
 # <a name="choosing-a-machine-learning-technology-in-azure"></a>Auswählen einer Machine Learning-Technologie in Azure
 
@@ -28,7 +28,7 @@ Folgende Tools werden ebenfalls gerne verwendet:
 
 Neben diesen Tools können Datenspezialisten auch Azure-Dienste nutzen, um die Code- und Modellverwaltung zu vereinfachen.
 
-### <a name="azure-notebooks"></a>Azure Notebooks
+### <a name="azure-notebooks"></a>Azure-Notebooks
 Azure Notebooks ist ein Jupyter Notebooks-Onlinedienst, mit dem Datenspezialisten Jupyter Notebooks in cloudbasierten Bibliotheken erstellen, ausführen und weitergeben können.
 
 Hauptvorteile:
@@ -36,7 +36,7 @@ Hauptvorteile:
 * Kostenloser Dienst: Sie benötigen kein Azure-Abonnement.
 * Keine lokale Installation von Jupyter und den unterstützenden R- oder Python-Distributionen erforderlich: Ein Browser genügt.
 * Verwalten Sie Ihre eigenen Onlinebibliotheken, und greifen Sie von einem beliebigen Gerät aus darauf zu.
-* Teilen Sie Ihre Notebooks mit Projektmitarbeitern.
+* Geben Sie Ihre Notebooks für Projektmitarbeiter frei.
 
 Überlegungen:
 
@@ -109,6 +109,10 @@ Hauptvorteile:
 Überlegungen:
 
 * Spark wird in einem HDinsght-Cluster ausgeführt, sodass während der gesamten Ausführung Gebühren anfallen. Dadurch können unnötige Kosten entstehen, wenn der Machine Learning-Dienst nur gelegentlich genutzt wird.
+
+### <a name="azure-databricks"></a>Azure Databricks
+
+[Azure Databricks](/azure/azure-databricks/) ist eine Apache Spark-basierte Analyseplattform. Sie können es sich als „Spark-as-a-Service“ vorstellen. Es ist die einfachste Möglichkeit zum Verwenden von Spark auf der Azure-Plattform. Sie können für maschinelles Lernen [MLFlow](https://www.mlflow.org/), [Databricks Runtime ML](https://docs.azuredatabricks.net/user-guide/clusters/mlruntime.html), Apache Spark MLlib usw. verwenden. Weitere Informationen finden Sie unter [Azure Databricks: Machine Learning](https://docs.azuredatabricks.net/spark/latest/mllib/index.html). 
 
 ### <a name="web-service-in-a-container"></a>Webdienst in einem Container
 
