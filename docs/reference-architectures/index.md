@@ -4,18 +4,18 @@ description: Referenzarchitekturen, Blaupausen und reglementierende Implementier
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 43c780876e903f7d4f86d3877fb961b0dc0ba60b
-ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
+ms.openlocfilehash: e7bbd797ba4b8bfc193b146f080cedf299dd47b4
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/11/2018
-ms.locfileid: "51527591"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295513"
 ---
 # <a name="azure-reference-architectures"></a>Azure-Referenzarchitekturen
 
 Unsere Referenzarchitekturen sind nach Szenarien angeordnet, wobei verwandte Architekturen gruppiert sind. Jede Architektur ist mit empfohlenen Methoden sowie Überlegungen in Bezug auf die Skalierbarkeit, Verfügbarkeit, Verwaltbarkeit und Sicherheit versehen. Bei einem Großteil wird außerdem eine bereitstellbare Lösung angegeben.
 
-Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions) | [Serverlos](##serverless-applications) | [Virtuelle Netzwerke](#virtual-networks) | [VM-Workloads](#vm-workloads) | [SAP](#sap) | [Web-Apps](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
+Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions) | [Serverlos](#serverless-applications) | [Virtuelle Netzwerke](#virtual-networks) | [VM-Workloads](#vm-workloads) | [SAP](#sap) | [Web-Apps](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
 
 ## <a name="ai-and-machine-learning"></a>KI und Machine Learning
 
@@ -98,6 +98,26 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                     <div class="cardText">
                         <h3>Automatisierte Enterprise BI-Instanz mit Azure Data Factory</h3>
                         <p>Automatisieren Sie eine ELT-Pipeline für das inkrementelle Laden aus einer lokalen Datenbank.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Databricks -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./data/stream-processing-databricks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/databricks.png" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Datenstromverarbeitung mit Azure Databricks</h3>
+                        <p>Pipeline für die Datenstromverarbeitung, die Datensätze aus zwei Datenströmen verknüpft, das Ergebnis aufbereitet und einen gleitenden Durchschnitt berechnet</p>
                     </div>
                 </div>
             </div>

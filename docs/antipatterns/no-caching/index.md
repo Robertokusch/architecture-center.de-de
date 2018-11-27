@@ -3,12 +3,12 @@ title: Antimuster „Kein Caching“
 description: Durch wiederholtes Abrufen der gleichen Daten können Leistung und Skalierbarkeit verringert werden.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: f94a9f3f9166e87949a0e60af818cd89796dc3e2
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: ec19cde567fb63248c121328322e834d99c841e8
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428946"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295581"
 ---
 # <a name="no-caching-antipattern"></a>Antimuster „Kein Caching“
 
@@ -59,7 +59,7 @@ Die beliebteste Cachingstrategie ist die *bedarfsbasierte* oder *cachefremde* St
 - Während eines Lesevorgangs versucht die Anwendung, die Daten aus dem Cache zu lesen. Wenn sich die Daten nicht im Cache befinden, ruft die Anwendung sie aus der Datenquelle ab und fügt sie dem Cache hinzu.
 - Bei einem Schreibvorgang schreibt die Anwendung die Änderung direkt in die Datenquelle und entfernt den alten Wert aus dem Cache. Wenn die Daten das nächste Mal benötigt werden, werden sie abgerufen und dem Cache hinzugefügt.
 
-Diese Vorgehensweise eignet sich für Daten, die sich häufig ändern. Hier sehen Sie das vorherige Beispiel, das aktualisiert wurde und jetzt das [cachefremde][cache-aside] Muster verwendet.  
+Diese Vorgehensweise eignet sich für Daten, die sich häufig ändern. Hier sehen Sie das vorherige Beispiel, das aktualisiert wurde und jetzt das [cachefremde][cache-aside-pattern] Muster verwendet.  
 
 ```csharp
 public class CachedPersonRepository : IPersonRepository
