@@ -2,17 +2,17 @@
 title: Architekturstil für Microservices
 description: Dieser Artikel beschreibt die Vorteile, Herausforderungen und bewährten Methoden für Architekturen für Microservices in Azure.
 author: MikeWasson
-ms.date: 08/30/2018
-ms.openlocfilehash: fb23ac3e408f3a202d925a1bf684bc30d423f218
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 11/13/2018
+ms.openlocfilehash: 4e5d50f829323829c953977257e690354566ebf6
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325442"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295530"
 ---
 # <a name="microservices-architecture-style"></a>Architekturstil für Microservices
 
-Eine Microservicearchitektur besteht aus einer Sammlung kleiner, autonomer Dienste. Jeder Dienst ist eigenständig und sollte eine einzige Geschäftsfunktion implementieren. Ausführliche Anleitungen zum Erstellen einer Microservices-Architektur in Azure finden unter [Entwerfen, Erstellen und Betreiben von Microservices in Azure](../../microservices/index.md).
+Eine Microservicearchitektur besteht aus einer Sammlung kleiner, autonomer Dienste. Jeder Dienst ist eigenständig und sollte eine einzige Geschäftsfunktion implementieren. 
 
 ![](./images/microservices-logical.svg)
  
@@ -111,39 +111,9 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 
 - Isolieren Sie Fehler. Nutzen Sie Resilienzstrategien, um zu verhindern, dass Fehler in einem Dienst kaskadieren. Weitere Informationen finden Sie unter [Resilienzmuster][resiliency-patterns] und [Entwerfen resilienter Anwendungen][resiliency-overview].
 
-## <a name="microservices-using-azure-container-service"></a>Microservices unter Verwendung von Azure Container Service 
+## <a name="next-steps"></a>Nächste Schritte
 
-Sie können [Azure Container Service](/azure/container-service/) verwenden, um einen Docker-Cluster zu konfigurieren und bereitzustellen. Azure Container Service unterstützt verschiedene beliebte Containerorchestratoren wie Kubernetes, DC/OS und Docker Swarm.
-
-![](./images/microservices-acs.png)
- 
-**Öffentliche Knoten**. Diese Knoten sind über einen öffentlichen Lastenausgleich erreichbar. Das API-Gateway wird auf diesen Knoten gehostet.
-
-**Back-End-Knoten**. Diese Knoten führen Dienste aus, die Clients über das API-Gateway erreichen. Diese Knoten empfangen keinen direkten Datenverkehr aus dem Internet. Die Back-End-Knoten umfassen möglicherweise mehr als einen Pool aus virtuellen Computern, von denen jeder über ein anderes Hardwareprofil verfügt. Sie können z.B. separate Pools für allgemeine Computeworkloads, hohe CPU-Workloads und hohe Arbeitsspeicherworkloads erstellen. 
-
-**Virtuelle Verwaltungscomputer**. Diese virtuellen Computer führen die Masterknoten für den Containerorchestrator aus. 
-
-**Netzwerk**. Die öffentlichen Knoten, die Back-End-Knoten und die virtuellen Verwaltungscomputer befinden sich in verschiedenen Subnetzen im gleichen virtuellen Netzwerk (VNet). 
-
-**Lastenausgleichsmodule**.  Vor den öffentlichen Knoten befindet sich ein externes Lastenausgleichsmodul. Dieses Modul verteilt Internetanforderungen auf die öffentlichen Knoten. Vor den virtuellen Verwaltungscomputern befindet sich ein weiteres Lastenausgleichsmodul, das mithilfe von NAT-Regeln SSH-Datenverkehr (Secure Shell) an die virtuellen Verwaltungscomputer weiterleitet.
-
-Um Verfügbarkeit und Skalierbarkeit sicherzustellen, wird jeder Dienst auf mehrere virtuelle Computer repliziert. Da die Dienste zudem relativ schlank sind (im Vergleich mit einer monolithischen Anwendung), werden üblicherweise mehrere Dienste in einen einzigen virtuellen Computer gepackt. Eine höhere Dichte ermöglicht eine bessere Ressourcennutzung. Wenn ein bestimmter Dienst nur wenige Ressourcen benötigt, müssen Sie nicht einen vollständigen virtuellen Computer nur für die Ausführung dieses Diensts einrichten.
-
-Das folgende Diagramm zeigt drei Knoten, die vier verschiedene Dienste ausführen (zu erkennen an den unterschiedlichen Formen). Beachten Sie, dass jeder Dienst über mindestens zwei Instanzen verfügt. 
- 
-![](./images/microservices-node-density.png)
-
-## <a name="microservices-using-azure-service-fabric"></a>Microservices unter Verwendung von Azure Service Fabric
-
-Das folgende Diagramm zeigt eine Microservicearchitektur, die [Azure Service Fabric](/azure/service-fabric/) verwendet.
-
-![](./images/service-fabric.png)
-
-Der Service Fabric-Cluster wurde in mindestens einer VM-Skalierungsgruppe bereitgestellt. Sie können mehrere VM-Skalierungsgruppen im Cluster einrichten, um eine Kombination aus verschiedenen Arten virtueller Computer zu nutzen. Ein API-Gateway wird vor dem Service Fabric-Cluster platziert, und ein externer Lastenausgleich empfängt Clientanforderungen.
-
-Die Service Fabric-Runtime führt Clusterverwaltungsfunktionen aus, einschließlich Dienstplatzierung, Knotenfailover und Integritätsüberwachung. Die Runtime wurde auf den Knoten selbst bereitgestellt. Es gibt keinen separaten Satz virtueller Computer für die Clusterverwaltung.
-
-Dienste kommunizieren über den in Service Fabric integrierten Reverseproxy miteinander. Service Fabric stellt einen Ermittlungsdienst bereit, der den Endpunkt für einen benannten Dienst auflösen kann.
+Ausführliche Anleitungen zum Erstellen einer Microservices-Architektur in Azure finden unter [Entwerfen, Erstellen und Betreiben von Microservices in Azure](../../microservices/index.md).
 
 
 <!-- links -->

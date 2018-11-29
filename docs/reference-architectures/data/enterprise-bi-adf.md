@@ -3,16 +3,18 @@ title: Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Dat
 description: Automatisieren eines ELT-Workflows in Azure mithilfe von Azure Data Factory
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: 39089d80047b584ac590d285097020212ab72911
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.openlocfilehash: 3fedcd08572a9fe1fc610f5fbab12f8ff0d53073
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263728"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295622"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Data Factory
 
-Diese Referenzarchitektur zeigt, wie inkrementelles Laden in einer [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)-Pipeline (Extrahieren, Laden, Transformieren). Sie verwendet Azure Data Factory, um die ELT-Pipeline zu automatisieren. Die Pipeline verschiebt die neuesten OLTP-Daten inkrementell aus einer lokalen SQL Server-Datenbank in SQL Data Warehouse. Transaktionsdaten werden in ein tabellarisches Modell für die Analyse transformiert. 
+Diese Referenzarchitektur zeigt, wie inkrementelles Laden in einer [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt)-Pipeline (Extrahieren, Laden, Transformieren). Sie verwendet Azure Data Factory, um die ELT-Pipeline zu automatisieren. Die Pipeline verschiebt die neuesten OLTP-Daten inkrementell aus einer lokalen SQL Server-Datenbank in SQL Data Warehouse. Transaktionsdaten werden in ein tabellarisches Modell für die Analyse transformiert.
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
 
 Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] verfügbar.
 
