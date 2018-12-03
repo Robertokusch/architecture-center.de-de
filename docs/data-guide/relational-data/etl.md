@@ -3,12 +3,12 @@ title: Extrahieren, Transformieren und Laden (ETL)
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 1879b649fa3dfdf5c00f8ee30e53b83f7139fbf0
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: b10b0cb3cbc98ff9fadda6915b01b6f6564c4d00
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298638"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295547"
 ---
 # <a name="extract-transform-and-load-etl"></a>Extrahieren, Transformieren und Laden (ETL)
 
@@ -79,3 +79,10 @@ Weitere Tools:
 - [OLAP-Datenspeicher (Online Analytical Processing)](./online-analytical-processing.md#olap-in-azure)
 - [Data Warehouses](./data-warehousing.md)
 - [Pipelineorchestrierung](../technology-choices/pipeline-orchestration-data-movement.md)
+
+## <a name="next-steps"></a>Nächste Schritte
+
+Die folgenden Referenzarchitekturen zeigen End-to-End-ELT-Pipelines in Azure:
+
+- [Enterprise BI in Azure mit SQL Data Warehouse](../../reference-architectures/data/enterprise-bi-sqldw.md)
+- [Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Data Factory](../../reference-architectures/data/enterprise-bi-adf.md)

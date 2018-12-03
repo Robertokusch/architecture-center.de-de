@@ -3,12 +3,12 @@ title: Batchverarbeitung
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: d6843bf4e20c3eb26e61cfa09300ad533e969c2e
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: eecee13e9b22b0382a0128e1c6ab8b960cbd4fea
+ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298658"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52550477"
 ---
 # <a name="batch-processing"></a>Batchverarbeitung
 
@@ -75,7 +75,7 @@ Weitere Informationen finden Sie im Artikel zu [Analysedatenspeichern](../techno
 
 ### <a name="analytics-and-reporting"></a>Analysen und Berichte
 
-- **Azure Analysis Services**: Viele Big Data-Lösungen emulieren herkömmliche Business Intelligence-Architekturen für Unternehmen durch die Einbeziehung eines zentralisierten OLAP-Datenmodells (Online Analytical Processing, analytische Onlineverarbeitung; häufig als Cube bezeichnet), das als Grundlage für Berichte, Dashboards und interaktive Analysen („Slice and Dice“) verwendet werden kann. Azure Analysis Services unterstützt die Erstellung mehrdimensionaler und tabellarischer Modelle, um diese Anforderung zu erfüllen.
+- **Azure Analysis Services**: Viele Big Data-Lösungen emulieren herkömmliche Business Intelligence-Architekturen für Unternehmen durch die Einbeziehung eines zentralisierten OLAP-Datenmodells (Online Analytical Processing, analytische Onlineverarbeitung; häufig als Cube bezeichnet), das als Grundlage für Berichte, Dashboards und interaktive Analysen („Slice and Dice“) verwendet werden kann. Azure Analysis Services unterstützt die Erstellung tabellarischer Modelle, um diese Anforderung zu erfüllen.
 - **Power BI**: Mit Power BI können Datenanalysten interaktive Datenvisualisierungen auf der Grundlage von Datenmodellen in einem OLAP-Modell oder direkt auf der Grundlage eines Analysedatenspeichers erstellen.
 - **Microsoft Excel**: Microsoft Excel ist eine der meistverwendeten Softwareanwendungen der Welt und bietet ein breites Spektrum an Funktionen für die Analyse und Visualisierung von Daten. Mit Excel können Datenanalysten Dokumentdatenmodelle auf der Grundlage von Analysedatenspeichern erstellen oder Daten aus OLAP-Datenmodellen in interaktive PivotTables und Diagramme abrufen.
 

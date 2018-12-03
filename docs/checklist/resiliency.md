@@ -4,12 +4,12 @@ description: Checkliste, die Hinweise zu Überlegungen hinsichtlich der Resilien
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 15ad749c12dc8a45c9e7e08376452685d8ad7c9b
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: ce538a0b234a5b120415980e983096f567f9cf86
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819022"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305943"
 ---
 # <a name="resiliency-checklist"></a>Checkliste für Resilienz
 
@@ -43,6 +43,8 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Verwenden Sie Verfügbarkeitsgruppen für jede Logikschicht.** Das Platzieren Ihrer Instanzen in einer [Verfügbarkeitsgruppe][availability-sets] bietet eine höhere [SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/). 
 
+**Replizieren Sie virtuelle Computer mithilfe von Azure Site Recovery.** Wenn Sie virtuelle Azure-Computer mit [Site Recovery][site-recovery] replizieren, werden kontinuierlich alle VM-Datenträger asynchron in der Zielregion repliziert. Die Wiederherstellungspunkte werden im Abstand von wenigen Minuten erstellt. Dadurch erzielen Sie einen RPO-Wert (Recovery Point Objective) von wenigen Minuten.
+
 **Erwägen Sie die Bereitstellung Ihrer Anwendung in mehreren Regionen.** Wenn Ihre Anwendung in einer einzelnen Region bereitgestellt wird, ist Ihre Anwendung nicht mehr verfügbar, falls doch einmal die gesamte Region ausfällt. Dies kann unter den Bestimmungen der SLA für Ihre Anwendung nicht akzeptabel sein. Wenn dies der Fall ist, erwägen Sie die Bereitstellung Ihrer Anwendung und der zugehörigen Dienste in mehreren Regionen. Für eine Bereitstellung in mehreren Regionen kann ein Aktiv/Aktiv-Muster (Verteilung von Anforderungen über mehrere aktive Instanzen) oder ein Aktiv/Passiv-Muster (eine "warme" Instanz wird für den Fall, dass die primäre Instanz ausfällt, als Reserve vorgehalten) verwendet werden. Es wird empfohlen, dass Sie mehrere Instanzen der Dienste Ihrer Anwendung in Regionspaaren bereitstellen. Weitere Informationen finden Sie unter [Geschäftskontinuität und Notfallwiederherstellung: Azure-Regionspaare](/azure/best-practices-availability-paired-regions).
 
 **Verwenden Sie Azure Traffic Manager zum Weiterleiten des Datenverkehrs für Ihre Anwendung an verschiedene Regionen.**  [Azure Traffic Manager][traffic-manager] führt den Lastenausgleich auf DNS-Ebene durch und leitet den Datenverkehr an verschiedene Regionen weiter. Die Weiterleitung basiert auf der angegebenen Methode für das [Datenverkehrrouting][traffic-manager-routing] und der Integrität der Endpunkte Ihrer Anwendung. Ohne Traffic Manager ist Ihre Bereitstellung auf eine Region beschränkt. Dadurch wird die Skalierung eingeschränkt und die Latenz für einige Benutzer erhöht. Zudem entstehen Ausfallzeiten der Anwendung, falls in der gesamten Region der Dienst unterbrochen wird.
@@ -64,7 +66,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 ## <a name="data-management"></a>Datenverwaltung
 
-**Untersuchen Sie die Replikationsmethoden für die Datenquellen Ihrer Anwendung.** Ihre Anwendungsdaten werden in unterschiedlichen Datenquellen gespeichert und weisen unterschiedliche Anforderungen an die Verfügbarkeit auf. Bewerten Sie die Replikationsmethoden für jeden Typ von Datenspeicher in Azure, beispielsweise die [Azure-Speicherreplikation](/azure/storage/storage-redundancy/) und die [aktive Georeplikation in Azure SQL-Datenbank](/azure/sql-database/sql-database-geo-replication-overview/), um sicherzustellen, dass die Datenanforderungen Ihrer Anwendung erfüllt werden.
+**Untersuchen Sie die Replikationsmethoden für die Datenquellen Ihrer Anwendung.** Ihre Anwendungsdaten werden in unterschiedlichen Datenquellen gespeichert und weisen unterschiedliche Anforderungen an die Verfügbarkeit auf. Bewerten Sie die Replikationsmethoden für jeden Typ von Datenspeicher in Azure, beispielsweise die [Azure-Speicherreplikation](/azure/storage/storage-redundancy/) und die [aktive Georeplikation in Azure SQL-Datenbank](/azure/sql-database/sql-database-geo-replication-overview/), um sicherzustellen, dass die Datenanforderungen Ihrer Anwendung erfüllt werden. Falls Sie virtuelle Azure-Computer mit [Site Recovery][site-recovery] replizieren, werden kontinuierlich alle VM-Datenträger asynchron in der Zielregion repliziert. Die Wiederherstellungspunkte werden im Abstand von wenigen Minuten erstellt. 
 
 **Stellen Sie sicher, dass kein einzelnes Benutzerkonto Zugriff auf Produktions- und Sicherungsdaten hat.** Die Datensicherungen sind gefährdet, wenn ein einzelnes Benutzerkonto über die Berechtigung zum Schreiben in Produktions- und Sicherungsquellen verfügt. Ein böswilliger Benutzer könnte absichtlich alle Daten löschen, einem normalen Benutzer könnte dies versehentlich passieren. Entwerfen Sie Ihre Anwendung mit Einschränkungen der Berechtigungen für jedes Benutzerkonto, sodass nur die Benutzer, für die Schreibzugriff erforderlich ist, über Schreibzugriff verfügen, und auch nur auf Produktions- oder Sicherungsquellen, aber nicht auf beide.
 
@@ -87,7 +89,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 ## <a name="testing"></a>Testen
 
-**Führen Sie Failover- und Failbacktests für die Anwendung aus.** Wenn Sie Failover und Failback nicht vollständig getestet haben, können Sie nicht sicher sein, dass die abhängigen Dienste in der Anwendung bei einer Notfallwiederherstellung in synchronisierter Weise wiederhergestellt werden. Stellen Sie sicher, dass für die abhängigen Dienste Ihrer Anwendung Failover und Failback in der richtigen Reihenfolge ausgeführt werden.
+**Führen Sie Failover- und Failbacktests für die Anwendung aus.** Wenn Sie Failover und Failback nicht vollständig getestet haben, können Sie nicht sicher sein, dass die abhängigen Dienste in der Anwendung bei einer Notfallwiederherstellung in synchronisierter Weise wiederhergestellt werden. Stellen Sie sicher, dass für die abhängigen Dienste Ihrer Anwendung Failover und Failback in der richtigen Reihenfolge ausgeführt werden. Wenn Sie virtuelle Computer mit [Azure Site Recovery][site-recovery] replizieren, führen Sie immer wieder Wiederherstellungsübungen in Form eines Testfailovers durch. Weitere Informationen finden Sie unter [Durchführen eines Notfallwiederherstellungsverfahrens in Azure][site-recovery-test].
 
 **Führen Sie Fault Injection-Tests für Ihre Anwendung aus.** Die Anwendung kann aus vielen verschiedenen Ursachen ausfallen, z.B. Ablauf des Zertifikats, Auslastung der Systemressourcen in einer VM oder Speicherfehler. Testen Sie Ihre Anwendung in einer Umgebung, die der Produktion möglichst ähnlich ist, indem Sie echte Fehler simulieren oder auslösen. Löschen Sie z.B Zertifikate, beanspruchen Sie die Systemressourcen künstlich, oder löschen Sie eine Speicherquelle. Überprüfen Sie die Fähigkeit Ihrer Anwendung zur Wiederherstellung nach allen Typen von Fehlern, allein und in Kombination. Stellen Sie sicher, dass Fehler nicht im System weitergegeben oder kaskadiert werden.
 
@@ -176,6 +178,8 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 [resource-manager]: /azure/azure-resource-manager/resource-group-overview/
 [retry-pattern]: ../patterns/retry.md
 [retry-service-guidance]: ../best-practices/retry-service-specific.md
+[site-recovery]: /azure/site-recovery/
+[site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
 [traffic-manager]: /azure/traffic-manager/traffic-manager-overview/
 [traffic-manager-routing]: /azure/traffic-manager/traffic-manager-routing-methods/
 [vmss-autoscale]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview/

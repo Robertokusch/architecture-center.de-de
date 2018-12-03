@@ -3,12 +3,12 @@ title: Protokollieren und Überwachen in Microservices
 description: Protokollieren und Überwachen in Microservices
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: c2a935f51c57936977fb4402de2113938351069c
-ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
+ms.openlocfilehash: 9d385a141edb34b2b0f4badb7dfcaf53baac2666
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49962873"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305909"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>Entwerfen von Microservices: Protokollieren und Überwachen
 
@@ -18,7 +18,7 @@ In jeder komplexen Anwendung geht irgendwann etwas schief. In einer Microservice
 
 In einer Microservices-Architektur kann es eine besondere Herausforderung darstellen, die genaue Ursache von Fehlern oder Leistungsengpässen zu ermitteln. Ein einzelner Benutzervorgang kann mehrere Dienste betreffen. Dienste können im Cluster an Netzwerk-E/A-Grenzen stoßen. Eine Kette von übergreifenden Aufrufen für Dienste kann im System zu Rückstaus und somit zu langen Wartezeiten oder kaskadierenden Fehlern führen. Außerdem wissen Sie im Allgemeinen nicht, auf welchem Knoten ein bestimmter Container ausgeführt wird. Container, die auf demselben Knoten angeordnet sind, konkurrieren ggf. um begrenzte CPU- oder Arbeitsspeicherkapazität. 
 
-Damit ermittelt werden kann, was vor sich geht, müssen Sie Telemetriedaten aus der Anwendung erfassen.  Telemetrie kann in *Protokolle* und *Metriken* unterteilt werden. [Azure Monitor](/azure/monitoring-and-diagnostics/monitoring-overview) erfasst sowohl Protokolle als auch Metriken auf der gesamten Azure-Plattform.
+Damit ermittelt werden kann, was vor sich geht, müssen Sie Telemetriedaten aus der Anwendung erfassen.  Telemetrie kann in *Protokolle* und *Metriken* unterteilt werden. [Azure Monitor](/azure/monitoring-and-diagnostics/monitoring-overview) erfasst sowohl Protokolle als auch Metriken aus der gesamten Azure-Plattform.
 
 **Protokolle** sind textbasierte Datensätze mit Ereignissen, die eintreten, während die Anwendung ausgeführt wird. Sie enthalten Dinge wie Anwendungsprotokolle (Überwachungsanweisungen) oder Webserverprotokolle. Protokolle sind hauptsächlich für forensische Zwecke und die Analyse der Grundursache hilfreich. 
 

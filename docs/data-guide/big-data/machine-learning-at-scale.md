@@ -3,12 +3,12 @@ title: Bedarfsorientiertes Machine Learning
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a44785b61faec8a45160fa2895fbc03e2c580a77
-ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
+ms.openlocfilehash: f2d35f7344a1e760fc6d3ce2292f33b8d3dd7df7
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51577139"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295487"
 ---
 # <a name="machine-learning-at-scale"></a>Bedarfsorientiertes Machine Learning
 
@@ -68,3 +68,10 @@ Eine Liste mit Technologieoptionen für ML in Azure finden Sie unter den folgend
 - [Auswählen einer Cognitive Services-Technologie](../technology-choices/cognitive-services.md)
 - [Auswählen einer Machine Learning-Technologie](../technology-choices/data-science-and-machine-learning.md)
 - [Auswählen einer Technologie zur Verarbeitung von natürlicher Sprache](../technology-choices/natural-language-processing.md)
+
+## <a name="next-steps"></a>Nächste Schritte
+
+Die folgenden Referenzarchitekturen zeigen Machine Learning-Szenarien in Azure:
+
+- [Batchbewertung in Azure für Deep Learning-Modelle](../../reference-architectures/ai/batch-scoring-deep-learning.md)
+- [Echtzeitbewertung von Python scikit-learn- und Deep Learning-Modellen in Azure](../../reference-architectures/ai/realtime-scoring-python.md)

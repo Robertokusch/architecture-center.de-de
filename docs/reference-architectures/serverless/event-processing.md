@@ -3,20 +3,20 @@ title: Serverlose Ereignisverarbeitung mit Azure Functions
 description: Referenzarchitektur zur Veranschaulichung der serverlosen Ereigniserfassung und -verarbeitung
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: 2bb7600fbed95e4b9368cf342c0bc6a75c5f8755
-ms.sourcegitcommit: 113a7248b9793c670b0f2d4278d30ad8616abe6c
+ms.openlocfilehash: 76c8b9c1244c987c96e38e50ecad7814cc49cd88
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49349937"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295649"
 ---
 # <a name="serverless-event-processing-using-azure-functions"></a>Serverlose Ereignisverarbeitung mit Azure Functions
 
-Mit dieser Referenzarchitektur wird eine serverlose, ereignisgesteuerte Architektur veranschaulicht, bei der ein Datenstrom erfasst wird, die Daten verarbeitet werden und die Ergebnisse in eine Back-End-Datenbank geschrieben werden. Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] verfügbar.
+Diese Referenzarchitektur zeigt eine [serverlose](https://azure.microsoft.com/solutions/serverless/), ereignisgesteuerte Architektur, die einen Datenstrom erfasst, die Daten verarbeitet und die Ergebnisse in eine Back-End-Datenbank schreibt. Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] verfügbar.
 
 ![](./_images/serverless-event-processing.png)
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 Der Datenstrom wird mit **Event Hubs** erfasst. [Event Hubs][eh] ist für Datenstromszenarien mit hohem Durchsatz konzipiert.
 

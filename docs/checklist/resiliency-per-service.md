@@ -4,12 +4,12 @@ description: Checkliste mit einer Anleitung zur Resilienz für verschiedene Azur
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 50808a837132e905cc89c3c43d40852a04f4885c
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 53a37595bd6e70fa3a43e9a72b2ae47d2225009f
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916701"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305926"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Checkliste für Resilienz für bestimmte Azure-Dienste
 
@@ -139,6 +139,8 @@ Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als p
 
 **Nehmen Sie jede Logikschicht in eine separate Verfügbarkeitsgruppe auf.** Fügen Sie in einer Anwendung mit n-Schichten VMs aus verschiedenen Schichten nicht in die gleiche Verfügbarkeitsgruppe ein. VMs in einer Verfügbarkeitsgruppe werden über Fehlerdomänen (FDs) und Updatedomänen (UD) verteilt. Um den Redundanzvorteil von FDs und UDs nutzen zu können, muss jedoch jede VM in der Verfügbarkeitsgruppe die gleichen Clientanforderungen verarbeiten können.
 
+**Replizieren Sie virtuelle Computer mithilfe von Azure Site Recovery.** Wenn Sie virtuelle Azure-Computer mit [Site Recovery][site-recovery] replizieren, werden kontinuierlich alle VM-Datenträger asynchron in der Zielregion repliziert. Die Wiederherstellungspunkte werden im Abstand von wenigen Minuten erstellt. Dadurch erzielen Sie einen RPO-Wert (Recovery Point Objective) von wenigen Minuten. Sie können beliebig viele Notfallwiederherstellungsübungen durchführen, ohne die Produktionsanwendung oder die laufende Replikation zu beeinträchtigen. Weitere Informationen finden Sie unter [Durchführen eines Notfallwiederherstellungsverfahrens in Azure][site-recovery-test].
+
 **Wählen Sie die richtige VM-Größe basierend auf den Leistungsanforderungen aus.** Beginnen Sie beim Verlagern einer vorhandenen Workload in Azure mit der VM-Größe, die Ihren lokalen Servern am ehesten entspricht. Messen Sie dann die Leistung Ihrer tatsächlichen Workload hinsichtlich CPU, Arbeitsspeicher und Datenträger-IOPS, und passen Sie die Größe bei Bedarf an. Dadurch wird sichergestellt, dass sich die Anwendung in einer Cloudumgebung wie erwartet verhält. Wenn Sie mehrere NICs benötigen, beachten Sie zudem den NIC-Grenzwert für jede Größe.
 
 **Verwenden Sie Managed Disks für VHDs.** [Managed Disks][managed-disks] ermöglicht eine höhere Zuverlässigkeit für VMs in einer Verfügbarkeitsgruppe, da die Datenträger ausreichend voneinander isoliert sind, um Single Points of Failure zu vermeiden. Zudem gelten für Managed Disks keine IOPS-Grenzwerte von VHDs, die in einem Speicherkonto erstellt wurden. Weitere Informationen finden Sie unter [Verwalten der Verfügbarkeit virtueller Windows-Computer in Azure][vm-manage-availability].
@@ -166,6 +168,8 @@ Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als p
 [diagnostics-logs]: /azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs/
 [managed-disks]: /azure/storage/storage-managed-disks-overview
 [search-optimization]: /azure/search/search-performance-optimization/
+[site-recovery]: /azure/site-recovery/
+[site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
 [sql-backup]: /azure/sql-database/sql-database-automated-backups/
 [sql-restore]: /azure/sql-database/sql-database-recovery-using-backups/
 [vm-manage-availability]: /azure/virtual-machines/windows/manage-availability#use-managed-disks-for-vms-in-an-availability-set

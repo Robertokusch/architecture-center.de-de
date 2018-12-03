@@ -3,12 +3,12 @@ title: Verarbeitung in Echtzeit
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4abb159924f902b5babe0673cc021e80b00c8529
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: 1499fecc20dcbf51472b92bb588b91db0fb58a7f
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37090984"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295598"
 ---
 # <a name="real-time-processing"></a>Verarbeitung in Echtzeit
 
@@ -76,3 +76,8 @@ Weitere Informationen finden Sie unter [Analysen und Berichte](../technology-cho
 
 In einer reinen Echtzeitlösung wird der Großteil der Verarbeitungsorchestrierung von den Komponenten für die Nachrichtenerfassung und Datenstromverarbeitung verwaltet. Bei einer Lambda -Architektur, in der Batch- und Echtzeitverarbeitung kombiniert sind, müssen Sie ggf. ein Orchestrierungsframework wie Azure Data Factory oder Apache Oozie und Sqoop verwenden, um Batchworkflows für erfasste Echtzeitdaten zu verwalten.
 
+## <a name="next-steps"></a>Nächste Schritte
+
+Die folgende Referenzarchitektur zeigt eine End-to-End-Pipeline zur Datenstromverarbeitung:
+
+- [Datenstromverarbeitung mit Azure Stream Analytics](../../reference-architectures/data/stream-processing-stream-analytics.md)
