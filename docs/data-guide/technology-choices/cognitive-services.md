@@ -2,13 +2,13 @@
 title: Auswählen einer Cognitive Services-Technologie
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 055769188fbd6742b94094ee18766293812849fa
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: 0551bf05cb47cb3972b0d5f2e5226e23cbdacc68
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847780"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902545"
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a>Auswählen einer Cognitive Services-Technologie von Microsoft
 
@@ -82,14 +82,14 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 |                 Content Moderator                 |        Text, Bilder oder Video        |                                                               Automatisierte Bild-, Text- und Videomoderation                                                                |
 |                    Emotionen-API                    | Bilder (Fotos mit Menschen) |                                                              Identifizieren Sie den Emotionsbereich von Menschen.                                                               |
 |                     Gesichtserkennungs-API                      | Bilder (Fotos mit Menschen) |                                                       Nutzen Sie die Erkennung, Analyse, Organisation und Markierung von Gesichtern auf Fotos.                                                       |
-|                   Video-Indexer                   |                Video                |                        Führen Sie Videoauswertungen in Bezug auf Stimmung, Sprachtranskription, Sprachübersetzung, Gesichter- und Emotionserkennung und Extraktion von Schlüsselwörtern durch.                         |
+|                   Video Indexer                   |                Video                |                        Führen Sie Videoauswertungen in Bezug auf Stimmung, Sprachtranskription, Sprachübersetzung, Gesichter- und Emotionserkennung und Extraktion von Schlüsselwörtern durch.                         |
 
 ### <a name="trained-with-custom-data-you-provide"></a>Trainiert mit von Ihnen bereitgestellten benutzerdefinierten Daten
 
 | | Eingabetyp | Hauptvorteil |
 | --- | --- | --- |
 | Custom Vision Service | Bilder (oder Frames aus Videos) | Passen Sie Ihre eigenen Modelle für maschinelles Sehen an. |
-| Benutzerdefinierter Spracherkennungsdienst | Spracheingabe | Überwinden Sie die Grenzen der Spracherkennung, z.B. Sprachstil, Hintergrundgeräusche und Vokabular. | 
+| Custom Speech Service | Spracheingabe | Überwinden Sie die Grenzen der Spracherkennung, z.B. Sprachstil, Hintergrundgeräusche und Vokabular. | 
 | Custom Decision Service | Webinhalt (z.B. RSS-Feed) | Verwenden Sie Machine Learning, um automatisch die richtigen Inhalte für Ihre Homepage auswählen zu lassen. |
 | API für die benutzerdefinierte Bing-Suche | Text (Websuchabfrage) | Kommerziell einsetzbares Suchtool |
 

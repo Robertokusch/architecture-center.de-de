@@ -2,16 +2,16 @@
 title: Informationen zur Tailspin-Anwendung „Surveys“
 description: Übersicht über die Tailspin-Anwendung „Surveys“
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: index
 pnp.series.next: authenticate
-ms.openlocfilehash: 028f7940d2e3cd7e8e629554f8af290ec5fdd184
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a1c357bd1b5306d1255c66aaea96d86be55e7b77
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540056"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902067"
 ---
 # <a name="the-tailspin-scenario"></a>Das Tailspin-Szenario
 
@@ -54,12 +54,12 @@ Wenn sich Alice anmeldet, sieht sie die Umfrage unter „Surveys I can contribut
 
 Beachten Sie, dass sich Alice an Ihrem eigenen Mandanten und nicht als Gast des Contoso-Mandanten anmeldet. Alice verfügt nur für diese Umfrage über eine Berechtigung vom Typ „Mitwirkender“ und kann keine anderen Umfragen des Contoso-Mandanten anzeigen.
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 Die Anwendung „Surveys“ besteht aus einem Web-Front-End und einem Web-API-Back-End. Beide werden mit [ASP.NET Core] implementiert.
 
 Die Webanwendung nutzt Azure Active Directory (Azure AD) zum Authentifizieren von Benutzern. Die Webanwendung ruft auch Azure AD auf, um OAuth 2-Zugriffstoken für die Web-API zu erhalten. Zugriffstoken werden im Azure Redis Cache zwischengespeichert. Mit diesem Cache können mehrere Instanzen denselben Tokencache gemeinsam nutzen (z.B. in einer Serverfarm).
 
-![Architektur](./images/architecture.png)
+![Architecture](./images/architecture.png)
 
 [**Weiter**][authentication]
 

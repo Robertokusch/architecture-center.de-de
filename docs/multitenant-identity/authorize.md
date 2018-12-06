@@ -2,16 +2,16 @@
 title: Autorisierung in mehrmandantenfähigen Anwendungen
 description: Informationen zum Durchführen der Autorisierung in einer mehrmandantenfähigen Anwendung
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 321dc52a3e6f803a032288c2341e490cdba8c20a
-ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
+ms.openlocfilehash: bbf702fe6651625a1aeceff7e4e321dd08c38544
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/22/2018
-ms.locfileid: "36327652"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902492"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>Rollenbasierte und ressourcenbasierte Autorisierung
 
@@ -22,7 +22,7 @@ Unsere [Referenzimplementierung] ist eine ASP.NET Core-Anwendung. In diesem Arti
 * **Role-based authorization**. Autorisieren einer Aktion basierend auf den Rollen, die einem Benutzer zugewiesen sind. Einige Aktionen erfordern z.B. eine Administratorrolle.
 * **Ressourcenbasierte Autorisierung**. Autorisieren eine Aktion basierend auf einer bestimmten Ressource. Jede Ressource hat beispielsweise einen Besitzer. Der Besitzer kann die Ressource löschen, andere Benutzer können das nicht.
 
-In einer Standard-App wird eine Kombination beider Varianten verwendet. Um beispielsweise eine Ressource zu löschen, muss der Benutzer Besitzer der Ressource *oder* Administrator sein.
+In einer Standard-App wird eine Kombination beider Varianten verwendet. Um beispielsweise eine Ressource zu löschen, muss der Benutzer Besitzer *oder* Administrator der Ressource sein.
 
 ## <a name="role-based-authorization"></a>Rollenbasierte Autorisierung
 Die [Tailspin Surveys][Tailspin]-Anwendung definiert die folgenden Rollen:
@@ -112,7 +112,7 @@ Dies wird in ASP.NET Core noch immer unterstützt, doch gibt es verglichen mit A
 * Richtlinien erlauben komplexere Autorisierungsentscheidungen (z.B. Alter >= 21), die durch einfache Rollenmitgliedschaft nicht ausgedrückt werden können.
 
 ## <a name="resource-based-authorization"></a>Ressourcenbasierte Autorisierung
-Eine *ressourcenbasierte Autorisierung* findet dann statt, wenn die Autorisierung von einer bestimmten Ressource abhängig ist, die von einem Vorgang betroffen ist. In der Tailspin-Anwendung „Surveys“ hat jede Umfrage einen Besitzer und 0 bis n Teilnehmer.
+*Ressourcenbasierte Autorisierung* erfolgt, wenn die Autorisierung von einer bestimmten Ressource abhängig ist, die von einem Vorgang betroffen ist. In der Tailspin-Anwendung „Surveys“ hat jede Umfrage einen Besitzer und 0 bis n Teilnehmer.
 
 * Der Besitzer kann die Umfrage lesen, aktualisieren, löschen, veröffentlichen und ihre Veröffentlichung aufheben.
 * Der Besitzer kann der Umfrage Teilnehmer zuweisen.

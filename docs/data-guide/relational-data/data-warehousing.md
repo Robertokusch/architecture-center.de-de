@@ -2,13 +2,13 @@
 title: Data Warehousing und Data Marts
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 9b90d77ce1a81cd4a7532f5d4230ada8b4991d13
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 02/12/2018
+ms.openlocfilehash: 92f8ab8d828dd4b30c43a07e15959e5670852195
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252804"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902781"
 ---
 # <a name="data-warehousing-and-data-marts"></a>Data Warehousing und Data Marts
 
@@ -120,13 +120,13 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | Azure SQL-Datenbank | SQL Server (VM) | SQL Data Warehouse | Apache Hive in HDInsight | Hive LLAP in HDInsight |
 | --- | --- | --- | --- | --- | --- | -- |
-| Verwalteter Dienst | Ja | Nein | Ja | Ja<sup>1</sup> | Ja<sup>1</sup> |
-| Erfordert Datenorchestrierung (Speicherung von Datenkopie/historischen Daten) | Nein  | Nein  | Ja | Ja | Ja |
-| Einfache Integration mehrerer Datenquellen | Nein  | Nein  | Ja | Ja | Ja |
-| Unterstützung des Anhaltens von Computevorgängen | Nein  | Nein  | Ja | Nein<sup>2</sup> | Nein<sup>2</sup> |
-| Relationaler Datenspeicher | Ja | Ja |  Ja | Nein  | Nein  |
-| Echtzeitberichte | Ja | Ja | Nein  | Nein  | Ja |
-| Flexible Sicherungswiederherstellungspunkte | Ja | Ja | Nein<sup>3</sup> | Ja<sup>4</sup> | Ja<sup>4</sup> |
+| Verwalteter Dienst | JA | Nein | JA | Ja<sup>1</sup> | Ja<sup>1</sup> |
+| Erfordert Datenorchestrierung (Speicherung von Datenkopie/historischen Daten) | Nein  | Nein  | Ja | Ja | JA |
+| Einfache Integration mehrerer Datenquellen | Nein  | Nein  | Ja | Ja | JA |
+| Unterstützung des Anhaltens von Computevorgängen | Nein  | Nein  | JA | Nein<sup>2</sup> | Nein<sup>2</sup> |
+| Relationaler Datenspeicher | JA | Ja |  JA | Nein  | Nein  |
+| Echtzeitberichte | JA | JA | Nein  | Nein  | JA |
+| Flexible Sicherungswiederherstellungspunkte | JA | JA | Nein<sup>3</sup> | Ja<sup>4</sup> | Ja<sup>4</sup> |
 | SMP/MPP | SMP | SMP | MPP | MPP | MPP |
 
 [1] Manuelle Konfiguration und Skalierung.
@@ -141,10 +141,10 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | Azure SQL-Datenbank | SQL Server (VM) |  SQL Data Warehouse | Apache Hive in HDInsight | Hive LLAP in HDInsight |
 | --- | --- | --- | --- | --- | --- | -- |
-| Redundante regionale Server für Hochverfügbarkeit  | Ja | Ja | Ja | Nein  | Nein  |
-| Unterstützung des horizontalen Hochskalierens für Abfragen (verteilte Abfragen)  | Nein  | Nein  | Ja | Ja | Ja |
-| Dynamische Skalierbarkeit | Ja | Nein  | Ja<sup>1</sup> | Nein  | Nein  |
-| Unterstützung der speicherinternen Zwischenspeicherung von Daten | Ja |  Ja | Nein | Ja | Ja |
+| Redundante regionale Server für Hochverfügbarkeit  | JA | Ja | JA | Nein  | Nein  |
+| Unterstützung des horizontalen Hochskalierens für Abfragen (verteilte Abfragen)  | Nein  | Nein  | Ja | Ja | JA |
+| Dynamische Skalierbarkeit | JA | Nein  | Ja<sup>1</sup> | Nein  | Nein  |
+| Unterstützung der speicherinternen Zwischenspeicherung von Daten | JA |  JA | Nein | Ja | JA |
 
 [1] SQL Data Warehouse ermöglicht zentrales Hoch- und Herunterskalieren durch Anpassung der Anzahl von Data Warehouse-Einheiten (Data Warehouse Units, DWUs). Weitere Informationen finden Sie unter [Verwalten von Computeleistung in Azure SQL Data Warehouse (Übersicht)](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview).
 
@@ -153,12 +153,12 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 |                         |           Azure SQL-Datenbank            |  SQL Server auf einem virtuellen Computer  | SQL Data Warehouse |   Apache Hive in HDInsight    |    Hive LLAP in HDInsight     |
 |-------------------------|-----------------------------------------|-----------------------------------|--------------------|-------------------------------|-------------------------------|
 |     Authentifizierung      | SQL/Azure Active Directory (Azure AD) | SQL/Azure AD/Active Directory |   SQL/Azure AD   | Lokal/Azure AD <sup>1</sup> | Lokal/Azure AD <sup>1</sup> |
-|      Autorisierung      |                   Ja                   |                Ja                |        Ja         |              Ja              |       Ja<sup>1</sup>        |
-|        Überwachung         |                   Ja                   |                Ja                |        Ja         |              Ja              |       Ja<sup>1</sup>        |
+|      Autorisierung      |                   JA                   |                Ja                |        Ja         |              JA              |       Ja<sup>1</sup>        |
+|        Überwachung         |                   JA                   |                Ja                |        Ja         |              JA              |       Ja<sup>1</sup>        |
 | Datenverschlüsselung ruhender Daten |            Ja<sup>2</sup>             |         Ja<sup>2</sup>          |  Ja<sup>2</sup>  |       Ja<sup>2</sup>        |       Ja<sup>1</sup>        |
-|   Sicherheit auf Zeilenebene    |                   Ja                   |                Ja                |        Ja         |              Nein                |       Ja<sup>1</sup>        |
-|   Unterstützung von Firewalls    |                   Ja                   |                Ja                |        Ja         |              Ja              |       Ja<sup>3</sup>        |
-|  Dynamische Datenmaskierung   |                   Ja                   |                Ja                |        Ja         |              Nein                |       Ja<sup>1</sup>        |
+|   Sicherheit auf Zeilenebene    |                   JA                   |                Ja                |        JA         |              Nein                |       Ja<sup>1</sup>        |
+|   Unterstützung von Firewalls    |                   JA                   |                Ja                |        Ja         |              JA              |       Ja<sup>3</sup>        |
+|  Dynamische Datenmaskierung   |                   JA                   |                Ja                |        JA         |              Nein                |       Ja<sup>1</sup>        |
 
 [1] Erfordert die Verwendung eines [in die Domäne eingebundenen HDInsight-Clusters](/azure/hdinsight/domain-joined/apache-domain-joined-introduction).
 

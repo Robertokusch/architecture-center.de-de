@@ -2,13 +2,13 @@
 title: Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 92b71934f2081e95c3c9b0d4dc9edeb3885b12e8
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: beed0d642e85096efc0b6fe492181b8dcd771d2d
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846806"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902597"
 ---
 # <a name="online-analytical-processing-olap"></a>Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)
 
@@ -127,13 +127,13 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Azure Analysis Services | SQL Server Analysis Services | SQL Server mit Columnstore-Indizes | Azure SQL-Datenbank mit Columnstore-Indizes |
 | --- | --- | --- | --- | --- |
-| Verwalteter Dienst | Ja | Nein  | Nein  | Ja |
+| Verwalteter Dienst | JA | Nein  | Nein  | JA |
 | Unterstützung mehrdimensionaler Cubes | Nein  | Ja | Nein  | Nein  |
-| Unterstützung tabellarischer Semantikmodelle | Ja | Ja | Nein  | Nein  |
-| Einfache Integration mehrerer Datenquellen | Ja | Ja | Nein <sup>1</sup> | Nein <sup>1</sup> |
-| Unterstützung von Echtzeitanalysen | Nein  | Nein  | Ja | Ja |
-| Prozess zum Kopieren von Daten aus Quellen erforderlich | Ja | Ja | Nein  | Nein  |
-| Azure AD-Integration | Ja | Nein  | Nein<sup>2</sup> | Ja |
+| Unterstützung tabellarischer Semantikmodelle | JA | JA | Nein  | Nein  |
+| Einfache Integration mehrerer Datenquellen | JA | JA | Nein <sup>1</sup> | Nein <sup>1</sup> |
+| Unterstützung von Echtzeitanalysen | Nein  | Nein  | Ja | JA |
+| Prozess zum Kopieren von Daten aus Quellen erforderlich | JA | JA | Nein  | Nein  |
+| Azure AD-Integration | JA | Nein  | Nein<sup>2</sup> | JA |
 
 [1] Obwohl SQL Server und Azure SQL-Datenbank nicht zum Abfragen und Integrieren mehrerer externer Datenquellen verwendet werden können, können Sie zu diesem Zweck eine Pipeline mit [SSIS](/sql/integration-services/sql-server-integration-services) oder [Azure Data Factory](/azure/data-factory/) erstellen. Eine auf einer Azure-VM gehostete SQL Server-Instanz bietet zusätzliche Optionen, beispielsweise Verbindungsserver und [PolyBase](/sql/relational-databases/polybase/polybase-guide). Weitere Informationen finden Sie unter [Pipeline orchestration, control flow, and data movement](../technology-choices/pipeline-orchestration-data-movement.md) (Pipelineorchestrierung, Ablaufsteuerung und Datenverschiebung).
 
@@ -143,7 +143,7 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 |                                                  | Azure Analysis Services | SQL Server Analysis Services | SQL Server mit Columnstore-Indizes | Azure SQL-Datenbank mit Columnstore-Indizes |
 |--------------------------------------------------|-------------------------|------------------------------|-------------------------------------|---------------------------------------------|
-| Redundante regionale Server für Hochverfügbarkeit |           Ja           |              Nein              |                 Ja                 |                     Ja                     |
-|             Unterstützung des horizontalen Hochskalierens von Abfragen             |           Ja           |              Nein              |                 Ja                 |                     Nein                       |
-|          Dynamische Skalierbarkeit (zentrales Hochskalieren)          |           Ja           |              Nein              |                 Ja                 |                     Nein                       |
+| Redundante regionale Server für Hochverfügbarkeit |           JA           |              Nein              |                 Ja                 |                     JA                     |
+|             Unterstützung des horizontalen Hochskalierens von Abfragen             |           JA           |              Nein              |                 Ja                 |                     Nein                       |
+|          Dynamische Skalierbarkeit (zentrales Hochskalieren)          |           JA           |              Nein              |                 Ja                 |                     Nein                       |
 

@@ -2,16 +2,16 @@
 title: Abrufen von Zugriffstoken aus Azure AD mithilfe der Clientassertion
 description: Informationen zum Abrufen von Zugriffstoken aus Azure AD mithilfe der Clientassertion.
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: adfs
 pnp.series.next: key-vault
-ms.openlocfilehash: 9fe1ee2ec5a540edc41c3a310476507f8d862f0c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 58eed82c982fe1c6cba0f04b237d92d117a26fd4
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540280"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902262"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a>Abrufen von Zugriffstoken aus Azure AD mithilfe der Clientassertion
 

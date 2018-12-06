@@ -2,13 +2,13 @@
 title: Batchverarbeitung
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: eecee13e9b22b0382a0128e1c6ab8b960cbd4fea
-ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
+ms.date: 02/12/2018
+ms.openlocfilehash: fe07d4d6501d4778025b75807f4d6be5854c3e09
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52550477"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901982"
 ---
 # <a name="batch-processing"></a>Batchverarbeitung
 

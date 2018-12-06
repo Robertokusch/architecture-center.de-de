@@ -2,13 +2,13 @@
 title: Nicht relationale Daten und NoSQL
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 2c284099bd7e8bbb85f1252a24d699d9fca09eae
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.date: 02/12/2018
+ms.openlocfilehash: f5655f7245b7150941969b1bc7917d540ab84343
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298668"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902751"
 ---
 # <a name="non-relational-data-and-nosql"></a>Nicht relationale Daten und NoSQL
 
@@ -147,8 +147,8 @@ Die folgende Tabelle enthält eine Übersicht über die Anforderungen für die e
 | Zugriffsmuster | Wahlfreier Zugriff | Aggregation für Daten (hoch/breit) | Wahlfreier Zugriff | Wahlfreier Zugriff |
 | Indizierung | Primäre und sekundäre Indizes | Primäre und sekundäre Indizes | Nur primärer Index | Primäre und sekundäre Indizes | 
 | Datenform | Dokument | Tabellarisch mit in Spaltenfamilien enthaltenen Spalten | Schlüssel und Wert | Diagramm mit Edges und Scheitelpunkten | 
-| Platzsparend | Ja | Ja | Ja | Nein  | 
-| Breit (viele Spalten/Attribute) | Ja | Ja | Nein  | Nein  |  
+| Platzsparend | JA | Ja | JA | Nein  | 
+| Breit (viele Spalten/Attribute) | JA | JA | Nein  | Nein  |  
 | Bezugsgröße | Klein (KB) bis mittel (wenige MB) | Mittel (MB) bis groß (wenige GB) | Klein (KB) | Klein (KB) | 
 | Maximale Gesamtskalierung | Sehr hoch (PB) | Sehr hoch (PB) | Sehr hoch (PB) | Hoch (TB) | 
 
@@ -163,7 +163,7 @@ Die folgende Tabelle enthält eine Übersicht über die Anforderungen für die e
 | Indizierung | Primäre und sekundäre Indizes | Nur primärer Index | N/V |
 | Datenform | Tabellarisch | Blob und Metadaten | Dokument |
 | Platzsparend | Nein  | N/V | Nein  | 
-| Breit (viele Spalten/Attribute) |  Nein  | Ja | Ja |  
+| Breit (viele Spalten/Attribute) |  Nein  | Ja | JA |  
 | Bezugsgröße | Klein (KB) | Groß (GB) bis sehr groß (TB) | Klein (KB) |
 | Maximale Gesamtskalierung | Hoch (wenige TB)  | Sehr hoch (PB) | Hoch (wenige TB) | 
 

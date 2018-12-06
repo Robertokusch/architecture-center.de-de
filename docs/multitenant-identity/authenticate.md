@@ -2,16 +2,16 @@
 title: Authentifizierung in mehrinstanzenfähigen Anwendungen
 description: Wie eine mehrinstanzenfähige Anwendung Benutzer von Azure AD authentifizieren kann
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: 70f4a96369c207740400b9dfe72e1e964507f729
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 58ccf75cd34f8efec17898c85295587da282cf45
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428124"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902713"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>Authentifizieren mithilfe von Azure AD und OpenID Connect
 
@@ -142,7 +142,7 @@ Während des Authentifizierungsvorgangs löst die OpenID Connect-Middleware eine
 * **RedirectToIdentityProvider**. Wird aufgerufen, unmittelbar bevor die Middleware an den Authentifizierungsendpunkt umleitet. Sie können dieses Ereignis verwenden, um die Umleitungs-URL zu ändern und beispielsweise Anforderungsparameter hinzuzufügen. Ein Beispiel finden Sie unter [Hinzufügen der Aufforderung zur Administratorzustimmung](signup.md#adding-the-admin-consent-prompt).
 * **AuthorizationCodeReceived**. Wird mit dem Autorisierungscode aufgerufen.
 * **TokenResponseReceived**. Wird aufgerufen, nachdem die Middleware ein Zugriffstoken vom Identitätsanbieter erhält, aber bevor es überprüft wird. Gilt nur für den Autorisierungscodefluss.
-* **TokenValidated**. Wird aufgerufen, nachdem die Middleware das ID-Token überprüft hat. An diesem Punkt besitzt die Anwendung bereits einen Satz überprüfter Ansprüche zum Benutzer. Sie können dieses Ereignis verwenden, um zusätzliche Überprüfungen der Ansprüche durchzuführen oder diese zu transformieren. Weitere Informationen finden Sie unter [Arbeiten mit Ansprüchen](claims.md).
+* **TokenValidated**. Wird aufgerufen, nachdem die Middleware das ID-Token überprüft hat. An diesem Punkt besitzt die Anwendung bereits einen Satz überprüfter Ansprüche zum Benutzer. Sie können dieses Ereignis verwenden, um zusätzliche Überprüfungen der Ansprüche durchzuführen oder diese zu transformieren. Siehe [Arbeiten mit Ansprüchen](claims.md).
 * **UserInformationReceived**. Wird aufgerufen, wenn die Middleware ein Benutzerprofil vom Userinfo-Endpoint erhält. Gilt nur für die Autorisierung eines Codeflusses, und auch nur dann, wenn die Middleware-Optionen `GetClaimsFromUserInfoEndpoint = true` entsprechen.
 * **TicketReceived**. Wird aufgerufen, wenn die Authentifizierung abgeschlossen ist. Dies ist das letzte Ereignis, vorausgesetzt, die Authentifizierung wurde erfolgreich ausgeführt. Nachdem dieses Ereignis ausgeführt wurde, wird der Benutzer in der App angemeldet.
 * **AuthenticationFailed**. Wird aufgerufen, wenn die Authentifizierung nicht erfolgreich ist. Verwenden Sie dieses Ereignis zum Verarbeiten von Authentifizierungsfehlern – z.B. durch Weiterleiten an eine Fehlerseite.
@@ -161,8 +161,8 @@ Die OIDC-Middleware weiß automatisch, wie diese Metadaten abzurufen sind. Richt
 ### <a name="openid-connect-flows"></a>OpenID Connect-Abläufe
 Standardmäßig verwendet die OIDC-Middleware Hybrid flow mit POST-Formular-Antwortmodus.
 
-* *Hybrider Flow* bedeutet, dass der Client ein ID-Token und einen Autorisierungscode im gleichen Roundtrip an den Autorisierungsserver übermitteln kann.
-* *Formularbereitstellungs-Antwortmodus* bedeutet, dass der Autorisierungsserver eine HTTP POST-Anforderung verwendet, um das ID-Token und den Autorisierungscode an die App zu senden. Die Werte sind Formular-URL-codiert (content type = „application/X-www-form-urlencoded“).
+* *Hybrid flow* bedeutet, dass der Client ein ID-Token und einen Autorisierungscode im gleichen Roundtrip zum Autorisierungsserver leitet.
+* *Formular POST-Reaktionsmodus* bedeutet, dass der Autorisierungsserver eine HTTP POST-Anforderung verwendet, um das ID-Token und den Autorisierungscode an die App zu senden. Die Werte sind Formular-URL-codiert (content type = „application/X-www-form-urlencoded“).
 
 Wenn die OIDC-Middleware an den Autorisierungsendpunkt umleitet, enthält die Umleitungs-URL alle Abfragezeichenfolgen-Parameter, die OIDC benötigt. Für den Hybriddatenfluss:
 

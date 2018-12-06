@@ -2,13 +2,13 @@
 title: Erweitern lokaler Datenlösungen auf die Cloud
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 66fc225dc123202ba587d82f15ea0883e1bbf3b5
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 410162ff318846cbe695168abbcc2ae363f47e24
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29289686"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901727"
 ---
 # <a name="extending-on-premises-data-solutions-to-the-cloud"></a>Erweitern lokaler Datenlösungen auf die Cloud
 
@@ -41,8 +41,8 @@ Zu lokalen Datenspeichern zählen Datenbanken und Dateien. Es sind verschiedene 
 
 Berücksichtigen Sie folgende Aspekte, wenn Sie Anwendungsdaten in einer Public Cloud platzieren möchten:
 
-* **Kosten:** Die Kosten für Speicher in Azure können deutlich geringer sein als die Kosten für Speicher mit ähnlichen Eigenschaften in einem lokalen Datencenter. Da viele Unternehmen natürlich bereits in High-End-SANs investiert haben, kommen diese Kostenvorteile unter Umständen erst so richtig zur Geltung, wenn die vorhandene Hardware älter wird.
-* **Elastische Skalierung:** Die Planung und Bewältigung von Datenkapazitätszuwächsen in einer lokalen Umgebung kann eine echte Herausforderung sein. Dies gilt insbesondere dann, wenn das Datenwachstum nur schwer vorhersagbar ist. In diesem Fall können Anwendungen von der bedarfsgerechten Kapazität sowie vom nahezu unbegrenzten Speicherplatz in der Cloud profitieren. Für Anwendungen mit Datasets, deren Größe sich nicht sonderlich stark verändert, ist dieser Aspekt weniger relevant.
+* **Kosten**: Die Kosten für Speicher in Azure können deutlich geringer sein als die Kosten für Speicher mit ähnlichen Eigenschaften in einem lokalen Datencenter. Da viele Unternehmen natürlich bereits in High-End-SANs investiert haben, kommen diese Kostenvorteile unter Umständen erst so richtig zur Geltung, wenn die vorhandene Hardware älter wird.
+* **Elastische Skalierung**. Die Planung und Bewältigung von Datenkapazitätszuwächsen in einer lokalen Umgebung kann eine echte Herausforderung sein. Dies gilt insbesondere dann, wenn das Datenwachstum nur schwer vorhersagbar ist. In diesem Fall können Anwendungen von der bedarfsgerechten Kapazität sowie vom nahezu unbegrenzten Speicherplatz in der Cloud profitieren. Für Anwendungen mit Datasets, deren Größe sich nicht sonderlich stark verändert, ist dieser Aspekt weniger relevant.
 * **Notfallwiederherstellung:** In Azure gespeicherte Daten können automatisch innerhalb einer Azure-Region und über verschiedene geografische Regionen hinweg repliziert werden. In Hybridumgebungen können diese Technologien für die Replikation zwischen lokalen und cloudbasierten Datenspeichern verwendet werden.
 
 ## <a name="extending-data-stores-to-the-cloud"></a>Erweitern von Datenspeichern auf die Cloud
@@ -84,7 +84,7 @@ Manche Organisationen möchten ggf. auch ihre Netzwerkfreigaben vollständig in 
 
 Eine weitere Möglichkeit zur Verwendung lokaler Netzwerkfreigaben mit cloudbasiertem Dateispeicher ist [Azure Files](/azure/storage/files/storage-files-introduction). Azure Files bietet vollständig verwaltete Dateifreigaben, auf die Sie über das standardmäßige [SMB-Protokoll](https://msdn.microsoft.com/library/windows/desktop/aa365233.aspx?f=255&MSPPError=-2147217396) (Server Message Block; manchmal auch CIFS genannt) zugreifen können. Azure Files kann als Dateifreigabe auf Ihrem lokalen Computer eingebunden oder mit vorhandenen Anwendungen verwendet werden, die auf lokale Dateien oder auf Dateien in einer Netzwerkfreigabe zugreifen.
 
-Dateifreigaben in Azure Files können mithilfe von [Azure File Sync](/azure/storage/files/storage-sync-files-planning) mit Ihren lokalen Windows-Servern synchronisiert werden. Mit Azure File Sync können Sie Dateien zwischen Ihrem lokalen Dateiserver und Azure Files aufteilen, was ein großer Vorteil ist. So können Sie sicherstellen, dass nur die neuesten und zuletzt verwendeten Dateien in der lokalen Umgebung verbleiben. 
+Dateifreigaben in Azure Files können mithilfe der [Azure-Dateisynchronisierung](/azure/storage/files/storage-sync-files-planning) mit Ihren lokalen Windows-Servern synchronisiert werden. Mit der Azure-Dateisynchronisierung können Sie Dateien zwischen Ihrem lokalen Dateiserver und Azure Files aufteilen, was ein großer Vorteil ist. So können Sie sicherstellen, dass nur die neuesten und zuletzt verwendeten Dateien in der lokalen Umgebung verbleiben. 
 
 Weitere Informationen finden Sie unter [Entscheidung zwischen Azure-Blobs, Azure Files und Azure-Datenträger](/azure/storage/common/storage-decide-blobs-files-disks).
 

@@ -2,13 +2,13 @@
 title: Auswählen einer Technologie für die Echtzeiterfassung von Nachrichten
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 5eaac023e28fc502e5a4e6ebc17e32832f7557c0
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.date: 02/12/2018
+ms.openlocfilehash: 64d6fca0a8ffac45f605e90a11cd2b3e53db287f
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34422982"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901616"
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>Auswählen einer Technologie für die Echtzeiterfassung von Nachrichten in Azure
 
@@ -63,8 +63,8 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | IoT Hub | Event Hubs | Kafka in HDInsight |
 | --- | --- | --- | --- |
-| Cloud-zu-Gerät-Kommunikation | Ja | Nein  | Nein  |
-| Vom Gerät initiierter Dateiupload | Ja | Nein  | Nein  |
+| Cloud-zu-Gerät-Kommunikation | JA | Nein  | Nein  |
+| Vom Gerät initiierter Dateiupload | JA | Nein  | Nein  |
 | Gerätestatusinformationen | [Gerätezwillinge](/azure/iot-hub/iot-hub-devguide-device-twins) | Nein  | Nein  |
 | Protokollunterstützung | MQTT, AMQP, HTTPS<sup>1</sup> | AMQP, HTTPS | [Kafka-Protokoll](https://cwiki.apache.org/confluence/display/KAFKA/A+Guide+To+The+Kafka+Protocol) |
 | Sicherheit | Geräteabhängige Identität, widerrufbare Zugriffssteuerung | Freigegebene Zugriffsrichtlinien, begrenzte Sperrung über Herausgeberrichtlinien | Authentifizierung mit SASL, austauschbare Autorisierung, Unterstützung der Integration in externe Authentifizierungsdienste |

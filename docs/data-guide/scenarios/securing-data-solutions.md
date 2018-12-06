@@ -2,13 +2,13 @@
 title: Schützen von Datenlösungen
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 57897c31a8abdcd801874bf92d60360f7a80d1fa
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 453897d1dde205ec8eb094df06ec66da43f7de7b
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288922"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901642"
 ---
 # <a name="securing-data-solutions"></a>Schützen von Datenlösungen
 
@@ -42,7 +42,7 @@ Um Ihre Daten in der Cloud zu schützen, benötigen Sie eine Kombination aus Ide
 * Verwenden Sie die rollenbasierte Zugriffssteuerung (Role-Based Access Control, RBAC).
 * Konfigurieren Sie Richtlinien für bedingten Zugriff. Diese erweitern das klassische Konzept der Benutzeridentität um zusätzliche Eigenschaften wie den Standort des Benutzers, den Gerätetyp und die Patchebene.
 * Steuern Sie Standorte, an denen Ressourcen erstellt werden, mit Resource Manager.
-* Überwachen Sie die Umgebung aktiv auf verdächtige Aktivitäten.
+* Aktives Überwachen auf verdächtige Aktivitäten
 
 Weitere Informationen finden Sie unter [Azure-Identitätsverwaltung und Sicherheit der Zugriffssteuerung – Bewährte Methoden](/azure/security/azure-security-identity-management-best-practices).
 
@@ -60,7 +60,7 @@ Weitere Informationen finden Sie unter [Azure-Protokollierung und -Überwachung]
 
 **Virtuelle Computer:** Verwenden Sie [Azure Disk Encryption](/azure/security/azure-security-disk-encryption), um die angefügten Datenträger von virtuellen Windows- oder Linux-Computern zu verschlüsseln. Die Lösung kann in [Azure Key Vault](/azure/key-vault/) integriert werden, um die Steuerung und Verwaltung der Datenträger-Verschlüsselungsschlüssel und -geheimnisse zu erleichtern. 
 
-**Azure Storage:** Verwenden Sie [Azure Storage Service Encryption](/azure/storage/common/storage-service-encryption), um ruhende Daten in Azure Storage automatisch zu verschlüsseln. Verschlüsselung, Entschlüsselung und Schlüsselverwaltung sind für Benutzer vollständig transparent. Durch eine clientseitige Verschlüsselung mit Azure Key Vault können Daten auch während der Übertragung geschützt werden. Weitere Informationen finden Sie unter [Clientseitige Verschlüsselung und Azure Key Vault für Microsoft Azure Storage](/azure/storage/common/storage-client-side-encryption).
+**Azure Storage**. Verwenden Sie [Azure Storage Service Encryption](/azure/storage/common/storage-service-encryption), um ruhende Daten in Azure Storage automatisch zu verschlüsseln. Verschlüsselung, Entschlüsselung und Schlüsselverwaltung sind für Benutzer vollständig transparent. Durch eine clientseitige Verschlüsselung mit Azure Key Vault können Daten auch während der Übertragung geschützt werden. Weitere Informationen finden Sie unter [Clientseitige Verschlüsselung und Azure Key Vault für Microsoft Azure Storage](/azure/storage/common/storage-client-side-encryption).
 
 **SQL Database** und **Azure SQL Data Warehouse:** Verwenden Sie [Transparent Data Encryption](/sql/relational-databases/security/encryption/transparent-data-encryption-azure-sql) (TDE), um Ihre Datenbanken, die dazugehörigen Sicherungen und die Transaktionsprotokolldateien in Echtzeit zu verschlüsseln und zu entschlüsseln, ohne Änderungen an Ihren Anwendung vorzunehmen. SQL-Datenbank kann auch [Always Encrypted](/azure/sql-database/sql-database-always-encrypted-azure-key-vault) verwenden, um sensible Daten auf dem Server (ruhende Daten), auf dem Weg zwischen Client und Server sowie während der Verwendung zu schützen. Die Always Encrypted-Verschlüsselungsschlüssel können mit Azure Key Vault gespeichert werden. 
 

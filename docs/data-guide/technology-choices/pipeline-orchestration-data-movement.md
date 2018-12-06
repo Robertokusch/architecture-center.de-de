@@ -2,13 +2,13 @@
 title: Auswählen einer Technologie für die Datenpipelineorchestrierung
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 17aeb871bc815793295ed610795e5e83de72c637
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 7d1fddf54216b756a5dc2c183a43449a2f45a122
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288802"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902371"
 ---
 # <a name="choosing-a-data-pipeline-orchestration-technology-in-azure"></a>Auswählen einer Technologie für die Datenpipelineorchestrierung in Azure
 
@@ -38,14 +38,14 @@ Beantworten Sie die folgenden Fragen, um die Auswahl einzuschränken:
 
 ## <a name="capability-matrix"></a>Funktionsmatrix
 
-In der folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefasst:
+In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst.
 
 ### <a name="general-capabilities"></a>Allgemeine Funktionen
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | Oozie in HDInsight
 | --- | --- | --- | --- |
-| Verwaltet | Ja | Nein | Ja |
-| Cloudbasiert | Ja | Nein (lokal) | Ja |
+| Verwaltet | JA | Nein | JA |
+| Cloudbasiert | JA | Nein (lokal) | JA |
 | Voraussetzung | Azure-Abonnement | SQL Server  | Azure-Abonnement, HDInsight-Cluster |
 | Verwaltungstools | Azure-Portal, PowerShell, CLI, .NET SDK | SSMS, PowerShell | Bash-Shell, Oozie-REST-API, Oozie-Webbenutzeroberfläche |
 | Preise | Nutzungsbasierte Bezahlung | Lizenzierung/Bezahlung für Funktionen | Keine Zusatzgebühren (nur Gebühren für die Ausführung des HDInsight-Clusters) |
@@ -54,22 +54,22 @@ In der folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | Oozie in HDInsight
 | --- | --- | --- | --- |
-| Kopieren von Daten | Ja | Ja | Ja |
-| Benutzerdefinierte Transformationen | Ja | Ja | Ja (MapReduce-, Pig- und Hive-Aufträge) |
-| Azure Machine Learning-Bewertung | Ja | Ja (mit Skripts) | Nein  |
-| HDInsight (bedarfsgesteuert) | Ja | Nein  | Nein  |
-| Azure Batch | Ja | Nein  | Nein  |
-| Pig, Hive, MapReduce | Ja | Nein | Ja |
-| Spark | Ja | Nein  | Nein  |
-| Ausführen des SSIS-Pakets | Ja | Ja | Nein  |
-| Ablaufsteuerung | Ja | Ja | Ja |
-| Zugriff auf lokale Daten | Ja | Ja | Nein  |
+| Kopieren von Daten | JA | Ja | JA |
+| Benutzerdefinierte Transformationen | JA | JA | Ja (MapReduce-, Pig- und Hive-Aufträge) |
+| Azure Machine Learning-Bewertung | JA | Ja (mit Skripts) | Nein  |
+| HDInsight (bedarfsgesteuert) | JA | Nein  | Nein  |
+| Azure Batch | JA | Nein  | Nein  |
+| Pig, Hive, MapReduce | JA | Nein | JA |
+| Spark | JA | Nein  | Nein  |
+| Ausführen des SSIS-Pakets | JA | JA | Nein  |
+| Ablaufsteuerung | JA | Ja | JA |
+| Zugriff auf lokale Daten | JA | JA | Nein  |
 
 ### <a name="scalability-capabilities"></a>Skalierbarkeitsfunktionen
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | Oozie in HDInsight
 | --- | --- | --- | --- |
-| Zentrales Hochskalieren | Ja | Nein  | Nein  |
-| Horizontales Skalieren | Ja | Nein  | Ja (durch Hinzufügen von Workerknoten zum Cluster) |
-| Für Big Data optimiert | Ja | Nein | Ja |
+| Zentrales Hochskalieren | JA | Nein  | Nein  |
+| Horizontales Skalieren | JA | Nein  | Ja (durch Hinzufügen von Workerknoten zum Cluster) |
+| Für Big Data optimiert | JA | Nein | JA |
 
