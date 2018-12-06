@@ -2,16 +2,16 @@
 title: Einrichten eines Verbunds mit der AD FS-Instanz eines Kunden
 description: Wie ein Verbund mit den AD FS eines Kunden in einer mehrinstanzenfähigen Anwendung eingegangen wird
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: 4b54f031d13449e4d87075af5606967da8b5d3df
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: fec10ca0e067b3b51bf9dba70d66ceb12423787d
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428923"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902696"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Einrichten eines Verbunds mit der AD FS-Instanz eines Kunden
 
@@ -59,7 +59,7 @@ Standardmäßig empfängt die Anwendung der vertrauenden Seite nur einen festgel
 | Anspruch | BESCHREIBUNG |
 | --- | --- |
 | aud |Zielgruppe. Die Anwendung, für die die Ansprüche ausgegeben wurden |
-| authenticationinstant |[Authentication-Instanz]. Der Zeitpunkt, zu dem die Authentifizierung erfolgt ist. |
+| authenticationinstant |[Authentifizierungszeitpunkt]. Der Zeitpunkt, zu dem die Authentifizierung erfolgt ist. |
 | c_hash |Codehashwert. Dies ist ein Hash der Tokeninhalte. |
 | exp |[Ablaufzeit]. Der Zeitpunkt, nach dem das Token nicht mehr akzeptiert wird. |
 | iat |Ausgestellt um. Der Zeitpunkt, zu dem das Token ausgestellt wurde. |
@@ -113,11 +113,11 @@ Hier werden die Schritte im Detail veranschaulicht.
 1. Führen Sie einen Rechtsklick auf die neu hinzugefügte Anspruchsanbieter-Vertrauensstellung aus, und wählen Sie **Anspruchsregeln bearbeiten**.
 2. Klicken Sie auf **Regel hinzufügen**.
 3. Wählen Sie „Eingehenden Anspruch filtern oder zulassen“, und klicken Sie auf **Weiter**.
-   ![Assistent zum Hinzufügen von Transformationsanspruchsregeln ](./images/edit-claims-rule.png)
+   ![Assistenten zum Hinzufügen von Transformationsanspruchsregeln hinzufügen](./images/edit-claims-rule.png)
 4. Geben Sie einen Namen für die Regel ein.
 5. Wählen Sie unter „Eingehender Anspruchstyp“ **UPN**.
 6. Wählen Sie „Durchlauf aller Anspruchswerte“.
-   ![Assistent zum Hinzufügen von Transformationsanspruchsregeln ](./images/edit-claims-rule2.png)
+   ![Assistenten zum Hinzufügen von Transformationsanspruchsregeln hinzufügen](./images/edit-claims-rule2.png)
 7. Klicken Sie auf **Fertig stellen**.
 8. Wiederholen Sie die Schritte 2 bis 7, und geben Sie **Anker Anspruchstyp** für den eingehenden Anspruchstyp an.
 9. Klicken Sie auf **OK** , um den Assistenten abzuschließen.
@@ -144,7 +144,7 @@ Kunden müssen wie folgt vorgehen:
 2. Klicken Sie in der Konsolenstruktur unter **AD FS** mit der rechten Maustaste auf **Vertrauensstellungen der vertrauenden Seite**. Wählen Sie **Hinzufügen der Vertrauensstellung der vertrauenden Seite**.
 3. Wählen Sie **Ansprüche unterstützend** aus, und klicken Sie auf **Start**.
 4. Wählen Sie auf der Seite **Auswählen von Datenquellen** die Option „Daten über den Anspruchsanbieter online oder über ein lokales Netzwerk importieren“. Geben Sie den URI des Verbundmetadaten-Endpunkts des SaaS-Anbieters an.
-   ![Assistent zum Hinzufügen von Vertrauensstellungen der vertrauenden Seite](./images/add-rp-trust.png)
+   ![Assistenten für Vertrauensstellung der vertrauenden Seite hinzufügen](./images/add-rp-trust.png)
 5. Geben Sie auf der Seite **Anzeigename angeben** einen beliebigen Namen ein.
 6. Wählen Sie auf der Seite **Zugriffssteuerungsrichtlinien wählen** eine Richtlinie. Sie können jede Person im Unternehmen zulassen oder eine bestimmte Sicherheitsgruppe wählen.
    ![Assistent zum Hinzufügen von Vertrauensstellungen der vertrauenden Seite](./images/add-rp-trust2.png)
@@ -157,11 +157,11 @@ Kunden müssen wie folgt vorgehen:
 3. Wählen Sie „Senden von LDAP-Attributen als Ansprüche“, und klicken Sie auf **Weiter**.
 4. Geben Sie einen Namen für die Regel ein, z.B. „UPN“.
 5. Wählen Sie unter **Attributspeicher** den Eintrag **Active Directory** aus.
-   ![Assistent zum Hinzufügen von Transformationsanspruchsregeln ](./images/add-claims-rules.png)
+   ![Assistenten zum Hinzufügen von Transformationsanspruchsregeln hinzufügen](./images/add-claims-rules.png)
 6. Im Abschnitt **Zuordnung der LDAP-Attribute** :
    * Wählen Sie unter **LDAP-Attribut** den Eintrag **User-Principal-Name**.
    * Wählen Sie unter **Typ des ausgehenden Anspruchs** den Eintrag **UPN**.
-     ![Assistent zum Hinzufügen von Transformationsanspruchsregeln ](./images/add-claims-rules2.png)
+     ![Assistenten zum Hinzufügen von Transformationsanspruchsregeln hinzufügen](./images/add-claims-rules2.png)
 7. Klicken Sie auf **Fertig stellen**.
 8. Klicken Sie erneut auf **Regel hinzufügen** .
 9. Wählen Sie „Ansprüche per benutzerdefinierter Regel senden“, und klicken Sie auf **Weiter**.
@@ -184,7 +184,7 @@ Kunden müssen wie folgt vorgehen:
 [Verbundvertrauensstellung]: https://technet.microsoft.com/library/cc770993(v=ws.11).aspx
 [Kontopartner]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
 [Ressourcenpartner]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
-[Authentication-Instanz]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.authenticationinstant%28v=vs.110%29.aspx
+[Authentifizierungszeitpunkt]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.authenticationinstant%28v=vs.110%29.aspx
 [Ablaufzeit]: https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.
 [Namensbezeichner]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.nameidentifier(v=vs.110).aspx
 [active-directory-on-azure]: https://msdn.microsoft.com/library/azure/jj156090.aspx
