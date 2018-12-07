@@ -2,18 +2,18 @@
 title: Entwerfen robuster Anwendungen für Azure
 description: Es wird beschrieben, wie Sie in Azure robuste Anwendungen mit Hochverfügbarkeit und Notfallwiederherstellung erstellen.
 author: MikeWasson
-ms.date: 07/29/2018
+ms.date: 11/26/2018
 ms.custom: resiliency
-ms.openlocfilehash: 73600650dc96fe85ad59e286079a3523ef25d055
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: a97a26928002b8248344a239159fe7defa99931c
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305960"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53005055"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Entwerfen robuster Anwendungen für Azure
 
-In einem verteilten System kommt es unweigerlich zu Fehlern. Hardware kann ausfallen. Im Netzwerk können vorübergehende Fehler auftreten. In seltenen Fällen kann ein gesamter Dienst oder eine Region ausfallen, aber auch hierfür muss eine Planung vorhanden sein. 
+In einem verteilten System kommt es unweigerlich zu Fehlern. Hardware kann ausfallen. Im Netzwerk können vorübergehende Fehler auftreten. In seltenen Fällen kann ein gesamter Dienst oder eine Region ausfallen, aber auch hierfür muss eine Planung vorhanden sein.
 
 Das Erstellen einer zuverlässigen Anwendung in der Cloud unterscheidet sich vom Erstellen einer zuverlässigen Anwendung in einer Unternehmensumgebung. Bisher haben Sie höherwertige Hardware gekauft, um zentral hochzuskalieren, aber in einer Cloudumgebung müssen Sie stattdessen horizontal hochskalieren. Die Kosten für Cloudumgebungen werden niedrig gehalten, indem Standardhardware eingesetzt wird. In dieser neuen Umgebung liegt der Schwerpunkt auf der mittleren Zeit bis zur Wiederherstellung (Mean Time To Restore) und nicht mehr auf der mittleren Zeit zwischen Ausfällen (Mean Time Between Failures). Das Ziel besteht hierbei darin, die Auswirkungen eines Ausfalls gering zu halten.
 
@@ -31,21 +31,21 @@ Sie können sich die Hochverfügbarkeit und Notfallwiederherstellung beispielswe
 
 Beim Ausführen der Entwurfsschritte für die Resilienz müssen Sie sich über Ihre Anforderungen an die Verfügbarkeit im Klaren sein. Wie viel Ausfallzeit ist akzeptabel? Dies ist teilweise eine Kostenfunktion. Welche Kosten fallen bei potenziellen Ausfallzeiten für Ihr Unternehmen an? Wie viel Geld sollten Sie investieren, um für die Anwendung die Hochverfügbarkeit sicherzustellen? Außerdem müssen Sie definieren, was die Verfügbarkeit der Anwendung bedeutet. Gilt die Anwendung beispielsweise als „ausgefallen“, wenn ein Kunde eine Bestellung senden kann, diese aber vom System nicht innerhalb des normalen Zeitrahmens verarbeitet werden kann? Berücksichtigen Sie außerdem die Wahrscheinlichkeit eines bestimmten Ausfalltyps und die Kosteneffektivität einer Lösungsstrategie.
 
-Ein weiterer häufig verwendeter Begriff ist **Geschäftskontinuität** (Business Continuity, BC). Hierbei geht es um die Möglichkeit, auch bei bzw. nach widrigen Umständen, z.B. einer Naturkatastrophe oder einem Dienstausfall, wichtige Geschäftsfunktionen aufrechterhalten zu können. Die Geschäftskontinuität erstreckt sich auf den gesamten Betrieb des Unternehmens, z.B. physische Einrichtungen, Personal, Kommunikation, Transport und IT. In diesem Artikel geht es um Cloudanwendungen, aber die Resilienzplanung muss in Bezug auf alle Anforderungen der Geschäftskontinuität durchgeführt werden. 
+Ein weiterer häufig verwendeter Begriff ist **Geschäftskontinuität** (Business Continuity, BC). Hierbei geht es um die Möglichkeit, auch bei bzw. nach widrigen Umständen, z.B. einer Naturkatastrophe oder einem Dienstausfall, wichtige Geschäftsfunktionen aufrechterhalten zu können. Die Geschäftskontinuität erstreckt sich auf den gesamten Betrieb des Unternehmens, z.B. physische Einrichtungen, Personal, Kommunikation, Transport und IT. In diesem Artikel geht es um Cloudanwendungen, aber die Resilienzplanung muss in Bezug auf alle Anforderungen der Geschäftskontinuität durchgeführt werden.
 
-**Datensicherung** ist ein wichtiger Teil der Notfallwiederherstellung. Wenn für die zustandslosen Komponenten einer Anwendung ein Fehler auftritt, können Sie sie immer wieder neu bereitstellen. Falls aber Daten verloren gehen, kann für das System kein stabiler Zustand mehr hergestellt werden. Daten müssen gesichert werden, und zwar idealerweise in einer anderen Region, falls ein Katastrophenfall eine gesamte Region betrifft. 
+**Datensicherung** ist ein wichtiger Teil der Notfallwiederherstellung. Wenn für die zustandslosen Komponenten einer Anwendung ein Fehler auftritt, können Sie sie immer wieder neu bereitstellen. Falls aber Daten verloren gehen, kann für das System kein stabiler Zustand mehr hergestellt werden. Daten müssen gesichert werden, und zwar idealerweise in einer anderen Region, falls ein Katastrophenfall eine gesamte Region betrifft.
 
-Die Sicherung unterscheidet sich von der **Datenreplikation**. Die Datenreplikation umfasst das Kopieren von Daten nahezu in Echtzeit, sodass das System schnell ein Failover zu einem Replikat durchführen kann. Viele Datenbankensysteme unterstützen die Replikation. Beispielsweise verfügt SQL Server über Unterstützung für SQL Server Always On-Verfügbarkeitsgruppen. Mit der Datenreplikation kann reduziert werden, wie lange die Wiederherstellung nach einem Ausfall dauert, indem sichergestellt wird, dass immer ein Replikat der Daten verfügbar ist. Die Datenreplikation bietet aber keinen Schutz vor menschlichen Fehlern. Falls Daten aufgrund eines menschlichen Fehlers beschädigt werden, werden sie einfach auf die Replikate kopiert. Aus diesem Grund benötigen Sie für Ihre Strategie für die Notfallwiederherstellung eine langfristige Sicherungslösung. 
+Die Sicherung unterscheidet sich von der **Datenreplikation**. Die Datenreplikation umfasst das Kopieren von Daten nahezu in Echtzeit, sodass das System schnell ein Failover zu einem Replikat durchführen kann. Viele Datenbankensysteme unterstützen die Replikation. Beispielsweise verfügt SQL Server über Unterstützung für SQL Server Always On-Verfügbarkeitsgruppen. Mit der Datenreplikation kann reduziert werden, wie lange die Wiederherstellung nach einem Ausfall dauert, indem sichergestellt wird, dass immer ein Replikat der Daten verfügbar ist. Die Datenreplikation bietet aber keinen Schutz vor menschlichen Fehlern. Falls Daten aufgrund eines menschlichen Fehlers beschädigt werden, werden sie einfach auf die Replikate kopiert. Aus diesem Grund benötigen Sie für Ihre Strategie für die Notfallwiederherstellung eine langfristige Sicherungslösung.
 
 ## <a name="process-to-achieve-resiliency"></a>Prozess zur Erreichung von Resilienz
 Resilienz ist kein Add-On. Sie muss in das System integriert und im Betrieb umgesetzt werden. Dieses allgemeine Modell dient hierbei als Grundlage:
 
 1. **Definieren** Sie Ihre Verfügbarkeitsanforderungen basierend auf den geschäftlichen Anforderungen.
 2. **Entwerfen** Sie die Anwendung mit Blick auf Resilienz. Beginnen Sie mit einer Architektur, die auf bewährten Methoden basiert, und identifizieren Sie dann die möglichen Fehlerpunkte dieser Architektur.
-3. **Implementieren** Sie die Strategien für die Erkennung von Fehlern und die anschließende Wiederherstellung. 
-4. **Testen** Sie die Implementierung, indem Sie Fehler simulieren und erzwungene Failover auslösen. 
-5. **Stellen Sie die Anwendung in der Produktion bereit**, indem Sie einen zuverlässigen und wiederholbaren Prozess verwenden. 
-6. **Überwachen** Sie die Anwendung, um Fehler zu erkennen. Indem Sie das System überwachen, können Sie die Integrität der Anwendung messen und bei Bedarf auf Vorfälle reagieren. 
+3. **Implementieren** Sie die Strategien für die Erkennung von Fehlern und die anschließende Wiederherstellung.
+4. **Testen** Sie die Implementierung, indem Sie Fehler simulieren und erzwungene Failover auslösen.
+5. **Stellen Sie die Anwendung in der Produktion bereit**, indem Sie einen zuverlässigen und wiederholbaren Prozess verwenden.
+6. **Überwachen** Sie die Anwendung, um Fehler zu erkennen. Indem Sie das System überwachen, können Sie die Integrität der Anwendung messen und bei Bedarf auf Vorfälle reagieren.
 7. **Reagieren** Sie, wenn es zu Fehlern kommt, für die manuelle Eingriffe erforderlich sind.
 
 Im weiteren Verlauf dieses Artikels werden diese Schritte ausführlicher beschrieben.
@@ -69,21 +69,21 @@ Zwei wichtige Metriken, die berücksichtigt werden sollten, sind Recovery Time O
 
 * **Recovery Time Objective** (RTO) ist der maximal zulässige Zeitraum, in dem eine Anwendung nach einem Vorfall nicht verfügbar sein darf. Wenn RTO bei Ihnen 90 Minuten beträgt, müssen Sie dazu in der Lage sein, die Anwendung innerhalb von 90 Minuten nach Beginn eines Notfalls wieder in den Ausführungszustand zu versetzen. Falls für RTO ein sehr niedriger Wert angesetzt ist, führen Sie ggf. eine zweite Bereitstellung ständig im Standby aus, um vor einem regionalen Ausfall geschützt zu sein.
 
-* **Recovery Point Objective** (RPO) ist die maximale Dauer eines Datenverlusts, die während eines Notfalls zulässig ist. Wenn Sie Daten beispielsweise in einer einzelnen Datenbank ohne Replikation in anderen Datenbanken speichern und stündliche Sicherungen durchführen, können Daten für bis zu eine Stunde verloren gehen. 
+* **Recovery Point Objective** (RPO) ist die maximale Dauer eines Datenverlusts, die während eines Notfalls zulässig ist. Wenn Sie Daten beispielsweise in einer einzelnen Datenbank ohne Replikation in anderen Datenbanken speichern und stündliche Sicherungen durchführen, können Daten für bis zu eine Stunde verloren gehen.
 
-RTO und RPO sind geschäftliche Anforderungen. Die Durchführung einer Risikobewertung kann hilfreich sein, um RTO und RPO für die Anwendung zu definieren. Eine weitere häufig genutzte Metrik ist die **mittlere Zeit bis zur Wiederherstellung** (Mean Time To Recover, MTTR). Dies ist die durchschnittliche Dauer der Wiederherstellung einer Anwendung nach einem Ausfall. MTTR ist ein empirischer Fakt eines Systems. Wenn der MTTR-Wert größer als der RTO-Wert ist, führt ein Ausfall des Systems zu einer nicht akzeptablen geschäftlichen Störung, weil es nicht möglich ist, das System innerhalb des definierten RTO-Zeitraums wiederherzustellen. 
+RTO und RPO sind geschäftliche Anforderungen. Die Durchführung einer Risikobewertung kann hilfreich sein, um RTO und RPO für die Anwendung zu definieren. Eine weitere häufig genutzte Metrik ist die **mittlere Zeit bis zur Wiederherstellung** (Mean Time To Recover, MTTR). Dies ist die durchschnittliche Dauer der Wiederherstellung einer Anwendung nach einem Ausfall. MTTR ist ein empirischer Fakt eines Systems. Wenn der MTTR-Wert größer als der RTO-Wert ist, führt ein Ausfall des Systems zu einer nicht akzeptablen geschäftlichen Störung, weil es nicht möglich ist, das System innerhalb des definierten RTO-Zeitraums wiederherzustellen.
 
 ### <a name="slas"></a>SLAs
 In Azure wird in der [Vereinbarung zum Servicelevel (SLA)][sla] die garantierte Verfügbarkeit und Konnektivität beschrieben, die Microsoft zusichert. Wenn die Vereinbarung zum Servicelevel für einen bestimmten Dienst 99,9% beträgt, können Sie erwarten, dass der Dienst 99,9% der Zeit verfügbar ist.
 
 > [!NOTE]
-> Die Vereinbarung zum Servicelevel von Azure enthält auch Bestimmungen zum Erhalt einer Gutschrift, falls die Vereinbarung nicht erfüllt wird, sowie bestimmte Definitionen zur „Verfügbarkeit“ jedes Diensts. Dieser Aspekt der Vereinbarung zum Servicelevel fungiert als Durchsetzungsrichtlinie. 
-> 
-> 
+> Die Vereinbarung zum Servicelevel von Azure enthält auch Bestimmungen zum Erhalt einer Gutschrift, falls die Vereinbarung nicht erfüllt wird, sowie bestimmte Definitionen zur „Verfügbarkeit“ jedes Diensts. Dieser Aspekt der Vereinbarung zum Servicelevel fungiert als Durchsetzungsrichtlinie.
+>
+>
 
-Sie sollten eigene Ziel-SLAs für jede Workload Ihrer Lösung definieren. Anhand einer Vereinbarung zum Servicelevel kann ausgewertet werden, ob die Architektur die geschäftlichen Anforderungen erfüllt. Wenn für eine Workload beispielsweise eine Betriebszeit von 99,99% erforderlich ist, dafür aber eine Abhängigkeit von einem Dienst mit einer Vereinbarung zum Servicelevel mit 99,9% besteht, kann dieser Dienst im System kein Single Point of Failure sein. Eine Lösung hierfür ist die Verwendung eines Fallbackpfads für den Fall, dass der Dienst ausfällt, oder das Treffen von anderen Maßnahmen zur Wiederherstellung nach einem Ausfall des Diensts. 
+Sie sollten eigene Ziel-SLAs für jede Workload Ihrer Lösung definieren. Anhand einer Vereinbarung zum Servicelevel kann ausgewertet werden, ob die Architektur die geschäftlichen Anforderungen erfüllt. Wenn für eine Workload beispielsweise eine Betriebszeit von 99,99% erforderlich ist, dafür aber eine Abhängigkeit von einem Dienst mit einer Vereinbarung zum Servicelevel mit 99,9% besteht, kann dieser Dienst im System kein Single Point of Failure sein. Eine Lösung hierfür ist die Verwendung eines Fallbackpfads für den Fall, dass der Dienst ausfällt, oder das Treffen von anderen Maßnahmen zur Wiederherstellung nach einem Ausfall des Diensts.
 
-In der folgenden Tabelle sind die potenziellen kumulativen Ausfallzeiten für verschiedene SLA-Ebenen angegeben. 
+In der folgenden Tabelle sind die potenziellen kumulativen Ausfallzeiten für verschiedene SLA-Ebenen angegeben.
 
 | SLA | Ausfallzeit pro Woche | Ausfallzeit pro Monat | Ausfallzeit pro Jahr |
 | --- | --- | --- | --- |
@@ -93,13 +93,13 @@ In der folgenden Tabelle sind die potenziellen kumulativen Ausfallzeiten für ve
 | 99,99 % |1,01 Minuten |4,32 Minuten |52,56 Minuten |
 | 99,999% |6 Sekunden |25,9 Sekunden |5,26 Minuten |
 
-Sofern alle anderen Faktoren identisch sind, ist eine höhere Verfügbarkeit natürlich immer vorzuziehen. Aber wenn eine noch höhere Verfügbarkeit angestrebt wird, erhöhen sich auch die Kosten und die Komplexität, um dies zu erreichen. Eine Betriebszeit von 99,99% entspricht einer Gesamtausfallzeit von ca. 5 Minuten pro Monat. Rechtfertigt die Erreichung von 99,999% die zusätzliche Komplexität und die höheren Kosten? Die Antwort hängt von Ihren geschäftlichen Anforderungen ab. 
+Sofern alle anderen Faktoren identisch sind, ist eine höhere Verfügbarkeit natürlich immer vorzuziehen. Aber wenn eine noch höhere Verfügbarkeit angestrebt wird, erhöhen sich auch die Kosten und die Komplexität, um dies zu erreichen. Eine Betriebszeit von 99,99% entspricht einer Gesamtausfallzeit von ca. 5 Minuten pro Monat. Rechtfertigt die Erreichung von 99,999% die zusätzliche Komplexität und die höheren Kosten? Die Antwort hängt von Ihren geschäftlichen Anforderungen ab.
 
 Hier sind einige andere Aspekte aufgeführt, die für das Definieren einer Vereinbarung zum Servicelevel gelten:
 
-* Wenn Sie 99,99% erreichen möchten, können Sie sich bei der Wiederherstellung nach Ausfällen wahrscheinlich nicht auf manuelle Eingriffe verlassen. Die Anwendung muss eine Selbstdiagnose und Selbstreparatur durchführen können. 
+* Wenn Sie 99,99% erreichen möchten, können Sie sich bei der Wiederherstellung nach Ausfällen wahrscheinlich nicht auf manuelle Eingriffe verlassen. Die Anwendung muss eine Selbstdiagnose und Selbstreparatur durchführen können.
 * Im Bereich über 99,99% stellt es eine große Herausforderung dar, Ausfälle schnell genug zu erkennen, um die SLA-Anforderungen zu erfüllen.
-* Betrachten Sie das Zeitfenster, auf das sich Ihre Vereinbarung zum Servicelevel bezieht. Je kleiner das Fenster, desto enger die Toleranzen. Vermutlich ist es nicht sinnvoll, Ihre Vereinbarung zum Servicelevel in Bezug auf die stündliche oder tägliche Betriebszeit zu definieren. 
+* Betrachten Sie das Zeitfenster, auf das sich Ihre Vereinbarung zum Servicelevel bezieht. Je kleiner das Fenster, desto enger die Toleranzen. Vermutlich ist es nicht sinnvoll, Ihre Vereinbarung zum Servicelevel in Bezug auf die stündliche oder tägliche Betriebszeit zu definieren.
 
 ### <a name="composite-slas"></a>Zusammengesetzte SLAs
 Angenommen, eine App Service-Web-App führt Schreibvorgänge in eine Azure SQL-Datenbank durch. Zum Zeitpunkt der Erstellung dieses Artikels verfügen diese Azure-Dienste über die folgenden SLAs:
@@ -109,7 +109,7 @@ Angenommen, eine App Service-Web-App führt Schreibvorgänge in eine Azure SQL-D
 
 ![Zusammengesetzte Vereinbarung zum Servicelevel](./images/sla1.png)
 
-Welche maximale Ausfallzeit erwarten Sie für diese Anwendung? Wenn einer der Dienste ausfällt, kommt es zu einem Ausfall der gesamten Anwendung. Im Allgemeinen ist die Wahrscheinlichkeit, dass jeder Dienst ausfällt, eine unabhängige Größe, und die zusammengesetzte Vereinbarung zum Servicelevel für diese Anwendung ist 99,95% &times; 99,99% = 99,94%. Dieser Wert ist niedriger als bei einzelnen SLAs. Dies ist nicht verwunderlich, da eine Anwendung, die von mehreren Diensten abhängig ist, über mehr potenzielle Fehlerpunkte verfügt. 
+Welche maximale Ausfallzeit erwarten Sie für diese Anwendung? Wenn einer der Dienste ausfällt, kommt es zu einem Ausfall der gesamten Anwendung. Im Allgemeinen ist die Wahrscheinlichkeit, dass jeder Dienst ausfällt, eine unabhängige Größe, und die zusammengesetzte Vereinbarung zum Servicelevel für diese Anwendung ist 99,95% &times; 99,99% = 99,94%. Dieser Wert ist niedriger als bei einzelnen SLAs. Dies ist nicht verwunderlich, da eine Anwendung, die von mehreren Diensten abhängig ist, über mehr potenzielle Fehlerpunkte verfügt.
 
 Andererseits können Sie die zusammengesetzte Vereinbarung zum Servicelevel verbessern, indem Sie unabhängige Fallbackpfade erstellen. Wenn SQL-Datenbank beispielsweise nicht verfügbar ist, können Transaktionen zur späteren Verarbeitung in eine Warteschlange eingereiht werden.
 
@@ -125,7 +125,7 @@ Für die gesamte zusammengesetzte Vereinbarung zum Servicelevel gilt:
 
 Dieser Ansatz hat aber auch Nachteile. Die Anwendungslogik ist komplexer, es fallen Kosten für die Warteschlange an, und ggf. müssen Probleme mit der Datenkonsistenz gelöst werden.
 
-**SLA für Bereitstellung in mehreren Regionen**. Ein weiteres Verfahren für Hochverfügbarkeit ist die Bereitstellung der Anwendung in mehr als einer Region und die Verwendung von Azure Traffic Manager zum Durchführen eines Failovers, wenn die Anwendung in einer Region ausfällt. Für eine Bereitstellung in zwei Regionen wird die zusammengesetzte Vereinbarung zum Servicelevel wie folgt berechnet: 
+**SLA für Bereitstellung in mehreren Regionen**. Ein weiteres Verfahren für Hochverfügbarkeit ist die Bereitstellung der Anwendung in mehr als einer Region und die Verwendung von Azure Traffic Manager zum Durchführen eines Failovers, wenn die Anwendung in einer Region ausfällt. Für eine Bereitstellung in zwei Regionen wird die zusammengesetzte Vereinbarung zum Servicelevel wie folgt berechnet:
 
 *N* steht für die zusammengesetzte Vereinbarung zum Servicelevel für die Anwendung, die in einer Region bereitgestellt wird. Die erwartete Wahrscheinlichkeit, dass die Anwendung in beiden Regionen gleichzeitig ausfällt, ist (1 &minus; N) &times; (1 &minus; N). Deshalb gilt Folgendes:
 
@@ -145,7 +145,7 @@ In der Entwurfsphase ist es ratsam, eine Fehlermodusanalyse (Failure Mode Analys
 
 * Wie erkennt die Anwendung diese Art von Fehler?
 * Wie reagiert die Anwendung auf diese Art von Fehler?
-* Wie protokollieren und überwachen Sie diese Art von Fehler? 
+* Wie protokollieren und überwachen Sie diese Art von Fehler?
 
 Weitere Informationen zum FMA-Prozess mit spezifischen Empfehlungen für Azure finden Sie unter [Azure resiliency guidance: Failure mode analysis][fma] (Azure-Leitfaden zur Resilienz: Fehlermodusanalyse).
 
@@ -166,11 +166,11 @@ Fehler und Ausfälle können mit unterschiedlichen Auswirkungen verbunden sein. 
 
 Eines der wichtigsten Verfahren, mit dem für eine Anwendung die Resilienz sichergestellt werden kann, ist die Redundanz. Sie müssen diese Redundanz aber beim Entwerfen der Anwendung einplanen. Außerdem richtet sich der jeweils benötigte Redundanzgrad nach Ihren Geschäftsanforderungen – nicht für jede Anwendung ist eine regionsübergreifende Redundanz als Schutz vor einem regionalen Ausfall erforderlich. In der Regel muss ein Kompromiss zwischen höherer Redundanz und Zuverlässigkeit und einer höheren Kostensumme und Komplexität gefunden werden.  
 
-Azure verfügt über eine Reihe von Features, mit denen für eine Anwendung für alle Fehlerebenen Redundanz erzielt werden kann – von einer einzelnen VM bis hin zu einer gesamten Region. 
+Azure verfügt über eine Reihe von Features, mit denen für eine Anwendung für alle Fehlerebenen Redundanz erzielt werden kann – von einer einzelnen VM bis hin zu einer gesamten Region.
 
 ![](./images/redundancy.svg)
 
-**Einzelne VM**: Azure enthält eine Betriebszeit-SLA für einzelne VMs. Sie können zwar einen höheren SLA-Grad erzielen, indem Sie zwei oder mehr VMs ausführen, aber für einige Workloads kann eine einzelne VM zuverlässig genug sein. Für Produktionsworkloads empfehlen wir aus Redundanzgründen die Verwendung von zwei oder mehr VMs. 
+**Einzelne VM**: Azure enthält eine Betriebszeit-SLA für einzelne VMs. Sie können zwar einen höheren SLA-Grad erzielen, indem Sie zwei oder mehr VMs ausführen, aber für einige Workloads kann eine einzelne VM zuverlässig genug sein. Für Produktionsworkloads empfehlen wir aus Redundanzgründen die Verwendung von zwei oder mehr VMs.
 
 **Verfügbarkeitsgruppen**: Stellen Sie als Schutz vor lokalen Hardwarefehlern, z.B. ein Ausfall eines Datenträgers oder Netzwerkswitchs, in einer Verfügbarkeitsgruppe zwei oder mehr VMs bereit. Eine Verfügbarkeitsgruppe besteht aus mindestens zwei *Fehlerdomänen*, die eine Stromquelle und einen Netzwerkswitch gemeinsam nutzen. VMs in einer Verfügbarkeitsgruppe sind auf die Fehlerdomänen verteilt. Wenn ein Hardwarefehler eine Fehlerdomäne betrifft, kann der Netzwerkdatenverkehr so weiterhin an die VMs in den anderen Fehlerdomänen weitergeleitet werden. Weitere Informationen zu Verfügbarkeitsgruppen finden Sie unter [Verwalten der Verfügbarkeit virtueller Windows-Computer in Azure](/azure/virtual-machines/windows/manage-availability).
 
@@ -182,7 +182,7 @@ Azure verfügt über eine Reihe von Features, mit denen für eine Anwendung für
 
 Berücksichtigen Sie beim Entwerfen einer Anwendung für mehrere Regionen, dass die Netzwerklatenz für mehrere Regionen höher als innerhalb einer Region ist. Wenn Sie beispielsweise eine Datenbank replizieren, um das Failover zu ermöglichen, sollten Sie die synchrone Datenreplikation innerhalb einer Region und die asynchrone Datenreplikation für mehrere Regionen verwenden.
 
-| &nbsp; | Verfügbarkeitsgruppe | Verfügbarkeitszone | Regionspaar |
+| &nbsp; | Verfügbarkeitsgruppe | Verfügbarkeitszone | Azure Site Recovery/Gekoppelte Region |
 |--------|------------------|-------------------|---------------|
 | Fehlerumfang | Rack | Datacenter | Region |
 | Routinganforderung | Load Balancer | Zonenübergreifender Lastenausgleich | Traffic Manager |
@@ -194,7 +194,7 @@ Dieser Abschnitt enthält eine Übersicht über einige häufig verwendete Resili
 
 **Wiederholen des Vorgangs bei vorübergehenden Fehlern.** Vorübergehende Fehler können durch eine kurze Trennung der Netzwerkverbindung, einen Verlust der Verbindung zur Datenbank oder eine Zeitüberschreitung bei zu hoher Auslastung eines Diensts verursacht werden. Häufig kann ein vorübergehender Fehler einfach gelöst werden, indem versucht wird, die Anforderung erneut zu senden. Für viele Azure-Dienste werden vom Client-SDK automatische Wiederholungen so implementiert, dass dies für den Aufrufer transparent ist. Informationen hierzu finden Sie unter [Anleitung zu dienstspezifischen Wiederholungsmechanismen][retry-service-specific guidance].
 
-Jeder Wiederholungsversuch trägt zur Gesamtwartezeit bei. Außerdem können zu viele fehlgeschlagene Anforderungsversuche zu einem Engpass führen, wenn sich ausstehende Anforderungen in der Warteschlange ansammeln. Diese blockierten Anforderungen können kritische Systemressourcen belegen, z.B. Arbeitsspeicher, Threads, Datenbankverbindungen usw., sodass es zu kaskadierenden Fehlern kommen kann. Verlängern Sie die Verzögerungszeit zwischen den einzelnen Wiederholungsversuchen, und begrenzen Sie die Gesamtzahl von fehlgeschlagenen Anforderungen, um dies zu verhindern. 
+Jeder Wiederholungsversuch trägt zur Gesamtwartezeit bei. Außerdem können zu viele fehlgeschlagene Anforderungsversuche zu einem Engpass führen, wenn sich ausstehende Anforderungen in der Warteschlange ansammeln. Diese blockierten Anforderungen können kritische Systemressourcen belegen, z.B. Arbeitsspeicher, Threads, Datenbankverbindungen usw., sodass es zu kaskadierenden Fehlern kommen kann. Verlängern Sie die Verzögerungszeit zwischen den einzelnen Wiederholungsversuchen, und begrenzen Sie die Gesamtzahl von fehlgeschlagenen Anforderungen, um dies zu verhindern.
 
 ![](./images/retry.png)
 
@@ -212,22 +212,23 @@ Sie können mithilfe von [Azure Site Recovery][site-recovery] virtuelle Azure-Co
 
 **Stufen Sie Funktionalität korrekt herab**. Wenn ein Dienst ausfällt und kein Failoverpfad vorhanden ist, kann die Anwendung unter Umständen korrekt herabgestuft werden und trotzdem noch eine akzeptable Benutzerfreundlichkeit bieten. Beispiel: 
 
-* Reihen Sie ein Arbeitselement zur späteren Verarbeitung in eine Warteschlange ein. 
+* Reihen Sie ein Arbeitselement zur späteren Verarbeitung in eine Warteschlange ein.
 * Geben Sie einen geschätzten Wert zurück.
-* Verwenden Sie lokal zwischengespeicherte Daten. 
+* Verwenden Sie lokal zwischengespeicherte Daten.
 * Zeigen Sie eine Fehlermeldung für den Benutzer an. (Diese Option ist besser, als wenn die Anwendung nicht mehr auf Anforderungen reagiert.)
 
 **Drosseln von Benutzern mit hohem Volumen.** Es kann vorkommen, dass eine geringe Zahl von Benutzern für die Erzeugung sehr hoher Lasten verantwortlich ist. Dies kann negative Auswirkungen auf andere Benutzer haben und die Gesamtverfügbarkeit Ihrer Anwendung reduzieren.
 
-Wenn von einem einzelnen Client übermäßig viele Anforderungen ausgehen, kann die Anwendung den Client ggf. für einen bestimmten Zeitraum drosseln. Während des Drosselungszeitraums verweigert die Anwendung einige oder alle Anforderungen dieses Clients (je nach Drosselungsstrategie). Der Schwellenwert für die Drosselung richtet sich unter Umständen nach der Dienstebene des Kunden. 
+Wenn von einem einzelnen Client übermäßig viele Anforderungen ausgehen, kann die Anwendung den Client ggf. für einen bestimmten Zeitraum drosseln. Während des Drosselungszeitraums verweigert die Anwendung einige oder alle Anforderungen dieses Clients (je nach Drosselungsstrategie). Der Schwellenwert für die Drosselung richtet sich unter Umständen nach der Dienstebene des Kunden.
 
 Die Drosselung muss nicht bedeuten, dass der Client in böser Absicht gehandelt hat, sondern nur, dass das Dienstkontingent überschritten wurde. In einigen Fällen kann es vorkommen, dass ein Consumer das Kontingent ständig überschreitet oder sich auf andere Weise unangemessen verhält. Sie können dann weitere Maßnahmen treffen und den Benutzer blockieren. Normalerweise wird hierzu ein API-Schlüssel oder ein IP-Adressbereich blockiert. Weitere Informationen finden Sie unter [Throttling Pattern][throttling-pattern] (Drosselungsmuster).
 
-**Verwenden eines Schutzschalters.** Mit einem [Schutzschaltermuster][circuit-breaker-pattern] kann verhindert werden, dass von einer Anwendung wiederholt versucht wird, einen Vorgang auszuführen, der mit hoher Wahrscheinlichkeit fehlschlägt. Der Schutzschalter umschließt Aufrufe an einen Dienst und verfolgt die Anzahl kürzlich aufgetretener Fehler nach. Überschreitet die Fehleranzahl einen Schwellenwert, gibt der Schutzschalter einen Fehlercode zurück, ohne den Dienst aufzurufen. Dadurch hat der Dienst Zeit zur Wiederherstellung. 
+**Verwenden eines Schutzschalters.** Mit einem [Schutzschaltermuster][circuit-breaker-pattern] kann verhindert werden, dass von einer Anwendung wiederholt versucht wird, einen Vorgang auszuführen, der mit hoher Wahrscheinlichkeit fehlschlägt. Der Schutzschalter umschließt Aufrufe an einen Dienst und verfolgt die Anzahl kürzlich aufgetretener Fehler nach. Überschreitet die Fehleranzahl einen Schwellenwert, gibt der Schutzschalter einen Fehlercode zurück, ohne den Dienst aufzurufen. Dadurch hat der Dienst Zeit zur Wiederherstellung.
 
-**Verwenden eines Belastungsausgleichs zum Ausgleichen von Datenverkehrsspitzen.** Für Anwendungen kann es zu plötzlichen Datenverkehrsspitzen kommen, die von Diensten auf dem Back-End nicht mehr bewältigt werden können. Wenn ein Back-End-Dienst nicht schnell genug auf Anforderungen reagieren kann, kann dies dazu führen, dass Anforderungen in eine Warteschlange eingereiht werden (Rückstau) oder die Anwendung vom Dienst gedrosselt wird. Sie können eine Warteschlange als Puffer verwenden, um dies zu verhindern. Wenn ein neues Arbeitselement vorhanden ist, reiht die Anwendung ein Arbeitselement für die asynchrone Ausführung in die Warteschlange ein, anstatt sofort den Back-End-Dienst aufzurufen. Die Warteschlange fungiert als Puffer, um Lastspitzen zu glätten. Weitere Informationen finden Sie unter [Queue-Based Load Leveling Pattern][load-leveling-pattern] (Warteschlangenbasiertes Belastungsausgleichsmuster).
+**Verwenden eines Belastungsausgleichs zum Ausgleichen von Datenverkehrsspitzen.**
+Für Anwendungen kann es zu plötzlichen Datenverkehrsspitzen kommen, die von Diensten auf dem Back-End nicht mehr bewältigt werden können. Wenn ein Back-End-Dienst nicht schnell genug auf Anforderungen reagieren kann, kann dies dazu führen, dass Anforderungen in eine Warteschlange eingereiht werden (Rückstau) oder die Anwendung vom Dienst gedrosselt wird. Sie können eine Warteschlange als Puffer verwenden, um dies zu verhindern. Wenn ein neues Arbeitselement vorhanden ist, reiht die Anwendung ein Arbeitselement für die asynchrone Ausführung in die Warteschlange ein, anstatt sofort den Back-End-Dienst aufzurufen. Die Warteschlange fungiert als Puffer, um Lastspitzen zu glätten. Weitere Informationen finden Sie unter [Queue-Based Load Leveling Pattern][load-leveling-pattern] (Warteschlangenbasiertes Belastungsausgleichsmuster).
 
-**Isolieren von kritischen Ressourcen.** Fehler in einem Subsystem können ggf. zu kaskadierenden Fehlern werden und Fehler in anderen Teilen der Anwendung verursachen. Dies kann passieren, wenn ein Fehler dazu führt, dass einige Ressourcen, z.B. Threads oder Sockets, nicht rechtzeitig freigegeben werden und die Ressourcen erschöpft sind. 
+**Isolieren von kritischen Ressourcen.** Fehler in einem Subsystem können ggf. zu kaskadierenden Fehlern werden und Fehler in anderen Teilen der Anwendung verursachen. Dies kann passieren, wenn ein Fehler dazu führt, dass einige Ressourcen, z.B. Threads oder Sockets, nicht rechtzeitig freigegeben werden und die Ressourcen erschöpft sind.
 
 Um dies zu vermeiden, können Sie ein System in isolierte Gruppen partitionieren, damit ein Ausfall in einer Partition nicht zum Ausfall des gesamten Systems führt. Dieses Verfahren wird auch als „Bulkhead-Muster“ (Trennwandmuster) bezeichnet.
 
@@ -235,13 +236,13 @@ Beispiele:
 
 * Partitionieren Sie eine Datenbank (z.B. nach Mandant), und weisen Sie einen separaten Pool mit Webserverinstanzen für jede Partition zu.  
 * Verwenden Sie separate Threadpools, um Aufrufe von unterschiedlichen Diensten zu isolieren. Auf diese Weise werden kaskadierende Fehler verhindert, wenn einer der Dienste ausfällt. Ein Beispiel finden Sie in der [Hystrix-Bibliothek][hystrix] von Netflix.
-* Verwenden Sie [Container][containers], um die Ressourcen zu begrenzen, die für ein bestimmtes Subsystem verfügbar sind. 
+* Verwenden Sie [Container][containers], um die Ressourcen zu begrenzen, die für ein bestimmtes Subsystem verfügbar sind.
 
 ![](./images/bulkhead.png)
 
 **Anwenden von ausgleichenden Transaktionen.** Mit einer [ausgleichenden Transaktion][compensating-transaction-pattern] werden die Auswirkungen einer anderen abgeschlossenen Transaktion rückgängig gemacht. In einem verteilten System kann es sehr schwierig sein, eine hohe Transaktionskonsistenz zu erzielen. Ausgleichende Transaktionen sind eine Möglichkeit, Konsistenz zu erreichen, indem eine Reihe von kleineren einzelnen Transaktionen verwendet wird, die in jedem Schritt rückgängig gemacht werden können.
 
-Beim Buchen einer Reise kann ein Kunde beispielsweise einen Mietwagen, ein Hotelzimmer und einen Flug reservieren. Wenn einer dieser Schritte nicht erfolgreich ist, schlägt der gesamte Vorgang fehl. Anstatt eine einzelne verteilte Transaktion für den gesamten Vorgang zu verwenden, können Sie für jeden Schritt eine ausgleichende Transaktion definieren. Beispielsweise können Sie die Reservierung stornieren, um die Reservierung eines Mietwagens rückgängig zu machen. Ein Koordinator führt die einzelnen Schritte aus, um den gesamten Vorgang abzuschließen. Falls ein Schritt fehlschlägt, wendet der Koordinator ausgleichende Transaktionen an, um abgeschlossene Schritte rückgängig zu machen. 
+Beim Buchen einer Reise kann ein Kunde beispielsweise einen Mietwagen, ein Hotelzimmer und einen Flug reservieren. Wenn einer dieser Schritte nicht erfolgreich ist, schlägt der gesamte Vorgang fehl. Anstatt eine einzelne verteilte Transaktion für den gesamten Vorgang zu verwenden, können Sie für jeden Schritt eine ausgleichende Transaktion definieren. Beispielsweise können Sie die Reservierung stornieren, um die Reservierung eines Mietwagens rückgängig zu machen. Ein Koordinator führt die einzelnen Schritte aus, um den gesamten Vorgang abzuschließen. Falls ein Schritt fehlschlägt, wendet der Koordinator ausgleichende Transaktionen an, um abgeschlossene Schritte rückgängig zu machen.
 
 ## <a name="test-for-resiliency"></a>Testen der Resilienz
 Im Allgemeinen können Sie die Resilienz nicht auf die gleiche Weise wie die Anwendungsfunktionalität testen (per Ausführung von Komponententests usw.). Stattdessen müssen Sie testen, wie sich die End-to-End-Workload unter Fehlerbedingungen verhält, die nur zeitweise auftreten.
@@ -265,10 +266,12 @@ Dies ist ein weiterer Grund, warum es wichtig ist, mögliche Fehlerpunkte währe
 
 **Auslastungstests**: Auslastungstests sind sehr wichtig zur Identifizierung von Fehlern, die nur bei hoher Auslastung auftreten, z.B. eine Überlastung der Back-End-Datenbank oder eine Drosselung des Diensts. Führen Sie Tests für Spitzenlasten durch, indem Sie Produktionsdaten oder synthetische Daten verwenden, die den Produktionsdaten möglichst genau ähneln. Hierbei soll ermittelt werden, wie sich die Anwendung unter realen Bedingungen verhält.   
 
-## <a name="deploy-using-reliable-processes"></a>Bereitstellen mithilfe zuverlässiger Prozesse
-Nachdem eine Anwendung in der Produktion bereitgestellt wurde, sind Updates eine mögliche Fehlerquelle. Im schlimmsten Fall kann ein fehlerhaftes Update zu Ausfallzeiten führen. Der Bereitstellungsprozess muss vorhersagbar und wiederholbar sein, um dies zu vermeiden. Die Bereitstellung umfasst auch die Bereitstellung von Azure-Ressourcen und -Anwendungscode und das Anwenden von Konfigurationseinstellungen. Ein Update kann alle drei Vorgänge oder einen Teil davon abdecken. 
+**Übungen zur Notfallwiederherstellung.** Es reicht nicht aus, einen guten Notfallwiederherstellungsplan aufzustellen. Sie müssen ihn auch in regelmäßigen Abständen testen, um sicherzustellen, dass der Wiederherstellungsplan funktioniert, wenn es darauf ankommt. Für virtuelle Azure-Computer können Sie ohne Beeinträchtigung von Produktionsanwendungen oder laufenden Replikationen [Azure Site Recovery][site-recovery] zum Replizieren sowie zum [Ausführen von Notfallwiederherstellungsübungen][site-recovery-test-failover] verwenden.
 
-Der entscheidende Punkt ist, dass manuelle Bereitstellungen fehleranfällig sind. Daher wird empfohlen, einen automatisierten idempotenten Prozess zu verwenden, den Sie bedarfsabhängig und bei Fehlern auch erneut durchführen können. 
+## <a name="deploy-using-reliable-processes"></a>Bereitstellen mithilfe zuverlässiger Prozesse
+Nachdem eine Anwendung in der Produktion bereitgestellt wurde, sind Updates eine mögliche Fehlerquelle. Im schlimmsten Fall kann ein fehlerhaftes Update zu Ausfallzeiten führen. Der Bereitstellungsprozess muss vorhersagbar und wiederholbar sein, um dies zu vermeiden. Die Bereitstellung umfasst auch die Bereitstellung von Azure-Ressourcen und -Anwendungscode und das Anwenden von Konfigurationseinstellungen. Ein Update kann alle drei Vorgänge oder einen Teil davon abdecken.
+
+Der entscheidende Punkt ist, dass manuelle Bereitstellungen fehleranfällig sind. Daher wird empfohlen, einen automatisierten idempotenten Prozess zu verwenden, den Sie bedarfsabhängig und bei Fehlern auch erneut durchführen können.
 
 * Nutzen Sie Azure Resource Manager-Vorlagen, um die Bereitstellung von Azure-Ressourcen zu automatisieren.
 * Verwenden Sie die [Azure Automation-Konfiguration für den gewünschten Zustand][dsc] (Desired State Configuration, DSC) zum Konfigurieren von VMs.
@@ -277,19 +280,19 @@ Der entscheidende Punkt ist, dass manuelle Bereitstellungen fehleranfällig sind
 Zwei Konzepte für die robuste Bereitstellung sind *Infrastruktur als Code* und *unveränderliche Infrastruktur*.
 
 * Bei **Infrastruktur als Code** wird Code zum Bereitstellen und Konfigurieren der Infrastruktur verwendet. Für Infrastruktur als Code kann ein deklarativer Ansatz oder ein imperativer Ansatz genutzt werden (oder eine Kombination). Resource Manager-Vorlagen sind ein Beispiel für einen deklarativen Ansatz. PowerShell-Skripts sind ein Beispiel für einen imperativen Ansatz.
-* Bei **unveränderlicher Infrastruktur** geht es darum, die Infrastruktur nicht mehr zu ändern, nachdem sie in der Produktion bereitgestellt wurde. Andernfalls kann es zu einem Zustand kommen, in dem Ad-hoc-Änderungen angewendet wurden. In diesem Fall ist es schwierig, die genauen Änderungen zu erkennen und Entscheidungen für das System zu treffen. 
+* Bei **unveränderlicher Infrastruktur** geht es darum, die Infrastruktur nicht mehr zu ändern, nachdem sie in der Produktion bereitgestellt wurde. Andernfalls kann es zu einem Zustand kommen, in dem Ad-hoc-Änderungen angewendet wurden. In diesem Fall ist es schwierig, die genauen Änderungen zu erkennen und Entscheidungen für das System zu treffen.
 
 Eine andere Frage ist, wie das Rollout für ein Anwendungsupdate durchgeführt werden soll. Wir empfehlen die Nutzung von Verfahren wie eine Blaugrün-Bereitstellung oder Canary-Releases, bei denen Updates unter starker Kontrolle übertragen werden, um mögliche negative Auswirkungen einer fehlerhaften Bereitstellung zu verringern.
 
 * Die [Blaugrün-Bereitstellung][blue-green] ist ein Verfahren, bei dem ein Update in einer Produktionsumgebung separat von der Liveanwendung bereitgestellt wird. Wechseln Sie für das Routing von Datenverkehr nach der Überprüfung der Bereitstellung dann zur aktualisierten Version. Für Azure App Service-Web-Apps wird dies beispielsweise durch Stagingslots ermöglicht.
 * [Canary-Releases][canary-release] ähneln Blaugrün-Bereitstellungen. Anstatt für den gesamten Datenverkehr auf die aktualisierte Version umzustellen, führen Sie für das Update den Rollout für einen kleinen Prozentsatz der Benutzer durch, indem Sie einen Teil des Datenverkehrs an die neue Bereitstellung weiterleiten. Falls ein Problem auftritt, können Sie den Vorgang stoppen und wieder auf die alte Bereitstellung zurückgreifen. Wenn alles in Ordnung ist, können Sie mehr Datenverkehr an die neue Version weiterleiten, bis die Umstellung für den gesamten Datenverkehr erfolgt ist.
 
-Stellen Sie unabhängig vom gewählten Ansatz sicher, dass Sie einen Rollback auf die letzte als fehlerfrei bekannte Bereitstellung durchführen können, falls die neue Version nicht funktioniert. Wenn Fehler auftreten, muss in den Anwendungsprotokollen angegeben werden, welche Version den Fehler verursacht hat. 
+Stellen Sie unabhängig vom gewählten Ansatz sicher, dass Sie einen Rollback auf die letzte als fehlerfrei bekannte Bereitstellung durchführen können, falls die neue Version nicht funktioniert. Wenn Fehler auftreten, muss in den Anwendungsprotokollen angegeben werden, welche Version den Fehler verursacht hat.
 
 ## <a name="monitor-to-detect-failures"></a>Überwachen zur Fehlererkennung
-Die Überwachung und die Diagnose sind für die Resilienz von entscheidender Bedeutung. Wenn ein Fehler auftritt, müssen Sie darüber informiert werden, und Sie müssen über Erkenntnisse zur Fehlerursache verfügen. 
+Die Überwachung und die Diagnose sind für die Resilienz von entscheidender Bedeutung. Wenn ein Fehler auftritt, müssen Sie darüber informiert werden, und Sie müssen über Erkenntnisse zur Fehlerursache verfügen.
 
-Die Überwachung eines umfangreichen verteilten Systems stellt eine erhebliche Herausforderung dar. Angenommen, eine Anwendung wird auf einigen Dutzend VMs ausgeführt. Es ist nicht effizient, sich einzeln nacheinander an jeder VM anzumelden und sich die Protokolldateien anzusehen, um die Problembehandlung durchzuführen. Die Anzahl von VM-Instanzen ist außerdem wahrscheinlich nicht statisch. VMs werden hinzugefügt und entfernt, wenn die Anwendung horizontal herunter- und hochskaliert wird, und gelegentlich kann es zu einem Ausfall einer Instanz kommen, sodass eine erneute Bereitstellung erforderlich ist. Außerdem können für eine typische Cloudanwendung mehrere Datenspeicher verwendet werden (Azure Storage, SQL-Datenbank, Cosmos DB, Redis Cache), und eine einzelne Benutzeraktion kann auf mehrere Subsysteme verteilt sein. 
+Die Überwachung eines umfangreichen verteilten Systems stellt eine erhebliche Herausforderung dar. Angenommen, eine Anwendung wird auf einigen Dutzend VMs ausgeführt. Es ist nicht effizient, sich einzeln nacheinander an jeder VM anzumelden und sich die Protokolldateien anzusehen, um die Problembehandlung durchzuführen. Die Anzahl von VM-Instanzen ist außerdem wahrscheinlich nicht statisch. VMs werden hinzugefügt und entfernt, wenn die Anwendung horizontal herunter- und hochskaliert wird, und gelegentlich kann es zu einem Ausfall einer Instanz kommen, sodass eine erneute Bereitstellung erforderlich ist. Außerdem können für eine typische Cloudanwendung mehrere Datenspeicher verwendet werden (Azure Storage, SQL-Datenbank, Cosmos DB, Redis Cache), und eine einzelne Benutzeraktion kann auf mehrere Subsysteme verteilt sein.
 
 Sie können sich den Überwachungs- und Diagnoseprozess als Pipeline mit mehreren einzelnen Phasen vorstellen:
 
@@ -300,7 +303,7 @@ Sie können sich den Überwachungs- und Diagnoseprozess als Pipeline mit mehrere
 * **Analyse und Diagnose**: Nachdem die Daten zusammengefasst wurden, können sie analysiert werden, um die Problembehandlung durchzuführen und eine Gesamtansicht der Anwendungsintegrität bereitzustellen.
 * **Visualisierung und Warnungen**: In dieser Phase werden Telemetriedaten so dargestellt, dass ein Bediener Probleme oder Trends schnell erkennen kann. Beispiele hierfür sind Dashboards oder E-Mail-Warnungen.  
 
-Die Überwachung ist nicht dasselbe wie die Fehlererkennung. Es kann beispielsweise sein, dass Ihre Anwendung einen vorübergehenden Fehler erkennt und einen Wiederholungsversuch durchführt, ohne dass es zu Ausfallzeit kommt. Es sollte aber auch der Wiederholungsvorgang protokolliert werden, damit Sie die Fehlerrate überwachen können, um ein Gesamtbild der Anwendungsintegrität zu erhalten. 
+Die Überwachung ist nicht dasselbe wie die Fehlererkennung. Es kann beispielsweise sein, dass Ihre Anwendung einen vorübergehenden Fehler erkennt und einen Wiederholungsversuch durchführt, ohne dass es zu Ausfallzeit kommt. Es sollte aber auch der Wiederholungsvorgang protokolliert werden, damit Sie die Fehlerrate überwachen können, um ein Gesamtbild der Anwendungsintegrität zu erhalten.
 
 Anwendungsprotokolle sind eine wichtige Quelle für Diagnosedaten. Bewährte Methoden für die Anwendungsprotokollierung sind:
 
@@ -308,7 +311,7 @@ Anwendungsprotokolle sind eine wichtige Quelle für Diagnosedaten. Bewährte Met
 * Protokollieren von Ereignissen an den Dienstgrenzen: Binden Sie eine Korrelations-ID ein, die über Dienstgrenzen hinweg gilt. Wenn eine Transaktion mehrere Dienste durchläuft und einer davon ausfällt, können Sie anhand der Korrelations-ID ermitteln, warum es zum Transaktionsfehler gekommen ist.
 * Verwenden Sie die semantische Protokollierung, die auch als strukturierte Protokollierung bezeichnet wird. Unstrukturierte Protokolle erschweren die Automatisierung des Verbrauchs und der Analyse von Protokolldaten, die auf Cloudebene erforderlich ist.
 * Verwenden der asynchronen Protokollierung: Andernfalls kann das Protokollierungssystem selbst zu einem Fehler der Anwendung führen, wenn es zu einem Stau von Anforderungen und somit zu einer Blockade kommt, während auf das Schreiben eines Protokollierungsereignisses gewartet wird.
-* Die Anwendungsprotokollierung ist nicht dasselbe wie die Überwachung per Auditing. Das Auditing muss unter Umständen aus Konformitätsgründen oder zur Einhaltung von Bestimmungen durchgeführt werden. Daher müssen die Überwachungsdatensätze vollständig sein, und es ist nicht zulässig, beim Verarbeiten von Transaktionen Datensätze zu verwerfen. Wenn für eine Anwendung das Auditing erforderlich ist, sollte dies von der Diagnoseprotokollierung getrennt werden. 
+* Die Anwendungsprotokollierung ist nicht dasselbe wie die Überwachung per Auditing. Das Auditing muss unter Umständen aus Konformitätsgründen oder zur Einhaltung von Bestimmungen durchgeführt werden. Daher müssen die Überwachungsdatensätze vollständig sein, und es ist nicht zulässig, beim Verarbeiten von Transaktionen Datensätze zu verwerfen. Wenn für eine Anwendung das Auditing erforderlich ist, sollte dies von der Diagnoseprotokollierung getrennt werden.
 
 Weitere Informationen zur Überwachung und Diagnose finden Sie unter [Anleitung zur Überwachung und Diagnose][monitoring-guidance].
 
@@ -316,20 +319,20 @@ Weitere Informationen zur Überwachung und Diagnose finden Sie unter [Anleitung 
 In den vorherigen Abschnitten wurden Strategien für die automatisierte Wiederherstellung beschrieben, die für die Hochverfügbarkeit wichtig sind. Aber in einigen Fällen sind manuelle Eingriffe erforderlich.
 
 * **Warnungen**. Überwachen Sie Ihre Anwendung auf Warnsignale, die proaktive Eingriffe nötig machen. Wenn Sie beispielsweise sehen, dass Ihre Anwendung von SQL-Datenbank oder Cosmos DB ständig gedrosselt wird, müssen Sie ggf. Ihre Datenbankkapazität erhöhen oder Ihre Abfragen optimieren. In diesem Beispiel sollte Ihre Telemetrie auch dann eine Warnung auslösen, wenn die Anwendung Drosselungsfehler transparent behandelt, damit Sie Maßnahmen treffen können.  
-* **Durchführen eines manuellen Failovers**: Für einige Systeme kann ein Failover nicht automatisch durchgeführt werden, sodass ein manuelles Failover erforderlich ist. 
+* **Durchführen eines manuellen Failovers**: Für einige Systeme kann ein Failover nicht automatisch durchgeführt werden, sodass ein manuelles Failover erforderlich ist. Für virtuelle Azure-Computer, die mit [Azure Site Recovery][site-recovery] konfiguriert wurden, können Sie ein [Failover ausführen][site-recovery-failover] und Ihre virtuellen Computer in wenigen Minuten in einer anderen Region wiederherstellen.
 * **Testen der Betriebsbereitschaft**: Wenn für Ihre Anwendung ein Failover in eine sekundäre Region durchgeführt wird, sollten Sie die Betriebsbereitschaft testen, bevor das Failback in die primäre Region erfolgt. Bei diesem Test sollte sichergestellt werden, dass die primäre Region betriebsbereit und fehlerfrei ist und wieder für den Empfang von Datenverkehr bereit ist.
-* **Prüfen der Datenkonsistenz**: Wenn in einem Datenspeicher ein Fehler auftritt, kann es zu Inkonsistenzen bei den Daten kommen, sobald der Speicher wieder verfügbar ist. Dies gilt besonders, wenn die Daten repliziert wurden. 
+* **Prüfen der Datenkonsistenz**: Wenn in einem Datenspeicher ein Fehler auftritt, kann es zu Inkonsistenzen bei den Daten kommen, sobald der Speicher wieder verfügbar ist. Dies gilt besonders, wenn die Daten repliziert wurden.
 * **Wiederherstellen einer Sicherung**: Wenn es beispielsweise für SQL-Datenbank zu einem regionalen Ausfall kommt, können Sie für die Datenbank basierend auf der letzten Sicherung die Geowiederherstellung durchführen.
 
-Dokumentieren und testen Sie Ihren Plan für die Notfallwiederherstellung. Werten Sie die geschäftlichen Auswirkungen von Anwendungsausfällen aus. Automatisieren Sie den Prozess so weit wie möglich, und dokumentieren Sie alle manuellen Schritte, z.B. manuelles Failover oder die Datenwiederherstellung aus Sicherungen. Testen Sie Ihren Prozess für die Notfallwiederherstellung regelmäßig, um den Plan zu überprüfen und zu verbessern. 
+Dokumentieren und testen Sie Ihren Plan für die Notfallwiederherstellung. Werten Sie die geschäftlichen Auswirkungen von Anwendungsausfällen aus. Automatisieren Sie den Prozess so weit wie möglich, und dokumentieren Sie alle manuellen Schritte, z.B. manuelles Failover oder die Datenwiederherstellung aus Sicherungen. Testen Sie Ihren Prozess für die Notfallwiederherstellung regelmäßig, um den Plan zu überprüfen und zu verbessern.
 
 ## <a name="summary"></a>Zusammenfassung
 In diesem Artikel wurde die Resilienz aus einer ganzheitlichen Perspektive beschrieben, und es wurden einige besondere Anforderungen der Cloud erläutert. Hierzu gehörten die verteilte Struktur des Cloud Computing, die Nutzung von Standardhardware und das Auftreten von vorübergehenden Netzwerkfehlern.
 
 Hier sind noch einmal die wichtigsten Punkte dieses Artikels aufgeführt:
 
-* Resilienz führt zu einer höheren Verfügbarkeit und geringeren mittleren Zeit bis zur Wiederherstellung nach Ausfällen. 
-* Zur Erreichung von Resilienz in der Cloud sind andere Verfahren als bei herkömmlichen lokalen Lösungen erforderlich. 
+* Resilienz führt zu einer höheren Verfügbarkeit und geringeren mittleren Zeit bis zur Wiederherstellung nach Ausfällen.
+* Zur Erreichung von Resilienz in der Cloud sind andere Verfahren als bei herkömmlichen lokalen Lösungen erforderlich.
 * Resilienz ist kein Zufallsprodukt. Sie muss von Beginn an gezielt entworfen und integriert werden.
 * Resilienz betrifft alle Bereiche des Anwendungslebenszyklus – von der Planung und Codierung bis zum Betrieb.
 * Testen und überwachen Sie!
@@ -360,3 +363,5 @@ Hier sind noch einmal die wichtigsten Punkte dieses Artikels aufgeführt:
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
 [site-recovery]:/azure/site-recovery/azure-to-azure-quickstart/
+[site-recovery-test-failover]:/azure/site-recovery/azure-to-azure-tutorial-dr-drill/
+[site-recovery-failover]:/azure/site-recovery/azure-to-azure-tutorial-failover-failback/
