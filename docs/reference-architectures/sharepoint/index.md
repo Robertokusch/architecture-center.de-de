@@ -1,20 +1,22 @@
 ---
-title: Ausführen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure
-description: Enthält eine Beschreibung der bewährten Methoden zum Einrichten einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure.
+title: Ausführen einer hoch verfügbaren SharePoint Server 2016-Farm in Azure
+titleSuffix: Azure Reference Architectures
+description: Empfohlene Architektur zum Bereitstellen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure
 author: njray
 ms.date: 07/26/2018
-ms.openlocfilehash: 5db146956134f9b297b520d666d8dabbc8793caf
-ms.sourcegitcommit: 77d62f966d910cd5a3d11ade7ae5a73234e093f2
+ms.custom: seodec18
+ms.openlocfilehash: 6cc8255f95cb4944ff3ef138ad5edf2e5bbea4b4
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51293263"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120100"
 ---
-# <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Ausführen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure
+# <a name="run-a-highly-available-sharepoint-server-2016-farm-in-azure"></a>Ausführen einer hoch verfügbaren SharePoint Server 2016-Farm in Azure
 
-In dieser Referenzarchitektur wird eine Reihe von bewährten Methoden zum Einrichten einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure veranschaulicht, indem die MinRole-Topologie und SQL Server Always On-Verfügbarkeitsgruppen verwendet werden. Die SharePoint-Farm wird in einem geschützten virtuellen Netzwerk ohne Internetendpunkt bzw. -präsenz bereitgestellt. [**So stellen Sie diese Lösung bereit**.](#deploy-the-solution) 
+In dieser Referenzarchitektur werden bewährte Methoden zum Bereitstellen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure mit der MinRole-Topologie und SQL Server AlwaysOn-Verfügbarkeitsgruppen veranschaulicht. Die SharePoint-Farm wird in einem geschützten virtuellen Netzwerk ohne Internetendpunkt bzw. -präsenz bereitgestellt. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
-![](./images/sharepoint-ha.png)
+![Referenzarchitektur für eine hoch verfügbare SharePoint Server 2016-Farm in Azure](./images/sharepoint-ha.png)
 
 *Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
 
@@ -26,15 +28,15 @@ Die Architektur umfasst die folgenden Komponenten:
 
 - **Ressourcengruppen**: Eine [Ressourcengruppe][resource-group] ist ein Container, der verwandte Azure-Ressourcen enthält. Eine Ressourcengruppe wird für die SharePoint-Server verwendet, und eine andere Ressourcengruppe wird für Infrastrukturkomponenten genutzt, die unabhängig von VMs sind, z.B. das virtuelle Netzwerk und Lastenausgleichsmodule.
 
-- **Virtuelles Netzwerk (VNET)**. Die VMs werden in einem VNet mit einem eindeutigen Intranetadressraum bereitgestellt. Das VNet ist in Subnetze unterteilt. 
+- **Virtuelles Netzwerk (VNET)**. Die VMs werden in einem VNet mit einem eindeutigen Intranetadressraum bereitgestellt. Das VNet ist in Subnetze unterteilt.
 
 - **Virtuelle Computer (Virtual Machines, VMs)**: Die VMs werden im VNet bereitgestellt, und private statische IP-Adressen werden allen VMs zugewiesen. Statische IP-Adressen sind für die VMs zu empfehlen, auf denen SQL Server und SharePoint Server 2016 ausgeführt werden, um Probleme mit der Zwischenspeicherung von IP-Adressen und Adressänderungen nach einem Neustart zu vermeiden.
 
-- **Verfügbarkeitsgruppen**: Ordnen Sie die VMs für jede SharePoint-Rolle in separaten [Verfügbarkeitsgruppen][availability-set] an, und stellen Sie mindestens zwei virtuelle Computer (VMs) für jede Rolle bereit. Auf diese Weise können die VMs für eine höhere Vereinbarung zum Servicelevel (SLA) genutzt werden. 
+- **Verfügbarkeitsgruppen**: Ordnen Sie die VMs für jede SharePoint-Rolle in separaten [Verfügbarkeitsgruppen][availability-set] an, und stellen Sie mindestens zwei virtuelle Computer (VMs) für jede Rolle bereit. Auf diese Weise können die VMs für eine höhere Vereinbarung zum Servicelevel (SLA) genutzt werden.
 
-- **Interner Load Balancer**. Über den [Lastenausgleich][load-balancer] wird Datenverkehr in Form von SharePoint-Anforderungen aus dem lokalen Netzwerk auf die Front-End-Webserver der SharePoint-Farm verteilt. 
+- **Interner Load Balancer**. Über den [Lastenausgleich][load-balancer] wird Datenverkehr in Form von SharePoint-Anforderungen aus dem lokalen Netzwerk auf die Front-End-Webserver der SharePoint-Farm verteilt.
 
-- **Netzwerksicherheitsgruppen (NSGs)**: Für jedes Subnetz, das virtuelle Computer enthält, wird eine [Netzwerksicherheitsgruppe][nsg] erstellt. Verwenden Sie NSGs zum Beschränken von Netzwerkdatenverkehr im VNet, um Subnetze zu isolieren. 
+- **Netzwerksicherheitsgruppen (NSGs)**: Für jedes Subnetz, das virtuelle Computer enthält, wird eine [Netzwerksicherheitsgruppe][nsg] erstellt. Verwenden Sie NSGs zum Beschränken von Netzwerkdatenverkehr im VNet, um Subnetze zu isolieren.
 
 - **Gateway**: Das Gateway stellt eine Verbindung zwischen Ihrem lokalen Netzwerk und dem virtuellen Azure-Netzwerk her. Hierfür kann eine ExpressRoute- oder eine Site-to-Site-VPN-Verbindung verwendet werden. Weitere Informationen finden Sie unter [Connect an on-premises network to Azure][hybrid-ra] (Verbinden eines lokalen Netzwerks mit Azure).
 
@@ -42,11 +44,11 @@ Die Architektur umfasst die folgenden Komponenten:
 
   SharePoint Server 2016 unterstützt auch die Verwendung [Azure Active Directory Domain Services](/azure/active-directory-domain-services/). Azure AD Domain Services stellt verwaltete Domänendienste bereit, sodass Sie keine Domänencontroller in Azure bereitstellen und verwalten müssen.
 
-- **SQL Server Always On-Verfügbarkeitsgruppe**. Wir empfehlen die Verwendung von [SQL Server Always On-Verfügbarkeitsgruppen][sql-always-on], um für die SQL Server-Datenbank Hochverfügbarkeit zu erzielen. Zwei virtuelle Computer werden für SQL Server verwendet. Einer enthält das primäre Datenbankreplikat, und der andere enthält das sekundäre Replikat. 
+- **SQL Server Always On-Verfügbarkeitsgruppe**. Wir empfehlen die Verwendung von [SQL Server Always On-Verfügbarkeitsgruppen][sql-always-on], um für die SQL Server-Datenbank Hochverfügbarkeit zu erzielen. Zwei virtuelle Computer werden für SQL Server verwendet. Einer enthält das primäre Datenbankreplikat, und der andere enthält das sekundäre Replikat.
 
 - **Hauptknoten-VM**: Mit dieser VM kann der Failovercluster ein Quorum festlegen. Weitere Informationen finden Sie unter [Grundlegendes zu Quorumkonfigurationen in einem Failovercluster][sql-quorum].
 
-- **SharePoint-Server**: Die SharePoint-Server übernehmen die Rollen für Web-Front-End, Caching, Anwendung und Suche. 
+- **SharePoint-Server**: Die SharePoint-Server übernehmen die Rollen für Web-Front-End, Caching, Anwendung und Suche.
 
 - **Jumpbox**: Wird auch als [geschützter Host][bastion-host] bezeichnet. Dies ist eine geschützte VM im Netzwerk, die von Administratoren zum Herstellen der Verbindung mit anderen VMs verwendet wird. Die Jumpbox verfügt über eine NSG, bei der Remotedatenverkehr nur von öffentlichen IP-Adressen zugelassen wird, die in einer Liste mit sicheren Adressen enthalten sind. Die NSG sollte Remotedesktop-Datenverkehr (RDP) zulassen.
 
@@ -60,7 +62,7 @@ Wir empfehlen Ihnen, Ressourcengruppen nach der Serverrolle zu trennen und eine 
 
 ### <a name="virtual-network-and-subnet-recommendations"></a>Empfehlungen für virtuelle Netzwerke und Subnetze
 
-Verwenden Sie ein Subnetz für jede SharePoint-Rolle sowie zusätzlich jeweils ein Subnetz für das Gateway und für die Jumpbox. 
+Verwenden Sie ein Subnetz für jede SharePoint-Rolle sowie zusätzlich jeweils ein Subnetz für das Gateway und für die Jumpbox.
 
 Das Gatewaysubnetz muss den Namen *GatewaySubnet* haben. Weisen Sie den Gatewaysubnetz-Adressraum basierend auf dem letzten Teil des VNet-Adressraums zu. Weitere Informationen finden Sie unter [Connect an on-premises network to Azure using a VPN gateway][hybrid-vpn-ra] (Verbinden eines lokalen Netzwerks mit Azure per VPN Gateway).
 
@@ -74,28 +76,28 @@ Für diese Architektur sind mindestens 44 Kerne erforderlich:
 - 1 Hauptknoten mit Standard_DS1_v2 = 1 Kern
 - 1 Verwaltungsserver mit Standard_DS1_v2 = 1 Kern
 
-Stellen Sie sicher, dass Ihr Azure-Abonnement ein ausreichendes Kontingent von VM-Kernen für die Bereitstellung aufweist, da bei der Bereitstellung sonst ein Fehler auftritt. Weitere Informationen finden Sie unter [Einschränkungen für Azure-Abonnements und Dienste, Kontingente und Einschränkungen][quotas]. 
+Stellen Sie sicher, dass Ihr Azure-Abonnement ein ausreichendes Kontingent von VM-Kernen für die Bereitstellung aufweist, da bei der Bereitstellung sonst ein Fehler auftritt. Weitere Informationen finden Sie unter [Einschränkungen für Azure-Abonnements und Dienste, Kontingente und Einschränkungen][quotas].
 
-Für alle SharePoint-Rollen mit Ausnahme des Suchindexers empfehlen wir die Verwendung der VM-Größe [Standard_DS3_v2][vm-sizes-general]. Die Indexerstellung für die Suche sollte mindestens die Größe [Standard_DS13_v2][vm-sizes-memory] haben. In einer Testbereitstellung ist in den Parameterdateien für diese Referenzarchitektur die kleinere Größe DS3_v2 für die Suchindexerrolle angegeben. Aktualisieren Sie für eine Produktionsbereitstellung die Parameterdateien, um mindestens die Größe DS13 zu verwenden. Weitere Informationen finden Sie unter [Hardware- und Softwareanforderungen für SharePoint Server 2016][sharepoint-reqs]. 
+Für alle SharePoint-Rollen mit Ausnahme des Suchindexers empfehlen wir die Verwendung der VM-Größe [Standard_DS3_v2][vm-sizes-general]. Die Indexerstellung für die Suche sollte mindestens die Größe [Standard_DS13_v2][vm-sizes-memory] haben. In einer Testbereitstellung ist in den Parameterdateien für diese Referenzarchitektur die kleinere Größe DS3_v2 für die Suchindexerrolle angegeben. Aktualisieren Sie für eine Produktionsbereitstellung die Parameterdateien, um mindestens die Größe DS13 zu verwenden. Weitere Informationen finden Sie unter [Hardware- und Softwareanforderungen für SharePoint Server 2016][sharepoint-reqs].
 
-Für die virtuellen SQL Server-Computer werden mindestens vier Kerne und acht GB RAM empfohlen. In den Parameterdateien für diese Referenzarchitektur ist die Größe DS3_v2 angegeben. Für eine Produktionsbereitstellung müssen Sie unter Umständen eine größere VM-Größe angeben. Weitere Informationen finden Sie unter [Speicher- und SQL Server-Kapazitätsplanung und -Konfiguration (SharePoint Server)](/sharepoint/administration/storage-and-sql-server-capacity-planning-and-configuration#estimate-memory-requirements). 
- 
+Für die virtuellen SQL Server-Computer werden mindestens vier Kerne und acht GB RAM empfohlen. In den Parameterdateien für diese Referenzarchitektur ist die Größe DS3_v2 angegeben. Für eine Produktionsbereitstellung müssen Sie unter Umständen eine größere VM-Größe angeben. Weitere Informationen finden Sie unter [Speicher- und SQL Server-Kapazitätsplanung und -Konfiguration (SharePoint Server)](/sharepoint/administration/storage-and-sql-server-capacity-planning-and-configuration#estimate-memory-requirements).
+
 ### <a name="nsg-recommendations"></a>NSG-Empfehlungen
 
-Wir empfehlen Ihnen die Verwendung von einer NSG pro Subnetz, in dem VMs enthalten sind, um die Subnetzisolation zu ermöglichen. Gehen Sie wie folgt vor, wenn Sie die Subnetzisolation konfigurieren möchten: Fügen Sie NSG-Regeln hinzu, mit denen der zulässige bzw. unzulässige ein- und ausgehende Datenverkehr für jedes Subnetz definiert wird. Weitere Informationen finden Sie unter [Filtern des Netzwerkdatenverkehrs mit Netzwerksicherheitsgruppen][virtual-networks-nsg]. 
+Wir empfehlen Ihnen die Verwendung von einer NSG pro Subnetz, in dem VMs enthalten sind, um die Subnetzisolation zu ermöglichen. Gehen Sie wie folgt vor, wenn Sie die Subnetzisolation konfigurieren möchten: Fügen Sie NSG-Regeln hinzu, mit denen der zulässige bzw. unzulässige ein- und ausgehende Datenverkehr für jedes Subnetz definiert wird. Weitere Informationen finden Sie unter [Filtern des Netzwerkdatenverkehrs mit Netzwerksicherheitsgruppen][virtual-networks-nsg].
 
-Weisen Sie dem Gatewaysubnetz keine NSG zu, da das Gateway sonst nicht mehr funktioniert. 
+Weisen Sie dem Gatewaysubnetz keine NSG zu, da das Gateway sonst nicht mehr funktioniert.
 
 ### <a name="storage-recommendations"></a>Empfehlungen für Speicher
 
 Die Speicherkonfiguration für die VMs der Farm sollte den jeweiligen bewährten Methoden entsprechen, die für lokale Bereitstellungen verwendet werden. SharePoint-Server sollten über einen separaten Datenträger für Protokolle verfügen. Für SharePoint-Server, die Suchindexrollen hosten, wird zusätzlicher Speicherplatz zum Speichern des Suchindex benötigt. Für SQL Server besteht das Standardverfahren darin, Daten und Protokolle zu trennen. Fügen Sie weitere Datenträger für die Speicherung von Datenbanksicherungen hinzu, und verwenden Sie einen separaten Datenträger für [tempdb][tempdb].
 
-Wir empfehlen die Verwendung von [Azure Managed Disks][managed-disks], um die beste Zuverlässigkeit zu erzielen. Mit Managed Disks (verwalteten Datenträgern) stellen Sie sicher, dass die Datenträger für VMs in einer Verfügbarkeitsgruppe isoliert sind, um Single Points of Failure zu vermeiden. 
+Wir empfehlen die Verwendung von [Azure Managed Disks][managed-disks], um die beste Zuverlässigkeit zu erzielen. Mit Managed Disks (verwalteten Datenträgern) stellen Sie sicher, dass die Datenträger für VMs in einer Verfügbarkeitsgruppe isoliert sind, um Single Points of Failure zu vermeiden.
 
 > [!NOTE]
 > Derzeit werden für die Resource Manager-Vorlage für diese Referenzarchitektur keine verwalteten Datenträger verwendet. Es ist geplant, die Vorlage zu aktualisieren, um die Verwendung von verwalteten Datenträgern zu ermöglichen.
 
-Verwenden Sie verwaltete Premium-Datenträger für alle SharePoint- und SQL Server-VMs. Sie können verwaltete Standard-Datenträger für den Hauptknotenserver, die Domänencontroller und den Verwaltungsserver nutzen. 
+Verwenden Sie verwaltete Premium-Datenträger für alle SharePoint- und SQL Server-VMs. Sie können verwaltete Standard-Datenträger für den Hauptknotenserver, die Domänencontroller und den Verwaltungsserver nutzen.
 
 ### <a name="sharepoint-server-recommendations"></a>SharePoint Server-Empfehlungen
 
@@ -113,10 +115,9 @@ Stellen Sie vor dem Konfigurieren der SharePoint-Farm sicher, dass Sie über ein
 
 Achten Sie darauf, die Search-Architektur richtig zu planen, um die Supportanforderung für den Datenträgerdurchsatz von mindestens 200 MB pro Sekunde zu erfüllen. Informationen hierzu finden Sie unter [Planen der Architektur der Unternehmenssuche in SharePoint Server 2013][sharepoint-search]. Halten Sie sich auch an die Richtlinien unter [Best practices for crawling in SharePoint Server 2016][sharepoint-crawling] (Bewährte Methoden zum Durchsuchen per Crawler in SharePoint Server 2016).
 
-Speichern Sie außerdem die Suchkomponentendaten auf einem separaten Speichervolume oder einer Partition mit hoher Leistung. Konfigurieren Sie die Objektcache-Benutzerkonten, die in dieser Architektur erforderlich sind, um die Last zu reduzieren und den Durchsatz zu verbessern. Teilen Sie die Dateien des Windows Server-Betriebssystems, die SharePoint Server 2016-Programmdateien und die Diagnoseprotokolle auf drei separate Speichervolumes oder Partitionen mit normaler Leistung auf. 
+Speichern Sie außerdem die Suchkomponentendaten auf einem separaten Speichervolume oder einer Partition mit hoher Leistung. Konfigurieren Sie die Objektcache-Benutzerkonten, die in dieser Architektur erforderlich sind, um die Last zu reduzieren und den Durchsatz zu verbessern. Teilen Sie die Dateien des Windows Server-Betriebssystems, die SharePoint Server 2016-Programmdateien und die Diagnoseprotokolle auf drei separate Speichervolumes oder Partitionen mit normaler Leistung auf.
 
 Weitere Informationen zu diesen Empfehlungen finden Sie unter [Erstmalige Bereitstellung von Administrator- und Dienstkonten in SharePoint Server][sharepoint-accounts].
-
 
 ### <a name="hybrid-workloads"></a>Hybrid-Workloads
 
@@ -132,11 +133,11 @@ Außerdem wird empfohlen, dem Cluster eine Listener-IP-Adresse hinzuzufügen, be
 
 Die empfohlenen VM-Größen und andere Leistungsempfehlungen für SQL Server in Azure finden Sie unter [Bewährte Methoden zur Leistung für SQL Server auf virtuellen Azure-Computern][sql-performance]. Halten Sie sich auch an die Empfehlungen unter [Bewährte Methoden für SQL Server in einer SharePoint Server-Farm][sql-sharepoint-best-practices].
 
-Es wird empfohlen, den Hauptknotenserver auf einem andern Computer als die Replikationspartner anzuordnen. Mit dem Server kann der sekundäre Replikationspartnerserver in einer Hochsicherheitsmodus-Sitzung erkennen, ob ein automatisches Failover initiiert werden soll. Im Gegensatz zu den beiden Partnern dient der Hauptknotenserver nicht als Server für die Datenbank, sondern unterstützt das automatische Failover. 
+Es wird empfohlen, den Hauptknotenserver auf einem andern Computer als die Replikationspartner anzuordnen. Mit dem Server kann der sekundäre Replikationspartnerserver in einer Hochsicherheitsmodus-Sitzung erkennen, ob ein automatisches Failover initiiert werden soll. Im Gegensatz zu den beiden Partnern dient der Hauptknotenserver nicht als Server für die Datenbank, sondern unterstützt das automatische Failover.
 
 ## <a name="scalability-considerations"></a>Überlegungen zur Skalierbarkeit
 
-Ändern Sie einfach die VM-Größe, um die vorhandenen Server zentral hochzuskalieren. 
+Ändern Sie einfach die VM-Größe, um die vorhandenen Server zentral hochzuskalieren.
 
 Mit der Funktion [MinRoles][minroles] in SharePoint Server 2016 können Sie Server basierend auf der Rolle des Servers horizontal hochskalieren und außerdem Server aus einer Rolle entfernen. Wenn Sie die Server einer Rolle hinzufügen, können Sie beliebige einzelne Rollen oder eine kombinierte Rolle angeben. Sie müssen die Suchtopologie aber mit PowerShell neu konfigurieren, wenn Sie der Search-Rolle Server hinzufügen. Sie können Rollen auch mit MinRoles konvertieren. Weitere Informationen finden Sie unter [Verwalten einer MinRole-Serverfarm in SharePoint Server 2016][sharepoint-minrole].
 
@@ -152,7 +153,7 @@ Erstellen Sie als Schutz vor einem regionalen Ausfall eine separate Farm für di
 
 Befolgen Sie die empfohlenen Methoden für SharePoint-Vorgänge zum Betreiben und Verwalten von Servern, Serverfarmen und Sites. Weitere Informationen finden Sie unter [Vorgänge für SharePoint Server][sharepoint-ops].
 
-Die erforderlichen Aufgaben beim Verwalten von SQL Server in einer SharePoint-Umgebung können sich von den Aufgaben unterscheiden, die normalerweise für eine Datenbankanwendung anfallen. Eine bewährte Methode ist das vollständige Sichern aller SQL-Datenbanken einmal pro Woche mit inkrementellen Sicherungen jede Nacht. Sichern Sie Transaktionsprotokolle alle 15 Minuten. Eine andere Methode ist das Implementieren von SQL Server-Wartungsaufgaben in den Datenbanken, während die integrierten SharePoint-Aufgaben deaktiviert werden. Weitere Informationen finden Sie unter [Speicher- und SQL Server-Kapazitätsplanung und -Konfiguration (SharePoint Server)][sql-server-capacity-planning]. 
+Die erforderlichen Aufgaben beim Verwalten von SQL Server in einer SharePoint-Umgebung können sich von den Aufgaben unterscheiden, die normalerweise für eine Datenbankanwendung anfallen. Eine bewährte Methode ist das vollständige Sichern aller SQL-Datenbanken einmal pro Woche mit inkrementellen Sicherungen jede Nacht. Sichern Sie Transaktionsprotokolle alle 15 Minuten. Eine andere Methode ist das Implementieren von SQL Server-Wartungsaufgaben in den Datenbanken, während die integrierten SharePoint-Aufgaben deaktiviert werden. Weitere Informationen finden Sie unter [Speicher- und SQL Server-Kapazitätsplanung und -Konfiguration (SharePoint Server)][sql-server-capacity-planning].
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
@@ -175,7 +176,7 @@ Die Bereitstellung erstellt die folgenden Ressourcengruppen in Ihrem Abonnement:
 - ra-onprem-sp2016-rg
 - ra-sp2016-network-rg
 
-Die Vorlagenparameterdateien beziehen sich auf diese Namen, d.h. wenn Sie sie ändern, müssen Sie die Parameterdateien entsprechend aktualisieren. 
+Die Vorlagenparameterdateien beziehen sich auf diese Namen, d.h. wenn Sie sie ändern, müssen Sie die Parameterdateien entsprechend aktualisieren.
 
 Die Parameterdateien enthalten an verschiedenen Stellen ein hartcodiertes Kennwort. Ändern Sie diese Werte vor der Bereitstellung.
 
@@ -183,7 +184,7 @@ Die Parameterdateien enthalten an verschiedenen Stellen ein hartcodiertes Kennwo
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-### <a name="deploy-the-solution"></a>Bereitstellen der Lösung 
+### <a name="deployment-steps"></a>Bereitstellungsschritte
 
 1. Führen Sie den folgenden Befehl aus, um ein simuliertes lokales Netzwerk bereitzustellen.
 
@@ -203,12 +204,13 @@ Die Parameterdateien enthalten an verschiedenen Stellen ein hartcodiertes Kennwo
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure1.json --deploy
     ```
 
-4. Führen Sie den folgenden Befehl aus, um den Failovercluster und die Verfügbarkeitsgruppe zu erstellen. 
+4. Führen Sie den folgenden Befehl aus, um den Failovercluster und die Verfügbarkeitsgruppe zu erstellen.
 
     ```bash
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure2-cluster.json --deploy
+    ```
 
-5. Run the following command to deploy the remaining VMs.
+5. Führen Sie den folgenden Befehl aus, um die übrigen virtuellen Computer bereitzustellen:
 
     ```bash
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure3.json --deploy
@@ -230,7 +232,7 @@ An diesem Punkt stellen Sie sicher, dass Sie für die SQL Server Always On-Verf�
 
 Die Ausgabe sollte in etwa wie folgt aussehen:
 
-```powershell
+```console
 ComputerName     : 10.0.3.100
 RemoteAddress    : 10.0.3.100
 RemotePort       : 1433
@@ -239,7 +241,7 @@ SourceAddress    : 10.0.0.132
 TcpTestSucceeded : True
 ```
 
-Falls ein Fehler auftritt, starten Sie mithilfe des Azure-Portals den virtuellen Computer namens `ra-sp-sql-vm2` neu. Nach dem Neustart des virtuellen Computers führen Sie den Befehl `Test-NetConnection` erneut aus. Möglicherweise müssen Sie nach dem Neustart des virtuellen Computers etwa eine Minute warten, bis die Verbindung erfolgreich ist. 
+Falls ein Fehler auftritt, starten Sie mithilfe des Azure-Portals den virtuellen Computer namens `ra-sp-sql-vm2` neu. Nach dem Neustart des virtuellen Computers führen Sie den Befehl `Test-NetConnection` erneut aus. Möglicherweise müssen Sie nach dem Neustart des virtuellen Computers etwa eine Minute warten, bis die Verbindung erfolgreich ist.
 
 Schließen Sie jetzt die Bereitstellung wie folgt ab.
 
@@ -265,17 +267,17 @@ Schließen Sie jetzt die Bereitstellung wie folgt ab.
 
 1. Navigieren Sie im [Azure-Portal][azure-portal] zur Ressourcengruppe `ra-onprem-sp2016-rg`.
 
-2. Wählen Sie in der Liste mit den Ressourcen die VM-Ressource mit dem Namen `ra-onpr-u-vm1`. 
+2. Wählen Sie in der Liste mit den Ressourcen die VM-Ressource mit dem Namen `ra-onpr-u-vm1`.
 
 3. Stellen Sie eine Verbindung mit der VM her, wie unter [Herstellen der Verbindung mit dem virtuellen Computer][connect-to-vm] beschrieben. Der Benutzername lautet `\onpremuser`.
 
-5.  Nachdem die Remoteverbindung mit der VM eingerichtet wurde, können Sie auf der VM einen Browser öffnen und zu `http://portal.contoso.local` navigieren.
+4. Nachdem die Remoteverbindung mit der VM eingerichtet wurde, können Sie auf der VM einen Browser öffnen und zu `http://portal.contoso.local` navigieren.
 
-6.  Melden Sie sich im Feld **Windows-Sicherheit** am SharePoint-Portal an, indem Sie `contoso.local\testuser` als Benutzername verwenden.
+5. Melden Sie sich im Feld **Windows-Sicherheit** am SharePoint-Portal an, indem Sie `contoso.local\testuser` als Benutzername verwenden.
 
 Bei dieser Anmeldung wird ein Tunnel von der Domäne „Fabrikam.com“, die vom lokalen Netzwerk genutzt wird, zur Domäne „contoso.local“ des SharePoint-Portals erstellt. Wenn die SharePoint-Website geöffnet wird, wird die Demo-Stammwebsite angezeigt.
 
-**_Mitwirkende dieser Referenzarchitektur_** &mdash; Joe Davies, Bob Fox, Neil Hodgkinson, Paul Stork
+**_Mitwirkende dieser Referenzarchitektur_**: Joe Davies, Bob Fox, Neil Hodgkinson, Paul Stork
 
 <!-- links -->
 

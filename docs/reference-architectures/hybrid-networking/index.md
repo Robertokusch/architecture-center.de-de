@@ -1,16 +1,17 @@
 ---
-title: Auswählen einer Lösung zum Herstellen einer Verbindung zwischen einem lokalen Netzwerk und Azure
+title: Verbinden eines lokalen Netzwerks mit Azure
+titleSuffix: Azure Reference Architectures
 description: Dieser Artikel vergleicht Referenzarchitekturen zum Herstellen einer Verbindung zwischen einem lokalen Netzwerk und Azure.
 author: telmosampaio
 ms.date: 07/02/2018
-ms.openlocfilehash: a9e2a212d65530e714635bbfae3a57766e77c3a6
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.openlocfilehash: de509b6d95805f4fc871f6dbd76a87d2c0bec6f1
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295484"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119913"
 ---
-# <a name="connect-an-on-premises-network-to-azure"></a>Verbinden eines lokalen Netzwerks mit Azure
+# <a name="choose-a-solution-for-connecting-an-on-premises-network-to-azure"></a>Auswählen einer Lösung zum Herstellen einer Verbindung zwischen einem lokalen Netzwerk und Azure
 
 Dieser Artikel vergleicht Optionen zum Herstellen einer Verbindung zwischen einem lokalen Netzwerk und einem virtuellen Azure-Netzwerk (VNET). Für jede Option ist eine detailliertere Referenzarchitektur verfügbar.
 
@@ -75,11 +76,9 @@ Diese Architektur eignet sich für hybride Anwendungen, die sowohl die höhere B
 
 - [Hybridnetzwerk mit ExpressRoute und VPN-Failover](./expressroute-vpn-failover.md)
 
-
 ## <a name="hub-spoke-network-topology"></a>Hub-Spoke-Netzwerktopologie
 
 Eine Hub-Spoke-Netzwerktopologie ist eine Möglichkeit zur Isolierung von Workloads während Dienste wie Identität und Sicherheit gemeinsam verwendet werden. Bei einem Hub handelt es sich um ein virtuelles Netzwerk (VNET) in Azure, das als zentraler Konnektivitätspunkt für Ihr lokales Netzwerk fungiert. Bei den Spokes handelt es sich um VNETs, die eine Peeringverbindung mit dem Hub herstellen. Gemeinsame Dienste werden im Hub bereitgestellt, während einzelne Workloads als Spokes bereitgestellt werden.
-
 
 **Referenzarchitekturen**
 
