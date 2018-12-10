@@ -4,12 +4,12 @@ description: Referenzarchitekturen, Blaupausen und reglementierende Implementier
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: e7bbd797ba4b8bfc193b146f080cedf299dd47b4
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.openlocfilehash: 5b117ce308fcc47cae68bb83166ada71b75f6ce7
+ms.sourcegitcommit: 7d21aec9d9de0004ac777c1d1e364f53aac2350d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295513"
+ms.lasthandoff: 12/09/2018
+ms.locfileid: "53120768"
 ---
 # <a name="azure-reference-architectures"></a>Azure-Referenzarchitekturen
 
@@ -327,6 +327,26 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                     <div class="cardText">
                         <h3>DMZ zwischen Azure und dem Internet</h3>
                         <p>Verwenden Sie virtuelle Netzwerkgeräte, um ein sicheres Netzwerk zu erstellen, das Datenverkehr aus dem Internet akzeptiert.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- HA NVA -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./dmz/nva-ha.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/vnet.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Hochverfügbare virtuelle Netzwerkgeräte</h3>
+                        <p>Stellen Sie eine Reihe virtueller Netzwerkgeräte (NVAs) für Hochverfügbarkeit in Azure bereit.</p>
                     </div>
                 </div>
             </div>
