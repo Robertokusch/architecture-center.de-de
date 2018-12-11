@@ -364,7 +364,9 @@ items:
   - name: Unternehmensintegration
     items:
     - name: Einfache Unternehmensintegration
-      href: reference-architectures/enterprise-integration/simple-enterprise-integration.md
+      href: reference-architectures/enterprise-integration/basic-enterprise-integration.md
+    - name: Unternehmensintegration mit Warteschlangen und Ereignissen
+      href: reference-architectures/enterprise-integration/queues-events.md
   - name: Hybridnetzwerke
     items:
     - name: Übersicht
@@ -525,6 +527,26 @@ items:
       href: cloud-adoption/getting-started/what-is-governance.md
     - name: Kontrolle des Ressourcenzugriffs in Azure
       href: cloud-adoption/getting-started/azure-resource-access.md
+  - name: Geschäftliche Begründung
+    items:
+    - name: Erstellen eines Geschäftsszenarios für die Cloudmigration
+      href: cloud-adoption/business-strategy/cloud-migration-business-case.md
+    - name: Grundlegendes zu Finanzmodellen
+      href: cloud-adoption/business-strategy/financial-models.md
+  - name: Digitale Ressourcen
+    items:
+    - name: Die fünf Phasen der Rationalisierung
+      href: cloud-adoption/digital-estate/5-rs-of-rationalization.md
+    - name: Worum handelt es sich bei digitalen Ressourcen?
+      href: cloud-adoption/digital-estate/overview.md
+    - name: Ansätze für die Planung digitaler Ressourcen
+      href: cloud-adoption/digital-estate/approach.md
+    - name: Sammeln von Bestandsdaten
+      href: cloud-adoption/digital-estate/inventory.md
+    - name: Rationalisieren der digitalen Ressourcen
+      href: cloud-adoption/digital-estate/rationalize.md
+    - name: Vorhersagen der Cloudkosten
+      href: cloud-adoption/digital-estate/calculate.md
   - name: Governance
     items:
     - name: Übersicht
@@ -545,13 +567,15 @@ items:
       href: cloud-adoption/operations/operational-fitness-review.md
   - name: Anhang
     items:
+    - name: Virtuelles Rechenzentrum (Virtual Data Center, VDC)
+      href: vdc/index.md
     - name: Azure-Unternehmensgerüst
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementieren eines Azure-Unternehmensgerüsts
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: c8893c9769bff3a9fbb0b7bcaffdf2746b58abf2
-ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
+ms.openlocfilehash: 6e20f9e9212191109faf5a7ca09fcf5ac991a821
+ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52550494"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53179313"
