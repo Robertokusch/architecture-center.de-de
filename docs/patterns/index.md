@@ -2,13 +2,13 @@
 title: Cloudentwurfsmuster
 description: Cloudentwurfsmuster für Microsoft Azure
 keywords: Azure
-ms.date: 06/23/2017
-ms.openlocfilehash: 308e9bc784fc791d04adcecaae64bf258edeb20b
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 12/10/2018
+ms.openlocfilehash: 26ee59ef15fc63bb5e823cd85f610cd9ad01177a
+ms.sourcegitcommit: 9a15af3a25f25b8730968d32cbb006434b183e18
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326196"
+ms.lasthandoff: 12/11/2018
+ms.locfileid: "53234049"
 ---
 # <a name="cloud-design-patterns"></a>Cloudentwurfsmuster
 
@@ -22,7 +22,7 @@ Für jedes Muster werden das durch das Muster gelöste Problem, Überlegungen zu
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="./category/availability.md"><img src="_images/category/availability.svg" alt="Availability" /></a></td>
     <td>
-        <h3><a href="./category/availability.md">Availability</a></h3>
+        <h3><a href="./category/availability.md">Verfügbarkeit</a></h3>
         <p>Die Verfügbarkeit ist der Anteil der Zeit, während dessen das System funktionsfähig und in Betrieb ist. Sie wird in der Regel als Prozentsatz der Betriebszeit gemessen. Die Verfügbarkeit kann durch Systemfehler, Infrastrukturprobleme, böswillige Angriffe und die Systemauslastung beeinflusst werden.  Cloudanwendungen bieten Benutzern in der Regel eine Vereinbarung zum Servicelevel (SLA). Anwendungen müssen daher zur Maximierung der Verfügbarkeit konzipiert werden.</p>
     </td>
 </tr>
@@ -103,7 +103,8 @@ Für jedes Muster werden das durch das Muster gelöste Problem, Überlegungen zu
 |                [Auswahl einer übergeordneten Instanz](./leader-election.md)                |   Die von einer Sammlung zusammenarbeitender Aufgabeninstanzen ausgeführten Aktionen in einer verteilten Anwendung koordinieren, indem eine Instanz als übergeordnete Instanz ausgewählt wird, die die Verantwortung für die Verwaltung der anderen Instanzen übernimmt    |
 |              [Materialisierte Sicht](./materialized-view.md)              |                                        Voraufgefüllte Sichten für die Daten in einem oder mehreren Datenspeichern generieren, wenn die Daten für erforderliche Abfragevorgänge nicht ideal formatiert sind                                        |
 |              [Pipes und Filter](./pipes-and-filters.md)              |                                                        Unterteilen einer Aufgabe, die komplexe Verarbeitungsvorgänge ausführt, in eine Reihe wiederverwendbarer separater Elemente                                                        |
-|                 [Prioritätswarteschlange](./priority-queue.md)                 |                                 An Dienste gesendete Anforderungen priorisieren, sodass Anforderungen mit einer höheren Priorität schneller empfangen und verarbeitet werden als Anforderungen mit einer niedrigeren Priorität                                  |
+|                 [Prioritätswarteschlange](./priority-queue.md)                 |                                 Priorisieren Sie an Dienste gesendete Anforderungen, sodass Anforderungen mit einer höheren Priorität schneller empfangen und verarbeitet werden als Anforderungen mit einer niedrigeren Priorität.                                  |
+| [Herausgeber/Abonnent](./publisher-subscriber.md) | Ermöglichen Sie einer Anwendung die asynchrone Ankündigung von Ereignissen für mehrere interessierte Consumer, ohne die Absender mit den Empfängern zu koppeln. |
 |      [Warteschlangenbasierter Lastenausgleich](./queue-based-load-leveling.md)      |                                               Verwenden Sie eine Warteschlange, die als Puffer zwischen einem Task und einem von diesem aufgerufenen Dienst fungiert, um unregelmäßig auftretende hohe Lasten aufzufangen.                                               |
 |                          [Wiederholung](./retry.md)                          |               Ermöglichen Sie einer Anwendung beim Herstellen einer Verbindung mit einem Dienst oder einer Netzwerkressource die Behandlung antizipierter, temporärer Fehler, indem ein zuvor nicht erfolgreich durchgeführter Vorgang transparent wiederholt wird.                |
 |     [Scheduler-Agent-Supervisor](./scheduler-agent-supervisor.md)     |                                                              Eine Reihe von Aktionen in einer verteilten Gruppe von Diensten und anderen Remoteressourcen koordinieren                                                               |
