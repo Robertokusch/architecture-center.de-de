@@ -4,12 +4,12 @@ description: Referenzarchitekturen, Blaupausen und reglementierende Implementier
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 5b117ce308fcc47cae68bb83166ada71b75f6ce7
-ms.sourcegitcommit: 7d21aec9d9de0004ac777c1d1e364f53aac2350d
+ms.openlocfilehash: efac05ff95431f9551c6fb76939dbb91cfa01d1d
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53120768"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307010"
 ---
 # <a name="azure-reference-architectures"></a>Azure-Referenzarchitekturen
 
@@ -19,6 +19,7 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
 
 ## <a name="ai-and-machine-learning"></a>KI und Machine Learning
 
+<!-- markdownlint-disable MD033 -->
 <ul  class="panelContent cardsF">
 <!-- Batch scoring for deep learning models -->
 <li style="display: flex; flex-direction: column;">
@@ -54,6 +55,26 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                     <div class="cardText">
                         <h3>Echtzeitbewertung von Python-Modellen</h3>
                         <p>Bereitstellen von Python-Modellen als Webdienste für Echtzeitvorhersagen unter Verwendung von regulären Python- oder Deep Learning-Modellen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Batch scoring for R models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/realtime-scoring-r.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/logo-r.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Echtzeitbewertung von R-Machine Learning-Modellen</h3>
+                        <p>Implementieren Sie einen Echtzeit-Vorhersagedienst in R mithilfe von Microsoft Machine Learning Server unter Azure Kubernetes Service (AKS).</p>
                     </div>
                 </div>
             </div>
