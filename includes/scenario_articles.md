@@ -110,11 +110,11 @@
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./apps/media/architecture-devops-dotnet-webapp.png" height="140px" />
+                            <img src="./apps/media/architecture-devops-dotnet-webapp.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>CI/CD-Pipeline mit Azure DevOps</h3>
+                        <h3>Entwerfen einer CI/CD-Pipeline mithilfe von Azure DevOps</h3>
                         <p>Erstellen und Veröffentlichen Sie mithilfe von Azure DevOps eine .NET-App in Azure-Web-Apps.</p>
                     </div>
                 </div>
@@ -329,7 +329,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>ETL-Hybridvorgänge mit vorhandenen lokaler SSIS-Bereitstellungen und Azure Data Factory</h3>
+                        <h3>ETL-Hybridvorgänge mit vorhandenen lokalen SSIS-Bereitstellungen und Azure Data Factory</h3>
                         <p>ETL-Hybridvorgänge mit vorhandenen lokalen SSIS-Bereitstellungen (SQL Server Integration Services) und Azure Data Factory</p>
                     </div>
                 </div>
@@ -430,7 +430,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Schützen von Windows-Webanwendungen für Branchen mit Regulierung</h3>
+                        <h3>Erstellen von sicheren Web-Apps mit virtuellen Windows-Computern in Azure</h3>
                         <p>Erstellen Sie mithilfe von Windows Server eine sichere Webanwendung mit mehreren Ebenen in Azure, für die Skalierungsgruppen, Application Gateway und Lastenausgleichsmodule verwendet werden.</p>
                     </div>
                 </div>
