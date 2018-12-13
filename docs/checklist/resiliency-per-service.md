@@ -1,15 +1,16 @@
 ---
 title: Checkliste für Resilienz für Azure-Dienste
+titleSuffix: Azure Design Review Framework
 description: Checkliste mit einer Anleitung zur Resilienz für verschiedene Azure-Dienste.
 author: petertaylor9999
-ms.date: 03/02/2018
+ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 53a37595bd6e70fa3a43e9a72b2ae47d2225009f
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 55f17d3b24af4be4f313c66923f4153296041545
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305926"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307179"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Checkliste für Resilienz für bestimmte Azure-Dienste
 
@@ -19,15 +20,15 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Verwenden Sie den Standard- oder Premium-Tarif.** Diese Tarife unterstützen Stagingslots und automatisierte Sicherungen. Weitere Informationen hierzu finden Sie unter [Azure App Service-Pläne – Detaillierte Übersicht](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/).
 
-**Vermeiden Sie zentrales Hoch- oder Herunterskalieren.** Wählen Sie stattdessen einen Tarif und eine Instanzgröße aus, der bzw. die Ihre Leistungsanforderungen unter typischer Last erfüllt, und [skalieren Sie die Instanzen horizontal hoch](/azure/app-service-web/web-sites-scale/), um Änderungen beim Datenverkehrsvolumen zu bewältigen. Durch zentrales Hoch- oder Herunterskalieren kann ein Neustart der Anwendung ausgelöst werden.  
+**Vermeiden Sie zentrales Hoch- oder Herunterskalieren.** Wählen Sie stattdessen einen Tarif und eine Instanzgröße aus, der bzw. die Ihre Leistungsanforderungen unter typischer Last erfüllt, und [skalieren Sie die Instanzen horizontal hoch](/azure/app-service-web/web-sites-scale/), um Änderungen beim Datenverkehrsvolumen zu bewältigen. Durch zentrales Hoch- oder Herunterskalieren kann ein Neustart der Anwendung ausgelöst werden.
 
 **Speichern Sie die Konfiguration als App-Einstellungen.** Verwenden Sie App-Einstellungen, um die Konfigurationseinstellungen als App-Einstellungen zu speichern. Definieren Sie die Einstellungen in den Resource Manager-Vorlagen oder mithilfe von PowerShell, sodass Sie sie als Teil einer automatisierten Bereitstellung/Aktualisierung anwenden können, um die Zuverlässigkeit zu erhöhen. Weitere Informationen finden Sie unter [Konfigurieren von Web-Apps in Azure App Service](/azure/app-service-web/web-sites-configure/).
 
-**Erstellen Sie separate App Service-Pläne für die Produktion und für Tests.** Verwenden Sie keine Slots Ihrer Produktionsbereitstellung zu Testzwecken.  Alle Apps in einem App Service-Plan nutzen die gleichen VM-Instanzen. Wenn Sie Produktions- und Testbereitstellungen in den gleichen Plan aufnehmen, kann sich dies negativ auf die Produktionsbereitstellung auswirken. Auslastungstests können z.B. den aktiven Produktionsstandort beeinträchtigen. Wenn Sie Testbereitstellungen in einen separaten Plan aufnehmen, isolieren Sie sie von der Produktionsversion.  
+**Erstellen Sie separate App Service-Pläne für die Produktion und für Tests.** Verwenden Sie keine Slots Ihrer Produktionsbereitstellung zu Testzwecken.  Alle Apps in einem App Service-Plan nutzen die gleichen VM-Instanzen. Wenn Sie Produktions- und Testbereitstellungen in den gleichen Plan aufnehmen, kann sich dies negativ auf die Produktionsbereitstellung auswirken. Auslastungstests können z.B. den aktiven Produktionsstandort beeinträchtigen. Wenn Sie Testbereitstellungen in einen separaten Plan aufnehmen, isolieren Sie sie von der Produktionsversion.
 
 **Trennen Sie Web-Apps von Web-APIs.** Wenn zu Ihrer Lösung ein Web-Front-End und eine Web-API gehören, sollten Sie sie in getrennte App Service-Apps aufnehmen. Dieser Entwurf erleichtert es, die Lösung nach Workloads zu zerlegen. Sie können dann die Web-App und die API in separaten App Service-Plänen ausführen, sodass sie unabhängig skaliert werden können. Wenn Sie diesen Grad an Skalierbarkeit anfänglich nicht benötigen, können Sie die Apps im gleichen Plan bereitstellen und sie später bei Bedarf in separate Pläne verschieben.
 
-**Vermeiden Sie die Verwendung der App Service-Sicherungsfunktion, um Azure SQL-Datenbanken zu sichern.** Verwenden Sie stattdessen [automatisierte SQL-Datenbanksicherungen][sql-backup]. Bei der App Service-Sicherung wird die Datenbank in eine SQL-BACPAC-Datei exportiert, und dies kostet DTUs.  
+**Vermeiden Sie die Verwendung der App Service-Sicherungsfunktion, um Azure SQL-Datenbanken zu sichern.** Verwenden Sie stattdessen [automatisierte SQL-Datenbanksicherungen][sql-backup]. Bei der App Service-Sicherung wird die Datenbank in eine SQL-BACPAC-Datei exportiert, und dies kostet DTUs.
 
 **Führen Sie die Bereitstellung in einem Stagingslot durch.** Erstellen Sie einen Bereitstellungsslot für das Staging. Stellen Sie Anwendungsupdates im Stagingslot bereit, und überprüfen Sie die Bereitstellung, bevor Sie sie in die Produktion übertragen. Dies reduziert die Wahrscheinlichkeit fehlerhafter Updates in der Produktion. Darüber hinaus wird sichergestellt, dass alle Instanzen vorbereitet sind, bevor sie in die Produktion übertragen werden. Viele Anwendungen weisen eine erhebliche Aufwärmdauer und Kaltstartzeit auf. Weitere Informationen finden Sie unter [Einrichten von Stagingumgebungen für Web-Apps in Azure App Service](/azure/app-service-web/web-sites-staged-publishing/).
 
@@ -57,7 +58,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Behandeln Sie Ausnahmen.** Ein Ereignisconsumer verarbeitet einen Batch mit Nachrichten normalerweise in einer Schleife. Es ist ratsam, Ausnahmen in dieser Verarbeitungsschleife zu verarbeiten, damit kein gesamter Batch mit Nachrichten verloren geht, wenn eine einzelne Nachricht eine Ausnahme verursacht.
 
-**Verwenden Sie eine Warteschlange für unzustellbare Nachrichten.** Wenn die Verarbeitung einer Nachricht zu einem nicht vorübergehenden Fehler führt, sollten Sie die Nachricht in eine Warteschlange für unzustellbare Nachrichten einreihen, damit Sie den Status nachverfolgen können. Je nach Szenario können Sie versuchen, die Nachricht später noch einmal zu verarbeiten, eine kompensierende Transaktion anzuwenden oder eine andere Aktion durchzuführen. Beachten Sie, dass Event Hubs nicht über eine integrierte Funktionalität für Warteschlangen für unzustellbare Nachrichten verfügt. Sie können Azure Queue Storage oder Service Bus verwenden, um eine Warteschlange für unzustellbare Nachrichten zu implementieren, oder Azure Functions oder einen anderen Mechanismus für die Ereignisverarbeitung nutzen.  
+**Verwenden Sie eine Warteschlange für unzustellbare Nachrichten.** Wenn die Verarbeitung einer Nachricht zu einem nicht vorübergehenden Fehler führt, sollten Sie die Nachricht in eine Warteschlange für unzustellbare Nachrichten einreihen, damit Sie den Status nachverfolgen können. Je nach Szenario können Sie versuchen, die Nachricht später noch einmal zu verarbeiten, eine kompensierende Transaktion anzuwenden oder eine andere Aktion durchzuführen. Beachten Sie, dass Event Hubs nicht über eine integrierte Funktionalität für Warteschlangen für unzustellbare Nachrichten verfügt. Sie können Azure Queue Storage oder Service Bus verwenden, um eine Warteschlange für unzustellbare Nachrichten zu implementieren, oder Azure Functions oder einen anderen Mechanismus für die Ereignisverarbeitung nutzen.
 
 **Implementieren Sie die Notfallwiederherstellung per Failover zu einem sekundären Event Hubs-Namespace.** Weitere Informationen finden Sie unter [Georedundante Notfallwiederherstellung in Azure Event Hubs](/azure/event-hubs/event-hubs-geo-dr).
 
@@ -67,7 +68,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Konfigurieren der Redis-Datenpersistenz.** Mithilfe der Redis-Persistenz können Sie die in Redis gespeicherten Daten dauerhaft speichern. Sie können zudem Momentaufnahmen erstellen und die Daten sichern, die Sie dann im Fall eines Hardwarefehlers laden können. Weitere Informationen finden Sie unter [Konfigurieren von Datenpersistenz für Azure Redis Cache vom Typ „Premium“](/azure/redis-cache/cache-how-to-premium-persistence).
 
-Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als permanenten Speicher verwenden, sind diese Empfehlungen möglicherweise nicht relevant. 
+Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als permanenten Speicher verwenden, sind diese Empfehlungen möglicherweise nicht relevant.
 
 ## <a name="search"></a>Suchen,
 
@@ -75,8 +76,9 @@ Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als p
 
 **Konfigurieren Sie Indexer für Bereitstellungen in mehreren Regionen.** Für eine Bereitstellung in mehreren Regionen sollten Sie die Optionen für Kontinuität bei der Indizierung in Betracht ziehen.
 
-  * Wenn die Datenquelle georepliziert wird, sollten Sie im Allgemeinen die Indexer der einzelnen regionalen Azure Search-Dienste auf das eigene lokale Datenquellenreplikat verweisen. Dieser Ansatz wird jedoch für große Datasets, die in Azure SQL-Datenbank gespeichert sind, nicht empfohlen. Der Grund ist, dass Azure Search keine inkrementelle Indizierung für sekundäre SQL-Datenbankreplikate ausführen kann. Dies ist nur für primäre Replikate möglich. Verweisen Sie stattdessen alle Indexer auf das primäre Replikat. Verweisen Sie den Azure Search-Indexer nach einem Failover auf das neue primäre Replikat.  
-  * Wenn die Datenquelle nicht georepliziert wird, verweisen Sie mehrere Indexer auf die gleiche Datenquelle, damit Azure Search-Dienste in mehreren Regionen kontinuierlich und unabhängig die Datenquelle indizieren. Weitere Informationen finden Sie unter [Überlegungen zur Leistung und Optimierung von Azure Search][search-optimization].
+- Wenn die Datenquelle georepliziert wird, sollten Sie im Allgemeinen die Indexer der einzelnen regionalen Azure Search-Dienste auf das eigene lokale Datenquellenreplikat verweisen. Dieser Ansatz wird jedoch für große Datasets, die in Azure SQL-Datenbank gespeichert sind, nicht empfohlen. Der Grund ist, dass Azure Search keine inkrementelle Indizierung für sekundäre SQL-Datenbankreplikate ausführen kann. Dies ist nur für primäre Replikate möglich. Verweisen Sie stattdessen alle Indexer auf das primäre Replikat. Verweisen Sie den Azure Search-Indexer nach einem Failover auf das neue primäre Replikat.
+
+- Wenn die Datenquelle nicht georepliziert wird, verweisen Sie mehrere Indexer auf die gleiche Datenquelle, damit Azure Search-Dienste in mehreren Regionen kontinuierlich und unabhängig die Datenquelle indizieren. Weitere Informationen finden Sie unter [Überlegungen zur Leistung und Optimierung von Azure Search][search-optimization].
 
 ## <a name="service-bus"></a>Service Bus
 
@@ -92,14 +94,13 @@ Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als p
 
 **Verwendung der georedundanten Notfallwiederherstellung**: Mit der georedundanten Notfallwiederherstellung wird sichergestellt, dass die Verarbeitung der Daten auch in einer anderen Region bzw. einem anderen Rechenzentrum weiterhin funktioniert, wenn aufgrund einer Katastrophe eines gesamte Azure-Region bzw. ein Rechenzentrum ausfällt. Weitere Informationen finden Sie unter [Georedundante Notfallwiederherstellung in Azure Service Bus](/azure/service-bus-messaging/service-bus-geo-dr).
 
-
-## <a name="storage"></a>Speicher
+## <a name="storage"></a>Storage
 
 **Verwenden Sie für Anwendungsdaten georedundanten Speicher mit Lesezugriff (RA-GRS).** Bei einem RA-GRS-Speicher werden die Daten in eine sekundäre Region repliziert, und er bietet schreibgeschützten Zugriff aus der sekundären Region. Wenn in der primären Region der Speicher ausfällt, kann die Anwendung die Daten über die sekundäre Region lesen. Weitere Informationen finden Sie unter [Azure Storage-Replikation](/azure/storage/storage-redundancy/).
 
 **Verwenden Sie Managed Disks für VM-Datenträger.** [Managed Disks][managed-disks] ermöglicht eine höhere Zuverlässigkeit für VMs in einer Verfügbarkeitsgruppe, da die Datenträger ausreichend voneinander isoliert sind, um Single Points of Failure zu vermeiden. Zudem gelten für Managed Disks keine IOPS-Grenzwerte von VHDs, die in einem Speicherkonto erstellt wurden. Weitere Informationen finden Sie unter [Verwalten der Verfügbarkeit virtueller Windows-Computer in Azure][vm-manage-availability].
 
-**Erstellen Sie für Queue Storage eine Sicherungswarteschlange in einer anderen Region.** Für Queue Storage hat ein schreibgeschütztes Replikat eingeschränkten Nutzen, da Sie Elemente nicht in die Warteschlange aufnehmen oder daraus entfernen können. Erstellen Sie stattdessen eine Sicherungswarteschlange in einem Speicherkonto in einer anderen Region. Bei einem Speicherausfall kann die Anwendung die Sicherungswarteschlange verwenden, bis die primäre Region wieder verfügbar ist. Auf diese Weise kann die Anwendung weiterhin neue Anforderungen verarbeiten.  
+**Erstellen Sie für Queue Storage eine Sicherungswarteschlange in einer anderen Region.** Für Queue Storage hat ein schreibgeschütztes Replikat eingeschränkten Nutzen, da Sie Elemente nicht in die Warteschlange aufnehmen oder daraus entfernen können. Erstellen Sie stattdessen eine Sicherungswarteschlange in einem Speicherkonto in einer anderen Region. Bei einem Speicherausfall kann die Anwendung die Sicherungswarteschlange verwenden, bis die primäre Region wieder verfügbar ist. Auf diese Weise kann die Anwendung weiterhin neue Anforderungen verarbeiten.
 
 ## <a name="sql-database"></a>SQL-Datenbank
 
@@ -155,7 +156,7 @@ Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als p
 
 ## <a name="virtual-network"></a>Virtual Network
 
-**Um öffentliche IP-Adressen einer Whitelist hinzuzufügen oder zu sperren, fügen Sie dem Subnetz eine NSG hinzu.** Blockieren Sie den Zugriff von böswilligen Benutzern, oder lassen Sie nur Benutzer, die über Zugriffsberechtigungen verfügen, auf die Anwendung zugreifen.  
+**Um öffentliche IP-Adressen einer Whitelist hinzuzufügen oder zu sperren, fügen Sie dem Subnetz eine NSG hinzu.** Blockieren Sie den Zugriff von böswilligen Benutzern, oder lassen Sie nur Benutzer, die über Zugriffsberechtigungen verfügen, auf die Anwendung zugreifen.
 
 **Erstellen Sie einen benutzerdefinierten Integritätstest.** Integritätstests durch den Lastenausgleich können für HTTP oder TCP durchgeführt werden. Wenn eine VM auf einem HTTP-Server ausgeführt wird, ist der HTTP-Test ein besserer Indikator für den Integritätsstatus als ein TCP-Test. Verwenden Sie für einen HTTP-Test einen benutzerdefinierten Endpunkt, der die Gesamtintegrität der Anwendung meldet, einschließlich aller kritischen Abhängigkeiten. Weitere Informationen finden Sie unter [Übersicht über Azure Load Balancer](/azure/load-balancer/load-balancer-overview/).
 
