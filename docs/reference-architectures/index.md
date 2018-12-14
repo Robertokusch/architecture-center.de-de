@@ -4,12 +4,12 @@ description: Referenzarchitekturen, Blaupausen und reglementierende Implementier
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: efac05ff95431f9551c6fb76939dbb91cfa01d1d
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 6a86256c504737b5f747a690d27fdf178ac8b4fe
+ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307010"
+ms.lasthandoff: 12/13/2018
+ms.locfileid: "53329380"
 ---
 # <a name="azure-reference-architectures"></a>Azure-Referenzarchitekturen
 
@@ -683,6 +683,25 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                     <div class="cardText">
                         <h3>Hoch verfügbare Webanwendung</h3>
                         <p>Führen Sie eine App Service-Web-App in mehreren Regionen aus, um Hochverfügbarkeit zu erzielen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/app-monitoring.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Überwachung von Webanwendungen in Azure</h3>
+                        <p>Überwachen Sie eine in Azure App Service gehostete Webanwendung.</p>
                     </div>
                 </div>
             </div>
