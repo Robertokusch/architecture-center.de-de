@@ -3,12 +3,13 @@ title: Intelligente Produktsuchmaschine für E-Commerce
 description: Stellen Sie eine erstklassige Sucherfahrung in einer E-Commerce-Anwendung bereit.
 author: jelledruyts
 ms.date: 09/14/2018
-ms.openlocfilehash: a57477c26665b4560671550f6fdd81c2d9505e71
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 5eabdb94b9345e73b21526681e0dbd6ae859d7be
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610667"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004893"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>Intelligente Produktsuchmaschine für E-Commerce
 
@@ -98,9 +99,9 @@ Zur Ermittlung der Betriebskosten für dieses Szenario sind alle oben erwähnten
 
 Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir drei exemplarische Kostenprofile erstellt:
 
-* [Klein][small-pricing]: In diesem Profil verwenden wir eine einzelne `Standard S1`-Web-App zum Hosten der Website, den Free-Tarif des Azure Bot Service, eine einzelne `Basic`-Instanz des Azure Search-Diensts und eine SQL-Datenbank vom Typ `Standard S2`.
-* [Mittel][medium-pricing]: Hier skalieren wir die Web-App vertikal auf zwei Instanzen des `Standard S3`-Tarifs hoch, aktualisieren den Search-Dienst auf den `Standard S1`-Tarif und verwenden eine SQL-Datenbank vom Typ `Standard S6`.
-* [Groß][large-pricing]: Beim größten Profil verwenden wir vier Instanzen einer `Premium P2V2`-Web-App, aktualisieren den Azure Bot Service auf den `Standard S1`-Tarif (mit 1.000.000 Nachrichten in Premium-Kanälen) und verwenden zwei Einheiten des Azure Search Service vom Typ `Standard S3` und eine SQL-Datenbank vom Typ `Premium P6`.
+* [Klein:][small-pricing] In diesem Profil verwenden wir eine einzelne `Standard S1`-Web-App zum Hosten der Website, den Free-Tarif des Azure Bot Service, eine einzelne `Basic`-Instanz des Azure Search-Diensts und eine SQL-Datenbank vom Typ `Standard S2`.
+* [Mittel:][medium-pricing] Hier skalieren wir die Web-App vertikal auf zwei Instanzen des `Standard S3`-Tarifs hoch, upgraden den Search-Dienst auf den `Standard S1`-Tarif und verwenden eine SQL-Datenbank vom Typ `Standard S6`.
+* [Groß:][large-pricing] Beim größten Profil verwenden wir vier Instanzen einer `Premium P2V2`-Web-App, upgraden den Azure Bot Service auf den `Standard S1`-Tarif (mit 1.000.000 Nachrichten in Premium-Kanälen) und verwenden zwei Einheiten des Azure Search-Diensts vom Typ `Standard S3` und eine SQL-Datenbank vom Typ `Premium P6`.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 

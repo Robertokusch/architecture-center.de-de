@@ -1,58 +1,59 @@
 ---
-title: n-schichtige Anwendung mit SQL Server
-description: Vorgehensweise zur Implementierung einer mehrschichtigen Architektur in Azure für Verfügbarkeit, Sicherheit, Skalierbarkeit und Verwaltbarkeit.
+title: N-schichtige Windows-Anwendung mit SQL Server
+titleSuffix: Azure Reference Architectures
+description: Implementieren Sie eine mehrschichtige Architektur in Azure für Verfügbarkeit, Sicherheit, Skalierbarkeit und Verwaltbarkeit.
 author: MikeWasson
 ms.date: 11/12/2018
-ms.openlocfilehash: 857b666ef8af8fec21d7a8a9756508344aa07acc
-ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
+ms.openlocfilehash: 38983dec83718f53fc1ffd79c1347582200f5db0
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51577122"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120123"
 ---
 # <a name="windows-n-tier-application-on-azure-with-sql-server"></a>n-schichtige Windows-Anwendung in Azure mit SQL Server
 
-Diese Referenzarchitektur zeigt, wie Sie für eine n-schichtige Anwendung konfigurierte virtuelle Computer und ein entsprechendes virtuelles Netzwerk mit SQL Server unter Windows für die Datenebene bereitstellen. [**So stellen Sie diese Lösung bereit**.](#deploy-the-solution) 
+Diese Referenzarchitektur zeigt, wie Sie für eine n-schichtige Anwendung konfigurierte virtuelle Computer und ein entsprechendes virtuelles Netzwerk mit SQL Server unter Windows für die Datenebene bereitstellen. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
-![[0]][0]
+![N-Ebenen-Architektur mit Microsoft Azure](./images/n-tier-sql-server.png)
 
 *Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Architecture
 
 Die Architektur besteht aus den folgenden Komponenten:
 
-* **Ressourcengruppe:** [Ressourcengruppen][resource-manager-overview] dienen zum Gruppieren von Ressourcen, damit sie nach Lebensdauer, Besitzer oder anderen Kriterien verwaltet werden können.
+- **Ressourcengruppe**. [Ressourcengruppen][resource-manager-overview] dienen zum Gruppieren von Ressourcen, damit sie nach Lebensdauer, Besitzer oder anderen Kriterien verwaltet werden können.
 
-* **Virtuelles Netzwerk (VNet) und Subnetze:** Jede Azure-VM wird in einem virtuellen Netzwerk (VNET) bereitgestellt, das in Subnetze segmentiert werden kann. Erstellen Sie für jede Schicht ein separates Subnetz. 
+- **Virtuelles Netzwerk (VNET) und Subnetze:** Jede Azure-VM wird in einem virtuellen Netzwerk (VNET) bereitgestellt, das in Subnetze segmentiert werden kann. Erstellen Sie für jede Schicht ein separates Subnetz.
 
-* **Anwendungsgateway:** [Azure Application Gateway](/azure/application-gateway/) ist ein Load Balancer auf Schicht 7 (Anwendungsschicht). Bei dieser Architektur werden HTTP-Anforderungen an das Web-Front-End geleitet. Mit Application Gateway wird auch eine [Web Application Firewall](/azure/application-gateway/waf-overview) (WAF) bereitgestellt, mit der die Anwendung vor häufig auftretenden Exploits und Sicherheitsrisiken geschützt wird. 
+- **Anwendungsgateway:** [Azure Application Gateway](/azure/application-gateway/) ist ein Load Balancer auf Schicht 7 (Anwendungsschicht). Bei dieser Architektur werden HTTP-Anforderungen an das Web-Front-End geleitet. Mit Application Gateway wird auch eine [Web Application Firewall](/azure/application-gateway/waf-overview) (WAF) bereitgestellt, mit der die Anwendung vor häufig auftretenden Exploits und Sicherheitsrisiken geschützt wird.
 
-* **NSGs:** Verwenden Sie [Netzwerksicherheitsgruppen][nsg] (NSGs), um den Netzwerkdatenverkehr im VNET zu beschränken. In der hier gezeigten dreischichtigen Architektur akzeptiert die Datenbankschicht beispielsweise keinen Datenverkehr vom Web-Front-End, sondern nur von der Unternehmensschicht und dem Verwaltungssubnetz.
+- **NSGs**. Verwenden Sie [Netzwerksicherheitsgruppen][nsg] (NSGs), um den Netzwerkdatenverkehr im VNET zu beschränken. In der hier gezeigten dreischichtigen Architektur akzeptiert die Datenbankschicht beispielsweise keinen Datenverkehr vom Web-Front-End, sondern nur von der Unternehmensschicht und dem Verwaltungssubnetz.
 
-* **Azure DDoS Protection**. Obwohl die Azure-Plattform Schutz vor verteilten Denial-of-Service-Angriffen (DDoS) beinhaltet, empfehlen wir die Verwendung der Dienstebene [DDoS Protection Standard][ddos], die erweiterte Funktionen für die DDoS-Entschärfung bietet. Weitere Informationen finden Sie unter [Sicherheitshinweise](#security-considerations).
+- **Azure DDoS Protection**. Obwohl die Azure-Plattform Schutz vor verteilten Denial-of-Service-Angriffen (DDoS) beinhaltet, empfehlen wir die Verwendung der Dienstebene [DDoS Protection Standard][ddos], die erweiterte Funktionen für die DDoS-Entschärfung bietet. Weitere Informationen finden Sie unter [Sicherheitshinweise](#security-considerations).
 
-* **Virtuelle Computer:** Empfehlungen zum Konfigurieren von virtuellen Computern finden Sie unter [Run a Windows VM on Azure](./windows-vm.md) (Ausführen eines virtuellen Windows-Computers in Azure) sowie unter [Run a Linux VM on Azure](./linux-vm.md) (Ausführen eines virtuellen Linux-Computers in Azure).
+- **Virtuelle Computer:** Empfehlungen zum Konfigurieren von virtuellen Computern finden Sie unter [Run a Windows VM on Azure](./windows-vm.md) (Ausführen eines virtuellen Windows-Computers in Azure) sowie unter [Run a Linux VM on Azure](./linux-vm.md) (Ausführen eines virtuellen Linux-Computers in Azure).
 
-* **Verfügbarkeitsgruppen:** Erstellen Sie eine [Verfügbarkeitsgruppe][azure-availability-sets] für jede Schicht, und stellen Sie mindestens zwei VMs in jeder Schicht bereit. Dadurch ist die VM für eine höhere [Vereinbarung zum Servicelevel (SLA)][vm-sla] qualifiziert.
+- **Verfügbarkeitsgruppen**: Erstellen Sie eine [Verfügbarkeitsgruppe][azure-availability-sets] für jede Schicht, und stellen Sie mindestens zwei VMs in jeder Schicht bereit. Dadurch ist die VM für eine höhere [Vereinbarung zum Servicelevel (SLA)][vm-sla] qualifiziert.
 
-* **Lastenausgleichsmodule:** Verwenden Sie [Azure Load Balancer][load-balancer] zum Verteilen von Netzwerkdatenverkehr von der Webebene auf die Geschäftsebene und von der Geschäftsebene an SQL Server.
+- **Lastenausgleichsmodule**. Verwenden Sie [Azure Load Balancer][load-balancer] zum Verteilen von Netzwerkdatenverkehr von der Webebene auf die Geschäftsebene und von der Geschäftsebene an SQL Server.
 
-* **Öffentliche IP-Adresse:** Es ist eine öffentliche IP-Adresse erforderlich, damit die Anwendung Internetdatenverkehr empfangen kann.
+- **Öffentliche IP-Adresse:** Es ist eine öffentliche IP-Adresse erforderlich, damit die Anwendung Internetdatenverkehr empfangen kann.
 
-* **Jumpbox:** Wird auch als [geschützter Host] bezeichnet. Dies ist eine geschützte VM im Netzwerk, die von Administratoren zum Herstellen der Verbindung mit anderen VMs verwendet wird. Die Jumpbox verfügt über eine NSG, die Remotedatenverkehr nur von öffentlichen IP-Adressen zulässt, die in einer Liste mit sicheren Absendern aufgeführt sind. Die NSG sollte Remotedesktop-Datenverkehr (RDP) zulassen.
+- **Jumpbox**: Wird auch als [geschützter Host] bezeichnet. Dies ist eine geschützte VM im Netzwerk, die von Administratoren zum Herstellen der Verbindung mit anderen VMs verwendet wird. Die Jumpbox verfügt über eine NSG, bei der Remotedatenverkehr nur von öffentlichen IP-Adressen zugelassen wird, die in einer Liste mit sicheren Adressen enthalten sind. Die NSG sollte Remotedesktop-Datenverkehr (RDP) zulassen.
 
-* **SQL Server Always On-Verfügbarkeitsgruppe:** Stellt Hochverfügbarkeit in der Datenschicht durch Replikation und Failover bereit. Verwendet WSFC-Technologie (Windows Server-Failovercluster) für Failover.
+- **SQL Server Always On-Verfügbarkeitsgruppe**. Stellt Hochverfügbarkeit in der Datenschicht durch Replikation und Failover bereit. Verwendet WSFC-Technologie (Windows Server-Failovercluster) für Failover.
 
-* **AD DS-Server (Active Directory Domain Services):** Die Computerobjekte für den Failovercluster und die zugehörigen Clusterrollen werden in Active Directory Domain Services (AD DS) erstellt.
+- **AD DS-Server (Active Directory Domain Services):** Die Computerobjekte für den Failovercluster und die zugehörigen Clusterrollen werden in Active Directory Domain Services (AD DS) erstellt.
 
-* **Cloudzeuge**. Bei einem Failovercluster muss mindestens die Hälfte der Knoten ausgeführt werden (Quorum). Enthält der Cluster nur zwei Knoten, kann eine Netzwerkpartition dazu führen, dass sich beide Knoten als Masterknoten betrachten. In diesem Fall benötigen Sie einen *Zeugen*, um den Konflikt zu lösen und ein Quorum festzulegen. Ein Zeuge ist eine Ressource (beispielsweise ein freigegebener Datenträger), der den Ausschlag für das Quorum gibt. Ein Cloudzeuge ist ein Zeugentyp, der Azure Blob Storage nutzt. Weitere Informationen zum Konzept des Quorums finden Sie unter [Understanding cluster and pool quorum](/windows-server/storage/storage-spaces/understand-quorum) (Grundlegendes zu Cluster- und Poolquoren). Weitere Informationen zu Cloudzeugen finden Sie unter [Deploy a cloud witness for a Failover Cluster](/windows-server/failover-clustering/deploy-cloud-witness) (Bereitstellen eines Cloudzeugen für einen Failovercluster). 
+- **Cloudzeuge**. Bei einem Failovercluster muss mindestens die Hälfte der Knoten ausgeführt werden (Quorum). Enthält der Cluster nur zwei Knoten, kann eine Netzwerkpartition dazu führen, dass sich beide Knoten als Masterknoten betrachten. In diesem Fall benötigen Sie einen *Zeugen*, um den Konflikt zu lösen und ein Quorum festzulegen. Ein Zeuge ist eine Ressource (beispielsweise ein freigegebener Datenträger), der den Ausschlag für das Quorum gibt. Ein Cloudzeuge ist ein Zeugentyp, der Azure Blob Storage nutzt. Weitere Informationen zum Konzept des Quorums finden Sie unter [Understanding cluster and pool quorum](/windows-server/storage/storage-spaces/understand-quorum) (Grundlegendes zu Cluster- und Poolquoren). Weitere Informationen zu Cloudzeugen finden Sie unter [Deploy a cloud witness for a Failover Cluster](/windows-server/failover-clustering/deploy-cloud-witness) (Bereitstellen eines Cloudzeugen für einen Failovercluster).
 
-* **Azure DNS:** [Azure DNS][azure-dns] ist ein Hostingdienst für DNS-Domänen. Er ermöglicht eine Namensauflösung mithilfe der Microsoft Azure-Infrastruktur. Durch das Hosten Ihrer Domänen in Azure können Sie Ihre DNS-Einträge mithilfe der gleichen Anmeldeinformationen, APIs, Tools und Abrechnung wie für die anderen Azure-Dienste verwalten.
+- **Azure DNS:** [Azure DNS][azure-dns] ist ein Hostingdienst für DNS-Domänen. Er ermöglicht eine Namensauflösung mithilfe der Microsoft Azure-Infrastruktur. Durch das Hosten Ihrer Domänen in Azure können Sie Ihre DNS-Einträge mithilfe der gleichen Anmeldeinformationen, APIs, Tools und Abrechnung wie für die anderen Azure-Dienste verwalten.
 
 ## <a name="recommendations"></a>Empfehlungen
 
-Ihre Anforderungen können von der hier beschriebenen Architektur abweichen. Verwenden Sie diese Empfehlungen als Startpunkt. 
+Ihre Anforderungen können von der hier beschriebenen Architektur abweichen. Verwenden Sie diese Empfehlungen als Startpunkt.
 
 ### <a name="vnet--subnets"></a>VNET/Subnetze
 
@@ -70,15 +71,14 @@ Definieren Sie Lastenausgleichsregeln, um Netzwerkdatenverkehr an die virtuellen
 
 ### <a name="network-security-groups"></a>Netzwerksicherheitsgruppen
 
-Verwenden Sie NSG-Regeln, um den Datenverkehr zwischen den Schichten zu beschränken. In der oben gezeigten dreischichtigen Architektur kommuniziert die Internetschicht nicht direkt mit der Datenbankschicht. Um dies zu erzwingen, sollte die Datenbankschicht eingehenden Datenverkehr aus dem Subnetz der Internetschicht blockieren.  
+Verwenden Sie NSG-Regeln, um den Datenverkehr zwischen den Schichten zu beschränken. In der oben gezeigten dreischichtigen Architektur kommuniziert die Internetschicht nicht direkt mit der Datenbankschicht. Um dies zu erzwingen, sollte die Datenbankschicht eingehenden Datenverkehr aus dem Subnetz der Internetschicht blockieren.
 
-1. Lehen Sie sämtlichen eingehenden Datenverkehr aus dem VNet ab. (Verwenden Sie den `VIRTUAL_NETWORK`-Tag in der Regel.) 
-2. Lassen Sie eingehenden Datenverkehr aus dem Subnetz der Unternehmensschicht zu.  
+1. Lehen Sie sämtlichen eingehenden Datenverkehr aus dem VNet ab. (Verwenden Sie den `VIRTUAL_NETWORK`-Tag in der Regel.)
+2. Lassen Sie eingehenden Datenverkehr aus dem Subnetz der Unternehmensschicht zu.
 3. Lassen Sie eingehenden Datenverkehr aus dem Subnetz der Datenbankschicht zu. Diese Regel ermöglicht die Kommunikation zwischen den virtuellen Datenbankcomputern, die für die Replikation und das Failover der Datenbank erforderlich ist.
 4. Lassen Sie RDP-Datenverkehr (Port 3389) aus dem Subnetz der Jumpbox zu. Diese Regel erlaubt Administratoren, über die Jumpbox eine Verbindung mit der Datenbankschicht herzustellen.
 
 Erstellen Sie die Regeln 2&ndash;4 mit einer höheren Priorität als die erste Regel, damit sie Vorrang haben.
-
 
 ### <a name="sql-server-always-on-availability-groups"></a>SQL Server Always On-Verfügbarkeitsgruppen
 
@@ -88,15 +88,14 @@ Andere Schichten stellen über einen [Verfügbarkeitsgruppenlistener][sql-always
 
 Konfigurieren Sie die SQL Server-Always On-Verfügbarkeitsgruppe wie folgt:
 
-1. Erstellen Sie einen WSFC-Cluster (Windows Server Failover Clustering), eine SQL Server Always On-Verfügbarkeitsgruppe und ein primäres Replikat. Weitere Informationen finden Sie unter [Erste Schritte mit Always On-Verfügbarkeitsgruppen (SQL Server)][sql-alwayson-getting-started]. 
+1. Erstellen Sie einen WSFC-Cluster (Windows Server Failover Clustering), eine SQL Server Always On-Verfügbarkeitsgruppe und ein primäres Replikat. Weitere Informationen finden Sie unter [Erste Schritte mit Always On-Verfügbarkeitsgruppen (SQL Server)][sql-alwayson-getting-started].
 2. Erstellen Sie ein internes Lastenausgleichsmodul mit einer statischen privaten IP-Adresse.
-3. Erstellen Sie einen Verfügbarkeitsgruppenlistener, und ordnen Sie den DNS-Namen des Listeners der IP-Adresse eines internen Lastenausgleichsmoduls zu. 
+3. Erstellen Sie einen Verfügbarkeitsgruppenlistener, und ordnen Sie den DNS-Namen des Listeners der IP-Adresse eines internen Lastenausgleichsmoduls zu.
 4. Erstellen Sie eine Lastenausgleichsregel für den SQL Server-Überwachungsport (standardmäßig TCP-Port 1433). Die Lastenausgleichsregel muss *Floating IP*, auch als „Direct Server Return“ bezeichnet, aktivieren. Dies bewirkt, dass die VM direkt auf den Client antwortet, was eine direkte Verbindung mit dem primären Replikat ermöglicht.
-  
+
    > [!NOTE]
    > Wenn die Floating IP aktiviert ist, muss die Portnummer des Front-Ends mit der des Back-Ends in der Lastenausgleichsregel übereinstimmen.
-   > 
-   > 
+   >
 
 Wenn ein SQL-Client versucht, eine Verbindung herzustellen, leitet das Lastenausgleichsmodul die Verbindungsanforderung an das primäre Replikat weiter. Bei einem Failover zu einem anderen Replikat leitet der Lastenausgleich neue Anforderungen automatisch an ein neues primäres Replikat weiter. Weitere Informationen finden Sie unter [Konfigurieren eines ILB-Listeners für AlwaysOn-Verfügbarkeitsgruppen in Azure][sql-alwayson-ilb].
 
@@ -139,12 +138,12 @@ Der Lastenausgleich verwendet [Integritätstests][health-probes] zur Überwachun
 
 Empfehlungen für Integritätstests durch den Lastenausgleich:
 
-* Die Tests können für HTTP oder TCP durchgeführt werden. Wenn auf Ihren virtuellen Computern ein HTTP-Server ausgeführt wird, erstellen Sie einen HTTP-Test. Erstellen Sie andernfalls einen TCP-Test.
-* Geben Sie für einen HTTP-Test den Pfad zu einem HTTP-Endpunkt an. Der Test überprüft, ob von diesem Pfad eine HTTP-200-Antwort empfangen wird. Bei diesem Pfad kann es sich um den Stammpfad („/“) oder einen Endpunkt zur Integritätsüberwachung handeln, der benutzerdefinierte Logik zum Überprüfen der Integrität der Anwendung implementiert. Der Endpunkt muss anonyme HTTP-Anforderungen zulassen.
-* Der Test wird von einer [bekannten][health-probe-ip] IP-Adresse (168.63.129.16) gesendet. Blockieren Sie den an oder von diese(r) IP-Adresse gesendeten Datenverkehr nicht in Firewallrichtlinien oder NSG-Regeln.
-* Verwenden Sie die [Protokolle der Integritätstests][health-probe-log], um den Status der Integritätstests anzuzeigen. Aktivieren Sie die Protokollierung für jeden Lastenausgleich im Azure-Portal. Die Protokolle werden in Azure Blob Storage geschrieben. Die Protokolle zeigen, wie viele VMs aufgrund von fehlerhaften Testantworten keinen Netzwerkdatenverkehr empfangen.
+- Die Tests können für HTTP oder TCP durchgeführt werden. Wenn auf Ihren virtuellen Computern ein HTTP-Server ausgeführt wird, erstellen Sie einen HTTP-Test. Erstellen Sie andernfalls einen TCP-Test.
+- Geben Sie für einen HTTP-Test den Pfad zu einem HTTP-Endpunkt an. Der Test überprüft, ob von diesem Pfad eine HTTP-200-Antwort empfangen wird. Bei diesem Pfad kann es sich um den Stammpfad („/“) oder einen Endpunkt zur Integritätsüberwachung handeln, der benutzerdefinierte Logik zum Überprüfen der Integrität der Anwendung implementiert. Der Endpunkt muss anonyme HTTP-Anforderungen zulassen.
+- Der Test wird von einer [bekannten][health-probe-ip] IP-Adresse (168.63.129.16) gesendet. Blockieren Sie den an oder von diese(r) IP-Adresse gesendeten Datenverkehr nicht in Firewallrichtlinien oder NSG-Regeln.
+- Verwenden Sie die [Protokolle der Integritätstests][health-probe-log], um den Status der Integritätstests anzuzeigen. Aktivieren Sie die Protokollierung für jeden Lastenausgleich im Azure-Portal. Die Protokolle werden in Azure Blob Storage geschrieben. Die Protokolle zeigen, wie viele VMs aufgrund von fehlerhaften Testantworten keinen Netzwerkdatenverkehr empfangen.
 
-Wenn Sie eine höhere Verfügbarkeit benötigen, als die [Azure-SLA für VMs][vm-sla] bietet, replizieren Sie ggf. die Anwendung über zwei Regionen, und verwenden Sie den Azure Traffic Manager für das Failover. Weitere Informationen finden Sie unter [Multi-region N-tier application for high availability][multi-dc] (N-schichtige Anwendung in mehreren Regionen für Hochverfügbarkeit).  
+Wenn Sie eine höhere Verfügbarkeit benötigen, als die [Azure-SLA für VMs][vm-sla] bietet, replizieren Sie ggf. die Anwendung über zwei Regionen, und verwenden Sie den Azure Traffic Manager für das Failover. Weitere Informationen finden Sie unter [Multi-region N-tier application for high availability][multi-dc] (N-schichtige Anwendung in mehreren Regionen für Hochverfügbarkeit).
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
@@ -164,17 +163,17 @@ Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folde
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-### <a name="deploy-the-solution"></a>Bereitstellen der Lösung
+### <a name="deployment-steps"></a>Bereitstellungsschritte
 
 1. Führen Sie den folgenden Befehl aus, um eine Ressourcengruppe zu erstellen:
 
-    ```bash
+    ```azurecli
     az group create --location <location> --name <resource-group-name>
     ```
 
 2. Führen Sie den folgenden Befehl aus, um ein Speicherkonto für den Cloudzeugen zu erstellen:
 
-    ```bash
+    ```azurecli
     az storage account create --location <location> \
       --name <storage-account-name> \
       --resource-group <resource-group-name> \
@@ -183,7 +182,7 @@ Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folde
 
 3. Navigieren Sie zum Ordner `virtual-machines\n-tier-windows` des GitHub-Repositorys für Referenzarchitekturen.
 
-4. Öffnen Sie die Datei `n-tier-windows.json` . 
+4. Öffnen Sie die Datei `n-tier-windows.json` .
 
 5. Suchen Sie nach allen Instanzen von „witnessStorageBlobEndPoint“, und ersetzen Sie den Platzhaltertext durch den Namen des Speicherkontos aus Schritt 2.
 
@@ -193,7 +192,7 @@ Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folde
 
 6. Führen Sie den folgenden Befehl aus, um die Kontoschlüssel für das Speicherkonto aufzulisten:
 
-    ```bash
+    ```azurecli
     az storage account keys list \
       --account-name <storage-account-name> \
       --resource-group <resource-group-name>
@@ -225,16 +224,15 @@ Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folde
 8. Suchen Sie in der Datei `n-tier-windows.json` nach allen Vorkommen von `[replace-with-password]` und `[replace-with-sql-password]`, und ersetzen Sie sie durch ein sicheres Kennwort. Speichern Sie die Datei .
 
     > [!NOTE]
-    > Wenn Sie den Administratorbenutzernamen ändern, müssen Sie auch die `extensions`-Blöcke in der JSON-Datei aktualisieren. 
+    > Wenn Sie den Administratorbenutzernamen ändern, müssen Sie auch die `extensions`-Blöcke in der JSON-Datei aktualisieren.
 
 9. Führen Sie den folgenden Befehl aus, um die Architektur bereitzustellen:
 
-    ```bash
+    ```azurecli
     azbb -s <your subscription_id> -g <resource_group_name> -l <location> -p n-tier-windows.json --deploy
     ```
 
 Weitere Informationen zum Bereitstellen dieser Beispielreferenzarchitektur mithilfe von Azure-Bausteinen finden Sie im [GitHub-Repository][git].
-
 
 <!-- links -->
 [dmz]: ../dmz/secure-vnet-dmz.md
@@ -264,8 +262,7 @@ Weitere Informationen zum Bereitstellen dieser Beispielreferenzarchitektur mithi
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
 [wsfc-whats-new]: https://technet.microsoft.com/windows-server-docs/failover-clustering/whats-new-in-failover-clustering
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
-[0]: ./images/n-tier-sql-server.png "n-schichtige Architektur mit Microsoft Azure"
-[resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 
+[resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
 [vmss]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview
 [load-balancer]: /azure/load-balancer/
 [load-balancer-hashing]: /azure/load-balancer/load-balancer-overview#load-balancer-features

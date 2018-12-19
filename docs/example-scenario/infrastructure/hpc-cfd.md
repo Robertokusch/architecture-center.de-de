@@ -3,12 +3,13 @@ title: Ausführen von Simulationen numerischer Strömungsmechaniken (Computation
 description: Führen Sie Simulationen numerischer Strömungsmechaniken (Computational Fluid Dynamics, CFD) in Azure aus.
 author: mikewarr
 ms.date: 09/20/2018
-ms.openlocfilehash: f32e055838d6c62584130f61a0d92b06cc46ec63
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 42921122d74d07bf890f55be61b04c7e9a4f4e87
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610633"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004654"
 ---
 # <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>Ausführen von Simulationen numerischer Strömungsmechaniken (Computational Fluid Dynamics, CFD) in Azure
 
@@ -89,12 +90,12 @@ Die Kosten für die Ausführung einer HPC-Implementierung mit einem CycleCloud-S
 
 Dieses Szenario zeigt, wie CFD-Anwendungen in Azure ausgeführt werden können- Die Computer erfordern daher RDMA-Funktionen, die nur für bestimmte VM-Größen verfügbar sind. Im Folgenden sind Beispiele für die Kosten aufgeführt, die in einem Monat für eine Skalierungsgruppe mit einem ausgehenden Datenverkehr von 1 TB, die kontinuierlich für acht Stunden pro Tag zugeordnet ist, anfallen können. Enthalten sind auch die Preise für den Azure CycleCloud-Server und die Installation von Avere vFXT für Azure:
 
-* Region: Europa, Norden
-* Azure CycleCloud-Server: Ein Standard D3 (vier CPUs, 14 GB Arbeitsspeicher, HDD Standard-Datenträger mit 32 GB)
-* Azure CycleCloud-Masterserver: Ein Standard D12 v (vier CPUs, 28 GB Arbeitsspeicher, HDD Standard-Datenträger mit 32 GB)
-* Azure CycleCloud-Knotenarray: Zehn Standard H16r (16 CPUs, 112 GB Arbeitsspeicher)
-* Avere vFXT für Azure-Cluster: Drei D16s v3 (200 GB Betriebssystem, SSD Premium-Datenträger mit 1 TB)
-* Ausgehende Daten: 1 TB
+* Region: Nordeuropa
+* Azure CycleCloud-Server: 1x Standard D3 (vier CPUs, 14 GB Arbeitsspeicher, HDD Standard-Datenträger mit 32 GB)
+* Azure CycleCloud-Masterserver: 1x Standard D12 v2 (vier CPUs, 28 GB Arbeitsspeicher, HDD Standard-Datenträger mit 32 GB)
+* Azure CycleCloud-Knotenarray: 10x Standard H16r (16 CPUs, 112 GB Arbeitsspeicher)
+* Avere vFXT für Azure-Cluster: 3x D16s v3 (200 GB Betriebssystem, SSD Premium-Datenträger mit 1 TB)
+* Ausgehende Daten: 1 TB
 
 Die Preisschätzung für die oben genannte Hardware finden Sie [hier][pricing].
 

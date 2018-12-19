@@ -1,52 +1,54 @@
 ---
 title: N-schichtige Anwendung mit Apache Cassandra
-description: Vorgehensweise zum Ausführen von Linux-VMs in einer n-schichtigen Architektur in Microsoft Azure
+titleSuffix: Azure Reference Architectures
+description: Führen Sie virtuelle Linux-Computer für eine n-schichtige Architektur mit Apache Cassandra in Microsoft Azure aus.
 author: MikeWasson
 ms.date: 11/12/2018
-ms.openlocfilehash: ec2d6f8310e5b7ae5b135aa0e16f14f572149f7f
-ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
+ms.custom: seodec18
+ms.openlocfilehash: bbd1029fe17b5d88d54246127c5d8983a573b012
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51577173"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120167"
 ---
 # <a name="linux-n-tier-application-in-azure-with-apache-cassandra"></a>n-schichtige Linux-Anwendung in Azure mit Apache Cassandra
 
-Diese Referenzarchitektur zeigt, wie Sie für eine n-schichtige Anwendung konfigurierte virtuelle Computer und ein entsprechendes virtuelles Netzwerk mit Apache Cassandra unter Linux für die Datenebene bereitstellen. [**So stellen Sie diese Lösung bereit**.](#deploy-the-solution) 
+Diese Referenzarchitektur zeigt, wie Sie für eine n-schichtige Anwendung konfigurierte virtuelle Computer (VMs) und ein entsprechendes virtuelles Netzwerk mit Apache Cassandra unter Linux für die Datenebene bereitstellen. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
-![[0]][0]
+![N-Ebenen-Architektur mit Microsoft Azure](./images/n-tier-cassandra.png)
 
 *Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Architecture
 
 Die Architektur besteht aus den folgenden Komponenten:
 
-* **Ressourcengruppe:** [Ressourcengruppen][resource-manager-overview] dienen zum Gruppieren von Ressourcen, damit sie nach Lebensdauer, Besitzer oder anderen Kriterien verwaltet werden können.
+- **Ressourcengruppe**. [Ressourcengruppen][resource-manager-overview] dienen zum Gruppieren von Ressourcen, damit sie nach Lebensdauer, Besitzer oder anderen Kriterien verwaltet werden können.
 
-* **Virtuelles Netzwerk (VNet) und Subnetze:** Jede Azure-VM wird in einem virtuellen Netzwerk (VNET) bereitgestellt, das in Subnetze segmentiert werden kann. Erstellen Sie für jede Schicht ein separates Subnetz. 
+- **Virtuelles Netzwerk (VNET) und Subnetze:** Jede Azure-VM wird in einem virtuellen Netzwerk (VNET) bereitgestellt, das in Subnetze segmentiert werden kann. Erstellen Sie für jede Schicht ein separates Subnetz.
 
-* **NSGs:** Verwenden Sie [Netzwerksicherheitsgruppen][nsg] (NSGs), um den Netzwerkdatenverkehr im VNET zu beschränken. In der hier gezeigten dreischichtigen Architektur akzeptiert die Datenbankschicht beispielsweise Datenverkehr von der Unternehmensschicht und dem Verwaltungssubnetz, aber nicht vom Web-Front-End.
+- **NSGs**. Verwenden Sie [Netzwerksicherheitsgruppen][nsg] (NSGs), um den Netzwerkdatenverkehr im VNET zu beschränken. In der hier gezeigten dreischichtigen Architektur akzeptiert die Datenbankschicht beispielsweise Datenverkehr von der Unternehmensschicht und dem Verwaltungssubnetz, aber nicht vom Web-Front-End.
 
-* **DDoS Protection**. Obwohl die Azure-Plattform Schutz vor verteilten Denial-of-Service-Angriffen (DDoS) beinhaltet, empfehlen wir die Verwendung der Dienstebene [DDoS Protection Standard][ddos], die erweiterte Funktionen für die DDoS-Entschärfung bietet. Weitere Informationen finden Sie unter [Sicherheitshinweise](#security-considerations).
+- **DDoS Protection**. Obwohl die Azure-Plattform Schutz vor verteilten Denial-of-Service-Angriffen (DDoS) beinhaltet, empfehlen wir die Verwendung der Dienstebene [DDoS Protection Standard][ddos], die erweiterte Funktionen für die DDoS-Entschärfung bietet. Weitere Informationen finden Sie unter [Sicherheitshinweise](#security-considerations).
 
-* **Virtuelle Computer:** Empfehlungen zum Konfigurieren von virtuellen Computern finden Sie unter [Run a Windows VM on Azure](./windows-vm.md) (Ausführen eines virtuellen Windows-Computers in Azure) sowie unter [Run a Linux VM on Azure](./linux-vm.md) (Ausführen eines virtuellen Linux-Computers in Azure).
+- **Virtuelle Computer:** Empfehlungen zum Konfigurieren von virtuellen Computern finden Sie unter [Run a Windows VM on Azure](./windows-vm.md) (Ausführen eines virtuellen Windows-Computers in Azure) sowie unter [Run a Linux VM on Azure](./linux-vm.md) (Ausführen eines virtuellen Linux-Computers in Azure).
 
-* **Verfügbarkeitsgruppen:** Erstellen Sie eine [Verfügbarkeitsgruppe][azure-availability-sets] für jede Schicht, und stellen Sie mindestens zwei VMs in jeder Schicht bereit. Dadurch ist die VM für eine höhere [Vereinbarung zum Servicelevel (SLA)][vm-sla] qualifiziert.
+- **Verfügbarkeitsgruppen**: Erstellen Sie eine [Verfügbarkeitsgruppe][azure-availability-sets] für jede Schicht, und stellen Sie mindestens zwei VMs in jeder Schicht bereit. Dadurch ist die VM für eine höhere [Vereinbarung zum Servicelevel (SLA)][vm-sla] qualifiziert.
 
-* **Azure Load Balancer-Instanzen:** Die [Load Balancer-Instanzen][load-balancer] verteilen eingehende Internetanforderungen an die VM-Instanzen. Verwenden Sie einen [öffentlichen Load Balancer][load-balancer-external], um eingehenden Internetdatenverkehr auf die Webschicht zu verteilen, und einen [internen Load Balancer][load-balancer-internal], um Netzwerkdatenverkehr von der Webschicht auf die Unternehmensschicht zu verteilen.
+- **Azure Load Balancer-Instanzen:** Die [Load Balancer-Instanzen][load-balancer] verteilen eingehende Internetanforderungen an die VM-Instanzen. Verwenden Sie einen [öffentlichen Load Balancer][load-balancer-external], um eingehenden Internetdatenverkehr auf die Webschicht zu verteilen, und einen [internen Load Balancer][load-balancer-internal], um Netzwerkdatenverkehr von der Webschicht auf die Unternehmensschicht zu verteilen.
 
-* **Öffentliche IP-Adresse:** Für den Empfang von Internetdatenverkehr benötigt der öffentliche Load Balancer eine öffentliche IP-Adresse.
+- **Öffentliche IP-Adresse:** Für den Empfang von Internetdatenverkehr benötigt der öffentliche Load Balancer eine öffentliche IP-Adresse.
 
-* **Jumpbox:** Wird auch als [geschützter Host] bezeichnet. Dies ist eine geschützte VM im Netzwerk, die von Administratoren zum Herstellen der Verbindung mit anderen VMs verwendet wird. Die Jumpbox verfügt über eine NSG, die Remotedatenverkehr nur von öffentlichen IP-Adressen zulässt, die in einer Liste mit sicheren Absendern aufgeführt sind. Die Netzwerksicherheitsgruppe (NSG) muss SSH-Datenverkehr zulassen.
+- **Jumpbox**: Wird auch als [geschützter Host] bezeichnet. Dies ist eine geschützte VM im Netzwerk, die von Administratoren zum Herstellen der Verbindung mit anderen VMs verwendet wird. Die Jumpbox verfügt über eine NSG, bei der Remotedatenverkehr nur von öffentlichen IP-Adressen zugelassen wird, die in einer Liste mit sicheren Adressen enthalten sind. Die Netzwerksicherheitsgruppe (NSG) muss SSH-Datenverkehr zulassen.
 
-* **Apache Cassandra-Datenbank**: Stellt Hochverfügbarkeit in der Datenschicht durch Replikation und Failover bereit.
+- **Apache Cassandra-Datenbank**: Stellt Hochverfügbarkeit in der Datenschicht durch Replikation und Failover bereit.
 
-* **Azure DNS:** [Azure DNS][azure-dns] ist ein Hostingdienst für DNS-Domänen. Er ermöglicht eine Namensauflösung mithilfe der Microsoft Azure-Infrastruktur. Durch das Hosten Ihrer Domänen in Azure können Sie Ihre DNS-Einträge mithilfe der gleichen Anmeldeinformationen, APIs, Tools und Abrechnung wie für die anderen Azure-Dienste verwalten.
+- **Azure DNS:** [Azure DNS][azure-dns] ist ein Hostingdienst für DNS-Domänen. Er ermöglicht eine Namensauflösung mithilfe der Microsoft Azure-Infrastruktur. Durch das Hosten Ihrer Domänen in Azure können Sie Ihre DNS-Einträge mithilfe der gleichen Anmeldeinformationen, APIs, Tools und Abrechnung wie für die anderen Azure-Dienste verwalten.
 
 ## <a name="recommendations"></a>Empfehlungen
 
-Ihre Anforderungen können von der hier beschriebenen Architektur abweichen. Verwenden Sie diese Empfehlungen als Startpunkt. 
+Ihre Anforderungen können von der hier beschriebenen Architektur abweichen. Verwenden Sie diese Empfehlungen als Startpunkt.
 
 ### <a name="vnet--subnets"></a>VNET/Subnetze
 
@@ -64,10 +66,10 @@ Definieren Sie Lastenausgleichsregeln, um Netzwerkdatenverkehr an die virtuellen
 
 ### <a name="network-security-groups"></a>Netzwerksicherheitsgruppen
 
-Verwenden Sie NSG-Regeln, um den Datenverkehr zwischen den Schichten zu beschränken. In der oben gezeigten dreischichtigen Architektur kommuniziert die Internetschicht beispielsweise nicht direkt mit der Datenbankschicht. Um dies zu erzwingen, sollte die Datenbankschicht eingehenden Datenverkehr aus dem Subnetz der Internetschicht blockieren.  
+Verwenden Sie NSG-Regeln, um den Datenverkehr zwischen den Schichten zu beschränken. In der oben gezeigten dreischichtigen Architektur kommuniziert die Internetschicht beispielsweise nicht direkt mit der Datenbankschicht. Um dies zu erzwingen, sollte die Datenbankschicht eingehenden Datenverkehr aus dem Subnetz der Internetschicht blockieren.
 
-1. Lehen Sie sämtlichen eingehenden Datenverkehr aus dem VNet ab. (Verwenden Sie den `VIRTUAL_NETWORK`-Tag in der Regel.) 
-2. Lassen Sie eingehenden Datenverkehr aus dem Subnetz der Unternehmensschicht zu.  
+1. Lehen Sie sämtlichen eingehenden Datenverkehr aus dem VNet ab. (Verwenden Sie den `VIRTUAL_NETWORK`-Tag in der Regel.)
+2. Lassen Sie eingehenden Datenverkehr aus dem Subnetz der Unternehmensschicht zu.
 3. Lassen Sie eingehenden Datenverkehr aus dem Subnetz der Datenbankschicht zu. Diese Regel ermöglicht die Kommunikation zwischen den virtuellen Datenbankcomputern, die für die Replikation und das Failover der Datenbank erforderlich ist.
 4. Lassen Sie SSH-Datenverkehr (Port 22) aus dem Subnetz der Jumpbox zu. Diese Regel erlaubt Administratoren, über die Jumpbox eine Verbindung mit der Datenbankschicht herzustellen.
 
@@ -75,18 +77,17 @@ Erstellen Sie die Regeln 2&ndash;4 mit einer höheren Priorität als die erste R
 
 ### <a name="cassandra"></a>Cassandra
 
-Für die Produktion wird [DataStax Enterprise][datastax] empfohlen, wobei diese Empfehlungen für alle Cassandra-Editionen gelten. Weitere Informationen zur Ausführung von DataStax in Azure finden Sie im [DataStax Enterprise-Bereitstellungshandbuch für Azure][cassandra-in-azure]. 
+Für die Produktion wird [DataStax Enterprise][datastax] empfohlen, wobei diese Empfehlungen für alle Cassandra-Editionen gelten. Weitere Informationen zur Ausführung von DataStax in Azure finden Sie im [DataStax Enterprise-Bereitstellungshandbuch für Azure][cassandra-in-azure].
 
-Fassen Sie die VMs für einen Cassandra-Cluster in einer Verfügbarkeitsgruppe zusammen, um sicherzustellen, dass die Cassandra-Replikate auf verschiedene Fehler- und Upgradedomänen verteilt werden. Weitere Informationen zu Fehler- und Upgradedomänen finden Sie unter [Verwalten der Verfügbarkeit virtueller Computer][azure-availability-sets]. 
+Fassen Sie die VMs für einen Cassandra-Cluster in einer Verfügbarkeitsgruppe zusammen, um sicherzustellen, dass die Cassandra-Replikate auf verschiedene Fehler- und Upgradedomänen verteilt werden. Weitere Informationen zu Fehler- und Upgradedomänen finden Sie unter [Verwalten der Verfügbarkeit virtueller Computer][azure-availability-sets].
 
-Konfigurieren Sie jeweils drei Fehlerdomänen (Maximalwert) und 18 Upgradedomänen pro Verfügbarkeitsgruppe. Dadurch wird die maximale Anzahl von Upgradedomänen erreicht, die nach wie vor gleichmäßig auf die Fehlerdomänen verteilt werden können.   
+Konfigurieren Sie jeweils drei Fehlerdomänen (Maximalwert) und 18 Upgradedomänen pro Verfügbarkeitsgruppe. Dadurch wird die maximale Anzahl von Upgradedomänen erreicht, die nach wie vor gleichmäßig auf die Fehlerdomänen verteilt werden können.
 
 Konfigurieren Sie Knoten im rackfähigen Modus. Ordnen Sie Fehlerdomänen den Racks in der Datei `cassandra-rackdc.properties` zu.
 
 Es ist kein vor dem Cluster geschaltetes Lastenausgleichsmodul erforderlich. Der Client stellt eine direkte Verbindung mit einem Knoten im Cluster her.
 
 Stellen Sie Cassandra in mehreren Azure-Regionen bereit, um eine hohe Verfügbarkeit zu erzielen. Knoten in jeder Region werden in unterschiedlichen Racks und in Fehler- und Upgradedomänen konfiguriert, um Resilienz innerhalb der Region sicherzustellen.
-
 
 ### <a name="jumpbox"></a>Jumpbox
 
@@ -121,12 +122,12 @@ Der Lastenausgleich verwendet [Integritätstests][health-probes] zur Überwachun
 
 Empfehlungen für Integritätstests durch den Lastenausgleich:
 
-* Die Tests können für HTTP oder TCP durchgeführt werden. Wenn auf Ihren virtuellen Computern ein HTTP-Server ausgeführt wird, erstellen Sie einen HTTP-Test. Erstellen Sie andernfalls einen TCP-Test.
-* Geben Sie für einen HTTP-Test den Pfad zu einem HTTP-Endpunkt an. Der Test überprüft, ob von diesem Pfad eine HTTP-200-Antwort empfangen wird. Dies kann den Stammpfad („/“) oder ein Endpunkt zur Integritätsüberwachung sein, der benutzerdefinierte Logik zum Überprüfen der Integrität der Anwendung implementiert. Der Endpunkt muss anonyme HTTP-Anforderungen zulassen.
-* Der Test wird von einer [bekannten][health-probe-ip] IP-Adresse (168.63.129.16) gesendet. Stellen Sie sicher, dass Sie den an oder von diese(r) IP-Adresse gesendeten Datenverkehr nicht in Firewallrichtlinien oder NSG-Regeln blockieren.
-* Verwenden Sie die [Protokolle der Integritätstests][health-probe-log], um den Status der Integritätstests anzuzeigen. Aktivieren Sie die Protokollierung für jeden Lastenausgleich im Azure-Portal. Die Protokolle werden in Azure Blob Storage geschrieben. Die Protokolle zeigen, wie viele VMs aufgrund von fehlerhaften Testantworten keinen Netzwerkdatenverkehr empfangen.
+- Die Tests können für HTTP oder TCP durchgeführt werden. Wenn auf Ihren virtuellen Computern ein HTTP-Server ausgeführt wird, erstellen Sie einen HTTP-Test. Erstellen Sie andernfalls einen TCP-Test.
+- Geben Sie für einen HTTP-Test den Pfad zu einem HTTP-Endpunkt an. Der Test überprüft, ob von diesem Pfad eine HTTP-200-Antwort empfangen wird. Dies kann den Stammpfad („/“) oder ein Endpunkt zur Integritätsüberwachung sein, der benutzerdefinierte Logik zum Überprüfen der Integrität der Anwendung implementiert. Der Endpunkt muss anonyme HTTP-Anforderungen zulassen.
+- Der Test wird von einer [bekannten][health-probe-ip] IP-Adresse (168.63.129.16) gesendet. Stellen Sie sicher, dass Sie den an oder von diese(r) IP-Adresse gesendeten Datenverkehr nicht in Firewallrichtlinien oder NSG-Regeln blockieren.
+- Verwenden Sie die [Protokolle der Integritätstests][health-probe-log], um den Status der Integritätstests anzuzeigen. Aktivieren Sie die Protokollierung für jeden Lastenausgleich im Azure-Portal. Die Protokolle werden in Azure Blob Storage geschrieben. Die Protokolle zeigen, wie viele VMs aufgrund von fehlerhaften Testantworten keinen Netzwerkdatenverkehr empfangen.
 
-Für den Cassandra-Cluster hängen die Failoverszenarien von den Konsistenzebenen, die von der Anwendung verwendet werden, und von der Anzahl von Replikaten ab. Weitere Informationen zu Konsistenzebenen und der Verwendung in Cassandra finden Sie unter [Konfigurieren der Datenkonsistenz][cassandra-consistency] und [Cassandra: Wie viele Knoten kommunizieren mit Quorum?][cassandra-consistency-usage]. Die Verfügbarkeit der Daten wird in Cassandra durch die Konsistenzebene, die von der Anwendung verwendet wird, und vom Replikationsverfahren bestimmt. Weitere Informationen zur Replikation in Cassandra finden Sie unter [Datenreplikation in NoSQL-Datenbanken im Überblick][cassandra-replication].
+Für den Cassandra-Cluster hängen die Failoverszenarien von den Konsistenzebenen, die von der Anwendung verwendet werden, und von der Anzahl von Replikaten ab. Weitere Informationen zu Konsistenzebenen und der Verwendung in Cassandra finden Sie unter [Konfigurieren der Datenkonsistenz][cassandra-consistency] sowie unter [Cassandra: Wie viele Knoten kommunizieren mit Quorum?][cassandra-consistency-usage]. Die Verfügbarkeit der Daten wird in Cassandra durch die Konsistenzebene, die von der Anwendung verwendet wird, und vom Replikationsverfahren bestimmt. Weitere Informationen zur Replikation in Cassandra finden Sie unter [Datenreplikation in NoSQL-Datenbanken im Überblick][cassandra-replication].
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
@@ -142,7 +143,7 @@ Für eingehenden Internetdatenverkehr definieren die Lastenausgleichsregeln, wel
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folder] verfügbar. 
+Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folder] verfügbar.
 
 ### <a name="prerequisites"></a>Voraussetzungen
 
@@ -158,13 +159,14 @@ Um die Linux VMs für eine n-schichtige Anwendungsreferenzarchitektur bereitzust
 
 3. Stellen Sie die Referenzarchitektur wie unten dargestellt mit dem Tool **azbb** bereit.
 
-   ```bash
+   ```azurecli
    azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-linux.json --deploy
    ```
 
 Weitere Informationen zum Bereitstellen dieser Beispielreferenzarchitektur mithilfe von Azure-Bausteinen finden Sie im [GitHub-Repository][git].
 
 <!-- links -->
+
 [dmz]: ../dmz/secure-vnet-dmz.md
 [multi-vm]: ./multi-vm.md
 [naming conventions]: /azure/guidance/guidance-naming-conventions
@@ -193,9 +195,8 @@ Weitere Informationen zum Bereitstellen dieser Beispielreferenzarchitektur mithi
 [öffentliche IP-Adresse]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
-[0]: ./images/n-tier-cassandra.png "n-schichtige Architektur mit Microsoft Azure"
 
-[resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 
+[resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
 [vmss]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview
 [load-balancer]: /azure/load-balancer/load-balancer-get-started-internet-arm-cli
 [load-balancer-hashing]: /azure/load-balancer/load-balancer-overview#load-balancer-features

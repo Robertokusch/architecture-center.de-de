@@ -1,42 +1,42 @@
 ---
 title: Namenskonventionen für Azure-Ressourcen
-description: Enthält die Namenskonventionen für Azure-Ressourcen. Benennen von virtuellen Computern, Speicherkonten, Netzwerken, virtuellen Netzwerken, Subnetzen und anderen Azure-Entitäten
+titleSuffix: Best practices for cloud applications
+description: Empfehlungen für die Benennung von virtuellen Computern, Speicherkonten, Netzwerken, virtuellen Netzwerken, Subnetzen und anderen Azure-Entitäten
 author: telmosampaio
 ms.date: 10/19/2018
-pnp.series.title: Best Practices
-ms.openlocfilehash: 891fa774442ab7ec8f65eb7d8c405fa533db4760
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 4f934102acea24e8e1070ed6a25d63927f0bd252
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916531"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307077"
 ---
-# <a name="naming-conventions"></a>Benennungskonventionen
+# <a name="naming-conventions-for-azure-resources"></a>Namenskonventionen für Azure-Ressourcen
 
-[!INCLUDE [header](../_includes/header.md)]
-
-Dieser Artikel enthält eine Zusammenfassung der Benennungsregeln und -einschränkungen für Azure-Ressourcen und eine Reihe von grundsätzlichen Empfehlungen für Namenskonventionen.  Sie können diese Empfehlungen als Ausgangspunkt für Ihre eigenen, Ihren Bedürfnissen angepassten Konventionen verwenden.
+Dieser Artikel enthält eine Zusammenfassung der Benennungsregeln und -einschränkungen für Azure-Ressourcen und eine Reihe von grundsätzlichen Empfehlungen für Namenskonventionen. Sie können diese Empfehlungen als Ausgangspunkt für Ihre eigenen, Ihren Bedürfnissen angepassten Konventionen verwenden.
 
 Die Auswahl eines Namens für eine Ressource in Microsoft Azure ist wichtig, da:
 
-* Es ist schwierig, einen Namen zu einem späteren Zeitpunkt zu ändern.
-* Namen die Anforderungen ihres bestimmten Ressourcentyps erfüllen müssen.
+- Es ist schwierig, einen Namen zu einem späteren Zeitpunkt zu ändern.
+- Namen die Anforderungen ihres bestimmten Ressourcentyps erfüllen müssen.
 
 Durch konsistente Namenskonventionen lassen sich Ressourcen einfacher finden. Außerdem kann damit die Rolle einer Ressource in einer Lösung angegeben werden.
 
 Der Schlüssel zur erfolgreichen Verwendung von Namenskonventionen ist deren Einrichtung und Befolgung für Ihre gesamten Anwendungen und Organisationen.
 
 ## <a name="naming-subscriptions"></a>Benennen von Abonnements
-Bei der Benennung von Azure-Abonnements verdeutlichen ausführliche Namen den Kontext und den Zweck jedes Abonnements.  Wenn Sie in einer Umgebung mit vielen Abonnements arbeiten, kann die Einhaltung einer gemeinsamen Namenskonvention die Eindeutigkeit verbessern.
+
+Bei der Benennung von Azure-Abonnements verdeutlichen ausführliche Namen den Kontext und den Zweck jedes Abonnements. Wenn Sie in einer Umgebung mit vielen Abonnements arbeiten, kann die Einhaltung einer gemeinsamen Namenskonvention die Eindeutigkeit verbessern.
 
 Ein empfohlenes Muster für das Benennen von Abonnements:
 
 `<Company> <Department (optional)> <Product Line (optional)> <Environment>`
 
-* Das Unternehmen ist für jedes Abonnement normalerweise gleich. Einige Unternehmen verfügen in ihrer Organisationsstruktur aber ggf. über untergeordnete Unternehmen. Diese Unternehmen werden unter Umständen von einer zentralen IT-Gruppe verwaltet. In diesem Fall ist eine Unterscheidung möglich, indem sowohl der Name des übergeordneten Unternehmens (*Contoso*) als auch der Name des untergeordneten Unternehmens (*Northwind*) verwendet wird.
-* Die Abteilung ist ein Name für einen Bereich in der Organisation, die eine Gruppe von Personen enthält. Dieses Element ist innerhalb des Namespace optional.
-* Die Produktlinie bezeichnet den spezifischen Namen eines Produkts oder einer Funktion, die von der Abteilung aus ausgeführt wird. Dies ist für interne Dienste und Anwendungen normalerweise optional. Der Einsatz wird aber dringend für öffentliche Dienste empfohlen, für die eine einfache Trennung und Identifikation (z.B. zur eindeutigen Trennung für Abrechnungsdatensätze) erforderlich ist.
-* Die Umgebung ist der Name für den Bereitstellungszyklus der Anwendungen oder Dienste wie Entwicklung, QA oder Bereitstellung.
+- Das Unternehmen ist für jedes Abonnement normalerweise gleich. Einige Unternehmen verfügen in ihrer Organisationsstruktur aber ggf. über untergeordnete Unternehmen. Diese Unternehmen werden unter Umständen von einer zentralen IT-Gruppe verwaltet. In diesem Fall ist eine Unterscheidung möglich, indem sowohl der Name des übergeordneten Unternehmens (*Contoso*) als auch der Name des untergeordneten Unternehmens (*Northwind*) verwendet wird.
+- Die Abteilung ist ein Name für einen Bereich in der Organisation, die eine Gruppe von Personen enthält. Dieses Element ist innerhalb des Namespace optional.
+- Die Produktlinie bezeichnet den spezifischen Namen eines Produkts oder einer Funktion, die von der Abteilung aus ausgeführt wird. Dies ist für interne Dienste und Anwendungen normalerweise optional. Der Einsatz wird aber dringend für öffentliche Dienste empfohlen, für die eine einfache Trennung und Identifikation (z.B. zur eindeutigen Trennung für Abrechnungsdatensätze) erforderlich ist.
+- Die Umgebung ist der Name für den Bereitstellungszyklus der Anwendungen oder Dienste wie Entwicklung, QA oder Bereitstellung.
 
 | Unternehmen | Abteilung | Produktlinie oder Dienst | Environment | Vollständiger Name |
 | --- | --- | --- | --- | --- |
@@ -45,16 +45,16 @@ Ein empfohlenes Muster für das Benennen von Abonnements:
 | Contoso |IT |InternalApps |Bereitstellung |Contoso IT InternalApps Bereitstellung |
 | Contoso |IT |InternalApps |Entwicklung |Contoso IT InternalApps Entwicklung |
 
-Weitere Informationen zur Organisation von Abonnements für größere Unternehmen finden Sie unter [Azure-Unternehmensgerüst – präskriptive Abonnementgovernance][scaffold].
+Weitere Informationen zur Strukturierung von Abonnements für größere Unternehmen finden Sie unter [Azure-Unternehmensgerüst – präskriptive Abonnementgovernance](/azure/architecture/cloud-adoption/appendix/azure-scaffold).
 
 ## <a name="use-affixes-to-avoid-ambiguity"></a>Verwenden von Affixen zur Vermeidung von Mehrdeutigkeit
 
-Beim Benennen von Ressourcen in Azure wird empfohlen, gängige Präfixe oder Suffixe zu verwenden, um den Typ und Kontext der Ressource zu identifizieren.  Während alle Informationen zum Typ, zu Metadaten und zum Kontext programmgesteuert verfügbar sind, vereinfacht das Anwenden gemeinsamer Affixe die visuelle Identifizierung.  Wenn Sie Affixe in Ihre Namenskonvention integrieren, ist es wichtig, eindeutig festzulegen, ob das Affix am Anfang (Präfix) oder am Ende (Suffix) des Namens steht.
+Beim Benennen von Ressourcen in Azure wird empfohlen, gängige Präfixe oder Suffixe zu verwenden, um den Typ und Kontext der Ressource zu identifizieren. Während alle Informationen zum Typ, zu Metadaten und zum Kontext programmgesteuert verfügbar sind, vereinfacht das Anwenden gemeinsamer Affixe die visuelle Identifizierung. Wenn Sie Affixe in Ihre Namenskonvention integrieren, ist es wichtig, eindeutig festzulegen, ob das Affix am Anfang (Präfix) oder am Ende (Suffix) des Namens steht.
 
 Hier sind zwei mögliche Namen für einen Dienst angegeben, der eine Berechnungs-Engine hostet:
 
-* SvcCalculationEngine (Präfix)
-* CalculationEngineSvc (Suffix)
+- SvcCalculationEngine (Präfix)
+- CalculationEngineSvc (Suffix)
 
 Affixe können auf verschiedene Aspekte verweisen, die die entsprechenden Ressourcen beschreiben. Die folgende Tabelle zeigt einige üblicherweise verwendete Beispiele.
 
@@ -70,7 +70,7 @@ Bei der Entwicklung einer bestimmten Namenskonvention für Ihr Unternehmen oder 
 
 ## <a name="naming-rules-and-restrictions"></a>Benennungsregeln und -einschränkungen
 
-Mit jedem Ressourcen- oder Diensttyp in Azure wird eine Reihe von Benennungseinschränkungen und der entsprechende Umfang durchgesetzt. Alle Namenskonventionen bzw. -muster müssen die erforderlichen Benennungsregeln bzw. den Umfang erfüllen.  Beispiel: Während der Name einer VM einem DNS-Namen zugeordnet ist (und deshalb in der gesamten Azure-Umgebung eindeutig sein muss), ist der Name eines VNET auf die Ressourcengruppe beschränkt, in der es erstellt wird.
+Mit jedem Ressourcen- oder Diensttyp in Azure wird eine Reihe von Benennungseinschränkungen und der entsprechende Umfang durchgesetzt. Alle Namenskonventionen bzw. -muster müssen die erforderlichen Benennungsregeln bzw. den Umfang erfüllen. Beispiel: Während der Name einer VM einem DNS-Namen zugeordnet ist (und deshalb in der gesamten Azure-Umgebung eindeutig sein muss), ist der Name eines VNET auf die Ressourcengruppe beschränkt, in der es erstellt wird.
 
 Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen eines Namens zu verwenden. Diese Zeichen führen bei den meisten Validierungsregeln zu einem Fehler.
 
@@ -78,7 +78,7 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 
 | Entität | Bereich | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
 | --- | --- | --- | --- | --- | --- | --- |
-|Ressourcengruppe |Abonnement |1-90 |Groß-/Kleinschreibung nicht beachten |Alphanumerische Zeichen, Unterstrich, Klammern, Bindestrich, Punkt (außer am Ende) und Unicode-Zeichen, die dem [hier](/rest/api/resources/resourcegroups/createorupdate) dokumentierten regulären Ausdruck entsprechen.  |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|Ressourcengruppe |Abonnement |1-90 |Groß-/Kleinschreibung nicht beachten |Alphanumerische Zeichen, Unterstrich, Klammern, Bindestrich, Punkt (außer am Ende) und Unicode-Zeichen, die dem [hier](/rest/api/resources/resourcegroups/createorupdate) dokumentierten regulären Ausdruck entsprechen. |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |Verfügbarkeitsgruppe |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Unterstrich und Bindestrich |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Tag |Zugeordnete Entität |512 (Name), 256 (Wert) |Groß-/Kleinschreibung nicht beachten |Alphanumerisch |`"key" : "value"` |`"department" : "Central IT"` |
 
@@ -92,7 +92,7 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 > [!NOTE]
 > Virtuelle Computer in Azure haben zwei getrennte Namen: VM-Name und Hostname. Wenn Sie im Portal eine VM erstellen, wird der gleiche Name sowohl für den Hostnamen als auch für den Namen der VM-Ressource verwendet. Die obigen Einschränkungen gelten für den Hostnamen. Der eigentliche Ressourcenname kann bis zu 64 Zeichen lang sein.
 
-### <a name="storage"></a>Speicher
+### <a name="storage"></a>Storage
 
 | Entität | Bereich | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -126,10 +126,9 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 | --- | --- | --- | --- | --- | --- | --- |
 |Containerregistrierung | Global |5 - 50 |Groß-/Kleinschreibung nicht beachten | Alphanumerisch |`<service short name>registry` |`app1registry` |
 
-
 ## <a name="organize-resources-with-tags"></a>Organisieren von Ressourcen mit Tags
 
-Azure Resource Manager unterstützt das Kennzeichnen von Entitäten mit beliebigen Textzeichenfolgen, um den Kontext zu identifizieren und die Automatisierung zu optimieren.  So können beispielsweise mit dem Tag `"sqlVersion"="sql2014ee"` virtuelle Computer mit SQL Server 2014 Enterprise Edition gekennzeichnet werden. Tags sollten zusätzlich zu den gewählten Namenskonventionen zum Verbessern und Erweitern des Kontexts verwendet werden.
+Azure Resource Manager unterstützt das Kennzeichnen von Entitäten mit beliebigen Textzeichenfolgen, um den Kontext zu identifizieren und die Automatisierung zu optimieren. So können beispielsweise mit dem Tag `"sqlVersion"="sql2014ee"` virtuelle Computer mit SQL Server 2014 Enterprise Edition gekennzeichnet werden. Tags sollten zusätzlich zu den gewählten Namenskonventionen zum Verbessern und Erweitern des Kontexts verwendet werden.
 
 > [!TIP]
 > Ein weiterer Vorteil von Tags ist, dass sie sich über Ressourcengruppen erstrecken, wodurch Sie die Möglichkeit haben, Entitäten über verschiedene Bereitstellungen hinweg zu verknüpfen und zu korrelieren.
@@ -140,12 +139,12 @@ Weitere Informationen zur Verwendung von Tags für Ressourcen finden Sie unter [
 
 Einige der üblichen Anwendungsfälle für die Verwendung von Tags sind:
 
-* **Abrechnung**– Gruppieren von Ressourcen und Zuordnen dieser zu Codes für Abrechnung oder verbrauchsbasierte Kostenzuteilung
-* **ServicekontextIdentifikation**– Identifizieren von Gruppen von Ressourcen über Ressourcengruppen hinweg für allgemeine Operationen und Gruppierung
-* **Zugriffssteuerung und Sicherheitskontext** – Identifizieren der Administratorrolle basierend auf Portfolio, System, Service, App, Instanz usw.
+- **Abrechnung:** Gruppieren von Ressourcen und Zuordnen zu Codes für die Abrechnung oder verbrauchsbasierte Kostenzuteilung
+- **Servicekontextidentifikation:** Identifizieren von Gruppen von Ressourcen über Ressourcengruppen hinweg für allgemeine Vorgänge und Gruppierungen
+- **Zugriffssteuerung und Sicherheitskontext:** Identifizieren der Administratorrolle basierend auf Portfolio, System, Dienst, App, Instanz usw.
 
 > [!TIP]
-> Markieren Sie frühzeitig – markieren Sie oft.  Es ist besser, ein Basisschema zum Verwenden von Tags zu haben, das Sie mit der Zeit anpassen, als nachträglich eines erstellen zu müssen.
+> Markieren Sie frühzeitig, markieren Sie oft. Es ist besser, ein Basisschema zum Verwenden von Tags zu haben, das Sie mit der Zeit anpassen, als nachträglich eines erstellen zu müssen.
 
 Ein Beispiel für einige übliche Ansätze zum Verwenden von Tags:
 
@@ -169,12 +168,12 @@ Vor allem in größeren Topologien vereinfachen sorgfältig benannte virtuelle C
 
 ### <a name="storage-accounts-and-storage-entities"></a>Speicherkonten und -entitäten
 
-Es gibt zwei vorrangige Anwendungsfälle für Speicherkonten: Sicherung von Datenträgern für VMs und Speicherung von Daten in Blobs, Warteschlangen und Tabellen.  Bei für VM-Datenträger verwendeten Speicherkonten sollte als Namenskonvention die Zuordnung zum Namen der übergeordneten VM genutzt werden (und außerdem ein Zahlensuffix hinzugefügt werden, da für Highend-VM-SKUs häufig mehrere Speicherkonten benötigt werden).
+Es gibt zwei vorrangige Anwendungsfälle für Speicherkonten: Sicherung von Datenträgern für virtuelle Computer und Speicherung von Daten in Blobs, Warteschlangen und Tabellen. Bei für VM-Datenträger verwendeten Speicherkonten sollte als Namenskonvention die Zuordnung zum Namen der übergeordneten VM genutzt werden (und außerdem ein Zahlensuffix hinzugefügt werden, da für Highend-VM-SKUs häufig mehrere Speicherkonten benötigt werden).
 
 > [!TIP]
 > Für Speicherkonten – ob für Daten oder Datenträger – sollte eine Namenskonvention gewählt werden, die die Nutzung von mehreren Speicherkonten ermöglicht (also immer mit numerischem Suffix).
 
-Es ist möglich, einen benutzerdefinierten Domänennamen zu konfigurieren, mit dem Sie auf Blobdaten in Ihrem Azure Storage-Konto zugreifen können. Der Standardendpunkt für den Blob-Dienst lautet „https://\<Name\>.blob.core.windows.net“.
+Es ist möglich, einen benutzerdefinierten Domänennamen zu konfigurieren, mit dem Sie auf Blobdaten in Ihrem Azure Storage-Konto zugreifen können. Der Standardendpunkt für den Blobdienst ist `https://<name>.blob.core.windows.net`
 
 Aber wenn Sie dem Blobendpunkt für Ihr Speicherkonto eine benutzerdefinierte Domäne zuordnen (z.B. www.contoso.com), können Sie auch unter Verwendung dieser Domäne auf Blobdaten in Ihrem Speicherkonto zugreifen. Mit einem benutzerdefinierten Domänennamen kann auf `https://mystorage.blob.core.windows.net/mycontainer/myblob` beispielsweise mit `https://www.contoso.com/mycontainer/myblob` zugegriffen werden.
 
@@ -182,17 +181,14 @@ Weitere Informationen zum Konfigurieren dieser Funktion finden Sie unter [Konfig
 
 Weitere Informationen zur Benennung von Blobs, Containern und Tabellen finden Sie in der folgenden Liste:
 
-* [Benennen von Containern, BLOBs und Metadaten und Verweisen auf diese](https://msdn.microsoft.com/library/dd135715.aspx)
-* [Benennen von Warteschlangen und Metadaten](https://msdn.microsoft.com/library/dd179349.aspx)
-* [Benennen von Tabellen](https://msdn.microsoft.com/library/azure/dd179338.aspx)
+- [Benennen von Containern, BLOBs und Metadaten und Verweisen auf diese](https://msdn.microsoft.com/library/dd135715.aspx)
+- [Benennen von Warteschlangen und Metadaten](https://msdn.microsoft.com/library/dd179349.aspx)
+- [Benennen von Tabellen](https://msdn.microsoft.com/library/azure/dd179338.aspx)
 
-Ein Blobname kann jede Kombination von Zeichen enthalten, jedoch müssen reservierte URL-Zeichen ordnungsgemäß mit Escapezeichen versehen werden. Vermeiden Sie Blobnamen, die mit einem Punkt (.), einem Schrägstrich (/) oder einer Sequenz oder einer Kombination aus beidem endet. Gemäß der Konvention ist der Schrägstrich das Trennzeichen für das **virtuelle** Verzeichnis. Verwenden Sie in einem Blobnamen keinen umgekehrten Schrägstrich (\\). Die Client-APIs lassen dies möglicherweise zu, ermitteln dann aber den Hash nicht richtig, und die Signaturen stimmen nicht überein.
+Ein Blobname kann jede Kombination von Zeichen enthalten, jedoch müssen reservierte URL-Zeichen ordnungsgemäß mit Escapezeichen versehen werden. Vermeiden Sie Blobnamen, die mit einem Punkt (.), einem Schrägstrich (/) oder einer Sequenz oder einer Kombination aus beidem endet. Gemäß der Konvention ist der Schrägstrich das Trennzeichen für das *virtuelle* Verzeichnis. Verwenden Sie in einem Blobnamen keinen umgekehrten Schrägstrich (\\). Die Client-APIs lassen dies möglicherweise zu, ermitteln dann aber den Hash nicht richtig, und die Signaturen stimmen nicht überein.
 
 Es ist nicht möglich, den Namen eines Speicherkontos oder -containers nach dem Erstellen zu ändern. Wenn Sie einen neuen Namen verwenden möchten, müssen Sie die Komponente löschen und neu erstellen.
 
 > [!TIP]
 > Es wird empfohlen, dass Sie vor der Entwicklung eines neuen Diensts oder einer neuen Anwendung eine Benennungskonvention für alle Speicherkonten und -typen einrichten.
 
-<!-- links -->
-
-[scaffold]: /azure/architecture/cloud-adoption/appendix/azure-scaffold

@@ -1,20 +1,22 @@
 ---
 title: Serverlose Ereignisverarbeitung mit Azure Functions
+titleSuffix: Azure Reference Architectures
 description: Referenzarchitektur zur Veranschaulichung der serverlosen Ereigniserfassung und -verarbeitung
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: 76c8b9c1244c987c96e38e50ecad7814cc49cd88
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: 1a3c73ca35f7e849211837dee33a530d786c827f
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295649"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119896"
 ---
 # <a name="serverless-event-processing-using-azure-functions"></a>Serverlose Ereignisverarbeitung mit Azure Functions
 
 Diese Referenzarchitektur zeigt eine [serverlose](https://azure.microsoft.com/solutions/serverless/), ereignisgesteuerte Architektur, die einen Datenstrom erfasst, die Daten verarbeitet und die Ergebnisse in eine Back-End-Datenbank schreibt. Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] verfügbar.
 
-![](./_images/serverless-event-processing.png)
+![Referenzarchitektur für die serverlose Ereignisverarbeitung mithilfe von Azure Functions](./_images/serverless-event-processing.png)
 
 ## <a name="architecture"></a>Architecture
 
@@ -49,16 +51,16 @@ Die Durchsatzkapazität für Cosmos DB wird in [Anforderungseinheiten][ru] (RUs)
 
 Hier sind einige Merkmale eines gut geeigneten Partitionsschlüssels aufgeführt:
 
-- Der Schlüsselwertbereich ist ausreichend groß. 
+- Der Schlüsselwertbereich ist ausreichend groß.
 - Es erfolgt eine gleichmäßige Verteilung von Lese- und Schreibvorgängen pro Schlüsselwert, um eine Überlastung von Schlüsseln zu vermeiden.
-- Die maximale Datenmenge, die für einen Schlüsselwert gespeichert wird, übersteigt niemals die maximale Größe der physischen Partition (10 GB). 
-- Der Partitionsschlüssel für ein Dokument ändert sich nicht. Sie können den Partitionsschlüssel für ein vorhandenes Dokument nicht aktualisieren. 
+- Die maximale Datenmenge, die für einen Schlüsselwert gespeichert wird, übersteigt niemals die maximale Größe der physischen Partition (10 GB).
+- Der Partitionsschlüssel für ein Dokument ändert sich nicht. Sie können den Partitionsschlüssel für ein vorhandenes Dokument nicht aktualisieren.
 
 Im Szenario für diese Referenzarchitektur speichert die Funktion genau ein Dokument pro Gerät, das Daten sendet. Die Funktion aktualisiert die Dokumente laufend mit dem aktuellen Gerätestatus, indem ein Upsert-Vorgang verwendet wird. Die Geräte-ID ist ein guter Partitionsschlüssel für dieses Szenario, da Schreibvorgänge gleichmäßig auf die Schlüssel verteilt werden. Außerdem ist die Größe jeder Partition streng begrenzt, weil ein einzelnes Dokument für jeden Schlüsselwert vorhanden ist. Weitere Informationen zu Partitionsschlüsseln finden Sie unter [Partitionieren und Skalieren in Azure Cosmos DB][cosmosdb-scale].
 
 ## <a name="resiliency-considerations"></a>Überlegungen zur Resilienz
 
-Beim Verwenden des Event Hubs-Triggers mit Functions ist es ratsam, Ausnahmen in Ihrer Verarbeitungsschleife abzufangen. Wenn ein Ausnahmefehler auftritt, führt die Functions-Runtime keinen Wiederholungsversuch für die Nachrichten durch. Wenn eine Nachricht nicht verarbeitet werden kann, sollte sie in eine Warteschlange für unzustellbare Nachrichten eingereiht werden. Verwenden Sie einen Out-of-band-Prozess, um die Nachrichten zu untersuchen und die Korrekturmaßnahmen zu bestimmen. 
+Beim Verwenden des Event Hubs-Triggers mit Functions ist es ratsam, Ausnahmen in Ihrer Verarbeitungsschleife abzufangen. Wenn ein Ausnahmefehler auftritt, führt die Functions-Runtime keinen Wiederholungsversuch für die Nachrichten durch. Wenn eine Nachricht nicht verarbeitet werden kann, sollte sie in eine Warteschlange für unzustellbare Nachrichten eingereiht werden. Verwenden Sie einen Out-of-band-Prozess, um die Nachrichten zu untersuchen und die Korrekturmaßnahmen zu bestimmen.
 
 Mit dem folgenden Code wird veranschaulicht, wie die Erfassungsfunktion Ausnahmen abfängt und nicht verarbeitete Nachrichten in eine Warteschlange für unzustellbare Nachrichten einreiht.
 
@@ -99,9 +101,9 @@ public static async Task RunAsync(
 
 Beachten Sie, dass für die Funktion die [Queue Storage-Ausgabebindung][queue-binding] genutzt wird, um Elemente in die Warteschlange einzureihen.
 
-Mit dem obigen Code werden Ausnahmen auch in Application Insights protokolliert. Sie können den Partitionsschlüssel und die Sequenznummer auch verwenden, um unzustellbare Nachrichten mit den Ausnahmen in den Protokollen zu korrelieren. 
+Mit dem obigen Code werden Ausnahmen auch in Application Insights protokolliert. Sie können den Partitionsschlüssel und die Sequenznummer auch verwenden, um unzustellbare Nachrichten mit den Ausnahmen in den Protokollen zu korrelieren.
 
-Nachrichten in der Warteschlange für unzustellbare Nachrichten sollten über genügend Informationen verfügen, damit Sie den Kontext des Fehlers verstehen können. In diesem Beispiel enthält die Klasse `DeadLetterMessage` die Ausnahmenachricht, die ursprünglichen Ereignisdaten und die deserialisierte Ereignisnachricht (falls verfügbar). 
+Nachrichten in der Warteschlange für unzustellbare Nachrichten sollten über genügend Informationen verfügen, damit Sie den Kontext des Fehlers verstehen können. In diesem Beispiel enthält die Klasse `DeadLetterMessage` die Ausnahmenachricht, die ursprünglichen Ereignisdaten und die deserialisierte Ereignisnachricht (falls verfügbar).
 
 ```csharp
 public class DeadLetterMessage
@@ -128,7 +130,7 @@ Die hier dargestellte Bereitstellung befindet sich in nur einer Azure-Region. Nu
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Zeigen Sie zum Bereitstellen dieser Referenzarchitektur die [GitHub-Infodatei][readme] an. 
+Zeigen Sie zum Bereitstellen dieser Referenzarchitektur die [GitHub-Infodatei][readme] an.
 
 <!-- links -->
 

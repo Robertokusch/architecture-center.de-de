@@ -1,33 +1,31 @@
 ---
 title: Erstellen einer AD DS-Ressourcengesamtstruktur in Azure
+titleSuffix: Azure Reference Architectures
 description: >-
   Informationen zum Erstellen einer vertrauenswürdigen Active Directory-Domäne in Azure.
 
   Anleitungen, VPN-Gateway, ExpressRoute, Lastenausgleich, virtuelles Netzwerk, Active Directory
 author: telmosampaio
 ms.date: 05/02/2018
-pnp.series.title: Identity management
-pnp.series.prev: adds-extend-domain
-pnp.series.next: adfs
-cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: 0bbf8aff91aaec8718e44f4450711ff96cfc1878
-ms.sourcegitcommit: 1287d635289b1c49e94f839b537b4944df85111d
+ms.custom: seodec18
+ms.openlocfilehash: e8ad2efd24286f23698bb8e294b15d88232c1166
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52332322"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120372"
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>Erstellen einer Active Directory Domain Services (AD DS)-Ressourcengesamtstruktur in Azure
 
-Diese Referenzarchitektur zeigt, wie eine separate Active Directory-Domäne in Azure erstellt wird, der Domänen in der lokalen Active Directory-Gesamtstruktur vertrauen. [**So stellen Sie diese Lösung bereit**.](#deploy-the-solution)
+Diese Referenzarchitektur zeigt, wie eine separate Active Directory-Domäne in Azure erstellt wird, der Domänen in der lokalen Active Directory-Gesamtstruktur vertrauen. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
-[![0]][0] 
+![Schützen einer Hybrid-Netzwerkarchitektur mit separaten Active Directory-Domänen](./images/adds-forest.png)
 
 *Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
 
-In Active Directory Domain Services (AD DS) werden Identitätsinformationen in einer hierarchischen Struktur gespeichert. Der oberste Knoten in der hierarchischen Struktur wird als Gesamtstruktur bezeichnet. Eine Gesamtstruktur enthält Domänen, und Domänen enthalten andere Objekttypen. In dieser Referenzarchitektur wird eine AD DS-Gesamtstruktur in Azure mit einer unidirektionalen ausgehenden Vertrauensstellung mit einer lokalen Domäne erstellt. Die Gesamtstruktur in Azure enthält eine Domäne, die lokal nicht vorhanden ist. Aufgrund der Vertrauensstellung werden Anmeldungen bei lokalen Domänen als vertrauenswürdig für den Zugriff auf Ressourcen in der separaten Azure-Domäne angesehen. 
+In Active Directory Domain Services (AD DS) werden Identitätsinformationen in einer hierarchischen Struktur gespeichert. Der oberste Knoten in der hierarchischen Struktur wird als Gesamtstruktur bezeichnet. Eine Gesamtstruktur enthält Domänen, und Domänen enthalten andere Objekttypen. In dieser Referenzarchitektur wird eine AD DS-Gesamtstruktur in Azure mit einer unidirektionalen ausgehenden Vertrauensstellung mit einer lokalen Domäne erstellt. Die Gesamtstruktur in Azure enthält eine Domäne, die lokal nicht vorhanden ist. Aufgrund der Vertrauensstellung werden Anmeldungen bei lokalen Domänen als vertrauenswürdig für den Zugriff auf Ressourcen in der separaten Azure-Domäne angesehen.
 
-Zu den typischen Verwendungsmöglichkeiten dieser Architektur zählen die Verwaltung einer Sicherheitstrennung für in der Cloud gespeicherte Objekte und Identitäten sowie die Migration einzelner Domänen aus einem lokalen System in die Cloud. 
+Zu den typischen Verwendungsmöglichkeiten dieser Architektur zählen die Verwaltung einer Sicherheitstrennung für in der Cloud gespeicherte Objekte und Identitäten sowie die Migration einzelner Domänen aus einem lokalen System in die Cloud.
 
 Weitere Überlegungen finden Sie unter [Auswählen einer Lösung für die Integration einer lokalen Active Directory-Instanz in Azure][considerations]. 
 
@@ -35,17 +33,17 @@ Weitere Überlegungen finden Sie unter [Auswählen einer Lösung für die Integr
 
 Diese Architektur besteht aus den folgenden Komponenten.
 
-* **Lokales Netzwerk**. Das lokale Netzwerk enthält eine eigene Active Directory-Gesamtstruktur und eigene Domänen.
-* **Active Directory-Server**. Hierbei handelt es sich um Domänencontroller, die Domänendienste implementieren und als virtuelle Computer in der Cloud ausgeführt werden. Diese Server hosten eine Gesamtstruktur mit einer oder mehrere Domänen, die von den lokal gehosteten getrennt sind.
-* **Unidirektionale Vertrauensstellung**. Das Beispiel im Diagramm zeigt eine unidirektionale Vertrauensstellung von der Domäne in Azure zur lokalen Domäne. Diese Beziehung ermöglicht lokalen Benutzern den Zugriff auf Ressourcen in der Domäne in Azure, jedoch nicht umgekehrt. Es kann eine bidirektionale Vertrauensstellung erstellt werden, wenn Cloudbenutzer auch Zugriff auf lokale Ressourcen benötigen.
-* **Active Directory-Subnetz**. Die AD DS-Server werden in einem separaten Subnetz gehostet. NSG-Regeln (Netzwerksicherheitsgruppe) schützen die AD DS-Server und stellen eine Firewall für Datenverkehr von unerwarteten Quellen dar.
-* **Azure-Gateway**. Das Azure-Gateway stellt eine Verbindung zwischen dem lokalen Netzwerk und dem Azure-VNet her. Dabei kann es sich um eine [VPN-Verbindung][azure-vpn-gateway] oder um [Azure ExpressRoute][azure-expressroute] handeln. Weitere Informationen finden Sie unter [Implementieren einer sicheren Hybrid-Netzwerkarchitektur in Azure][implementing-a-secure-hybrid-network-architecture].
+- **Lokales Netzwerk**. Das lokale Netzwerk enthält eine eigene Active Directory-Gesamtstruktur und eigene Domänen.
+- **Active Directory-Server**. Hierbei handelt es sich um Domänencontroller, die Domänendienste implementieren und als virtuelle Computer in der Cloud ausgeführt werden. Diese Server hosten eine Gesamtstruktur mit einer oder mehrere Domänen, die von den lokal gehosteten getrennt sind.
+- **Unidirektionale Vertrauensstellung**. Das Beispiel im Diagramm zeigt eine unidirektionale Vertrauensstellung von der Domäne in Azure zur lokalen Domäne. Diese Beziehung ermöglicht lokalen Benutzern den Zugriff auf Ressourcen in der Domäne in Azure, jedoch nicht umgekehrt. Es kann eine bidirektionale Vertrauensstellung erstellt werden, wenn Cloudbenutzer auch Zugriff auf lokale Ressourcen benötigen.
+- **Active Directory-Subnetz**. Die AD DS-Server werden in einem separaten Subnetz gehostet. NSG-Regeln (Netzwerksicherheitsgruppe) schützen die AD DS-Server und stellen eine Firewall für Datenverkehr von unerwarteten Quellen dar.
+- **Azure-Gateway**. Das Azure-Gateway stellt eine Verbindung zwischen dem lokalen Netzwerk und dem Azure-VNet her. Dabei kann es sich um eine [VPN-Verbindung][azure-vpn-gateway] oder um [Azure ExpressRoute][azure-expressroute] handeln. Weitere Informationen finden Sie unter [Implementieren einer sicheren Hybrid-Netzwerkarchitektur in Azure][implementing-a-secure-hybrid-network-architecture].
 
 ## <a name="recommendations"></a>Empfehlungen
 
 Spezifische Empfehlungen zur Implementierung von Active Directory in Azure finden Sie in den folgenden Artikeln:
 
-- [Erweitern von Active Directory Domain Services (AD DS) auf Azure][adds-extend-domain] 
+- [Erweitern von Active Directory Domain Services (AD DS) auf Azure][adds-extend-domain]
 - [Richtlinien für die Bereitstellung von Windows Server Active Directory auf virtuellen Azure-Computern][ad-azure-guidelines]
 
 ### <a name="trust"></a>Vertrauen
@@ -56,8 +54,8 @@ Sie können Vertrauensstellungen auf Gesamtstrukturebene durch [Erstellen von Ge
 
 Vertrauensstellungen können unidirektional oder bidirektional sein:
 
-* Eine unidirektionale Vertrauensstellung ermöglicht Benutzern in einer Domäne oder Gesamtstruktur (als *eingehende* Domäne oder Gesamtstruktur bezeichnet) Zugriff auf die Ressourcen in einer anderen Domäne oder Gesamtstruktur (als *ausgehende* Domäne oder Gesamtstruktur bezeichnet).
-* Eine bidirektionale Vertrauensstellung ermöglicht Benutzern in beiden Domänen oder Gesamtstrukturen den Zugriff auf Ressourcen in der jeweils anderen Domäne oder Gesamtstruktur.
+- Eine unidirektionale Vertrauensstellung ermöglicht Benutzern in einer Domäne oder Gesamtstruktur (als *eingehende* Domäne oder Gesamtstruktur bezeichnet) Zugriff auf die Ressourcen in einer anderen Domäne oder Gesamtstruktur (als *ausgehende* Domäne oder Gesamtstruktur bezeichnet).
+- Eine bidirektionale Vertrauensstellung ermöglicht Benutzern in beiden Domänen oder Gesamtstrukturen den Zugriff auf Ressourcen in der jeweils anderen Domäne oder Gesamtstruktur.
 
 Die folgende Tabelle enthält eine Übersicht über Vertrauensstellungskonfigurationen für einige einfache Szenarien:
 
@@ -79,8 +77,8 @@ Stellen Sie mindestens zwei Domänencontroller für jede Domäne bereit. Dies er
 
 ## <a name="manageability-considerations"></a>Überlegungen zur Verwaltbarkeit
 
-Informationen zu Überlegungen in Bezug auf Verwaltung und Überwachung finden Sie unter [Erweitern von Active Directory auf Azure][adds-extend-domain]. 
- 
+Informationen zu Überlegungen in Bezug auf Verwaltung und Überwachung finden Sie unter [Erweitern von Active Directory auf Azure][adds-extend-domain].
+
 Weitere Informationen finden Sie unter [Überwachen von Active Directory][monitoring_ad]. Sie können Tools wie z.B. [Microsoft Systems Center][microsoft_systems_center] auf einem Überwachungsserver im Verwaltungssubnetz installieren, um diese Aufgaben auszuführen.
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
@@ -113,9 +111,9 @@ Eine Bereitstellung für diese Architektur ist auf [GitHub][github] verfügbar. 
 
 1. Öffnen Sie die Datei `azure.json` . Suchen Sie nach Instanzen von `adminPassword` und `Password`, und fügen Sie Werte für die Kennwörter hinzu.
 
-2. Suchen Sie in der gleichen Datei nach Instanzen von `sharedKey`, und geben Sie gemeinsam verwendete Schlüssel für die VPN-Verbindung ein. 
+2. Suchen Sie in der gleichen Datei nach Instanzen von `sharedKey`, und geben Sie gemeinsam verwendete Schlüssel für die VPN-Verbindung ein.
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -127,30 +125,28 @@ Eine Bereitstellung für diese Architektur ist auf [GitHub][github] verfügbar. 
 
    Führen Sie die Bereitstellung in der gleichen Ressourcengruppe durch, in der das lokale VNet bereitgestellt ist.
 
-
 ### <a name="test-the-ad-trust-relation"></a>Testen der AD-Vertrauensbeziehung
 
 1. Navigieren Sie im Azure-Portal zu der Ressourcengruppe, die Sie erstellt haben.
 
 2. Suchen Sie im Azure-Portal die VM `ra-adt-mgmt-vm1`.
 
-2. Klicke Sie auf `Connect`, um eine Remotedesktopsitzung mit der VM zu öffnen. Der Benutzername ist `contoso\testuser`, und das Kennwort entspricht dem, das Sie in der `onprem.json`-Parameterdatei angegeben haben.
+3. Klicke Sie auf `Connect`, um eine Remotedesktopsitzung mit der VM zu öffnen. Der Benutzername ist `contoso\testuser`, und das Kennwort entspricht dem, das Sie in der `onprem.json`-Parameterdatei angegeben haben.
 
-3. Öffnen Sie von der Remotedesktopsitzung aus eine andere Remotedesktopsitzung mit 192.168.0.4 (IP-Adresse des virtuellen Computers namens `ra-adtrust-onpremise-ad-vm1`). Der Benutzername ist `contoso\testuser`, und das Kennwort entspricht dem, das Sie in der `azure.json`-Parameterdatei angegeben haben.
+4. Öffnen Sie von der Remotedesktopsitzung aus eine andere Remotedesktopsitzung mit 192.168.0.4 (IP-Adresse des virtuellen Computers namens `ra-adtrust-onpremise-ad-vm1`). Der Benutzername ist `contoso\testuser`, und das Kennwort entspricht dem, das Sie in der `azure.json`-Parameterdatei angegeben haben.
 
-4. Wechseln Sie von der Remotedesktopsitzung für `ra-adtrust-onpremise-ad-vm1` zum **Server-Manager**, und klicken Sie auf **Extras** > **Active Directory-Domänen und -Vertrauensstellungen**. 
+5. Wechseln Sie von der Remotedesktopsitzung für `ra-adtrust-onpremise-ad-vm1` zum **Server-Manager**, und klicken Sie auf **Extras** > **Active Directory-Domänen und -Vertrauensstellungen**.
 
-5. Klicken Sie im linken Bereich mit der rechten Maustaste auf „contoso.com“, und klicken Sie auf **Eigenschaften**.
+6. Klicken Sie im linken Bereich mit der rechten Maustaste auf „contoso.com“, und klicken Sie auf **Eigenschaften**.
 
-6. Klicken Sie auf die Registerkarte **Vertrauensstellungen**. Als eingehende Vertrauensstellung sollte „treyresearch.net“ angezeigt werden.
+7. Klicken Sie auf die Registerkarte **Vertrauensstellungen**. Als eingehende Vertrauensstellung sollte „treyresearch.net“ angezeigt werden.
 
-![](./images/ad-forest-trust.png)
-
+![Screenshot des Vertrauensstellungsdialogfelds für die Active Directory-Gesamtstruktur](./images/ad-forest-trust.png)
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-* Informieren Sie sich über bewährte Methoden für das [Erweitern Ihrer lokalen AD DS-Domäne auf Azure][adds-extend-domain].
-* Informieren Sie sich über bewährte Methoden für das [Erstellen einer AD FS-Infrastruktur][adfs] in Azure.
+- Informieren Sie sich über bewährte Methoden für das [Erweitern Ihrer lokalen AD DS-Domäne auf Azure][adds-extend-domain].
+- Informieren Sie sich über bewährte Methoden für das [Erstellen einer AD FS-Infrastruktur][adfs] in Azure.
 
 <!-- links -->
 [adds-extend-domain]: adds-extend-domain.md
@@ -179,4 +175,3 @@ Eine Bereitstellung für diese Architektur ist auf [GitHub][github] verfügbar. 
 [outgoing-trust]: https://raw.githubusercontent.com/mspnp/identity-reference-architectures/master/adds-forest/extensions/outgoing-trust.ps1
 [verify-a-trust]: https://technet.microsoft.com/library/cc753821.aspx
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
-[0]: ./images/adds-forest.png "Schützen einer Hybrid-Netzwerkarchitektur mit separaten Active Directory-Domänen"

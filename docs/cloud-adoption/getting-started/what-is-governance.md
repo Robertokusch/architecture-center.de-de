@@ -3,12 +3,12 @@ title: 'Enterprise Cloud-Einführung: Was ist die Cloudressourcenkontrolle?'
 description: Enthält eine Erklärung des Konzepts zur Kontrolle des Zugriffs auf Ressourcen in Azure.
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 14c26cbccdbea524a7c7220b3bb98ed2a118c30d
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: fb01b2e2823c16e32f8ded696de0b6faf1d2e610
+ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389212"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53179279"
 ---
 # <a name="enterprise-cloud-adoption-what-is-cloud-resource-governance"></a>Enterprise Cloud-Einführung: Was ist die Cloudressourcenkontrolle?
 
@@ -20,7 +20,7 @@ Die Lösung dieses Problems ist die Kontrolle (**Governance**) des Ressourcenzug
 
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94] 
 
-Da diese Ziele und Anforderungen für jede Organisation einzigartig sind, gibt es keinen allgemeingültigen Governance-Ansatz. Stattdessen werden von Azure zwei primäre Governance-Tools implementiert, die **ressourcenbasierte Zugriffssteuerung (RBAC)** und eine **Ressourcenrichtlinie**. Es liegt dann jeweils im Ermessen der Organisation, wie das Governance-Modell für die Nutzung dieser Komponenten entworfen wird.
+Da diese Ziele und Anforderungen für jede Organisation einzigartig sind, gibt es keinen allgemeingültigen Governance-Ansatz. Stattdessen werden von Azure zwei primäre Governance-Tools implementiert: die **rollenbasierte Zugriffssteuerung** (Role Based Access Control, RBAC) und eine **Ressourcenrichtlinie**. Es liegt dann jeweils im Ermessen der Organisation, wie das Governance-Modell für die Nutzung dieser Komponenten entworfen wird.
 
 Per RBAC werden Rollen definiert, und Rollen definieren die Funktionen für einen Benutzer, der der Rolle zugewiesen ist. Mit der Rolle **Besitzer** werden beispielsweise alle Funktionen (Erstellen, Lesen, Aktualisieren und Löschen) für eine Ressource aktiviert, während bei der Rolle **Leser** nur die Funktion „Lesen“ aktiviert wird. Für Rollen kann ein weiter Bereich definiert werden, der für viele Ressourcentypen gilt, oder ein enger Bereich, der nur für einige gilt. 
 

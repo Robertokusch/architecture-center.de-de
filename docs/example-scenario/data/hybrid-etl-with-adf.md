@@ -3,12 +3,13 @@ title: ETL-Hybridvorgänge mit vorhandenen lokalen SSIS-Bereitstellungen und Azu
 description: ETL-Hybridvorgänge mit vorhandenen lokalen SSIS-Bereitstellungen (SQL Server Integration Services) und Azure Data Factory
 author: alhieng
 ms.date: 9/20/2018
-ms.openlocfilehash: c4c0cfd63ef1d6c620eb36e16622ad9ffb7b5d80
-ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
+ms.custom: tsp-team
+ms.openlocfilehash: cc6c2bfe85dc0d1eb8ad29e044611f1e435810c3
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52579462"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53306788"
 ---
 # <a name="hybrid-etl-with-existing-on-premises-ssis-and-azure-data-factory"></a>ETL-Hybridvorgänge mit vorhandenen lokalen SSIS-Bereitstellungen und Azure Data Factory
 
@@ -29,9 +30,9 @@ Im Anschluss finden Sie einige potenzielle lokale Anwendungsfälle:
 * Laden von Netzwerkrouterprotokollen in eine Datenbank zu Analysezwecken
 * Vorbereiten von Beschäftigungsdaten der Personalabteilung für Analyseberichte
 * Laden von Produkt- und Vertriebsdaten in ein Data Warehouse, um Umsatzprognosen zu erstellen
-* Automatisieren von Ladevorgängen oder betrieblichen Datenspeichern oder Data Warehouses für das Finanz- und Rechnungswesen
+* Automatisieren von Ladevorgänge für Speicher operativer Daten oder Data Warehouses für das Finanz- und Rechnungswesen.
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Übersicht über die Architektur eines ETL-Hybridprozesses mit Azure Data Factory][architecture-diagram]
 

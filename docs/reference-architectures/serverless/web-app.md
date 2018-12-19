@@ -1,25 +1,27 @@
 ---
 title: Serverlose Webanwendung
-description: Referenzarchitektur zur Veranschaulichung einer serverlosen Webanwendung und Web-API
+titleSuffix: Azure Reference Architectures
+description: Empfohlene Architektur für eine serverlose Webanwendung und Web-API
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: 9263c8bec794e4b2bb9f397289b23307eb02f0c7
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: ee735ac4f23cc2a819e2322bd9c4fb3b5adf5f3b
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295683"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120295"
 ---
-# <a name="serverless-web-application"></a>Serverlose Webanwendung 
+# <a name="serverless-web-application-on-azure"></a>Serverlose Webanwendung in Azure
 
 Diese Referenzarchitektur zeigt eine [serverlose](https://azure.microsoft.com/solutions/serverless/) Webanwendung. Die Anwendung stellt statische Inhalte aus Azure Blob Storage bereit und implementiert eine API mit Azure Functions. Die API liest Daten aus Cosmos DB und gibt die Ergebnisse für die Web-App zurück. Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] verfügbar.
 
-![](./_images/serverless-web-app.png)
- 
+![Referenzarchitektur für eine serverlose Webanwendung](./_images/serverless-web-app.png)
+
 Der Begriff „serverlos“ hat zwei separate Bedeutungen, die aber miteinander zusammenhängen:
 
-- **Back-End-as-a-Service** (BaaS). Back-End-Clouddienste, z.B. Datenbanken und Speicher, stellen APIs bereit, mit denen Clientanwendungen eine direkte Verbindung mit diesen Diensten herstellen können. 
-- **Functions-as-a-Service** (FaaS). Bei diesem Modell ist eine „Funktion“ ein Codeabschnitt, der in der Cloud bereitgestellt und in einer Hostumgebung ausgeführt wird, in der die Server für die Ausführung des Codes vollständig abstrahiert werden. 
+- **Back-End-as-a-Service** (BaaS). Back-End-Clouddienste, z.B. Datenbanken und Speicher, stellen APIs bereit, mit denen Clientanwendungen eine direkte Verbindung mit diesen Diensten herstellen können.
+- **Functions-as-a-Service** (FaaS). Bei diesem Modell ist eine „Funktion“ ein Codeabschnitt, der in der Cloud bereitgestellt und in einer Hostumgebung ausgeführt wird, in der die Server für die Ausführung des Codes vollständig abstrahiert werden.
 
 Für beide Definitionen steckt die Idee dahinter, dass Entwickler und DevOps-Benutzer keine Server bereitstellen, konfigurieren oder verwalten müssen. Bei dieser Referenzarchitektur liegt der Schwerpunkt auf FaaS mit Azure Functions, aber die Bereitstellung von Webinhalten aus Azure Blob Storage ist ein Beispiel für BaaS. Hier sind einige wichtige Merkmale von FaaS angegeben:
 
@@ -30,7 +32,8 @@ Für beide Definitionen steckt die Idee dahinter, dass Entwickler und DevOps-Ben
 Die Funktionen werden ausgeführt, wenn ein externer Auslöser vorliegt, z.B. eine HTTP-Anforderung oder der Empfang einer Nachricht in einer Warteschlange. Daher ist ein [ereignisgesteuerter Architekturstil][event-driven] die natürliche Wahl für serverlose Architekturen. Für die Koordinierung der Arbeit zwischen den Komponenten der Architektur können Sie erwägen, Nachrichtenbroker oder Pub/Sub-Muster zu nutzen. Hilfe zur Wahl zwischen Messagingtechnologien in Azure finden Sie unter [Wählen zwischen Azure-Diensten für die Nachrichtenübermittlung][azure-messaging].
 
 ## <a name="architecture"></a>Architecture
-Die Architektur umfasst die folgenden Komponenten.
+
+Die Architektur umfasst die folgenden Komponenten:
 
 **Blobspeicher**. Statische Webinhalte, z.B. HTML-, CSS- und JavaScript-Dateien, werden in Azure Blob Storage gespeichert und für Clients bereitgestellt, indem das [Hosten von statischen Websites][static-hosting] verwendet wird. Alle dynamischen Interaktionen erfolgen über JavaScript-Code, mit dem die Back-End-APIs aufgerufen werden. Es ist kein serverseitiger Code zum Rendern der Webseite vorhanden. Für das Hosten statischer Websites werden Indexdokumente und benutzerdefinierte 404-Fehlerseiten unterstützt.
 
@@ -49,7 +52,7 @@ API Management kann auch verwendet werden, um übergreifende Aspekte zu implemen
 - Überprüfen von OAuth-Token für die Authentifizierung
 - Aktivieren von ursprungsübergreifenden Anforderungen (Cross-Origin Requests, CORS)
 - Zwischenspeichern von Antworten
-- Überwachen und Protokollieren von Anforderungen  
+- Überwachen und Protokollieren von Anforderungen
 
 Falls Sie nicht die gesamte Funktionalität benötigen, die von API Management bereitgestellt wird, ist die Nutzung von [Funktionsproxys][functions-proxy] eine Alternative. Mit diesem Feature von Azure Functions können Sie eine einzelne API-Oberfläche für mehrere Funktions-Apps definieren, indem Sie Routen zu Back-End-Funktionen erstellen. Außerdem können mit Funktionsproxys eingeschränkte Transformationen für die HTTP-Anforderung und -Antwort durchgeführt werden. Sie ermöglichen aber nicht die gleichen umfassenden richtlinienbasierten Funktionen wie API Management.
 
@@ -65,7 +68,7 @@ Falls Sie nicht die gesamte Funktionalität benötigen, die von API Management b
 
 ### <a name="function-app-plans"></a>Funktions-App-Pläne
 
-Azure Functions unterstützt zwei Hostingmodelle. Beim **Verbrauchstarif** wird automatisch Computeleistung zugeordnet, wenn Ihr Code ausgeführt wird.  Beim **App Service**-Plan wird eine Gruppe von VMs für Ihren Code zugeordnet. Mit dem App Service-Plan wird die Anzahl von VMs und die VM-Größe definiert. 
+Azure Functions unterstützt zwei Hostingmodelle. Beim **Verbrauchstarif** wird automatisch Computeleistung zugeordnet, wenn Ihr Code ausgeführt wird.  Beim **App Service**-Plan wird eine Gruppe von VMs für Ihren Code zugeordnet. Mit dem App Service-Plan wird die Anzahl von VMs und die VM-Größe definiert.
 
 Beachten Sie, dass der App Service-Plan nicht *serverlos* im strengeren Sinne gemäß der obigen Definition ist. Das Programmiermodell ist aber identisch: Sowohl unter einem Verbrauchstarif als auch unter einem App Service-Plan kann der gleiche Funktionscode ausgeführt werden.
 
@@ -79,9 +82,9 @@ Hierbei müssen einige Faktoren berücksichtigt werden, wenn ausgewählt wird, w
 
 ### <a name="function-app-boundaries"></a>Grenzen von Funktions-Apps
 
-Eine *Funktions-App* hostet die Ausführung von einer oder mehreren *Funktionen*. Sie können eine Funktions-App nutzen, um mehrere Funktionen als logische Einheit zu gruppieren. Innerhalb einer Funktions-App sind für die Funktionen die Anwendungseinstellungen, der Hostingplan und der Entwicklungslebenszyklus jeweils gleich. Jede Funktions-App verfügt über einen eigenen Hostnamen.  
+Eine *Funktions-App* hostet die Ausführung von einer oder mehreren *Funktionen*. Sie können eine Funktions-App nutzen, um mehrere Funktionen als logische Einheit zu gruppieren. Innerhalb einer Funktions-App sind für die Funktionen die Anwendungseinstellungen, der Hostingplan und der Entwicklungslebenszyklus jeweils gleich. Jede Funktions-App verfügt über einen eigenen Hostnamen.
 
-Verwenden Sie Funktions-Apps zum Gruppieren von Funktionen, die den gleichen Lebenszyklus und die gleichen Einstellungen aufweisen. Funktionen, die nicht über den gleichen Lebenszyklus verfügen, sollten in anderen Funktions-Apps gehostet werden. 
+Verwenden Sie Funktions-Apps zum Gruppieren von Funktionen, die den gleichen Lebenszyklus und die gleichen Einstellungen aufweisen. Funktionen, die nicht über den gleichen Lebenszyklus verfügen, sollten in anderen Funktions-Apps gehostet werden.
 
 Erwägen Sie, einen Ansatz mit Microservices zu nutzen, bei dem jede Funktions-App einen Microservice darstellt, der unter Umständen aus mehreren verwandten Funktionen besteht. In einer Architektur mit Microservices sollten Dienste eine lose Kopplung und eine hohe funktionale Kohäsion aufweisen. *Lose gekoppelt* bedeutet, dass Sie einen Dienst ändern können, ohne gleichzeitig andere Dienste aktualisieren zu müssen. Mit *Kohäsion* ist gemeint, dass ein Dienst einem einzelnen, klar definierten Zweck dient. Weitere Informationen zu diesen Aspekten finden Sie unter [Entwerfen von Microservices: Domänenanalyse][microservices-domain-analysis].
 
@@ -94,13 +97,13 @@ Für die Funktion `GetStatus` in der Referenzimplementierung wird die Cosmos DB-
 ```csharp
 [FunctionName("GetStatusFunction")]
 public static Task<IActionResult> Run(
-    [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req, 
+    [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
     [CosmosDB(
         databaseName: "%COSMOSDB_DATABASE_NAME%",
         collectionName: "%COSMOSDB_DATABASE_COL%",
         ConnectionStringSetting = "COSMOSDB_CONNECTION_STRING",
         Id = "{Query.deviceId}",
-        PartitionKey = "{Query.deviceId}")] dynamic deviceStatus, 
+        PartitionKey = "{Query.deviceId}")] dynamic deviceStatus,
     ILogger log)
 {
     ...
@@ -111,7 +114,7 @@ Aufgrund der Nutzung von Bindungen müssen Sie keinen Code schreiben, der direkt
 
 ## <a name="scalability-considerations"></a>Überlegungen zur Skalierbarkeit
 
-**Funktionen**. Für den Verbrauchstarif wird der HTTP-Trigger basierend auf dem Datenverkehr skaliert. Es gilt ein Limit für die Anzahl von gleichzeitigen Funktionsinstanzen, aber jede Instanz kann mehr als eine Anforderung gleichzeitig verarbeiten. Für einen App Service-Plan wird der HTTP-Trigger gemäß der Anzahl von VM-Instanzen skaliert. Dies kann ein fester Wert sein, oder es kann eine automatische Skalierung basierend auf einem Satz mit entsprechenden Regeln durchgeführt werden. Informationen hierzu finden Sie unter [Skalierung und Hosting von Azure Functions][functions-scale]. 
+**Funktionen**. Für den Verbrauchstarif wird der HTTP-Trigger basierend auf dem Datenverkehr skaliert. Es gilt ein Limit für die Anzahl von gleichzeitigen Funktionsinstanzen, aber jede Instanz kann mehr als eine Anforderung gleichzeitig verarbeiten. Für einen App Service-Plan wird der HTTP-Trigger gemäß der Anzahl von VM-Instanzen skaliert. Dies kann ein fester Wert sein, oder es kann eine automatische Skalierung basierend auf einem Satz mit entsprechenden Regeln durchgeführt werden. Informationen hierzu finden Sie unter [Skalierung und Hosting von Azure Functions][functions-scale].
 
 **Cosmos DB**: Die Durchsatzkapazität für Cosmos DB wird in [Anforderungseinheiten][ru] (RUs) gemessen. Ein Durchsatz von einer Anforderungseinheit (1 RU) entspricht dem Durchsatz für das Abrufen eines 1-KB-Dokuments per GET-Anforderung. Um einen Cosmos DB-Container auf eine Kapazität von mehr als 10.000 RU zu skalieren, müssen Sie beim Erstellen des Containers einen [Partitionsschlüssel][partition-key] angeben und diesen in jedes von Ihnen erstellte Dokument einfügen. Weitere Informationen zu Partitionsschlüsseln finden Sie unter [Partitionieren und Skalieren in Azure Cosmos DB][cosmosdb-scale].
 
@@ -136,10 +139,10 @@ Für die `GetStatus`-API in der Referenzimplementierung wird Azure AD zum Authen
 In dieser Architektur ist die Clientanwendung eine Single-Page-Anwendung (SPA), die im Browser ausgeführt wird. Da bei dieser Art von Clientanwendung der geheime Clientschlüssel oder der Autorisierungscode nicht ausgeblendet werden können, ist die implizite Genehmigung hierfür der geeignete Ablauf. (Siehe [Which OAuth 2.0 flow should I use?][oauth-flow] (Welchen OAuth 2.0-Ablauf soll ich verwenden?).) Hier ist der allgemeine Ablauf angegeben:
 
 1. Der Benutzer klickt in der Webanwendung auf den Link „Anmelden“.
-1. Der Browser wird auf die Azure AD-Anmeldeseite umgeleitet. 
+1. Der Browser wird auf die Azure AD-Anmeldeseite umgeleitet.
 1. Der Benutzer meldet sich an.
 1. Azure AD führt die Umleitung zurück zur Clientanwendung durch, einschließlich eines Zugriffstokens im URL-Fragment.
-1. Wenn die Webanwendung die API aufruft, fügt sie das Zugriffstoken in den Authentifizierungsheader ein. Die Anwendungs-ID wird im Zugriffstoken als „Audience“-Anspruch („aud“) gesendet. 
+1. Wenn die Webanwendung die API aufruft, fügt sie das Zugriffstoken in den Authentifizierungsheader ein. Die Anwendungs-ID wird im Zugriffstoken als „Audience“-Anspruch („aud“) gesendet.
 1. Die Back-End-API überprüft das Zugriffstoken.
 
 Konfigurieren Sie die Authentifizierung wie folgt:
@@ -152,30 +155,30 @@ Konfigurieren Sie die Authentifizierung wie folgt:
 
 Weitere Informationen finden Sie in der [GitHub-Infodatei][readme].
 
-Es wird empfohlen, für die Clientanwendung und die Back-End-API separate App-Registrierungen in Azure AD zu erstellen. Erteilen Sie der Clientanwendung Berechtigungen zum Aufrufen der API. Bei diesem Ansatz können Sie ganz flexibel mehrere APIs und Clients definieren und die einzelnen Berechtigungen dafür steuern. 
+Es wird empfohlen, für die Clientanwendung und die Back-End-API separate App-Registrierungen in Azure AD zu erstellen. Erteilen Sie der Clientanwendung Berechtigungen zum Aufrufen der API. Bei diesem Ansatz können Sie ganz flexibel mehrere APIs und Clients definieren und die einzelnen Berechtigungen dafür steuern.
 
 Verwenden Sie innerhalb einer API [Bereiche][scopes], damit Anwendungen präzise steuern können, welche Berechtigungen sie bei einem Benutzer voraussetzen. So kann eine API beispielsweise über die Bereiche `Read` und `Write` verfügen und eine bestimmte Client-App den Benutzer lediglich zur Autorisierung von Berechtigungen des Typs `Read` auffordern.
 
 ### <a name="authorization"></a>Autorisierung
 
-In vielen Anwendungen muss die Back-End-API überprüfen, wann ein Benutzer über die Berechtigung zum Durchführen einer bestimmten Aktion verfügt. Es wird empfohlen, die [anspruchsbasierte Autorisierung][claims] zu verwenden. Hierbei werden Informationen zum Benutzer vom Identitätsanbieter (hier: Azure AD) übermittelt und zum Treffen von Autorisierungsentscheidungen genutzt. 
+In vielen Anwendungen muss die Back-End-API überprüfen, wann ein Benutzer über die Berechtigung zum Durchführen einer bestimmten Aktion verfügt. Es wird empfohlen, die [anspruchsbasierte Autorisierung][claims] zu verwenden. Hierbei werden Informationen zum Benutzer vom Identitätsanbieter (hier: Azure AD) übermittelt und zum Treffen von Autorisierungsentscheidungen genutzt.
 
-Einige Ansprüche werden in dem ID-Token bereitgestellt, das von Azure AD an den Client zurückgegeben wird. Sie können diese Ansprüche über die Funktions-App erhalten, indem Sie in der Anforderung den X-MS-CLIENT-PRINCIPAL-Header untersuchen. Verwenden Sie für andere Ansprüche [Microsoft Graph][graph], um Azure AD abzufragen (Zustimmung des Benutzers während der Anmeldung erforderlich). 
+Einige Ansprüche werden in dem ID-Token bereitgestellt, das von Azure AD an den Client zurückgegeben wird. Sie können diese Ansprüche über die Funktions-App erhalten, indem Sie in der Anforderung den X-MS-CLIENT-PRINCIPAL-Header untersuchen. Verwenden Sie für andere Ansprüche [Microsoft Graph][graph], um Azure AD abzufragen (Zustimmung des Benutzers während der Anmeldung erforderlich).
 
-Wenn Sie eine Anwendung in Azure AD registrieren, können Sie im Registrierungsmanifest der Anwendung eine Gruppe von Anwendungsrollen definieren. Wenn sich ein Benutzer an der Anwendung anmeldet, enthält Azure AD einen Rollenanspruch („Roles“) für jede Rolle, die dem Benutzer gewährt wurde (einschließlich Rollen, die per Gruppenmitgliedschaft vererbt werden). 
+Wenn Sie eine Anwendung in Azure AD registrieren, können Sie im Registrierungsmanifest der Anwendung eine Gruppe von Anwendungsrollen definieren. Wenn sich ein Benutzer an der Anwendung anmeldet, enthält Azure AD einen Rollenanspruch („Roles“) für jede Rolle, die dem Benutzer gewährt wurde (einschließlich Rollen, die per Gruppenmitgliedschaft vererbt werden).
 
-In der Referenzimplementierung überprüft die Funktion, ob der authentifizierte Benutzer ein Mitglied der Anwendungsrolle `GetStatus` ist. Wenn nicht, gibt die Funktion die HTTP-Antwort „Nicht autorisiert (401)“ zurück. 
+In der Referenzimplementierung überprüft die Funktion, ob der authentifizierte Benutzer ein Mitglied der Anwendungsrolle `GetStatus` ist. Wenn nicht, gibt die Funktion die HTTP-Antwort „Nicht autorisiert (401)“ zurück.
 
 ```csharp
 [FunctionName("GetStatusFunction")]
 public static Task<IActionResult> Run(
-    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, 
+    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
     [CosmosDB(
         databaseName: "%COSMOSDB_DATABASE_NAME%",
         collectionName: "%COSMOSDB_DATABASE_COL%",
         ConnectionStringSetting = "COSMOSDB_CONNECTION_STRING",
         Id = "{Query.deviceId}",
-        PartitionKey = "{Query.deviceId}")] dynamic deviceStatus, 
+        PartitionKey = "{Query.deviceId}")] dynamic deviceStatus,
     ILogger log)
 {
     log.LogInformation("Processing GetStatus request.");
@@ -219,16 +222,16 @@ In dieser Referenzarchitektur weisen die Webanwendung und die API nicht denselbe
 
 In diesem Beispiel ist das Attribut **allow-credentials** auf **true** festgelegt. Hiermit wird für den Browser das Senden von Anmeldeinformationen (einschließlich Cookies) mit der Anforderung autorisiert. Andernfalls sendet der Browser standardmäßig keine Anmeldeinformationen mit einer ursprungsübergreifenden Anforderung.
 
-> [!NOTE] 
+> [!NOTE]
 > Gehen Sie beim Festlegen von **allow-credentials** auf **true** mit Bedacht vor, da eine Website die Benutzeranmeldeinformationen dann im Namen des Benutzers an Ihre API senden kann, ohne dass der Benutzer darüber informiert ist. Sie müssen den zugelassenen Ursprung als vertrauenswürdig festlegen.
 
 ### <a name="enforce-https"></a>Erzwingen von HTTPS
 
 Sie können maximale Sicherheit erzielen, indem Sie HTTPS für die gesamte Anforderungspipeline erzwingen:
 
-- **CDN**. Azure CDN unterstützt HTTPS standardmäßig für die Unterdomäne `*.azureedge.net`. Informationen zur Aktivierung von HTTPS im CDN für benutzerdefinierte Domänennamen finden Sie unter [Tutorial: Konfigurieren von HTTPS in einer benutzerdefinierten Azure CDN-Domäne][cdn-https]. 
+- **CDN**. Azure CDN unterstützt HTTPS standardmäßig für die Unterdomäne `*.azureedge.net`. Informationen zur Aktivierung von HTTPS im CDN für benutzerdefinierte Domänennamen finden Sie unter [Tutorial: Konfigurieren von HTTPS in einer benutzerdefinierten Azure CDN-Domäne][cdn-https].
 
-- **Hosten von statischen Websites**. Aktivieren Sie die Option „[Sichere Übertragung erforderlich][storage-https]“ im Speicherkonto. Wenn diese Option aktiviert ist, lässt das Speicherkonto nur Anforderungen von sicheren HTTPS-Verbindungen zu. 
+- **Hosten von statischen Websites**. Aktivieren Sie die Option „[Sichere Übertragung erforderlich][storage-https]“ im Speicherkonto. Wenn diese Option aktiviert ist, lässt das Speicherkonto nur Anforderungen von sicheren HTTPS-Verbindungen zu.
 
 - **API Management**. Konfigurieren Sie die APIs so, das nur das HTTPS-Protokoll verwendet werden kann. Sie können dies im Azure-Portal oder über eine Resource Manager-Vorlage konfigurieren:
 
@@ -250,15 +253,15 @@ Sie können maximale Sicherheit erzielen, indem Sie HTTPS für die gesamte Anfor
     }
     ```
 
-- **Azure Functions**. Aktivieren Sie die Einstellung „[Nur HTTPS][functions-https]“. 
+- **Azure Functions**. Aktivieren Sie die Einstellung „[Nur HTTPS][functions-https]“.
 
 ### <a name="lock-down-the-function-app"></a>Sperren der Funktions-App
 
 Alle Aufrufe der Funktion sollten über das API-Gateway verlaufen. Sie können dies wie folgt erreichen:
 
-- Konfigurieren Sie die Funktions-App so, dass ein Funktionsschlüssel verwendet werden muss. Das API Management-Gateway enthält den Funktionsschlüssel, wenn es die Funktions-App aufruft. So wird verhindert, dass Clients die Funktion direkt aufrufen, indem sie das Gateway umgehen. 
+- Konfigurieren Sie die Funktions-App so, dass ein Funktionsschlüssel verwendet werden muss. Das API Management-Gateway enthält den Funktionsschlüssel, wenn es die Funktions-App aufruft. So wird verhindert, dass Clients die Funktion direkt aufrufen, indem sie das Gateway umgehen.
 
-- Das API Management-Gateway hat eine [statische IP-Adresse][apim-ip]. Beschränken Sie die Azure-Funktion, damit nur Aufrufe über diese statische IP-Adresse zulässig sind. Weitere Informationen finden Sie unter [Statische Azure App Service-IP-Einschränkungen][app-service-ip-restrictions]. (Dieses Feature ist nur für Dienste mit dem Standard-Tarif verfügbar.) 
+- Das API Management-Gateway hat eine [statische IP-Adresse][apim-ip]. Beschränken Sie die Azure-Funktion, damit nur Aufrufe über diese statische IP-Adresse zulässig sind. Weitere Informationen finden Sie unter [Statische Azure App Service-IP-Einschränkungen][app-service-ip-restrictions]. (Dieses Feature ist nur für Dienste mit dem Standard-Tarif verfügbar.)
 
 ### <a name="protect-application-secrets"></a>Schützen von Anwendungsgeheimnissen
 
@@ -276,17 +279,17 @@ Für die Bereitstellung der Funktions-App wird die Verwendung von [Paketdateien]
 
 Eine API ist ein Vertrag zwischen einem Dienst und Clients. In dieser Architektur wird der API-Vertrag auf API Management-Ebene festgelegt. API Management unterstützt zwei unterschiedliche, sich jedoch ergänzende [Versionierungskonzepte][apim-versioning]:
 
-- *Versionen* bieten API-Consumern die Möglichkeit, eine API-Version basierend auf ihren Anforderungen zu wählen, z.B. v1 oder v2. 
+- *Versionen* bieten API-Consumern die Möglichkeit, eine API-Version basierend auf ihren Anforderungen zu wählen, z.B. v1 oder v2.
 
 - *Revisionen* ermöglichen API-Administratoren das Vornehmen geringfügiger Änderungen in einer API und das Bereitstellen dieser Änderungen zusammen mit einem Änderungsprotokoll, um API-Benutzer über die Änderungen zu informieren.
 
-Wenn Sie eine grundlegende Änderung in einer API vornehmen, veröffentlichen Sie eine neue Version in API Management. Stellen Sie die neue Version parallel zur Originalversion in einer separaten Funktions-App bereit. So können Sie vorhandene Clients zur neuen API migrieren, ohne die Funktion von Clientanwendungen zu beeinträchtigen. Letztendlich können Sie die frühere Version dann als veraltet deklarieren. API Management unterstützt mehrere [Versionsverwaltungsschemas][apim-versioning-schemes]: URL-Pfad, HTTP-Header oder Abfragezeichenfolge. Weitere Informationen zur API-Versionsverwaltung im Allgemeinen finden Sie unter [Versionsverwaltung einer RESTful-Web-API][api-versioning].
+Wenn Sie eine grundlegende Änderung in einer API vornehmen, veröffentlichen Sie eine neue Version in API Management. Stellen Sie die neue Version parallel zur Originalversion in einer separaten Funktions-App bereit. So können Sie vorhandene Clients zur neuen API migrieren, ohne die Funktion von Clientanwendungen zu beeinträchtigen. Letztendlich können Sie die frühere Version dann als veraltet deklarieren. API Management unterstützt mehrere [Versionsverwaltungsschemas][apim-versioning-schemes]: URL-Pfad, HTTP-Header und Abfragezeichenfolge. Weitere Informationen zur API-Versionsverwaltung im Allgemeinen finden Sie unter [Versionsverwaltung einer RESTful-Web-API][api-versioning].
 
 Stellen Sie für Updates, die keine grundlegenden API-Änderungen darstellen, die neue Version in einem Stagingslot in der derselben Funktions-App bereit. Überprüfen Sie, ob die Bereitstellung erfolgreich war, und ersetzen Sie dann die bereitgestellte Version durch die Produktionsversion. Veröffentlichen Sie eine Revision in API Management.
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Zeigen Sie zum Bereitstellen dieser Referenzarchitektur die [GitHub-Infodatei][readme] an. 
+Zeigen Sie zum Bereitstellen dieser Referenzarchitektur die [GitHub-Infodatei][readme] an.
 
 <!-- links -->
 

@@ -1,22 +1,20 @@
 ---
 title: Verbinden eines lokalen Netzwerks mit Azure über ExpressRoute
-description: Erläutert, wie Sie eine sichere Netzwerkarchitektur zwischen Standorten implementieren, die ein virtuelles Azure-Netzwerk und ein lokales Netzwerk umfasst, die über ExpressRoute verbunden werden.
+titleSuffix: Azure Reference Architectures
+description: Implementieren Sie eine sichere Netzwerkarchitektur zwischen Standorten, die ein virtuelles Azure-Netzwerk und ein lokales Netzwerk mit ExpressRoute-Verbindung umfasst.
 author: telmosampaio
 ms.date: 10/22/2017
-pnp.series.title: Connect an on-premises network to Azure
-pnp.series.next: expressroute-vpn-failover
-pnp.series.prev: vpn
-cardTitle: ExpressRoute
-ms.openlocfilehash: 16711acb179c05152fc5ef8c7bf3eeb8d067a382
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 8e9de168fe2969159f62ce84a19f4b21fd1cb538
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916616"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120389"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>Verbinden eines lokalen Netzwerks mit Azure über ExpressRoute
 
-Diese Referenzarchitektur zeigt, wie man mithilfe von [Azure ExpressRoute][expressroute-introduction] ein lokales Netzwerk mit virtuellen Azure-Netzwerken verbindet. ExpressRoute-Verbindungen nutzen eine dedizierte private Verbindung über einen Drittanbieter für die Konnektivität. Die private Verbindung erweitert Ihr lokales Netzwerk auf Azure. [**So stellen Sie diese Lösung bereit**.](#deploy-the-solution)
+Diese Referenzarchitektur zeigt, wie man mithilfe von [Azure ExpressRoute][expressroute-introduction] ein lokales Netzwerk mit virtuellen Azure-Netzwerken verbindet. ExpressRoute-Verbindungen nutzen eine dedizierte private Verbindung über einen Drittanbieter für die Konnektivität. Die private Verbindung erweitert Ihr lokales Netzwerk auf Azure. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
 ![[0]][0]
 
@@ -26,20 +24,20 @@ Diese Referenzarchitektur zeigt, wie man mithilfe von [Azure ExpressRoute][expre
 
 Die Architektur umfasst die folgenden Komponenten.
 
-* **Lokales Unternehmensnetzwerk**. Ein privates lokales Netzwerk innerhalb einer Organisation.
+- **Lokales Unternehmensnetzwerk**. Ein privates lokales Netzwerk innerhalb einer Organisation.
 
-* **ExpressRoute-Verbindung**. Eine vom Konnektivitätsanbieter bereitgestellte Layer 2- oder Layer 3-Verbindung, die das lokale Netzwerk über die Edgerouter mit Azure verbindet. Für die Verbindung wird die vom Konnektivitätsanbieter verwaltete Hardwareinfrastruktur verwendet.
+- **ExpressRoute-Verbindung**. Eine vom Konnektivitätsanbieter bereitgestellte Layer 2- oder Layer 3-Verbindung, die das lokale Netzwerk über die Edgerouter mit Azure verbindet. Für die Verbindung wird die vom Konnektivitätsanbieter verwaltete Hardwareinfrastruktur verwendet.
 
-* **Lokale Edgerouter**. Route, die das lokale Netzwerk mit der über den Anbieter verwalteten Verbindung verbinden. Je nachdem, wie Ihre Verbindung bereitgestellt wird, müssen Sie möglicherweise die öffentlichen IP-Adressen angeben, die von den Routern verwendet werden.
-* **Microsoft Edge-Router**. Zwei Router in einer Aktiv/Aktiv-Konfiguration mit Hochverfügbarkeit. Diese Router ermöglichen es einem Konnektivitätsanbieter, eine direkte Verbindung zwischen ihren Leitungen und dem Rechenzentrum herzustellen. Je nachdem, wie Ihre Verbindung bereitgestellt wird, müssen Sie möglicherweise die öffentlichen IP-Adressen angeben, die von den Routern verwendet werden.
+- **Lokale Edgerouter**. Route, die das lokale Netzwerk mit der über den Anbieter verwalteten Verbindung verbinden. Je nachdem, wie Ihre Verbindung bereitgestellt wird, müssen Sie möglicherweise die öffentlichen IP-Adressen angeben, die von den Routern verwendet werden.
+- **Microsoft Edge-Router**. Zwei Router in einer Aktiv/Aktiv-Konfiguration mit Hochverfügbarkeit. Diese Router ermöglichen es einem Konnektivitätsanbieter, eine direkte Verbindung zwischen ihren Leitungen und dem Rechenzentrum herzustellen. Je nachdem, wie Ihre Verbindung bereitgestellt wird, müssen Sie möglicherweise die öffentlichen IP-Adressen angeben, die von den Routern verwendet werden.
 
-* **Virtuelle Azure-Netzwerke (VNETs)**. Jedes VNET befindet sich in einer einzelnen Azure-Region und kann mehrere Anwendungsebenen hosten. Anwendungsebenen können mithilfe von Subnetzen in jedem VNET segmentiert werden.
+- **Virtuelle Azure-Netzwerke (VNETs)**. Jedes VNET befindet sich in einer einzelnen Azure-Region und kann mehrere Anwendungsebenen hosten. Anwendungsebenen können mithilfe von Subnetzen in jedem VNET segmentiert werden.
 
-* **Öffentliche Azure-Dienste**. Azure-Dienste, die innerhalb einer Hybridanwendung genutzt werden können. Diese Dienste stehen auch über das Internet zur Verfügung, aber der Zugriff über eine ExpressRoute-Leitung bietet niedrige Latenz und eine besser vorhersagbare Leistung, da der Datenverkehr nicht über das Internet geleitet wird. Verbindungen werden über das [öffentliche Peering][expressroute-peering] hergestellt. Die hierbei verwendeten Adressen gehören entweder der Organisation oder werden vom Konnektivitätsanbieter bereitgestellt.
+- **Öffentliche Azure-Dienste**. Azure-Dienste, die innerhalb einer Hybridanwendung genutzt werden können. Diese Dienste stehen auch über das Internet zur Verfügung, aber der Zugriff über eine ExpressRoute-Leitung bietet niedrige Latenz und eine besser vorhersagbare Leistung, da der Datenverkehr nicht über das Internet geleitet wird. Verbindungen werden über das [öffentliche Peering][expressroute-peering] hergestellt. Die hierbei verwendeten Adressen gehören entweder der Organisation oder werden vom Konnektivitätsanbieter bereitgestellt.
 
-* **Office 365-Dienste**. Die öffentlich verfügbaren Office 365-Anwendungen und -Dienste, die von Microsoft bereitgestellt werden. Verbindungen werden über das [Microsoft-Peering][expressroute-peering] hergestellt. Die hierbei verwendeten Adressen gehören entweder der Organisation oder werden vom Konnektivitätsanbieter bereitgestellt. Es ist auch möglich, per Microsoft-Peering eine direkte Verbindung mit Microsoft CRM Online herzustellen.
+- **Office 365-Dienste**. Die öffentlich verfügbaren Office 365-Anwendungen und -Dienste, die von Microsoft bereitgestellt werden. Verbindungen werden über das [Microsoft-Peering][expressroute-peering] hergestellt. Die hierbei verwendeten Adressen gehören entweder der Organisation oder werden vom Konnektivitätsanbieter bereitgestellt. Es ist auch möglich, per Microsoft-Peering eine direkte Verbindung mit Microsoft CRM Online herzustellen.
 
-* **Konnektivitätsanbieter** (nicht gezeigt). Unternehmen, die Layer 2- oder Layer 3-Konnektivität zwischen Ihrem Rechenzentrum und einem Azure-Rechenzentrum bereitstellen.
+- **Konnektivitätsanbieter** (nicht gezeigt). Unternehmen, die Layer 2- oder Layer 3-Konnektivität zwischen Ihrem Rechenzentrum und einem Azure-Rechenzentrum bereitstellen.
 
 ## <a name="recommendations"></a>Empfehlungen
 
@@ -55,9 +53,9 @@ Get-AzureRmExpressRouteServiceProvider
 
 ExpressRoute-Konnektivitätsanbieter verbinden Ihr Rechenzentrum über die folgenden Methoden mit Microsoft:
 
-* **Per Co-Location und Cloud Exchange**. Wenn Sie sich in einer Einrichtung mit Cloud Exchange befinden, können Sie virtuelle Querverbindungen mit Azure über den Ethernet Exchange des Co-Location-Anbieters anfordern. Co-Location-Anbieter stellen entweder Layer 2-Querverbindungen oder verwaltete Layer 3-Querverbindungen zwischen Ihrer Infrastruktur in der Co-Location-Einrichtung und Azure bereit.
-* **Point-to-Point-Ethernet-Verbindungen**. Sie können Ihre lokalen Rechenzentren/Büros über Point-to-Point-Ethernet-Leitungen mit Azure verbinden. Point-to-Point-Ethernet-Anbieter können Layer 2-Verbindungen oder verwaltete Layer 3-Verbindungen zwischen Ihrem Standort und Azure bereitstellen.
-* **Any-to-Any-Netzwerke (IPVPN)**. Sie können Ihr Fernnetz (WAN) in Azure integrieren. IPVPN-Anbieter (normalerweise MPLS VPN) stellen Any-to-Any-Konnektivität zwischen Ihren Niederlassungen und den Rechenzentren bereit. Azure kann mit Ihrem WAN verbunden werden, sodass es wie eine normale Niederlassung erscheint. WAN-Anbieter stellen in der Regel verwaltete Layer 3-Konnektivität bereit.
+- **Per Co-Location und Cloud Exchange**. Wenn Sie sich in einer Einrichtung mit Cloud Exchange befinden, können Sie virtuelle Querverbindungen mit Azure über den Ethernet Exchange des Co-Location-Anbieters anfordern. Co-Location-Anbieter stellen entweder Layer 2-Querverbindungen oder verwaltete Layer 3-Querverbindungen zwischen Ihrer Infrastruktur in der Co-Location-Einrichtung und Azure bereit.
+- **Point-to-Point-Ethernet-Verbindungen**. Sie können Ihre lokalen Rechenzentren/Büros über Point-to-Point-Ethernet-Leitungen mit Azure verbinden. Point-to-Point-Ethernet-Anbieter können Layer 2-Verbindungen oder verwaltete Layer 3-Verbindungen zwischen Ihrem Standort und Azure bereitstellen.
+- **Any-to-Any-Netzwerke (IPVPN)**. Sie können Ihr Fernnetz (WAN) in Azure integrieren. IPVPN-Anbieter (normalerweise MPLS VPN) stellen Any-to-Any-Konnektivität zwischen Ihren Niederlassungen und den Rechenzentren bereit. Azure kann mit Ihrem WAN verbunden werden, sodass es wie eine normale Niederlassung erscheint. WAN-Anbieter stellen in der Regel verwaltete Layer 3-Konnektivität bereit.
 
 Weitere Informationen zu Konnektivitätsanbietern finden Sie der [ExpressRoute-Übersicht][expressroute-introduction].
 
@@ -70,14 +68,14 @@ Sofern nicht bereits geschehen, fügen Sie ein Subnetz namens `GatewaySubnet` zu
 Gehen Sie folgendermaßen vor, um eine ExpressRoute-Verbindung zu erstellen:
 
 1. Führen Sie den folgenden PowerShell-Befehl aus:
-   
+
     ```powershell
     New-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>> -Location <<location>> -SkuTier <<sku-tier>> -SkuFamily <<sku-family>> -ServiceProviderName <<service-provider-name>> -PeeringLocation <<peering-location>> -BandwidthInMbps <<bandwidth-in-mbps>>
     ```
 2. Senden Sie den `ServiceKey` für die neue Verbindung an den Dienstanbieter.
 
 3. Warten Sie die Bereitstellung der Verbindung durch den Anbieter ab. Überprüfen Sie mit dem folgenden PowerShell-Befehl den Bereitstellungszustand einer Verbindung:
-   
+
     ```powershell
     Get-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>>
     ```
@@ -86,15 +84,15 @@ Gehen Sie folgendermaßen vor, um eine ExpressRoute-Verbindung zu erstellen:
 
     > [!NOTE]
     > Wenn Sie eine Layer 3-Verbindung verwenden, sollte die Konfiguration und Verwaltung für das Routing über den Anbieter erfolgen. Sie teilen dem Anbieter die erforderlichen Informationen zum Implementieren der geeigneten Routen mit.
-    > 
-    > 
+    >
+    >
 
 4. Bei Verwendung einer Layer 2-Verbindung:
 
-    1. Reservieren Sie zwei /30-Subnetze mit gültigen öffentlichen IP-Adressen für jeden Peeringtyp, den Sie implementieren möchten. Über diese /30-Subnetze werden IP-Adressen für die Router bereitgestellt, die für die Verbindung verwendet werden. Wenn Sie privates, öffentliches und Microsoft-Peering verwenden, benötigen Sie 6 /30-Subnetze mit gültigen öffentlichen IP-Adressen.     
+    1. Reservieren Sie zwei /30-Subnetze mit gültigen öffentlichen IP-Adressen für jeden Peeringtyp, den Sie implementieren möchten. Über diese /30-Subnetze werden IP-Adressen für die Router bereitgestellt, die für die Verbindung verwendet werden. Wenn Sie privates, öffentliches und Microsoft-Peering verwenden, benötigen Sie 6 /30-Subnetze mit gültigen öffentlichen IP-Adressen.
 
     2. Konfigurieren Sie das Routing für die ExpressRoute-Verbindung. Führen Sie die folgenden PowerShell-Befehle für jeden Peeringtyp aus, den Sie konfigurieren möchten (privat, öffentlich, Microsoft). Weitere Informationen finden Sie unter [Erstellen und Ändern des Peerings für eine ExpressRoute-Verbindung mithilfe von PowerShell][configure-expressroute-routing].
-   
+
         ```powershell
         Set-AzureRmExpressRouteCircuitPeeringConfig -Name <<peering-name>> -Circuit <<circuit-name>> -PeeringType <<peering-type>> -PeerASN <<peer-asn>> -PrimaryPeerAddressPrefix <<primary-peer-address-prefix>> -SecondaryPeerAddressPrefix <<secondary-peer-address-prefix>> -VlanId <<vlan-id>>
 
@@ -113,7 +111,7 @@ Gehen Sie folgendermaßen vor, um eine ExpressRoute-Verbindung zu erstellen:
 
 Sie können mehrere VNETs in unterschiedlichen Regionen mit derselben ExpressRoute-Leitung verbinden, solange VNETs und ExpressRoute-Leitung sich innerhalb derselben geopolitischen Region befinden.
 
-### <a name="troubleshooting"></a>Problembehandlung 
+### <a name="troubleshooting"></a>Problembehandlung
 
 Wenn über eine zuvor funktionsfähige ExpressRoute-Leitung jetzt keine Verbindung mehr hergestellt werden kann, obwohl weder lokal noch in Ihrem privaten VNET Konfigurationsänderungen durchgeführt wurden, müssen Sie sich möglicherweise mit dem Konnektivitätsanbieter in Verbindung setzen und gemeinsam an der Problemlösung arbeiten. Überprüfen Sie mithilfe der folgenden PowerShell-Befehle, ob die ExpressRoute-Verbindung bereitgestellt wurde:
 
@@ -123,7 +121,7 @@ Get-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resou
 
 Die Ausgabe dieses Befehls zeigt verschiedene Verbindungseigenschaften, darunter `ProvisioningState`, `CircuitProvisioningState` und `ServiceProviderProvisioningState`, wie unten gezeigt.
 
-```
+```powershell
 ProvisioningState                : Succeeded
 Sku                              : {
                                      "Name": "Standard_MeteredData",
@@ -144,19 +142,19 @@ Wenn Ihr Anbieter die Verbindung bereits bereitgestellt hat und `ProvisioningSta
 
 ## <a name="scalability-considerations"></a>Überlegungen zur Skalierbarkeit
 
-ExpressRoute-Verbindungen bieten einen Pfad mit hoher Bandbreite zwischen Netzwerken. Allgemein gilt: Je größer die Bandbreite, desto höher die Kosten. 
+ExpressRoute-Verbindungen bieten einen Pfad mit hoher Bandbreite zwischen Netzwerken. Allgemein gilt: Je größer die Bandbreite, desto höher die Kosten.
 
 ExpressRoute bietet zwei [Tarife][expressroute-pricing] für Kunden: einen Volumentarif und eine Datenflatrate. Die Gebühren richten sich nach der Verbindungsbandbreite. Die verfügbare Bandbreite variiert je nach Anbieter. Verwenden Sie das Cmdlet `Get-AzureRmExpressRouteServiceProvider`, um die verfügbaren Anbieter in Ihrer Region sowie die angebotenen Bandbreiten anzuzeigen.
- 
+
 Eine einzelne ExpressRoute-Verbindung kann eine bestimmte Anzahl von Peerings und VNET-Verbindungen unterstützen. Weitere Informationen finden Sie unter [ExpressRoute-Limits](/azure/azure-subscription-service-limits).
 
 Das ExpressRoute Premium-Add-On bietet gegen eine zusätzliche Gebühr einige zusätzliche Funktionen:
 
-* Erhöhung der Routengrenzwerte für öffentliches und privates Peering. 
-* Eine höhere Anzahl von VNET-Verbindungen pro ExpressRoute-Leitung. 
-* Globale Konnektivität für Dienste.
+- Erhöhung der Routengrenzwerte für öffentliches und privates Peering.
+- Eine höhere Anzahl von VNET-Verbindungen pro ExpressRoute-Leitung.
+- Globale Konnektivität für Dienste.
 
-Ausführliche Informationen finden Sie unter [ExpressRoute – Preise][expressroute-pricing]. 
+Ausführliche Informationen finden Sie unter [ExpressRoute – Preise][expressroute-pricing].
 
 ExpressRoute-Verbindungen sind so konzipiert, dass Sie das erworbene Bandbreitenlimit für kurzfristige Spitzen im Netzwerkdatenverkehr um das Doppelte überschreiten können, ohne dass zusätzliche Kosten anfallen. Dies wird durch den Einsatz redundanter Verbindungen erreicht. Allerdings wird dieses Feature nicht von allen Konnektivitätsanbietern unterstützt. Stellen Sie sicher, dass Ihr Konnektivitätsanbieter dieses Feature unterstützt, bevor Sie sich darauf verlassen.
 
@@ -186,8 +184,8 @@ Wenngleich einige Anbieter eine Änderung der Bandbreite zulassen, sollten Sie e
 
     > [!IMPORTANT]
     > Stellen Sie sicher, dass die Eigenschaft `Sku.Name` dem `Sku.Tier` und der `Sku.Family` entspricht. Wenn Sie Familie und Tarif ändern, aber nicht den Namen, wird Ihre Verbindung deaktiviert.
-    > 
-    > 
+    >
+    >
 
     Ein SKU-Upgrade kann ohne Unterbrechung durchgeführt werden, aber Sie können nicht von der Datenflatrate auf den Volumentarif umstellen. Bei einem Downgrade der SKU muss Ihr Bandbreitenverbrauch innerhalb des Standardlimits für die Standard-SKU liegen.
 
@@ -199,26 +197,26 @@ BGP-Sitzungen verwendet standardmäßig einen Leerlauftimeoutwert von 60 Sekunde
 
 Sie können für Ihre Azure-Verbindung auf unterschiedliche Weise Hochverfügbarkeit konfigurieren – je nachdem, welchen Anbieter Sie verwenden und wie viele ExpressRoute-Verbindungen und VNET-Gatewayverbindungen Sie konfigurieren möchten. Nachfolgend werden die verfügbaren Optionen zusammengefasst:
 
-* Wenn Sie eine Layer 2-Verbindung verwenden, stellen Sie redundante Router in Ihrem lokalen Netzwerk in einer Aktiv/Aktiv-Konfiguration bereit. Verbinden Sie die primäre Verbindung mit dem ersten und die zweite Verbindung mit dem zweiten Router. Auf diese Weise erhalten Sie eine hochverfügbare Verbindung auf beiden Seiten der Leitung. Dies ist erforderlich, wenn Sie die Vereinbarung zum Servicelevel für ExpressRoute (SLA) benötigen. Ausführliche Informationen finden Sie unter [SLA für Azure ExpressRoute][sla-for-expressroute].
+- Wenn Sie eine Layer 2-Verbindung verwenden, stellen Sie redundante Router in Ihrem lokalen Netzwerk in einer Aktiv/Aktiv-Konfiguration bereit. Verbinden Sie die primäre Verbindung mit dem ersten und die zweite Verbindung mit dem zweiten Router. Auf diese Weise erhalten Sie eine hochverfügbare Verbindung auf beiden Seiten der Leitung. Dies ist erforderlich, wenn Sie die Vereinbarung zum Servicelevel für ExpressRoute (SLA) benötigen. Ausführliche Informationen finden Sie unter [SLA für Azure ExpressRoute][sla-for-expressroute].
 
     Das folgende Diagramm zeigt eine Konfiguration mit redundanten lokalen Routern, die mit der primären und sekundären Leitung verbunden sind. Jede Leitung verarbeitet den Datenverkehr für ein öffentliches Peering und ein privates Peering (jedes Peering umfasst ein dediziertes Paar aus /30-Adressräumen, wie im vorherigen Abschnitt beschrieben).
 
     ![[1]][1]
 
-* Überprüfen Sie bei Verwendung einer Layer 3-Verbindung, ob redundante BGP-Sitzungen zur Sicherstellung der Verfügbarkeit bereitgestellt werden.
+- Überprüfen Sie bei Verwendung einer Layer 3-Verbindung, ob redundante BGP-Sitzungen zur Sicherstellung der Verfügbarkeit bereitgestellt werden.
 
-* Verbinden Sie das VNET mit mehreren ExpressRoute-Leitungen, die von unterschiedlichen Dienstanbietern bereitgestellt werden. Diese Strategie bietet zusätzliche Hochverfügbarkeit und Notfallwiederherstellungsfunktionen.
+- Verbinden Sie das VNET mit mehreren ExpressRoute-Leitungen, die von unterschiedlichen Dienstanbietern bereitgestellt werden. Diese Strategie bietet zusätzliche Hochverfügbarkeit und Notfallwiederherstellungsfunktionen.
 
-* Konfigurieren Sie ein Site-to-Site-VPN als Failoverpfad für ExpressRoute. Weitere Informationen finden Sie unter [Verbinden eines lokalen Netzwerks mit Azure unter Verwendung von ExpressRoute mit VPN-Failover][highly-available-network-architecture].
- Diese Option gilt nur für das private Peering. Für Azure- und Office 365-Dienste ist das Internet der einzige Failoverpfad. 
+- Konfigurieren Sie ein Site-to-Site-VPN als Failoverpfad für ExpressRoute. Weitere Informationen finden Sie unter [Verbinden eines lokalen Netzwerks mit Azure unter Verwendung von ExpressRoute mit VPN-Failover][highly-available-network-architecture].
+ Diese Option gilt nur für das private Peering. Für Azure- und Office 365-Dienste ist das Internet der einzige Failoverpfad.
 
 ## <a name="manageability-considerations"></a>Überlegungen zur Verwaltbarkeit
 
-Sie können mit dem [Azure Connectivity Toolkit (AzureCT)][azurect] die Konnektivität zwischen Ihrem lokalen Rechenzentrum und Azure überwachen. 
+Sie können mit dem [Azure Connectivity Toolkit (AzureCT)][azurect] die Konnektivität zwischen Ihrem lokalen Rechenzentrum und Azure überwachen.
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
-Sie können die Sicherheitsoptionen für Ihre Azure-Verbindung abhängig von Ihren Anforderungen im Hinblick auf Sicherheit und Compliance auf unterschiedliche Weise konfigurieren. 
+Sie können die Sicherheitsoptionen für Ihre Azure-Verbindung abhängig von Ihren Anforderungen im Hinblick auf Sicherheit und Compliance auf unterschiedliche Weise konfigurieren.
 
 ExpressRoute arbeitet auf Layer 3. Bedrohungen in der Anwendungsebene können durch den Einsatz einer Netzwerksicherheitsappliance verhindert werden, die den Datenverkehr auf autorisierte Ressourcen beschränkt. Darüber hinaus können ExpressRoute-Verbindungen mit öffentlichem Peering nur lokal initiiert werden. Dadurch wird verhindert, dass ein nicht autorisierter Dienst aus dem Internet auf lokale Daten zugreift und diese kompromittiert.
 
@@ -235,10 +233,8 @@ Um die Sicherheit zu maximieren, aktivieren Sie keine öffentliche IP-Adresse f�
 Wenn Sie Verwaltungsendpunkte für VMs gegenüber einem externen Netzwerk offenlegen müssen, verwenden Sie NSGs oder Zugriffssteuerunglisten (ACLs), um die Sichtbarkeit dieser Ports auf eine Whitelist mit IP-Adressen oder Netzwerken zu beschränken.
 
 > [!NOTE]
-> Standardmäßig weisen Azure-VMs, die über das Azure-Portal bereitgestellt wurden, eine öffentliche IP-Adresse mit Anmeldezugriff auf.  
-> 
-> 
-
+> Standardmäßig weisen Azure-VMs, die über das Azure-Portal bereitgestellt wurden, eine öffentliche IP-Adresse mit Anmeldezugriff auf.
+>
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
@@ -246,25 +242,34 @@ Wenn Sie Verwaltungsendpunkte für VMs gegenüber einem externen Netzwerk offenl
 
 Führen Sie die folgenden Schritte aus, um die Lösung bereitzustellen.
 
+<!-- markdownlint-disable MD033 -->
+
 1. Klicken Sie auf diese Schaltfläche:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
+
 2. Warten Sie, bis der Link im Azure-Portal geöffnet wird, und gehen Sie dann folgendermaßen vor:
-   * Der Name der **Ressourcengruppe** ist bereits in der Parameterdatei definiert. Wählen Sie also **Neu erstellen**, und geben Sie im Textfeld `ra-hybrid-er-rg` ein.
-   * Wählen Sie im Dropdownfeld **Standort** die Region aus.
-   * Lassen Sie die Textfelder für den **Vorlagenstamm-URI** bzw. **Parameterstamm-URI** unverändert.
-   * Überprüfen Sie die allgemeinen Geschäftsbedingungen, und aktivieren Sie dann das Kontrollkästchen **Ich stimme den oben genannten Geschäftsbedingungen zu**.
-   * Klicken Sie auf die Schaltfläche **Kaufen**.
+   - Der Name der **Ressourcengruppe** ist bereits in der Parameterdatei definiert. Wählen Sie also **Neu erstellen**, und geben Sie im Textfeld `ra-hybrid-er-rg` ein.
+   - Wählen Sie im Dropdownfeld **Standort** die Region aus.
+   - Lassen Sie die Textfelder für den **Vorlagenstamm-URI** bzw. **Parameterstamm-URI** unverändert.
+   - Überprüfen Sie die allgemeinen Geschäftsbedingungen, und aktivieren Sie dann das Kontrollkästchen **Ich stimme den oben genannten Geschäftsbedingungen zu**.
+   - Klicken Sie auf die Schaltfläche **Kaufen**.
+
 3. Warten Sie, bis die Bereitstellung abgeschlossen ist.
+
 4. Klicken Sie auf diese Schaltfläche:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
+
 5. Warten Sie, bis der Link im Azure-Portal geöffnet wird, und gehen Sie dann folgendermaßen vor:
-   * Wählen Sie im Abschnitt **Ressourcengruppe** die Option **Vorhandene verwenden** aus, und geben Sie im Textfeld `ra-hybrid-er-rg` ein.
-   * Wählen Sie im Dropdownfeld **Standort** die Region aus.
-   * Lassen Sie die Textfelder für den **Vorlagenstamm-URI** bzw. **Parameterstamm-URI** unverändert.
-   * Überprüfen Sie die allgemeinen Geschäftsbedingungen, und aktivieren Sie dann das Kontrollkästchen **Ich stimme den oben genannten Geschäftsbedingungen zu**.
-   * Klicken Sie auf die Schaltfläche **Kaufen**.
+   - Wählen Sie im Abschnitt **Ressourcengruppe** die Option **Vorhandene verwenden** aus, und geben Sie im Textfeld `ra-hybrid-er-rg` ein.
+   - Wählen Sie im Dropdownfeld **Standort** die Region aus.
+   - Lassen Sie die Textfelder für den **Vorlagenstamm-URI** bzw. **Parameterstamm-URI** unverändert.
+   - Überprüfen Sie die allgemeinen Geschäftsbedingungen, und aktivieren Sie dann das Kontrollkästchen **Ich stimme den oben genannten Geschäftsbedingungen zu**.
+   - Klicken Sie auf die Schaltfläche **Kaufen**.
+
 6. Warten Sie, bis die Bereitstellung abgeschlossen ist.
 
+<!-- markdownlint-enable MD033 -->
 
 <!-- links -->
+
 [forced-tuneling]: ../dmz/secure-vnet-hybrid.md
 [highly-available-network-architecture]: ./expressroute-vpn-failover.md
 
@@ -283,8 +288,9 @@ Führen Sie die folgenden Schritte aus, um die Lösung bereitzustellen.
 [er-circuit-parameters]: https://github.com/mspnp/reference-architectures/tree/master/hybrid-networking/expressroute/parameters/expressRouteCircuit.parameters.json
 [azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
 [azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
+
 [0]: ./images/expressroute.png "Hybrid-Netzwerkarchitektur mit Azure ExpressRoute"
 [1]: ../_images/guidance-hybrid-network-expressroute/figure2.png "Einsatz redundanter Router mit primären und sekundären ExpressRoute-Verbindungen"
 [2]: ../_images/guidance-hybrid-network-expressroute/figure3.png "Hinzufügen von Sicherheitsgeräten zum lokalen Netzwerk"
 [3]: ../_images/guidance-hybrid-network-expressroute/figure4.png "Einsatz der Tunnelerzwingung zum Überwachen des Internetdatenverkehrs"
-[4]: ../_images/guidance-hybrid-network-expressroute/figure5.png "Ermitteln des ServiceKey einer ExpressRoute-Verbindung"  
+[4]: ../_images/guidance-hybrid-network-expressroute/figure5.png "Ermitteln des ServiceKey einer ExpressRoute-Verbindung"

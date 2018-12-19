@@ -1,24 +1,25 @@
 ---
-title: Unternehmensintegration mithilfe von Azure Integration Services
-description: Dieser Architekturverweis zeigt, wie Sie ein einfaches Unternehmensintegrationsmuster mithilfe von Azure Logic Apps und Azure API Management implementieren.
+title: Einfache Unternehmensintegration mit Azure
+titleSuffix: Azure Reference Architectures
+description: Empfohlene Architektur für die Implementierung eines einfachen Unternehmensintegrationsmusters mit Azure Logic Apps und Azure API Management
 services: logic-apps
 author: mattfarm
-ms.author: mattfarm
 ms.reviewer: jonfan, estfan, LADocs
 ms.topic: article
 ms.date: 12/03/2018
-ms.openlocfilehash: c8aa3f8b736fabd1a6701778f22a7eec9bf46ee7
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.custom: integration-services
+ms.openlocfilehash: 36419706714b8516a309cf634649a4b44a9bc136
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52919101"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120202"
 ---
 # <a name="basic-enterprise-integration-on-azure"></a>Einfache Unternehmensintegration in Azure
 
 In dieser Referenzarchitektur wird [Azure Integration Services][integration-services] zum Orchestrieren von Aufrufen an Back-End-Unternehmenssysteme verwendet. Die Back-End-Systeme können SaaS-Systeme (Software-as-a-Service), Azure-Dienste und vorhandene Webdienste in Ihrem Unternehmen enthalten.
 
-Azure Integration Services ist eine Sammlung von Diensten für die Integration von Anwendungen und Daten. Diese Architektur verwendet zwei dieser Dienste: [Logic Apps][logic-apps] zum Orchestrieren von Workflows und [API Management][apim] zum Erstellen von API-Katalogen. Diese Architektur ist für einfache Integrationsszenarien konzipiert, in denen der Workflow durch synchrone Back-End-Dienstaufrufe ausgelöst wird. Eine komplexere Architektur mit [Warteschlangen und Ereignissen](./queues-events.md) baut auf dieser einfachen Architektur auf. 
+Azure Integration Services ist eine Sammlung von Diensten für die Integration von Anwendungen und Daten. Diese Architektur verwendet zwei dieser Dienste: [Logic Apps][logic-apps] zum Orchestrieren von Workflows und [API Management][apim] zum Erstellen von API-Katalogen. Diese Architektur ist für einfache Integrationsszenarien konzipiert, in denen der Workflow durch synchrone Back-End-Dienstaufrufe ausgelöst wird. Eine komplexere Architektur mit [Warteschlangen und Ereignissen](./queues-events.md) baut auf dieser einfachen Architektur auf.
 
 ![Architekturdiagramm – einfache Unternehmensintegration](./_images/simple-enterprise-integration.png)
 
@@ -32,13 +33,13 @@ Die Architektur besteht aus den folgenden Komponenten:
 
 - **Azure API Management:** [API Management][apim] ist ein verwalteter Dienst für das Veröffentlichen von HTTP-API-Katalogen, um Wiederverwendung und Erkennbarkeit zu fördern. API Management besteht aus zwei zugehörigen Komponenten:
 
-    - **API-Gateway**. Das API-Gateway akzeptiert HTTP-Aufrufe und leitet sie an das Back-End weiter. 
+  - **API-Gateway**. Das API-Gateway akzeptiert HTTP-Aufrufe und leitet sie an das Back-End weiter.
 
-    - **Entwicklerportal**. Jede Instanz von Azure API Management bietet Zugriff auf ein [Entwicklerportal][apim-dev-portal]. Über dieses Portal haben Ihre Entwickler Zugriff auf Dokumentation und Codebeispiele für das Aufrufen der APIs. Im Entwicklerportal können Sie außerdem APIs testen.
+  - **Entwicklerportal**. Jede Instanz von Azure API Management bietet Zugriff auf ein [Entwicklerportal][apim-dev-portal]. Über dieses Portal haben Ihre Entwickler Zugriff auf Dokumentation und Codebeispiele für das Aufrufen der APIs. Im Entwicklerportal können Sie außerdem APIs testen.
 
-    In dieser Architektur werden Verbund-APIs durch das [Importieren von Logik-Apps][apim-logic-app] als APIs erstellt. Sie können auch vorhandene Webdienste importieren, indem Sie [OpenAPI][apim-openapi]-Spezifikationen (Swagger) oder [SOAP-APIs][apim-soap] aus WSDL-Spezifikationen importieren. 
+  In dieser Architektur werden Verbund-APIs durch das [Importieren von Logik-Apps][apim-logic-app] als APIs erstellt. Sie können auch vorhandene Webdienste importieren, indem Sie [OpenAPI][apim-openapi]-Spezifikationen (Swagger) oder [SOAP-APIs][apim-soap] aus WSDL-Spezifikationen importieren.
 
-    Das API-Gateways unterstützt die Entkopplung von Front-End-Clients vom Back-End. Dazu kann es beispielsweise URLs umschreiben oder Anforderungen transformieren, bevor sie das Back-End erreichen. Es behandelt außerdem viele übergreifende Aspekte wie Authentifizierung, Unterstützung von Cross-Origin Resource Sharing (CORS) und Zwischenspeicherung von Antworten.
+  Das API-Gateways unterstützt die Entkopplung von Front-End-Clients vom Back-End. Dazu kann es beispielsweise URLs umschreiben oder Anforderungen transformieren, bevor sie das Back-End erreichen. Es behandelt außerdem viele übergreifende Aspekte wie Authentifizierung, Unterstützung von Cross-Origin Resource Sharing (CORS) und Zwischenspeicherung von Antworten.
 
 - **Azure DNS:** [Azure DNS][dns] ist ein Hostingdienst für DNS-Domänen. Azure DNS bietet eine Namensauflösung mithilfe der Microsoft Azure-Infrastruktur. Durch das Hosten Ihrer Domänen in Azure können Sie Ihre DNS-Einträge mithilfe der gleichen Anmeldeinformationen, APIs, Tools und Abrechnung wie für die anderen Azure-Dienste verwalten. Erstellen Sie zur Verwendung eines benutzerdefinierten Domänennamens (etwa contoso.com) DNS-Einträge, die den benutzerdefinierten Domänennamen der IP-Adresse zuordnen. Weitere Informationen finden Sie unter [Konfigurieren eines benutzerdefinierten Domänennamens in API Management][apim-domain].
 
@@ -54,7 +55,7 @@ Verwenden Sie die Tarife „Basic“, „Standard“ oder „Premium“ für API
 
 Jede Azure API Management-Instanz besitzt einen Standarddomänennamen. Dabei handelt es sich um eine Unterdomäne von `azure-api.net` (Beispiel: `contoso.azure-api.net`). Erwägen Sie die Konfiguration einer [benutzerdefinierte Domäne][apim-domain] für Ihre Organisation.
 
-### <a name="logic-apps"></a>Logic Apps 
+### <a name="logic-apps"></a>Logic Apps
 
 Logic Apps eignet sich am besten für Szenarien, die keine Antworten mit geringer Wartezeit erfordern (etwa asynchrone API-Aufrufe oder API-Aufrufe mittlerer Dauer). Ist eine geringe Wartezeit erforderlich (beispielsweise bei einem Aufruf, der eine Benutzeroberfläche blockiert), muss eine andere Technologie verwendet werden. Verwenden Sie beispielsweise Azure Functions oder eine in Azure App Service bereitgestellte Web-API. Verwenden Sie API Management, um die API für Ihre API-Consumer verfügbar zu machen.
 
@@ -82,7 +83,6 @@ Empfehlungen zur Skalierung eines API Management-Diensts:
 
 Mit dem Premium-Tarif können Sie eine API Management-Instanz über mehrere Azure-Regionen hinweg skalieren. Dadurch ist API Management für eine höhere SLA berechtigt, und Sie können Dienste in mehreren Regionen in der Nähe von Benutzern bereitstellen.
 
-
 Das serverlose Modell von Logic Apps bedeutet, dass Administratoren die Skalierbarkeit der Dienste nicht planen müssen. Der Dienst wird automatisch entsprechend den Anforderungen skaliert.
 
 ## <a name="availability-considerations"></a>Überlegungen zur Verfügbarkeit
@@ -98,9 +98,9 @@ Wenn Sie API Management in mindestens zwei Regionen mit Premium-Tarif bereitstel
 
 [Sichern][apim-backup] Sie Ihre API Management-Konfiguration regelmäßig. Speichern Sie Ihre Sicherungsdateien an einem Ort oder in einer Azure-Region, an dem bzw. in der sich der Dienst nicht befindet. Wählen Sie basierend auf Ihrer [RTO][rto] eine Strategie für die Notfallwiederherstellung:
 
-* Bei einer Notfallwiederherstellung stellen Sie eine neue API Management-Instanz bereit, stellen die Sicherung auf dieser neuen Instanz wieder her und leiten die DNS-Einträge um.
+- Bei einer Notfallwiederherstellung stellen Sie eine neue API Management-Instanz bereit, stellen die Sicherung auf dieser neuen Instanz wieder her und leiten die DNS-Einträge um.
 
-* Behalten Sie eine passive Instanz des API Management-Diensts in einer anderen Azure-Region bei. Stellen Sie in dieser Instanz regelmäßig Sicherungen wieder her, um sie mit dem aktiven Dienst synchron zu halten. Bei einer Notfallwiederherstellung des Diensts müssen Sie lediglich die DNS-Einträge umleiten. Dieser Ansatz verursacht zwar zusätzliche Kosten, da Sie für die passive Instanz bezahlen, die Zeit bis zur Wiederherstellung wird jedoch reduziert. 
+- Behalten Sie eine passive Instanz des API Management-Diensts in einer anderen Azure-Region bei. Stellen Sie in dieser Instanz regelmäßig Sicherungen wieder her, um sie mit dem aktiven Dienst synchron zu halten. Bei einer Notfallwiederherstellung des Diensts müssen Sie lediglich die DNS-Einträge umleiten. Dieser Ansatz verursacht zwar zusätzliche Kosten, da Sie für die passive Instanz bezahlen, die Zeit bis zur Wiederherstellung wird jedoch reduziert.
 
 Für Logik-Apps empfehlen wir einen codebasierten Konfigurationsansatz für die Sicherung und Wiederherstellung. Da Logik-Apps serverlos sind, können Sie sie aus Azure Resource Manager-Vorlagen schnell wiederherstellen. Speichern Sie die Vorlagen in der Quellcodeverwaltung, und integrieren Sie die Vorlagen in Ihren CI/CD-Prozess (Continuous Integration/Continuous Deployment). Stellen Sie die Vorlage bei einer Notfallwiederherstellung in einer neuen Region bereit.
 
@@ -112,13 +112,13 @@ Erstellen Sie separate Ressourcengruppen für Produktions-, Entwicklungs- und Te
 
 Berücksichtigen Sie beim Zuweisen von Ressourcen zu Ressourcengruppen diese Faktoren:
 
-* **Lebenszyklus**. Platzieren Sie Ressourcen mit gleichem Lebenszyklus im Allgemeinen in der gleichen Ressourcengruppe.
+- **Lebenszyklus**. Platzieren Sie Ressourcen mit gleichem Lebenszyklus im Allgemeinen in der gleichen Ressourcengruppe.
 
-* **Zugriff**. Sie können die [rollenbasierte Zugriffssteuerung][rbac] (RBAC) verwenden, um Zugriffsrichtlinien auf die Ressourcen in einer Gruppe anzuwenden.
+- **Zugriff**. Sie können die [rollenbasierte Zugriffssteuerung][rbac] (RBAC) verwenden, um Zugriffsrichtlinien auf die Ressourcen in einer Gruppe anzuwenden.
 
-* **Abrechnung**. Sie können die anfallenden Kosten für die Ressourcengruppe anzeigen.
+- **Abrechnung**. Sie können die anfallenden Kosten für die Ressourcengruppe anzeigen.
 
-* **Tarif für API Management**. Verwenden Sie für Entwicklungs- und Testumgebungen den Developer-Tarif. Zur Kostenminimierung während der Präproduktion stellen Sie ein Replikat Ihrer Produktionsumgebung bereit, führen die Tests aus und fahren das Replikat dann herunter.
+- **Tarif für API Management**. Verwenden Sie für Entwicklungs- und Testumgebungen den Developer-Tarif. Zur Kostenminimierung während der Präproduktion stellen Sie ein Replikat Ihrer Produktionsumgebung bereit, führen die Tests aus und fahren das Replikat dann herunter.
 
 ### <a name="deployment"></a>Bereitstellung
 
@@ -132,9 +132,9 @@ Bei jeder Konfigurationsänderung an einer Logik-App und jeder Bereitstellung ei
 
 API Management unterstützt zwei unterschiedliche, sich jedoch ergänzende Versionierungskonzepte:
 
-* *Versionen* bieten API-Consumern die Möglichkeit, eine API-Version basierend auf ihren Anforderungen zu wählen, z.B. v1, v2, Beta oder Produktion.
+- *Versionen* bieten API-Consumern die Möglichkeit, eine API-Version basierend auf ihren Anforderungen zu wählen, z.B. v1, v2, Beta oder Produktion.
 
-* *Revisionen* ermöglichen API-Administratoren das Vornehmen geringfügiger Änderungen in einer API und das Bereitstellen dieser Änderungen zusammen mit einem Änderungsprotokoll, um API-Benutzer über die Änderungen zu informieren.
+- *Revisionen* ermöglichen API-Administratoren das Vornehmen geringfügiger Änderungen in einer API und das Bereitstellen dieser Änderungen zusammen mit einem Änderungsprotokoll, um API-Benutzer über die Änderungen zu informieren.
 
 Sie können eine Revision in einer Entwicklungsumgebung erstellen und diese Änderung mithilfe von Resource Manager-Vorlagen in anderen Umgebungen bereitstellen. Weitere Informationen finden Sie unter [Veröffentlichen mehrerer Versionen Ihrer API][apim-versions].
 
@@ -149,29 +149,29 @@ Verwenden Sie [Azure Monitor][monitor] sowohl in API Management als auch Logic A
 
 Jeder Dienst verfügt außerdem über folgende Optionen:
 
-* Zur eingehenderen Analyse und Dashboardanzeige senden Sie Logic Apps-Protokolle an [Azure Log Analytics][logic-apps-log-analytics].
+- Zur eingehenderen Analyse und Dashboardanzeige senden Sie Logic Apps-Protokolle an [Azure Log Analytics][logic-apps-log-analytics].
 
-* Zur Überwachung von DevOps konfigurieren Sie Azure Application Insights für API Management.
+- Zur Überwachung von DevOps konfigurieren Sie Azure Application Insights für API Management.
 
-* API Management unterstützt die [Power BI-Lösungsvorlage für benutzerdefinierte API-Analysen][apim-pbi]. Sie können diese Lösungsvorlage zur Erstellung Ihrer eigenen Analyselösung verwenden. Für Geschäftskunden stellt Power BI Berichte zur Verfügung.
+- API Management unterstützt die [Power BI-Lösungsvorlage für benutzerdefinierte API-Analysen][apim-pbi]. Sie können diese Lösungsvorlage zur Erstellung Ihrer eigenen Analyselösung verwenden. Für Geschäftskunden stellt Power BI Berichte zur Verfügung.
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
 Obwohl diese Liste nicht alle bewährten Sicherheitsmethoden vollständig beschreibt, finden Sie hier einige Sicherheitshinweise, die insbesondere für diese Architektur gelten:
 
-* Der Azure API Management-Dienst weist eine feste öffentliche IP-Adresse auf. Beschränken Sie den Aufruf von Logic Apps-Endpunkten ausschließlich auf die IP-Adresse von API Management. Weitere Informationen finden Sie unter [Beschränken eingehender IP-Adressen][logic-apps-restrict-ip].
+- Der Azure API Management-Dienst weist eine feste öffentliche IP-Adresse auf. Beschränken Sie den Aufruf von Logic Apps-Endpunkten ausschließlich auf die IP-Adresse von API Management. Weitere Informationen finden Sie unter [Beschränken eingehender IP-Adressen][logic-apps-restrict-ip].
 
-* Verwenden Sie rollenbasierte Zugriffssteuerung (RBAC), um sicherzustellen, dass Benutzer über entsprechende Zugriffsebenen verfügen.
+- Verwenden Sie rollenbasierte Zugriffssteuerung (RBAC), um sicherzustellen, dass Benutzer über entsprechende Zugriffsebenen verfügen.
 
-* Sichern Sie öffentliche API-Endpunkte in API Management mit OAuth oder OpenID Connect. Um öffentliche API-Endpunkte zu sichern, konfigurieren Sie einen Identitätsanbieter und fügen eine JSON Web Token (JWT)-Validierungsrichtlinie hinzu. Weitere Informationen finden Sie unter [Schützen einer API über OAuth 2.0 mit Azure Active Directory und API Management][apim-oauth].
+- Sichern Sie öffentliche API-Endpunkte in API Management mit OAuth oder OpenID Connect. Um öffentliche API-Endpunkte zu sichern, konfigurieren Sie einen Identitätsanbieter und fügen eine JSON Web Token (JWT)-Validierungsrichtlinie hinzu. Weitere Informationen finden Sie unter [Schützen einer API über OAuth 2.0 mit Azure Active Directory und API Management][apim-oauth].
 
-* Stellen Sie eine Verbindung zu Back-End-Diensten aus API Management her, indem Sie gemeinsame Zertifikate verwenden.
+- Stellen Sie eine Verbindung zu Back-End-Diensten aus API Management her, indem Sie gemeinsame Zertifikate verwenden.
 
-* Erzwingen Sie HTTPS für die API Management-APIs.
+- Erzwingen Sie HTTPS für die API Management-APIs.
 
 ### <a name="storing-secrets"></a>Speichern von Geheimnissen
 
-Checken Sie niemals Kennwörter, Zugriffsschlüssel oder Verbindungszeichenfolgen in die Quellcodeverwaltung ein. Wenn diese Werte benötigt werden, verwenden Sie die entsprechenden Verfahren, um sie bereitzustellen und zu sichern. 
+Checken Sie niemals Kennwörter, Zugriffsschlüssel oder Verbindungszeichenfolgen in die Quellcodeverwaltung ein. Wenn diese Werte benötigt werden, verwenden Sie die entsprechenden Verfahren, um sie bereitzustellen und zu sichern.
 
 Wenn eine Logik-App vertrauliche Werte erfordert, die Sie nicht in einem Connector erstellen können, speichern Sie diese Werte in Azure Key Vault und verweisen in einer Resource Manager-Vorlage darauf. Verwenden Sie Vorlageparameter für die Bereitstellung und Parameterdateien für jede Umgebung. Weitere Informationen finden Sie unter [Sichern von Parametern und Eingaben innerhalb eines Workflows][logic-apps-secure].
 
@@ -185,7 +185,7 @@ Logic Apps verwendet ein [serverloses](/azure/logic-apps/logic-apps-serverless-o
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Wenn Sie die Back-End-Systeme entkoppeln und eine höhere Zuverlässigkeit sowie eine bessere Skalierbarkeit erreichen möchten, verwenden Sie Nachrichtenwarteschlangen und Ereignisse. Dieses Muster wird in der nächsten Referenzarchitektur dieser Reihe behandelt: [Unternehmensintegration mithilfe von Nachrichtenwarteschlangen und Ereignissen](./queues-events.md).
+Wenn Sie die Back-End-Systeme entkoppeln und eine höhere Zuverlässigkeit sowie eine bessere Skalierbarkeit erreichen möchten, verwenden Sie Nachrichtenwarteschlangen und Ereignisse. Dieses Muster wird in der nächsten Referenzarchitektur dieser Reihe gezeigt: [Unternehmensintegration mithilfe von Nachrichtenwarteschlangen und Ereignissen](./queues-events.md)
 
 <!-- links -->
 
@@ -202,7 +202,7 @@ Wenn Sie die Back-End-Systeme entkoppeln und eine höhere Zuverlässigkeit sowie
 [apim-monitor]: /azure/api-management/api-management-howto-use-azure-monitor
 [apim-oauth]: /azure/api-management/api-management-howto-protect-backend-with-aad
 [apim-openapi]: /azure/api-management/import-api-from-oas
-[apim-pbi]: http://aka.ms/apimpbi
+[apim-pbi]: https://aka.ms/apimpbi
 [apim-pricing]: https://azure.microsoft.com/pricing/details/api-management/
 [apim-properties]: /azure/api-management/api-management-howto-properties
 [apim-sla]: https://azure.microsoft.com/support/legal/sla/api-management/

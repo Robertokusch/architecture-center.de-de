@@ -3,12 +3,13 @@ title: Verwenden von Service Fabric zum Zerlegen monolithischer Anwendungen
 description: Zerlegen Sie eine umfangreiche monolithische Anwendung in Microservices.
 author: timomta
 ms.date: 09/20/2018
-ms.openlocfilehash: 9194ddd53a6d78f49fea2f7bb36fbc8721a502ea
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.custom: fasttrack
+ms.openlocfilehash: 438d2eabff39356a7593f2da798a74eebe94553a
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819660"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004629"
 ---
 # <a name="using-service-fabric-to-decompose-monolithic-applications"></a>Verwenden von Service Fabric zum Zerlegen monolithischer Anwendungen
 
@@ -31,7 +32,7 @@ Dieses Szenario ist für Organisationen mit großen monolithischen Webanwendunge
 - Releases dauern mehrere Tage, da das Release als Update für die gesamte Website durchgeführt werden muss.
 - Lange Vorlaufzeiten beim Onboarding von neuen Entwicklern oder Teams aufgrund einer komplexen Codebasis, bei der einzelne Personen über ein unverhältnismäßig hohes Wissen verfügen müssen.
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 Indem Service Fabric als Hostingplattform verwendet wird, können wir eine große IIS-Website in eine Sammlung mit Microservices konvertieren. Dies ist hier dargestellt:
 
@@ -80,7 +81,7 @@ Für einen in Azure gehosteten Service Fabric-Cluster setzt sich der größte Te
 
 Andere weniger hohe Kostenanteile sind die Speichergebühren für die virtuellen Datenträger jedes Knotens und die Gebühren für den ausgehenden Azure-Netzwerkdatenverkehr (z.B. aus Azure zum Browser eines Benutzers).
 
-Zur besseren Erläuterung der Kosten haben wir ein Beispiel erstellt, in dem einige Standardwerte für die Clustergröße, das Netzwerk und den Speicher verwendet werden: Sehen Sie sich den [Preisrechner](https://azure.com/e/52dea096e5844d5495a7b22a9b2ccdde) an. Sie können die Werte in diesem Standardrechner in die für Sie relevanten Werte ändern.
+Damit Sie sich ein Bild von den Kosten machen können, haben wir ein Beispiel erstellt, in dem einige Standardwerte für die Clustergröße, das Netzwerk und den Speicher verwendet werden: Sehen Sie sich den [Preisrechner](https://azure.com/e/52dea096e5844d5495a7b22a9b2ccdde) an. Sie können die Werte in diesem Standardrechner in die für Sie relevanten Werte ändern.
 
 ## <a name="next-steps"></a>Nächste Schritte
 

@@ -1,25 +1,26 @@
 ---
-title: Batchbewertung in Azure für Deep Learning-Modelle
+title: Batchbewertung für Deep Learning-Modelle
+titleSuffix: Azure Reference Architectures
 description: Diese Referenzarchitektur zeigt, wie Sie mit Azure Batch AI neuronale Stilübertragung in einem Video ausführen.
 author: jiata
 ms.date: 10/02/2018
-ms.author: jiata
-ms.openlocfilehash: 1f3f3d3882b2b30eb29acd26c9eab9ff128028e2
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.custom: azcat-ai
+ms.openlocfilehash: 0396903a39d00a4131df65872a63f4b3fde8dce7
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243730"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119879"
 ---
 # <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Batchbewertung in Azure für Deep Learning-Modelle
 
 Diese Referenzarchitektur zeigt, wie Sie mit Azure Batch AI neuronale Stilübertragung in einem Video ausführen. *Stilübertragung* ist eine Deep Learning-Technik, bei der ein vorhandenes Bild im Stil eines anderen Bildes erstellt wird. Diese Architektur kann generell für jedes Szenario für Batchbewertung mit Deep Learning verwendet werden. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
- 
-![](./_images/batch-ai-deep-learning.png)
 
-**Szenario**: Ein Medienunternehmen möchte den Stil eines Videos so ändern, dass er dem eines bestimmten Gemäldes entspricht. Das Unternehmen möchte diesen Stil schnell und automatisiert auf alle Videoframes anwenden. Weitere Informationen zu Algorithmen für die neuronale Stilübertragung finden Sie unter [Image Style Transfer Using Convolutional Neural Networks][image-style-transfer] („Bildstilübertragung mit Convolutional Neural Networks“, PDF).
+![Architekturdiagramm für Deep Learning-Modelle mit Azure Batch AI](./_images/batch-ai-deep-learning.png)
 
-| Stilbild: | Eingabe-/Inhaltsvideo: | Ausgabevideo: | 
+**Szenario:** Ein Medienunternehmen möchte den Stil eines Videos so ändern, dass er dem eines bestimmten Gemäldes entspricht. Das Unternehmen möchte diesen Stil schnell und automatisiert auf alle Videoframes anwenden. Weitere Informationen zu Algorithmen für die neuronale Stilübertragung finden Sie unter [Image Style Transfer Using Convolutional Neural Networks][image-style-transfer] („Bildstilübertragung mit Convolutional Neural Networks“, PDF).
+
+| Stilbild: | Eingabe-/Inhaltsvideo: | Ausgabevideo: |
 |--------|--------|---------|
 | <img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/style_image.jpg" width="300"> | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video.mp4 "Eingabevideo") *Zum Wiedergeben klicken* | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video.mp4 "Ausgabevideo") *Zur Wiedergeben klicken* |
 
@@ -34,14 +35,15 @@ Diese Referenzarchitektur ist für Workloads konzipiert, die durch das Vorhanden
 1. Wenn die Bilder generiert wurden, werden sie wieder in Blob Storage gespeichert.
 1. Laden Sie die generierten Frames herunter, und fügen Sie sie wieder zu einem Video zusammen.
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
+
 Diese Architektur umfasst die folgenden Komponenten.
 
 ### <a name="compute"></a>Compute
 
 **[Azure Batch AI][batch-ai]** wird verwendet, um den Algorithmus der neuronalen Stilübertragung auszuführen. Batch AI unterstützt Deep Learning-Workloads durch die Bereitstellung von Containerumgebungen, die für Deep Learning-Frameworks auf GPU-fähigen VMs vorkonfiguriert sind. Der Dienst kann auch den Computecluster mit Blob Storage verbinden.
 
-### <a name="storage"></a>Speicher
+### <a name="storage"></a>Storage
 
 **[Blob Storage][blob-storage]** wird verwendet, um alle Bilder (Eingabebilder, Stilbilder und Ausgabebilder) und alle von Batch AI erzeugten Protokolle zu speichern. Die Blob Storage-Integration in Batch AI wird über [blobfuse][blobfuse] ermöglicht, ein virtuelles Open Source-Dateisystem, das in Blob Storage gesichert wird. Blob Storage ist außerdem sehr kostengünstig für die Leistung, die diese Workload erfordert.
 
@@ -62,7 +64,7 @@ Diese Referenzarchitektur verwendet Videomaterial von einem Orang-Utan auf einem
 3. Teilen Sie das Video mithilfe von FFmpeg in einzelne Frames auf. Die Frames werden unabhängig voneinander parallel verarbeitet.
 4. Kopieren Sie mit AzCopy die einzelnen Frames in Ihren Blobcontainer.
 
-Zu diesem Zeitpunkt liegt das Videomaterial in einer Form vor, die für die neuronale Stilübertragung verwendet werden kann. 
+Zu diesem Zeitpunkt liegt das Videomaterial in einer Form vor, die für die neuronale Stilübertragung verwendet werden kann.
 
 ## <a name="performance-considerations"></a>Überlegungen zur Leistung
 
@@ -74,7 +76,7 @@ GPUs sind nicht in allen Regionen standardmäßig aktiviert. Wählen Sie deshalb
 
 ### <a name="parallelizing-across-vms-vs-cores"></a>Vergleich zwischen Parallelisieren auf VMs und Kernen
 
-Wenn eine Stilübertragung als Batchauftrag ausgeführt wird, müssen die Aufträge, die hauptsächlich auf GPUs ausgeführt werden, über VMs hinweg parallelisiert werden. Zwei Ansätze sind möglich: Sie können einen größeren Cluster mit VMs erstellen, die eine einzelne GPU haben, oder einen kleineren Cluster mit VMs mit vielen GPUs. 
+Wenn eine Stilübertragung als Batchauftrag ausgeführt wird, müssen die Aufträge, die hauptsächlich auf GPUs ausgeführt werden, über VMs hinweg parallelisiert werden. Zwei Ansätze sind möglich: Sie können einen größeren Cluster aus virtuellen Computern mit einer einzelnen GPU oder einen kleineren Cluster aus virtuellen Computern mit vielen GPUs erstellen.
 
 Die beiden Optionen bieten für diese Workload eine vergleichbare Leistung. Die Verwendung von weniger VMs mit mehr GPUs pro VM kann dazu beitragen, die Datenverschiebung zu reduzieren. Das Datenvolumen pro Auftrag für diese Workload ist jedoch nicht sehr groß, sodass Blob Storage keine umfangreiche Drosselung vornehmen wird.
 
@@ -96,7 +98,7 @@ Stellen Sie in Szenarien mit sensibleren Daten sicher, dass alle Ihre Speichersc
 
 ### <a name="data-encryption-and-data-movement"></a>Datenverschlüsselung und Datenverschiebung
 
-Diese Referenzarchitektur verwendet Stilübertragung als Beispiel für einen Batchbewertungsvorgang. Für Szenarien mit noch sensibleren Daten sollten die gespeicherten Daten im Ruhezustand verschlüsselt werden. Sichern Sie die Datenübertragung jedes Mal mit SSL, wenn Daten von einem Ort an einen anderen verschoben werden. Weitere Informationen finden Sie im [Azure Storage-Sicherheitsleitfaden][storage-security]. 
+Diese Referenzarchitektur verwendet Stilübertragung als Beispiel für einen Batchbewertungsvorgang. Für Szenarien mit noch sensibleren Daten sollten die gespeicherten Daten im Ruhezustand verschlüsselt werden. Sichern Sie die Datenübertragung jedes Mal mit SSL, wenn Daten von einem Ort an einen anderen verschoben werden. Weitere Informationen finden Sie im [Azure Storage-Sicherheitsleitfaden][storage-security].
 
 ### <a name="securing-data-in-a-virtual-network"></a>Sichern von Daten in einem virtuellen Netzwerk
 
@@ -108,26 +110,25 @@ Stellen Sie in Szenarien mit mehreren Benutzern sicher, dass sensible Daten vor 
 
 - Verwenden Sie die rollenbasierte Zugriffssteuerung (RBAC), um den Zugriff von Benutzern auf die Ressourcen zu beschränken, die sie benötigen.
 - Stellen Sie zwei separate Speicherkonten bereit. Speichern Sie Eingabe-und Ausgabedaten im ersten Konto. Externen Benutzern kann Zugriff auf dieses Konto gewährt werden. Speichern Sie ausführbare Skripts und ausgegebene Protokolldateien im anderen Konto. Externe Benutzer sollten keinen Zugriff auf dieses Konto haben. So wird sichergestellt, dass externe Benutzer keine ausführbaren Dateien ändern (um schädlichen Code einzufügen) und keinen Zugriff auf Protokolldateien haben, die ggf. vertrauliche Informationen enthalten.
-- Böswillige Benutzer können einen DDoS auf die Auftragswarteschlange starten oder ungültige, nicht verarbeitbare Nachrichten in die Auftragswarteschlange einfügen, wodurch Systemsperren und Fehler beim Entfernen aus der Warteschlange entstehen können. 
+- Böswillige Benutzer können einen DDoS auf die Auftragswarteschlange starten oder ungültige, nicht verarbeitbare Nachrichten in die Auftragswarteschlange einfügen, wodurch Systemsperren und Fehler beim Entfernen aus der Warteschlange entstehen können.
 
 ## <a name="monitoring-and-logging"></a>Überwachung und Protokollierung
 
 ### <a name="monitoring-batch-ai-jobs"></a>Überwachen von Batch AI-Aufträgen
 
-Beim Ausführen Ihres Auftrags ist es wichtig, den Fortschritt zu überwachen und zu überprüfen, ob alles wie erwartet funktioniert. Es kann jedoch eine Herausforderung sein, über einen Cluster von aktiven Knoten hinweg zu überwachen. 
+Beim Ausführen Ihres Auftrags ist es wichtig, den Fortschritt zu überwachen und zu überprüfen, ob alles wie erwartet funktioniert. Es kann jedoch eine Herausforderung sein, über einen Cluster von aktiven Knoten hinweg zu überwachen.
 
-Um einen Eindruck vom Gesamtzustand des Clusters zu bekommen, navigieren Sie im Azure-Portal zum Blatt „Batch AI“, um den Zustand der Knoten im Cluster zu überprüfen. Wenn ein Knoten inaktiv oder ein Auftrag fehlgeschlagen ist, werden die Fehlerprotokolle in Blob Storage gespeichert und sind auch im Azure-Portal auf dem Blatt „Aufträge“ verfügbar. 
+Um einen Eindruck vom Gesamtzustand des Clusters zu bekommen, navigieren Sie im Azure-Portal zum Blatt „Batch AI“, um den Zustand der Knoten im Cluster zu überprüfen. Wenn ein Knoten inaktiv oder ein Auftrag fehlgeschlagen ist, werden die Fehlerprotokolle in Blob Storage gespeichert und sind auch im Azure-Portal auf dem Blatt „Aufträge“ verfügbar.
 
 Die Überwachung kann durch Verbinden von Protokollen mit Application Insights oder durch das Ausführen separater Prozesse zum Abrufen des Zustands des Batch AI-Clusters und seiner Aufträge verbessert werden.
 
 ### <a name="logging-in-batch-ai"></a>Protokollierung in Batch AI
 
-Batch AI protokolliert automatisch alle StdOut/STDERR-Ereignisse im entsprechenden Blob Storage-Konto. Speichernavigationstools wie der Speicher-Explorer vereinfachen die Navigation durch Protokolldateien erheblich. 
+Batch AI protokolliert automatisch alle StdOut/STDERR-Ereignisse im entsprechenden Blob Storage-Konto. Speichernavigationstools wie der Speicher-Explorer vereinfachen die Navigation durch Protokolldateien erheblich.
 
-Die Schritte zum Bereitstellen für diese Referenzarchitektur zeigen auch, wie Sie ein einfacheres Protokollierungssystem einrichten, damit alle Protokolle für die verschiedenen Aufträge im gleichen Verzeichnis in Ihrem Blobcontainer gespeichert werden (siehe unten).
-Verwenden Sie diese Protokolle, um zu überwachen, wie lange die Verarbeitung jedes Auftrags und jedes Bildes dauert. So können Sie besser beurteilen, wie Sie den Prozess weiter optimieren können.
+Die Schritte zum Bereitstellen für diese Referenzarchitektur zeigen auch, wie Sie ein einfacheres Protokollierungssystem einrichten, damit alle Protokolle für die verschiedenen Aufträge im gleichen Verzeichnis in Ihrem Blobcontainer gespeichert werden (siehe unten). Verwenden Sie diese Protokolle, um zu überwachen, wie lange die Verarbeitung jedes Auftrags und jedes Bildes dauert. So können Sie besser beurteilen, wie Sie den Prozess weiter optimieren können.
 
-![](./_images/batch-ai-logging.png)
+![Screenshot der Protokollierung für Azure Batch AI](./_images/batch-ai-logging.png)
 
 ## <a name="cost-considerations"></a>Kostenbetrachtung
 
@@ -142,6 +143,8 @@ Die automatische Skalierung ist ggf. nicht für Batchaufträge geeignet, die zei
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
 Befolgen Sie die Schritte im Abschnitt [GitHub-Repository][deployment], um diese Referenzarchitektur bereitzustellen.
+
+<!-- links -->
 
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [batch-ai]: /azure/batch-ai/

@@ -3,12 +3,13 @@ title: E-Commerce-Front-End in Azure
 description: Hosten Sie eine E-Commerce-Website in Azure.
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 7baaf4d2986a00ab72b60a540bcd9d864893b109
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: e48f7607fcef6e5048c57f4f8f63b2f6bdd4f183
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610820"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004861"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Ein E-Commerce-Front-End in Azure
 
@@ -110,9 +111,9 @@ Hier können Sie die Betriebskosten für dieses Szenario ermitteln. Alle Dienste
 
 Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir drei exemplarische Kostenprofile erstellt:
 
-* [Klein][small-pricing]: Dieses Preisbeispiel stellt die Komponenten dar, die für das Erstellen des Ausgangs für eine Instanz auf niedriger Produktionsebene erforderlich sind. Hierbei gehen wir von einer geringen Anzahl von Benutzern (wenige Tausend pro Monat) aus. Die App nutzt eine einzelne Instanz einer Standard-Web-App, die für die automatische Skalierung ausreicht. Alle anderen Komponenten werden auf einen Basic-Tarif skaliert, um die Kosten möglichst gering zu halten und trotzdem sicherzustellen, dass SLA-Support und ausreichend Kapazität vorhanden ist, um eine Workload auf Produktionsebene zu verwenden.
-* [Mittel][medium-pricing]: Dieses Preisbeispiel stellt die Komponenten einer Bereitstellung mittlerer Größe dar. Hier gehen wir davon aus, dass ca. 100.000 Benutzer das System im Laufe eines Monats verwenden. Der erwartete Datenverkehr wird über eine einzelne App-Dienstinstanz mit einem mittleren Standard-Tarif verarbeitet. Außerdem werden dem Rechner mittlere Cognitive Services-Tarife und Suchdiensttarife hinzugefügt.
-* [Groß][large-pricing]: Dieses Preisbeispiel stellt eine Anwendung mit hohen Anforderungen und einer Größenordnung von mehreren Millionen Benutzern pro Monat sowie mit Daten im Terabyte-Bereich dar. Auf dieser Nutzungsebene mit hoher Leistung müssen Web-Apps im Premium-Tarif in mehreren Regionen bereitgestellt werden, und der Einsatz von Traffic Manager ist erforderlich. Die Daten umfassen Folgendes: Speicher, Datenbanken und CDN (konfiguriert für Daten im Terabyte-Bereich).
+* [Klein:][small-pricing] Dieses Preisbeispiel stellt die Komponenten dar, die zum Erstellen des Ausgangs für eine Instanz auf niedriger Produktionsebene erforderlich sind. Hierbei gehen wir von einer geringen Anzahl von Benutzern (wenige Tausend pro Monat) aus. Die App nutzt eine einzelne Instanz einer Standard-Web-App, die für die automatische Skalierung ausreicht. Alle anderen Komponenten werden auf einen Basic-Tarif skaliert, um die Kosten möglichst gering zu halten und trotzdem sicherzustellen, dass SLA-Support und ausreichend Kapazität vorhanden ist, um eine Workload auf Produktionsebene zu verwenden.
+* [Mittel:][medium-pricing] Dieses Preisbeispiel stellt die Komponenten einer Bereitstellung mittlerer Größe dar. Hier gehen wir davon aus, dass ca. 100.000 Benutzer das System im Laufe eines Monats verwenden. Der erwartete Datenverkehr wird über eine einzelne App-Dienstinstanz mit einem mittleren Standard-Tarif verarbeitet. Außerdem werden dem Rechner mittlere Cognitive Services-Tarife und Suchdiensttarife hinzugefügt.
+* [Groß:][large-pricing] Dieses Preisbeispiel stellt eine Anwendung mit hohen Anforderungen und einer Größenordnung von mehreren Millionen Benutzern pro Monat sowie mit Daten im Terabyte-Bereich dar. Auf dieser Nutzungsebene mit hoher Leistung müssen Web-Apps im Premium-Tarif in mehreren Regionen bereitgestellt werden, und der Einsatz von Traffic Manager ist erforderlich. Die Daten umfassen Folgendes: Speicher, Datenbanken und CDN (konfiguriert für Daten im Terabyte-Bereich).
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 

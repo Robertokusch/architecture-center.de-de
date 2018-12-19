@@ -3,12 +3,13 @@ title: Virtuelle Linux-Desktops mit Citrix
 description: Erstellen Sie mithilfe von Citrix eine VDI-Umgebung für Linux-Desktops in Azure.
 author: miguelangelopereira
 ms.date: 09/12/2018
-ms.openlocfilehash: 383642b05926c5a09abf0b2f95fef10539d95aec
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: d48163638da05fa075814d3a255ca783610741f8
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610650"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004778"
 ---
 # <a name="linux-virtual-desktops-with-citrix"></a>Virtuelle Linux-Desktops mit Citrix
 
@@ -47,10 +48,10 @@ Für dieses Szenario werden folgende SKUs verwendet:
 - Citrix ADC (NetScaler): 2x D4s v3 mit [NetScaler 12.0 VPX Standard Edition (200 MBit/s, nutzungsbasiertes Image)](https://azuremarketplace.microsoft.com/pt-br/marketplace/apps/citrix.netscalervpx-120?tab=PlansAndPrice)
 - Citrix License Server: 1x D2s v3
 - Citrix VDA: 4x D8s v3
-- Citrix StoreFront: 2x D2s v3
+- Citrix Storefront: 2x D2s v3
 - Citrix Delivery Controller: 2x D2s v3
-- Domänencontroller: 2x D2s v3
-- Azure-Dateiserver: 2x D2s v3
+- Domänencontroller: 2x D2sv3
+- Azure-Dateiserver: 2x D2sv3
 
 > [!NOTE]
 > Alle Lizenzen (mit Ausnahme von NetScaler) sind BYOL-Lizenzen (Bring-Your-Own-License).

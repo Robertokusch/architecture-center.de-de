@@ -3,12 +3,13 @@ title: Ausführung von SAP-Produktionsworkloads mit einer Oracle-Datenbank in Az
 description: Führen Sie eine SAP-Produktionsbereitstellung in Azure mit einer Oracle-Datenbank aus.
 author: DharmeshBhagat
 ms.date: 9/12/2018
-ms.openlocfilehash: 75942b4d9b18b7bbe7a162826bcf4fe9ece22dce
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: e345760c69c4d3cc26fe6d4d7cb8a93d183a5818
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610905"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004979"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>Ausführen von SAP-Produktionsworkloads mit einer Oracle Database-Instanz in Azure
 
@@ -48,7 +49,7 @@ Dieses Beispiel umfasst eine Hochverfügbarkeitskonfiguration für eine Oracle-D
 
 ### <a name="alternatives"></a>Alternativen
 
-SAP bietet flexible Optionen für verschiedene Kombinationen von Betriebssystem, Datenbank-Managementsystem (DBMS) und VM-Typen in einer Azure-Umgebung. Weitere Informationen finden Sie im [SAP-Hinweis 1928533](https://launchpad.support.sap.com/#/notes/1928533) (SAP-Anwendungen in Azure: Unterstützte Produkte und Azure-VM-Typen).
+SAP bietet flexible Optionen für verschiedene Kombinationen von Betriebssystem, Datenbank-Managementsystem (DBMS) und VM-Typen in einer Azure-Umgebung. Weitere Informationen finden Sie im [SAP-Hinweis 1928533](https://launchpad.support.sap.com/#/notes/1928533): „SAP Applications on Azure: Supported Products and Azure VM types“ (SAP-Anwendungen in Azure: Unterstützte Produkte und Azure-VM-Typen).
 
 ## <a name="considerations"></a>Überlegungen
 
@@ -75,13 +76,13 @@ Sehr groß|250.000|M64s|6 x P30, 1 x P30|DS11_v2|1 x P10|10 x DS14_v2|1 x P10|[S
 > [!NOTE]
 > Die Preise sind als Orientierungshilfe gedacht und geben nur die Kosten für VMs und Speicher an. Gebühren für Netzwerk, Sicherungsspeicher und ein-/ausgehende Daten sind nicht enthalten.
 
-* [Klein](https://azure.com/e/45880ba0bfdf47d497851a7cf2650c7c) – ein kleines System umfasst Folgendes: Den VM-Typ „DS13_v2“ für den Datenbankserver mit acht vCPUs, 56 GB RAM und 112 GB temporärem Speicher sowie zusätzlich fünf Storage Premium-Datenträger mit 512 GB. Einen SAP Central Instance-Server mit dem VM-Typ „DS11_v2“ mit zwei vCPUs, 14 GB RAM und 28 GB temporärem Speicher. Eine einzelne VM vom Typ „DS13_v2“ für den SAP-Anwendungsserver mit acht vCPUs, 56 GB RAM und 400 GB temporärem Speicher sowie zusätzlich einem Storage Premium-Datenträger mit 128 GB.
+* [Klein:](https://azure.com/e/45880ba0bfdf47d497851a7cf2650c7c) Ein kleines System umfasst Folgendes: Den VM-Typ „DS13_v2“ für den Datenbankserver mit acht vCPUs, 56 GB RAM und 112 GB temporärem Speicher sowie zusätzlich fünf Storage Premium-Datenträger mit 512 GB. Einen SAP Central Instance-Server mit dem VM-Typ „DS11_v2“ mit zwei vCPUs, 14 GB RAM und 28 GB temporärem Speicher. Eine einzelne VM vom Typ „DS13_v2“ für den SAP-Anwendungsserver mit acht vCPUs, 56 GB RAM und 400 GB temporärem Speicher sowie zusätzlich einem Storage Premium-Datenträger mit 128 GB.
 
-* [Mittel](https://azure.com/e/9a523f79591347ca9a48c3aaa1406f8a) – ein mittleres System umfasst Folgendes: Den VM-Typ „DS14_v2“ für den Datenbankserver mit 16 vCPUs, 112 GB RAM und 800 GB temporärem Speicher sowie zusätzlich sieben Storage Premium-Datenträger mit 512 GB. Einen SAP Central Instance-Server mit dem VM-Typ „DS11_v2“ mit zwei vCPUs, 14 GB RAM und 28 GB temporärem Speicher. Vier VMs vom Typ „DS13_v2“ für den SAP-Anwendungsserver mit acht vCPUs, 56 GB RAM und 400 GB temporärem Speicher sowie zusätzlich einem Storage Premium-Datenträger mit 128 GB.
+* [Mittel:](https://azure.com/e/9a523f79591347ca9a48c3aaa1406f8a) Ein mittleres System umfasst Folgendes: Den VM-Typ „DS14_v2“ für den Datenbankserver mit 16 vCPUs, 112 GB RAM und 800 GB temporärem Speicher sowie zusätzlich sieben Storage Premium-Datenträger mit 512 GB. Einen SAP Central Instance-Server mit dem VM-Typ „DS11_v2“ mit zwei vCPUs, 14 GB RAM und 28 GB temporärem Speicher. Vier VMs vom Typ „DS13_v2“ für den SAP-Anwendungsserver mit acht vCPUs, 56 GB RAM und 400 GB temporärem Speicher sowie zusätzlich einem Storage Premium-Datenträger mit 128 GB.
 
-* [Groß](https://azure.com/e/f70fccf571e948c4b37d4fecc07cbf42) – ein großes System umfasst Folgendes: Den VM-Typ „E32s_v3“ für den Datenbankserver mit 32 vCPUs, 256 GB RAM und 800 GB temporärem Speicher sowie zusätzlich vier Storage Premium-Datenträger (drei mit 512 GB, einer mit 128 GB). Einen SAP Central Instance-Server mit dem VM-Typ „DS11_v2“ mit zwei vCPUs, 14 GB RAM und 28 GB temporärem Speicher. Sechs VMs vom Typ „DS14_v2“ für die SAP-Anwendungsserver mit 16 vCPUs, 112 GB RAM und 224 GB temporärem Speicher sowie zusätzlich sechs Storage Premium-Datenträger mit 128 GB.
+* [Groß:](https://azure.com/e/f70fccf571e948c4b37d4fecc07cbf42) Ein großes System umfasst Folgendes: Den VM-Typ „E32s_v3“ für den Datenbankserver mit 32 vCPUs, 256 GB RAM und 800 GB temporärem Speicher sowie zusätzlich vier Storage Premium-Datenträger (drei mit 512 GB, einer mit 128 GB). Einen SAP Central Instance-Server mit dem VM-Typ „DS11_v2“ mit zwei vCPUs, 14 GB RAM und 28 GB temporärem Speicher. Sechs VMs vom Typ „DS14_v2“ für die SAP-Anwendungsserver mit 16 vCPUs, 112 GB RAM und 224 GB temporärem Speicher sowie zusätzlich sechs Storage Premium-Datenträger mit 128 GB.
 
-* [Sehr groß](https://azure.com/e/58c636922cf94faf9650f583ff35e97b) – ein sehr großes System umfasst Folgendes: Den VM-Typ „M64s“ für den Datenbankserver mit 64 vCPUs, 1.024 GB RAM und 2.000 GB temporärem Speicher sowie zusätzlich sieben Storage Premium-Datenträger mit 1.024 GB. Einen SAP Central Instance-Server mit dem VM-Typ „DS11_v2“ mit zwei vCPUs, 14 GB RAM und 28 GB temporärem Speicher. Zehn VMs vom Typ „DS14_v2“ für die SAP-Anwendungsserver mit 16 vCPUs, 112 GB RAM und 224 GB temporärem Speicher sowie zusätzlich zehn Storage Premium-Datenträger mit 128 GB.
+* [Sehr groß:](https://azure.com/e/58c636922cf94faf9650f583ff35e97b) Ein sehr großes System umfasst Folgendes: Den VM-Typ „M64s“ für den Datenbankserver mit 64 vCPUs, 1024 GB RAM und 2000 GB temporärem Speicher sowie zusätzlich sieben Storage Premium-Datenträger mit 1024 GB. Einen SAP Central Instance-Server mit dem VM-Typ „DS11_v2“ mit zwei vCPUs, 14 GB RAM und 28 GB temporärem Speicher. Zehn VMs vom Typ „DS14_v2“ für die SAP-Anwendungsserver mit 16 vCPUs, 112 GB RAM und 224 GB temporärem Speicher sowie zusätzlich zehn Storage Premium-Datenträger mit 128 GB.
 
 ## <a name="deployment"></a>Bereitstellung
 

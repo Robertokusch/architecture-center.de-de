@@ -1,19 +1,20 @@
 ---
 title: Checkliste für die Skalierbarkeit
+titleSuffix: Azure Design Review Framework
 description: Checkliste für die Skalierbarkeit für Entwurfsprobleme bei automatischer Azure-Skalierung.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: c3eaf41a038dbdd963f54d6c7cff8a8a772f8c48
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.openlocfilehash: 8bb31e8176238fb32bdf4424aa733b812b5eeb68
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/11/2018
-ms.locfileid: "27766104"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307145"
 ---
 # <a name="scalability-checklist"></a>Checkliste für die Skalierbarkeit
 
-Skalierbarkeit ist die Fähigkeit eines Systems, zunehmende Lasten zu bewältigen, und gehört zu den [Säulen der Softwarequalität](../guide/pillars.md). Verwenden Sie diese Prüfliste, um Ihre Anwendungsarchitektur vom Standpunkt der Skalierbarkeit aus zu überprüfen. 
+Skalierbarkeit ist die Fähigkeit eines Systems, zunehmende Lasten zu bewältigen, und gehört zu den [Säulen der Softwarequalität](../guide/pillars.md). Verwenden Sie diese Prüfliste, um Ihre Anwendungsarchitektur vom Standpunkt der Skalierbarkeit aus zu überprüfen.
 
 ## <a name="application-design"></a>Anwendungsentwurf
 
@@ -29,7 +30,7 @@ Skalierbarkeit ist die Fähigkeit eines Systems, zunehmende Lasten zu bewältige
 
 **Offload-intensive CPU/IO-Vorgänge als Hintergrundaufgaben**. Lagern Sie die Verarbeitung für diese Anforderung in einer separaten Aufgabe aus, wenn erwartet wird, dass eine Anforderung an einen Dienst lange Zeit für die Ausführung benötigt oder beträchtliche Ressourcen absorbiert. Verwenden Sie zum Ausführen dieser Aufgaben Workerrollen oder Hintergrundaufträge (abhängig von der Hostingplattform). Dadurch kann den Dienst weiterhin Anforderungen erhalten und reaktionsfähig bleiben.  Weitere Informationen finden Sie unter [Leitfaden für Hintergrundaufträge](../best-practices/background-jobs.md).
 
-**Verteilen Sie die Workload für Hintergrundaufgaben**. Wenn es viele Hintergrundaufgaben gibt oder die Aufgaben beträchtliche Zeit oder Ressourcen erfordern, können Sie die Arbeit auf mehrere Recheneinheiten (z. B. Workerrollen oder Hintergrundaufträge) verteilen. Eine mögliche Lösung ist das [Muster „Konkurrierende Consumer“](https://msdn.microsoft.com/library/dn568101.aspx).
+**Verteilen Sie die Workload für Hintergrundaufgaben**. Wenn es viele Hintergrundaufgaben gibt oder die Aufgaben beträchtliche Zeit oder Ressourcen erfordern, können Sie die Arbeit auf mehrere Recheneinheiten (z. B. Workerrollen oder Hintergrundaufträge) verteilen. Eine mögliche Lösung ist das [Muster „Konkurrierende Consumer“](../patterns/competing-consumers.md).
 
 **Erwägen Sie den Übergang zu einer *Shared-Nothing*-Architektur**. Eine Architektur ohne gemeinsam genutzte Inhalte verwendet unabhängige, eigenständige Knoten, die keine einzelnen Konfliktpunkt haben (z. B. gemeinsame Dienste oder Speicher). Theoretisch kann ein solches System fast unbegrenzt skaliert werden. Während ein vollständiger Ansatz ohne gemeinsam genutzte Inhalte im Allgemeinen für die meisten Anwendungen nicht geeignet ist, bietet er Möglichkeiten für Entwürfe mit besserer Skalierbarkeit. Die Vermeidung der Verwendung von serverseitigem Sitzungsstatus, Clientaffinität und Datenpartitionierung sind gute Beispiele für den Übergang zu einer Architektur ohne gemeinsam genutzte Inhalte.
 
@@ -41,7 +42,7 @@ Skalierbarkeit ist die Fähigkeit eines Systems, zunehmende Lasten zu bewältige
 
 **Reduzieren Sie viele Einzelaufrufinteraktionen zwischen Komponenten und Diensten**. Vermeiden Sie das Entwerfen von Interaktionen, bei denen eine Anwendung mehrere Aufrufe an einen Dienst machen muss (von denen jeder eine kleine Menge Daten zurückgibt), statt einem einzigen Aufruf, der alle Daten zurückgeben kann. Kombinieren Sie wenn möglich mehrere verwandte Vorgänge in einer einzigen Anforderung, wenn der Aufruf eines Dienstes oder einer Komponente mit spürbarer Latenz erfolgt. Dies vereinfacht die Überwachung der Leistung und Optimierung komplexer Vorgänge. Verwenden Sie z. B. gespeicherte Prozeduren in Datenbanken, um komplexe Logik einzukapseln, und reduzieren Sie die Anzahl der Roundtrips und Sperren für Ressourcen.
 
-**Verwenden Sie Warteschlangen, um die Last für Schreibvorgänge mit hoher Geschwindigkeit auszugleichen**. Nachfrageschübe für einen Dienst können diesen Dienst überlasten und eskalierende Fehler verursachen. Um dies zu verhindern, empfiehlt sich die  Implementieren des [Warteschlangenbasierten Lastenausgleichsmusters](https://msdn.microsoft.com/library/dn589783.aspx). Verwenden Sie eine Warteschlange, die als Puffer zwischen einer Aufgabe und einem Dienst, den sie aufruft, fungiert. Dies kann eine vorübergehend starke Auslastung ausgleichen, die andernfalls zu einem Ausfall des Diensts oder zu einem Timeout der Aufgabe führen kann.
+**Verwenden Sie Warteschlangen, um die Last für Schreibvorgänge mit hoher Geschwindigkeit auszugleichen**. Nachfrageschübe für einen Dienst können diesen Dienst überlasten und eskalierende Fehler verursachen. Um dies zu verhindern, empfiehlt sich die Implementierung des [warteschlangenbasierten Lastenausgleichsmusters](../patterns/queue-based-load-leveling.md). Verwenden Sie eine Warteschlange, die als Puffer zwischen einer Aufgabe und einem Dienst, den sie aufruft, fungiert. Dies kann eine vorübergehend starke Auslastung ausgleichen, die andernfalls zu einem Ausfall des Diensts oder zu einem Timeout der Aufgabe führen kann.
 
 **Minimieren Sie die Belastung des Datenspeichers**. Der Datenspeicher ist in der Regel ein Verarbeitungsengpass, eine teure Ressource, und er lässt sich oft nicht einfach horizontal hochskalieren. Entfernen Sie nach Möglichkeit Logik (z. B. die Verarbeitung von XML-Dokumenten oder JSON-Objekten) aus dem Datenspeicher, und führen Sie die Verarbeitung in der Anwendung durch. Serialisieren oder deserialisieren Sie beispielsweise den XML-Code in der Anwendungsschicht, und übergeben Sie ihn an ein datenspeichereigenes Format, anstatt XML an die Datenbank zu übergeben (außer als nicht transparente Zeichenfolge für den Speicher). In der Regel ist es einfacher, die Anwendung horizontal hochzuskalieren als den Datenspeicher. Sie sollten also versuchen, den größtmöglichen Teil der rechenintensiven Verarbeitung innerhalb der Anwendung auszuführen.
 
@@ -67,7 +68,7 @@ Skalierbarkeit ist die Fähigkeit eines Systems, zunehmende Lasten zu bewältige
 
 **Überprüfen Sie die leistungsbezogenen Antimuster.** Unter [Leistungsbezogene Antimuster für Cloudanwendungen](../antipatterns/index.md) finden Sie gängige Methoden, die wahrscheinlich zu Skalierbarkeitsproblemen führen, wenn eine Anwendung überlastet ist.
 
-**Verwenden Sie asynchrone Aufrufe**. Verwenden Sie wenn möglich asynchronen Code beim Zugriff auf Ressourcen oder Dienste, die durch E/A oder Netzwerkbandbreite beschränkt sein können oder die eine merkliche Latenz haben, um eine Sperrung des aufrufenden Threads zu vermeiden. 
+**Verwenden Sie asynchrone Aufrufe**. Verwenden Sie wenn möglich asynchronen Code beim Zugriff auf Ressourcen oder Dienste, die durch E/A oder Netzwerkbandbreite beschränkt sein können oder die eine merkliche Latenz haben, um eine Sperrung des aufrufenden Threads zu vermeiden.
 
 **Vermeiden Sie das Sperren von Ressourcen, und verwenden Sie stattdessen einen optimistischen Ansatz**. Sperren Sie nie den Zugriff auf Ressourcen wie z. B. Speicher oder andere Dienste, die merkliche Latenz haben, da es sich dabei um eine primäre Ursache von Leistungseinbußen handelt. Verwenden Sie immer optimistische Ansätze, um gleichzeitige Vorgänge wie z. B. das Schreiben in den Speicher zu verwalten. Verwenden Sie die Funktionen der Speicherschicht, um Konflikte zu verwalten. In verteilten Anwendungen können Daten nur letztendlich konsistent sein.
 
@@ -79,8 +80,6 @@ Skalierbarkeit ist die Fähigkeit eines Systems, zunehmende Lasten zu bewältige
   
 > [!NOTE]
 > APIs verwenden Verbindungen für einige Dienste automatisch wieder, sofern dienstspezifische Richtlinien eingehalten werden. Es ist wichtig, dass Sie die Umstände verstehen, unter denen eine Verbindung für jeden Dienst, die die Anwendung nutzt, erneut verwendet werden kann.
-> 
-> 
 
 **Senden Sie zur Optimierung der Netzwerknutzung Anforderungen in Batches**. Senden Sie z. B. Nachrichten stapelweise, wenn Sie auf eine Warteschlange zugreifen und führen Sie beim Zugriff auf Speicher oder einen Cache mehrere Lese- oder Schreibvorgänge als Batch aus. Dies kann helfen, die Effizienz der Dienste und Datenspeicher zu maximieren, indem die Anzahl der Aufrufe über das Netzwerk verringert wird.
 
@@ -90,12 +89,11 @@ Skalierbarkeit ist die Fähigkeit eines Systems, zunehmende Lasten zu bewältige
 
 **Stellen Sie Ressourcenabhängigkeiten während der Bereitstellung oder beim Anwendungsstart her**. Vermeiden Sie den wiederholten Aufruf von Methoden, die das Vorhandensein einer Ressource testen und dann die Ressource erstellen, wenn sie nicht vorhanden ist. Methoden wie *CloudTable.CreateIfNotExists* und *CloudQueue.CreateIfNotExists* in der Azure Storage-Clientbibliothek folgen diesem Muster. Diese Methoden können einen beträchtlichen Aufwand nötig machen, wenn sie vor jedem Zugriff auf einen Tabellenspeicher oder eine Speicherwarteschlange aufgerufen werden. Alternative:
 
-* Erstellen Sie die erforderlichen Ressourcen beim Bereitstellen der Anwendung oder beim ersten Start. (Ein einzelner Aufruf von *CreateIfNotExists* für jede Ressource im Startcode für eine Web- oder Workerrolle ist zulässig.) Achten Sie jedoch darauf, Ausnahmen zu behandeln, die auftreten können, wenn der Code versucht, auf eine Ressource zuzugreifen, die nicht vorhanden ist. In diesen Fällen sollten Sie die Ausnahme protokollieren und möglicherweise einen Operator darüber benachrichtigen, dass eine Ressource fehlt.
-* Unter bestimmten Umständen ist es angebracht, die fehlende Ressource als Teil des Ausnahmebehandlungscodes zu erstellen. Sie sollten diesen Ansatz jedoch mit Vorsicht anwenden, da das Nichtvorhandensein der Ressource auf einen Programmierfehler (z. B. einen falsch geschriebenen Ressourcennamen) oder auf ein anderes Problem auf Infrastrukturebene hinweisen könnte.
+- Erstellen Sie die erforderlichen Ressourcen beim Bereitstellen der Anwendung oder beim ersten Start. (Ein einzelner Aufruf von *CreateIfNotExists* für jede Ressource im Startcode für eine Web- oder Workerrolle ist zulässig.) Achten Sie jedoch darauf, Ausnahmen zu behandeln, die auftreten können, wenn der Code versucht, auf eine Ressource zuzugreifen, die nicht vorhanden ist. In diesen Fällen sollten Sie die Ausnahme protokollieren und möglicherweise einen Operator darüber benachrichtigen, dass eine Ressource fehlt.
+- Unter bestimmten Umständen ist es angebracht, die fehlende Ressource als Teil des Ausnahmebehandlungscodes zu erstellen. Sie sollten diesen Ansatz jedoch mit Vorsicht anwenden, da das Nichtvorhandensein der Ressource auf einen Programmierfehler (z. B. einen falsch geschriebenen Ressourcennamen) oder auf ein anderes Problem auf Infrastrukturebene hinweisen könnte.
 
 **Verwenden Sie einfache Frameworks**. Wählen Sie die APIs und Frameworks die Sie verwenden sorgfältig, um die Ressourcennutzung und Ausführungszeit sowie die Gesamtlast auf die Anwendung zu minimieren. Die Verwendung von Web-API zur Behandlung von Dienstanforderungen kann den Platzbedarf der Anwendung reduzieren und die Ausführungsgeschwindigkeit erhöhen, ist aber möglicherweise nicht für komplexere Szenarien geeignet, in denen die zusätzlichen Funktionen von Windows Communication Foundation erforderlich sind.
 
 **Erwägen Sie, die Anzahl der Dienstkonten zu minimieren**. Verwenden Sie z. B. ein spezielles Konto für den Zugriff auf Ressourcen oder Dienste, die Verbindungen beschränken oder bessere Leistung bringen, wenn weniger Verbindungen verwaltet werden. Dieser Ansatz wird häufig für Dienste wie z. B. Datenbanken verwendet, kann aber die Möglichkeit zur genauen Überwachung der Vorgänge aufgrund der Identitätswechsel des ursprünglichen Benutzers beeinflussen.
 
 **führen Sie Leistungsprofilerstellung und Auslastungstests durch** und stellen vor der endgültigen Version sicher, dass die Anwendung ausführt und nach Bedarf skaliert wird. Diese Tests sollten auf der gleichen Art von Hardware stattfinden, wie die Produktionsplattform, mit den gleichen Datentypen und -mengen sowie der Benutzerauslastung, die in der Produktion auftreten. Weitere Informationen finden Sie unter [Testen der Leistung eines Clouddiensts](/azure/vs-azure-tools-performance-profiling-cloud-services/).
-

@@ -1,15 +1,16 @@
 ---
 title: Checkliste für Resilienz
+titleSuffix: Azure Design Review Framework
 description: Checkliste, die Hinweise zu Überlegungen hinsichtlich der Resilienz während des Entwurfs bereitstellt.
 author: petertaylor9999
-ms.date: 01/10/2018
+ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: ce538a0b234a5b120415980e983096f567f9cf86
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 1201e2045c6a5f7be9c8286cd192559a8d66d169
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305943"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307451"
 ---
 # <a name="resiliency-checklist"></a>Checkliste für Resilienz
 
@@ -23,25 +24,24 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Führen Sie eine Analyse im Fehlermodus (FMA) für die Anwendung durch.** FMA ist ein Verfahren, um zu einem frühen Zeitpunkt in der Entwurfsphase Resilienz in einer Anwendung zu implementieren. Weitere Informationen finden Sie unter [Analyse im Fehlermodus][fma]. Ziele von FMA:  
 
-* Identifizieren, welche Arten von Fehlern in einer Anwendung auftreten können.
-* Erfassen möglicher Einflüsse und Auswirkungen der einzelnen Arten von Fehlern auf die Anwendung.
-* Identifizieren von Strategien für die Wiederherstellung.
+- Identifizieren, welche Arten von Fehlern in einer Anwendung auftreten können.
+- Erfassen möglicher Einflüsse und Auswirkungen der einzelnen Arten von Fehlern auf die Anwendung.
+- Identifizieren von Strategien für die Wiederherstellung.
   
-
-**Stellen Sie mehrere Instanzen von Diensten bereit.** Wenn Ihre Anwendung von einer einzelnen Instanz eines Diensts abhängig ist, entsteht dadurch ein Single Point of Failure. Durch die Bereitstellung von mehreren Instanzen werden Resilienz und Skalierbarkeit verbessert. Wählen Sie für [Azure App Service](/azure/app-service/app-service-value-prop-what-is/) einen [App Service-Plan](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/) aus, der mehrere Instanzen bietet. Konfigurieren Sie für Azure Cloud Services alle Rollen so, dass sie [mehrere Instanzen](/azure/cloud-services/cloud-services-choose-me/#scaling-and-management) verwenden. Stellen Sie für [Azure Virtual Machines (VMs)](/azure/virtual-machines/virtual-machines-windows-about/?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) sicher, dass die VM-Architektur mehr als eine VM enthält und dass jede VM zu einer [Verfügbarkeitsgruppe][availability-sets] gehört.   
+**Stellen Sie mehrere Instanzen von Diensten bereit.** Wenn Ihre Anwendung von einer einzelnen Instanz eines Diensts abhängig ist, entsteht dadurch ein Single Point of Failure. Durch die Bereitstellung von mehreren Instanzen werden Resilienz und Skalierbarkeit verbessert. Wählen Sie für [Azure App Service](/azure/app-service/app-service-value-prop-what-is/) einen [App Service-Plan](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/) aus, der mehrere Instanzen bietet. Konfigurieren Sie für Azure Cloud Services alle Rollen so, dass sie [mehrere Instanzen](/azure/cloud-services/cloud-services-choose-me/#scaling-and-management) verwenden. Stellen Sie für [Azure Virtual Machines (VMs)](/azure/virtual-machines/virtual-machines-windows-about/?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) sicher, dass die VM-Architektur mehr als eine VM enthält und dass jede VM zu einer [Verfügbarkeitsgruppe][availability-sets] gehört.
 
 **Verwenden Sie die automatische Skalierung, um auf den Anstieg der Last zu reagieren.** Wenn Ihre Anwendung nicht so konfiguriert ist, dass sie beim Anstieg der Last automatisch horizontal hochskaliert wird, ist es möglich, dass Dienste der Anwendung fehlschlagen, wenn zu viele Benutzeranforderungen auftreten. Weitere Informationen finden Sie hier:
 
-* Allgemein: [Checkliste für die Skalierbarkeit](./scalability.md)
-* Azure App Service: [Manuelles oder automatisches Skalieren der Instanzenzahl][app-service-autoscale]
-* Cloud Services: [Automatisches Skalieren eines Clouddiensts][cloud-service-autoscale]
-* Virtual Machines: [Automatische Skalierung und Skalierungsgruppen für virtuelle Computer][vmss-autoscale]
+- Allgemeines: [Checkliste für Skalierbarkeit](./scalability.md)
+- Azure App Service: [Manuelles oder automatisches Skalieren der Instanzenzahl][app-service-autoscale]
+- Cloud Services: [Automatisches Skalieren eines Clouddiensts][cloud-service-autoscale]
+- Virtuelle Computer: [Automatische Skalierung und Skalierungsgruppen für virtuelle Computer][vmss-autoscale]
 
 **Verwenden Sie den Lastenausgleich, um Anforderungen zu verteilen.** Mit dem Lastenausgleich werden die Anforderungen Ihrer Anwendung auf fehlerfreie Dienstinstanzen verteilt, indem fehlerhafte Instanzen aus der Rotation entfernt werden. Wenn der Dienst Azure App Service oder Azure Cloud Services verwendet, erfolgt bereits ein Lastenausgleich. Wenn Ihre Anwendung allerdings Azure-VMs verwendet, müssen Sie einen Lastenausgleich bereitstellen. Weitere Informationen finden Sie in der Übersicht über [Azure Load Balancer](/azure/load-balancer/load-balancer-overview/).
 
 **Konfigurieren Sie Azure-Anwendungsgateways für die Verwendung mehrerer Instanzen.** Abhängig von den Anforderungen Ihrer Anwendung kann [Azure Application Gateway](/azure/application-gateway/application-gateway-introduction/) für die Verteilung von Anforderungen an die Dienste der Anwendung besser geeignet sein. Allerdings sind einzelne Instanzen des Application Gateway-Diensts nicht durch einen SLA garantiert. Daher ist es möglich, dass bei einem Ausfall der Application Gateway-Instanz die Anwendung ausfällt. Stellen Sie mehr als eine mittlere oder größere Application Gateway-Instanz bereit, um die Verfügbarkeit des Diensts gemäß den Bedingungen der [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/) zu gewährleisten.
 
-**Verwenden Sie Verfügbarkeitsgruppen für jede Logikschicht.** Das Platzieren Ihrer Instanzen in einer [Verfügbarkeitsgruppe][availability-sets] bietet eine höhere [SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/). 
+**Verwenden Sie Verfügbarkeitsgruppen für jede Logikschicht.** Das Platzieren Ihrer Instanzen in einer [Verfügbarkeitsgruppe][availability-sets] bietet eine höhere [SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/).
 
 **Replizieren Sie virtuelle Computer mithilfe von Azure Site Recovery.** Wenn Sie virtuelle Azure-Computer mit [Site Recovery][site-recovery] replizieren, werden kontinuierlich alle VM-Datenträger asynchron in der Zielregion repliziert. Die Wiederherstellungspunkte werden im Abstand von wenigen Minuten erstellt. Dadurch erzielen Sie einen RPO-Wert (Recovery Point Objective) von wenigen Minuten.
 
@@ -51,22 +51,25 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Konfigurieren und testen Sie Integritätstest für Ihre Lastenausgleichsmodule und Traffic Manager.** Stellen Sie sicher, dass Ihre Integritätslogik die kritischen Teile des Systems überprüft und in geeigneter Weise auf Integritätstests reagiert.
 
-* Die Integritätstest für [Azure Traffic Manager][traffic-manager] und [Azure Load Balancer][load-balancer] dienen einem bestimmten Zweck. Bei Traffic Manager bestimmt der Integritätstest, ob ein Failover auf eine andere Region erforderlich ist. Beim Lastenausgleich bestimmt er, ob eine VM aus der Rotation entfernt werden muss.      
-* Bei einem Traffic Manager-Test sollte Ihr Integritätsendpunkt alle kritischen Abhängigkeiten überprüfen, die innerhalb der gleichen Region bereitgestellt wurden und deren Ausfall ein Failover auf eine andere Region auslösen sollte.  
-* Bei einem Lastenausgleich sollte der Integritätsendpunkt die Integrität der VM melden. Nehmen Sie keine weiteren Schichten oder externen Dienste auf. Andernfalls verursacht ein Fehler, der außerhalb der VM auftritt, dass der Lastenausgleich die VM aus der Rotation entfernt.
-* Anweisungen zum Implementieren der Integritätsüberwachung in Ihrer Anwendung finden Sie unter [Überwachungsmuster für den Integritätsendpunkt](https://msdn.microsoft.com/library/dn589789.aspx).
+- Die Integritätstest für [Azure Traffic Manager][traffic-manager] und [Azure Load Balancer][load-balancer] dienen einem bestimmten Zweck. Bei Traffic Manager bestimmt der Integritätstest, ob ein Failover auf eine andere Region erforderlich ist. Beim Lastenausgleich bestimmt er, ob eine VM aus der Rotation entfernt werden muss.
+
+- Bei einem Traffic Manager-Test sollte Ihr Integritätsendpunkt alle kritischen Abhängigkeiten überprüfen, die innerhalb der gleichen Region bereitgestellt wurden und deren Ausfall ein Failover auf eine andere Region auslösen sollte.
+
+- Bei einem Lastenausgleich sollte der Integritätsendpunkt die Integrität der VM melden. Nehmen Sie keine weiteren Schichten oder externen Dienste auf. Andernfalls verursacht ein Fehler, der außerhalb der VM auftritt, dass der Lastenausgleich die VM aus der Rotation entfernt.
+
+- Eine Anleitung für die Implementierung der Integritätsüberwachung in Ihrer Anwendung finden Sie unter [Muster für Überwachung der Integrität von Endpunkten](../patterns/health-endpoint-monitoring.md).
 
 **Überwachen Sie Dienste von Drittanbietern.** Wenn Ihre Anwendung Abhängigkeiten von den Diensten von Drittanbietern aufweist, identifizieren Sie, wo und wie Fehler in diesen Diensten von Drittanbietern auftreten können und welche Auswirkungen diese Fehler auf die Anwendung haben. Der Dienst eines Drittanbieters weist möglicherweise keine Überwachungs- und Diagnosefunktionen auf. Daher ist es wichtig, dass Ihre Aufrufe dieser Dienste protokolliert werden und über einen eindeutigen Bezeichner mit der Integritäts- und Diagnoseprotokollierung Ihrer Anwendung korreliert werden. Weitere Informationen zu bewährten Verfahren für Überwachung und Diagnose finden Sie unter [Anleitung zur Überwachung und Diagnose][monitoring-and-diagnostics-guidance].
 
 **Stellen Sie sicher, dass alle von Ihnen genutzten Dienste von Drittanbietern eine SLA bereitstellen.** Wenn Ihre Anwendung von einem Dienst eines Drittanbieters abhängt, der Drittanbieter aber keine Garantie für die Verfügbarkeit in Form einer SLA bietet, kann die Verfügbarkeit Ihrer Anwendung auch nicht garantiert werden. Ihre SLA ist nur so gut wie die Komponente mit der geringsten Verfügbarkeit in Ihrer Anwendung.
 
-**Implementieren Sie ggf. Resilienzmuster für Remotevorgänge.** Wenn Ihre Anwendung von der Kommunikation zwischen Remotediensten abhängig ist, folgen Sie den [Entwurfsmustern](../patterns/category/resiliency.md) für den Umgang mit vorübergehenden Fehlern wie z.B. [Wiederholungsmuster][retry-pattern] und [Trennschalter-Muster][circuit-breaker]. 
+**Implementieren Sie ggf. Resilienzmuster für Remotevorgänge.** Wenn Ihre Anwendung von der Kommunikation zwischen Remotediensten abhängig ist, folgen Sie den [Entwurfsmustern](../patterns/category/resiliency.md) für den Umgang mit vorübergehenden Fehlern. Hierzu zählen beispielsweise das [Wiederholungsmuster](../patterns/retry.md) und das [Trennschalter-Muster](../patterns/circuit-breaker.md).
 
 **Implementieren Sie nach Möglichkeit asynchrone Vorgänge.** Synchrone Vorgänge können zu einer Monopolisierung von Ressourcen führen und andere Vorgänge blockieren, während der Aufrufer auf den Abschluss des Vorgangs wartet. Entwerfen Sie die einzelnen Teile der Anwendung so, dass nach Möglichkeit asynchrone Vorgänge genutzt werden. Weitere Informationen zum Implementieren der asynchronen Programmierung in C# finden Sie unter [Asynchrone Programmierung mit Async und Await][asynchronous-c-sharp].
 
 ## <a name="data-management"></a>Datenverwaltung
 
-**Untersuchen Sie die Replikationsmethoden für die Datenquellen Ihrer Anwendung.** Ihre Anwendungsdaten werden in unterschiedlichen Datenquellen gespeichert und weisen unterschiedliche Anforderungen an die Verfügbarkeit auf. Bewerten Sie die Replikationsmethoden für jeden Typ von Datenspeicher in Azure, beispielsweise die [Azure-Speicherreplikation](/azure/storage/storage-redundancy/) und die [aktive Georeplikation in Azure SQL-Datenbank](/azure/sql-database/sql-database-geo-replication-overview/), um sicherzustellen, dass die Datenanforderungen Ihrer Anwendung erfüllt werden. Falls Sie virtuelle Azure-Computer mit [Site Recovery][site-recovery] replizieren, werden kontinuierlich alle VM-Datenträger asynchron in der Zielregion repliziert. Die Wiederherstellungspunkte werden im Abstand von wenigen Minuten erstellt. 
+**Untersuchen Sie die Replikationsmethoden für die Datenquellen Ihrer Anwendung.** Ihre Anwendungsdaten werden in unterschiedlichen Datenquellen gespeichert und weisen unterschiedliche Anforderungen an die Verfügbarkeit auf. Bewerten Sie die Replikationsmethoden für jeden Typ von Datenspeicher in Azure, beispielsweise die [Azure-Speicherreplikation](/azure/storage/storage-redundancy/) und die [aktive Georeplikation in Azure SQL-Datenbank](/azure/sql-database/sql-database-geo-replication-overview/), um sicherzustellen, dass die Datenanforderungen Ihrer Anwendung erfüllt werden. Falls Sie virtuelle Azure-Computer mit [Site Recovery][site-recovery] replizieren, werden kontinuierlich alle VM-Datenträger asynchron in der Zielregion repliziert. Die Wiederherstellungspunkte werden im Abstand von wenigen Minuten erstellt.
 
 **Stellen Sie sicher, dass kein einzelnes Benutzerkonto Zugriff auf Produktions- und Sicherungsdaten hat.** Die Datensicherungen sind gefährdet, wenn ein einzelnes Benutzerkonto über die Berechtigung zum Schreiben in Produktions- und Sicherungsquellen verfügt. Ein böswilliger Benutzer könnte absichtlich alle Daten löschen, einem normalen Benutzer könnte dies versehentlich passieren. Entwerfen Sie Ihre Anwendung mit Einschränkungen der Berechtigungen für jedes Benutzerkonto, sodass nur die Benutzer, für die Schreibzugriff erforderlich ist, über Schreibzugriff verfügen, und auch nur auf Produktions- oder Sicherungsquellen, aber nicht auf beide.
 
@@ -77,9 +80,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 **Erwägen Sie die Verwendung eines Speicherkontotyps, der georedundant ist.** Daten, die in einem Azure-Speicherkonto gespeichert sind, werden immer lokal repliziert. Bei der Bereitstellung eines Speicherkontos können Sie jedoch aus mehreren Replikationsstrategien auswählen. Wählen Sie einen [georedundanten Speicher mit Lesezugriff (RA-GRS) in Azure](/azure/storage/storage-redundancy/#read-access-geo-redundant-storage) aus, um Ihre Anwendungsdaten für den seltenen Fall zu schützen, dass eine vollständige Region nicht mehr verfügbar ist.
 
 > [!NOTE]
-> Verlassen Sie sich für VMs nicht auf die RA-GRS-Replikation, um die VM-Datenträger (VHD-Dateien) wiederherzustellen. Verwenden Sie stattdessen [Azure Backup][azure-backup].   
->
->
+> Verlassen Sie sich für VMs nicht auf die RA-GRS-Replikation, um die VM-Datenträger (VHD-Dateien) wiederherzustellen. Verwenden Sie stattdessen [Azure Backup][azure-backup].
 
 ## <a name="security"></a>Sicherheit
 
@@ -97,15 +98,15 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 ## <a name="deployment"></a>Bereitstellung
 
-**Dokumentieren Sie den Freigabeprozess für Ihre Anwendung.** Ohne detaillierte Dokumentation des Freigabeprozesses kann ein Operator ein fehlerhaftes Update bereitstellen oder Einstellungen für Ihre Anwendung nicht ordnungsgemäß konfigurieren. Definieren und dokumentieren Sie den Freigabeprozess eindeutig, und stellen Sie sicher, dass er für das gesamte Betriebsteam verfügbar ist. 
+**Dokumentieren Sie den Freigabeprozess für Ihre Anwendung.** Ohne detaillierte Dokumentation des Freigabeprozesses kann ein Operator ein fehlerhaftes Update bereitstellen oder Einstellungen für Ihre Anwendung nicht ordnungsgemäß konfigurieren. Definieren und dokumentieren Sie den Freigabeprozess eindeutig, und stellen Sie sicher, dass er für das gesamte Betriebsteam verfügbar ist.
 
-**Automatisieren Sie den Bereitstellungsprozess für Ihre Anwendung.** Wenn Ihr Betriebspersonal zum manuellen Bereitstellen der Anwendung erforderlich ist, können Benutzerfehler dazu führen, dass die Bereitstellung fehlschlägt. 
+**Automatisieren Sie den Bereitstellungsprozess für Ihre Anwendung.** Wenn Ihr Betriebspersonal zum manuellen Bereitstellen der Anwendung erforderlich ist, können Benutzerfehler dazu führen, dass die Bereitstellung fehlschlägt.
 
 **Entwerfen Sie den Freigabeprozess so, dass die Verfügbarkeit der Anwendung maximiert wird.** Wenn es für Ihren Freigabeprozess erforderlich ist, dass Dienste während der Bereitstellung offline geschaltet werden, ist die Anwendung erst wieder verfügbar, wenn sie wieder online geschaltet werden. Verwenden Sie die Bereitstellungsverfahren [Blau/Grün](https://martinfowler.com/bliki/BlueGreenDeployment.html) oder [Canary-Release](https://martinfowler.com/bliki/CanaryRelease.html) zum Bereitstellen der Anwendung in der Produktion. Beide Verfahren umfassen das Bereitstellen des Freigabecodes zusammen mit dem Produktionscode, damit Benutzer des Freigabecodes im Fall eines Fehlers an den Produktionscode umgeleitet werden können.
 
 **Protokollieren und überwachen Sie die Bereitstellungen Ihrer Anwendung.** Bei Verwendung der Verfahren für Stagingbereitstellungen wie Blau/Grün oder Canary-Releases gibt es mehr als eine Version der Anwendung, die in der Produktion ausgeführt wird. Wenn ein Problem auftreten sollte, ist es entscheidend zu ermitteln, welche Version der Anwendung ein Problem verursacht. Implementieren Sie eine stabile Protokollierungsstrategie, um so viele versionsspezifische Informationen wie möglich zu erfassen.
 
-**Bereiten Sie einen Zurücksetzungsplan für die Bereitstellung vor.** Es ist möglich, dass Ihre Anwendungsbereitstellung fehlschlägt und dazu führt, dass Ihre Anwendung nicht mehr verfügbar ist. Entwerfen Sie einen Zurücksetzungsprozess, um zur letzten als funktionierend bekannten Version zurückzukehren und Ausfallzeiten zu minimieren. 
+**Bereiten Sie einen Zurücksetzungsplan für die Bereitstellung vor.** Es ist möglich, dass Ihre Anwendungsbereitstellung fehlschlägt und dazu führt, dass Ihre Anwendung nicht mehr verfügbar ist. Entwerfen Sie einen Zurücksetzungsprozess, um zur letzten als funktionierend bekannten Version zurückzukehren und Ausfallzeiten zu minimieren.
 
 ## <a name="operations"></a>Vorgänge
 
@@ -121,7 +122,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Stellen Sie sicher, dass mit Ihrer Anwendung keine [Grenzwerte des Azure-Abonnements](/azure/azure-subscription-service-limits/) überschritten werden.** Bei Azure-Abonnements gelten Grenzwerte für bestimmte Ressourcentypen, z.B. die Anzahl von Ressourcengruppen, die Anzahl von Kernen und die Anzahl von Speicherkonten.  Wenn mit den Anforderungen Ihrer Anwendung Grenzwerte des Azure-Abonnements überschritten werden, erstellen Sie ein weiteres Azure-Abonnement für zusätzliche Ressourcen.
 
-**Stellen Sie sicher, dass mit Ihrer Anwendung keine [Grenzwerte von Diensten](/azure/azure-subscription-service-limits/) überschritten werden.** Für einzelne Azure-Dienste gelten Nutzungsgrenzwerte, beispielsweise Grenzwerte für Speicher, Durchsatz, die Anzahl der Verbindungen, Anforderungen pro Sekunde und weitere Metriken. Ihre Anwendung schlägt fehl, wenn sie versucht, jenseits dieser Grenzwerte Ressourcen zu verwenden. Dies führt zu Diensteinschränkungen und möglicherweise zu Ausfallzeiten für die betroffenen Benutzer. Abhängig vom spezifischen Dienst und den Anforderungen Ihrer Anwendung können Sie diese Grenzwerte häufig durch zentrales Hochskalieren (z.B. die Auswahl eines anderen Tarifs) oder horizontales Skalieren (Hinzufügen neuer Instanzen) vermeiden.  
+**Stellen Sie sicher, dass mit Ihrer Anwendung keine [Grenzwerte von Diensten](/azure/azure-subscription-service-limits/) überschritten werden.** Für einzelne Azure-Dienste gelten Nutzungsgrenzwerte, beispielsweise Grenzwerte für Speicher, Durchsatz, die Anzahl der Verbindungen, Anforderungen pro Sekunde und weitere Metriken. Ihre Anwendung schlägt fehl, wenn sie versucht, jenseits dieser Grenzwerte Ressourcen zu verwenden. Dies führt zu Diensteinschränkungen und möglicherweise zu Ausfallzeiten für die betroffenen Benutzer. Abhängig vom spezifischen Dienst und den Anforderungen Ihrer Anwendung können Sie diese Grenzwerte häufig durch zentrales Hochskalieren (z.B. die Auswahl eines anderen Tarifs) oder horizontales Skalieren (Hinzufügen neuer Instanzen) vermeiden.
 
 **Entwerfen Sie die Speicheranforderungen Ihrer Anwendung so, dass sie innerhalb der Skalierbarkeits- und Leistungsziele für Azure-Speicher liegen.** Azure-Speicher ist so konzipiert, dass er in vordefinierten Skalierbarkeits- und Leistungszielen verwendet werden kann. Entwerfen Sie Ihre Anwendung also für die Speichernutzung innerhalb dieser Ziele. Wenn Sie diese Ziele überschreiten, wird für Ihre Anwendung der Speicher eingeschränkt. Um dieses Problem zu beheben, stellen Sie zusätzliche Speicherkonten bereit. Wenn Sie den Grenzwert für Speicherkonten erreichen, stellen Sie zusätzliche Azure-Abonnements für zusätzliche Speicherkonten bereit. Weitere Informationen finden Sie unter [Skalierbarkeits- und Leistungszielen für Azure Storage](/azure/storage/storage-scalability-targets/).
 
@@ -129,7 +130,7 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 
 **Bestimmen Sie, ob die Workload der Anwendung im Zeitverlauf stabil ist oder schwankt.** Wenn Ihre Workload im Zeitverlauf schwankt, verwenden Sie Azure-VM-Skalierungsgruppen, um die Anzahl der VM-Instanzen automatisch zu skalieren. Andernfalls müssen Sie die VM-Anzahl manuell erhöhen oder verringern. Weitere Informationen finden Sie unter [Übersicht über VM-Skalierungsgruppen](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview/).
 
-**Wählen Sie die richtige Dienstebene für Azure SQL-Datenbank aus.** Wenn Ihre Anwendung Azure SQL-Datenbank verwendet, stellen Sie sicher, dass Sie die geeignete Dienstebene ausgewählt haben. Wenn Sie eine Ebene auswählen, die die Anforderungen Ihrer Anwendung an die Datenbanktransaktionseinheiten (DTU) nicht verarbeiten kann, wird die Datenverwendung eingeschränkt. Weitere Informationen zur Auswahl des richtigen Dienstplans finden Sie unter [SQL-Datenbankoptionen und -leistung: Grundlegendes zum Angebot in den einzelnen Tarifen](/azure/sql-database/sql-database-service-tiers/).
+**Wählen Sie die richtige Dienstebene für Azure SQL-Datenbank aus.** Wenn Ihre Anwendung Azure SQL-Datenbank verwendet, stellen Sie sicher, dass Sie die geeignete Dienstebene ausgewählt haben. Wenn Sie eine Ebene auswählen, die die Anforderungen Ihrer Anwendung an die Datenbanktransaktionseinheiten (DTU) nicht verarbeiten kann, wird die Datenverwendung eingeschränkt. Weitere Informationen zur Wahl des korrekten Dienstplans finden Sie unter [SQL-Datenbankoptionen und -leistung: Grundlegendes zum Angebot in den einzelnen Tarifen](/azure/sql-database/sql-database-service-tiers/).
 
 **Erstellen Sie einen Prozess für die Interaktion mit dem Azure-Support.** Wenn kein Prozess für die Kontaktaufnahme mit dem [Azure-Support](https://azure.microsoft.com/support/plans/) festgelegt ist, bevor der Bedarf entsteht, den Support zu kontaktieren, verlängert sich die Ausfallzeit, da der Supportprozess zum ersten Mal ausgeführt wird. Machen Sie den Prozess für die Kontaktaufnahme mit dem Support und die Eskalation von Problemen von Anfang an zu einem Teil der Resilienz Ihrer Anwendung.
 
@@ -164,7 +165,6 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 - [Checkliste für Resilienz für bestimmte Azure-Dienste](./resiliency-per-service.md)
 - [Fehlermodusanalyse](../resiliency/failure-mode-analysis.md)
 
-
 <!-- links -->
 [app-service-autoscale]: /azure/monitoring-and-diagnostics/insights-how-to-scale/
 [asynchronous-c-sharp]: /dotnet/articles/csharp/async
@@ -176,7 +176,6 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 [load-balancer]: /azure/load-balancer/load-balancer-overview/
 [monitoring-and-diagnostics-guidance]: ../best-practices/monitoring.md
 [resource-manager]: /azure/azure-resource-manager/resource-group-overview/
-[retry-pattern]: ../patterns/retry.md
 [retry-service-guidance]: ../best-practices/retry-service-specific.md
 [site-recovery]: /azure/site-recovery/
 [site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure

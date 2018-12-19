@@ -1,40 +1,41 @@
 ---
-title: Schützen von Windows-Webanwendungen für Branchen mit Regulierung
+title: Erstellen von sicheren Web-Apps mit virtuellen Windows-Computern in Azure
 description: Erstellen Sie mithilfe von Windows Server eine sichere Webanwendung mit mehreren Ebenen in Azure, für die Skalierungsgruppen, Application Gateway und Lastenausgleichsmodule verwendet werden.
 author: iainfoulds
-ms.date: 07/11/2018
-ms.openlocfilehash: c7137988bd9b5e26718b4fe0955a3dca3dc638b8
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.date: 12/06/2018
+ms.custom: seodec18
+ms.openlocfilehash: 4e4d2117fbc46eda46f7ef276a71739e3a79270e
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610718"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307060"
 ---
-# <a name="secure-windows-web-application-for-regulated-industries"></a>Schützen von Windows-Webanwendungen für Branchen mit Regulierung
+# <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>Erstellen von sicheren Webanwendungen mit virtuellen Windows-Computern in Azure
 
-Dieses Beispielszenario gilt für Branchen mit Regulierung, in denen Anwendungen mit mehreren Ebenen geschützt werden müssen. In diesem Szenario stellt eine Front-End-ASP.NET-Anwendung eine sichere Verbindung mit einem geschützten Microsoft SQL Server-Back-End-Cluster her.
+Dieses Szenario fungiert als Architektur- und Entwurfsleitfaden für die Ausführung sicherer Webanwendungen mit mehreren Ebenen in Microsoft Azure. In diesem Beispiel stellt eine ASP.NET-Anwendung eine sichere Verbindung mit einem geschützten Microsoft SQL Server-Back-End-Cluster mit virtuellen Computern her.
 
-Zu den Beispielszenarien für Anwendungen gehören die Ausführung von Anwendungen für Operationssäle, Patiententermine und -aufzeichnungen oder Medikamentenabholung und -bestellung auf Rezeptbasis. Bisher mussten Organisationen für diese Zwecke lokale Legacyanwendungen und -dienste betreiben. Da diese Windows Server-Anwendungen auf sichere und skalierbare Weise in Azure bereitgestellt werden können, können Organisationen ihre Bereitstellungen modernisieren und die lokalen Betriebskosten und den Verwaltungsaufwand reduzieren.
+Bisher mussten Organisationen lokale Legacyanwendungen und -dienste betreiben, um eine sichere Infrastruktur bereitzustellen. Durch die sichere Bereitstellung dieser Windows Server-Anwendungen in Azure können Organisationen ihre Bereitstellungen modernisieren und die lokalen Betriebskosten und den Verwaltungsaufwand reduzieren.
 
 ## <a name="relevant-use-cases"></a>Relevante Anwendungsfälle
 
-Zu den weiteren relevanten Anwendungsfällen zählen:
+Im Anschluss finden Sie einige Beispiele für dieses Szenario:
 
 * Modernisieren von Anwendungsbereitstellungen in einer sicheren Cloudumgebung
-* Reduzieren der Verwaltung von lokalen Legacyanwendungen und -diensten
+* Verringern des Verwaltungsaufwands für lokale Legacyanwendungen und -dienste
 * Verbessern der Gesundheitsversorgung für Patienten und der Benutzerfreundlichkeit neuer Anwendungsplattformen
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Architektur
 
 ![Übersicht über die Architektur der Azure-Komponenten von Windows Server-Anwendungen mit mehreren Ebenen für Branchen mit Regulierung][architecture]
 
-In diesem Szenario geht es um eine Anwendung mit mehreren Ebenen für Branchen mit Regulierung, für die ASP.NET und Microsoft SQL Server verwendet werden. Die Daten durchlaufen das Szenario wie folgt:
+Dieses Szenario zeigt eine Front-End-Webanwendung, die eine Verbindung mit einer Back-End-Datenbank (beide unter Windows Server 2016) herstellt. Die Daten durchlaufen das Szenario wie folgt:
 
-1. Benutzer greifen auf die ASP.NET-Front-End-Anwendung für Branchen mit Regulierung über ein Azure Application Gateway zu.
+1. Benutzer greifen über eine Azure Application Gateway-Instanz auf die ASP.NET-Front-End-Anwendung zu.
 2. Das Application Gateway verteilt Datenverkehr auf VM-Instanzen in einer Azure-VM-Skalierungsgruppe.
-3. Die ASP.NET-Anwendung stellt eine Verbindung mit dem Microsoft SQL Server-Cluster auf einer Back-End-Ebene über einen Azure Load Balancer her. Diese SQL Server-Back-End-Instanzen befinden sich in einem separaten virtuellen Azure-Netzwerk, die durch Netzwerksicherheitsgruppen-Regeln zur Beschränkung des Datenverkehrsflusses geschützt sind.
+3. Die Anwendung stellt über einen Azure Load Balancer eine Verbindung mit dem Microsoft SQL Server-Cluster auf einer Back-End-Ebene her. Diese SQL Server-Back-End-Instanzen befinden sich in einem separaten virtuellen Azure-Netzwerk, die durch Netzwerksicherheitsgruppen-Regeln zur Beschränkung des Datenverkehrsflusses geschützt sind.
 4. Das Lastenausgleichsmodul verteilt SQL Server-Datenverkehr auf VM-Instanzen in einer anderen VM-Skalierungsgruppe.
-5. Azure Blob Storage dient als Cloudzeuge für den SQL Server-Cluster auf der Back-End-Ebene. Die Verbindung aus dem VNET wird mit einem VNET-Dienstendpunkt für Azure Storage aktiviert.
+5. Azure Blob Storage fungiert als [Cloudzeuge][cloud-witness] für den SQL Server-Cluster auf der Back-End-Ebene. Die Verbindung aus dem VNET wird mit einem VNET-Dienstendpunkt für Azure Storage aktiviert.
 
 ### <a name="components"></a>Komponenten
 
@@ -47,7 +48,7 @@ In diesem Szenario geht es um eine Anwendung mit mehreren Ebenen für Branchen m
 
 ### <a name="alternatives"></a>Alternativen
 
-* *nix/Windows kann problemlos durch verschiedene andere Betriebssysteme ersetzt werden, da die Infrastruktur nicht vom Betriebssystem abhängig ist.
+* Da die Infrastruktur nicht vom Betriebssystem abhängig ist, kann sowohl Linux als auch Windows verwendet werden.
 
 * [SQL Server für Linux][sql-linux] kann den Back-End-Datenspeicher ersetzen.
 
@@ -61,7 +62,7 @@ Die VM-Instanzen in diesem Szenario werden für Verfügbarkeitszonen übergreife
 
 Die Datenbankebene kann so konfiguriert werden, dass Always On-Verfügbarkeitsgruppen konfiguriert werden. Mit dieser SQL Server-Konfiguration wird eine primäre Datenbank in einem Cluster mit bis zu acht sekundären Datenbanken konfiguriert. Falls für die primäre Datenbank ein Problem besteht, führt der Cluster ein Failover auf eine der sekundären Datenbanken aus, damit die Anwendung weiterhin verfügbar ist. Weitere Informationen finden Sie unter [Übersicht über Always On-Verfügbarkeitsgruppen für SQL Server][sqlalwayson-docs].
 
-Weitere Verfügbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
+Weitere Informationen zur Verfügbarkeit finden Sie im Azure Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
 
 ### <a name="scalability"></a>Skalierbarkeit
 
@@ -112,9 +113,9 @@ Wir haben basierend auf der Anzahl von VM-Instanzen, über die Ihre Anwendungen 
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
-In diesem Szenario wurde eine VM-Back-End-Skalierungsgruppe verwendet, über die ein Microsoft SQL Server-Cluster ausgeführt wird. Cosmos DB kann auch als skalierbare und sichere Datenbankebene für die Anwendungsdaten verwendet werden. Ein [Azure-VNET-Dienstendpunkt][vnetendpoint-docs] ermöglicht es Ihnen, Ihre kritischen Azure-Dienstressourcen auf Ihre virtuellen Netzwerke zu beschränken und so zu schützen. In diesem Szenario können Sie mit VNET-Endpunkten Datenverkehr zwischen der Front-End-Anwendungsebene und Cosmos DB schützen. Weitere Informationen finden Sie in der [Übersicht zu Azure Cosmos DB][docs-cosmos-db](/azure/cosmos-db/introduction).
+In diesem Szenario wurde eine VM-Back-End-Skalierungsgruppe verwendet, über die ein Microsoft SQL Server-Cluster ausgeführt wird. Cosmos DB kann auch als skalierbare und sichere Datenbankebene für die Anwendungsdaten verwendet werden. Ein [Azure-VNET-Dienstendpunkt][vnetendpoint-docs] ermöglicht es Ihnen, Ihre kritischen Azure-Dienstressourcen auf Ihre virtuellen Netzwerke zu beschränken und so zu schützen. In diesem Szenario können Sie mit VNET-Endpunkten Datenverkehr zwischen der Front-End-Anwendungsebene und Cosmos DB schützen. Weitere Informationen finden Sie in der [Übersicht zu Azure Cosmos DB](/azure/cosmos-db/introduction).
 
-Sie können auch eine detaillierte [Referenzarchitektur für eine generische Anwendung mit n-Schichten mithilfe SQL Server][ntiersql-ra] anzeigen.
+Ausführlichere Informationen zur Implementierung finden Sie in der [Referenzarchitektur für n-schichtige Anwendungen mit SQL Server][ntiersql-ra].
 
 <!-- links -->
 [appgateway-docs]: /azure/application-gateway/overview
@@ -137,7 +138,7 @@ Sie können auch eine detaillierte [Referenzarchitektur für eine generische Anw
 [pci-dss]: /azure/security/blueprints/pcidss-iaaswa-overview
 [dmz]: /azure/virtual-network/virtual-networks-dmz-nsg
 [sql-linux]: /sql/linux/sql-server-linux-overview?view=sql-server-linux-2017
-
+[cloud-witness]: /windows-server/failover-clustering/deploy-cloud-witness
 [small-pricing]: https://azure.com/e/711bbfcbbc884ef8aa91cdf0f2caff72
 [medium-pricing]: https://azure.com/e/b622d82d79b34b8398c4bce35477856f
 [large-pricing]: https://azure.com/e/1d99d8b92f90496787abecffa1473a93

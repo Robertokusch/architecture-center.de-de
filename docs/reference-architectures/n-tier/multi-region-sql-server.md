@@ -1,52 +1,54 @@
 ---
 title: N-schichtige Anwendung in mehreren Regionen für Hochverfügbarkeit
-description: Erfahren Sie, wie Sie virtuelle Computer für Hochverfügbarkeit und Resilienz in mehreren Regionen in Azure bereitstellen.
+titleSuffix: Azure Reference Architectures
+description: Stellen Sie eine Anwendung auf virtuellen Azure-Computern in mehreren Regionen bereit, um eine hohe Verfügbarkeit und Resilienz zu erzielen.
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: 3b1c419182322b2fa0b555230465f41562e8e6c1
-ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
+ms.custom: seodec18
+ms.openlocfilehash: 5036d8c74dbf92d9547ab866b15b1576df48e3eb
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/11/2018
-ms.locfileid: "51527625"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119998"
 ---
-# <a name="n-tier-application-in-multiple-azure-regions-for-high-availability"></a>n-schichtige Anwendung in mehreren Azure-Regionen für Hochverfügbarkeit
+# <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>Ausführen einer n-schichtigen Anwendung in mehreren Azure-Regionen für Hochverfügbarkeit
 
-Diese Referenzarchitektur zeigt eine Reihe bewährter Methoden zum Ausführen einer n-schichtigen Anwendung in mehreren Azure-Regionen, um Verfügbarkeit und eine stabile Infrastruktur für die Notfallwiederherstellung zu erzielen. 
+Diese Referenzarchitektur zeigt eine Reihe bewährter Methoden zum Ausführen einer n-schichtigen Anwendung in mehreren Azure-Regionen, um Verfügbarkeit und eine stabile Infrastruktur für die Notfallwiederherstellung zu erzielen.
 
-[![0]][0] 
+![Architektur eines hochverfügbaren Netzwerks für n-schichtige Azure-Anwendungen](./images/multi-region-sql-server.png)
 
 *Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Architecture
 
-Diese Architektur basiert auf der Architektur aus [N-schichtige Anwendung mit SQL Server](n-tier-sql-server.md). 
+Diese Architektur basiert auf der Architektur aus [N-schichtige Anwendung mit SQL Server](n-tier-sql-server.md).
 
-* **Primäre und sekundäre Regionen**. Verwenden Sie zwei Regionen, um eine höhere Verfügbarkeit zu erreichen. Eine ist die primäre Region. Die andere Region ist für das Failover.
+- **Primäre und sekundäre Regionen**. Verwenden Sie zwei Regionen, um eine höhere Verfügbarkeit zu erreichen. Eine ist die primäre Region. Die andere Region ist für das Failover.
 
-* **Azure Traffic Manager**. [Traffic Manager][traffic-manager] leitet eingehende Anforderungen an eine der Regionen weiter. Während des normalen Betriebs werden Anforderungen an die primäre Region weitergeleitet. Wenn diese Region nicht mehr verfügbar ist, führt Traffic Manager ein Failover zur sekundären Region aus. Weitere Informationen finden Sie im Abschnitt [Traffic Manager-Konfiguration](#traffic-manager-configuration).
+- **Azure Traffic Manager**. [Traffic Manager][traffic-manager] leitet eingehende Anforderungen an eine der Regionen weiter. Während des normalen Betriebs werden Anforderungen an die primäre Region weitergeleitet. Wenn diese Region nicht mehr verfügbar ist, führt Traffic Manager ein Failover zur sekundären Region aus. Weitere Informationen finden Sie im Abschnitt [Traffic Manager-Konfiguration](#traffic-manager-configuration).
 
-* **Ressourcengruppen:** Erstellen Sie separate [Ressourcengruppen][resource groups] für die primäre Region, die sekundäre Region und für Traffic Manager. Dies bietet Ihnen die Flexibilität, jede Region als eine einzelne Ressourcensammlung zu verwalten. Sie können beispielsweise eine Region erneut bereitstellen, ohne die andere außer Betrieb zu nehmen. [Verknüpfen Sie die Ressourcengruppen][resource-group-links], damit Sie eine Abfrage zum Auflisten aller Ressourcen für die Anwendung ausführen können.
+- **Ressourcengruppen:** Erstellen Sie separate [Ressourcengruppen][resource groups] für die primäre Region, die sekundäre Region und für Traffic Manager. Dies bietet Ihnen die Flexibilität, jede Region als eine einzelne Ressourcensammlung zu verwalten. Sie können beispielsweise eine Region erneut bereitstellen, ohne die andere außer Betrieb zu nehmen. [Verknüpfen Sie die Ressourcengruppen][resource-group-links], damit Sie eine Abfrage zum Auflisten aller Ressourcen für die Anwendung ausführen können.
 
-* **VNETs:** Erstellen Sie für jede Region ein separates VNET. Stellen Sie sicher, dass sich die Adressräume nicht überschneiden. 
+- **VNETs:** Erstellen Sie für jede Region ein separates VNET. Stellen Sie sicher, dass sich die Adressräume nicht überschneiden.
 
-* **SQL Server Always On-Verfügbarkeitsgruppe**. Bei Verwendung von SQL Server werden [SQL Always On-Verfügbarkeitsgruppen][sql-always-on] empfohlen, um Hochverfügbarkeit zu erzielen. Erstellen Sie eine einzelne Verfügbarkeitsgruppe, die SQL Server-Instanzen in beiden Regionen enthält. 
+- **SQL Server Always On-Verfügbarkeitsgruppe**. Bei Verwendung von SQL Server werden [SQL Always On-Verfügbarkeitsgruppen][sql-always-on] empfohlen, um Hochverfügbarkeit zu erzielen. Erstellen Sie eine einzelne Verfügbarkeitsgruppe, die SQL Server-Instanzen in beiden Regionen enthält.
 
     > [!NOTE]
-    > Ziehen Sie auch eine [Azure SQL-Datenbank][azure-sql-db] in Betracht, die eine relationale Datenbank als Clouddienst bereitstellt. Mit einer SQL-Datenbank müssen Sie weder eine Verfügbarkeitsgruppe konfigurieren noch das Failover verwalten.  
-    > 
+    > Ziehen Sie auch eine [Azure SQL-Datenbank][azure-sql-db] in Betracht, die eine relationale Datenbank als Clouddienst bereitstellt. Mit einer SQL-Datenbank müssen Sie weder eine Verfügbarkeitsgruppe konfigurieren noch das Failover verwalten.
+    >
 
-* **VPN-Gateways**. Erstellen Sie ein [VPN-Gateway][vpn-gateway] in jedem VNet, und konfigurieren Sie eine [VNet-zu-VNet-Verbindung][vnet-to-vnet], um den Netzwerkdatenverkehr zwischen den beiden VNets zu ermöglichen. Dies ist für die SQL Always On-Verfügbarkeitsgruppe erforderlich.
+- **VPN-Gateways**. Erstellen Sie ein [VPN-Gateway][vpn-gateway] in jedem VNet, und konfigurieren Sie eine [VNet-zu-VNet-Verbindung][vnet-to-vnet], um den Netzwerkdatenverkehr zwischen den beiden VNets zu ermöglichen. Dies ist für die SQL Always On-Verfügbarkeitsgruppe erforderlich.
 
 ## <a name="recommendations"></a>Empfehlungen
 
 Eine Architektur mit mehreren Regionen kann eine höhere Verfügbarkeit als eine Bereitstellung in einer einzelnen Region bieten. Wenn ein regionaler Ausfall die primäre Region beeinträchtigt, können Sie mit [Traffic Manager][traffic-manager] ein Failover zur sekundären Region ausführen. Diese Architektur kann auch hilfreich sein, wenn bei einem einzelnen Subsystem der Anwendung ein Fehler auftritt.
 
-Es gibt mehrere allgemeine Vorgehensweisen für das Erreichen von Hochverfügbarkeit mit mehreren Regionen: 
+Es gibt mehrere allgemeine Vorgehensweisen für das Erreichen von Hochverfügbarkeit mit mehreren Regionen:
 
-* Aktiv/passiv mit Hot Standby. Der Datenverkehr wird an eine Region weitergeleitet, während die andere im Hot Standby wartet. Hot Standby (unmittelbar betriebsbereit) bedeutet, dass die virtuellen Computer in der sekundären Region jederzeit zugeordnet sind und ausgeführt werden.
-* Aktiv/passiv mit Cold Standby. Der Datenverkehr wird an eine Region weitergeleitet, während die andere im Cold Standby wartet. Cold Standby (verzögert betriebsbereit) bedeutet, dass die virtuellen Computer in der sekundären Region erst zugewiesen werden, wenn sie für das Failover benötigt werden. Dieser Ansatz erfordert weniger Ausführungszeit, es dauert aber im Allgemeinen länger, bis bei einem Ausfall alle Komponenten online geschaltet sind.
-* Aktiv/aktiv. Beide Regionen sind aktiv, und Anforderungen werden per Lastenausgleich zwischen ihnen verteilt. Wenn eine Region nicht verfügbar ist, wird sie aus der Rotation entfernt. 
+- Aktiv/passiv mit Hot Standby. Der Datenverkehr wird an eine Region weitergeleitet, während die andere im Hot Standby wartet. Hot Standby (unmittelbar betriebsbereit) bedeutet, dass die virtuellen Computer in der sekundären Region jederzeit zugeordnet sind und ausgeführt werden.
+- Aktiv/passiv mit Cold Standby. Der Datenverkehr wird an eine Region weitergeleitet, während die andere im Cold Standby wartet. Cold Standby (verzögert betriebsbereit) bedeutet, dass die virtuellen Computer in der sekundären Region erst zugewiesen werden, wenn sie für das Failover benötigt werden. Dieser Ansatz erfordert weniger Ausführungszeit, es dauert aber im Allgemeinen länger, bis bei einem Ausfall alle Komponenten online geschaltet sind.
+- Aktiv/aktiv. Beide Regionen sind aktiv, und Anforderungen werden per Lastenausgleich zwischen ihnen verteilt. Wenn eine Region nicht verfügbar ist, wird sie aus der Rotation entfernt.
 
 Bei dieser Referenzarchitektur liegt der Schwerpunkt auf Aktiv/Passiv mit Hot Standby, wobei Traffic Manager für das Failover verwendet wird. Beachten Sie, dass Sie eine kleine Anzahl virtueller Computer für Hot Standby bereitstellen und dann nach Bedarf horizontal skalieren können.
 
@@ -54,9 +56,9 @@ Bei dieser Referenzarchitektur liegt der Schwerpunkt auf Aktiv/Passiv mit Hot St
 
 Jede Azure-Region ist mit einer anderen Region innerhalb desselben Gebiets gepaart. Sie wählen im Allgemeinen Regionen aus dem gleichen Regionspaar aus (z.B. „USA, Osten 2“ und „USA, Mitte“). Das bietet die folgenden Vorteile:
 
-* Bei einem umfassenden Ausfall wird die Wiederherstellung mindestens einer Region aus jedem Paar priorisiert.
-* Geplante Azure-Systemupdates werden in Regionspaaren nacheinander ausgeführt, um mögliche Ausfallzeiten zu minimieren.
-* Regionspaare befinden sich innerhalb des gleichen geografischen Gebiets, um Anforderungen in Bezug auf den Datenspeicherort zu erfüllen. 
+- Bei einem umfassenden Ausfall wird die Wiederherstellung mindestens einer Region aus jedem Paar priorisiert.
+- Geplante Azure-Systemupdates werden in Regionspaaren nacheinander ausgeführt, um mögliche Ausfallzeiten zu minimieren.
+- Regionspaare befinden sich innerhalb des gleichen geografischen Gebiets, um Anforderungen in Bezug auf den Datenspeicherort zu erfüllen.
 
 Sie sollten allerdings sicherstellen, dass beide Regionen alle Azure-Dienste, die für Ihre Anwendung erforderlich sind, unterstützen (siehe [Dienste nach Region][services-by-region]). Weitere Informationen zu Regionspaaren finden Sie unter [Geschäftskontinuität und Notfallwiederherstellung: Azure-Regionspaare][regional-pairs].
 
@@ -64,13 +66,13 @@ Sie sollten allerdings sicherstellen, dass beide Regionen alle Azure-Dienste, di
 
 Beachten Sie beim Konfigurieren von Traffic Manager die folgenden Punkte:
 
-* **Routing:** Traffic Manager unterstützt mehrere [Routingalgorithmen][tm-routing]. Verwenden Sie für das in diesem Artikel beschriebenen Szenario Routing nach *Priorität* (ehemals Routingmethode *Failover*). Bei dieser Einstellung sendet Traffic Manager alle Anforderungen an die primäre Region, bis die primäre Region nicht mehr erreichbar ist. Zu diesem Zeitpunkt wird automatisch ein Failover zur sekundären Region ausgeführt. Weitere Informationen finden Sie unter [Konfigurieren der Routingmethode „Failover“][tm-configure-failover].
-* **Integritätstest:** Traffic Manager verwendet einen HTTP- oder HTTPS-[Test][tm-monitoring], um die Verfügbarkeit jeder Region zu überwachen. Der Test prüft auf eine HTTP 200-Antwort für einen angegebenen URL-Pfad. Es hat sich bewährt, einen Endpunkt zu erstellen, der die Gesamtintegrität der Anwendung meldet, und diesen Endpunkt für den Integritätstest zu verwenden. Andernfalls meldet der Test eventuell einen fehlerfreien Endpunkt, obwohl wichtige Teile der Anwendung fehlerhaft sind. Weitere Informationen finden Sie unter [Überwachungsmuster für den Integritätsendpunkt][health-endpoint-monitoring-pattern].   
+- **Routing:** Traffic Manager unterstützt mehrere [Routingalgorithmen][tm-routing]. Verwenden Sie für das in diesem Artikel beschriebenen Szenario Routing nach *Priorität* (ehemals Routingmethode *Failover*). Bei dieser Einstellung sendet Traffic Manager alle Anforderungen an die primäre Region, bis die primäre Region nicht mehr erreichbar ist. Zu diesem Zeitpunkt wird automatisch ein Failover zur sekundären Region ausgeführt. Weitere Informationen finden Sie unter [Konfigurieren der Routingmethode „Failover“][tm-configure-failover].
+- **Integritätstest:** Traffic Manager verwendet einen HTTP- oder HTTPS-[Test][tm-monitoring], um die Verfügbarkeit jeder Region zu überwachen. Der Test prüft auf eine HTTP 200-Antwort für einen angegebenen URL-Pfad. Es hat sich bewährt, einen Endpunkt zu erstellen, der die Gesamtintegrität der Anwendung meldet, und diesen Endpunkt für den Integritätstest zu verwenden. Andernfalls meldet der Test eventuell einen fehlerfreien Endpunkt, obwohl wichtige Teile der Anwendung fehlerhaft sind. Weitere Informationen finden Sie unter [Überwachungsmuster für den Integritätsendpunkt][health-endpoint-monitoring-pattern].
 
 Wenn Traffic Manager ein Failover ausführt, können die Clients die Anwendung für eine bestimmte Zeit nicht erreichen. Die Dauer wird durch folgende Faktoren beeinflusst:
 
-* Der Integritätstest muss erkennen, dass die primäre Region nicht erreichbar ist.
-* Die DNS-Server müssen die zwischengespeicherten DNS-Einträge für die IP-Adresse aktualisieren, die von der DNS-Gültigkeitsdauer (TTL) abhängig ist. Die Standardgültigkeitsdauer beträgt 300 Sekunden (5 Minuten), Sie können diesen Wert aber bei der Erstellung des Traffic Manager-Profils anpassen.
+- Der Integritätstest muss erkennen, dass die primäre Region nicht erreichbar ist.
+- Die DNS-Server müssen die zwischengespeicherten DNS-Einträge für die IP-Adresse aktualisieren, die von der DNS-Gültigkeitsdauer (TTL) abhängig ist. Die Standardgültigkeitsdauer beträgt 300 Sekunden (5 Minuten), Sie können diesen Wert aber bei der Erstellung des Traffic Manager-Profils anpassen.
 
 Weitere Informationen finden Sie unter [Traffic Manager-Überwachung][tm-monitoring].
 
@@ -80,50 +82,48 @@ Beachten Sie, dass Traffic Manager in der Standardeinstellung automatisch Failba
 
 Mit dem folgenden Befehl für die [Azure-Befehlszeilenschnittstelle][azure-cli] wird die Priorität aktualisiert:
 
-```bat
+```azurecli
 az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
     --name <endpoint-name> --type azureEndpoints --priority 3
-```    
+```
 
 Ein anderer Ansatz besteht darin, den Endpunkt vorübergehend zu deaktivieren, bis Sie zum Ausführen eines Failbacks bereit sind:
 
-```bat
+```azurecli
 az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
     --name <endpoint-name> --type azureEndpoints --endpoint-status Disabled
 ```
 
 Je nach Ursache eines Failovers müssen Sie die Ressourcen innerhalb einer Region möglicherweise erneut bereitstellen. Testen Sie vor dem Failback die Betriebsbereitschaft. Beim Test sollten z.B. folgende Punkte geprüft werden:
 
-* Virtuelle Computer sind richtig konfiguriert. (Alle erforderliche Software ist installiert, IIS wird ausgeführt usw.)
-* Subsysteme der Anwendung sind fehlerfrei. 
-* Funktionstests. (Beispielsweise, dass die Datenbankebene von der Webebene aus erreichbar ist.)
+- Virtuelle Computer sind richtig konfiguriert. (Alle erforderliche Software ist installiert, IIS wird ausgeführt usw.)
+- Subsysteme der Anwendung sind fehlerfrei.
+- Funktionstests. (Beispielsweise, dass die Datenbankebene von der Webebene aus erreichbar ist.)
 
 ### <a name="configure-sql-server-always-on-availability-groups"></a>Konfigurieren von SQL Server Always On-Verfügbarkeitsgruppen
 
-Bei früheren Versionen als Windows Server 2016 erfordern SQL Server Always On-Verfügbarkeitsgruppen einen Domänencontroller, und alle Knoten in der Verfügbarkeitsgruppe müssen sich in der gleichen Active Directory (AD)-Domäne befinden. 
+Bei früheren Versionen als Windows Server 2016 erfordern SQL Server Always On-Verfügbarkeitsgruppen einen Domänencontroller, und alle Knoten in der Verfügbarkeitsgruppe müssen sich in der gleichen Active Directory (AD)-Domäne befinden.
 
 So konfigurieren Sie die Verfügbarkeitsgruppe:
 
-* Platzieren Sie mindestens zwei Domänencontroller in jeder Region.
-* Weisen Sie jedem Domänencontroller eine statische IP-Adresse zu.
-* Erstellen Sie eine VNet-zu-VNet-Verbindung, um die Kommunikation zwischen den VNets zu ermöglichen.
-* Fügen Sie für jedes VNet die IP-Adressen der Domänencontroller (aus beiden Regionen) zur DNS-Serverliste hinzu. Sie können den folgenden CLI-Befehl verwenden. Weitere Informationen finden Sie unter [Ändern von DNS-Servern][vnet-dns].
+- Platzieren Sie mindestens zwei Domänencontroller in jeder Region.
+- Weisen Sie jedem Domänencontroller eine statische IP-Adresse zu.
+- Erstellen Sie eine VNet-zu-VNet-Verbindung, um die Kommunikation zwischen den VNets zu ermöglichen.
+- Fügen Sie für jedes VNet die IP-Adressen der Domänencontroller (aus beiden Regionen) zur DNS-Serverliste hinzu. Sie können den folgenden CLI-Befehl verwenden. Weitere Informationen finden Sie unter [Ändern von DNS-Servern][vnet-dns].
 
-    ```bat
+    ```azurecli
     az network vnet update --resource-group <resource-group> --name <vnet-name> --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
     ```
 
-* Erstellen Sie einen [Windows Server-Failovercluster][wsfc] (WSFC), der die SQL Server-Instanzen in beiden Regionen enthält. 
-* Erstellen Sie eine SQL Server Always On-Verfügbarkeitsgruppe, die SQL Server-Instanzen sowohl in der primären als auch der sekundären Region enthält. Die Schritte finden Sie unter [Erweitern der Always On-Verfügbarkeitsgruppe auf ein Azure-Remoterechenzentrum (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/).
+- Erstellen Sie einen [Windows Server-Failovercluster][wsfc] (WSFC), der die SQL Server-Instanzen in beiden Regionen enthält.
+- Erstellen Sie eine SQL Server Always On-Verfügbarkeitsgruppe, die SQL Server-Instanzen sowohl in der primären als auch der sekundären Region enthält. Die Schritte finden Sie unter [Erweitern der Always On-Verfügbarkeitsgruppe auf ein Azure-Remoterechenzentrum (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/).
 
-  * Legen Sie das primäre Replikat in der primären Region ab.
-  * Legen Sie ein oder mehrere sekundäre Replikate in der primären Region ab. Konfigurieren Sie diese für die Verwendung synchroner Commits mit automatischem Failover.
-  * Legen Sie ein oder mehrere sekundäre Replikate in der sekundären Region ab. Konfigurieren Sie diese aus Leistungsgründen für die Verwendung *asynchroner* Commits. (Andernfalls müssen alle T-SQL-Transaktionen auf einem Roundtrip über das Netzwerk zur sekundären Region warten.)
+  - Legen Sie das primäre Replikat in der primären Region ab.
+  - Legen Sie ein oder mehrere sekundäre Replikate in der primären Region ab. Konfigurieren Sie diese für die Verwendung synchroner Commits mit automatischem Failover.
+  - Legen Sie ein oder mehrere sekundäre Replikate in der sekundären Region ab. Konfigurieren Sie diese aus Leistungsgründen für die Verwendung *asynchroner* Commits. (Andernfalls müssen alle T-SQL-Transaktionen auf einem Roundtrip über das Netzwerk zur sekundären Region warten.)
 
     > [!NOTE]
     > Replikate mit asynchronem Commit unterstützen kein automatisches Failover.
-    >
-    >
 
 ## <a name="availability-considerations"></a>Überlegungen zur Verfügbarkeit
 
@@ -137,8 +137,7 @@ Für den SQL Server-Cluster sind zwei Failoverszenarien zu berücksichtigen:
 
    > [!WARNING]
    > Bei einem erzwungenem Failover besteht das Risiko eines Datenverlusts. Sobald die primäre Region wieder online ist, erstellen Sie eine Momentaufnahme der Datenbank, und verwenden Sie [tablediff], um die Unterschiede zu ermitteln.
-   >
-   >
+
 - Traffic Manager führt ein Failover zur sekundären Region aus, doch ist das primäre SQL Server-Datenbankreplikat weiterhin verfügbar. So kann beispielsweise die Front-End-Ebene fehlgeschlagen, ohne dass dies Auswirkungen auf die virtuellen SQL Server-Computer hat. In diesem Fall wird der Internetdatenverkehr an die sekundäre Region weitergeleitet, und diese Region kann immer noch eine Verbindung mit dem primären Replikat herstellen. Es kommt jedoch zu erhöhter Latenz, da die SQL Server-Verbindungen regionsübergreifend verlaufen. In dieser Situation sollten Sie auf folgende Weise ein manuelles Failover ausführen:
 
    1. Wechseln Sie bei einem SQL Server-Datenbankreplikat in der sekundären Region vorübergehend zu *synchronen* Commits. Dadurch wird sichergestellt, dass während des Failovers kein Datenverlust auftritt.
@@ -151,19 +150,18 @@ Beim Aktualisieren der Bereitstellung aktualisieren Sie immer jeweils eine Regio
 
 Testen Sie die Resilienz des Systems gegenüber Fehlern. Hier sind einige häufige Fehlerszenarien aufgeführt, die getestet werden können:
 
-* Herunterfahren von VM-Instanzen
-* Auslasten von Ressourcen, z.B. CPU und Speicher
-* Trennen/Verzögern des Netzwerks
-* Absturz von Prozessen
-* Ablauf von Zertifikaten
-* Simulieren von Hardwarefehlern
-* Herunterfahren des DNS-Diensts auf den Domänencontrollern
+- Herunterfahren von VM-Instanzen
+- Auslasten von Ressourcen, z.B. CPU und Speicher
+- Trennen/Verzögern des Netzwerks
+- Absturz von Prozessen
+- Ablauf von Zertifikaten
+- Simulieren von Hardwarefehlern
+- Herunterfahren des DNS-Diensts auf den Domänencontrollern
 
 Messen Sie die Wiederherstellungszeiten, und stellen Sie sicher, dass diese Ihren geschäftlichen Anforderungen entsprechen. Testen Sie auch Kombinationen von Fehlermodi.
 
+<!-- links -->
 
-
-<!-- Links -->
 [hybrid-vpn]: ../hybrid-networking/vpn.md
 [azure-dns]: /azure/dns/dns-overview
 [azure-sla]: https://azure.microsoft.com/support/legal/sla/
@@ -187,5 +185,3 @@ Messen Sie die Wiederherstellungszeiten, und stellen Sie sicher, dass diese Ihre
 [vnet-to-vnet]: /azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps
 [vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
 [wsfc]: https://msdn.microsoft.com/library/hh270278.aspx
-
-[0]: ./images/multi-region-sql-server.png "Architektur eines hochverfügbaren Netzwerks für Azure-Anwendungen mit n-Schichten"

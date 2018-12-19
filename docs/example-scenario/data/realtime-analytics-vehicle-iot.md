@@ -3,12 +3,13 @@ title: Erfassung und Verarbeitung von IoT-Daten für die Automobilindustrie in E
 description: Erfassen und verarbeiten Sie Fahrzeugdaten mithilfe von IoT in Echtzeit.
 author: msdpalam
 ms.date: 09/12/2018
-ms.openlocfilehash: 6562e3277e6b6eb38993132284ad43542ef4c0d3
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 8c123403f21ce96549fe075675ec2275b79493a3
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610735"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004886"
 ---
 # <a name="ingestion-and-processing-of-real-time-automotive-iot-data"></a>Erfassung und Verarbeitung von IoT-Daten für die Automobilindustrie in Echtzeit
 

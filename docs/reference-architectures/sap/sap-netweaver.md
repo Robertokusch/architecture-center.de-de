@@ -1,33 +1,36 @@
 ---
-title: Bereitstellen von SAP NetWeaver (Windows) für AnyDB in Azure Virtual Machines
+title: Bereitstellen von SAP NetWeaver (Windows) für AnyDB auf virtuellen Azure-Computern
+titleSuffix: Azure Reference Architectures
 description: Bewährte Methoden zum Ausführen von SAP S/4HANA in einer Linux-Umgebung in Azure mit Hochverfügbarkeit.
 author: lbrader
 ms.date: 08/03/2018
-ms.openlocfilehash: 3a8c59b63d55dea520f807efbe72ff56e678ec8e
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 4014d5736527a2f29692720d199b4a1aa8f76020
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916582"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120185"
 ---
-# <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Bereitstellen von SAP NetWeaver (Windows) für AnyDB in Azure Virtual Machines
+# <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Bereitstellen von SAP NetWeaver (Windows) für AnyDB auf virtuellen Azure-Computern
 
 Anhand dieser Referenzarchitektur werden einige bewährte Methoden veranschaulicht, wie SAP NetWeaver in einer Windows-Umgebung in Azure mit Hochverfügbarkeit ausgeführt werden kann. Die Datenbank ist AnyDB. „AnyDB“ ist der SAP-Begriff für alle unterstützten Datenbank-Managementsysteme neben SAP HANA. Diese Architektur wird mit virtuellen Computern bestimmter Größen bereitgestellt, die an die Anforderungen Ihres Unternehmens angepasst werden können.
 
-![](./images/sap-netweaver.png)
+![Referenzarchitektur für SAP NetWeaver (Windows) für AnyDB auf virtuellen Azure-Computern](./images/sap-netweaver.png)
 
 *Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
 
-> [!NOTE] 
+> [!NOTE]
 > Zum Bereitstellen dieser Referenzarchitektur ist eine geeignete Lizenzierung von SAP-Produkten und anderen nicht von Microsoft stammenden Technologiekomponenten erforderlich.
 
 ## <a name="architecture"></a>Architecture
+
 Diese Architektur umfasst die folgenden Infrastruktur- und Schlüsselsoftwarekomponenten.
 
 **Virtuelles Netzwerk**. Der „Azure Virtual Network“-Dienst verbindet Azure-Ressourcen sicher miteinander. In dieser Architektur wird das virtuelle Netzwerk über ein VPN-Gateway mit einer lokalen Umgebung verbunden, und dieses Gateway wird im Hub einer [Hub-Spoke-Topologie](../hybrid-networking/hub-spoke.md) bereitgestellt. Die Speiche (Spoke) ist das virtuelle Netzwerk, das für die SAP-Anwendungen und die Datenbankschicht verwendet wird.
 
 **Subnetze:** Das virtuelle Netzwerk wird für jede Schicht in getrennte Subnetze unterteilt: Anwendung (SAP NetWeaver), Datenbank, gemeinsame Dienste (Jumpbox) und Active Directory.
-    
+
 **Virtuelle Computer:** In dieser Architektur werden virtuelle Computer für die Logikschicht und die Datenbankschicht verwendet, die wie folgt gruppiert sind:
 
 - **SAP NetWeaver**: Auf der Logikschicht werden virtuelle Windows-Computer verwendet und werden SAP Central Services und SAP-Anwendungsserver ausgeführt. Die virtuellen Computer, auf denen Central Services ausgeführt wird, sind für Hochverfügbarkeit als Windows Server-Failovercluster konfiguriert, mit Unterstützung durch SIOS DataKeeper Cluster Edition.
@@ -35,7 +38,7 @@ Diese Architektur umfasst die folgenden Infrastruktur- und Schlüsselsoftwarekom
 - **Jumpbox**: Wird auch als „geschützter Host“ bezeichnet. Dies ist ein geschützter virtueller Computer im Netzwerk, der von Administratoren zum Herstellen von Verbindungen mit anderen virtuellen Computern verwendet wird.
 - **Windows Server Active Directory-Domänencontroller**. Die Domänencontroller werden auf allen virtuellen Computern und für alle Benutzer in der Domäne verwendet.
 
-**Lastenausgleichsmodule**. [Azure Load Balancer](/azure/load-balancer/load-balancer-overview)-Instanzen werden dazu verwendet, Datenverkehr auf virtuelle Computer im Logikschichtsubnetz zu verteilen. In der Datenschicht kann Hochverfügbarkeit abhängig vom DBMS mithilfe von integrierten SAP-Lastenausgleichsmodulen, Azure Load Balancer oder anderen Mechanismen erzielt werden. Weitere Informationen finden Sie unter [Azure Virtual Machines – DBMS-Bereitstellung für SAP NetWeaver](/azure/virtual-machines/workloads/sap/dbms-guide). 
+**Lastenausgleichsmodule**. [Azure Load Balancer](/azure/load-balancer/load-balancer-overview)-Instanzen werden dazu verwendet, Datenverkehr auf virtuelle Computer im Logikschichtsubnetz zu verteilen. In der Datenschicht kann Hochverfügbarkeit abhängig vom DBMS mithilfe von integrierten SAP-Lastenausgleichsmodulen, Azure Load Balancer oder anderen Mechanismen erzielt werden. Weitere Informationen finden Sie unter [Azure Virtual Machines – DBMS-Bereitstellung für SAP NetWeaver](/azure/virtual-machines/workloads/sap/dbms-guide).
 
 **Verfügbarkeitsgruppen**: Virtuelle Computer für die Rollen SAP Web Dispatcher, SAP-Anwendungsserver und (A)SCS werden in getrennten [Verfügbarkeitsgruppen](/azure/virtual-machines/windows/tutorial-availability-sets) gruppiert, und pro Rolle werden mindestens zwei virtuelle Computer bereitgestellt. Dies bewirkt, dass die virtuellen Computer für eine höhere [Vereinbarung zum Servicelevel](https://azure.microsoft.com/support/legal/sla/virtual-machines) (Service Level Agreement, SLA) auswählbar sind.
 
@@ -43,11 +46,12 @@ Diese Architektur umfasst die folgenden Infrastruktur- und Schlüsselsoftwarekom
 
 **Netzwerksicherheitsgruppen**. Um eingehenden, ausgehenden und subnetzinternen Datenverkehr im virtuellen Netzwerk einzuschränken, können Sie [Netzwerksicherheitsgruppen](/azure/virtual-network/virtual-networks-nsg) (NSGs) erstellen.
 
-**Gateway**. Über ein Gateway wird Ihr lokales Netzwerk in das virtuelle Azure-Netzwerk erweitert. [ExpressRoute](/azure/architecture/reference-architectures/hybrid-networking/expressroute) ist der empfohlene Azure-Dienst für das Erstellen von privaten Verbindungen, die nicht über das öffentliche Internet laufen, es kann aber auch eine [Standort-zu-Standort](/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal)-Verbindung verwendet werden.
+**Gateway**: Über ein Gateway wird Ihr lokales Netzwerk in das virtuelle Azure-Netzwerk erweitert. [ExpressRoute](/azure/architecture/reference-architectures/hybrid-networking/expressroute) ist der empfohlene Azure-Dienst für das Erstellen von privaten Verbindungen, die nicht über das öffentliche Internet laufen, es kann aber auch eine [Standort-zu-Standort](/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal)-Verbindung verwendet werden.
 
-**Azure Storage**. Soll permanenter Speicher einer virtuellen Festplatte (VHD) eines virtuellen Computers bereitgestellt werden, ist [Azure Storage](/azure/storage/storage-standard-storage) erforderlich. Dieser Dienst wird auch von [Cloudzeuge](/windows-server/failover-clustering/deploy-cloud-witness) verwendet, um einen Failoverclustervorgang zu implementieren. 
+**Azure Storage**. Soll permanenter Speicher einer virtuellen Festplatte (VHD) eines virtuellen Computers bereitgestellt werden, ist [Azure Storage](/azure/storage/storage-standard-storage) erforderlich. Dieser Dienst wird auch von [Cloudzeuge](/windows-server/failover-clustering/deploy-cloud-witness) verwendet, um einen Failoverclustervorgang zu implementieren.
 
 ## <a name="recommendations"></a>Empfehlungen
+
 Ihre Anforderungen können von der hier beschriebenen Architektur abweichen. Verwenden Sie diese Empfehlungen als Startpunkt.
 
 ### <a name="sap-web-dispatcher-pool"></a>SAP Web Dispatcher-Pool
@@ -68,7 +72,7 @@ Um virtuelle Computer für einen Cluster mit freigegebenen Datenträgern zu konf
 
 Einzelheiten dazu finden Sie unter „3. Important Update for SAP Customers Running ASCS on SIOS on Azure“ im Blog [Running SAP applications on the Microsoft Platform](https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/).
 
-Eine weitere Möglichkeit zur Verwaltung von Clustering besteht darin, mit Windows Server Failovercluster ein Dateifreigabecluster zu implementieren. [SAP](https://blogs.sap.com/2018/03/19/migration-from-a-shared-disk-cluster-to-a-file-share-cluster/) hat kürzlich das Bereitstellungsmuster von Central Services so geändert, dass über einen UNC-Pfad auf die globalen „/sapmnt“-Verzeichnisse zugegriffen wird. Mit dieser Änderung [entfällt die Forderung](https://blogs.msdn.microsoft.com/saponsqlserver/2017/08/10/high-available-ascs-for-windows-on-file-share-shared-disk-no-longer-required/) nach SIOS oder anderen Lösungen für freigegebene Datenträger auf den virtuellen Computern mit Central Services. Es wird weiterhin empfohlen sicherzustellen, dass die UNC-Freigabe für „/sapmnt“ [hochverfügbar](https://blogs.sap.com/2017/07/21/how-to-create-a-high-available-sapmnt-share/) ist. Dies lässt sich in der Central Services-Instanz erreichen, indem Windows Server-Failovercluster mit [Scale Out File Server](https://blogs.msdn.microsoft.com/saponsqlserver/2017/11/14/file-server-with-sofs-and-s2d-as-an-alternative-to-cluster-shared-disk-for-clustering-of-an-sap-ascs-instance-in-azure-is-generally-available/) (SOFS) und der [Storage Spaces Direct](https://blogs.sap.com/2018/03/07/your-sap-on-azure-part-5-ascs-high-availability-with-storage-spaces-direct/)-Funktion (S2D, „Direkte Speicherplätze“) in Windows Server 2016 verwendet wird. 
+Eine weitere Möglichkeit zur Verwaltung von Clustering besteht darin, mit Windows Server Failovercluster ein Dateifreigabecluster zu implementieren. [SAP](https://blogs.sap.com/2018/03/19/migration-from-a-shared-disk-cluster-to-a-file-share-cluster/) hat kürzlich das Bereitstellungsmuster von Central Services so geändert, dass über einen UNC-Pfad auf die globalen „/sapmnt“-Verzeichnisse zugegriffen wird. Mit dieser Änderung [entfällt die Forderung](https://blogs.msdn.microsoft.com/saponsqlserver/2017/08/10/high-available-ascs-for-windows-on-file-share-shared-disk-no-longer-required/) nach SIOS oder anderen Lösungen für freigegebene Datenträger auf den virtuellen Computern mit Central Services. Es wird weiterhin empfohlen sicherzustellen, dass die UNC-Freigabe für „/sapmnt“ [hochverfügbar](https://blogs.sap.com/2017/07/21/how-to-create-a-high-available-sapmnt-share/) ist. Dies lässt sich in der Central Services-Instanz erreichen, indem Windows Server-Failovercluster mit [Scale Out File Server](https://blogs.msdn.microsoft.com/saponsqlserver/2017/11/14/file-server-with-sofs-and-s2d-as-an-alternative-to-cluster-shared-disk-for-clustering-of-an-sap-ascs-instance-in-azure-is-generally-available/) (SOFS) und der [Storage Spaces Direct](https://blogs.sap.com/2018/03/07/your-sap-on-azure-part-5-ascs-high-availability-with-storage-spaces-direct/)-Funktion (S2D, „Direkte Speicherplätze“) in Windows Server 2016 verwendet wird.
 
 ### <a name="availability-sets"></a>Verfügbarkeitsgruppen
 
@@ -112,7 +116,7 @@ Für SAP auf SQL bietet der Blogbeitrag [Top 10 Key Considerations for Deploying
 
 ## <a name="scalability-considerations"></a>Überlegungen zur Skalierbarkeit
 
-Auf der SAP-Anwendungsschicht sind in Azure viele verschiedene VM-Größen für zentrales Hochskalieren und horizontales Hochskalieren verfügbar. Eine umfassende Liste finden Sie unter [SAP Note 1928533 – SAP Applications on Azure: Supported Products and Azure VM Types](https://launchpad.support.sap.com/#/notes/1928533) (SAP-Hinweis 1928533 – SAP-Anwendungen in Azure: Unterstützte Produkte und Azure-VM-Typen). (Für den Zugriff ist ein SAP Service Marketplace-Konto erforderlich.) SAP-Anwendungsserver und die Central Services-können zentral hoch-/herunterskaliert oder horizontal hochskaliert werden, indem weitere Instanzen hinzugefügt werden. Die AnyDB-Datenbank kann zentral hoch-/herunterskaliert, aber nicht horizontal hochskaliert werden. Der SAP-Datenbankcontainer für AnyDB unterstützt Sharding nicht.
+Auf der SAP-Anwendungsschicht sind in Azure viele verschiedene VM-Größen für zentrales Hochskalieren und horizontales Hochskalieren verfügbar. Eine umfassende Liste finden Sie im [SAP-Hinweis 1928533](https://launchpad.support.sap.com/#/notes/1928533): „SAP Applications on Azure: Supported Products and Azure VM types“ (SAP-Anwendungen in Azure: Unterstützte Produkte und Azure-VM-Typen). (Für den Zugriff ist ein SAP Service Marketplace-Konto erforderlich.) SAP-Anwendungsserver und die Central Services-können zentral hoch-/herunterskaliert oder horizontal hochskaliert werden, indem weitere Instanzen hinzugefügt werden. Die AnyDB-Datenbank kann zentral hoch-/herunterskaliert, aber nicht horizontal hochskaliert werden. Der SAP-Datenbankcontainer für AnyDB unterstützt Sharding nicht.
 
 ## <a name="availability-considerations"></a>Überlegungen zur Verfügbarkeit
 
@@ -145,7 +149,7 @@ Zur Notfallwiederherstellung muss es möglich sein, ein Failover zu einer sekund
 
 - **Anwendungsserverschicht**. SAP-Anwendungsserver enthalten keine Geschäftsdaten. In Azure besteht eine einfache Strategie für die Notfallwiederherstellung darin, SAP-Anwendungsserver in der sekundären Region zu erstellen und die Server dann herunterzufahren. Bei Konfigurationsänderungen oder Kernel-Updates auf dem primären Anwendungsserver müssen die gleichen Änderungen auf die virtuellen Computern in der sekundären Region kopiert werden. Beispielsweise werden die ausführbaren Kerneldateien auf die virtuellen Computer für die Notfallwiederherstellung kopiert. Sollen Anwendungsserver automatisch in einer sekundären Region repliziert werden, ist [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) die empfohlene Lösung.
 
-- **Central Services**. Auch bei dieser Komponente des SAP-Anwendungsstapels werden keine Geschäftsdaten beibehalten. Sie können einen virtuellen Computer in der Notfallwiederherstellungregion erstellen, um die Central Services-Rolle auszuführen. Der einzige Inhalt, der vom primären Central Services-Knoten synchronisiert wird, ist der Inhalt der Freigabe „/sapmnt“. Wenn Konfigurationsänderungen oder Kernel-Updates auf den primären Central Services-Servern stattfinden, müssen sie auf dem virtuellen Computer in der Notfallwiederherstellungsregion, auf dem Central Services ausgeführt wird, wiederholt werden. Um die beiden Server zu synchronisieren, können Sie entweder Azure Site Recovery verwenden, um die Clusterknoten zu replizieren, oder einfach einen regelmäßig geplanten Kopierauftrag verwenden, um „/sapmnt“ in die Notfallwiederherstellungsregion zu kopieren. Ausführliche Informationen zum Erstellungs-, Kopier- und Testfailoverprozess für diese einfache Replikationsmethode erhalten Sie, indem Sie den Artikel [SAP NetWeaver: Building a Hyper-V and Microsoft Azure-based Disaster Recovery Solution](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Erstellen einer Lösung für die Notfallwiederherstellung auf Basis von Hyper-V und Microsoft Azure) herunterladen und unter „4.3. SAP SPOF layer (ASCS)“ (4.3. SAP-SPOF-Schicht (ASCS)) nachsehen.
+- **Central Services**. Auch bei dieser Komponente des SAP-Anwendungsstapels werden keine Geschäftsdaten beibehalten. Sie können einen virtuellen Computer in der Notfallwiederherstellungregion erstellen, um die Central Services-Rolle auszuführen. Der einzige Inhalt, der vom primären Central Services-Knoten synchronisiert wird, ist der Inhalt der Freigabe „/sapmnt“. Wenn Konfigurationsänderungen oder Kernel-Updates auf den primären Central Services-Servern stattfinden, müssen sie auf dem virtuellen Computer in der Notfallwiederherstellungsregion, auf dem Central Services ausgeführt wird, wiederholt werden. Um die beiden Server zu synchronisieren, können Sie entweder Azure Site Recovery verwenden, um die Clusterknoten zu replizieren, oder einfach einen regelmäßig geplanten Kopierauftrag verwenden, um „/sapmnt“ in die Notfallwiederherstellungsregion zu kopieren. Ausführliche Informationen zum Erstellungs-, Kopier- und Testfailoverprozess für diese einfache Replikationsmethode erhalten Sie, indem Sie den Artikel [SAP NetWeaver: Building a Hyper-V and Microsoft Azure-based Disaster Recovery Solution](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Erstellen einer Lösung für die Notfallwiederherstellung auf Basis von Hyper-V und Microsoft Azure) herunterladen und im Abschnitt 4.3. „SAP SPOF layer (ASCS)“ (4.3. SAP-SPOF-Schicht (ASCS)) nachsehen.
 
 - **Datenbankschicht**. Notfallwiederherstellung lässt sich am besten mit der in die Datenbank integrierten Replikationstechnologie implementieren. Im Fall von SQL Server empfiehlt sich beispielsweise die Verwendung einer AlwaysOn-Verfügbarkeitsgruppe, um ein Replikat in einer Remoteregion einzurichten, wozu Transaktionen asynchron mit manuellem Failover repliziert werden. Asynchrone Replikation vermeidet Auswirkungen auf die Leistung von interaktiven Workloads am primären Standort. Manuelles Failover bietet für eine Person die Möglichkeit, die Notfallwiederherstellungsauswirkungen zu bewerten und zu entscheiden, ob ein Betrieb aus dem Notfallwiederherstellungsstandort gerechtfertigt ist.
 
@@ -159,7 +163,7 @@ Um SAP-basierte Überwachung von Ressourcen sowie der Leistung von Diensten der 
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
-SAP verfügt über ein eigenes Modul für die Benutzerverwaltung (Users Management Engine, UME), um den rollenbasierten Zugriff und die Autorisierung in der SAP-Anwendung zu steuern. Ausführliche Informationen finden Sie im [SAP NetWeaver Application Server for ABAP Security Guide](https://help.sap.com/doc/7b932ef4728810148a4b1a83b0e91070/1610 001/en-US/frameset.htm?4dde53b3e9142e51e10000000a42189c.html) und im [SAP NetWeaver Application Server Java Security Guide](https://help.sap.com/doc/saphelp_snc_uiaddon_10/1.0/en-US/57/d8bfcf38f66f48b95ce1f52b3f5184/frameset.htm).
+SAP verfügt über ein eigenes Modul für die Benutzerverwaltung (Users Management Engine, UME), um den rollenbasierten Zugriff und die Autorisierung in der SAP-Anwendung zu steuern. Ausführliche Informationen finden Sie im [SAP NetWeaver Application Server for ABAP Security Guide](https://help.sap.com/viewer/864321b9b3dd487d94c70f6a007b0397/7.4.19) und im [SAP NetWeaver Application Server Java Security Guide](https://help.sap.com/doc/saphelp_snc_uiaddon_10/1.0/en-US/57/d8bfcf38f66f48b95ce1f52b3f5184/frameset.htm).
 
 Um zusätzliche Netzwerksicherheit zu erreichen, können Sie eine [Netzwerk-DMZ](../dmz/secure-vnet-hybrid.md) implementieren, für die ein virtuelles Netzwerkgerät verwendet wird, um eine Firewall vor dem Subnetz für Web Dispatcher zu erstellen.
 

@@ -1,23 +1,24 @@
 ---
 title: Leitfaden zum API-Design
-description: Leitfaden zum Erstellen einer gut konzipierten Web-API
+titleSuffix: Best practices for cloud applications
+description: Leitfaden zum Erstellen einer sorgfältig entworfenen Web-API
 author: dragon119
 ms.date: 01/12/2018
-pnp.series.title: Best Practices
-ms.openlocfilehash: 1bd53a7ccc54d086978891f1df5fdc2e25a5d638
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 9a9345e5ec8869b70e5abef45a637e742c61ca88
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429379"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307434"
 ---
 # <a name="api-design"></a>API-Design
 
 Die meisten modernen Webanwendungen machen APIs verfügbar, die Clients für die Interaktion mit der Anwendung nutzen können. Eine gut entworfene Web-API sollte Folgendes unterstützen:
 
-* **Unabhängigkeit von der Plattform**. Jeder Client muss die API unabhängig von ihrer internen Implementierung aufrufen können. Dies erfordert Standardprotokolle und einen Mechanismus, der es dem Client und dem Webdienst ermöglicht, sich bezüglich des Formats der auszutauschenden Daten zu verständigen.
+- **Unabhängigkeit von der Plattform**. Jeder Client muss die API unabhängig von ihrer internen Implementierung aufrufen können. Dies erfordert Standardprotokolle und einen Mechanismus, der es dem Client und dem Webdienst ermöglicht, sich bezüglich des Formats der auszutauschenden Daten zu verständigen.
 
-* **Serviceentwicklung**. Die Web-API sollte weiterentwickelt werden können, und Funktionen sollten sich unabhängig von Clientanwendungen hinzufügen lassen. Während der Weiterentwicklung der API müssen vorhandene Clientanwendungen weiterhin ohne Änderungen funktionieren. Alle Funktionen müssen auffindbar sein, damit Clientanwendungen sie vollständig nutzen können.
+- **Serviceentwicklung**. Die Web-API sollte weiterentwickelt werden können, und Funktionen sollten sich unabhängig von Clientanwendungen hinzufügen lassen. Während der Weiterentwicklung der API müssen vorhandene Clientanwendungen weiterhin ohne Änderungen funktionieren. Alle Funktionen müssen auffindbar sein, damit Clientanwendungen sie vollständig nutzen können.
 
 Dieser Leitfaden enthält Informationen zu den Aspekten, die beim Entwerfen einer Web-API zu berücksichtigen sind.
 
@@ -29,26 +30,26 @@ Ein wichtiger Vorteil von REST gegenüber HTTP besteht darin, dass es offene Sta
 
 Hier finden Sie einige der wichtigsten Entwurfsprinzipien von RESTful-APIs mit HTTP:
 
-- REST-APIs wurden mit Fokus auf *Ressourcen* entwickelt, bei denen es sich um eine beliebige Art von Objekten, Daten oder Diensten handelt, auf die der Client zugreifen kann. 
+- REST-APIs wurden mit Fokus auf *Ressourcen* entwickelt, bei denen es sich um eine beliebige Art von Objekten, Daten oder Diensten handelt, auf die der Client zugreifen kann.
 
-- Eine Ressource weist einen *Bezeichner* auf. Dies ist ein URI, der die Ressource eindeutig identifiziert. Der URI für eine bestimmte Kundenbestellung kann z.B. wie folgt aussehen: 
- 
-    ```http
+- Eine Ressource weist einen *Bezeichner* auf. Dies ist ein URI, der die Ressource eindeutig identifiziert. Der URI für eine bestimmte Kundenbestellung kann z.B. wie folgt aussehen:
+
+    ```HTTP
     https://adventure-works.com/orders/1
     ```
- 
+
 - Clients interagieren mit einem Dienst durch den Austausch von *Darstellungen* von Ressourcen. Viele Web-APIs verwenden JSON als Austauschformat. Beispielsweise könnte eine GET-Anforderung an den oben aufgeführten URI diesen Antworttext zurückgeben:
 
     ```json
     {"orderId":1,"orderValue":99.90,"productId":1,"quantity":1}
     ```
 
-- REST-APIs verwenden eine einheitliche Schnittstelle, was zur Entkopplung der Client- und der Dienstimplementierungen beiträgt. Für REST-APIs, die auf HTTP basieren, umfasst die einheitliche Schnittstelle die Verwendung von HTTP-Standardverben zum Ausführen von Vorgängen für Ressourcen. Die häufigsten Vorgänge sind GET, POST, PUT, PATCH und DELETE. 
+- REST-APIs verwenden eine einheitliche Schnittstelle, was zur Entkopplung der Client- und der Dienstimplementierungen beiträgt. Für REST-APIs, die auf HTTP basieren, umfasst die einheitliche Schnittstelle die Verwendung von HTTP-Standardverben zum Ausführen von Vorgängen für Ressourcen. Die häufigsten Vorgänge sind GET, POST, PUT, PATCH und DELETE.
 
 - REST-APIs verwenden ein zustandsloses Anforderungsmodell. HTTP-Anforderungen müssen unabhängig sein und können in beliebiger Reihenfolge erfolgen, sodass das Beibehalten von Übergangsstatusinformationen zwischen Anforderungen nicht möglich ist. Informationen werden ausschließlich in den Ressourcen selbst gespeichert, und jede Anforderung sollte eine atomare Operation sein. Diese Einschränkung ermöglicht eine hohe Skalierbarkeit von Webdiensten, da keine Affinität zwischen Clients und bestimmten Servern beibehalten werden muss. Jeder Server kann jede Anforderung von jedem beliebigen Client verarbeiten. Allerdings können andere Faktoren die Skalierbarkeit einschränken. Beispielsweise schreiben viele Webdienste in einen Back-End-Datenspeicher, dessen horizontale Hochskalierung schwierig sein kann. (Im Artikel [Datenpartitionierung](./data-partitioning.md) werden Strategien zur horizontalen Hochskalierung eines Datenspeichers beschrieben.)
 
-- REST-APIs werden von Hypermedia Links gesteuert, die in der Darstellung enthalten sind. Das folgende Beispiel zeigt die JSON-Darstellung einer Bestellung. Es enthält Links zum Abrufen oder Aktualisieren des Kunden, der der Bestellung zugeordnet ist. 
- 
+- REST-APIs werden von Hypermedia Links gesteuert, die in der Darstellung enthalten sind. Das folgende Beispiel zeigt die JSON-Darstellung einer Bestellung. Es enthält Links zum Abrufen oder Aktualisieren des Kunden, der der Bestellung zugeordnet ist.
+
     ```json
     {
         "orderID":3,
@@ -57,24 +58,23 @@ Hier finden Sie einige der wichtigsten Entwurfsprinzipien von RESTful-APIs mit H
         "orderValue":16.60,
         "links": [
             {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"GET" },
-            {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"PUT" } 
+            {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"PUT" }
         ]
-    } 
+    }
     ```
-
 
 Leonard Richardson hat 2008 das folgende [Reifemodell](https://martinfowler.com/articles/richardsonMaturityModel.html) für Web-APIs vorgeschlagen:
 
-- Ebene 0: Definieren Sie einen URI, und alle Vorgänge sind POST-Anforderungen an diesen URI.
+- Ebene 0: Definieren Sie einen einzelnen URI. (Alle Vorgänge sind POST-Anforderungen an diesen URI.)
 - Ebene 1: Erstellen Sie separate URIs für einzelne Ressourcen.
-- Ebene 2: Verwenden Sie HTTP-Methoden zum Definieren von Vorgängen für Ressourcen.
+- Ebene 2: Definieren Sie mithilfe von HTTP-Methoden Vorgänge für Ressourcen.
 - Ebene 3: Verwenden Sie Hypermedia (HATEOAS, unten beschriebenen).
 
-Ebene 3 entspricht einer echten RESTful-API gemäß der Definition von Fielding. In der Praxis fallen viele veröffentlichte Web-APIs in den Bereich von Ebene 2.  
+Ebene 3 entspricht einer echten RESTful-API gemäß der Definition von Fielding. In der Praxis fallen viele veröffentlichte Web-APIs in den Bereich von Ebene 2.
 
 ## <a name="organize-the-api-around-resources"></a>Organisieren der API unter Berücksichtigung von Ressourcen
 
-Konzentrieren sich auf die Geschäftseinheiten, die die Web-API verfügbar macht. In einem E-Commerce-System können die primären Entitäten beispielsweise Kunden und Bestellungen sein. Eine Bestellung kann durch Senden einer HTTP POST-Anforderung erstellt werden, welche die Bestellinformationen enthält. Die HTTP-Antwort gibt an, ob die Bestellung erfolgreich aufgegeben wurde oder nicht. Sofern möglich sollten Ressourcen-URIs auf Nomen (Ressource) und nicht auf Verben (die Vorgänge für die Ressource) basieren. 
+Konzentrieren sich auf die Geschäftseinheiten, die die Web-API verfügbar macht. In einem E-Commerce-System können die primären Entitäten beispielsweise Kunden und Bestellungen sein. Eine Bestellung kann durch Senden einer HTTP POST-Anforderung erstellt werden, welche die Bestellinformationen enthält. Die HTTP-Antwort gibt an, ob die Bestellung erfolgreich aufgegeben wurde oder nicht. Sofern möglich sollten Ressourcen-URIs auf Nomen (Ressource) und nicht auf Verben (die Vorgänge für die Ressource) basieren.
 
 ```HTTP
 https://adventure-works.com/orders // Good
@@ -84,13 +84,13 @@ https://adventure-works.com/create-order // Avoid
 
 Eine Ressource muss nicht auf einem einzelnen physischen Datenelement basieren. Beispielsweise kann eine Bestellressource intern als mehrere Tabellen in einer relationalen Datenbank implementiert werden, auf dem Client jedoch als einzelne Entität angezeigt werden. Vermeiden Sie das Erstellen von APIs, die einfach die interne Struktur einer Datenbank widerspiegeln. Der Zweck von REST ist das Modellieren von Entitäten und der Vorgänge, die eine Anwendung für diese Entitäten ausführen kann. Ein Client sollte nicht für die interne Implementierung verfügbar gemacht werden.
 
-Entitäten sind häufig in Sammlungen (Bestellungen, Kunden) gruppiert. Eine Sammlung ist als Ressource vom Element innerhalb der Sammlung getrennt und muss über einen eigenen URI verfügen. Der folgende URI könnte z.B. die Sammlung von Bestellungen darstellen: 
+Entitäten sind häufig in Sammlungen (Bestellungen, Kunden) gruppiert. Eine Sammlung ist als Ressource vom Element innerhalb der Sammlung getrennt und muss über einen eigenen URI verfügen. Der folgende URI könnte z.B. die Sammlung von Bestellungen darstellen:
 
 ```HTTP
 https://adventure-works.com/orders
 ```
 
-Durch Senden einer HTTP GET-Anforderung an den URI der Sammlung wird eine Liste von Elementen in der Sammlung abgerufen. Jedes Element in der Sammlung verfügt auch über einen eigenen eindeutigen URI. Eine HTTP GET-Anforderung an den URI eines Elements gibt die Details dieses Elements zurück. 
+Durch Senden einer HTTP GET-Anforderung an den URI der Sammlung wird eine Liste von Elementen in der Sammlung abgerufen. Jedes Element in der Sammlung verfügt auch über einen eigenen eindeutigen URI. Eine HTTP GET-Anforderung an den URI eines Elements gibt die Details dieses Elements zurück.
 
 Führen Sie eine konsistente Benennungskonvention für URIs ein. Im Allgemeinen ist es hilfreich, Nomen in Pluralform für URIs zu verwenden, die auf Sammlungen verweisen. Es wird empfohlen, URIs für Sammlungen und Elemente in einer Hierarchie zu organisieren. Beispiel: `/customers` ist der Pfad zur Sammlung „Kunden“, und `/customers/5` ist der Pfad zum Kunden mit der ID 5. Dieser Ansatz trägt dazu bei, dass die Web-API intuitiv bleibt. Darüber hinaus können viele Web-API-Frameworks Anforderungen auf Grundlage von parametrisierte URI-Pfaden weiterleiten, sodass Sie eine Route für den Pfad `/customers/{id}` definieren könnten.
 
@@ -111,11 +111,11 @@ Schließlich ist es auch möglich, dass nicht jeder von einer Web-API für eine 
 
 Das HTTP-Protokoll definiert eine Reihe von Methoden, die einer Anforderung semantische Bedeutung zuweisen. Diese allgemeinen HTTP-Methoden werden von den meisten RESTful-Web-APIs verwendet:
 
-* **GET** ruft eine Kopie der Ressource am angegebenen URI ab. Der Text der Antwortnachricht enthält die Details der angeforderten Ressource.
-* **POST** erstellt eine neue Ressource am angegebenen URI. Der Text der Anforderungsnachricht enthält die Details der neuen Ressource. Beachten Sie, dass POST auch zum Auslösen von Vorgängen verwendet werden kann, die nicht tatsächlich Ressourcen erstellen.
-* **PUT** erstellt oder ersetzt die Ressource am angegebenen URI. Der Text der Anforderungsnachricht gibt die zu erstellende oder zu aktualisierende Ressource an.
-* **PATCH** führt eine partielle Aktualisierung einer Ressource durch. Der Anforderungstext gibt die Menge der auf die Ressource anzuwendenden Änderungen an.
-* **DELETE** entfernt die Ressource am angegebenen URI.
+- **GET** ruft eine Kopie der Ressource am angegebenen URI ab. Der Text der Antwortnachricht enthält die Details der angeforderten Ressource.
+- **POST** erstellt eine neue Ressource am angegebenen URI. Der Text der Anforderungsnachricht enthält die Details der neuen Ressource. Beachten Sie, dass POST auch zum Auslösen von Vorgängen verwendet werden kann, die nicht tatsächlich Ressourcen erstellen.
+- **PUT** erstellt oder ersetzt die Ressource am angegebenen URI. Der Text der Anforderungsnachricht gibt die zu erstellende oder zu aktualisierende Ressource an.
+- **PATCH** führt eine partielle Aktualisierung einer Ressource durch. Der Anforderungstext gibt die Menge der auf die Ressource anzuwendenden Änderungen an.
+- **DELETE** entfernt die Ressource am angegebenen URI.
 
 Die Auswirkungen einer bestimmten Anforderung sollten davon abhängen, ob die Ressource, eine Sammlung oder ein einzelnes Element ist. In der folgende Tabelle sind anhand des e-Commerce-Beispiels die allgemeinen Konventionen zusammengefasst, die bei den meisten RESTful-Implementierungen verwendet werden. Beachten Sie, dass u. U. nicht alle diese Anforderungen implementiert werden; dies hängt vom jeweiligen Szenario ab.
 
@@ -131,7 +131,7 @@ Die Unterschiede zwischen POST, PUT und PATCH können verwirrend sein.
 
 - Eine PUT-Anforderung erstellt eine Ressource *oder* aktualisiert eine vorhandene Ressource. Der Client gibt den URI für die Ressource an. Der Anforderungstext enthält eine vollständige Darstellung der Ressource. Wenn bereits eine Ressource mit diesem URI vorhanden ist, wird sie ersetzt. Andernfalls wird eine neue Ressource erstellt, wenn der Server diese Vorgehensweise unterstützt. PUT-Anforderungen werden am häufigsten auf Ressourcen angewendet, bei denen es sich um einzelne Elemente handelt, z.B. einen bestimmten Kunden anstatt von Sammlungen. Ein Server kann Aktualisierungen über PUT unterstützen, die Erstellung jedoch möglicherweise nicht. Die Unterstützung der Erstellung über PUT hängt davon ab, ob der Client einen URI auf sinnvolle Weise einer Ressource zuweisen kann, bevor diese vorhanden ist. Ist dies nicht der Fall, verwenden Sie POST zum Erstellen und PUT oder PATCH zum Aktualisieren von Ressourcen.
 
-- Eine PATCH-Anforderung führt eine *partielle Aktualisierung* einer vorhandenen Ressource durch. Der Client gibt den URI für die Ressource an. Der Anforderungstext gibt einen Satz von auf die Ressource anzuwendenden *Änderungen* an. Dies kann effizienter als die Verwendung von PUT sein, da der Client nur die Änderungen sendet, nicht die gesamte Darstellung der Ressource. Technisch gesehen kann PATCH kann auch eine neue Ressource erstellen (durch Angabe einer Reihe von Aktualisierungen für eine NULL-Ressource), wenn der Server dies unterstützt. 
+- Eine PATCH-Anforderung führt eine *partielle Aktualisierung* einer vorhandenen Ressource durch. Der Client gibt den URI für die Ressource an. Der Anforderungstext gibt einen Satz von auf die Ressource anzuwendenden *Änderungen* an. Dies kann effizienter als die Verwendung von PUT sein, da der Client nur die Änderungen sendet, nicht die gesamte Darstellung der Ressource. Technisch gesehen kann PATCH kann auch eine neue Ressource erstellen (durch Angabe einer Reihe von Aktualisierungen für eine NULL-Ressource), wenn der Server dies unterstützt.
 
 PUT-Anforderungen müssen idempotent sein. Wenn ein Client die gleiche PUT-Anforderung mehrmals sendet, sollten die Ergebnisse immer identisch sein (dieselbe Ressource wird mit den gleichen Werten geändert). Bei POST- und PATCH-Anforderungen besteht keine Garantie für Idempotenz.
 
@@ -143,7 +143,7 @@ Dieser Abschnitt beschreibt einige typische Überlegungen zum Entwerfen einer AP
 
 Wie bereits erwähnt tauschen Clients und Server Darstellungen von Ressourcen aus. In einer POST-Anforderung z.B. enthält der Anforderungstext eine Darstellung der Ressource, die zu erstellen ist. In einer GET-Anforderung enthält der Antworttext eine Darstellung der abgerufenen Ressource.
 
-Im HTTP-Protokoll werden Formate durch die Verwendung von *Medientypen* angegeben, die auch als „MIME-Typen“ bezeichnet werden. Für nicht binäre Daten unterstützen die meisten Web-APIs JSON (media type = application/json) und möglicherweise XML (media type = application/xml). 
+Im HTTP-Protokoll werden Formate durch die Verwendung von *Medientypen* angegeben, die auch als „MIME-Typen“ bezeichnet werden. Für nicht binäre Daten unterstützen die meisten Web-APIs JSON (media type = application/json) und möglicherweise XML (media type = application/xml).
 
 Der Content-Type-Header in einer Anforderung oder Antwort gibt das Format der Darstellung an. Hier ist ein Beispiel für eine POST-Anforderung, die JSON-Daten enthält:
 
@@ -164,7 +164,7 @@ GET https://adventure-works.com/orders/2 HTTP/1.1
 Accept: application/json
 ```
 
-Wenn der Server keinen der Medientypen auf der Liste anbieten kann, muss er den HTTP-Statuscode 406 (Nicht akzeptabel) zurückgeben. 
+Wenn der Server keinen der Medientypen auf der Liste anbieten kann, muss er den HTTP-Statuscode 406 (Nicht akzeptabel) zurückgeben.
 
 ### <a name="get-methods"></a>GET-Methoden
 
@@ -180,7 +180,7 @@ Wenn der Client ungültige Daten in die Anforderung einfügt, muss der Server de
 
 ### <a name="put-methods"></a>PUT-Methoden
 
-Wenn eine PUT-Methode eine neue Ressource erstellt, wird wie bei einer POST-Methode der HTTP-Statuscode 201 (Erstellt) zurückgegeben. Wenn die Methode eine vorhandene Ressource aktualisiert, wird entweder 200 (OK) oder 204 (Kein Inhalt) zurückgegeben. In einigen Fällen ist es u.U. nicht möglich, eine vorhandene Ressource zu aktualisieren. In diesem Fall empfiehlt es sich, den HTTP-Statuscode 409 (Konflikt) zurückzugeben. 
+Wenn eine PUT-Methode eine neue Ressource erstellt, wird wie bei einer POST-Methode der HTTP-Statuscode 201 (Erstellt) zurückgegeben. Wenn die Methode eine vorhandene Ressource aktualisiert, wird entweder 200 (OK) oder 204 (Kein Inhalt) zurückgegeben. In einigen Fällen ist es u.U. nicht möglich, eine vorhandene Ressource zu aktualisieren. In diesem Fall empfiehlt es sich, den HTTP-Statuscode 409 (Konflikt) zurückzugeben.
 
 Erwägen Sie das Implementieren von HTTP PUT-Massenvorgängen, die Stapelaktualisierungen für mehrere Ressourcen in einer Auflistung durchführen können. Die PUT-Anforderung sollte den URI der Auflistung angeben, und Anforderungstext sollte die Details der zu ändernden Ressourcen angeben. Dieser Ansatz trägt zum Reduzieren von „Geschwätzigkeit“ und zur Leistungssteigerung bei.
 
@@ -195,7 +195,7 @@ JSON Merge Patch ist etwas einfacher. Das Patch-Dokument hat die gleiche Struktu
 Beispiel: Angenommen, die ursprüngliche Ressource weist die folgende JSON-Darstellung auf:
 
 ```json
-{ 
+{
     "name":"gizmo",
     "category":"widgets",
     "color":"blue",
@@ -206,16 +206,16 @@ Beispiel: Angenommen, die ursprüngliche Ressource weist die folgende JSON-Darst
 Hier ist ein möglicher JSON Merge Patch für diese Ressource:
 
 ```json
-{ 
+{
     "price":12,
     "color":null,
     "size":"small"
 }
 ```
 
-Dieser weist den Server an, „price“ (Preis) zu aktualisieren, „color“ (Farbe) zu löschen und „size“ (Größe) hinzuzufügen. „Name“ und „category“ (Kategorie) werden nicht geändert. Die genauen Details zu JSON Merge Patch finden Sie unter [RFC 7396](https://tools.ietf.org/html/rfc7396). Der Medientyp für JSON Merge Patch ist „application/merge-patch+json“.
+Dieser weist den Server an, `price` zu aktualisieren, `color` zu löschen und `size` hinzuzufügen. `name` und `category` werden nicht geändert. Die genauen Details zu JSON Merge Patch finden Sie unter [RFC 7396](https://tools.ietf.org/html/rfc7396). Der Medientyp für JSON Merge Patch lautet `application/merge-patch+json`.
 
-Merge Patch ist nicht geeignet, wenn die ursprüngliche Ressource aufgrund der besonderen Bedeutung von `null` im Patch-Dokument explizite NULL-Werte enthalten kann. Außerdem gibt das Patch-Dokument nicht die Reihenfolge an, in welcher der Server die Aktualisierungen durchführen soll. Dies kann je nach Daten und Domäne von Bedeutung sein oder nicht. JSON Patch, in [RFC 6902](https://tools.ietf.org/html/rfc6902) definiert, ist flexibler. Es gibt die Änderungen als eine Sequenz von anzuwendenden Vorgängen an. Zu Vorgängen gehören das Hinzufügen, Entfernen, Ersetzen, Kopieren und Testen (zum Überprüfen von Werten). Der Medientyp für JSON Patch ist „application/json-patch+json“.
+Merge Patch ist nicht geeignet, wenn die ursprüngliche Ressource aufgrund der besonderen Bedeutung von `null` im Patch-Dokument explizite NULL-Werte enthalten kann. Außerdem gibt das Patch-Dokument nicht die Reihenfolge an, in welcher der Server die Aktualisierungen durchführen soll. Dies kann je nach Daten und Domäne von Bedeutung sein oder nicht. JSON Patch, in [RFC 6902](https://tools.ietf.org/html/rfc6902) definiert, ist flexibler. Es gibt die Änderungen als eine Sequenz von anzuwendenden Vorgängen an. Zu Vorgängen gehören das Hinzufügen, Entfernen, Ersetzen, Kopieren und Testen (zum Überprüfen von Werten). Der Medientyp für JSON Patch lautet `application/json-patch+json`.
 
 Hier sehen Sie einige typische Fehlerzustände, die beim Verarbeiten einer PATCH-Anforderung auftreten können, zusammen mit den entsprechenden HTTP-Statuscodes.
 
@@ -231,18 +231,18 @@ Wenn der Löschvorgang erfolgreich ist, sollte der Webserver mit dem HTTP-Status
 
 ### <a name="asynchronous-operations"></a>Asynchrone Vorgänge
 
-In einigen Fällen kann ein POST-, PUT-, PATCH- oder DELETE-Vorgang eine Verarbeitung erfordern, die einige Zeit in Anspruch nimmt. Wenn Sie vor dem Senden einer Antwort an den Client den Abschluss abwarten, kann dies zu einer nicht akzeptablen Wartezeit führen. Wenn dies der Fall ist, erwägen Sie die Verwendung eines asynchronen Vorgangs. Geben Sie den HTTP-Statuscode 202 (Akzeptiert) zurück, um anzugeben, dass die Anforderung zur Verarbeitung angenommen wurde, aber noch nicht abgeschlossen ist. 
+In einigen Fällen kann ein POST-, PUT-, PATCH- oder DELETE-Vorgang eine Verarbeitung erfordern, die einige Zeit in Anspruch nimmt. Wenn Sie vor dem Senden einer Antwort an den Client den Abschluss abwarten, kann dies zu einer nicht akzeptablen Wartezeit führen. Wenn dies der Fall ist, erwägen Sie die Verwendung eines asynchronen Vorgangs. Geben Sie den HTTP-Statuscode 202 (Akzeptiert) zurück, um anzugeben, dass die Anforderung zur Verarbeitung angenommen wurde, aber noch nicht abgeschlossen ist.
 
 Sie müssen einen Endpunkt verfügbar machen, der den Status einer asynchronen Anforderung zurückgibt, damit der Client den Status durch Abfragen des Statusendpunkts überwachen kann. Nehmen Sie den URI des Statusendpunkts in den Location-Header der 202-Antwort auf. Beispiel: 
 
-```http
+```HTTP
 HTTP/1.1 202 Accepted
 Location: /api/status/12345
 ```
 
-Wenn der Client eine GET-Anforderung an diesen Endpunkt sendet, muss die Antwort auf den aktuellen Status der Anforderung enthalten. Optional kann sie auch die geschätzte Zeit bis zum Abschluss oder einen Link zum Abbrechen des Vorgangs enthalten. 
+Wenn der Client eine GET-Anforderung an diesen Endpunkt sendet, muss die Antwort auf den aktuellen Status der Anforderung enthalten. Optional kann sie auch die geschätzte Zeit bis zum Abschluss oder einen Link zum Abbrechen des Vorgangs enthalten.
 
-```http
+```HTTP
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -254,7 +254,7 @@ Content-Type: application/json
 
 Wenn der asynchrone Vorgang eine neue Ressource erstellt, muss der Statusendpunkt nach Abschluss des Vorgangs den Statuscode 303 (See Other [Siehe anderswo]) zurückgeben. Nehmen Sie in die 303-Antwort einen Location-Header auf, der den URI der neuen Ressource angibt:
 
-```http
+```HTTP
 HTTP/1.1 303 See Other
 Location: /api/orders/12345
 ```
@@ -265,25 +265,25 @@ Weitere Informationen finden Sie unter [Asynchronous operations in REST](https:/
 
 Das Verfügbarmachen einer Sammlung von Ressourcen durch einen einzigen URI kann dazu führen, dass Anwendungen große Datenmengen abrufen, auch wenn nur eine Teilmenge der Informationen erforderlich ist. Beispiel: Angenommen, eine Clientanwendung muss alle Bestellungen mit Kosten über einem bestimmten Wert finden. Dazu könnte sie alle Bestellungen vom URI */orders* abrufen und diese Bestellungen auf Clientseite filtern. Dieser Prozess ist eindeutig sehr ineffizient. Er verschwendet Netzwerkbandbreite und Verarbeitungsleistung auf dem Server, der die Web-API hostet.
 
-Stattdessen kann die API zulassen, dass ein in der Abfragezeichenfolge des URIs ein Filter wie */orders?minCost=n* übergeben wird. Dann ist die Web-API für die Analyse und Verarbeitung der `minCost`-Parameter in der Abfragezeichenfolge und das Zurückgeben der gefilterten Ergebnisse auf Serverseite verantwortlich. 
+Stattdessen kann die API zulassen, dass ein in der Abfragezeichenfolge des URIs ein Filter wie */orders?minCost=n* übergeben wird. Dann ist die Web-API für die Analyse und Verarbeitung der `minCost`-Parameter in der Abfragezeichenfolge und das Zurückgeben der gefilterten Ergebnisse auf Serverseite verantwortlich.
 
 GET-Anforderungen über Sammlungsressourcen geben u.U. eine große Anzahl von Elementen zurück. Entwerfen Sie daher eine Web-API so, dass die von jeder einzelnen Anforderung zurückgegebene Datenmenge begrenzt ist. Erwägen Sie die Unterstützung von Abfragezeichenfolgen, welche die maximale Anzahl von abzurufenden Elementen angeben, und ein Startoffset in der Sammlung. Beispiel: 
 
-```
+```HTTP
 /orders?limit=25&offset=50
 ```
 
-Erwägen Sie auch das Festlegen einer Obergrenze für die Anzahl der zurückgegebenen Elemente, um Denial-of-Service-Angriffe zu verhindern. Zur Unterstützung von Clientanwendungen sollten GET-Anforderungen, die paginierte Daten zurückgeben, auch Metadaten enthalten, die die Gesamtanzahl der in der Auflistung verfügbaren Ressourcen angeben. 
+Erwägen Sie auch das Festlegen einer Obergrenze für die Anzahl der zurückgegebenen Elemente, um Denial-of-Service-Angriffe zu verhindern. Zur Unterstützung von Clientanwendungen sollten GET-Anforderungen, die paginierte Daten zurückgeben, auch Metadaten enthalten, die die Gesamtanzahl der in der Auflistung verfügbaren Ressourcen angeben.
 
 Sie können eine ähnliche Strategie zum Sortieren von Daten während des Abrufvorgangs nutzen. Dazu stellen Sie einen Sortierparameter bereit, der einen Feldnamen als Wert verwendet, z.B. */orders?sort=ProductID*. Dieser Ansatz kann jedoch die Zwischenspeicherung beeinträchtigen, da Abfragezeichenfolgen-Parameter einen Teil des Ressourcenbezeichners darstellen, der von zahlreichen Cacheimplementierungen als Schlüssel für zwischengespeicherte Daten verwendet wird.
 
-Sie können diesen Ansatz erweitern, um die zurückgegebenen Felder für die einzelnen Elemente zu begrenzen, wenn jedes Element eine große Datenmenge enthält. Sie können beispielsweise einen Abfragezeichenfolgen-Parameter verwenden, der eine durch Trennzeichen getrennte Liste der Felder akzeptiert, z.B. */Bestellungen?Felder=ProductID,Menge*. 
+Sie können diesen Ansatz erweitern, um die zurückgegebenen Felder für die einzelnen Elemente zu begrenzen, wenn jedes Element eine große Datenmenge enthält. Sie können beispielsweise einen Abfragezeichenfolgen-Parameter verwenden, der eine durch Trennzeichen getrennte Liste der Felder akzeptiert, z.B. */Bestellungen?Felder=ProductID,Menge*.
 
 Geben Sie für alle optionalen Parameter in Abfragezeichenfolgen aussagekräftige Standardwerte an. Legen Sie z. B. den `limit`-Parameter auf 10 und den `offset`-Parameter auf 0 fest, wenn Sie die Paginierung implementieren; legen Sie den Sortierungsparameter auf den Schlüssel der Ressource fest, wenn Sie Bestellungen implementieren, und legen Sie den `fields`-Parameter auf alle Felder in der Ressource fest, wenn Sie Projektionen unterstützen.
 
 ## <a name="support-partial-responses-for-large-binary-resources"></a>Unterstützung von partielle Antworten für große binäre Ressourcen
 
-Eine Ressource kann große binäre Felder wie z.B. Dateien oder Bilder enthalten. Zum Beheben von Problemen, die durch unzuverlässige und unterbrochene Verbindungen verursacht werden, und zur Verbesserung der Antwortzeiten können Sie zulassen, dass solche Ressourcen in Blöcken abgerufen werden. Dazu muss die Web-API den Accept-Ranges-Header für GET-Anforderungen für große Ressourcen unterstützen. Dieser Header gibt an, dass der GET-Vorgang partielle Anforderungen unterstützt. Die Clientanwendung kann GET-Anforderungen senden, die eine Teilmenge einer Ressource zurückgeben, die als Bytebereich angegeben ist. 
+Eine Ressource kann große binäre Felder wie z.B. Dateien oder Bilder enthalten. Zum Beheben von Problemen, die durch unzuverlässige und unterbrochene Verbindungen verursacht werden, und zur Verbesserung der Antwortzeiten können Sie zulassen, dass solche Ressourcen in Blöcken abgerufen werden. Dazu muss die Web-API den Accept-Ranges-Header für GET-Anforderungen für große Ressourcen unterstützen. Dieser Header gibt an, dass der GET-Vorgang partielle Anforderungen unterstützt. Die Clientanwendung kann GET-Anforderungen senden, die eine Teilmenge einer Ressource zurückgeben, die als Bytebereich angegeben ist.
 
 Erwägen Sie auch die Implementierung von HTTP HEAD-Anforderungen für diese Ressourcen. Eine HEAD-Anforderung ähnelt einer GET-Anforderung, gibt jedoch nur die HTTP-Header zurück, welche die Ressource beschreiben, sowie einen leeren Nachrichtentext. Eine Clientanwendung kann eine HEAD-Anforderung ausgeben, um zu bestimmen, ob eine Ressource mithilfe von partiellen GET-Anforderungen abgerufen wird. Beispiel: 
 
@@ -291,7 +291,7 @@ Erwägen Sie auch die Implementierung von HTTP HEAD-Anforderungen für diese Res
 HEAD https://adventure-works.com/products/10?fields=productImage HTTP/1.1
 ```
 
-Hier ist ein Beispiel für eine Antwortnachricht: 
+Hier ist ein Beispiel für eine Antwortnachricht:
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -329,10 +329,8 @@ Eine Hauptmotivation hinter REST besteht darin, dass der gesamte Ressourcensatz 
 
 > [!NOTE]
 > Derzeit sind keine Standards oder Spezifikationen vorhanden, die die Modellierung des HATEOAS-Prinzips definieren. Die Beispiele in diesem Abschnitt veranschaulichen eine mögliche Lösung.
->
->
 
-Beispielsweise kann die Darstellung einer Bestellung zur Verarbeitung der Beziehung zwischen der Bestellung und dem Kunden Links enthalten, welche die verfügbaren Vorgänge für den Kunden der Bestellung identifizieren. Hier ist eine mögliche Darstellung: 
+Beispielsweise kann die Darstellung einer Bestellung zur Verarbeitung der Beziehung zwischen der Bestellung und dem Kunden Links enthalten, welche die verfügbaren Vorgänge für den Kunden der Bestellung identifizieren. Hier ist eine mögliche Darstellung:
 
 ```json
 {
@@ -343,13 +341,13 @@ Beispielsweise kann die Darstellung einer Bestellung zur Verarbeitung der Bezieh
   "links":[
     {
       "rel":"customer",
-      "href":"https://adventure-works.com/customers/3", 
+      "href":"https://adventure-works.com/customers/3",
       "action":"GET",
-      "types":["text/xml","application/json"] 
+      "types":["text/xml","application/json"]
     },
     {
       "rel":"customer",
-      "href":"https://adventure-works.com/customers/3", 
+      "href":"https://adventure-works.com/customers/3",
       "action":"PUT",
       "types":["application/x-www-form-urlencoded"]
     },
@@ -361,26 +359,26 @@ Beispielsweise kann die Darstellung einer Bestellung zur Verarbeitung der Bezieh
     },
     {
       "rel":"self",
-      "href":"https://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3",
       "action":"GET",
       "types":["text/xml","application/json"]
     },
     {
       "rel":"self",
-      "href":"https://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3",
       "action":"PUT",
       "types":["application/x-www-form-urlencoded"]
     },
     {
       "rel":"self",
-      "href":"https://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3",
       "action":"DELETE",
       "types":[]
     }]
 }
 ```
 
-In diesem Beispiel weist das `links`-Array einen Satz von Links auf. Jeder Link stellt einen Vorgang für eine verknüpfte Entität dar. Die Daten für jeden Link beinhalten die Beziehung („Kunde“), den URI (`https://adventure-works.com/customers/3`), die HTTP-Methode und die unterstützten MIME-Typen. Dies sind alle Informationen, die eine Clientanwendung zum Aufrufen des Vorgangs benötigt. 
+In diesem Beispiel weist das `links`-Array einen Satz von Links auf. Jeder Link stellt einen Vorgang für eine verknüpfte Entität dar. Die Daten für jeden Link beinhalten die Beziehung („Kunde“), den URI (`https://adventure-works.com/customers/3`), die HTTP-Methode und die unterstützten MIME-Typen. Dies sind alle Informationen, die eine Clientanwendung zum Aufrufen des Vorgangs benötigt.
 
 Das `links`-Array enthält auch auf sich selbst verweisende Informationen über die abgerufene Ressource selbst. Diese weisen die Beziehung *self* (selbst) auf.
 
@@ -393,9 +391,10 @@ Es ist sehr unwahrscheinlich, dass eine Web-API statisch bleibt. Aufgrund von ve
 Die Versionsverwaltung ermöglicht einer Web-API das Angeben der Funktionen und Ressourcen, die sie verfügbar macht, und eine Clientanwendung kann Anforderungen an eine bestimmte Version einer Funktion oder einer Ressource senden. In den folgenden Abschnitten sind verschiedene Ansätze mit ihren jeweiligen Vor- und Nachteilen beschrieben.
 
 ### <a name="no-versioning"></a>Keine Versionsverwaltung
-Dies ist der einfachste Ansatz und ist möglicherweise für einige interne APIs akzeptabel. Umfassende Änderungen können als neue Ressourcen oder neue Links dargestellt werden.  Das Hinzufügen von Inhalt zu vorhandenen Ressourcen stellt möglicherweise keine fehlerhafte Änderung dar, da Clientanwendungen, die diesen Inhalt nicht erwarten, ihn einfach ignorieren.
 
-Beispielsweise sollte eine Anforderung an den URI *https://adventure-works.com/customers/3* die Details eines einzelnen Kunden mit den von der Clientanwendung erwarteten Feldern `id`, `name` und `address` zurückgeben:
+Dies ist der einfachste Ansatz und ist möglicherweise für einige interne APIs akzeptabel. Umfassende Änderungen können als neue Ressourcen oder neue Links dargestellt werden. Das Hinzufügen von Inhalt zu vorhandenen Ressourcen stellt möglicherweise keine fehlerhafte Änderung dar, da Clientanwendungen, die diesen Inhalt nicht erwarten, ihn einfach ignorieren.
+
+Beispielsweise sollte eine Anforderung an den URI `https://adventure-works.com/customers/3` die Details eines einzelnen Kunden mit den von der Clientanwendung erwarteten Feldern `id`, `name` und `address` zurückgeben:
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -406,8 +405,6 @@ Content-Type: application/json; charset=utf-8
 
 > [!NOTE]
 > Der Einfachheit halber enthalten die in diesem Abschnitt gezeigten Beispielantworten keine HATEOAS-Links.
->
->
 
 Wenn dem Schema der Kundenressource das `DateCreated` Feld hinzugefügt wird, sieht die Antwort wie folgt aus:
 
@@ -421,9 +418,10 @@ Content-Type: application/json; charset=utf-8
 Vorhandene Clientanwendungen werden möglicherweise weiterhin ordnungsgemäß ausgeführt, wenn sie in der Lage sind, unbekannte Felder zu ignorieren. Neue Clientanwendungen können für die Behandlung dieses neuen Felds konfiguriert werden. Allerdings können radikalere Änderungen am Schema von Ressourcen (z. B. das Entfernen oder Umbenennen von Feldern) oder Änderungen an den Beziehungen zwischen Ressourcen fehlerhafte Änderungen darstellen, die verhindern, dass vorhandene Clientanwendungen nicht ordnungsgemäß funktioniert. In diesen Fällen sollten Sie einen der folgenden Ansätze in Betracht ziehen.
 
 ### <a name="uri-versioning"></a>URI-Versionsverwaltung
+
 Bei jeder Änderung der Web-API oder des Ressourcenschemas fügen Sie eine für jede Ressource eine Versionsnummer für den URI hinzu. Die bereits vorhandenen URIs sollten weiterhin Ressourcen zurückgeben, die ihrem ursprünglichen Schema entsprechen.
 
-Erweiterung des vorherigen Beispiels: Wenn das Feld `address` in untergeordnete Felder umstrukturiert wird, die jeweils einzelne Teile der Adresse enthalten (etwa `streetAddress`, `city`, `state` und `zipCode`), kann diese Version der Ressource über einen URI verfügbar gemacht werden, der eine Versionsnummer enthält (Beispiel: https://adventure-works.com/v2/customers/3:).
+Erweiterung des vorherigen Beispiels: Wenn das Feld `address` in untergeordnete Felder umstrukturiert wird, die jeweils einzelne Teile der Adresse enthalten (etwa `streetAddress`, `city`, `state` und `zipCode`), kann diese Version der Ressource über einen URI verfügbar gemacht werden, der eine Versionsnummer enthält (beispielsweise `https://adventure-works.com/v2/customers/3`):
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -435,16 +433,16 @@ Content-Type: application/json; charset=utf-8
 Dieser Versionsverwaltungsmechanismus ist sehr einfach, hängt jedoch vom Server ab, der die Anforderung an das entsprechende Endgerät weiterleitet. Dieser Mechanismus kann jedoch schwerfällig werden, wenn die API mehrere Iterationen durchläuft und der Server eine Reihe von verschiedenen Versionen unterstützen muss. Aus der Sicht einer Puristen rufen die Clientanwendungen außerdem in allen Fällen dieselben Daten (Kunde 3) ab; daher sollte sich der URI im Grunde nicht abhängig von der Version unterscheiden. Dieses Schema erschwert zudem die Implementierung von HATEOAS, da alle Links die Versionsnummer in den URIs enthalten müssen.
 
 ### <a name="query-string-versioning"></a>Versionsverwaltung der Abfragezeichenfolge
-Anstatt mehrere URIs bereitzustellen, können Sie auch die Version der Ressource angeben, indem Sie in der Abfragezeichenfolge einen Parameter an die HTTP-Anforderung anfügen (Beispiel: *https://adventure-works.com/customers/3?version=2*). Der Versionsparameter sollte einen aussagekräftigen Standardwert wie z. B. „1“ aufweisen, wenn er von älteren Clientanwendungen weggelassen wird.
+
+Anstatt mehrere URIs bereitzustellen, können Sie auch die Version der Ressource angeben, indem Sie in der Abfragezeichenfolge einen Parameter an die HTTP-Anforderung anfügen (Beispiel: `https://adventure-works.com/customers/3?version=2`). Der Versionsparameter sollte einen aussagekräftigen Standardwert wie z. B. „1“ aufweisen, wenn er von älteren Clientanwendungen weggelassen wird.
 
 Dieser Ansatz hat den semantischen Vorteil, dass dieselbe Ressource immer vom gleichen URI abgerufen wird; er hängt jedoch davon ab, dass der Code, der die Anforderung behandelt, die Abfragezeichenfolge analysiert und die entsprechende HTTP-Antwort zurücksendet. Dieser Ansatz bringt beim Implementieren von HATEOAS dieselben Schwierigkeiten mit sich, wie der Mechanismus für die URI-Versionsverwaltung.
 
 > [!NOTE]
 > Einige ältere Webbrowser und Webproxys speichern keine Anforderungen zwischen, deren URI eine Abfragezeichenfolge enthält. Dies kann sich negativ auf die Leistung von Webanwendungen auswirken, die eine Web-API verwenden und in einem solchen Webbrowser ausgeführt werden.
->
->
 
 ### <a name="header-versioning"></a>Header-Versionsverwaltung
+
 Anstatt die Versionsnummer als Abfragezeichenfolgen-Parameter hinzuzufügen, können Sie einen benutzerdefinierten Header implementieren, der die Version der Ressource angibt. Dieser Ansatz erfordert, dass die Clientanwendung allen Anforderungen den entsprechenden Header hinzufügt; der Code, der die Clientanforderung behandelt, kann jedoch einen Standardwert (Version 1) verwenden, wenn der Versionsheader fehlt. In den folgenden Beispielen wird ein benutzerdefinierter Header mit dem Namen *Custom-Header* verwendet. Der Wert dieses Headers gibt die Version der Web-API an.
 
 Version 1:
@@ -478,6 +476,7 @@ Content-Type: application/json; charset=utf-8
 Beachten Sie, dass die HATEOAS-Implementierung wie auch bei den beiden vorhergehenden Ansätzen die Angabe der entsprechenden benutzerdefinierten Header in allen Links erfordert.
 
 ### <a name="media-type-versioning"></a>Versionsverwaltung des Medientyps
+
 Wenn eine Clientanwendung eine HTTP GET-Anforderung an einen Webserver sendet, sollte sie wie weiter oben in diesem Handbuch beschrieben anhand eines Accept-Headers das Format des Inhalts vorgeben, den sie verarbeiten kann. Der Zweck des *Accept*-Headers besteht häufig darin, dass die Clientanwendung angeben kann, ob der Text der Antwort im XML-, JSON- oder einem anderen gängigen Format vorliegt, das der Client analysieren kann. Allerdings ist es möglich, benutzerdefinierte Medientypen zu definieren, die Informationen enthalten, die es der Clientanwendung ermöglichen, die erwartete Version einer Ressource anzugeben. Das folgende Beispiel zeigt eine Anforderung die einen *Accept*-Header mit dem Wert *application/vnd.adventure-works.v1+json* angibt. Das Element *vnd.adventure works.v1* weist den Webserver an, Version 1 der Ressource zurückzugeben, während das Element *json* angibt, dass der Antworttext im JSON-Format zurückgegeben werden soll:
 
 ```HTTP
@@ -502,19 +501,23 @@ Dieser Ansatz ist wohl der ursprünglichste Mechanismus zur Versionsverwaltung u
 > Beim Auswählen einer Strategie für die Versionsverwaltung sollten Sie auch die Auswirkungen auf die Leistung berücksichtigen, insbesondere auf die Zwischenspeicherung auf dem Webserver. Die Schemas der URI- und Abfragezeichenfolge-Versionsverwaltung sind insofern cachefreundlich, dass dieselbe Kombination aus URI und Abfragezeichenfolge jedes Mal auf dieselben Daten verweist.
 >
 > Die Versionsverwaltungsmechanismen für Header und Medientyp erfordern in der Regel zusätzliche Logik, um die Werte im benutzerdefinierten Header oder im Accept-Header zu untersuchen. In einer umfangreichen Umgebung können zahlreiche Clients, die verschiedene Versionen einer Web-API verwenden, zu einer erheblichen Menge von doppelt vorhandenen Daten in einem serverseitigen Cache führen. Dieses Problem wird akut, wenn eine Clientanwendung mit einem Webserver über einen Proxy kommuniziert, der Zwischenspeicherung implementiert und eine Anforderung nur an den Webserver weiterleitet, wenn sein Cache derzeit keine Kopie der angeforderten Daten enthält.
->
->
 
 ## <a name="open-api-initiative"></a>Open API Initiative
+
 Die [Open API Initiative](https://www.openapis.org/) wurde von einem Branchenkonsortium ins Leben gerufen, um REST-API-Beschreibungen anbieterübergreifend zu standardisieren. Im Rahmen dieser Initiative wurde die Swagger 2.0-Spezifikation in OpenAPI Specification (OAS) umbenannt und in die Open API Initiative integriert.
 
 Es kann ratsam sein, OpenAPI für Ihre Web-APIs zu nutzen. Zu berücksichtigende Punkte:
 
 - Die OpenAPI-Spezifikation umfasst eine Reihe von wertenden Richtlinien zum Entwurf einer REST-API. Hierdurch ergeben sich Vorteile bei der Interoperabilität, aber Sie müssen Ihre API mit mehr Sorgfalt entwerfen, damit sie mit der Spezifikation konform ist.
-- Für OpenAPI wird ein Ansatz genutzt, bei dem der Vertrag im Vordergrund steht, und nicht die Implementierung. Dies bedeutet, dass Sie zuerst den API-Vertrag (die Schnittstelle) entwerfen und dann Code schreiben, mit dem der Vertrag implementiert wird. 
+
+- Für OpenAPI wird ein Ansatz genutzt, bei dem der Vertrag im Vordergrund steht, und nicht die Implementierung. Dies bedeutet, dass Sie zuerst den API-Vertrag (die Schnittstelle) entwerfen und dann Code schreiben, mit dem der Vertrag implementiert wird.
+
 - Mit Tools wie Swagger können Clientbibliotheken oder Dokumentationen aus API-Verträgen generiert werden. Informationen hierzu finden Sie beispielsweise unter [ASP.NET Core-Web-API-Hilfeseiten mit Swagger](/aspnet/core/tutorials/web-api-help-pages-using-swagger).
 
 ## <a name="more-information"></a>Weitere Informationen
-* [REST-API-Richtlinien von Microsoft](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md). Ausführliche Empfehlungen für das Entwerfen von öffentlichen REST-APIs.
-* [Web-API-Checkliste](https://mathieu.fenniak.net/the-api-checklist/). Eine nützliche Liste der zu berücksichtigenden Punkte beim Entwerfen und Implementieren einer Web-API.
-* [Open API Initiative](https://www.openapis.org/). Dokumentation und Implementierungsdetails zu Open-API.
+
+- [REST-API-Richtlinien von Microsoft](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md). Ausführliche Empfehlungen für das Entwerfen von öffentlichen REST-APIs.
+
+- [Web-API-Checkliste](https://mathieu.fenniak.net/the-api-checklist/). Eine nützliche Liste der zu berücksichtigenden Punkte beim Entwerfen und Implementieren einer Web-API.
+
+- [Open API Initiative](https://www.openapis.org/). Dokumentation und Implementierungsdetails zu Open-API.

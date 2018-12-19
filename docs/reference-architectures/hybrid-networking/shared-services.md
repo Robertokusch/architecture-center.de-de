@@ -1,68 +1,68 @@
 ---
-title: Implementieren einer Hub-Spoke-Netzwerktopologie mit gemeinsamen Diensten in Azure
-description: Es wird beschrieben, wie Sie eine Hub-Spoke-Netzwerktopologie mit gemeinsamen Diensten in Azure implementieren.
+title: Implementieren einer Hub-Spoke-Netzwerktopologie
+titleSuffix: Azure Reference Architectures
+description: Implementieren Sie eine Hub-Spoke-Netzwerktopologie mit gemeinsamen Diensten in Azure.
 author: telmosampaio
 ms.date: 10/09/2018
-pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
-pnp.series.prev: hub-spoke
-ms.openlocfilehash: 209791950c79760ea8aaafc77ff779d6207410ce
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 37ae02d8ef02f64329d5e5215e5a32df9f0f9491
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916276"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120457"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementieren einer Hub-Spoke-Netzwerktopologie mit gemeinsamen Diensten in Azure
 
 Diese Referenzarchitektur baut auf der [Hub-Spoke][guidance-hub-spoke]-Referenzarchitektur auf, um gemeinsame Dienste in den Hub einzubinden, die von allen Spokes genutzt werden können. Als ersten Schritt zur Migration eines Rechenzentrums zur Cloud und Erstellung eines [virtuellen Rechenzentrums] müssen Sie zunächst die Dienste für Identität und Sicherheit freigeben. Anhand dieser Referenzarchitektur wird veranschaulicht, wie Sie Ihre Active Directory-Dienste aus Ihrem lokalen Rechenzentrum auf Azure ausdehnen und ein virtuelles Netzwerkgerät (Network Virtual Appliance, NVA) hinzufügen, das in einer Hub-Spoke-Topologie als Firewall fungieren kann.  [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
-![[0]][0]
+![Topologie mit gemeinsamen Diensten in Azure](./images/shared-services.png)
 
 *Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
 
 Diese Topologie bietet unter anderem folgende Vorteile:
 
-* **Kosteneinsparungen** durch die Zentralisierung von Diensten, die von mehreren Workloads (z.B. Network Virtual Appliances, kurz NVAs, und DNS-Servern) an einem einzigen Standort gemeinsam genutzt werden können
-* **Umgehung von Abonnementbeschränkungen** durch die Herstellung von Peeringverbindungen zwischen VNETs verschiedener Abonnements und dem zentralen Hub
-* **Trennung der Belange** zwischen zentralen IT-Vorgängen (SecOps, InfraOps) und Workloads (DevOps)
+- **Kosteneinsparungen** durch die Zentralisierung von Diensten, die von mehreren Workloads (z.B. Network Virtual Appliances, kurz NVAs, und DNS-Servern) an einem einzigen Standort gemeinsam genutzt werden können
+- **Umgehung von Abonnementbeschränkungen** durch die Herstellung von Peeringverbindungen zwischen VNETs verschiedener Abonnements und dem zentralen Hub
+- **Trennung der Belange** zwischen zentralen IT-Vorgängen (SecOps, InfraOps) und Workloads (DevOps)
 
 Typische Einsatzmöglichkeiten für diese Architektur sind Folgende:
 
-* Workloads, die in verschiedenen Umgebungen wie Entwicklungs-, Test- und Produktionsumgebungen eingesetzt werden und gemeinsame Dienste wie DNS, IDS, NTP oder AD DS erfordern Gemeinsame Dienste werden im Hub-VNET platziert, während die einzelnen Umgebungen in einem Spoke bereitgestellt werden, um die Isolation beizubehalten.
-* Workloads, bei denen keine Konnektivität untereinander bestehen muss, die jedoch Zugriff auf gemeinsame Dienste erfordern
-* Unternehmen, die auf eine zentrale Steuerung von Sicherheitsmechanismen (z.B. eine Firewall im Hub als DMZ) und eine getrennte Verwaltung von Workloads in den einzelnen Spokes angewiesen sind
+- Workloads, die in verschiedenen Umgebungen wie Entwicklungs-, Test- und Produktionsumgebungen eingesetzt werden und gemeinsame Dienste wie DNS, IDS, NTP oder AD DS erfordern Gemeinsame Dienste werden im Hub-VNET platziert, während die einzelnen Umgebungen in einem Spoke bereitgestellt werden, um die Isolation beizubehalten.
+- Workloads, bei denen keine Konnektivität untereinander bestehen muss, die jedoch Zugriff auf gemeinsame Dienste erfordern
+- Unternehmen, die auf eine zentrale Steuerung von Sicherheitsmechanismen (z.B. eine Firewall im Hub als DMZ) und eine getrennte Verwaltung von Workloads in den einzelnen Spokes angewiesen sind
 
 ## <a name="architecture"></a>Architecture
 
 Die Architektur umfasst die folgenden Komponenten.
 
-* **Lokales Netzwerk**. Ein in einer Organisation betriebenes privates lokales Netzwerk.
+- **Lokales Netzwerk**. Ein in einer Organisation betriebenes privates lokales Netzwerk.
 
-* **VPN-Gerät**: Ein Gerät oder ein Dienst, der externe Konnektivität mit dem lokalen Netzwerk bereitstellt. Bei dem VPN-Gerät kann es sich um ein Hardwaregerät oder eine Softwarelösung wie den Routing- und RAS-Dienst (RRAS) unter Windows Server 2012 handeln. Eine Liste der unterstützten VPN-Appliances und Informationen zur Konfiguration ausgewählter VPN-Geräte für die Verbindung mit Azure finden Sie unter [Informationen zu VPN-Geräten und IPsec-/IKE-Parametern für VPN-Gatewayverbindungen zwischen Standorten][vpn-appliance].
+- **VPN-Gerät**: Ein Gerät oder ein Dienst, der externe Konnektivität mit dem lokalen Netzwerk bereitstellt. Bei dem VPN-Gerät kann es sich um ein Hardwaregerät oder eine Softwarelösung wie den Routing- und RAS-Dienst (RRAS) unter Windows Server 2012 handeln. Eine Liste der unterstützten VPN-Appliances und Informationen zur Konfiguration ausgewählter VPN-Geräte für die Verbindung mit Azure finden Sie unter [Informationen zu VPN-Geräten und IPsec-/IKE-Parametern für VPN-Gatewayverbindungen zwischen Standorten][vpn-appliance].
 
-* **VPN-Gateway für ein virtuelles Netzwerk oder ExpressRoute-Gateway**: Über das Gateway für virtuelle Netzwerke kann das VNET zur Konnektivität mit Ihrem lokalen Netzwerk eine Verbindung mit dem VPN-Gerät oder eine ExpressRoute-Verbindung herstellen. Weitere Informationen finden Sie unter [Verbinden eines lokalen Netzwerks mit einem virtuellen Microsoft Azure-Netzwerk][connect-to-an-Azure-vnet].
+- **VPN-Gateway für ein virtuelles Netzwerk oder ExpressRoute-Gateway**: Über das Gateway für virtuelle Netzwerke kann das VNET zur Konnektivität mit Ihrem lokalen Netzwerk eine Verbindung mit dem VPN-Gerät oder eine ExpressRoute-Verbindung herstellen. Weitere Informationen finden Sie unter [Verbinden eines lokalen Netzwerks mit einem virtuellen Microsoft Azure-Netzwerk][connect-to-an-Azure-vnet].
 
 > [!NOTE]
 > In den Bereitstellungsskripts für diese Referenzarchitektur werden ein VPN-Gateway für die Konnektivität und ein VNET in Azure verwendet, um Ihr lokales Netzwerk zu simulieren.
 
-* **Hub-VNET**: Das Azure-VNET, das als Hub in der Hub-Spoke-Topologie verwendet wird. Der Hub ist der zentrale Konnektivitätspunkt für Ihr lokales Netzwerk, mit dem Sie Dienste hosten, die von den verschiedenen in den Spoke-VNETs gehosteten Workloads genutzt werden können.
+- **Hub-VNET**: Das Azure-VNET, das als Hub in der Hub-Spoke-Topologie verwendet wird. Der Hub ist der zentrale Konnektivitätspunkt für Ihr lokales Netzwerk, mit dem Sie Dienste hosten, die von den verschiedenen in den Spoke-VNETs gehosteten Workloads genutzt werden können.
 
-* **Gatewaysubnetz**: Die Gateways für die virtuellen Netzwerke befinden sich im selben Subnetz.
+- **Gatewaysubnetz**: Die Gateways für die virtuellen Netzwerke befinden sich im selben Subnetz.
 
-* **Subnetz für gemeinsame Dienste**: Ein Subnetz im Hub-VNET, das für das Hosten von Diensten verwendet wird, die von allen Spokes gemeinsam genutzt werden können (z.B. DNS oder AD DS).
+- **Subnetz für gemeinsame Dienste**: Ein Subnetz im Hub-VNET, das für das Hosten von Diensten verwendet wird, die von allen Spokes gemeinsam genutzt werden können (z.B. DNS oder AD DS).
 
-* **DMZ-Subnetz**: Ein Subnetz im Hub-VNET zum Hosten von NVAs, die als Sicherheitseinrichtungen, z.B. Firewalls, dienen können.
+- **DMZ-Subnetz**: Ein Subnetz im Hub-VNET zum Hosten von NVAs, die als Sicherheitseinrichtungen, z.B. Firewalls, dienen können.
 
-* **Spoke-VNETs**: Ein oder mehrere Azure-VNETs, die als Spokes in der Hub-Spoke-Topologie verwendet werden. Spokes können verwendet werden, um Workloads in ihren eigenen VNETs, die getrennt von anderen Spokes verwaltet werden, zu isolieren. Jede Workload kann mehrere Schichten umfassen, wobei mehrere Subnetze über Azure Load Balancer verbunden sind. Weitere Informationen zur Anwendungsinfrastruktur finden Sie unter [Ausführen von Windows-VM-Workloads][windows-vm-ra] und [Ausführen von Linux-VM-Workloads][linux-vm-ra].
+- **Spoke-VNETs**: Ein oder mehrere Azure-VNETs, die als Spokes in der Hub-Spoke-Topologie verwendet werden. Spokes können verwendet werden, um Workloads in ihren eigenen VNETs, die getrennt von anderen Spokes verwaltet werden, zu isolieren. Jede Workload kann mehrere Schichten umfassen, wobei mehrere Subnetze über Azure Load Balancer verbunden sind. Weitere Informationen zur Anwendungsinfrastruktur finden Sie unter [Ausführen von Windows-VM-Workloads][windows-vm-ra] und [Ausführen von Linux-VM-Workloads][linux-vm-ra].
 
-* **VNET-Peering**: Über eine [Peeringverbindung][vnet-peering] können zwei VNETs in derselben Azure-Region miteinander verbunden werden. Peeringverbindungen sind nicht-transitive Verbindungen zwischen VNETs mit niedrigen Latenzen. Sobald eine Peeringverbindung hergestellt wurde, tauschen die VNETs ohne Einsatz eines Routers Datenverkehr über den Azure-Backbone aus. In einer Hub-Spoke-Netzwerktopologie wird durch VNET-Peering eine Verbindung zwischen dem Hub und den einzelnen Spokes hergestellt.
+- **VNET-Peering**: Über eine [Peeringverbindung][vnet-peering] können zwei VNETs in derselben Azure-Region miteinander verbunden werden. Peeringverbindungen sind nicht-transitive Verbindungen zwischen VNETs mit niedrigen Latenzen. Sobald eine Peeringverbindung hergestellt wurde, tauschen die VNETs ohne Einsatz eines Routers Datenverkehr über den Azure-Backbone aus. In einer Hub-Spoke-Netzwerktopologie wird durch VNET-Peering eine Verbindung zwischen dem Hub und den einzelnen Spokes hergestellt.
 
 > [!NOTE]
 > In diesem Artikel werden ausschließlich [Resource Manager](/azure/azure-resource-manager/resource-group-overview)-Bereitstellungen behandelt, Sie können jedoch auch eine Verbindung zwischen einem klassischen VNET und einem Resource Manager-VNET im selben Abonnement herstellen. Auf diese Weise können Ihre Spokes klassische Bereitstellungen hosten und trotzdem von gemeinsamen Diensten im Hub profitieren.
 
 ## <a name="recommendations"></a>Empfehlungen
 
-Alle Empfehlungen für die [Hub-Spoke][guidance-hub-spoke]-Referenzarchitektur gelten auch für die Referenzarchitektur für gemeinsame Dienste. 
+Alle Empfehlungen für die [Hub-Spoke][guidance-hub-spoke]-Referenzarchitektur gelten auch für die Referenzarchitektur für gemeinsame Dienste.
 
 Außerdem gelten die folgenden Empfehlungen für die meisten Szenarien mit gemeinsamen Diensten. Sofern Sie keine besonderen Anforderungen haben, die Vorrang haben, sollten Sie diese Empfehlungen befolgen.
 
@@ -74,7 +74,7 @@ Falls Sie Gruppenrichtlinienobjekte nutzen, die Sie für Azure und Ihre lokale U
 
 ### <a name="security"></a>Sicherheit
 
-Wenn Sie Workloads aus Ihrer lokalen Umgebung nach Azure verschieben, müssen einige dieser Workloads auf VMs gehostet werden. Aus Gründen der Konformität müssen Sie für Datenverkehr, der diese Workloads durchläuft, unter Umständen Einschränkungen erzwingen. 
+Wenn Sie Workloads aus Ihrer lokalen Umgebung nach Azure verschieben, müssen einige dieser Workloads auf VMs gehostet werden. Aus Gründen der Konformität müssen Sie für Datenverkehr, der diese Workloads durchläuft, unter Umständen Einschränkungen erzwingen.
 
 Sie können virtuelle Netzwerkgeräte in Azure verwenden, um unterschiedliche Arten von Sicherheits- und Leistungsdiensten zu hosten. Wenn Sie derzeit mit einem bestimmten Satz von lokalen Geräten vertraut sind, ist es ratsam, jeweils die gleichen virtualisierten Geräte in Azure zu verwenden (falls zutreffend).
 
@@ -87,7 +87,7 @@ Sie können virtuelle Netzwerkgeräte in Azure verwenden, um unterschiedliche Ar
 
 Stellen Sie sicher, dass Sie die [Begrenzung der Anzahl von VNET-Peerings pro VNET][vnet-peering-limit] in Azure einhalten. Falls Sie mehr Spokes als die maximal zulässige Anzahl benötigen, sollten Sie eventuell eine Hub-Spoke-Hub-Spoke-Topologie erstellen, bei der die erste Ebene von Spokes auch als Hub fungiert. Im folgenden Diagramm wird diese Vorgehensweise veranschaulicht.
 
-![[3]][3]
+![Hub-Spoke-Hub-Spoke-Topologie in Azure](./images/hub-spokehub-spoke.svg)
 
 Berücksichtigen Sie auch die Dienste, die im Hub gemeinsam genutzt werden, um sicherzustellen, dass sich der Hub für eine größere Anzahl von Spokes skalieren lässt. Wenn Ihr Hub beispielsweise Firewalldienste bereitstellt, sollten Sie beim Hinzufügen mehrerer Spokes die Bandbreitenbeschränkungen Ihrer Firewalllösung berücksichtigen. Es wird empfohlen, einige dieser gemeinsamen Dienste auf eine zweite Hubebene zu verlagern.
 
@@ -114,28 +114,29 @@ In diesem Schritt wird das simulierte lokale Datencenter als Azure-VNET bereitge
 
 1. Navigieren Sie zum Ordner `hybrid-networking\shared-services-stack\` des GitHub-Repositorys.
 
-2. Öffnen Sie die Datei `onprem.json` . 
+2. Öffnen Sie die Datei `onprem.json` .
 
-3. Suchen Sie nach allen Instanzen von `UserName`, `adminUserName`, `Password` und `adminPassword`. Geben Sie in den Parametern Werte für den Benutzernamen und das Kennwort ein, und speichern Sie die Datei. 
+3. Suchen Sie nach allen Instanzen von `UserName`, `adminUserName`, `Password` und `adminPassword`. Geben Sie in den Parametern Werte für den Benutzernamen und das Kennwort ein, und speichern Sie die Datei.
 
 4. Führen Sie den folgenden Befehl aus:
 
    ```bash
    azbb -s <subscription_id> -g onprem-vnet-rg -l <location> -p onprem.json --deploy
    ```
+
 5. Warten Sie, bis die Bereitstellung abgeschlossen ist. Bei dieser Bereitstellung werden ein virtuelles Netzwerk, ein virtueller Windows-Computer und ein VPN-Gateway erstellt. Die Erstellung des VPN-Gateways kann mehr als 40 Minuten in Anspruch nehmen.
 
 ### <a name="deploy-the-hub-vnet"></a>Bereitstellen des Hub-VNet
 
 In diesem Schritt wird das Hub-VNET bereitgestellt und mit dem simulierten lokalen VNET verbunden.
 
-1. Öffnen Sie die Datei `hub-vnet.json` . 
+1. Öffnen Sie die Datei `hub-vnet.json` .
 
-2. Suchen Sie nach `adminPassword`, und geben Sie in den Parametern einen Benutzernamen und ein Kennwort ein. 
+2. Suchen Sie nach `adminPassword`, und geben Sie in den Parametern einen Benutzernamen und ein Kennwort ein.
 
 3. Suchen Sie nach allen Instanzen von `sharedKey`, und geben Sie einen Wert für einen freigegebenen Schlüssel ein. Speichern Sie die Datei .
 
-   ```bash
+   ```json
    "sharedKey": "abc123",
    ```
 
@@ -153,14 +154,14 @@ In diesem Schritt werden AD DS-Domänencontroller in Azure bereitgestellt.
 
 1. Öffnen Sie die Datei `hub-adds.json` .
 
-2. Suchen Sie nach allen Instanzen von `Password` und `adminPassword`. Geben Sie in den Parametern Werte für den Benutzernamen und das Kennwort ein, und speichern Sie die Datei. 
+2. Suchen Sie nach allen Instanzen von `Password` und `adminPassword`. Geben Sie in den Parametern Werte für den Benutzernamen und das Kennwort ein, und speichern Sie die Datei.
 
 3. Führen Sie den folgenden Befehl aus:
 
    ```bash
    azbb -s <subscription_id> -g hub-adds-rg -l <location> -p hub-adds.json --deploy
    ```
-  
+
 Dieser Bereitstellungsschritt kann einige Minuten dauern, da die beiden virtuellen Computer der Domäne hinzugefügt werden, die im simulierten lokalen Datencenter gehostet wird, und AD DS darauf installiert wird.
 
 ### <a name="deploy-the-spoke-vnets"></a>Bereitstellen der Spoke-VNets
@@ -169,14 +170,14 @@ In diesem Schritt werden die Spoke-VNETs bereitgestellt.
 
 1. Öffnen Sie die Datei `spoke1.json` .
 
-2. Suchen Sie nach `adminPassword`, und geben Sie in den Parametern einen Benutzernamen und ein Kennwort ein. 
+2. Suchen Sie nach `adminPassword`, und geben Sie in den Parametern einen Benutzernamen und ein Kennwort ein.
 
 3. Führen Sie den folgenden Befehl aus:
 
    ```bash
    azbb -s <subscription_id> -g spoke1-vnet-rg -l <location> -p spoke1.json --deploy
    ```
-  
+
 4. Wiederholen Sie die Schritte 1 und 2 für die Datei `spoke2.json`.
 
 5. Führen Sie den folgenden Befehl aus:
@@ -199,7 +200,7 @@ In diesem Schritt wird ein NVA im Subnetz `dmz` bereitgestellt.
 
 1. Öffnen Sie die Datei `hub-nva.json` .
 
-2. Suchen Sie nach `adminPassword`, und geben Sie in den Parametern einen Benutzernamen und ein Kennwort ein. 
+2. Suchen Sie nach `adminPassword`, und geben Sie in den Parametern einen Benutzernamen und ein Kennwort ein.
 
 3. Führen Sie den folgenden Befehl aus:
 
@@ -207,7 +208,7 @@ In diesem Schritt wird ein NVA im Subnetz `dmz` bereitgestellt.
    azbb -s <subscription_id> -g hub-nva-rg -l <location> -p hub-nva.json --deploy
    ```
 
-### <a name="test-connectivity"></a>Testen der Konnektivität 
+### <a name="test-connectivity"></a>Testen der Konnektivität
 
 Testen Sie die Konnektivität zwischen der simulierten lokalen Umgebung und dem Hub-VNET.
 
@@ -220,6 +221,7 @@ Testen Sie die Konnektivität zwischen der simulierten lokalen Umgebung und dem 
    ```powershell
    Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
    ```
+
 Die Ausgabe sollte in etwa wie folgt aussehen:
 
 ```powershell
@@ -240,7 +242,6 @@ Wiederholen Sie die gleichen Schritte, um die Konnektivität mit den Spoke-VNETs
 Test-NetConnection 10.1.0.68 -CommonTCPPort RDP
 Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
 ```
-
 
 <!-- links -->
 
@@ -264,6 +265,4 @@ Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
 
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
-[0]: ./images/shared-services.png "Topologie mit gemeinsamen Diensten in Azure"
-[3]: ./images/hub-spokehub-spoke.svg "Hub-Spoke-Hub-Spoke-Topologie in Azure"
 [ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/

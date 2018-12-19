@@ -1,60 +1,62 @@
 ---
-title: Echtzeitbewertung von Python scikit-learn- und Deep Learning-Modellen in Azure
+title: Echtzeitbewertung von Python-Modellen
+titleSuffix: Azure Reference Architectures
 description: Diese Referenzarchitektur zeigt, wie Sie Python-Modelle als Webdienste in Azure bereitstellen, um in Echtzeit Vorhersagen zu treffen.
 author: njray
 ms.date: 11/09/2018
-ms.openlocfilehash: ff385e232c69e46b0afc6b15e73983bd856b9b2b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.custom: azcat-ai
+ms.openlocfilehash: e2312d1d1d2444f9915f4e6aa067c1487e096d3e
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902577"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120355"
 ---
-# <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Echtzeitbewertung von Python scikit-learn- und Deep Learning-Modellen in Azure
+# <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Echtzeitbewertung von Python-Modellen (Scikit-learn) und Deep Learning-Modellen in Azure
 
 Diese Referenzarchitektur zeigt, wie Sie Python-Modelle als Webdienste bereitstellen, um in Echtzeit Vorhersagen zu treffen. In diesem Artikel werden zwei Szenarien behandelt: die Bereitstellung von regulären Python-Modellen und die spezifischen Anforderungen der Bereitstellung von Deep Learning-Modellen. Für beide Szenarien wird die hier dargestellte Architektur verwendet.
 
 Auf GitHub sind zwei Referenzimplementierungen für diese Architektur verfügbar – eine für [reguläre Python-Modelle][github-python] und eine für [Deep Learning-Modelle][github-dl].
 
-![](./_images/python-model-architecture.png)
+![Architekturdiagramm für die Echtzeitbewertung von Python-Modellen in Azure](./_images/python-model-architecture.png)
 
 ## <a name="scenarios"></a>Szenarien
 
 Die Referenzimplementierungen veranschaulichen zwei Szenarien, in denen diese Architektur verwendet wird.
 
-**Szenario 1: Abgleich von häufig gestellten Fragen (FAQ)**. Dieses Szenario zeigt, wie Sie ein Modell zum Abgleichen von häufig gestellten Fragen (FAQ) als Webdienst bereitstellen, um die Fragen von Benutzern vorherzusagen. In diesem Szenario bezieht sich der Begriff „Eingabedaten“ im Architekturdiagramm auf Textzeichenfolgen mit Fragen von Benutzern, die mit einer Liste von häufig gestellten Fragen abgeglichen werden. Dieses Szenario ist für die [scikit-learn][scikit]-Bibliothek für maschinelles Lernen für Python konzipiert, es kann jedoch für beliebige Szenarien mit Python-Modellen generalisiert werden, um in Echtzeit Vorhersagen zu treffen.
+**Szenario 1: Abgleich von häufig gestellten Fragen (FAQ):** Dieses Szenario zeigt, wie Sie ein Modell zum Abgleichen von häufig gestellten Fragen (FAQ) als Webdienst bereitstellen, um die Fragen von Benutzern vorherzusagen. In diesem Szenario bezieht sich der Begriff „Eingabedaten“ im Architekturdiagramm auf Textzeichenfolgen mit Fragen von Benutzern, die mit einer Liste von häufig gestellten Fragen abgeglichen werden. Dieses Szenario ist für die [scikit-learn][scikit]-Bibliothek für maschinelles Lernen für Python konzipiert, es kann jedoch für beliebige Szenarien mit Python-Modellen generalisiert werden, um in Echtzeit Vorhersagen zu treffen.
 
 In diesem Szenario wird eine Teilmenge der Stack Overflow-Fragedaten verwendet, die die ursprünglichen Fragen (als JavaScript markiert), die zugehörigen doppelten Fragen und Antworten umfasst. Das Szenario trainiert eine scikit-learn-Pipeline zum Vorhersagen der Übereinstimmungswahrscheinlichkeit einer doppelten Frage mit den einzelnen ursprünglichen Fragen. Diese Vorhersagen werden in Echtzeit mithilfe eines REST-API-Endpunkts getroffen.
 
 Der Anwendungsfluss für diese Architektur sieht wie folgt aus:
 
-1.  Der Client sendet eine HTTP-POST-Anforderung mit den codierten Fragedaten.
+1. Der Client sendet eine HTTP-POST-Anforderung mit den codierten Fragedaten.
 
-2.  Die Flask-App extrahiert die Frage aus der Anforderung.
+2. Die Flask-App extrahiert die Frage aus der Anforderung.
 
-3.  Die Frage wird zur Featurebereitstellung und Bewertung an das scikit-learn-Pipelinemodell gesendet.
+3. Die Frage wird zur Featurebereitstellung und Bewertung an das scikit-learn-Pipelinemodell gesendet.
 
-4.  Die übereinstimmenden häufig gestellten Fragen werden mit ihren Bewertungen an ein JSON-Objekt weitergeleitet und an den Client zurückgegeben.
+4. Die übereinstimmenden häufig gestellten Fragen werden mit ihren Bewertungen an ein JSON-Objekt weitergeleitet und an den Client zurückgegeben.
 
 Hier sehen Sie einen Screenshot der Beispiel-App, die die Ergebnisse nutzt:
 
-![](./_images/python-faq-matches.png)
+![Screenshot der Beispiel-App](./_images/python-faq-matches.png)
 
-**Szenario 2: Bildklassifizierung.** Dieses Szenario zeigt, wie Sie ein Modell für ein künstliches neuronales Netzwerk (Convolutional Neural Network, CNN) als Webdienst bereitstellen, um Vorhersagen für Bilder zu generieren. In diesem Szenario bezieht sich der Begriff „Eingabedaten“ im Architekturdiagramm auf Bilddateien. Für Aufgaben wie die Bildklassifizierung und Erkennung von Objekten sind CNNs eine äußerst effektive Lösung für maschinelles Sehen. Dieses Szenario ist für die Frameworks TensorFlow, Keras (mit dem TensorFlow-Back-End) und PyTorch konzipiert. Es kann jedoch für beliebige Szenarien generalisiert werden, die mithilfe von Deep Learning-Modellen in Echtzeit Vorhersagen treffen.
+**Szenario 2: Bildklassifizierung:** Dieses Szenario zeigt, wie Sie ein Modell für ein künstliches neuronales Netzwerk (Convolutional Neural Network, CNN) als Webdienst bereitstellen, um Vorhersagen für Bilder zu generieren. In diesem Szenario bezieht sich der Begriff „Eingabedaten“ im Architekturdiagramm auf Bilddateien. Für Aufgaben wie die Bildklassifizierung und Erkennung von Objekten sind CNNs eine äußerst effektive Lösung für maschinelles Sehen. Dieses Szenario ist für die Frameworks TensorFlow, Keras (mit dem TensorFlow-Back-End) und PyTorch konzipiert. Es kann jedoch für beliebige Szenarien generalisiert werden, die mithilfe von Deep Learning-Modellen in Echtzeit Vorhersagen treffen.
 
 In diesem Szenario wird ein für ein ImageNet-1K-Dataset (1.000 Klassen) vortrainiertes ResNet-152-Modell verwendet, um die Kategorie vorherzusagen, zu der ein Bild gehört (siehe unten stehende Abbildung). Diese Vorhersagen werden in Echtzeit mithilfe eines REST-API-Endpunkts getroffen.
 
-![](./_images/python-example-predictions.png)
+![Beispiel für Vorhersagen](./_images/python-example-predictions.png)
 
 Der Anwendungsfluss für das Deep Learning-Modell sieht wie folgt aus:
 
-1.  Der Client sendet eine HTTP-POST-Anforderung mit den codierten Bilddaten.
+1. Der Client sendet eine HTTP-POST-Anforderung mit den codierten Bilddaten.
 
-2.  Die Flask-App extrahiert das Bild aus der Anforderung.
+2. Die Flask-App extrahiert das Bild aus der Anforderung.
 
-3.  Das Bild wird vorverarbeitet und zur Bewertung an das Modell gesendet.
+3. Das Bild wird vorverarbeitet und zur Bewertung an das Modell gesendet.
 
-4.  Das Bewertungsergebnis wird an ein JSON-Objekt weitergeleitet und an den Client zurückgegeben.
+4. Das Bewertungsergebnis wird an ein JSON-Objekt weitergeleitet und an den Client zurückgegeben.
 
 ## <a name="architecture"></a>Architecture
 
@@ -70,7 +72,7 @@ Der **[Docker-Hub][docker]** dient zum Speichern des im Kubernetes-Cluster berei
 
 ## <a name="performance-considerations"></a>Überlegungen zur Leistung
 
-Für Architekturen zur Echtzeitbewertung ist die Durchsatzleistung ein entscheidender Faktor. Für reguläre Python-Modelle sind CPUs, die zum Bewältigen der Workload ausreichen, in der Regel akzeptabel. 
+Für Architekturen zur Echtzeitbewertung ist die Durchsatzleistung ein entscheidender Faktor. Für reguläre Python-Modelle sind CPUs, die zum Bewältigen der Workload ausreichen, in der Regel akzeptabel.
 
 Für Deep Learning-Workloads, bei denen sich die Geschwindigkeit als Engpass erweisen kann, bieten GPUs im Allgemeinen jedoch eine bessere [Leistung][gpus-vs-cpus] als CPUs. Um die GPU-Leistung mit CPUs zu erreichen, ist normalerweise ein Cluster mit einer großen Anzahl von CPUs erforderlich.
 
@@ -90,11 +92,11 @@ Verwenden Sie das Feature [Azure Monitor für Container][monitor-containers], um
 
 Überwachen Sie während der Bereitstellung Ihrer Anwendung den AKS-Cluster, um sicherzustellen, dass er wie erwartet funktioniert, alle Knoten funktionsfähig sind und alle Pods ausgeführt werden. Sie können den Podstatus mit dem Befehlszeilentool [Kubectl][kubectl] abrufen, Kubernetes enthält jedoch auch ein Webdashboard für die grundlegende Überwachung des Clusterstatus und Verwaltung.
 
-![](./_images/python-kubernetes-dashboard.png)
+![Screenshot des Kubernetes-Dashboards](./_images/python-kubernetes-dashboard.png)
 
 Den Gesamtzustand des Clusters und der Knoten können Sie im Abschnitt **Knoten** des Kubernetes-Dashboards einsehen. Wenn ein Knoten inaktiv oder ausgefallen ist, können Sie die Fehlerprotokolle auf dieser Seite anzeigen. Informationen zur Anzahl von Pods und zum Status Ihrer Bereitstellung finden Sie in den Abschnitten **Pods** und **Bereitstellungen**.
 
-### <a name="aks-logs"></a>AKS-Protokolle 
+### <a name="aks-logs"></a>AKS-Protokolle
 
 AKS protokolliert automatisch alle stdout-/stderr-Meldungen in den Protokollen der Pods im Cluster. Verwenden Sie Kubectl, um diese Meldungen und auch Ereignisse sowie Protokolle auf Knotenebene anzuzeigen. Ausführliche Informationen finden Sie in den Bereitstellungsschritten.
 
@@ -120,10 +122,12 @@ Steuern Sie den Zugriff auf die von Ihnen bereitgestellten Azure-Ressourcen mit 
 
 ## <a name="deployment"></a>Bereitstellung
 
-Befolgen Sie die Schritte im GitHub-Repository, um diese Referenzarchitektur bereitzustellen: 
+Befolgen Sie die Schritte im GitHub-Repository, um diese Referenzarchitektur bereitzustellen:
 
-  - [Reguläre Python-Modelle][github-python]
-  - [Deep Learning-Modelle][github-dl]
+- [Reguläre Python-Modelle][github-python]
+- [Deep Learning-Modelle][github-dl]
+
+<!-- links -->
 
 [aad-auth]: /azure/aks/aad-integration
 [acr]: /azure/container-registry/
@@ -150,4 +154,3 @@ Befolgen Sie die Schritte im GitHub-Repository, um diese Referenzarchitektur ber
 [scikit]: https://pypi.org/project/scikit-learn/
 [security-center]: /azure/security-center/security-center-intro
 [vm]: /azure/virtual-machines/
-

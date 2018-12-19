@@ -1,57 +1,59 @@
 ---
 title: Implementieren einer DMZ zwischen Azure und dem Internet
+titleSuffix: Azure Reference Architectures
 description: Erfahren Sie, wie Sie eine sichere Hybrid-Netzwerkarchitektur mit Internetzugriff in Azure implementieren.
 author: telmosampaio
 ms.date: 10/22/2018
+ms.custom: seodec18
 pnp.series.title: Network DMZ
 pnp.series.next: nva-ha
 pnp.series.prev: secure-vnet-hybrid
 cardTitle: DMZ between Azure and the Internet
-ms.openlocfilehash: 8d394d8cacd17b3af2b3de13ecb2c3181ef568ba
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.openlocfilehash: ec87cf9aa69bbfea9e40f740fe27e3183bc45fc7
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295621"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119981"
 ---
-# <a name="dmz-between-azure-and-the-internet"></a>DMZ zwischen Azure und dem Internet
+# <a name="implement-a-dmz-between-azure-and-the-internet"></a>Implementieren einer DMZ zwischen Azure und dem Internet
 
-Diese Referenzarchitektur zeigt ein sicheres Hybridnetzwerk, das ein lokales Netzwerk in Azure erweitert und auch Internetdatenverkehr zulässt. [**So stellen Sie diese Lösung bereit**.](#deploy-the-solution)
+Diese Referenzarchitektur zeigt ein sicheres Hybridnetzwerk, das ein lokales Netzwerk in Azure erweitert und auch Internetdatenverkehr zulässt. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
-[![0]][0] 
+![Sichere Hybrid-Netzwerkarchitektur](./images/dmz-public.png)
 
 *Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
 
-Diese Referenzarchitektur erweitert die Architektur, die in [Implementieren einer DMZ zwischen Azure und Ihrem lokalen Rechenzentrum][implementing-a-secure-hybrid-network-architecture] beschrieben wird. Dabei wird der privaten DMZ, die den Datenverkehr aus dem lokalen Netzwerk verwaltet, eine öffentliche DMZ für den Internetdatenverkehr hinzugefügt. 
+Diese Referenzarchitektur erweitert die Architektur, die in [Implementieren einer DMZ zwischen Azure und Ihrem lokalen Rechenzentrum][implementing-a-secure-hybrid-network-architecture] beschrieben wird. Dabei wird der privaten DMZ, die den Datenverkehr aus dem lokalen Netzwerk verwaltet, eine öffentliche DMZ für den Internetdatenverkehr hinzugefügt.
 
 Typische Einsatzmöglichkeiten für diese Architektur sind:
 
-* Hybridanwendungen, in denen Workloads teilweise lokal und teilweise in Azure ausgeführt werden.
-* Azure-Infrastruktur, die eingehenden Datenverkehr von lokalen Quellen und dem Internet weiterleitet
+- Hybridanwendungen, in denen Workloads teilweise lokal und teilweise in Azure ausgeführt werden.
+- Azure-Infrastruktur, die eingehenden Datenverkehr von lokalen Quellen und dem Internet weiterleitet
 
 ## <a name="architecture"></a>Architecture
 
 Die Architektur umfasst die folgenden Komponenten.
 
-* **Öffentliche IP-Adresse:** Die IP-Adresse des öffentlichen Endpunkts. Externe Benutzer, die mit dem Internet verbunden sind, können über diese Adresse auf das System zugreifen.
-* **Virtuelles Netzwerkgerät:** Diese Architektur umfasst einen separaten Pool von virtuellen Netzwerkgeräten (Network Virtual Appliance, NVA) für Datenverkehr aus dem Internet.
-* **Azure Load Balancer:** Alle aus dem Internet eingehende Anforderungen werden über den Lastenausgleich auf die NVAs in der öffentlichen DMZ verteilt.
-* **Öffentliche DMZ – eingehendes Subnetz:** Dieses Subnetz akzeptiert Anforderungen vom Azure Load Balancer. Eingehende Anforderungen werden an eine der NVAs in der öffentlichen DMZ weitergeleitet.
-* **Öffentliche DMZ – ausgehendes Subnetz:** Anforderungen, die von der NVA genehmigt wurden, werden über dieses Subnetz an den internen Lastenausgleich für die Webebene weitergeleitet.
+- **Öffentliche IP-Adresse:** Die IP-Adresse des öffentlichen Endpunkts. Externe Benutzer, die mit dem Internet verbunden sind, können über diese Adresse auf das System zugreifen.
+- **Virtuelles Netzwerkgerät:** Diese Architektur umfasst einen separaten Pool von virtuellen Netzwerkgeräten (Network Virtual Appliance, NVA) für Datenverkehr aus dem Internet.
+- **Azure Load Balancer:** Alle aus dem Internet eingehende Anforderungen werden über den Lastenausgleich auf die NVAs in der öffentlichen DMZ verteilt.
+- **Öffentliche DMZ – eingehendes Subnetz:** Dieses Subnetz akzeptiert Anforderungen vom Azure Load Balancer. Eingehende Anforderungen werden an eine der NVAs in der öffentlichen DMZ weitergeleitet.
+- **Öffentliche DMZ – ausgehendes Subnetz:** Anforderungen, die von der NVA genehmigt wurden, werden über dieses Subnetz an den internen Lastenausgleich für die Webebene weitergeleitet.
 
 ## <a name="recommendations"></a>Empfehlungen
 
-Die folgenden Empfehlungen gelten für die meisten Szenarios. Sofern Sie keine besonderen Anforderungen haben, die Vorrang haben, sollten Sie diese Empfehlungen befolgen. 
+Die folgenden Empfehlungen gelten für die meisten Szenarios. Sofern Sie keine besonderen Anforderungen haben, die Vorrang haben, sollten Sie diese Empfehlungen befolgen.
 
 ### <a name="nva-recommendations"></a>Empfehlungen für virtuelle Netzwerkgeräte
 
 Verwenden Sie einen Satz von NVAs für Datenverkehr aus dem Internet und einen anderen für Datenverkehr mit lokalem Ursprung. Wenn Sie für beides nur einen Satz von NVAs verwenden, stellt dies ein Sicherheitsrisiko dar, da kein wirksamer Sicherheitsbereich zwischen den beiden Arten von Netzwerkdatenverkehr aufgebaut wird. Separate NVAs erleichtern das Überprüfen von Sicherheitsregeln und verdeutlichen, welche Regeln der eingehenden Netzwerkanforderung entsprechen. Einen Satz von NVAs implementiert nur Regeln für den Internetdatenverkehr, während ein anderer Satz von NVAs nur Regeln für den lokalen Datenverkehr implementiert.
 
-Schließen Sie eine Ebene-7-NVA ein, um Anwendungsverbindungen auf NVA-Ebene zu beenden und Kompatibilität zwischen den Back-End-Ebenen sicherzustellen. Dies garantiert symmetrischen Konnektivität, bei der Antwortdatenverkehr von den Back-End-Ebenen über die NVA zurückgegeben wird.  
+Schließen Sie eine Ebene-7-NVA ein, um Anwendungsverbindungen auf NVA-Ebene zu beenden und Kompatibilität zwischen den Back-End-Ebenen sicherzustellen. Dies garantiert symmetrischen Konnektivität, bei der Antwortdatenverkehr von den Back-End-Ebenen über die NVA zurückgegeben wird.
 
 ### <a name="public-load-balancer-recommendations"></a>Empfehlungen für den öffentlichen Lastenausgleich
 
-Für mehr Skalierbarkeit und Verfügbarkeit stellen Sie die NVAs der öffentlichen DMZ in einer [Verfügbarkeitsgruppe][availability-set] bereit und verwenden einen [Lastenausgleich mit Internetzugriff][load-balancer], um Internetanforderungen auf die NVAs in der Verfügbarkeitsgruppe zu verteilen.  
+Für mehr Skalierbarkeit und Verfügbarkeit stellen Sie die NVAs der öffentlichen DMZ in einer [Verfügbarkeitsgruppe][availability-set] bereit und verwenden einen [Lastenausgleich mit Internetzugriff][load-balancer], um Internetanforderungen auf die NVAs in der Verfügbarkeitsgruppe zu verteilen.
 
 Konfigurieren Sie den Lastenausgleich so, dass dieser nur Anforderungen über die Ports für den Internetdatenverkehr akzeptiert. Beschränken Sie z.B. eingehende HTTP-Anforderungen auf Port 80 und eingehende HTTPS-Anforderungen auf Port 443.
 
@@ -73,16 +75,15 @@ Wenn keine Gatewaykonnektivität zwischen Ihrem lokalen Netzwerk und Azure beste
 
 Diese Referenzarchitektur implementiert mehrere Sicherheitsebenen:
 
-* Der Lastenausgleich mit Internetzugriff leitet Anforderungen an die NVAs im eingehenden Subnetz der öffentlichen DMZ weiter – und zwar nur an Ports, die für die Anwendung erforderlich sind.
-* Die NSG-Regeln für die ein- und ausgehenden Subnetze der öffentlichen DMZ verhindern, dass die NVAs gefährdet werden, indem sie Anforderungen, auf die die NSG-Regeln nicht zutreffen, blockieren.
-* Die NAT-Routingkonfiguration für die NVAs leitet eingehende Anforderungen an Port 80 und Port 443 an den Lastenausgleich für die Webebene weiter, ignoriert jedoch Anforderungen an allen anderen Ports.
+- Der Lastenausgleich mit Internetzugriff leitet Anforderungen an die NVAs im eingehenden Subnetz der öffentlichen DMZ weiter – und zwar nur an Ports, die für die Anwendung erforderlich sind.
+- Die NSG-Regeln für die ein- und ausgehenden Subnetze der öffentlichen DMZ verhindern, dass die NVAs gefährdet werden, indem sie Anforderungen, auf die die NSG-Regeln nicht zutreffen, blockieren.
+- Die NAT-Routingkonfiguration für die NVAs leitet eingehende Anforderungen an Port 80 und Port 443 an den Lastenausgleich für die Webebene weiter, ignoriert jedoch Anforderungen an allen anderen Ports.
 
 Sie sollten alle eingehenden Anforderungen an sämtlichen Ports protokollieren. Überprüfen Sie die Protokolle regelmäßig, und achten Sie dabei auf Anforderungen, die außerhalb der erwarteten Parameter liegen, da sie auf Eindringversuche hindeuten.
 
-
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Eine Bereitstellung für eine Referenzarchitektur, die diese Empfehlungen implementiert, steht auf [GitHub][github-folder] zur Verfügung. 
+Eine Bereitstellung für eine Referenzarchitektur, die diese Empfehlungen implementiert, steht auf [GitHub][github-folder] zur Verfügung.
 
 ### <a name="prerequisites"></a>Voraussetzungen
 
@@ -108,7 +109,7 @@ Eine Bereitstellung für eine Referenzarchitektur, die diese Empfehlungen implem
 
 In diesem Schritt verbinden Sie die zwei Gateways des lokalen Netzwerks.
 
-1. Navigieren Sie im Azure-Portal zu der Ressourcengruppe, die Sie erstellt haben. 
+1. Navigieren Sie im Azure-Portal zu der Ressourcengruppe, die Sie erstellt haben.
 
 2. Suchen Sie nach der Ressource mit dem Namen `ra-vpn-vgw-pip`, und kopieren Sie die auf dem Blatt **Übersicht** angezeigte IP-Adresse.
 
@@ -116,13 +117,13 @@ In diesem Schritt verbinden Sie die zwei Gateways des lokalen Netzwerks.
 
 4. Klicken Sie auf das Blatt **Konfiguration**. Fügen Sie unter **IP-Adresse** die IP-Adresse aus Schritt 2 ein.
 
-    ![](./images/local-net-gw.png)
+    ![Screenshot des Felds für die IP-Adresse](./images/local-net-gw.png)
 
 5. Klicken Sie auf **Speichern**, und warten Sie, bis der Vorgang abgeschlossen ist. Dies dauert etwa fünf Minuten.
 
 6. Suchen Sie nach der Ressource mit dem Namen `onprem-vpn-gateway1-pip`. Kopieren Sie die auf dem Blatt **Übersicht** angezeigte IP-Adresse.
 
-7. Suchen Sie nach der Ressource mit dem Namen `ra-vpn-lgw`. 
+7. Suchen Sie nach der Ressource mit dem Namen `ra-vpn-lgw`.
 
 8. Klicken Sie auf das Blatt **Konfiguration**. Fügen Sie unter **IP-Adresse** die IP-Adresse aus Schritt 6 ein.
 
@@ -132,9 +133,9 @@ In diesem Schritt verbinden Sie die zwei Gateways des lokalen Netzwerks.
 
 ### <a name="verify-that-network-traffic-reaches-the-web-tier"></a>Sicherstellen, dass Netzwerkdatenverkehr die Webebene erreicht
 
-1. Navigieren Sie im Azure-Portal zu der Ressourcengruppe, die Sie erstellt haben. 
+1. Navigieren Sie im Azure-Portal zu der Ressourcengruppe, die Sie erstellt haben.
 
-2. Suchen Sie nach der Ressource mit dem Namen `pub-dmz-lb`, d.h. dem Lastenausgleich vor der öffentlichen DMZ. 
+2. Suchen Sie nach der Ressource mit dem Namen `pub-dmz-lb`, d.h. dem Lastenausgleich vor der öffentlichen DMZ.
 
 3. Kopieren Sie die öffentliche IP-Adresse aus dem Blatt **Übersicht**, und öffnen Sie diese Adresse in einem Webbrowser. Daraufhin sollte die standardmäßige Apache2-Serverhomepage angezeigt werden.
 
@@ -154,6 +155,3 @@ In diesem Schritt verbinden Sie die zwei Gateways des lokalen Netzwerks.
 [network-security-group]: /azure/virtual-network/virtual-networks-nsg
 
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/dmz-reference-architectures.vsdx
-
-
-[0]: ./images/dmz-public.png "Sichere Hybrid-Netzwerkarchitektur"

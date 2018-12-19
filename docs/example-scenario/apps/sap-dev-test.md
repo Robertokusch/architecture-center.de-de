@@ -3,12 +3,13 @@ title: Entwicklungs-/Testumgebungen für SAP-Workloads in Azure
 description: Erstellen Sie eine Dev/Test-Umgebung für SAP-Workloads.
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: 1cfd15b0287a1979ae5ad60e41a0b1627a2e115c
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 84665bfeb6ada568c631e1db72b97269d79f2e60
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610803"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004676"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Entwicklungs-/Testumgebungen für SAP-Workloads in Azure
 
@@ -70,7 +71,7 @@ Um Ihnen die Ermittlung der Betriebskosten für dieses Szenario zu erleichtern, 
 
 Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir vier exemplarische Kostenprofile erstellt:
 
-|Größe|SAPs|VM-Typ|Speicher|Azure-Preisrechner|
+|Größe|SAPs|VM-Typ|Storage|Azure-Preisrechner|
 |----|----|-------|-------|---------------|
 |Klein|8.000|D8s_v3|2 x P20, 1 x P10|[Klein](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1)|
 |Mittel|16000|D16s_v3|3 x P20, 1 x P10|[Mittel](https://azure.com/e/465bd07047d148baab032b2f461550cd)|
@@ -80,10 +81,10 @@ Sehr groß|64000|M64s|4 x P20, 1 x P10|[Sehr groß](https://azure.com/e/975fb58a
 > [!NOTE]
 > Die Preise sind als Orientierungshilfe gedacht und geben nur die Kosten für VMs und Speicher an. Gebühren für Netzwerk, Sicherungsspeicher und ein-/ausgehende Daten sind nicht enthalten.
 
-* [Klein](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1): Ein kleines System umfasst den VM-Typ „D8s_v3“ mit acht vCPUs, 32 GB RAM und 200 GB temporärem Speicher sowie zusätzlich drei Storage Premium-Datenträger (zwei mit 512 GB, einer mit 128 GB).
-* [Mittel](https://azure.com/e/465bd07047d148baab032b2f461550cd): Ein mittleres System umfasst den VM-Typ „D16s_v3“ mit 16 vCPUs, 64 GB RAM und 400 GB temporärem Speicher sowie zusätzlich vier Storage Premium-Datenträger (drei mit 512 GB, einer mit 128 GB).
-* [Groß](https://azure.com/e/ada2e849d68b41c3839cc976000c6931): Ein großes System umfasst den VM-Typ „E32s_v3“ mit 32 vCPUs, 256 GB RAM und 512 GB temporärem Speicher sowie zusätzlich vier Storage Premium-Datenträger (drei mit 512 GB, einer mit 128 GB).
-* [Sehr groß](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef): Ein sehr großes System umfasst den VM-Typ „M64s“ mit 64 vCPUs, 1.024 GB RAM und 2.000 GB temporärem Speicher sowie zusätzlich fünf Storage Premium-Datenträger (vier mit 512 GB, einer mit 128 GB).
+* [Klein:](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1) Ein kleines System umfasst den VM-Typ „D8s_v3“ mit acht vCPUs, 32 GB RAM und 200 GB temporärem Speicher sowie zusätzlich drei Storage Premium-Datenträger (zwei mit 512 GB, einer mit 128 GB).
+* [Mittel:](https://azure.com/e/465bd07047d148baab032b2f461550cd) Ein mittleres System umfasst den VM-Typ „D16s_v3“ mit 16 vCPUs, 64 GB RAM und 400 GB temporärem Speicher sowie zusätzlich vier Storage Premium-Datenträger (drei mit 512 GB, einer mit 128 GB).
+* [Groß:](https://azure.com/e/ada2e849d68b41c3839cc976000c6931) Ein großes System umfasst den VM-Typ „E32s_v3“ mit 32 vCPUs, 256 GB RAM und 512 GB temporärem Speicher sowie zusätzlich vier Storage Premium-Datenträger (drei mit 512 GB, einer mit 128 GB).
+* [Sehr groß:](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef) Ein sehr großes System umfasst den VM-Typ „M64s“ mit 64 vCPUs, 1024 GB RAM und 2.000 GB temporärem Speicher sowie zusätzlich fünf Storage Premium-Datenträger (vier mit 512 GB, einer mit 128 GB).
 
 ## <a name="deployment"></a>Bereitstellung
 
