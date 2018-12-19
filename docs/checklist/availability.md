@@ -1,19 +1,20 @@
 ---
 title: Checkliste für die Verfügbarkeit
+titleSuffix: Azure Design Review Framework
 description: Checkliste, die Hinweise zu Überlegungen hinsichtlich der Verfügbarkeit während des Entwurfs bereitstellt.
 author: dragon119
-ms.date: 01/10/2018
+ms.date: 11/26/2018
 ms.custom: checklist
-ms.openlocfilehash: 5a819c5612fba9623c239bcc43f9004cd97dfb76
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 37e61b35d73007b9bac1ebaecfbf42792ae3903b
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305892"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307230"
 ---
 # <a name="availability-checklist"></a>Checkliste für die Verfügbarkeit
 
-Verfügbarkeit ist der Zeitanteil, in dem ein System funktioniert und erreichbar ist. Sie gehört zu den [Säulen der Softwarequalität](../guide/pillars.md). Verwenden Sie diese Checkliste, um Ihre Anwendungsarchitektur vom Standpunkt der Verfügbarkeit aus zu überprüfen. 
+Verfügbarkeit ist der Zeitanteil, in dem ein System funktioniert und erreichbar ist. Sie gehört zu den [Säulen der Softwarequalität](../guide/pillars.md). Verwenden Sie diese Checkliste, um Ihre Anwendungsarchitektur vom Standpunkt der Verfügbarkeit aus zu überprüfen.
 
 ## <a name="application-design"></a>Anwendungsentwurf
 
@@ -29,7 +30,7 @@ Verfügbarkeit ist der Zeitanteil, in dem ein System funktioniert und erreichbar
 
 **Entwerfen Sie Anwendungen, die ihre Anforderungen ordnungsgemäß herabstufen.** Die Auslastung einer Anwendung kann die Kapazität von einem oder mehreren Teilen überschreiten und zu verringerter Verfügbarkeit und fehlgeschlagenen Verbindungen führen. Dieses Problem lässt sich durch Skalierung entschärfen, wobei jedoch eine durch andere Faktoren wie z. B. die Ressourcenverfügbarkeit oder Kosten bedingte Grenze erreicht werden kann. Wenn eine Anwendung ein Ressourcenlimit erreicht, müssen entsprechende Maßnahmen ergriffen werden, damit der Benutzer möglichst wenig beeinträchtigt wird. Wenn beispielsweise in einem E-Commerce-System das Subsystem zur Auftragsverarbeitung stark ausgelastet oder ausgefallen ist, kann es vorübergehend deaktiviert werden, während andere Funktionen wie das Durchsuchen des Produktkatalogs ausgeführt werden können. Es kann zweckmäßig sein, die Anforderungen, die an ein ausgefallenes Subsystem gesendet werden, aufzuschieben, z. B. indem zugelassen wird, dass die Kunden Bestellungen absenden, diese jedoch für die spätere Verarbeitung gespeichert werden, wenn das Subsystem für Bestellungen wieder verfügbar ist.
 
-**Verarbeiten Sie schnelle Änderungen der Auslastung ordnungsgemäß.** Die meisten Anwendungen müssen im Laufe der Zeit unterschiedlich starke Auslastungen handhaben können. Die automatische Skalierung kann bei der Bewältigung der Last hilfreich sein, es kann jedoch einige Zeit dauern, bis weitere Instanzen online geschaltet sind und Anforderungen verarbeiten. Verhindern Sie, dass die Anwendung durch einen plötzlichen und unvorhergesehenen Anstieg der Aktivität überfordert wird. Entwerfen Sie die Anwendung deshalb so, dass Anforderungen an Dienste in Warteschlangen eingefügt werden und dass die Anwendung ordnungsgemäß herabgestuft wird, wenn die Warteschlangen ihre Kapazitätsgrenze fast erreicht haben. Stellen Sie sicher, dass unter normalen Bedingungen ausreichend Leistung und Kapazität zur Verfügung steht, um die Warteschlangen zu leeren und die ausstehenden Anforderungen zu verarbeiten. Weitere Informationen finden Sie unter [Warteschlangenbasiertes Lastenausgleichsmuster](https://msdn.microsoft.com/library/dn589783.aspx).
+**Verarbeiten Sie schnelle Änderungen der Auslastung ordnungsgemäß.** Die meisten Anwendungen müssen im Laufe der Zeit unterschiedlich starke Auslastungen handhaben können. Die automatische Skalierung kann bei der Bewältigung der Last hilfreich sein, es kann jedoch einige Zeit dauern, bis weitere Instanzen online geschaltet sind und Anforderungen verarbeiten. Verhindern Sie, dass die Anwendung durch einen plötzlichen und unvorhergesehenen Anstieg der Aktivität überfordert wird. Entwerfen Sie die Anwendung deshalb so, dass Anforderungen an Dienste in Warteschlangen eingefügt werden und dass die Anwendung ordnungsgemäß herabgestuft wird, wenn die Warteschlangen ihre Kapazitätsgrenze fast erreicht haben. Stellen Sie sicher, dass unter normalen Bedingungen ausreichend Leistung und Kapazität zur Verfügung steht, um die Warteschlangen zu leeren und die ausstehenden Anforderungen zu verarbeiten. Weitere Informationen finden Sie unter [Warteschlangenbasiertes Lastenausgleichsmuster](../patterns/queue-based-load-leveling.md).
 
 ## <a name="deployment-and-maintenance"></a>Bereitstellung und Wartung
 
@@ -55,7 +56,7 @@ Verfügbarkeit ist der Zeitanteil, in dem ein System funktioniert und erreichbar
 
 **Verwenden Sie regelmäßige Sicherungen und die Zeitpunktwiederherstellung**. Sichern Sie regelmäßig und automatisch Daten, die nicht an anderer Stelle gespeichert werden, und stellen Sie sicher, dass Sie die Daten und die Anwendung selbst nach einem Ausfall zuverlässig wiederherstellen können. Vergewissern Sie sich, dass Sicherungen Ihr Recovery Point Objective (RPO) erfüllen. Datenreplikation ist keine Sicherungsfunktion, da Daten in allen Replikaten durch menschliches Versagen oder schädliche Vorgänge beschädigt werden können. Der Sicherungsvorgang muss sicher sein, sodass die Daten während der Übertragung und Speicherung geschützt sind. Datenbanken oder Teile eines Datenspeichers können in der Regel mithilfe von Transaktionsprotokollen in einem Zustand wiederhergestellt werden, den sie zu einem früheren Zeitpunkt hatten. Weitere Informationen finden Sie unter [Wiederherstellung nach Datenbeschädigung oder unbeabsichtigtem Löschen](../resiliency/recovery-data-corruption.md).
 
-**Replizieren Sie VM-Datenträger mithilfe von Azure Site Recovery.** Wenn Sie virtuelle Azure-Computer mit [Site Recovery][site-recovery] replizieren, werden kontinuierlich alle VM-Datenträger asynchron in der Zielregion repliziert. Die Wiederherstellungspunkte werden im Abstand von wenigen Minuten erstellt. Dadurch erzielen Sie einen RPO-Wert von wenigen Minuten. 
+**Replizieren Sie VM-Datenträger mithilfe von Azure Site Recovery.** Wenn Sie virtuelle Azure-Computer mit [Site Recovery][site-recovery] replizieren, werden kontinuierlich alle VM-Datenträger asynchron in der Zielregion repliziert. Die Wiederherstellungspunkte werden im Abstand von wenigen Minuten erstellt. Dadurch erzielen Sie einen RPO-Wert von wenigen Minuten.
 
 ## <a name="errors-and-failures"></a>Fehler und Ausfälle
 
@@ -63,7 +64,7 @@ Verfügbarkeit ist der Zeitanteil, in dem ein System funktioniert und erreichbar
 
 **Wiederholen Sie die fehlgeschlagenen Vorgänge, die durch vorübergehende Fehler verursacht wurden.**  Entwerfen Sie eine Strategie für wiederholte Zugriffsversuche auf alle Dienste und Ressourcen, die nicht grundsätzlich eine automatische Verbindungswiederherstellung unterstützen. Verwenden Sie eine Strategie mit einer Verzögerung zwischen den Wiederholungsversuchen, die mit zunehmender Fehleranzahl zunimmt, um eine Überlastung der Ressource zu verhindern und ihr ermöglichen, sich ordnungsgemäß wiederherzustellen und die in der Warteschlange enthaltenen Anforderungen zu verarbeiten. Fortwährende Wiederholungsversuche mit sehr kurzen Verzögerungen verschlimmern das Problem wahrscheinlich eher. Weitere Informationen finden Sie unter [Wiederholungsanleitung für bestimmte Dienste](../best-practices/retry-service-specific.md).
 
-**Implementieren Sie Verbindungsunterbrechung, um kaskadierende Fehler zu vermeiden.** Es gibt möglicherweise Situationen, in denen vorübergehende oder andere Fehler, deren Schweregrad von einer teilweisen Unterbrechung der Verbindungen bis zum vollständigen Ausfall eines Diensts reichen kann, viel länger als erwartet anhalten, bis zum normalen Betrieb zurückgekehrt werden kann. Wenn ein Dienst stark ausgelastet ist, kann ein Fehler in einem Teil des Systems zu kaskadierenden Fehlern und dazu führen, dass viele Vorgänge blockiert werden, während sie Sperren für kritische Systemressourcen halten, wie z. B. Arbeitsspeicher, Threads und Datenbankverbindungen. Anstatt kontinuierlich einen Vorgang zu wiederholen, der wahrscheinlich fehlschlägt, sollte die Anwendung schnell akzeptieren, dass der Vorgang fehlgeschlagen ist und diesen Fehler ordnungsgemäß behandeln. Verwenden Sie das Schutzschaltermuster, um für definierte Zeiträume Anforderungen für bestimmte Vorgänge abzulehnen. Weitere Informationen finden Sie unter [Circuit Breaker Pattern](../patterns/circuit-breaker.md) (Schutzschaltermuster).
+**Implementieren Sie Verbindungsunterbrechung, um kaskadierende Fehler zu vermeiden.** Es gibt möglicherweise Situationen, in denen vorübergehende oder andere Fehler, deren Schweregrad von einer teilweisen Unterbrechung der Verbindungen bis zum vollständigen Ausfall eines Diensts reichen kann, viel länger als erwartet anhalten, bis zum normalen Betrieb zurückgekehrt werden kann. Wenn ein Dienst stark ausgelastet ist, kann ein Fehler in einem Teil des Systems zu kaskadierenden Fehlern und dazu führen, dass viele Vorgänge blockiert werden, während sie Sperren für kritische Systemressourcen halten, wie z. B. Arbeitsspeicher, Threads und Datenbankverbindungen. Anstatt kontinuierlich einen Vorgang zu wiederholen, der wahrscheinlich fehlschlägt, sollte die Anwendung schnell akzeptieren, dass der Vorgang fehlgeschlagen ist und diesen Fehler ordnungsgemäß behandeln. Verwenden Sie das Schutzschaltermuster, um für definierte Zeiträume Anforderungen für bestimmte Vorgänge abzulehnen. Weitere Informationen finden Sie unter [Trennschalter-Muster](../patterns/circuit-breaker.md).
 
 **Erstellen oder nutzen Sie mehrere Komponenten.** Entwerfen Sie die Anwendungen möglichst so, dass sie mehrere Instanzen nutzen, ohne den Betrieb und die vorhandenen Verbindungen zu beeinträchtigen. Um die Verfügbarkeit zu maximieren, verwenden Sie mehrere Instanzen, teilen Sie die Anforderungen zwischen diesen Instanzen auf, erkennen Sie ausgefallene Instanzen, und vermeiden Sie das Senden von Anforderungen an ausgefallene Instanzen.
 
@@ -79,7 +80,7 @@ Verfügbarkeit ist der Zeitanteil, in dem ein System funktioniert und erreichbar
 
 **Testen Sie die Überwachungssysteme.**  Sowohl automatische Failover- und Fallbacksysteme als auch die manuelle Visualisierung von Systemintegrität und -leistung mithilfe von Dashboards hängen von einer ordnungsgemäß funktionierenden Überwachung und Instrumentation ab. Wenn diese Elemente ausfallen, wichtige Informationen fehlen oder falsche Daten liefern, kann ein Operator möglicherweise nicht erkennen, dass das System instabil oder fehlerhaft ist.
 
-**Verfolgen Sie den Fortschritt von Workflows mit langer Laufzeit, und wiederholen Sie Vorgänge bei Fehlern.** Workflows mit langer Laufzeit umfassen häufig mehrere Schritte. Stellen Sie sicher, dass jeder Schritt unabhängig ist und wiederholt werden kann, um das Risiko zu minimieren, dass der gesamte Workflow rückgängig gemacht werden muss oder mehrere ausgleichende Transaktionen ausgeführt werden müssen. Überwachen und verwalten Sie den Status Workflows mit langer Ausführungszeit, indem Sie ein Muster wie das [Scheduler Agent Supervisor Pattern](../patterns/scheduler-agent-supervisor.md)(Scheduler-Agent-Supervisor-Muster) implementieren.
+**Verfolgen Sie den Fortschritt von Workflows mit langer Laufzeit, und wiederholen Sie Vorgänge bei Fehlern.** Workflows mit langer Laufzeit umfassen häufig mehrere Schritte. Stellen Sie sicher, dass jeder Schritt unabhängig ist und wiederholt werden kann, um das Risiko zu minimieren, dass der gesamte Workflow rückgängig gemacht werden muss oder mehrere ausgleichende Transaktionen ausgeführt werden müssen. Überwachen und verwalten Sie den Status von Workflows mit langer Ausführungszeit, indem Sie ein Muster wie das [Muster „Scheduler-Agent-Supervisor“](../patterns/scheduler-agent-supervisor.md) implementieren.
 
 **Planen Sie die Wiederherstellung im Notfall.** Erstellen Sie einen akzeptierten und vollständig getesteten Plan für die Wiederherstellung nach einer beliebigen Art von Fehler, der sich auf die Systemverfügbarkeit auswirken kann. Wählen Sie eine Architektur für eine Notfallwiederherstellung mit mehreren Standorten, die für unternehmenskritische Anwendungen bestimmt ist. Identifizieren Sie einen bestimmten Besitzer des Plans für die Notfallwiederherstellung, einschließlich Automation und Testing. Stellen Sie sicher, dass der Plan gut dokumentiert ist, und automatisieren Sie den Prozess so weit wie möglich. Richten Sie eine Sicherungsstrategie für alle Referenz- und Transaktionsdaten ein, und testen Sie die Wiederherstellung dieser Sicherungen regelmäßig. Schulen Sie Betriebspersonal in Bezug auf die Ausführung des Plans, und führen Sie regelmäßig Notfallsimulationen durch, um den Plan zu überprüfen und zu verbessern. Wenn Sie virtuelle Computer mit [Azure Site Recovery][site-recovery] replizieren, erstellen Sie einen vollständig automatisierten Wiederherstellungsplan, um innerhalb weniger Minuten ein Failover der gesamten Anwendung ausführen zu können.
 
@@ -87,4 +88,3 @@ Verfügbarkeit ist der Zeitanteil, in dem ein System funktioniert und erreichbar
 [availability-sets]:/azure/virtual-machines/virtual-machines-windows-manage-availability/
 [site-recovery]: /azure/site-recovery/
 [site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
-
