@@ -101,7 +101,7 @@ Die Anwendung besteht aus zwei Webrollen und einer Workerrolle.
 
 - Die Webrolle **Tailspin.Web.Survey.Public** hostet eine ASP.NET-Website, auf der die Teilnehmer an den Umfragen teilnehmen können, die Tailspin-Kunden veröffentlichen. 
 
-- Die Workerrolle **Tailspin.Workers.Survey** führt die Hintergrundverarbeitung durch. Die Webrollen stellen Arbeitsaufgaben in eine Warteschlange, und die Workerrolle verarbeitet die Arbeitsaufgaben. Zwei Hintergrundaufgaben sind definiert: Exportieren von Umfrageantworten in die Azure SQL-Datenbank und Berechnen von Statistiken für Umfrageantworten.
+- Die Workerrolle **Tailspin.Workers.Survey** führt die Hintergrundverarbeitung durch. Die Webrollen stellen Arbeitselemente in eine Warteschlange, und die Workerrolle verarbeitet die Arbeitselemente. Zwei Hintergrundaufgaben sind definiert: Exportieren von Umfrageantworten in die Azure SQL-Datenbank und Berechnen von Statistiken für Umfrageantworten.
 
 Zusätzlich zu den Cloud Services verwendet die Surveys-Anwendung einige andere Azure-Dienste:
 
