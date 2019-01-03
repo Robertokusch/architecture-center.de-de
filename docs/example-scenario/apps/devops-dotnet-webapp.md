@@ -1,21 +1,22 @@
 ---
 title: Entwerfen einer CI/CD-Pipeline mithilfe von Azure DevOps
+titleSuffix: Azure Example Scenarios
 description: Erstellen und Veröffentlichen Sie mithilfe von Azure DevOps eine .NET-App in Azure-Web-Apps.
 author: christianreddington
 ms.date: 12/06/2018
 ms.custom:
 - fasttrack
 - seodec18
-ms.openlocfilehash: 23945493115522d099b6b26922f567653da0367e
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: ae2dddd7567c6b69f936b3b9c9339313389e3bf6
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307281"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643797"
 ---
 # <a name="design-a-cicd-pipeline-using-azure-devops"></a>Entwerfen einer CI/CD-Pipeline mithilfe von Azure DevOps
 
-Dieses Szenario fungiert als Architektur- und Entwurfsleitfaden für die Erstellung einer CI/CD-Pipeline (Continuous Integration/Continuous Deployment).  In diesem Beispiel stellt die CI/CD-Pipeline eine .NET-Webanwendung mit zwei Ebenen in Azure App Service bereit.
+Dieses Szenario fungiert als Architektur- und Entwurfsleitfaden für die Erstellung einer CI/CD-Pipeline (Continuous Integration/Continuous Deployment). In diesem Beispiel stellt die CI/CD-Pipeline eine .NET-Webanwendung mit zwei Ebenen in Azure App Service bereit.
 
 Die Migration zu modernen CI/CD-Prozessen bietet zahlreiche Vorteile für Build-, Bereitstellungs-, Test- und Überwachungsvorgänge für Anwendungen. Durch die Verwendung von Azure DevOps mit anderen Diensten wie etwa App Service müssen sich Organisationen nicht um die Verwaltung der unterstützenden Infrastruktur kümmern und können sich stattdessen ganz auf die App-Entwicklung konzentrieren.
 
@@ -27,7 +28,7 @@ Azure DevOps und CI/CD-Prozesse eignen sich für Folgendes:
 - Sicherstellen der Qualität und Konsistenz für den automatisierten Build- und Freigabeprozess
 - Steigern von Anwendungsstabilität und -betriebszeit
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Architekturdiagramm mit den Azure-Komponenten in einem DevOps-Szenario mit Azure DevOps und Azure App Service][architecture]
 
@@ -84,7 +85,7 @@ Diese [Entscheidungsstruktur für Azure-Computedienste](/azure/architecture/guid
 
 ### <a name="prerequisites"></a>Voraussetzungen
 
-- Sie benötigen ein bestehendes Azure-Konto. Wenn Sie kein Azure-Abonnement besitzen, können Sie ein [kostenloses Konto][azure-free-account] erstellen, bevor Sie beginnen.
+- Sie benötigen ein bestehendes Azure-Konto. Wenn Sie kein Azure-Abonnement besitzen, können Sie ein [kostenloses Konto](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) erstellen, bevor Sie beginnen.
 
 - Zuerst müssen Sie sich für eine Azure DevOps-Organisation registrieren. Weitere Informationen finden Sie unter [Quickstart: Create an organization][vsts-account-create] (Schnellstart: Erstellen einer Organisation).
 
@@ -119,7 +120,6 @@ Die folgenden Ressourcen enthalten weitere Informationen zu CI/CD und Azure DevO
 [ansible]: /azure/ansible/
 [application-insights]: /azure/application-insights/app-insights-overview
 [app-service-reference-architecture]: ../../reference-architectures/app-service-web-app/basic-web-app.md
-[azure-free-account]: https://azure.microsoft.com/free/?WT.mc_id=A261C142F
 [arm-templates]: /azure/azure-resource-manager/resource-group-overview#template-deployment
 [architecture]: ./media/architecture-devops-dotnet-webapp.svg
 [chef]: /azure/chef/
