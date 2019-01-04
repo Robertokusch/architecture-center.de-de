@@ -1,14 +1,17 @@
 ---
 title: Cloudentwurfsmuster
+titleSuffix: Azure Architecture Center
 description: Cloudentwurfsmuster für das Erstellen von zuverlässigen, skalierbaren, sicheren Anwendungen in der Cloud
 keywords: Azure
+author: dragon119
 ms.date: 12/10/2018
-ms.openlocfilehash: 6965f4ba19bb465c4afc0e0c355b32bde8944823
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 003bef866b0cd873122cfb8d4730b95ba49d3d7f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450852"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011292"
 ---
 # <a name="cloud-design-patterns"></a>Cloudentwurfsmuster
 
@@ -18,6 +21,7 @@ Für jedes Muster werden das durch das Muster gelöste Problem, Überlegungen zu
 
 ## <a name="challenges-in-cloud-development"></a>Herausforderungen bei der Cloudentwicklung
 
+<!-- markdownlint-disable MD033 -->
 <table>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="./category/availability.md"><img src="_images/category/availability.svg" alt="Availability" /></a></td>
@@ -76,6 +80,7 @@ Für jedes Muster werden das durch das Muster gelöste Problem, Überlegungen zu
     </td>
 </tr>
 </table>
+<!-- markdownlint-disable MD033 -->
 
 ## <a name="catalog-of-patterns"></a>Musterkatalog
 
@@ -114,4 +119,3 @@ Für jedes Muster werden das durch das Muster gelöste Problem, Überlegungen zu
 |                      [Einschnürung](./strangler.md)                      |                                            Migrieren Sie ein älteres System inkrementell, indem Sie bestimmte Teile der Funktionalität nach und nach durch neue Anwendungen und Dienste ersetzen.                                            |
 |                     [Drosselung](./throttling.md)                     |                                                 Steuern Sie den Verbrauch der von einer Anwendungsinstanz, einem einzelnen Mandanten oder einem gesamten Dienst verwendeten Ressourcen.                                                 |
 |                      [Valet-Schlüssel](./valet-key.md)                      |                                                        Ein Token oder einen Schlüssel verwenden, das bzw. der Clients eingeschränkten direkten Zugriff auf eine bestimmte Ressource oder einen bestimmten Dienst bietet                                                        |
-
