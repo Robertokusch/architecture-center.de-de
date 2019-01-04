@@ -1,18 +1,20 @@
 ---
 title: Antimuster „Ausgelastete Datenbank“
+titleSuffix: Performance antipatterns for cloud apps
 description: Das Auslagern der Verarbeitung an einen Datenbankserver kann zu Leistungs- und Skalierbarkeitsproblemen führen.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: a14a350aefc1801ae08cb4a8d0eb3d5b248c92bf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 11bce03aed2e988d0a814b3298818715ba42c1c5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428906"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011462"
 ---
 # <a name="busy-database-antipattern"></a>Antimuster „Ausgelastete Datenbank“
 
-Das Auslagern der Verarbeitung an einen Datenbankserver kann dazu führen, dass dieser Server mehr mit der Ausführung von Code beschäftigt ist, anstatt auf Anforderungen zum Speichern und Abrufen von Daten zu reagieren. 
+Das Auslagern der Verarbeitung an einen Datenbankserver kann dazu führen, dass dieser Server mehr mit der Ausführung von Code beschäftigt ist, anstatt auf Anforderungen zum Speichern und Abrufen von Daten zu reagieren.
 
 ## <a name="problem-description"></a>Problembeschreibung
 
@@ -217,9 +219,9 @@ using (var command = new SqlCommand(...))
 
 ## <a name="how-to-detect-the-problem"></a>Erkennen des Problems
 
-Zu den Symptomen einer ausgelasteten Datenbank gehört ein unverhältnismäßiges Absinken der Durchsatzwerte und Antwortzeiten bei Vorgängen, die auf die Datenbank zugreifen. 
+Zu den Symptomen einer ausgelasteten Datenbank gehört ein unverhältnismäßiges Absinken der Durchsatzwerte und Antwortzeiten bei Vorgängen, die auf die Datenbank zugreifen.
 
-Sie können die folgenden Schritte durchführen, um dieses Problem zu identifizieren: 
+Sie können die folgenden Schritte durchführen, um dieses Problem zu identifizieren:
 
 1. Verwenden Sie die Leistungsüberwachung, um zu ermitteln, wie viel Zeit das Produktionssystem für die Ausführung von Datenbankaktivitäten aufwendet.
 
@@ -261,10 +263,9 @@ Die CPU- und DTU-Auslastung zeigt, dass es trotz erhöhten Durchsatzes länger g
 
 ![Azure SQL-Datenbankmonitor zeigt die Leistung der Datenbank während der Verarbeitung in der Clientanwendung][ProcessingInClientApplicationMonitor]
 
-## <a name="related-resources"></a>Zugehörige Ressourcen 
+## <a name="related-resources"></a>Zugehörige Ressourcen
 
 - [Antimuster „Irrelevante Abrufe“][ExtraneousFetching]
-
 
 [dtu]: /azure/sql-database/sql-database-service-tiers-dtu
 [ExtraneousFetching]: ../extraneous-fetching/index.md

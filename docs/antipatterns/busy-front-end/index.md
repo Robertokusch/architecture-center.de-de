@@ -1,14 +1,16 @@
 ---
 title: Antimuster für ausgelastete Front-Ends
+titleSuffix: Performance antipatterns for cloud apps
 description: Die Ausführung asynchroner Arbeiten in einer großen Anzahl von Hintergrundthreads kann Vordergrundaufgaben von Ressourcen blockieren.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 89a2d6c41af1e19ca1b9b6a0a5dceac615afd60a
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: f52cedde5a17f098fb9218c48479fae981a2c7df
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428294"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011496"
 ---
 # <a name="busy-front-end-antipattern"></a>Antimuster für ausgelastete Front-Ends
 
@@ -62,11 +64,11 @@ Das vorrangige Problem sind die Ressourcenanforderungen der `Post`-Methode. Obwo
 
 ## <a name="how-to-fix-the-problem"></a>Beheben des Problems
 
-Verschieben Sie Prozesse, die erhebliche Ressourcen beanspruchen, auf ein separates Back-End. 
+Verschieben Sie Prozesse, die erhebliche Ressourcen beanspruchen, auf ein separates Back-End.
 
 Bei diesem Ansatz reiht das Front-End ressourcenintensive Aufgaben in eine Nachrichtenwarteschlange ein. Das Back-End wählt die Aufgaben zur asynchronen Verarbeitung aus. Die Warteschlange fungiert auch als Lastenausgleich, da sie Anforderungen für das Back-End puffert. Wenn die Warteschlange zu lang wird, können Sie die automatische Skalierung konfigurieren, um das Back-End horizontal hochzuskalieren.
 
-Hier sehen Sie eine überarbeitete Version des obigen Codes. In dieser Version reiht die `Post`-Methode eine Nachricht in eine Service Bus-Warteschlange ein. 
+Hier sehen Sie eine überarbeitete Version des obigen Codes. In dieser Version reiht die `Post`-Methode eine Nachricht in eine Service Bus-Warteschlange ein.
 
 ```csharp
 public class WorkInBackgroundController : ApiController
@@ -121,7 +123,7 @@ public async Task RunAsync(CancellationToken cancellationToken)
 - Dieser Ansatz erhöht die Komplexität der Anwendung zusätzlich. Sie müssen das Einreihen in die und Entfernen aus der Warteschlange sicher behandeln, damit im Fall eines Fehlers keine Anforderungen verloren gehen.
 - Die Anwendung ist von einem zusätzlichen Dienst für die Nachrichtenwarteschlange abhängig.
 - Die Verarbeitungsumgebung muss ausreichend skalierbar sein, um die erwartete Arbeitsauslastung zu bewältigen und die erforderlichen Durchsatzziele zu erfüllen.
-- Dieser Ansatz sollte zwar die allgemeine Reaktionsfähigkeit verbessern, die Ausführung der auf das Back-End verschobenen Aufgaben kann jedoch mehr Zeit in Anspruch nehmen. 
+- Dieser Ansatz sollte zwar die allgemeine Reaktionsfähigkeit verbessern, die Ausführung der auf das Back-End verschobenen Aufgaben kann jedoch mehr Zeit in Anspruch nehmen.
 
 ## <a name="how-to-detect-the-problem"></a>Erkennen des Problems
 
@@ -130,12 +132,12 @@ Zu den Symptomen eines ausgelasteten Front-Ends zählt die lange Wartezeit bei d
 Sie können die folgenden Schritte ausführen, um dieses Problem zu identifizieren:
 
 1. Führen Sie eine Prozessüberwachung des Produktionssystems durch, um Punkte zu identifizieren, an denen Antwortzeiten verlangsamt werden.
-2. Untersuchen Sie die an diesen Punkten erfassten Telemetriedaten, um die ausgeführte Kombination von Vorgängen und die verwendeten Ressourcen zu ermitteln. 
+2. Untersuchen Sie die an diesen Punkten erfassten Telemetriedaten, um die ausgeführte Kombination von Vorgängen und die verwendeten Ressourcen zu ermitteln.
 3. Suchen Sie nach Korrelationen zwischen langen Antwortzeiten und der Anzahl sowie den Kombinationen von Vorgängen, die zu diesen Zeitpunkten ausgeführt wurden.
-4. Führen Sie einen Auslastungstest für jeden „verdächtigen“ Vorgang aus, um herauszufinden, welche Vorgänge Ressourcen verbrauchen und andere Vorgänge blockieren. 
+4. Führen Sie einen Auslastungstest für jeden „verdächtigen“ Vorgang aus, um herauszufinden, welche Vorgänge Ressourcen verbrauchen und andere Vorgänge blockieren.
 5. Überprüfen Sie den Quellcode für diese Vorgänge, um zu ermitteln, weshalb sie einen übermäßigen Ressourcenverbrauch verursachen könnten.
 
-## <a name="example-diagnosis"></a>Beispieldiagnose 
+## <a name="example-diagnosis"></a>Beispieldiagnose
 
 In den folgenden Abschnitten werden diese Schritte auf die zuvor beschriebene Beispielanwendung angewendet.
 
@@ -155,18 +157,17 @@ Die nächste Abbildung zeigt einige der Metriken, die zum Überwachen der Ressou
 
 An diesem Punkt ist die `Post`-Methode im `WorkInFrontEnd`-Controller anscheinend ein erstklassiger Kandidat für eine genauere Prüfung. Zur Bestätigung dieser Hypothese sind weitere Schritte in einer kontrollierten Umgebung erforderlich.
 
-### <a name="perform-load-testing"></a>Durchführen von Auslastungstests 
+### <a name="perform-load-testing"></a>Durchführen von Auslastungstests
 
 Der nächste Schritt ist die Ausführung von Tests in einer kontrollierten Umgebung. Führen Sie beispielsweise eine Reihe von Auslastungstests durch, bei denen jede Anforderung nacheinander einbezogen und dann ausgelassen wird, um die Auswirkungen anzuzeigen.
 
-Das folgende Diagramm zeigt die Ergebnisse eines Auslastungstests für eine identische Bereitstellung des in den vorherigen Tests verwendeten Clouddiensts. Beim Test wurden eine konstante Last von 500 Benutzern, die den `Get`-Vorgang im `UserProfile`-Controller ausführen, sowie eine schrittweise Last von Benutzern, die den `Post`-Vorgang im `WorkInFrontEnd`-Controller ausführen, verwendet. 
+Das folgende Diagramm zeigt die Ergebnisse eines Auslastungstests für eine identische Bereitstellung des in den vorherigen Tests verwendeten Clouddiensts. Beim Test wurden eine konstante Last von 500 Benutzern, die den `Get`-Vorgang im `UserProfile`-Controller ausführen, sowie eine schrittweise Last von Benutzern, die den `Post`-Vorgang im `WorkInFrontEnd`-Controller ausführen, verwendet.
 
 ![Anfängliche Testergebnisse für den WorkInFrontEnd-Controller][Initial-Load-Test-Results-Front-End]
 
 Anfangs beträgt die schrittweise Last 0, d. h. nur die aktiven Benutzer führen die `UserProfile`-Anforderungen aus. Das System kann auf ca. 500 Anforderungen pro Sekunde reagieren. Nach 60 Sekunden beginnt eine Last von 100 zusätzlichen Benutzern, POST-Anforderungen an den `WorkInFrontEnd`-Controller zu senden. Die an den `UserProfile`-Controller gesendete Arbeitsauslastung sinkt nahezu sofort auf ungefähr 150 Anforderungen pro Sekunde. Dies ist auf die Funktionsweise des Auslastungstests zurückzuführen. Er wartet vor dem Senden der nächsten Anforderung auf eine Antwort. Je länger es dauert, eine Antwort zu empfangen, desto niedriger ist folglich die Anforderungsrate.
 
 Wenn weitere Benutzer POST-Anforderungen an den `WorkInFrontEnd`-Controller senden, nimmt die Antwortrate des `UserProfile`-Controllers weiter ab. Beachten Sie jedoch, dass die Anzahl der vom `WorkInFrontEnd`-Controller verarbeiteten Anforderungen relativ konstant bleibt. Die Sättigung des Systems wird deutlich, sobald die Gesamtrate beider Anforderungen einen stabilen, aber niedrigen Grenzwert erreicht.
-
 
 ### <a name="review-the-source-code"></a>Überprüfen des Quellcodes
 
@@ -175,11 +176,11 @@ Der letzte Schritt besteht darin, den Quellcode zu überprüfen. Das Entwicklung
 Die von dieser Methode ausgeführte Arbeit verbraucht jedoch nach wie vor CPU-Zeit, Arbeitsspeicher und andere Ressourcen. Wenn die asynchrone Ausführung dieses Prozesses ermöglicht wird, kann die Leistung beeinträchtigt werden, da Benutzer auf unkontrollierte Weise eine große Anzahl dieser Vorgänge gleichzeitig auslösen können. Die Anzahl von Threads, die von einem Server ausgeführt werden können, ist begrenzt. Wird dieser Grenzwert überschritten, wird bei dem Versuch, einen neuen Thread zu starten, wahrscheinlich eine Ausnahme in der Anwendung ausgelöst.
 
 > [!NOTE]
-> Dies bedeutet nicht, dass Sie asynchrone Vorgänge vermeiden sollten. Das Ausführen eines asynchronen Wartevorgangs für einen Netzwerkaufruf ist eine empfohlene Vorgehensweise. (Siehe das Antimuster für [synchrone E/A][sync-io].) Hier besteht das Problem darin, dass CPU-intensive Vorgänge in einem anderen Thread erzeugt wurden. 
+> Dies bedeutet nicht, dass Sie asynchrone Vorgänge vermeiden sollten. Das Ausführen eines asynchronen Wartevorgangs für einen Netzwerkaufruf ist eine empfohlene Vorgehensweise. (Siehe das Antimuster für [synchrone E/A][sync-io].) Hier besteht das Problem darin, dass CPU-intensive Vorgänge in einem anderen Thread erzeugt wurden.
 
 ### <a name="implement-the-solution-and-verify-the-result"></a>Implementieren der Lösung und Überprüfen des Ergebnisses
 
-Die folgende Abbildung zeigt die Leistungsüberwachung nach dem Implementieren der Lösung. Die Auslastung war mit der zuvor gezeigten Auslastung vergleichbar, die Antwortzeiten für den `UserProfile`-Controller sind jedoch deutlich schneller. Die Anzahl von Anforderungen hat über den gleichen Zeitraum von 2.759 auf 23.565 zugenommen. 
+Die folgende Abbildung zeigt die Leistungsüberwachung nach dem Implementieren der Lösung. Die Auslastung war mit der zuvor gezeigten Auslastung vergleichbar, die Antwortzeiten für den `UserProfile`-Controller sind jedoch deutlich schneller. Die Anzahl von Anforderungen hat über den gleichen Zeitraum von 2.759 auf 23.565 zugenommen.
 
 ![Der AppDynamics-Bereich für die Geschäftstransaktionen zeigt die Auswirkungen der Antwortzeiten aller Anforderungen, wenn der WorkInBackground-Controller verwendet wird.][AppDynamics-Transactions-Background-Requests]
 
@@ -218,5 +219,3 @@ Das folgende Diagramm zeigt die Ergebnisse eines Auslastungstests. Die Gesamtanz
 [AppDynamics-Transactions-Background-Requests]: ./_images/AppDynamicsBackgroundPerformanceStats.jpg
 [AppDynamics-Metrics-Background-Requests]: ./_images/AppDynamicsBackgroundMetrics.jpg
 [Load-Test-Results-Background]: ./_images/LoadTestResultsBackground.jpg
-
-

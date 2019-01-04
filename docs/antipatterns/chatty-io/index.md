@@ -1,14 +1,16 @@
 ---
 title: Antimuster „Zu viele E/A-Vorgänge“
+titleSuffix: Performance antipatterns for cloud apps
 description: Eine sehr hohe Anzahl von E/A-Anforderungen kann die Leistung und Reaktionsfähigkeit beeinträchtigen.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 17193198918cc742b2e3f30e77dfc5c3f2726ebf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c018e365d0a6244f77d119ad59f601e9c7ea965c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428566"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011224"
 ---
 # <a name="chatty-io-antipattern"></a>Antimuster „Zu viele E/A-Vorgänge“
 
@@ -26,7 +28,7 @@ Das folgende Beispiel liest Daten aus einer Produktdatenbank. Es gibt drei Tabel
 2. Durch Abfragen der Tabelle `Product` werden alle Produkte in dieser Unterkategorie gesucht.
 3. Für jedes Produkt werden die Preisdaten aus der Tabelle `ProductPriceListHistory` abgefragt.
 
-Die Anwendung verwendet das [Entity Framework][ef] zum Abfragen der Datenbank. Das vollständige Beispiel finden Sie [hier][code-sample]. 
+Die Anwendung verwendet das [Entity Framework][ef] zum Abfragen der Datenbank. Das vollständige Beispiel finden Sie [hier][code-sample].
 
 ```csharp
 public async Task<IHttpActionResult> GetProductsInSubCategoryAsync(int subcategoryId)
@@ -57,11 +59,11 @@ public async Task<IHttpActionResult> GetProductsInSubCategoryAsync(int subcatego
 }
 ```
 
-Dieses Beispiel veranschaulicht das Problem explizit, aber manchmal maskiert eine objektrelationale Abbildung (Object Relational Mapping, O/RM) das Problem, wenn untergeordnete Datensätze implizit nacheinander abgerufen werden. Diese wird als „N+1-Problem“ bezeichnet. 
+Dieses Beispiel veranschaulicht das Problem explizit, aber manchmal maskiert eine objektrelationale Abbildung (Object Relational Mapping, O/RM) das Problem, wenn untergeordnete Datensätze implizit nacheinander abgerufen werden. Diese wird als „N+1-Problem“ bezeichnet.
 
 ### <a name="implementing-a-single-logical-operation-as-a-series-of-http-requests"></a>Implementieren eines einzigen logischen Vorgangs als Serie von HTTP-Anforderungen
 
-Dies passiert häufig, wenn Entwickler versuchen, einem objektorientierten Paradigma zu folgen und Remoteobjekte so behandeln, als wären es lokale Objekte im Arbeitsspeicher. Die kann zu einer zu hohen Anzahl von Netzwerkroundtrips führen. Ein Beispiel: Die folgende Web-API macht die einzelnen Eigenschaften von `User`-Objekten über einzelne HTTP GET-Methoden verfügbar. 
+Dies passiert häufig, wenn Entwickler versuchen, einem objektorientierten Paradigma zu folgen und Remoteobjekte so behandeln, als wären es lokale Objekte im Arbeitsspeicher. Die kann zu einer zu hohen Anzahl von Netzwerkroundtrips führen. Ein Beispiel: Die folgende Web-API macht die einzelnen Eigenschaften von `User`-Objekten über einzelne HTTP GET-Methoden verfügbar.
 
 ```csharp
 public class UserController : ApiController
@@ -89,7 +91,7 @@ public class UserController : ApiController
 }
 ```
 
-Rein technisch ist dieser Ansatz völlig in Ordnung, allerdings werden die meisten Clients wahrscheinlich verschiedene Eigenschaften für jedes `User`-Objekt abrufen müssen, sodass der Clientcode in etwa folgendermaßen aussieht. 
+Rein technisch ist dieser Ansatz völlig in Ordnung, allerdings werden die meisten Clients wahrscheinlich verschiedene Eigenschaften für jedes `User`-Objekt abrufen müssen, sodass der Clientcode in etwa folgendermaßen aussieht.
 
 ```csharp
 HttpResponseMessage response = await client.GetAsync("users/1/username");
@@ -107,7 +109,7 @@ var dob = await response.Content.ReadAsStringAsync();
 
 ### <a name="reading-and-writing-to-a-file-on-disk"></a>Lesen und Schreiben in einer Datei auf einem Datenträger
 
-Datei-E/A-Vorgänge umfassen das Öffnen einer Datei und das Springen an den geeigneten Punkt, bevor Daten gelesen oder geschrieben werden. Wenn der Vorgang abgeschlossen wurde, kann die Datei geschlossen werden, um Systemressourcen einzusparen. Eine Anwendung, die kontinuierlich kleine Mengen von Informationen in einer Datei liest oder schreibt, generiert einen erheblichen E/A-Overhead. Schreibanforderungen für geringe Datenmengen können auch zur Fragmentierung von Dateien führen und damit nachfolgende E/A-Vorgänge noch weiter verlangsamen. 
+Datei-E/A-Vorgänge umfassen das Öffnen einer Datei und das Springen an den geeigneten Punkt, bevor Daten gelesen oder geschrieben werden. Wenn der Vorgang abgeschlossen wurde, kann die Datei geschlossen werden, um Systemressourcen einzusparen. Eine Anwendung, die kontinuierlich kleine Mengen von Informationen in einer Datei liest oder schreibt, generiert einen erheblichen E/A-Overhead. Schreibanforderungen für geringe Datenmengen können auch zur Fragmentierung von Dateien führen und damit nachfolgende E/A-Vorgänge noch weiter verlangsamen.
 
 Das folgende Beispiel verwendet ein `FileStream`-Objekt, um ein `Customer`-Objekt in eine Datei zu schreiben. Durch Erstellen des `FileStream`-Objekts wird die Datei geöffnet, durch Löschen des Objekts wird sie wieder geschlossen. (Die `using`-Anweisung löscht das `FileStream`-Objekt automatisch.) Wenn die Anwendung diese Methode wiederholt aufruft, wenn neue Kunden hinzugefügt werden, kann der E/A-Overhead schnell anwachsen.
 
@@ -211,7 +213,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - Die ersten beiden Beispiele führen *weniger* E/A-Aufrufe durch, jedes empfängt dadurch aber *mehr* Informationen. Diese beiden Faktoren müssen gegeneinander abgewogen werden. Die richtige Antwort hängt von den tatsächlichen Nutzungsmustern ab. Im Web-API-Beispiel könnte sich etwa herausstellen, dass Clients häufig nur den Benutzernamen benötigen. In diesem Fall ist es sinnvoll, diesen mit einem separaten API-Aufruf verfügbar zu machen. Weitere Informationen finden Sie im Antimuster [Irrelevante Abrufe][extraneous-fetching].
 
-- Entwerfen Sie beim Lesen von Daten keine zu umfangreichen E/A-Anforderungen. Eine Anwendung sollte nur die Daten abrufen, die sie wahrscheinlich benötigt. 
+- Entwerfen Sie beim Lesen von Daten keine zu umfangreichen E/A-Anforderungen. Eine Anwendung sollte nur die Daten abrufen, die sie wahrscheinlich benötigt.
 
 - Manchmal hilft es, die Informationen für ein Objekt in zwei Blöcke zu unterteilen: *Daten, auf die häufig zugegriffen wird* und die für die meisten Anforderungen relevant sind, und *Daten, auf die weniger häufig zugegriffen wird* und die entsprechend seltener benötigt werden. Häufig machen die Daten, auf die am häufigsten zugegriffen wird, einen relativ geringen Teil der Gesamtdatenmenge für ein Objekt aus, sodass sich der E/A-Overhead erheblich senken lässt, indem nur dieser Teil zurückgegeben wird.
 
@@ -231,7 +233,7 @@ Sie können die folgenden Schritte ausführen, um die Ursache solcher Probleme z
 2. Führen Sie für jeden im vorherigen Schritt identifizierten Vorgang einen Auslastungstest durch.
 3. Sammeln Sie während der Auslastungstests Telemetriedaten über die Datenzugriffsanforderungen jedes Vorgangs.
 4. Erfassen Sie detaillierte Statistiken für jede an einen Datenspeicher gesendete Anforderung.
-5. Erstellen Sie ein Profil für die Anwendung in der Testumgebung, um herauszufinden, wo möglich E/A-Engpässe auftreten können. 
+5. Erstellen Sie ein Profil für die Anwendung in der Testumgebung, um herauszufinden, wo möglich E/A-Engpässe auftreten können.
 
 Suchen Sie nach folgenden Symptomen:
 
@@ -246,16 +248,16 @@ In den folgenden Abschnitten werden diese Schritte auf das oben gezeigte Beispie
 
 ### <a name="load-test-the-application"></a>Auslastungstest der Anwendung
 
-Dieses Diagramm zeigt die Ergebnisse der Auslastungstests. Der Medianwert der Antwortzeit wird in Zehntelsekunden pro Anforderung gemessen. Das Diagramm zeigt eine sehr hohe Latenz. Bei einer Last von 1.000 Benutzern muss ein Benutzer möglicherweise fast eine Minute auf die Ergebnisse einer Abfrage warten. 
+Dieses Diagramm zeigt die Ergebnisse der Auslastungstests. Der Medianwert der Antwortzeit wird in Zehntelsekunden pro Anforderung gemessen. Das Diagramm zeigt eine sehr hohe Latenz. Bei einer Last von 1.000 Benutzern muss ein Benutzer möglicherweise fast eine Minute auf die Ergebnisse einer Abfrage warten.
 
 ![Ergebnisse der Auslastungstests für wichtige Leistungsindikatoren der Beispielanwendung für eine zu hohe Anzahl von E/A-Vorgängen][key-indicators-chatty-io]
 
 > [!NOTE]
-> Die Anwendung wurde als Azure App Service-Web-App bereitgestellt und verwendet Azure SQL-Datenbank. Der Auslastungstest wurde mit einer simulierten schrittbasierten Workload von bis zu 1.000 gleichzeitigen Benutzern durchgeführt. Die Datenbank war mit einem Verbindungspool konfiguriert, der bis zu 1.000 gleichzeitige Verbindungen unterstützte, um das Risiko zu reduzieren, dass Verbindungskonflikte sich auf die Ergebnisse auswirken. 
+> Die Anwendung wurde als Azure App Service-Web-App bereitgestellt und verwendet Azure SQL-Datenbank. Der Auslastungstest wurde mit einer simulierten schrittbasierten Workload von bis zu 1.000 gleichzeitigen Benutzern durchgeführt. Die Datenbank war mit einem Verbindungspool konfiguriert, der bis zu 1.000 gleichzeitige Verbindungen unterstützte, um das Risiko zu reduzieren, dass Verbindungskonflikte sich auf die Ergebnisse auswirken.
 
 ### <a name="monitor-the-application"></a>Überwachen der Anwendung
 
-Sie können ein Paket für die Überwachung der Anwendungsleistung (Application Performance Monitoring, APM) verwenden, um die wichtigsten Metriken zu erfassen und zu analysieren, die eine zu hohe Anzahl von E/A-Vorgängen identifizieren können. Welche Metriken wichtig sind, richtet sich nach der E/A-Workload. In diesem Beispiel waren die Datenbankabfragen die interessantesten E/A-Anforderungen. 
+Sie können ein Paket für die Überwachung der Anwendungsleistung (Application Performance Monitoring, APM) verwenden, um die wichtigsten Metriken zu erfassen und zu analysieren, die eine zu hohe Anzahl von E/A-Vorgängen identifizieren können. Welche Metriken wichtig sind, richtet sich nach der E/A-Workload. In diesem Beispiel waren die Datenbankabfragen die interessantesten E/A-Anforderungen.
 
 Die folgende Abbildung zeigt Ergebnisse, die mithilfe von [New Relic APM][new-relic] generiert wurden. Der Spitzenwert der durchschnittlichen Datenbankantwortzeit lag während der maximalen Workload bei ca. 5,6 Sekunden pro Anforderung. Das System konnte während des gesamten Tests durchschnittlich 410 Anforderungen pro Minute unterstützen.
 
@@ -279,7 +281,7 @@ Die nächste Abbildung zeigt die tatsächlich ausgegebenen SQL-Anweisungen. Die 
 
 ![Abfragedetails für die Beispielanwendung im Test][queries3]
 
-Wenn Sie eine objektrelationale Abbildung wie z.B. Entity Framework verwenden, kann eine Ablaufverfolgung der SQL-Abfragen Einblicke dazu liefern, wie die objektrelationale Abbildung die programmgesteuerten Aufrufe in SQL-Anweisungen übersetzt. Gleichzeitig können Bereiche aufgezeigt werden, in denen sich der Datenzugriff optimieren lässt. 
+Wenn Sie eine objektrelationale Abbildung wie z.B. Entity Framework verwenden, kann eine Ablaufverfolgung der SQL-Abfragen Einblicke dazu liefern, wie die objektrelationale Abbildung die programmgesteuerten Aufrufe in SQL-Anweisungen übersetzt. Gleichzeitig können Bereiche aufgezeigt werden, in denen sich der Datenzugriff optimieren lässt.
 
 ### <a name="implement-the-solution-and-verify-the-result"></a>Implementieren der Lösung und Überprüfen des Ergebnisses
 
@@ -293,7 +295,7 @@ Dieses Mal unterstützte das System durchschnittlich 3.970 Anforderungen pro Min
 
 ![Transaktionsübersicht für die Chunky-API][databasetraffic2]
 
-Die Ablaufverfolgung der SQL-Anweisung zeigt, dass alle Daten in einer einzigen SELECT-Anweisung abgerufen werden. Diese Abfrage ist zwar deutlich komplexer, wird dafür aber nur einmal pro Vorgang ausgeführt. Und während komplexe Joins teuer werden können, sind relationale Datenbanksysteme für diese Art von Abfragen optimiert.  
+Die Ablaufverfolgung der SQL-Anweisung zeigt, dass alle Daten in einer einzigen SELECT-Anweisung abgerufen werden. Diese Abfrage ist zwar deutlich komplexer, wird dafür aber nur einmal pro Vorgang ausgeführt. Und während komplexe Joins teuer werden können, sind relationale Datenbanksysteme für diese Art von Abfragen optimiert.
 
 ![Abfragedetails für die Chunky-API][queries4]
 
@@ -322,4 +324,3 @@ Die Ablaufverfolgung der SQL-Anweisung zeigt, dass alle Daten in einer einzigen 
 [queries2]: _images/DatabaseQueries2.jpg
 [queries3]: _images/DatabaseQueries3.jpg
 [queries4]: _images/DatabaseQueries4.jpg
-

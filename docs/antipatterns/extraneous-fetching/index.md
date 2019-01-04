@@ -1,18 +1,20 @@
 ---
 title: Antimuster „Extraneous Fetching“ (Irrelevante Abrufe)
+titleSuffix: Performance antipatterns for cloud apps
 description: Das Abrufen von mehr Daten, als für einen Geschäftsvorgang erforderlich sind, kann zu unnötigem E/A-Mehraufwand und einer Reduzierung der Reaktionsfähigkeit führen.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 7a72bfd3e4b2e206f3266a046fac2083224ecb4f
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: dac1b4c1422b447b8a0a9ebe317d5ac246c38da5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846602"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010238"
 ---
 # <a name="extraneous-fetching-antipattern"></a>Antimuster „Extraneous Fetching“ (Irrelevante Abrufe)
 
-Das Abrufen von mehr Daten, als für einen Geschäftsvorgang erforderlich sind, kann zu unnötigem E/A-Mehraufwand und einer Reduzierung der Reaktionsfähigkeit führen. 
+Das Abrufen von mehr Daten, als für einen Geschäftsvorgang erforderlich sind, kann zu unnötigem E/A-Mehraufwand und einer Reduzierung der Reaktionsfähigkeit führen.
 
 ## <a name="problem-description"></a>Problembeschreibung
 
@@ -52,7 +54,7 @@ public async Task<IHttpActionResult> AggregateOnClientAsync()
 }
 ```
 
-Im nächsten Beispiel ist ein kleineres Problem dargestellt, das durch die Art und Weise entsteht, wie LINQ to Entities von Entity Framework verwendet wird. 
+Im nächsten Beispiel ist ein kleineres Problem dargestellt, das durch die Art und Weise entsteht, wie LINQ to Entities von Entity Framework verwendet wird.
 
 ```csharp
 var query = from p in context.Products.AsEnumerable()
@@ -62,13 +64,13 @@ var query = from p in context.Products.AsEnumerable()
 List<Product> products = query.ToList();
 ```
 
-Die Anwendung versucht, Produkte mit einem Verkaufsstartdatum (`SellStartDate`) zu ermitteln, das länger als eine Woche zurückliegt. In den meisten Fällen übersetzt LINQ to Entities eine `where`-Klausel in eine SQL-Anweisung, die von der Datenbank ausgeführt wird. Hier kann LINQ to Entities die `AddDays`-Methode aber nicht SQL zuordnen. Stattdessen wird jede Zeile der Tabelle `Product` zurückgegeben, und die Ergebnisse werden im Arbeitsspeicher gefiltert. 
+Die Anwendung versucht, Produkte mit einem Verkaufsstartdatum (`SellStartDate`) zu ermitteln, das länger als eine Woche zurückliegt. In den meisten Fällen übersetzt LINQ to Entities eine `where`-Klausel in eine SQL-Anweisung, die von der Datenbank ausgeführt wird. Hier kann LINQ to Entities die `AddDays`-Methode aber nicht SQL zuordnen. Stattdessen wird jede Zeile der Tabelle `Product` zurückgegeben, und die Ergebnisse werden im Arbeitsspeicher gefiltert.
 
-Der Aufruf von `AsEnumerable` ist ein Hinweis darauf, dass ein Problem vorliegt. Bei dieser Methode werden die Ergebnisse in eine `IEnumerable`-Schnittstelle konvertiert. `IEnumerable` unterstützt zwar die Filterung, aber der Filtervorgang wird aufseiten des *Clients* durchgeführt, nicht auf der Datenbankseite. Standardmäßig nutzt LINQ to Entities die `IQueryable`-Schnittstelle, mit der die Zuständigkeit für die Filterung an die Datenquelle übergeben wird. 
+Der Aufruf von `AsEnumerable` ist ein Hinweis darauf, dass ein Problem vorliegt. Bei dieser Methode werden die Ergebnisse in eine `IEnumerable`-Schnittstelle konvertiert. `IEnumerable` unterstützt zwar die Filterung, aber der Filtervorgang wird aufseiten des *Clients* durchgeführt, nicht auf der Datenbankseite. Standardmäßig nutzt LINQ to Entities die `IQueryable`-Schnittstelle, mit der die Zuständigkeit für die Filterung an die Datenquelle übergeben wird.
 
 ## <a name="how-to-fix-the-problem"></a>Beheben des Problems
 
-Vermeiden Sie es, große Datenvolumen abzurufen, die schnell veraltet sind oder verworfen werden. Rufen Sie nur die Daten ab, die für den durchzuführenden Vorgang benötigt werden. 
+Vermeiden Sie es, große Datenvolumen abzurufen, die schnell veraltet sind oder verworfen werden. Rufen Sie nur die Daten ab, die für den durchzuführenden Vorgang benötigt werden.
 
 Anstatt jede Spalte aus einer Tabelle abzurufen und dann zu filtern, ist es ratsam, die benötigten Spalten der Datenbank auszuwählen.
 
@@ -103,7 +105,7 @@ public async Task<IHttpActionResult> AggregateOnDatabaseAsync()
 Stellen Sie bei Verwendung von Entity Framework sicher, dass LINQ-Abfragen mit der `IQueryable`-Schnittstelle und nicht mit `IEnumerable` aufgelöst werden. Unter Umständen müssen Sie die Abfrage so anpassen, dass nur Funktionen verwendet werden, die der Datenquelle zugeordnet werden können. Das vorherige Beispiel kann umgestaltet werden, um die `AddDays`-Methode aus der Abfrage zu entfernen, damit der Filtervorgang von der Datenbank durchgeführt werden kann.
 
 ```csharp
-DateTime dateSince = DateTime.Now.AddDays(-7); // AddDays has been factored out. 
+DateTime dateSince = DateTime.Now.AddDays(-7); // AddDays has been factored out.
 var query = from p in context.Products
             where p.SellStartDate < dateSince // This criterion can be passed to the database by LINQ to Entities
             select ...;
@@ -117,22 +119,21 @@ List<Product> products = query.ToList();
 
 - Für Vorgänge, mit denen uneingeschränkte Abfragen unterstützt werden, sollten Sie die Paginierung implementieren und jeweils nur eine begrenzte Anzahl von Entitäten abrufen. Wenn sich ein Kunde beispielsweise einen Produktkatalog ansieht, können Sie jeweils eine Seite mit Ergebnissen anzeigen.
 
-- Nutzen Sie nach Möglichkeit Features, die in den Datenspeicher integriert sind. SQL-Datenbanken enthalten in der Regel beispielsweise Aggregatfunktionen. 
+- Nutzen Sie nach Möglichkeit Features, die in den Datenspeicher integriert sind. SQL-Datenbanken enthalten in der Regel beispielsweise Aggregatfunktionen.
 
 - Wenn Sie einen Datenspeicher verwenden, der eine bestimmte Funktion nicht unterstützt, z.B. die Aggregration, können Sie das berechnete Ergebnis an einem anderen Ort speichern und den Wert aktualisieren, wenn Datensätze hinzugefügt oder aktualisiert werden. Die Anwendung muss den Wert dann nicht jedes Mal neu berechnen, wenn er benötigt wird.
 
-- Wenn Sie sehen, dass Anforderungen eine große Anzahl von Feldern abrufen, sollten Sie den Quellcode untersuchen und ermitteln, ob alle Felder auch wirklich erforderlich sind. Diese Anforderungen können auch eine Folge einer schlecht entworfenen `SELECT *`-Abfrage sein. 
+- Wenn Sie sehen, dass Anforderungen eine große Anzahl von Feldern abrufen, sollten Sie den Quellcode untersuchen und ermitteln, ob alle Felder auch wirklich erforderlich sind. Diese Anforderungen können auch eine Folge einer schlecht entworfenen `SELECT *`-Abfrage sein.
 
-- Ebenso können Anforderungen, bei denen eine große Zahl von Entitäten abgerufen wird, ein Zeichen dafür sein, dass Daten von der Anwendung nicht richtig gefiltert werden. Vergewissern Sie sich, dass alle Entitäten auch wirklich benötigt werden. Nutzen Sie nach Möglichkeit die Filterung auf Datenbankseite, indem Sie beispielsweise `WHERE`-Klauseln in SQL verwenden. 
+- Ebenso können Anforderungen, bei denen eine große Zahl von Entitäten abgerufen wird, ein Zeichen dafür sein, dass Daten von der Anwendung nicht richtig gefiltert werden. Vergewissern Sie sich, dass alle Entitäten auch wirklich benötigt werden. Nutzen Sie nach Möglichkeit die Filterung auf Datenbankseite, indem Sie beispielsweise `WHERE`-Klauseln in SQL verwenden.
 
 - Das Auslagern der Verarbeitung in die Datenbank ist nicht immer die beste Vorgehensweise. Verwenden Sie diese Strategie nur, wenn die Datenbank dafür entworfen bzw. optimiert wurde. Die meisten Datenbanksysteme sind speziell im Hinblick auf bestimmte Funktionen optimiert, aber nicht dafür ausgelegt, als Anwendungsmodule für allgemeine Zwecke zu fungieren. Weitere Informationen finden Sie unter [Antimuster „Busy Database“ (Ausgelastete Datenbank)][BusyDatabase].
-
 
 ## <a name="how-to-detect-the-problem"></a>Erkennen des Problems
 
 Zu den Symptomen des „Extraneous Fetching“ (Irrelevante Abrufe) gehören lange Wartezeiten und ein niedriger Durchsatz. Wenn die Daten aus einem Datenspeicher abgerufen werden, steigt auch die Konfliktwahrscheinlichkeit. Endbenutzer berichten vermutlich von längeren Antwortzeiten oder Fehlern aufgrund von Diensten, bei denen ein Timeout auftritt. In diesen Fällen können Fehler vom Typ „HTTP 500 (Interner Server)“ oder „HTTP 503 (Dienst nicht verfügbar)“ zurückgegeben werden. Überprüfen Sie die Ereignisprotokolle für den Webserver. Sie enthalten wahrscheinlich ausführlichere Informationen zu den Ursachen und Umständen der Fehler.
 
-Die Symptome dieses Antimusters und einige ermittelte Telemetriedaten können den Daten des [Antimusters „Monolithic Persistence“ (Monolithische Persistenz)][MonolithicPersistence] stark ähneln. 
+Die Symptome dieses Antimusters und einige ermittelte Telemetriedaten können den Daten des [Antimusters „Monolithic Persistence“ (Monolithische Persistenz)][MonolithicPersistence] stark ähneln.
 
 Sie können die folgenden Schritte ausführen, um die Ursache zu ermitteln:
 
@@ -140,8 +141,8 @@ Sie können die folgenden Schritte ausführen, um die Ursache zu ermitteln:
 2. Beobachten Sie alle Verhaltensmuster des Systems. Bestehen bestimmte Beschränkungen in Bezug auf die Transaktionen pro Sekunde oder das Benutzervolumen?
 3. Korrelieren Sie die Instanzen von langsamen Workloads mit Verhaltensmustern.
 4. Identifizieren Sie die verwendeten Datenspeicher. Führen Sie für jede Datenquelle die Erfassung von Telemetriedaten auf niedriger Ebene aus, um das Verhalten von Vorgängen beobachten zu können.
-6. Identifizieren Sie alle langsamen Abfragen, für die auf diese Datenquellen verwiesen wird.
-7. Führen Sie eine ressourcenspezifische Analyse der langsamen Abfragen durch, und verfolgen Sie, wie die Daten verwendet und verbraucht werden.
+5. Identifizieren Sie alle langsamen Abfragen, für die auf diese Datenquellen verwiesen wird.
+6. Führen Sie eine ressourcenspezifische Analyse der langsamen Abfragen durch, und verfolgen Sie, wie die Daten verwendet und verbraucht werden.
 
 Suchen Sie nach folgenden Symptomen:
 
@@ -150,13 +151,13 @@ Suchen Sie nach folgenden Symptomen:
 - Ein Vorgang, für den häufig große Datenmengen über das Netzwerk eingehen.
 - Anwendungen und Dienste, für die sehr lange auf den Abschluss von E/A-Vorgängen gewartet wird.
 
-## <a name="example-diagnosis"></a>Beispieldiagnose    
+## <a name="example-diagnosis"></a>Beispieldiagnose
 
 In den folgenden Abschnitten werden diese Schritte auf die vorherigen Beispiele angewendet.
 
 ### <a name="identify-slow-workloads"></a>Identifizieren von langsamen Workloads
 
-Mit diesem Graphen werden Leistungsergebnisse eines Auslastungstests dargestellt, bei denen bis zu 400 gleichzeitige Benutzer simuliert wurden, die die oben beschriebene `GetAllFieldsAsync`-Methode ausführen. Der Durchsatz nimmt langsam ab, wenn die Auslastung steigt. Die durchschnittliche Reaktionszeit verlängert sich, wenn die Workload zunimmt. 
+Mit diesem Graphen werden Leistungsergebnisse eines Auslastungstests dargestellt, bei denen bis zu 400 gleichzeitige Benutzer simuliert wurden, die die oben beschriebene `GetAllFieldsAsync`-Methode ausführen. Der Durchsatz nimmt langsam ab, wenn die Auslastung steigt. Die durchschnittliche Reaktionszeit verlängert sich, wenn die Workload zunimmt.
 
 ![Auslastungstestergebnisse für die GetAllFieldsAsync-Methode][Load-Test-Results-Client-Side1]
 
@@ -174,7 +175,7 @@ Ein langsamer Vorgang ist nicht unbedingt ein Problem, wenn Folgendes gilt: Er f
 
 ### <a name="identify-data-sources-in-slow-workloads"></a>Identifizieren von Datenquellen bei langsamen Workloads
 
-Wenn Sie vermuten, dass ein Dienst aufgrund der Art des Datenempfangs eine schlechte Leistung aufweist, sollten Sie untersuchen, wie die Anwendung mit den verwendeten Repositorys interagiert. Überwachen Sie das Livesystem, um Informationen dazu zu erhalten, auf welche Quellen in Zeiten mit schlechter Leistung zugegriffen wird. 
+Wenn Sie vermuten, dass ein Dienst aufgrund der Art des Datenempfangs eine schlechte Leistung aufweist, sollten Sie untersuchen, wie die Anwendung mit den verwendeten Repositorys interagiert. Überwachen Sie das Livesystem, um Informationen dazu zu erhalten, auf welche Quellen in Zeiten mit schlechter Leistung zugegriffen wird.
 
 Instrumentieren Sie für jede Datenquelle das System, um Folgendes zu erfassen:
 
@@ -203,7 +204,6 @@ Suchen Sie nach den Datenbankabfragen, die die meisten Ressourcen verbrauchen un
 
 ![Bereich mit Abfragedetails im Verwaltungsportal von Windows Azure SQL-Datenbank][QueryDetails]
 
-
 ## <a name="implement-the-solution-and-verify-the-result"></a>Implementieren der Lösung und Überprüfen des Ergebnisses
 
 Nach dem Umstellen der `GetRequiredFieldsAsync`-Methode auf die Verwendung einer SELECT-Anweisung auf Datenbankseite wurden für den Auslastungstest die folgenden Ergebnisse angezeigt:
@@ -218,19 +218,17 @@ Beim Auslastungstest mit der `AggregateOnDatabaseAsync`-Methode werden die folge
 
 ![Auslastungstestergebnisse für die AggregateOnDatabaseAsync-Methode][Load-Test-Results-Database-Side2]
 
-Die durchschnittliche Antwortzeit ist jetzt sehr niedrig. Dies ist eine deutliche Verbesserung der Leistung, die hauptsächlich durch die starke Reduzierung der E/A-Vorgänge für die Datenbank erzielt wurde. 
+Die durchschnittliche Antwortzeit ist jetzt sehr niedrig. Dies ist eine deutliche Verbesserung der Leistung, die hauptsächlich durch die starke Reduzierung der E/A-Vorgänge für die Datenbank erzielt wurde.
 
 Hier sind die entsprechenden Telemetriedaten für die `AggregateOnDatabaseAsync`-Methode dargestellt. Die aus der Datenbank abgerufene Datenmenge wurde stark reduziert, und zwar von über 280 KB pro Transaktion auf 53 Byte. Aus diesem Grund ist die maximale dauerhafte Anzahl von Anforderungen pro Minute von ca. 2.000 auf über 25.000 angestiegen.
 
 ![Telemetriedaten für die AggregateOnDatabaseAsync-Methode][TelemetryAggregateInDatabaseAsync]
-
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
 - [Antimuster „Busy Database“][BusyDatabase] (Ausgelastete Datenbank)
 - [Antimuster „Chatty I/O“][chatty-io] (Sehr hohe Zahl von E/A-Vorgängen)
 - [Data partitioning][data-partitioning] (Datenpartitionierung)
-
 
 [BusyDatabase]: ../busy-database/index.md
 [data-partitioning]: ../../best-practices/data-partitioning.md
