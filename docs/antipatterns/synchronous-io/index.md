@@ -1,14 +1,16 @@
 ---
 title: Antimuster „Synchrone E/A-Vorgänge“
+titleSuffix: Performance antipatterns for cloud apps
 description: Ein Blockieren des aufrufenden Threads, während ein E/A-Vorgang abgeschlossen wird, kann die Leistung senken und sich auf die vertikale Skalierbarkeit auswirken.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 961eacb82344ec7e71aaa96fb4cd8bc530721e96
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 209295cfc911ae168bca2f1c64dc930a27a9a4ba
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429008"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009337"
 ---
 # <a name="synchronous-io-antipattern"></a>Antimuster „Synchrone E/A-Vorgänge“
 
@@ -27,9 +29,9 @@ Häufige Beispiele für E/A-Vorgänge sind etwa folgende:
 
 Dieses Antimuster tritt üblicherweise aus folgenden Gründen auf:
 
-- Es ist anscheinend die intuitivste Art, einen Vorgang auszuführen. 
+- Es ist anscheinend die intuitivste Art, einen Vorgang auszuführen.
 - Die Anwendung erfordert eine Antwort aus einer Anforderung.
-- Die Anwendung verwendet eine Bibliothek, die nur synchrone Methoden für E/A-Vorgänge bereitstellt. 
+- Die Anwendung verwendet eine Bibliothek, die nur synchrone Methoden für E/A-Vorgänge bereitstellt.
 - Eine externe Bibliothek führt intern synchrone E/A-Vorgänge aus. Ein einziger synchroner E/A-Aufruf kann eine vollständige Aufrufkette blockieren.
 
 Der folgende Code lädt eine Datei in Azure Blob Storage hoch. Es gibt zwei Stellen, an denen der Code blockiert wird, weil er auf die synchrone E/A-Verarbeitung wartet: die `CreateIfNotExists`-Methode und die `UploadFromStream`-Methode.
@@ -77,7 +79,7 @@ Den vollständigen Code für beide Beispiele finden Sie [hier][sample-app].
 
 ## <a name="how-to-fix-the-problem"></a>Beheben des Problems
 
-Ersetzen Sie synchrone E/A-Vorgänge durch asynchrone Vorgänge. Dadurch wird der aktuelle Thread wieder frei und kann weiterhin sinnvolle Tasks ausführen, anstatt zu blockieren. So lässt sich die Auslastung der Computeressourcen verbessern. Die asynchrone Ausführung von E/A-Vorgängen ist insbesondere dann effizient, wenn ein unerwarteter Anstieg der Anforderungen von Clientanwendungen verarbeitet werden muss. 
+Ersetzen Sie synchrone E/A-Vorgänge durch asynchrone Vorgänge. Dadurch wird der aktuelle Thread wieder frei und kann weiterhin sinnvolle Tasks ausführen, anstatt zu blockieren. So lässt sich die Auslastung der Computeressourcen verbessern. Die asynchrone Ausführung von E/A-Vorgängen ist insbesondere dann effizient, wenn ein unerwarteter Anstieg der Anforderungen von Clientanwendungen verarbeitet werden muss.
 
 Viele Bibliotheken bieten sowohl synchrone als auch asynchrone Versionen von Methoden. Verwenden Sie nach Möglichkeit die asynchronen Versionen. Hier ist die asynchrone Version des vorherigen Beispiels, das eine Datei in Azure Blob Storage hochlädt.
 
@@ -123,7 +125,7 @@ public class AsyncController : ApiController
 }
 ```
 
-Bei Bibliotheken, die keine asynchronen Versionen von Vorgängen bereitstellen, ist es unter Umständen möglich, asynchrone Wrapper für ausgewählte synchrone Methoden zu erstellen. Gehen Sie dabei sehr vorsichtig vor. Mit diesem Ansatz lässt sich zwar möglicherweise die Reaktionsfähigkeit in dem Thread verbessern, der den asynchronen Wrapper aufruft, aber es werden auch mehr Ressourcen verbraucht. Möglicherweise wird ein gesonderter Thread erstellt, und durch die Synchronisierung der von diesem Thread ausgeführten Verarbeitung entsteht Overhead. In diesem Blogbeitrag werden einige Nachteile erläutert: [Should I expose asynchronous wrappers for synchronous methods?][async-wrappers] (Sollen asynchrone Wrapper für synchrone Methoden verfügbar gemacht werden?)
+Bei Bibliotheken, die keine asynchronen Versionen von Vorgängen bereitstellen, ist es unter Umständen möglich, asynchrone Wrapper für ausgewählte synchrone Methoden zu erstellen. Gehen Sie dabei sehr vorsichtig vor. Mit diesem Ansatz lässt sich zwar möglicherweise die Reaktionsfähigkeit in dem Thread verbessern, der den asynchronen Wrapper aufruft, aber es werden auch mehr Ressourcen verbraucht. Möglicherweise wird ein gesonderter Thread erstellt, und durch die Synchronisierung der von diesem Thread ausgeführten Verarbeitung entsteht Overhead. In diesem Blogbeitrag werden einige Kompromisse erläutert: [Should I expose asynchronous wrappers for synchronous methods? (Muss ich asynchrone Wrapper für synchrone Methoden verfügbar machen)][async-wrappers]
 
 Hier sehen Sie ein Beispiel eines asynchronen Wrappers um eine synchrone Methode.
 
@@ -193,16 +195,10 @@ Das nächste Diagramm zeigt die Ergebnisse des Auslastungstests für die asynchr
 
 Der Durchsatz ist wesentlich höher. Im gleichen Zeitraum wie beim vorherigen Test verarbeitet das System erfolgreich nahezu das 10-Fache des Durchsatzes (gemessen in Anforderungen pro Sekunde). Darüber hinaus ist die durchschnittliche Antwortzeit relativ konstant und bleibt etwa 25-mal kürzer als im vorherigen Test.
 
-
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/SynchronousIO
-
-
 [async-wrappers]: https://blogs.msdn.microsoft.com/pfxteam/2012/03/24/should-i-expose-asynchronous-wrappers-for-synchronous-methods/
 [performance-counters]: /azure/cloud-services/cloud-services-dotnet-diagnostics-performance-counters
 [web-sites-monitor]: /azure/app-service-web/web-sites-monitor
 
 [sync-performance]: _images/SyncPerformance.jpg
 [async-performance]: _images/AsyncPerformance.jpg
-
-
-

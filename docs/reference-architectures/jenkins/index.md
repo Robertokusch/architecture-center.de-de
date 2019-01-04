@@ -5,12 +5,12 @@ description: Empfohlene Architektur, die veranschaulicht, wie Sie einen für Unt
 author: njray
 ms.date: 04/30/2018
 ms.custom: seodec18
-ms.openlocfilehash: 9dc4eb27f6c2bc8896770a2d0cd01b738c18c593
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 26bf9cadc8db0cd4fcc61023619ca61bb7b87855
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120270"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644154"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Ausführen eines Jenkins-Servers in Azure
 
@@ -215,6 +215,12 @@ Befolgen Sie zum Einrichten der Überwachung Ihres Jenkins-Servers die Anweisung
 Die Microsoft Jenkins-Produktgruppe hat Notfallwiederherstellungsskripts entwickelt, mit denen ein verwalteter Datenträger zum Speichern des Jenkins-Zustands erstellt wird. Wenn der Server ausfällt, kann sein letzter Zustand wiederhergestellt werden.
 
 Laden Sie die Notfallwiederherstellungsskripts von [GitHub][disaster] herunter, und installieren Sie sie.
+
+Es wird empfohlen, sich das folgende [Azure-Beispielszenario](/azure/architecture/example-scenario) anzusehen, das veranschaulicht, wie bestimmte Lösungen einige derselben Technologien verwenden:
+
+- [CI/CD-Pipeline für containerbasierte Workloads](/azure/architecture/example-scenario/apps/devops-with-aks)
+
+<!-- links -->
 
 [acs]: https://aka.ms/azjenkinsacs
 [ad-sp]: /azure/active-directory/develop/active-directory-integrating-applications

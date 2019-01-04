@@ -2,24 +2,25 @@
 title: Entwerfen robuster Anwendungen für Azure
 description: Es wird beschrieben, wie Sie in Azure robuste Anwendungen mit Hochverfügbarkeit und Notfallwiederherstellung erstellen.
 author: MikeWasson
-ms.date: 11/26/2018
+ms.date: 12/18/2018
 ms.custom: resiliency
-ms.openlocfilehash: a97a26928002b8248344a239159fe7defa99931c
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 1638bc84b436d3d826f8ad9497ddb5a1310c14da
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53005055"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644256"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Entwerfen robuster Anwendungen für Azure
 
 In einem verteilten System kommt es unweigerlich zu Fehlern. Hardware kann ausfallen. Im Netzwerk können vorübergehende Fehler auftreten. In seltenen Fällen kann ein gesamter Dienst oder eine Region ausfallen, aber auch hierfür muss eine Planung vorhanden sein.
 
-Das Erstellen einer zuverlässigen Anwendung in der Cloud unterscheidet sich vom Erstellen einer zuverlässigen Anwendung in einer Unternehmensumgebung. Bisher haben Sie höherwertige Hardware gekauft, um zentral hochzuskalieren, aber in einer Cloudumgebung müssen Sie stattdessen horizontal hochskalieren. Die Kosten für Cloudumgebungen werden niedrig gehalten, indem Standardhardware eingesetzt wird. In dieser neuen Umgebung liegt der Schwerpunkt auf der mittleren Zeit bis zur Wiederherstellung (Mean Time To Restore) und nicht mehr auf der mittleren Zeit zwischen Ausfällen (Mean Time Between Failures). Das Ziel besteht hierbei darin, die Auswirkungen eines Ausfalls gering zu halten.
+Das Erstellen einer zuverlässigen Anwendung in der Cloud unterscheidet sich vom Erstellen einer zuverlässigen Anwendung in einer Unternehmensumgebung. Bisher haben Sie höherwertige Hardware gekauft, um zentral hochzuskalieren, aber in einer Cloudumgebung müssen Sie stattdessen horizontal hochskalieren. Die Kosten für Cloudumgebungen werden niedrig gehalten, indem Standardhardware eingesetzt wird. Das Ziel besteht nicht darin, Fehler ganz zu verhindern, sondern die Auswirkungen eines Fehlers im System zu minimieren.
 
 Dieser Artikel enthält eine Übersicht über die Erstellung von robusten Anwendungen in Microsoft Azure. Zuerst werden der Begriff *Resilienz* und die dazugehörigen Konzepte definiert. Anschließend wird der Prozess zur Erreichung von Resilienz beschrieben. Hierzu wird ein strukturierter Ansatz für die Lebensdauer einer Anwendung verwendet – vom Entwurf und der Implementierung über die Bereitstellung bis zum Betrieb.
 
 ## <a name="what-is-resiliency"></a>Was ist Resilienz?
+
 Bei der **Resilienz** (Robustheit) geht es um die Möglichkeit, nach Ausfällen für ein System eine Wiederherstellung durchzuführen und die Betriebsbereitschaft sicherzustellen. Es geht nicht um das *Vermeiden* von Ausfällen, sondern um das *Reagieren* auf Ausfälle, um Ausfallzeiten oder Datenverluste zu vermeiden. Das Ziel besteht bei der Resilienz darin, für die Anwendung nach einem Ausfall wieder die volle Funktionsfähigkeit herzustellen.
 
 Zwei wichtige Aspekte der Resilienz sind Hochverfügbarkeit und Notfallwiederherstellung.
@@ -38,6 +39,7 @@ Ein weiterer häufig verwendeter Begriff ist **Geschäftskontinuität** (Busines
 Die Sicherung unterscheidet sich von der **Datenreplikation**. Die Datenreplikation umfasst das Kopieren von Daten nahezu in Echtzeit, sodass das System schnell ein Failover zu einem Replikat durchführen kann. Viele Datenbankensysteme unterstützen die Replikation. Beispielsweise verfügt SQL Server über Unterstützung für SQL Server Always On-Verfügbarkeitsgruppen. Mit der Datenreplikation kann reduziert werden, wie lange die Wiederherstellung nach einem Ausfall dauert, indem sichergestellt wird, dass immer ein Replikat der Daten verfügbar ist. Die Datenreplikation bietet aber keinen Schutz vor menschlichen Fehlern. Falls Daten aufgrund eines menschlichen Fehlers beschädigt werden, werden sie einfach auf die Replikate kopiert. Aus diesem Grund benötigen Sie für Ihre Strategie für die Notfallwiederherstellung eine langfristige Sicherungslösung.
 
 ## <a name="process-to-achieve-resiliency"></a>Prozess zur Erreichung von Resilienz
+
 Resilienz ist kein Add-On. Sie muss in das System integriert und im Betrieb umgesetzt werden. Dieses allgemeine Modell dient hierbei als Grundlage:
 
 1. **Definieren** Sie Ihre Verfügbarkeitsanforderungen basierend auf den geschäftlichen Anforderungen.
@@ -51,34 +53,47 @@ Resilienz ist kein Add-On. Sie muss in das System integriert und im Betrieb umge
 Im weiteren Verlauf dieses Artikels werden diese Schritte ausführlicher beschrieben.
 
 ## <a name="define-your-availability-requirements"></a>Definieren der Verfügbarkeitsanforderungen
+
 Die Resilienzplanung beginnt mit den geschäftlichen Anforderungen. Hier sind einige Ansätze beschrieben, die für die Resilienz in diesem Zusammenhang geeignet sind.
 
 ### <a name="decompose-by-workload"></a>Aufteilen von Workloads
+
 Viele Cloudlösungen bestehen aus mehreren Anwendungsworkloads. Der Begriff „Workload“ steht in diesem Kontext für eine diskrete Funktion oder Computingaufgabe, die von anderen Aufgaben in Bezug auf die Geschäftslogik und die Datenspeicheranforderungen logisch getrennt werden kann. Eine E-Commerce-App kann beispielsweise die folgenden Workloads enthalten:
 
 * Suchen in einem Produktkatalog
 * Erstellen und Nachverfolgen von Aufträgen
 * Anzeigen von Empfehlungen
 
-Für diese Workloads gelten unter Umständen unterschiedliche Anforderungen in Bezug auf die Verfügbarkeit, Skalierbarkeit, Datenkonsistenz, Notfallwiederherstellung usw. Auch dies sind geschäftliche Entscheidungen.
+Für diese Workloads gelten unter Umständen unterschiedliche Anforderungen in Bezug auf die Verfügbarkeit, Skalierbarkeit, Datenkonsistenz und Notfallwiederherstellung. Im Hinblick auf das Kosten-Risiko-Verhältnis sind geschäftliche Entscheidungen zu treffen.
 
-Berücksichtigen Sie außerdem die Nutzungsmuster. Gibt es bestimmte kritische Zeiträume, in denen das System verfügbar sein muss? Beispiele: Ein Dienst für Steuererklärungen darf kurz vor dem Einreichungsdatum nicht ausfallen, ein Dienst für Videostreams muss während eines großen Sportereignisses stabil bleiben usw. Während dieser kritischen Zeiträume verwenden Sie ggf. redundante Bereitstellungen in mehreren Regionen, damit für die Anwendung ein Failover durchgeführt werden kann, wenn eine Region ausfällt. Aber da die Bereitstellung in mehreren Regionen mit höheren Kosten verbunden ist, kann es ratsam sein, die Anwendung zu weniger kritischen Zeiten nur in einer Region auszuführen.
+Berücksichtigen Sie außerdem die Nutzungsmuster. Gibt es bestimmte kritische Zeiträume, in denen das System verfügbar sein muss? Beispiele: Ein Dienst für Steuererklärungen darf kurz vor dem Einreichungsdatum nicht ausfallen, ein Dienst für Videostreams muss während eines großen Sportereignisses stabil bleiben usw. Während dieser kritischen Zeiträume verwenden Sie ggf. redundante Bereitstellungen in mehreren Regionen, damit für die Anwendung ein Failover durchgeführt werden kann, wenn eine Region ausfällt. Aber da die Bereitstellung in mehreren Regionen potenzial mit höheren Kosten verbunden ist, kann es ratsam sein, die Anwendung zu weniger kritischen Zeiten nur in einer Region auszuführen. In einigen Fällen können die zusätzlichen Kosten mithilfe von modernen serverlosen Techniken verringert werden, die verbrauchsbasierte Abrechnung verwenden, sodass Ihnen nicht ausgelastete Computeressourcen nicht in Rechnung gestellt werden.
 
 ### <a name="rto-and-rpo"></a>RTO und RPO
-Zwei wichtige Metriken, die berücksichtigt werden sollten, sind Recovery Time Objective (RTO) und Recovery Point Objective (RPO).
 
-* **Recovery Time Objective** (RTO) ist der maximal zulässige Zeitraum, in dem eine Anwendung nach einem Vorfall nicht verfügbar sein darf. Wenn RTO bei Ihnen 90 Minuten beträgt, müssen Sie dazu in der Lage sein, die Anwendung innerhalb von 90 Minuten nach Beginn eines Notfalls wieder in den Ausführungszustand zu versetzen. Falls für RTO ein sehr niedriger Wert angesetzt ist, führen Sie ggf. eine zweite Bereitstellung ständig im Standby aus, um vor einem regionalen Ausfall geschützt zu sein.
+Zwei wichtige Metriken, die berücksichtigt werden sollten, sind Recovery Time Objective (RTO) und Recovery Point Objective (RPO), da sie sich auf Notfallwiederherstellung beziehen.
+
+* **Recovery Time Objective** (RTO) ist der maximal zulässige Zeitraum, in dem eine Anwendung nach einem Vorfall nicht verfügbar sein darf. Wenn RTO bei Ihnen 90 Minuten beträgt, müssen Sie dazu in der Lage sein, die Anwendung innerhalb von 90 Minuten nach Beginn eines Notfalls wieder in den Ausführungszustand zu versetzen. Falls für RTO ein sehr niedriger Wert angesetzt ist, führen Sie ggf. in einer zweiten regionalen Bereitstellung ständig eine Aktiv/Passiv-Konfiguration im Standby aus, um vor einem regionalen Ausfall geschützt zu sein. In einigen Fällen können Sie eine Aktiv/Aktiv-Konfiguration bereitstellen, um sogar einen noch niedrigeren RTO-Wert zu erzielen.
 
 * **Recovery Point Objective** (RPO) ist die maximale Dauer eines Datenverlusts, die während eines Notfalls zulässig ist. Wenn Sie Daten beispielsweise in einer einzelnen Datenbank ohne Replikation in anderen Datenbanken speichern und stündliche Sicherungen durchführen, können Daten für bis zu eine Stunde verloren gehen.
 
-RTO und RPO sind geschäftliche Anforderungen. Die Durchführung einer Risikobewertung kann hilfreich sein, um RTO und RPO für die Anwendung zu definieren. Eine weitere häufig genutzte Metrik ist die **mittlere Zeit bis zur Wiederherstellung** (Mean Time To Recover, MTTR). Dies ist die durchschnittliche Dauer der Wiederherstellung einer Anwendung nach einem Ausfall. MTTR ist ein empirischer Fakt eines Systems. Wenn der MTTR-Wert größer als der RTO-Wert ist, führt ein Ausfall des Systems zu einer nicht akzeptablen geschäftlichen Störung, weil es nicht möglich ist, das System innerhalb des definierten RTO-Zeitraums wiederherzustellen.
+RTO und RPO sind nicht funktionsbezogene Anforderungen eines Systems und sollten von Geschäftsanforderungen vorgegeben werden. Um diese Werte abzuleiten empfiehlt es sich, eine Risikobewertung durchzuführen und sich der Kosten für Ausfallzeiten oder Datenverluste genau bewusst zu sein.
+
+### <a name="mttr-and-mtbf"></a>MTTR und MTBF
+
+Zwei weitere gängige Measures für Verfügbarkeit sind MTTR (Mean Time To Recover, mittlere Reparaturzeit) und MTBF (Mean Time Between Failure, mittlere Betriebsdauer zwischen Ausfällen). Diese Measures werden in der Regel intern von Dienstanbietern verwendet, um zu ermitteln, wo Clouddiensten Redundanz hinzuzufügen ist und welche SLAs für Kunden bereitzustellen sind.
+
+**Mean Time to Recover** (MTTR) ist der durchschnittliche Zeitraum, der zur Wiederherstellung einer Komponente nach einem Ausfall erforderlich ist. MTTR ist ein empirischer Fakt über eine Komponente. Based auf der MTTR der einzelnen Komponenten können Sie die MTTR einer gesamten Anwendung schätzen. Das Erstellen von Anwendungen aus mehreren Komponenten mit niedrigen MTTR-Werten sorgt für eine Anwendung mit einer niedrigen Gesamt-MTTR, die nach Ausfällen schnell wiederherzustellen ist.
+
+**Mean Time Between Failures** (MTBF) ist die Laufzeit, die für eine Komponente verhältnismäßig zwischen Ausfällen zu erwarten ist. Mit dieser Metrik können Sie berechnen, wie häufig ein Dienst nicht verfügbar sein wird. Eine unzuverlässige Komponente hat einen geringen MTBF-Wert, was zu einem geringen SLA-Wert für die jeweilige Komponente führt. Allerdings können die Auswirkungen eines niedrigen MTBF-Werts gemindert werden, indem mehrere Instanzen der Komponente bereitgestellt werden, zwischen denen Failover implementiert wird.
+
+> [!NOTE]
+> Wenn EINER der MTTR-Werte von Komponenten in einer Einrichtung mit hoher Verfügbarkeit den RTO-Wert des Systems überschreitet, führt ein Fehler im System zu einer nicht akzeptablen Geschäftsunterbrechung. Das Wiederherstellen des Systems innerhalb des definierten RTO-Zeitraums ist nicht möglich.
 
 ### <a name="slas"></a>SLAs
 In Azure wird in der [Vereinbarung zum Servicelevel (SLA)][sla] die garantierte Verfügbarkeit und Konnektivität beschrieben, die Microsoft zusichert. Wenn die Vereinbarung zum Servicelevel für einen bestimmten Dienst 99,9% beträgt, können Sie erwarten, dass der Dienst 99,9% der Zeit verfügbar ist.
 
 > [!NOTE]
 > Die Vereinbarung zum Servicelevel von Azure enthält auch Bestimmungen zum Erhalt einer Gutschrift, falls die Vereinbarung nicht erfüllt wird, sowie bestimmte Definitionen zur „Verfügbarkeit“ jedes Diensts. Dieser Aspekt der Vereinbarung zum Servicelevel fungiert als Durchsetzungsrichtlinie.
->
 >
 
 Sie sollten eigene Ziel-SLAs für jede Workload Ihrer Lösung definieren. Anhand einer Vereinbarung zum Servicelevel kann ausgewertet werden, ob die Architektur die geschäftlichen Anforderungen erfüllt. Wenn für eine Workload beispielsweise eine Betriebszeit von 99,99% erforderlich ist, dafür aber eine Abhängigkeit von einem Dienst mit einer Vereinbarung zum Servicelevel mit 99,9% besteht, kann dieser Dienst im System kein Single Point of Failure sein. Eine Lösung hierfür ist die Verwendung eines Fallbackpfads für den Fall, dass der Dienst ausfällt, oder das Treffen von anderen Maßnahmen zur Wiederherstellung nach einem Ausfall des Diensts.
@@ -100,6 +115,7 @@ Hier sind einige andere Aspekte aufgeführt, die für das Definieren einer Verei
 * Wenn Sie 99,99% erreichen möchten, können Sie sich bei der Wiederherstellung nach Ausfällen wahrscheinlich nicht auf manuelle Eingriffe verlassen. Die Anwendung muss eine Selbstdiagnose und Selbstreparatur durchführen können.
 * Im Bereich über 99,99% stellt es eine große Herausforderung dar, Ausfälle schnell genug zu erkennen, um die SLA-Anforderungen zu erfüllen.
 * Betrachten Sie das Zeitfenster, auf das sich Ihre Vereinbarung zum Servicelevel bezieht. Je kleiner das Fenster, desto enger die Toleranzen. Vermutlich ist es nicht sinnvoll, Ihre Vereinbarung zum Servicelevel in Bezug auf die stündliche oder tägliche Betriebszeit zu definieren.
+* Betrachten Sie die MTBF- und MTTR-Messungen. Je niedriger Ihre SLA, desto häufiger kann der Dienst ausfallen und desto schneller muss der Dienst wiederhergestellt werden.
 
 ### <a name="composite-slas"></a>Zusammengesetzte SLAs
 Angenommen, eine App Service-Web-App führt Schreibvorgänge in eine Azure SQL-Datenbank durch. Zum Zeitpunkt der Erstellung dieses Artikels verfügen diese Azure-Dienste über die folgenden SLAs:
@@ -111,7 +127,7 @@ Angenommen, eine App Service-Web-App führt Schreibvorgänge in eine Azure SQL-D
 
 Welche maximale Ausfallzeit erwarten Sie für diese Anwendung? Wenn einer der Dienste ausfällt, kommt es zu einem Ausfall der gesamten Anwendung. Im Allgemeinen ist die Wahrscheinlichkeit, dass jeder Dienst ausfällt, eine unabhängige Größe, und die zusammengesetzte Vereinbarung zum Servicelevel für diese Anwendung ist 99,95% &times; 99,99% = 99,94%. Dieser Wert ist niedriger als bei einzelnen SLAs. Dies ist nicht verwunderlich, da eine Anwendung, die von mehreren Diensten abhängig ist, über mehr potenzielle Fehlerpunkte verfügt.
 
-Andererseits können Sie die zusammengesetzte Vereinbarung zum Servicelevel verbessern, indem Sie unabhängige Fallbackpfade erstellen. Wenn SQL-Datenbank beispielsweise nicht verfügbar ist, können Transaktionen zur späteren Verarbeitung in eine Warteschlange eingereiht werden.
+Andererseits können Sie die zusammengesetzte Vereinbarung zum Servicelevel verbessern, indem Sie unabhängige Fallbackpfade erstellen. Wenn SQL-Datenbank beispielsweise nicht verfügbar ist, können Transaktionen zur späteren Verarbeitung in eine Warteschlange eingereiht werden. 
 
 ![Zusammengesetzte Vereinbarung zum Servicelevel](./images/sla2.png)
 
@@ -125,17 +141,18 @@ Für die gesamte zusammengesetzte Vereinbarung zum Servicelevel gilt:
 
 Dieser Ansatz hat aber auch Nachteile. Die Anwendungslogik ist komplexer, es fallen Kosten für die Warteschlange an, und ggf. müssen Probleme mit der Datenkonsistenz gelöst werden.
 
-**SLA für Bereitstellung in mehreren Regionen**. Ein weiteres Verfahren für Hochverfügbarkeit ist die Bereitstellung der Anwendung in mehr als einer Region und die Verwendung von Azure Traffic Manager zum Durchführen eines Failovers, wenn die Anwendung in einer Region ausfällt. Für eine Bereitstellung in zwei Regionen wird die zusammengesetzte Vereinbarung zum Servicelevel wie folgt berechnet:
+**SLA für Bereitstellung in mehreren Regionen**. Ein weiteres Verfahren für Hochverfügbarkeit ist die Bereitstellung der Anwendung in mehr als einer Region und die Verwendung von Azure Traffic Manager zum Durchführen eines Failovers, wenn die Anwendung in einer Region ausfällt. Für eine Bereitstellung in mehreren Regionen wird die zusammengesetzte Vereinbarung zum Servicelevel wie folgt berechnet:
 
-*N* steht für die zusammengesetzte Vereinbarung zum Servicelevel für die Anwendung, die in einer Region bereitgestellt wird. Die erwartete Wahrscheinlichkeit, dass die Anwendung in beiden Regionen gleichzeitig ausfällt, ist (1 &minus; N) &times; (1 &minus; N). Deshalb gilt Folgendes:
+*N* steht für die zusammengesetzte SLA für die in einer Region bereitgestellten Anwendung. *R* steht für die Anzahl von Regionen, in denen die Anwendung bereitgestellt wird. Die erwartete Wahrscheinlichkeit, dass die Anwendung in beiden Regionen gleichzeitig ausfällt, ist ((1 &minus N) ^ R).
 
-* Kombinierte Vereinbarung zum Servicelevel für beide Regionen = 1 &minus; (1 &minus; N)(1 &minus; N) = N + (1 &minus; N)N
+Beispiel: Wenn die SLA für die einzelne Region 99,95% ist, gilt:
 
-Abschließend müssen Sie noch die [Vereinbarung zum Servicelevel für Traffic Manager][tm-sla] einbinden. Zum Zeitpunkt der Erstellung dieses Artikels verfügt die Vereinbarung zum Servicelevel für Traffic Manager über den Wert 99,99%.
+* Kombinierte SLA für zwei Regionen = (1 &minus; (0,9995 ^ 2)) = 99,999975%
+* Kombinierte SLA für vier Regionen = (1 &minus; (0,9995 ^ 4)) = 99,999999%
 
-* Zusammengesetzte Vereinbarung zum Servicelevel = 99,99% &times; (SLA kombiniert für beide Regionen)
+Außerdem müssen Sie noch die [Vereinbarung zum Servicelevel für Traffic Manager][tm-sla] einbinden. Zum Zeitpunkt der Erstellung dieses Artikels verfügt die Vereinbarung zum Servicelevel für Traffic Manager über den Wert 99,99%.
 
-Außerdem wird das Failover nicht sofort durchgeführt, und während eines Failovers kann es zu Ausfallzeit kommen. Informationen hierzu finden Sie unter [Traffic Manager-Endpunktüberwachung und -failover][tm-failover].
+Zudem wird das Failover in Aktiv/Passiv-Konfigurationen nicht sofort durchgeführt, sodass es während eines Failovers zu Ausfallzeiten kommen kann. Informationen hierzu finden Sie unter [Traffic Manager-Endpunktüberwachung und -failover][tm-failover].
 
 Der berechnete SLA-Wert ist ein nützlicher Anhaltspunkt, aber er hat in Bezug auf die Verfügbarkeit keine umfassende Aussagekraft. Häufig kann eine Anwendung korrekt herabgestuft werden, wenn ein nicht kritischer Pfad ausfällt. Stellen Sie sich eine Anwendung vor, in der ein Katalog mit Büchern angezeigt wird. Wenn die Anwendung das Miniaturbild für den Buchdeckel nicht abrufen kann, wird ggf. ein Platzhalterbild angezeigt. In diesem Fall wird die Betriebszeit der Anwendung durch das fehlende Abrufen des Bilds nicht reduziert, obwohl für Benutzer eine Beeinträchtigung besteht.  
 
@@ -147,7 +164,7 @@ In der Entwurfsphase ist es ratsam, eine Fehlermodusanalyse (Failure Mode Analys
 * Wie reagiert die Anwendung auf diese Art von Fehler?
 * Wie protokollieren und überwachen Sie diese Art von Fehler?
 
-Weitere Informationen zum FMA-Prozess mit spezifischen Empfehlungen für Azure finden Sie unter [Azure resiliency guidance: Failure mode analysis][fma] (Azure-Leitfaden zur Resilienz: Fehlermodusanalyse).
+Weitere Informationen zum FMA-Prozess mit spezifischen Empfehlungen für Azure finden Sie im [Azure-Leitfaden zur Resilienz: Fehlermodusanalyse][fma].
 
 ### <a name="example-of-identifying-failure-modes-and-detection-strategy"></a>Beispiel für die Identifizierung von Fehlermodi und eine Erkennungsstrategie
 **Fehlerpunkt:** Aufruf eines externen Webdiensts bzw. einer API.
@@ -159,7 +176,6 @@ Weitere Informationen zum FMA-Prozess mit spezifischen Empfehlungen für Azure f
 | Authentifizierung |HTTP 401 (Nicht autorisiert) |
 | Langsame Reaktion |Timeout der Anforderung |
 
-
 ### <a name="redundancy-and-designing-for-failure"></a>Redundanz und Ausrichten des Entwurfs auf Fehler
 
 Fehler und Ausfälle können mit unterschiedlichen Auswirkungen verbunden sein. Einige Hardwarefehler, z.B. ein ausgefallener Datenträger, wirken sich ggf. nur auf einen einzelnen Hostcomputer aus. Ein fehlerhafter Netzwerkswitch kann sich auf ein gesamtes Serverrack auswirken. Weniger häufig treten Fehler auf, die zu Störungen für ein gesamtes Rechenzentrum führen, z.B. zu einem Stromausfall im Rechenzentrum. In selten Fällen kann es vorkommen, dass eine gesamte Region nicht mehr verfügbar ist.
@@ -168,19 +184,21 @@ Eines der wichtigsten Verfahren, mit dem für eine Anwendung die Resilienz siche
 
 Azure verfügt über eine Reihe von Features, mit denen für eine Anwendung für alle Fehlerebenen Redundanz erzielt werden kann – von einer einzelnen VM bis hin zu einer gesamten Region.
 
-![](./images/redundancy.svg)
+![Azure-Resilienzfeatures](./images/redundancy.svg)
 
-**Einzelne VM**: Azure enthält eine Betriebszeit-SLA für einzelne VMs. Sie können zwar einen höheren SLA-Grad erzielen, indem Sie zwei oder mehr VMs ausführen, aber für einige Workloads kann eine einzelne VM zuverlässig genug sein. Für Produktionsworkloads empfehlen wir aus Redundanzgründen die Verwendung von zwei oder mehr VMs.
+**Einzelne VM**: Azure bietet eine [Betriebszeit-SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines) für einzelne virtuelle Computer. (Der virtuelle Computer muss Storage Premium für alle Betriebssystem-Datenträger und Datenträger verwenden.) Sie können zwar einen höheren SLA-Grad erzielen, indem Sie zwei oder mehr VMs ausführen, aber für einige Workloads kann eine einzelne VM zuverlässig genug sein. Für Produktionsworkloads empfehlen wir jedoch aus Redundanzgründen die Verwendung von mindestens zwei virtuellen Computern.
 
 **Verfügbarkeitsgruppen**: Stellen Sie als Schutz vor lokalen Hardwarefehlern, z.B. ein Ausfall eines Datenträgers oder Netzwerkswitchs, in einer Verfügbarkeitsgruppe zwei oder mehr VMs bereit. Eine Verfügbarkeitsgruppe besteht aus mindestens zwei *Fehlerdomänen*, die eine Stromquelle und einen Netzwerkswitch gemeinsam nutzen. VMs in einer Verfügbarkeitsgruppe sind auf die Fehlerdomänen verteilt. Wenn ein Hardwarefehler eine Fehlerdomäne betrifft, kann der Netzwerkdatenverkehr so weiterhin an die VMs in den anderen Fehlerdomänen weitergeleitet werden. Weitere Informationen zu Verfügbarkeitsgruppen finden Sie unter [Verwalten der Verfügbarkeit virtueller Windows-Computer in Azure](/azure/virtual-machines/windows/manage-availability).
 
-**Verfügbarkeitszonen**.  Eine Verfügbarkeitszone ist eine physisch getrennte Zone in einer Azure-Region. Jede Verfügbarkeitszone verfügt über eine eigene Stromquelle, ein Netzwerk und eine Kühlung. Die Bereitstellung von VMs über Verfügbarkeitszonen hinweg dient dem Schutz einer Anwendung vor Ausfällen, die ein gesamtes Rechenzentrum betreffen.
+**Verfügbarkeitszonen**.  Eine Verfügbarkeitszone ist eine physisch getrennte Zone in einer Azure-Region. Jede Verfügbarkeitszone verfügt über eine eigene Stromquelle, ein Netzwerk und eine Kühlung. Die Bereitstellung von VMs über Verfügbarkeitszonen hinweg dient dem Schutz einer Anwendung vor Ausfällen, die ein gesamtes Rechenzentrum betreffen. Nicht alle Regionen unterstützen Verfügbarkeitszonen. Eine Liste der unterstützten Regionen und Dienste finden Sie unter [Was sind Verfügbarkeitszonen in Azure?](/azure/availability-zones/az-overview)
 
-**Azure Site Recovery:**  Replizieren Sie virtuelle Azure-Computer in einer anderen Azure-Region, um Ihre BCDR-Anforderungen (Business Continuity und Disaster Recovery) zu erfüllen. Sie können regelmäßige DR-Drills ausführen, um sicherzustellen, dass die Complianceanforderungen erfüllt werden. Der virtuelle Computer wird mit den angegebenen Einstellungen in der ausgewählten Region repliziert, sodass Sie Ihre Anwendungen bei Ausfällen in der Quellregion wiederherstellen können. Weitere Informationen finden Sie unter [Einrichten der Notfallwiederherstellung in einer sekundären Azure-Region für einen virtuellen Azure-Computer][site-recovery].
+Wenn Sie Verfügbarkeitszonen in Ihrer Bereitstellung verwenden möchten, überprüfen Sie zuerst, dass Ihre Anwendungsarchitektur und Codebasis diese Konfiguration unterstützen. Wenn Sie COTS-Software bereitstellen, wenden Sie sich an den Softwareanbieter und führen Sie angemessene Tests durch, bevor Sie in der Produktionsumgebung bereitstellen. Eine Anwendung muss in der Lage sein, während eines Ausfalls innerhalb der konfigurierten Zone einen Zustand beizubehalten Datenverluste zu verhindern. Die Anwendung muss die Ausführung in einer elastischen und verteilten Infrastruktur ohne in der Codebasis angegebene hartcodierte Infrastrukturkomponenten unterstützen. 
+
+**Azure Site Recovery:**  Replizieren Sie virtuelle Azure-Computer in einer anderen Azure-Region, um Ihre BCDR-Anforderungen (Business Continuity und Disaster Recovery) zu erfüllen. Sie können regelmäßige DR-Drills ausführen, um sicherzustellen, dass die Complianceanforderungen erfüllt werden. Der virtuelle Computer wird mit den angegebenen Einstellungen in der ausgewählten Region repliziert, sodass Sie Ihre Anwendungen bei Ausfällen in der Quellregion wiederherstellen können. Weitere Informationen finden Sie unter [Einrichten der Notfallwiederherstellung in einer sekundären Azure-Region für einen virtuellen Azure-Computer][site-recovery]. Erwägen Sie die RTO- und RPO-Werte hier für Ihre Lösung, und stellen Sie beim Testen sicher, dass die Wiederherstellungszeit und der Wiederherstellungspunkt für Ihre Anforderungen geeignet sind.
 
 **Regionspaare**: Um eine Anwendung vor einem regionalen Ausfall zu schützen, können Sie sie in mehreren Regionen bereitstellen, indem Sie Azure Traffic Manager zum Verteilen von Internetdatenverkehr auf die verschiedenen Regionen verwenden. Jede Azure-Region ist mit einer anderen Region gekoppelt. Zusammen bilden sie ein [Regionspaar](/azure/best-practices-availability-paired-regions). Mit Ausnahme von „Brasilien, Süden“ befinden sich die Regionen der Regionspaare immer innerhalb des gleichen geografischen Gebiets, um steuerliche und rechtliche Anforderungen an den Speicherort von Daten zu erfüllen.
 
-Berücksichtigen Sie beim Entwerfen einer Anwendung für mehrere Regionen, dass die Netzwerklatenz für mehrere Regionen höher als innerhalb einer Region ist. Wenn Sie beispielsweise eine Datenbank replizieren, um das Failover zu ermöglichen, sollten Sie die synchrone Datenreplikation innerhalb einer Region und die asynchrone Datenreplikation für mehrere Regionen verwenden.
+Berücksichtigen Sie beim Entwerfen einer Anwendung für mehrere Regionen, dass die Netzwerklatenz für mehrere Regionen höher als innerhalb einer Region ist. Wenn Sie beispielsweise eine Datenbank replizieren, um das Failover zu ermöglichen, sollten Sie die synchrone Datenreplikation innerhalb einer Region und die asynchrone Datenreplikation für mehrere Regionen verwenden. 
 
 | &nbsp; | Verfügbarkeitsgruppe | Verfügbarkeitszone | Azure Site Recovery/Gekoppelte Region |
 |--------|------------------|-------------------|---------------|
@@ -204,7 +222,7 @@ Jeder Wiederholungsversuch trägt zur Gesamtwartezeit bei. Außerdem können zu 
 * Führen Sie für eine Azure App Service-App das zentrale Hochskalieren auf mehrere Instanzen durch. App Service verteilt die Last automatisch auf die Instanzen. Informationen hierzu finden Sie unter [Basic web application][ra-basic-web] (Einfache Webanwendung).
 * Verwenden Sie [Azure Traffic Manager][tm], um Datenverkehr auf eine Gruppe von Endpunkten zu verteilen.
 
-**Replizieren von Daten.** Das Replizieren von Daten ist eine allgemeine Strategie zum Verarbeiten von nicht vorübergehenden Fehlern in einem Datenspeicher. Viele Speichertechnologien verfügen über eine integrierte Replikation, z.B. Azure SQL-Datenbank, Cosmos DB und Apache Cassandra. Es ist wichtig, dass sowohl der Lese- als auch der Schreibpfad berücksichtigt wird. Je nach Speichertechnologie sind ggf. mehrere beschreibbare Replikate vorhanden (oder ein einzelnes beschreibbares Replikat und mehrere schreibgeschützte Replikate).
+**Replizieren von Daten.** Das Replizieren von Daten ist eine allgemeine Strategie zum Verarbeiten von nicht vorübergehenden Fehlern in einem Datenspeicher. Viele Speichertechnologien verfügen über eine integrierte Replikation, z.B. Azure Storage, Azure SQL-Datenbank, Cosmos DB und Apache Cassandra. Es ist wichtig, dass sowohl der Lese- als auch der Schreibpfad berücksichtigt wird. Je nach Speichertechnologie sind ggf. mehrere beschreibbare Replikate vorhanden (oder ein einzelnes beschreibbares Replikat und mehrere schreibgeschützte Replikate).
 
 Zur Maximierung der Verfügbarkeit können Replikate in mehreren Regionen angeordnet werden. Hiermit wird aber die Wartezeit beim Replizieren der Daten erhöht. Normalerweise wird das regionsübergreifende Replizieren asynchron durchgeführt. Dies ist mit einem Modell der letztlichen Konsistenz und potenziellem Datenverlust bei einem Ausfall eines Replikats verbunden.
 

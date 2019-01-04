@@ -1,14 +1,16 @@
 ---
 title: Antimuster der monolithischen Persistenz
+titleSuffix: Performance antipatterns for cloud apps
 description: Das Speichern sämtlicher Daten einer Anwendung in einem einzigen Datenspeicher kann die Leistung beeinträchtigen.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 8cc67a41adf7ca4e3c5475eea86e38b75dd65d4d
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c54a99dd0754cb2cb6cf4ad85b23a518c14a978b
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429110"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010255"
 ---
 # <a name="monolithic-persistence-antipattern"></a>Antimuster der monolithischen Persistenz
 
@@ -16,12 +18,12 @@ Das Speichern sämtlicher Daten einer Anwendung in einem einzigen Datenspeicher 
 
 ## <a name="problem-description"></a>Problembeschreibung
 
-Früher verwendeten Anwendungen häufig einen einzigen Datenspeicher, unabhängig von den unterschiedlichen Datentypen, die eine Anwendung speichern muss. Der Grund dafür war üblicherweise, dass der Anwendungsentwurf vereinfacht werden sollte. Eine andere Ursache waren häufig die technischen Fähigkeiten des Entwicklungsteams. 
+Früher verwendeten Anwendungen häufig einen einzigen Datenspeicher, unabhängig von den unterschiedlichen Datentypen, die eine Anwendung speichern muss. Der Grund dafür war üblicherweise, dass der Anwendungsentwurf vereinfacht werden sollte. Eine andere Ursache waren häufig die technischen Fähigkeiten des Entwicklungsteams.
 
 Moderne cloudbasierte Systeme weisen meist zusätzliche funktionelle und nicht funktionelle Anforderungen auf und müssen viele heterogene Arten von Daten speichern – z.B. Dokumente, Bilder, zwischengespeicherte Daten, Nachrichten in Warteschlangen, Anwendungsprotokolle und Telemetriedaten. Das Verfolgen des herkömmlichen Ansatzes und Speichern all dieser Informationen im gleichen Datenspeicher kann hauptsächlich aus zwei Gründen die Leistung beeinträchtigen:
 
 - Das Speichern und Abrufen großer Mengen nicht in Zusammenhang stehender Daten im gleichen Datenspeicher kann zu Konflikten führen, was wiederum lange Antwortzeiten und Verbindungsfehler zur Folge hat.
-- Unabhängig davon, welcher Datenspeicher ausgewählt wird, er wird sich vermutlich nicht ideal für all die verschiedenen Arten von Daten eignen oder nicht für die Vorgänge optimiert sein, die von der Anwendung ausgeführt werden. 
+- Unabhängig davon, welcher Datenspeicher ausgewählt wird, er wird sich vermutlich nicht ideal für all die verschiedenen Arten von Daten eignen oder nicht für die Vorgänge optimiert sein, die von der Anwendung ausgeführt werden.
 
 Das folgende Beispiel zeigt einen ASP.NET-Web-API-Controller, der einen neuen Datensatz zu einer Datenbank hinzufügt und das Ergebnis in einem Protokoll aufzeichnet. Das Protokoll wird in der gleichen Datenbank gespeichert wie die Geschäftsdaten. Das vollständige Beispiel finden Sie [hier][sample-app].
 
@@ -43,7 +45,7 @@ Die Geschwindigkeit, mit der Protokollzeilen generiert werden, wird sich wahrsch
 
 ## <a name="how-to-fix-the-problem"></a>Beheben des Problems
 
-Trennen Sie die Daten je nach Verwendung. Wählen Sie für jedes Dataset den Datenspeicher aus, der sich am besten für den Verwendungszweck des jeweiligen Datasets eignet. Im vorherigen Beispiel sollte die Anwendung die Protokollierung in einem anderen Speicher ausführen als in der Datenbank, die die Geschäftsdaten enthält: 
+Trennen Sie die Daten je nach Verwendung. Wählen Sie für jedes Dataset den Datenspeicher aus, der sich am besten für den Verwendungszweck des jeweiligen Datasets eignet. Im vorherigen Beispiel sollte die Anwendung die Protokollierung in einem anderen Speicher ausführen als in der Datenbank, die die Geschäftsdaten enthält:
 
 ```csharp
 public class PolyController : ApiController
@@ -76,10 +78,10 @@ Das System wird sich wahrscheinlich erheblich verlangsamen und letztendlich ausf
 Sie können die folgenden Schritte ausführen, um die Ursache zu ermitteln.
 
 1. Instrumentieren Sie das System, um die wichtigsten Leistungsstatistiken aufzuzeichnen. Erfassen Sie Zeitinformationen für jeden Vorgang sowie die Punkte, an denen die Anwendung Daten liest und schreibt.
-1. Überwachen Sie nach Möglichkeit das ausgeführte System einige Tage lang in einer Produktionsumgebung, um herauszufinden, wie das System in der Praxis verwendet wird. Wenn dies nicht möglich ist, führen Sie skriptbasierte Auslastungstests mit einer realistischen Menge an virtuellen Benutzern durch, die eine typische Reihe von Vorgängen ausführen.
-2. Verwenden Sie die Telemetriedaten, um Zeiträume unzureichender Leistung zu identifizieren.
-3. Ermitteln Sie, auf welche Datenspeicher während dieser Zeiträume zugegriffen wurde.
-4. Identifizieren Sie die Datenspeicherressourcen, bei denen möglicherweise Konflikte auftreten.
+2. Überwachen Sie nach Möglichkeit das ausgeführte System einige Tage lang in einer Produktionsumgebung, um herauszufinden, wie das System in der Praxis verwendet wird. Wenn dies nicht möglich ist, führen Sie skriptbasierte Auslastungstests mit einer realistischen Menge an virtuellen Benutzern durch, die eine typische Reihe von Vorgängen ausführen.
+3. Verwenden Sie die Telemetriedaten, um Zeiträume unzureichender Leistung zu identifizieren.
+4. Ermitteln Sie, auf welche Datenspeicher während dieser Zeiträume zugegriffen wurde.
+5. Identifizieren Sie die Datenspeicherressourcen, bei denen möglicherweise Konflikte auftreten.
 
 ## <a name="example-diagnosis"></a>Beispieldiagnose
 
@@ -107,7 +109,7 @@ Das nächste Diagramm zeigt die DTU-Nutzung (Database Throughput Units, Datenban
 
 ### <a name="examine-the-telemetry-for-the-data-stores"></a>Untersuchen der Telemetrie für die Datenspeicher
 
-Instrumentieren Sie die Datenspeicher, um die Details der Aktivität auf niedriger Ebene zu erfassen. In der Beispielanwendung zeigten die Datenzugriffsstatistiken eine große Menge an Einfügevorgängen, die sowohl für die Tabelle `PurchaseOrderHeader` als auch für die Tabelle `MonoLog` ausgeführt wurden. 
+Instrumentieren Sie die Datenspeicher, um die Details der Aktivität auf niedriger Ebene zu erfassen. In der Beispielanwendung zeigten die Datenzugriffsstatistiken eine große Menge an Einfügevorgängen, die sowohl für die Tabelle `PurchaseOrderHeader` als auch für die Tabelle `MonoLog` ausgeführt wurden.
 
 ![Datenzugriffsstatistiken für die Beispielanwendung][MonolithicDataAccessStats]
 
@@ -133,12 +135,11 @@ Ebenso erreicht die maximale DTU-Auslastung der Protokolldatenbank nur etwa 70 %
 
 ![Datenbankmonitor im klassischen Azure-Portal mit der Ressourcennutzung der Protokolldatenbank im mehrsprachigen Szenario][LogDatabaseUtilization]
 
-
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
 - [Choose the right data store][data-store-overview] (Auswählen des richtigen Datenspeichers)
 - [Criteria for choosing a data store][data-store-comparison] (Kriterien für die Auswahl eines Datenspeichers)
-- [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence][Data-Access-Guide] (Datenzugriff für hoch skalierbare Lösungen: Verwenden von SQL, NoSQL und mehrsprachiger Persistenz)
+- [Datenzugriff für hoch skalierbare Lösungen: Verwenden von SQL, NoSQL und Polyglot Persistence][Data-Access-Guide]
 - [Data partitioning][DataPartitioningGuidance] (Datenpartitionierung)
 
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/MonolithicPersistence

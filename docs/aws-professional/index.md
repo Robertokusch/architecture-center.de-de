@@ -5,12 +5,12 @@ keywords: AWS experts, Azure comparison, AWS comparison, difference between azur
 author: lbrader
 ms.date: 09/19/2018
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 0735d24b223a5e5cab6030774280c038c28f35e6
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: e6077349a285df56d234f3cc2a14dc0d0d33da55
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916684"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011666"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure für AWS-Spezialisten
 
@@ -63,7 +63,7 @@ Diese Einschränkungen können bis zum Maximalwert erhöht werden, wenn Sie eine
 
 Der Begriff „Ressource“ wird in Azure und AWS deckungsgleich verwendet und bezeichnet Serverinstanzen, Speicherobjekte, Netzwerkgeräte oder sonstige Entitäten, die Sie innerhalb der Plattform erstellen oder konfigurieren können.
 
-Azure-Ressourcen werden über eins von zwei Modellen bereitgestellt und verwaltet: [Azure Resource Manager](/azure/azure-resource-manager/resource-group-overview) oder das ältere [klassische Azure-Bereitstellungsmodell](/azure/azure-resource-manager/resource-manager-deployment-model).
+Azure-Ressourcen werden mit einem dieser beiden Modelle bereitgestellt und verwaltet: [Azure Resource Manager](/azure/azure-resource-manager/resource-group-overview) oder dem älteren [klassischen Azure-Bereitstellungsmodell](/azure/azure-resource-manager/resource-manager-deployment-model).
 Neue Ressourcen werden mithilfe des Resource Manager-Modells erstellt.
 
 ### <a name="resource-groups"></a>Ressourcengruppen
@@ -174,7 +174,7 @@ Obwohl die Größen von AWS-Instanztypen und virtuellen Azure-Computern eine äh
 
 -   [Größen für virtuelle Computer in Azure (Linux)](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/)
 
-Im Gegensatz zur sekundengenauen Abrechnung in AWS werden On-Demand-VMs von Azure minutengenau abgerechnet.
+Ähnlich wie bei der sekundengenauen Abrechnung in AWS werden On-Demand-VMs von Azure sekundengenau abgerechnet.
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>EBS und Azure Storage für VM-Datenträger
 
@@ -221,11 +221,11 @@ Azure bietet mehrere Computedienste, für die es keine direkte Übereinstimmung 
 
 -   [Erste Schritte mit Node.js-Web-Apps in Azure App Service](https://azure.microsoft.com/documentation/articles/app-service-web-nodejs-get-started/)
 
--   [Azure-Referenzarchitektur: Grundlegende Webanwendung](https://azure.microsoft.com/documentation/articles/guidance-web-apps-basic/)
+-   [Azure-Referenzarchitektur: Einfache Webanwendung](https://azure.microsoft.com/documentation/articles/guidance-web-apps-basic/)
 
 -   [Erstellen Sie Ihre erste Funktion in Azure Functions](https://azure.microsoft.com/documentation/articles/functions-create-first-azure-function/)
 
-### <a name="storage"></a>Speicher
+### <a name="storage"></a>Storage
 
 #### <a name="s3ebsefs-and-azure-storage"></a>S3/EBS/EFS und Azure Storage
 
@@ -258,7 +258,7 @@ Für Daten, die zwar selten verwendet werden, beim Zugriff aber umgehend verfüg
 
 -   [Azure Storage-Sicherheitsleitfaden](https://azure.microsoft.com/documentation/articles/storage-security-guide/)
 
--   [Muster und Übungen: Anleitungen zum Content Delivery Network (CDN)](https://azure.microsoft.com/documentation/articles/best-practices-cdn/)
+-   [Leitfaden: Anleitungen zum Content Delivery Network (CDN)](https://azure.microsoft.com/documentation/articles/best-practices-cdn/)
 
 ### <a name="networking"></a>Netzwerk
 
@@ -310,7 +310,7 @@ Die Kosten für AWS RDS werden durch die Menge der Hardwareressourcen bestimmt, 
 
 -   [Konfigurieren der Georeplikation für Azure SQL-Datenbank mit dem Azure-Portal](https://azure.microsoft.com/documentation/articles/sql-database-geo-replication-portal/)
 
--   [Einführung in Azure Cosmos DB: DocumentDB-API](/azure/cosmos-db/sql-api-introduction)
+-   [Einführung in Cosmos DB: JSON-NoSQL-Datenbanken](/azure/cosmos-db/sql-api-introduction)
 
 -   [Verwenden des Azure-Tabellenspeichers mit Node.js](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-table-storage/)
 

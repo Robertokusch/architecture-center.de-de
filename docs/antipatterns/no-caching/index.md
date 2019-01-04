@@ -1,18 +1,20 @@
 ---
 title: Antimuster „Kein Caching“
+titleSuffix: Performance antipatterns for cloud apps
 description: Durch wiederholtes Abrufen der gleichen Daten können Leistung und Skalierbarkeit verringert werden.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: ec19cde567fb63248c121328322e834d99c841e8
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: c2a5cdbb8863f87b8928558c8237e8659032ac32
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295581"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011598"
 ---
 # <a name="no-caching-antipattern"></a>Antimuster „Kein Caching“
 
-In einer Cloudanwendung, die viele gleichzeitige Anforderungen verarbeitet, können durch wiederholtes Abrufen der gleichen Daten Leistung und Skalierbarkeit sinken. 
+In einer Cloudanwendung, die viele gleichzeitige Anforderungen verarbeitet, können durch wiederholtes Abrufen der gleichen Daten Leistung und Skalierbarkeit sinken.
 
 ## <a name="problem-description"></a>Problembeschreibung
 
@@ -46,7 +48,7 @@ Das vollständige Beispiel finden Sie [hier][sample-app].
 
 Dieses Antimuster tritt üblicherweise aus folgenden Gründen auf:
 
-- Wenn Sie keinen Cache verwenden, ist die Implementierung einfacher, und das Verfahren funktioniert gut bei geringen Lasten. Die Verwendung eines Caches macht den Code komplizierter. 
+- Wenn Sie keinen Cache verwenden, ist die Implementierung einfacher, und das Verfahren funktioniert gut bei geringen Lasten. Die Verwendung eines Caches macht den Code komplizierter.
 - Die Vor- und Nachteile eines Caches sind nicht klar.
 - Es gibt Bedenken hinsichtlich des Overheads für die Sicherstellung der Genauigkeit und Aktualität der zwischengespeicherten Daten.
 - Eine Anwendung wurde aus einem lokalen System migriert, in dem die Netzwerklatenz kein Problem war und das System auf teurer Hochleistungshardware ausgeführt wurde, daher wurde im ursprünglichen Entwurf kein Caching berücksichtigt.
@@ -59,7 +61,7 @@ Die beliebteste Cachingstrategie ist die *bedarfsbasierte* oder *cachefremde* St
 - Während eines Lesevorgangs versucht die Anwendung, die Daten aus dem Cache zu lesen. Wenn sich die Daten nicht im Cache befinden, ruft die Anwendung sie aus der Datenquelle ab und fügt sie dem Cache hinzu.
 - Bei einem Schreibvorgang schreibt die Anwendung die Änderung direkt in die Datenquelle und entfernt den alten Wert aus dem Cache. Wenn die Daten das nächste Mal benötigt werden, werden sie abgerufen und dem Cache hinzugefügt.
 
-Diese Vorgehensweise eignet sich für Daten, die sich häufig ändern. Hier sehen Sie das vorherige Beispiel, das aktualisiert wurde und jetzt das [cachefremde][cache-aside-pattern] Muster verwendet.  
+Diese Vorgehensweise eignet sich für Daten, die sich häufig ändern. Hier sehen Sie das vorherige Beispiel, das aktualisiert wurde und jetzt das [cachefremde][cache-aside-pattern] Muster verwendet.
 
 ```csharp
 public class CachedPersonRepository : IPersonRepository
@@ -100,7 +102,7 @@ public class CacheService
 }
 ```
 
-Beachten Sie, dass die `GetAsync`-Methode jetzt die `CacheService`-Klasse aufruft, anstatt die Datenbank direkt aufzurufen. Die `CacheService`-Klasse versucht zuerst, das Element aus Azure Redis Cache abzurufen. Wenn der Wert in Redis Cache nicht gefunden wird, ruft `CacheService` eine Lambdafunktion auf, die vom Aufrufer an sie übergeben wurde. Die Lambdafunktion ist dafür zuständig, die Daten aus der Datenbank abzurufen. Diese Implementierung entkoppelt das Repository von der jeweiligen Cachinglösung und den `CacheService` von der Datenbank. 
+Beachten Sie, dass die `GetAsync`-Methode jetzt die `CacheService`-Klasse aufruft, anstatt die Datenbank direkt aufzurufen. Die `CacheService`-Klasse versucht zuerst, das Element aus Azure Redis Cache abzurufen. Wenn der Wert in Redis Cache nicht gefunden wird, ruft `CacheService` eine Lambdafunktion auf, die vom Aufrufer an sie übergeben wurde. Die Lambdafunktion ist dafür zuständig, die Daten aus der Datenbank abzurufen. Diese Implementierung entkoppelt das Repository von der jeweiligen Cachinglösung und den `CacheService` von der Datenbank.
 
 ## <a name="considerations"></a>Überlegungen
 
@@ -112,11 +114,11 @@ Beachten Sie, dass die `GetAsync`-Methode jetzt die `CacheService`-Klasse aufruf
 
 - Sie müssen keine vollständigen Entitäten zwischenspeichern. Wenn der größte Teil einer Entität statisch ist und sich nur ein kleiner Teil häufig ändert, speichern Sie die statischen Elemente zwischen, und rufen Sie die dynamischen Elemente aus der Datenquelle ab. Mit dieser Vorgehensweise können Sie die Menge an E/A-Vorgängen reduzieren, die für die Datenquelle ausgeführt werden.
 
-- In einigen Fällen, wenn flüchtige Daten kurzlebig sind, kann es nützlich sein, diese zwischenzuspeichern. Nehmen wir als Beispiel ein Gerät, das kontinuierlich Statusupdates sendet. Es kann sinnvoll sein, diese Informationen bei Eingang zwischenzuspeichern und gar nicht erst in den dauerhaften Speicher zu schreiben.  
+- In einigen Fällen, wenn flüchtige Daten kurzlebig sind, kann es nützlich sein, diese zwischenzuspeichern. Nehmen wir als Beispiel ein Gerät, das kontinuierlich Statusupdates sendet. Es kann sinnvoll sein, diese Informationen bei Eingang zwischenzuspeichern und gar nicht erst in den dauerhaften Speicher zu schreiben.
 
 - Um zu verhindern, dass Daten veralten, unterstützen viele Cachinglösungen konfigurierbare Ablaufzeiträume, sodass diese Daten nach dem angegebenen Zeitraum automatisch aus dem Cache entfernt werden. Möglicherweise müssen Sie die Ablaufzeit für Ihr Szenario anpassen. Daten, die in hohem Maß statisch sind, können länger im Cache verbleiben als flüchtige Daten, die schnell veralten.
 
-- Wenn die Cachinglösung keinen integrierten Ablauf bietet, müssen Sie möglicherweise einen Hintergrundprozess implementieren, der den Cache gelegentlich leert, damit er nicht ins Unendliche anwächst. 
+- Wenn die Cachinglösung keinen integrierten Ablauf bietet, müssen Sie möglicherweise einen Hintergrundprozess implementieren, der den Cache gelegentlich leert, damit er nicht ins Unendliche anwächst.
 
 - Sie können nicht nur Daten aus einer externen Datenquelle zwischenspeichern, Sie können den Cache auch zum Speichern der Ergebnisse komplexer Berechnungen verwenden. Bevor Sie den Cache jedoch zu diesem Zweck nutzen, instrumentieren Sie die Anwendung, um zu ermitteln, ob sie tatsächlich CPU-gebunden ist.
 
@@ -130,16 +132,15 @@ Beachten Sie, dass die `GetAsync`-Methode jetzt die `CacheService`-Klasse aufruf
 
 Sie können die folgenden Schritte ausführen, um herauszufinden, ob ein unzureichendes Caching Leistungsprobleme verursacht:
 
-1. Überprüfen Sie den Anwendungsentwurf. Erfassen Sie den Bestand aller Datenspeicher, die von der Anwendung verwendet werden. Ermitteln Sie für jeden Datenspeicher, ob die Anwendung einen Cache verwendet. Sofern möglich, ermitteln Sie, wie häufig sich die Daten ändern. Gute Anfangskandidaten für das Caching sind Daten, die sich nur langsam ändern, und statische Verweisdaten, die häufig gelesen werden. 
+1. Überprüfen Sie den Anwendungsentwurf. Erfassen Sie den Bestand aller Datenspeicher, die von der Anwendung verwendet werden. Ermitteln Sie für jeden Datenspeicher, ob die Anwendung einen Cache verwendet. Sofern möglich, ermitteln Sie, wie häufig sich die Daten ändern. Gute Anfangskandidaten für das Caching sind Daten, die sich nur langsam ändern, und statische Verweisdaten, die häufig gelesen werden.
 
 2. Instrumentieren Sie die Anwendung, und überwachen Sie das Livesystem, um herauszufinden, wie häufig die Anwendung Daten abruft oder Informationen berechnet.
 
 3. Erstellen Sie ein Profil der Anwendung in einer Testumgebung, um Low-Level-Metriken zum Overhead zu erfassen, der mit Datenzugriffsvorgängen oder anderen häufig ausgeführten Berechnungen in Verbindung steht.
 
-4. Führen Sie einen Auslastungstest in einer Testumgebung durch, um zu ermitteln, wie das System unter normaler und schwerer Workload reagiert. Der Auslastungstest sollte das Datenzugriffsmuster simulieren, das in der Produktionsumgebung mit realistischen Workloads beobachtet wurde. 
+4. Führen Sie einen Auslastungstest in einer Testumgebung durch, um zu ermitteln, wie das System unter normaler und schwerer Workload reagiert. Der Auslastungstest sollte das Datenzugriffsmuster simulieren, das in der Produktionsumgebung mit realistischen Workloads beobachtet wurde.
 
-5. Untersuchen Sie die Datenzugriffsstatistiken für die zugrunde liegenden Datenspeicher, und untersuchen Sie, wie häufig die gleichen Datenanforderungen wiederholt werden. 
-
+5. Untersuchen Sie die Datenzugriffsstatistiken für die zugrunde liegenden Datenspeicher, und untersuchen Sie, wie häufig die gleichen Datenanforderungen wiederholt werden.
 
 ## <a name="example-diagnosis"></a>Beispieldiagnose
 
@@ -147,17 +148,17 @@ In den folgenden Abschnitten werden diese Schritte auf die zuvor beschriebene Be
 
 ### <a name="instrument-the-application-and-monitor-the-live-system"></a>Instrumentieren der Anwendung und Überwachen des Livesystems
 
-Instrumentieren Sie die Anwendung, und überwachen Sie sie, um Informationen zu den spezifischen Anforderungen zu erhalten, die Benutzer während der Produktionsphase der Anwendung senden. 
+Instrumentieren Sie die Anwendung, und überwachen Sie sie, um Informationen zu den spezifischen Anforderungen zu erhalten, die Benutzer während der Produktionsphase der Anwendung senden.
 
 Die folgende Abbildung zeigt die Überwachung der Daten, die von [New Relic][NewRelic] während eines Auslastungstests erfasst wurden. In diesem Fall ist `Person/GetAsync` der einzige ausgeführte HTTP GET-Vorgang. In einer Liveproduktionsumgebung kann die Kenntnis der Häufigkeit, mit der jede Anforderung ausgeführt wird, Ihnen Einblicke darin geben, welche Ressourcen zwischengespeichert werden sollten.
 
 ![New Relic mit Serveranforderungen aus der CachingDemo-Anwendung][NewRelic-server-requests]
 
-Wenn Sie eine detailliertere Analyse benötigen, können Sie einen Profiler verwenden, um in einer Testumgebung (nicht im Produktionssystem) Leistungsdaten auf niedriger Ebene zu erfassen. Sehen Sie sich Metriken wie E/A-Anforderungsraten, Arbeitsspeichernutzung und CPU-Auslastung an. Diese Metriken zeigen möglicherweise eine große Anzahl von Anforderungen im Datenspeicher oder Dienst oder eine wiederholte Verarbeitung, die die gleiche Berechnung ausführt. 
+Wenn Sie eine detailliertere Analyse benötigen, können Sie einen Profiler verwenden, um in einer Testumgebung (nicht im Produktionssystem) Leistungsdaten auf niedriger Ebene zu erfassen. Sehen Sie sich Metriken wie E/A-Anforderungsraten, Arbeitsspeichernutzung und CPU-Auslastung an. Diese Metriken zeigen möglicherweise eine große Anzahl von Anforderungen im Datenspeicher oder Dienst oder eine wiederholte Verarbeitung, die die gleiche Berechnung ausführt.
 
 ### <a name="load-test-the-application"></a>Auslastungstest der Anwendung
 
-Das folgende Diagramm zeigt die Ergebnisse des Auslastungstests der Beispielanwendung. Der Auslastungstest simuliert eine Schrittauslastung von bis zu 800 Benutzern, die eine typische Reihenfolge von Vorgängen ausführen. 
+Das folgende Diagramm zeigt die Ergebnisse des Auslastungstests der Beispielanwendung. Der Auslastungstest simuliert eine Schrittauslastung von bis zu 800 Benutzern, die eine typische Reihenfolge von Vorgängen ausführen.
 
 ![Leistungstestergebnisse für das Szenario ohne Cache][Performance-Load-Test-Results-Uncached]
 
@@ -178,7 +179,7 @@ Die `UseCount`-Spalte in den Ergebnissen gibt an, wie häufig jede Abfrage ausge
 
 ![Ergebnisse der Abfragen der dynamischen Verwaltungssichten in SQL Server Management Server][Dynamic-Management-Views]
 
-Dies ist die SQL-Abfrage, die so viele Datenbankanforderungen verursacht: 
+Dies ist die SQL-Abfrage, die so viele Datenbankanforderungen verursacht:
 
 ```SQL
 (@p__linq__0 int)SELECT TOP (2)
@@ -197,12 +198,12 @@ Nachdem Sie einen Cache implementiert haben, wiederholen Sie die Auslastungstest
 
 ![Leistungstestergebnisse für das Szenario mit Cache][Performance-Load-Test-Results-Cached]
 
-Der Menge an erfolgreichen Tests stabilisiert sich weiterhin auf einem Niveau, jedoch bei einer höheren Benutzerauslastung. Die Anforderungsrate bei dieser Auslastung ist deutlich höher als vorher. Die durchschnittliche Testzeit steigt weiterhin mit der Auslastung, aber die maximale Antwortzeit beträgt 0,05 ms, im Vergleich zu 1 ms &mdash;eine 20&times; fache Verbesserung. 
+Der Menge an erfolgreichen Tests stabilisiert sich weiterhin auf einem Niveau, jedoch bei einer höheren Benutzerauslastung. Die Anforderungsrate bei dieser Auslastung ist deutlich höher als vorher. Die durchschnittliche Testzeit steigt weiterhin mit der Auslastung, aber die maximale Antwortzeit beträgt 0,05 ms, im Vergleich zu 1 ms &mdash;eine 20&times; fache Verbesserung.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
 - [API implementation best practices][api-implementation] (Bewährte Methoden für die API-Implementierung)
-- [Cache-Aside Pattern][cache-aside-pattern] (Cachefremdes Muster)
+- [Cachefremdes Muster][cache-aside-pattern]
 - [Caching best practices][caching-guidance] (Bewährte Methoden für das Caching)
 - [Circuit Breaker pattern][circuit-breaker] (Schutzschaltermuster)
 
