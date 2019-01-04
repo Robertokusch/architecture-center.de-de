@@ -4,12 +4,12 @@ description: Referenzarchitekturen, Blaupausen und reglementierende Implementier
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 6a86256c504737b5f747a690d27fdf178ac8b4fe
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: 173698aee0a67578beaa806a59e1c7b0265cdd61
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329380"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011802"
 ---
 # <a name="azure-reference-architectures"></a>Azure-Referenzarchitekturen
 
@@ -17,10 +17,32 @@ Unsere Referenzarchitekturen sind nach Szenarien angeordnet, wobei verwandte Arc
 
 Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions) | [Serverlos](#serverless-applications) | [Virtuelle Netzwerke](#virtual-networks) | [VM-Workloads](#vm-workloads) | [SAP](#sap) | [Web-Apps](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
 
+<!-- markdownlint-disable MD033 -->
+
 ## <a name="ai-and-machine-learning"></a>KI und Machine Learning
 
 <!-- markdownlint-disable MD033 -->
 <ul  class="panelContent cardsF">
+<!-- Batch scoring of Python models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Batchbewertung von Python-Modellen</h3>
+                        <p>Bewerten Sie mithilfe von Azure Batch AI mehrere Python-Modelle parallel als Batch nach einem Zeitplan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Batch scoring for deep learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/batch-scoring-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -41,7 +63,7 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
         </div>
     </a>
 </li>
-<!-- Batch scoring for deep learning models -->
+<!-- Real-time scoring of Python models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -61,7 +83,7 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
         </div>
     </a>
 </li>
-<!-- Batch scoring for R models -->
+<!-- Real-time scoring of R models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-r.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -75,6 +97,26 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                     <div class="cardText">
                         <h3>Echtzeitbewertung von R-Machine Learning-Modellen</h3>
                         <p>Implementieren Sie einen Echtzeit-Vorhersagedienst in R mithilfe von Microsoft Machine Learning Server unter Azure Kubernetes Service (AKS).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Real-time Recommendation API -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/real-time-recommendation.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/machine-learning.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Echtzeitempfehlungs-API</h3>
+                        <p>Trainieren Sie ein Empfehlungsmodell mit Azure Databricks, und stellen Sie es mit Azure Machine Learning als API bereit.</p>
                     </div>
                 </div>
             </div>
@@ -710,3 +752,4 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
 </li>
 </ul>
 
+<!-- markdownlint-disable MD033 -->
