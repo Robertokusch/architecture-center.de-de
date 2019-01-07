@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - security
-ms.openlocfilehash: 791132eabf926cc285567454c60f894efa286433
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 99d3fbe05e34d61edc0d339f34665e557b250b05
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542040"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450886"
 ---
 # <a name="valet-key-pattern"></a>Muster „Valet-Schlüssel“
 
@@ -41,7 +41,7 @@ Der Client verwendet dieses Token, um nur für einen bestimmten Zeitraum und mit
 
 Es ist auch möglich, einen Schlüssel mit anderen Abhängigkeiten wie dem Geltungsbereich der Daten zu konfigurieren. Je nach den Datenspeicherfunktionen kann der Schlüssel beispielsweise eine komplette Tabelle in einem Datenspeicher oder nur bestimmte Zeilen in einer Tabelle angeben. In Cloudspeichersystemen kann der Schlüssel einen Container oder nur ein bestimmtes Element in einem Container angeben.
 
-Der Schlüssel kann auch von der Anwendung ungültig gemacht werden. Dies ist eine hilfreiche Vorgehensweise, wenn der Client dem Server mitteilt, dass der Datenübertragungsvorgang abgeschlossen ist. Der Server kann dann diesen Schlüssel ungültig machen, um weitere Aktionen zu verhindern.
+Der Schlüssel kann auch von der Anwendung ungültig gemacht werden. Dies ist eine hilfreiche Vorgehensweise, wenn der Client dem Server mitteilt, dass der Datenübertragungsvorgang abgeschlossen ist. Der Server kann diesen Schlüssel dann ungültig machen, um weitere Zugriffe zu verhindern.
 
 Die Verwendung dieses Musters kann die Verwaltung des Zugriffs auf Ressourcen vereinfachen, da es nicht erforderlich ist, einen Benutzer zu erstellen und zu authentifizieren, Berechtigungen zu erteilen und den Benutzer dann wieder zu entfernen. Zudem ist damit auch einfach, den Speicherort, die Berechtigung und die Gültigkeitsdauer zu begrenzen, indem man zur Runtime einfach einen Schlüssel generiert. Wichtig ist es, die Gültigkeitsdauer und insbesondere den Speicherort der Ressource so weit wie möglich zu begrenzen, damit der Empfänger diese nur für den vorgesehenen Zweck nutzen kann.
 
@@ -161,7 +161,7 @@ public class ValuesController : ApiController
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Die folgenden Muster und Anweisungen können ebenfalls für die Implementierung dieses Musters relevant sein:
+Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
 - Ein Beispiel für dieses Muster steht auf [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/valet-key).
 - [Muster „Gatekeeper“](gatekeeper.md): Dieses Muster kann in Verbindung mit dem Muster „Valet-Schlüssel“ verwendet werden, um Anwendungen und Dienste durch Verwendung einer dedizierten Hostinstanz zu schützen, die als Broker zwischen Clients und der Anwendung oder dem Dienst fungiert. Der Gatekeeper überprüft und bereinigt Anforderungen und leitet Anforderungen und Daten zwischen dem Client und der Anwendung weiter. Dies kann eine zusätzliche Sicherheitsschicht schaffen und die Angriffsfläche des Systems reduzieren.
 - [Muster „Hosten von statischen Inhalten“](static-content-hosting.md): Dieses Muster beschreibt, wie statische Ressourcen für einen cloudbasierten Speicherdienst bereitgestellt werden, der diese Ressourcen zur Verringerung des Bedarfs an kostspieligen Serverinstanzen direkt an den Client übermitteln kann. Wenn die Ressourcen nicht öffentlich zugänglich sein sollen, können diese mit dem Muster „Valet-Schlüssel“ geschützt werden.

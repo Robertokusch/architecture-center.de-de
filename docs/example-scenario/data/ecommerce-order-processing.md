@@ -1,18 +1,19 @@
 ---
-title: Skalierbare Auftragsverarbeitung in Azure
+title: Skalierbare Auftragsverarbeitung
+titleSuffix: Azure Example Scenarios
 description: Beispielszenario für die Erstellung einer hoch skalierbaren Pipeline für die Auftragsverarbeitung per Azure Cosmos DB.
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 1c3bb2cc33be74f5ff8ee0513de4c3f7df70aa37
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: fe4e9d64e96d0be66534198bc60e2a73dad43e84
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610854"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644188"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Skalierbare Auftragsverarbeitung in Azure
 
-Dieses Beispielszenario ist für Organisationen relevant, die eine hoch skalierbare und robuste Architektur für die Verarbeitung von Onlineaufträgen benötigen. Zu den potenziellen Anwendungsbereichen gehören E-Commerce und Points of Sale im Einzelhandel, Auftragserfüllung und Bestandsreservierung und -nachverfolgung. 
+Dieses Beispielszenario ist für Organisationen relevant, die eine hoch skalierbare und robuste Architektur für die Verarbeitung von Onlineaufträgen benötigen. Zu den potenziellen Anwendungsbereichen gehören E-Commerce und Points of Sale im Einzelhandel, Auftragserfüllung und Bestandsreservierung und -nachverfolgung.
 
 In diesem Szenario wird ein Event Sourcing-Ansatz (Ereignisherkunftsermittlung) verwendet, indem über Microservices ein funktionierendes Programmiermodell implementiert wird. Jeder Microservice wird als Datenstromprozessor behandelt, und die gesamte Geschäftslogik wird mithilfe von Microservices implementiert. Dieser Ansatz ermöglicht Hochverfügbarkeit sowie Resilienz, Georeplikation und eine hohe Leistung.
 
@@ -22,10 +23,10 @@ Die Verwendung von verwalteten Azure-Diensten, z.B. Cosmos DB und HDInsight, kan
 
 Zu den weiteren relevanten Anwendungsfällen zählen:
 
-* Back-End-Systeme für E-Commerce oder Points of Sale im Einzelhandel
-* Systeme für die Bestandsverwaltung
-* Systeme für die Auftragserfüllung
-* Weitere Integrationsszenarien, die für eine Pipeline zur Auftragsverarbeitung relevant sind
+- Back-End-Systeme für E-Commerce oder Points of Sale im Einzelhandel
+- Systeme für die Bestandsverwaltung
+- Systeme für die Auftragserfüllung
+- Weitere Integrationsszenarien, die für eine Pipeline zur Auftragsverarbeitung relevant sind
 
 ## <a name="architecture"></a>Architecture
 
@@ -41,12 +42,12 @@ Anhand dieser Architektur werden die wichtigsten Komponenten einer Pipeline für
 
 ### <a name="components"></a>Komponenten
 
-* [Cosmos DB](/azure/cosmos-db/introduction) ist die global verteilte Datenbank von Microsoft mit mehreren Modellen. Hiermit können Ihre Lösungen den Durchsatz und die Speicherung für eine beliebige Zahl von geografischen Regionen elastisch und unabhängig skalieren. Azure Cosmos DB bietet Ihnen mit umfassenden Vereinbarungen zum Servicelevel (Service Level Agreements, SLAs) Durchsatz-, Wartezeit-, Verfügbarkeits- und Konsistenzgarantien. In diesem Szenario wird Cosmos DB für die Speicherung von Ereignisdatenströmen und Momentaufnahmen verwendet, und die Features des [Cosmos DB-Änderungsfeeds][docs-cosmos-db-change-feed] werden genutzt, um für Datenkonsistenz und die Wiederherstellung nach Fehlern zu sorgen.
-* [Apache Kafka in HDInsight](/azure/hdinsight/kafka/apache-kafka-introduction) ist eine Implementierung eines verwalteten Diensts von Apache Kafka. Hierbei handelt es sich um eine verteilte Open-Source-Streamingplattform für die Erstellung von Datenpipelines und Anwendungen mit Echtzeitstreaming. Kafka verfügt auch über Nachrichtenbrokerfunktionen, die einer Nachrichtenwarteschlange zum Veröffentlichen und Abonnieren von benannten Datenströmen ähneln. In diesem Szenario wird Kafka genutzt, um eingehende und nachgeschaltete Ereignisse in der Pipeline für die Auftragsverarbeitung zu verarbeiten. 
+- [Cosmos DB](/azure/cosmos-db/introduction) ist die global verteilte Datenbank von Microsoft mit mehreren Modellen. Hiermit können Ihre Lösungen den Durchsatz und die Speicherung für eine beliebige Zahl von geografischen Regionen elastisch und unabhängig skalieren. Azure Cosmos DB bietet Ihnen mit umfassenden Vereinbarungen zum Servicelevel (Service Level Agreements, SLAs) Durchsatz-, Wartezeit-, Verfügbarkeits- und Konsistenzgarantien. In diesem Szenario wird Cosmos DB für die Speicherung von Ereignisdatenströmen und Momentaufnahmen verwendet, und die Features des [Cosmos DB-Änderungsfeeds][docs-cosmos-db-change-feed] werden genutzt, um für Datenkonsistenz und die Wiederherstellung nach Fehlern zu sorgen.
+- [Apache Kafka in HDInsight](/azure/hdinsight/kafka/apache-kafka-introduction) ist eine Implementierung eines verwalteten Diensts von Apache Kafka. Hierbei handelt es sich um eine verteilte Open-Source-Streamingplattform für die Erstellung von Datenpipelines und Anwendungen mit Echtzeitstreaming. Kafka verfügt auch über Nachrichtenbrokerfunktionen, die einer Nachrichtenwarteschlange zum Veröffentlichen und Abonnieren von benannten Datenströmen ähneln. In diesem Szenario wird Kafka genutzt, um eingehende und nachgeschaltete Ereignisse in der Pipeline für die Auftragsverarbeitung zu verarbeiten.
 
 ## <a name="considerations"></a>Überlegungen
 
-Für die Echtzeiterfassung von Nachrichten, Datenspeicherung, Datenstromverarbeitung und Speicherung von Analysedaten sowie für Analysen und Berichte stehen zahlreiche Technologieoptionen zur Verfügung. Eine Übersicht über diese Optionen, ihre Funktionen und wichtige Auswahlkriterien finden Sie im [Azure-Datenarchitekturleitfaden](/azure/architecture/data-guide) unter [Auswählen einer Technologie für die Echtzeiterfassung von Nachrichten in Azure](/azure/architecture/data-guide/technology-choices/real-time-ingestion).
+Für die Echtzeiterfassung von Nachrichten, Datenspeicherung, Datenstromverarbeitung und Speicherung von Analysedaten sowie für Analysen und Berichte stehen zahlreiche Technologieoptionen zur Verfügung. Eine Übersicht über diese Optionen, die zugehörigen Funktionen und wichtige Auswahlkriterien finden Sie unter [Big Data-Architekturen: Echtzeitverarbeitung](/azure/architecture/data-guide/technology-choices/real-time-ingestion) im [Azure-Datenarchitekturleitfaden](/azure/architecture/data-guide).
 
 Microservices haben sich zu einem beliebten Architekturstil für die Erstellung robuster, hochgradig skalierbarer, unabhängig bereitstellbarer Cloudanwendungen entwickelt, die sich schnell weiterentwickeln lassen. Für Microservices ist in Bezug auf das Entwerfen und Erstellen von Anwendungen ein anderer Ansatz erforderlich. Tools wie Docker, Kubernetes, Azure Service Fabric und Nomad ermöglichen die Entwicklung von Architekturen, die auf Microservices basieren. Eine Anleitung zur Erstellung und Ausführung einer auf Microservices basierenden Architektur finden Sie im Azure Architecture Center unter [Entwerfen von Microservices in Azure] (/azure/architecture/microservices).
 
@@ -54,7 +55,7 @@ Microservices haben sich zu einem beliebten Architekturstil für die Erstellung 
 
 Mit dem Event Sourcing-Ansatz dieses Szenarios können Systemkomponenten lose gekoppelt und unabhängig voneinander bereitgestellt werden. Cosmos DB ermöglicht [Hochverfügbarkeit][docs-cosmos-db-regional-failover], und Organisationen können damit Nachteile im Hinblick auf Konsistenz, Verfügbarkeit und Leistung ausgleichen – jeweils mit [entsprechenden Garantien][docs-cosmos-db-guarantees]. Apache Kafka in HDInsight ist ebenfalls auf [Hochverfügbarkeit][docs-kafka-high-availability] ausgelegt.
 
-Azure Monitor bietet einheitliche Benutzeroberflächen für die übergreifende Überwachung verschiedener Azure-Dienste. Weitere Informationen finden Sie unter [Überwachen von Azure-Anwendungen und -Ressourcen](/azure/monitoring-and-diagnostics/monitoring-overview). Event Hubs und Stream Analytics sind jeweils mit Azure Monitor verknüpft. 
+Azure Monitor bietet einheitliche Benutzeroberflächen für die übergreifende Überwachung verschiedener Azure-Dienste. Weitere Informationen finden Sie unter [Überwachen von Azure-Anwendungen und -Ressourcen](/azure/monitoring-and-diagnostics/monitoring-overview). Event Hubs und Stream Analytics sind jeweils mit Azure Monitor verknüpft.
 
 Weitere Aspekte zur Verfügbarkeit finden Sie in der [Checkliste für die Verfügbarkeit][availability].
 
@@ -83,21 +84,23 @@ Die Währung von Azure Cosmos DB ist die Anforderungseinheit (Request Unit, RU).
 
 Auf Grundlage der zu erwartenden Aktivitätsmenge haben wir drei exemplarische Kostenprofile erstellt:
 
-* [Klein][small-pricing]: Dieses Preisbeispiel entspricht fünf reservierten RUs mit einem 1-TB-Datenspeicher in Cosmos DB und einem kleinen Kafka-Cluster (D3 v2).
-* [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht fünf reservierten RUs mit einem 10-TB-Datenspeicher in Cosmos DB und einem mittelgroßen Kafka-Cluster (D4 v2).
-* [Groß][large-pricing]: Dieses Preisbeispiel entspricht fünf reservierten RUs mit einem 30-TB-Datenspeicher in Cosmos DB und einem großen Kafka-Cluster (D5 v2).
+- [Klein][small-pricing]: Dieses Preisbeispiel entspricht fünf reservierten RUs mit einem 1-TB-Datenspeicher in Cosmos DB und einem kleinen Kafka-Cluster (D3 v2).
+- [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht fünf reservierten RUs mit einem 10-TB-Datenspeicher in Cosmos DB und einem mittelgroßen Kafka-Cluster (D4 v2).
+- [Groß][large-pricing]: Dieses Preisbeispiel entspricht fünf reservierten RUs mit einem 30-TB-Datenspeicher in Cosmos DB und einem großen Kafka-Cluster (D5 v2).
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
 Dieses Beispielszenario basiert auf einer umfassenderen Version dieser Architektur, die von [Jet.com](https://jet.com) für die Pipeline zur End-to-End-Auftragsverarbeitung des Unternehmens erstellt wurde. Weitere Informationen finden Sie unter dem [technischen Kundenprofil von jet.com][source-document] und in der [jet.com-Präsentation auf der Build 2018][source-presentation].
 
 Weitere verwandte Ressourcen:
-* _[Designing Data-Intensive Applications](https://dataintensive.net)_ (Entwerfen von datenintensiven Anwendungen) von Martin Kleppmann (O'Reilly Media, 2017).
-* _[Domain Modeling Made Functional: Tackle Software Complexity with Domain-Driven Design and F#](https://pragprog.com/book/swdddf/domain-modeling-made-functional)_ (Funktionelle Domänenmodellierung: Lösen der Komplexität von Software mit Domain-Driven Design und F#) von Scott Wlaschin (Pragmatic Programmers LLC, 2018).
-* Andere [Cosmos DB-Anwendungsfälle][docs-cosmos-db-use-cases]
-* [Echtzeit-Verarbeitungsarchitektur](/azure/architecture/data-guide/big-data/real-time-processing) im [Azure-Datenarchitekturleitfaden](/azure/architecture/data-guide)
+
+- *[Designing Data-Intensive Applications](https://dataintensive.net)* (Entwerfen von datenintensiven Anwendungen) von Martin Kleppmann (O'Reilly Media, 2017).
+- *[Domain Modeling Made Functional: Tackle Software Complexity with Domain-Driven Design and F#](https://pragprog.com/book/swdddf/domain-modeling-made-functional)* (Funktionelle Domänenmodellierung: Lösen der Komplexität von Software mit Domain-Driven Design und F#) von Scott Wlaschin (Pragmatic Programmers LLC, 2018).
+- Andere [Cosmos DB-Anwendungsfälle][docs-cosmos-db-use-cases]
+- [Echtzeit-Verarbeitungsarchitektur](/azure/architecture/data-guide/big-data/real-time-processing) im [Azure-Datenarchitekturleitfaden](/azure/architecture/data-guide)
 
 <!-- links -->
+
 [architecture]: ./media/architecture-ecommerce-order-processing.png
 [product-category]: https://azure.microsoft.com/product-categories/databases/
 [source-document]: https://customers.microsoft.com/story/jet-com-powers-innovative-e-commerce-engine-on-azure-in-less-than-12-months

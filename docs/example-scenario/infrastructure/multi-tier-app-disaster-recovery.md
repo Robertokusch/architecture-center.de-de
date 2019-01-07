@@ -1,15 +1,16 @@
 ---
-title: Webanwendung mit mehreren Ebenen, die für Hochverfügbarkeit und Notfallwiederherstellung in Azure konzipiert ist
+title: Webanwendung mit mehreren Ebenen für Hochverfügbarkeit und Notfallwiederherstellung
+titleSuffix: Azure Example Scenarios
 description: Erstellen einer Webanwendung mit mehreren Ebenen für Hochverfügbarkeit und Notfallwiederherstellung in Azure mithilfe von virtuellen Azure-Computern, Verfügbarkeitsgruppen, Verfügbarkeitszonen, Azure Site Recovery und Azure Traffic Manager
 author: sujayt
 ms.date: 11/16/2018
 ms.custom: product-team
-ms.openlocfilehash: 71534dc095d5fba137a0e610d4e725c2efc6b432
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: baa468697b4a72975e3b192efc9bdf1861a0c0da
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004596"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644042"
 ---
 # <a name="multitier-web-application-built-for-high-availability-and-disaster-recovery-on-azure"></a>Webanwendung mit mehreren Ebenen, die für Hochverfügbarkeit und Notfallwiederherstellung in Azure konzipiert ist
 
@@ -25,9 +26,9 @@ Zu den gängigen Anwendungsszenarien zählen unter anderem unternehmenskritische
 
 Zu den weiteren relevanten Anwendungsfällen zählen:
 
-* Bereitstellen von Anwendungen mit hoher Resilienz wie SAP und SharePoint
-* Entwerfen eines BCDR-Plans (Business Continuity & Disaster Recovery) für Branchenanwendungen
-* Konfigurieren der Notfallwiederherstellung und Ausführen entsprechender Übungen zu Compliancezwecken
+- Bereitstellen von Anwendungen mit hoher Resilienz wie SAP und SharePoint
+- Entwerfen eines BCDR-Plans (Business Continuity & Disaster Recovery) für Branchenanwendungen
+- Konfigurieren der Notfallwiederherstellung und Ausführen entsprechender Übungen zu Compliancezwecken
 
 ## <a name="architecture"></a>Architecture
 
@@ -49,17 +50,17 @@ In diesem Szenario wird eine Anwendung mit mehreren Ebenen gezeigt, die ASP.NET 
 
 ### <a name="components"></a>Komponenten
 
-* [Verfügbarkeitsgruppen][docs-availability-sets] sorgen dafür, dass die von Ihnen in Azure bereitgestellten virtuellen Computer auf mehrere isolierte Hardwareknoten in einem Cluster verteilt werden. Dadurch wirken sich Hardware- oder Softwarefehler in Azure nur auf einen Teil Ihrer virtuellen Computer aus, und Ihre Lösung bleibt insgesamt verfügbar und betriebsbereit.
-* [Verfügbarkeitszonen][docs-availability-zones] schützen Ihre Anwendungen und Daten vor Datencenterausfällen. Bei Verfügbarkeitszonen handelt es sich um separate physische Standorte in einer Azure-Region. Jede Zone besteht aus mindestens einem Datencenter mit eigener Stromversorgung, Kühlung und Netzwerk. 
-* Mit [Azure Site Recovery (ASR)][docs-azure-site-recovery] können Sie virtuelle Computer in einer anderen Azure-Region replizieren, um Ihre BCDR-Anforderungen (Business Continuity & Disaster Recovery) zu erfüllen. Sie können regelmäßige Notfallwiederherstellungsübungen ausführen, um die Einhaltung von Complianceanforderungen zu gewährleisten. Der virtuelle Computer wird mit den angegebenen Einstellungen in der ausgewählten Region repliziert, sodass Sie Ihre Anwendungen bei Ausfällen in der Quellregion wiederherstellen können.
-* [Azure Traffic Manager][docs-traffic-manager] ist ein DNS-basierter Lastenausgleich, der Datenverkehr optimal auf Dienste in den globalen Azure-Regionen verteilt und gleichzeitig für Hochverfügbarkeit und kurze Reaktionszeiten sorgt.
-* [Azure Load Balancer][docs-load-balancer] verteilt eingehenden Datenverkehr auf der Grundlage von definierten Regeln und Integritätstests. Ein Load Balancer sorgt für kurze Wartezeiten und hohen Durchsatz und kann auf Millionen von Flows für alle TCP- und UDP-Anwendungen skalieren. In diesem Szenario wird ein öffentlicher Load Balancer verwendet, um eingehenden Clientdatenverkehr auf der Webebene zu verteilen. Außerdem wird in diesem Szenario ein interner Lastenausgleich verwendet, um Datenverkehr von der Geschäftsebene auf den Back-End-SQL Server-Cluster zu verteilen.
+- [Verfügbarkeitsgruppen][docs-availability-sets] sorgen dafür, dass die von Ihnen in Azure bereitgestellten virtuellen Computer auf mehrere isolierte Hardwareknoten in einem Cluster verteilt werden. Dadurch wirken sich Hardware- oder Softwarefehler in Azure nur auf einen Teil Ihrer virtuellen Computer aus, und Ihre Lösung bleibt insgesamt verfügbar und betriebsbereit.
+- [Verfügbarkeitszonen][docs-availability-zones] schützen Ihre Anwendungen und Daten vor Datencenterausfällen. Bei Verfügbarkeitszonen handelt es sich um separate physische Standorte in einer Azure-Region. Jede Zone besteht aus mindestens einem Datencenter mit eigener Stromversorgung, Kühlung und Netzwerk.
+- Mit [Azure Site Recovery (ASR)][docs-azure-site-recovery] können Sie virtuelle Computer in einer anderen Azure-Region replizieren, um Ihre BCDR-Anforderungen (Business Continuity & Disaster Recovery) zu erfüllen. Sie können regelmäßige Notfallwiederherstellungsübungen ausführen, um die Einhaltung von Complianceanforderungen zu gewährleisten. Der virtuelle Computer wird mit den angegebenen Einstellungen in der ausgewählten Region repliziert, sodass Sie Ihre Anwendungen bei Ausfällen in der Quellregion wiederherstellen können.
+- [Azure Traffic Manager][docs-traffic-manager] ist ein DNS-basierter Lastenausgleich, der Datenverkehr optimal auf Dienste in den globalen Azure-Regionen verteilt und gleichzeitig für Hochverfügbarkeit und kurze Reaktionszeiten sorgt.
+- [Azure Load Balancer][docs-load-balancer] verteilt eingehenden Datenverkehr auf der Grundlage von definierten Regeln und Integritätstests. Ein Load Balancer sorgt für kurze Wartezeiten und hohen Durchsatz und kann auf Millionen von Flows für alle TCP- und UDP-Anwendungen skalieren. In diesem Szenario wird ein öffentlicher Load Balancer verwendet, um eingehenden Clientdatenverkehr auf der Webebene zu verteilen. Außerdem wird in diesem Szenario ein interner Lastenausgleich verwendet, um Datenverkehr von der Geschäftsebene auf den Back-End-SQL Server-Cluster zu verteilen.
 
 ### <a name="alternatives"></a>Alternativen
 
-* Windows kann durch verschiedene andere Betriebssysteme ersetzt werden, da die Infrastruktur nicht vom Betriebssystem abhängig ist.
-* [SQL Server für Linux][docs-sql-server-linux] kann den Back-End-Datenspeicher ersetzen.
-* Die Datenbank kann durch eine beliebige Standard-Datenbankanwendung ersetzt werden.
+- Windows kann durch verschiedene andere Betriebssysteme ersetzt werden, da die Infrastruktur nicht vom Betriebssystem abhängig ist.
+- [SQL Server für Linux][docs-sql-server-linux] kann den Back-End-Datenspeicher ersetzen.
+- Die Datenbank kann durch eine beliebige Standard-Datenbankanwendung ersetzt werden.
 
 ## <a name="other-considerations"></a>Weitere Überlegungen
 

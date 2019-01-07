@@ -4,12 +4,12 @@ description: Erfahren Sie, welche Unterschiede Microsoft Azure Cloud Services zu
 keywords: Vergleich von Clouddiensten, vergleichen von Clouddiensten, Multi-Cloud, Vergleich von Azure und AWS, Azure und AWS vergleichen, AWS und Azure vergleichen, IT-Funktionen
 author: lbrader
 ms.date: 11/09/2018
-ms.openlocfilehash: ddfbf637ba820a9785e6698c8655dda4d971aaa0
-ms.sourcegitcommit: cc234a522b7fc35af3bcacdc044c2e2b529e54ed
+ms.openlocfilehash: 30b852d964d2c1c39b5343c09680bb4efaa5476f
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51347626"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450920"
 ---
 # <a name="aws-to-azure-services-comparison"></a>Vergleich von AWS mit Azure -Diensten
 
@@ -48,7 +48,7 @@ Eine Übersicht über Azure für AWS-Benutzer finden Sie unter [Einführung in A
 |             Batchcomputing             |                   AWS Batch                    |                                                                                                                             [Azure Batch](https://azure.microsoft.com/services/batch/)                                                                                                                              |                                                    Effizientes Ausführen umfangreicher paralleler HPC-Anwendungen in der Cloud.                                                     |
 |               Skalierbarkeit               |                AWS Auto Scaling                | [Skalierungsgruppen für virtuelle Computer](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview) <br/><br/>[Azure App Service-Skalierungsfunktionen (PaaS)](https://azure.microsoft.com/documentation/articles/web-sites-scale/) <br/><br/>[Automatische Azure-Skalierung](/azure/app-service/app-service-environment-auto-scale) |    Ermöglicht eine automatische Änderung der Anzahl von Instanzen, um eine bestimmte Compute-Workload bereitzustellen. Sie legen über definierte Metriken und Schwellenwerte fest, ob die Plattform Instanzen hinzufügen oder entfernen soll.     |
 
-## <a name="storage"></a>Speicher
+## <a name="storage"></a>Storage
 
 |                Bereich                |                                  AWS-Dienst                                  |                                                                                                                                          Azure-Dienst                                                                                                                                           |                                                                                                                                             BESCHREIBUNG                                                                                                                                             |
 |------------------------------------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -175,7 +175,7 @@ Eine Übersicht über Azure für AWS-Benutzer finden Sie unter [Einführung in A
 |     <strong>&nbsp;</strong>      |                            Cognito                             |                                                                   [Azure Active Directory B2C](https://azure.microsoft.com/services/active-directory-b2c/)                                                                    |                                                                          Ein globaler Identitätsverwaltungsdienst mit Hochverfügbarkeit für kundenorientierte Anwendungen, der für Hunderte Millionen von Identitäten skaliert werden kann.                                                                           |
 |     <strong>&nbsp;</strong>      |                     AWS Directory Service                      |                                                                 [Windows Server Active Directory](https://azure.microsoft.com/services/active-directory-ds/)                                                                  |                                                                                                                Dienste für die Unterstützung von Microsoft Active Directory in der Cloud.                                                                                                                |
 |            Compliance            |                          AWS Artifact                          |                                                                   [Service Trust Platform](https://www.microsoft.com/en-us/TrustCenter/STP/default.aspx)                                                                    |                                                                                              Bietet Zugriff auf Überwachungsberichte, Konformitätsrichtlinien und vertrauliche Dokumente aus verschiedenen Clouddiensten.                                                                                              |
-|             Sicherheit             |                           AWS Shield                           |                                                      [Azure DDoS-Schutzdienst](/azure/security/azure-ddos-best-practices)                                                       |                                                                                                  Stellt Clouddienste mit Schutz vor DDoS-Angriffen (Distributed Denial of Services) bereit.                                                                                                   |
+|             Sicherheit             |                           AWS Shield                           |                                                      [Azure DDoS Protection-Dienst](/azure/security/azure-ddos-best-practices)                                                       |                                                                                                  Stellt Clouddienste mit Schutz vor DDoS-Angriffen (Distributed Denial of Services) bereit.                                                                                                   |
 
 ## <a name="developer-tools"></a>Entwicklertools
 

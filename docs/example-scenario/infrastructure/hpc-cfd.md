@@ -1,15 +1,16 @@
 ---
-title: Ausführen von Simulationen numerischer Strömungsmechaniken (Computational Fluid Dynamics, CFD) in Azure
+title: Ausführen von CFD-Simulationen
+titleSuffix: Azure Example Scenarios
 description: Führen Sie Simulationen numerischer Strömungsmechaniken (Computational Fluid Dynamics, CFD) in Azure aus.
 author: mikewarr
 ms.date: 09/20/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 42921122d74d07bf890f55be61b04c7e9a4f4e87
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: af43a60e952d75f84b4c7903a1567b0c76b9f4c4
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004654"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643933"
 ---
 # <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>Ausführen von Simulationen numerischer Strömungsmechaniken (Computational Fluid Dynamics, CFD) in Azure
 
@@ -23,11 +24,11 @@ Um die Erstellung, Verwaltung und Optimierung von HPC-Clustern (High Performance
 
 Weitere relevante Branchen für CFD-Anwendungen sind:
 
-* Luft- und Raumfahrt
-* Automobilbau
-* Heizungs-, Lüftungs- und Klimaanlagen
-* Öl- und Gasanlagen
-* Biowissenschaften
+- Luft- und Raumfahrt
+- Automobilbau
+- Heizungs-, Lüftungs- und Klimaanlagen
+- Öl- und Gasanlagen
+- Biowissenschaften
 
 ## <a name="architecture"></a>Architecture
 
@@ -46,12 +47,12 @@ Das obige Diagramm zeigt eine allgemeine Übersicht über einen typischen Hybrid
 
 ### <a name="components"></a>Komponenten
 
-* [Azure CycleCloud][cyclecloud] ist ein Tool zum Erstellen, Verwalten, Ausführen und Optimieren von HPC- und Big Compute-Clustern in Azure.
-* [Avere vFXT in Azure][avere] wird verwendet, um ein für die Cloud konzipiertes Dateisystem für Unternehmen bereitzustellen.
-* [Microsoft Azure Virtual Machines][vms] (VMs) wird verwendet, um einen statischen Satz von Computeinstanzen zu erstellen.
-* [Microsoft Azure Virtual Machine Scale Sets][vmss] (VM-Skalierungsgruppen) stellt eine Gruppe von identischen VMs bereit, die von Azure CycleCloud zentral hoch- und herunterskaliert werden können.
-* [Azure Storage-Konten](/azure/storage/common/storage-introduction) werden für die Synchronisierung und Datenaufbewahrung verwendet.
-* [Virtuelle Netzwerke](/azure/virtual-network/virtual-networks-overview) ermöglichen vielen Azure-Ressourcentypen (beispielsweise Azure-VMs) die sichere Kommunikation miteinander sowie mit dem Internet und lokalen Netzwerken.
+- [Azure CycleCloud][cyclecloud] ist ein Tool zum Erstellen, Verwalten, Ausführen und Optimieren von HPC- und Big Compute-Clustern in Azure.
+- [Avere vFXT in Azure][avere] wird verwendet, um ein für die Cloud konzipiertes Dateisystem für Unternehmen bereitzustellen.
+- [Microsoft Azure Virtual Machines][vms] (VMs) wird verwendet, um einen statischen Satz von Computeinstanzen zu erstellen.
+- [Microsoft Azure Virtual Machine Scale Sets][vmss] (VM-Skalierungsgruppen) stellt eine Gruppe von identischen VMs bereit, die von Azure CycleCloud zentral hoch- und herunterskaliert werden können.
+- [Azure Storage-Konten](/azure/storage/common/storage-introduction) werden für die Synchronisierung und Datenaufbewahrung verwendet.
+- [Virtuelle Netzwerke](/azure/virtual-network/virtual-networks-overview) ermöglichen vielen Azure-Ressourcentypen (beispielsweise Azure-VMs) die sichere Kommunikation miteinander sowie mit dem Internet und lokalen Netzwerken.
 
 ### <a name="alternatives"></a>Alternativen
 
@@ -65,15 +66,22 @@ Die Ausführungsknoten in Azure CycleCloud können manuell oder mittels automati
 
 Allgemeine Informationen zum Entwerfen sicherer Lösungen finden Sie in der [Dokumentation zur Azure-Sicherheit][security].
 
-## <a name="deploy-this-scenario"></a>Bereitstellen dieses Szenarios
+## <a name="deploy-the-scenario"></a>Bereitstellen des Szenarios
 
-Vor der Bereitstellung in Azure müssen einige Voraussetzungen erfüllt werden. Führen Sie vor dem Bereitstellen der Resource Manager-Vorlage die folgenden Schritte aus:
+### <a name="prerequisites"></a>Voraussetzungen
+
+Führen Sie vor dem Bereitstellen der Resource Manager-Vorlage die folgenden Schritte aus:
+
 1. Erstellen Sie einen [Dienstprinzipal][cycle-svcprin] zum Abrufen von „appId“ (App-ID), „displayName“ (Anzeigename), „name“ (Name), „password“ (Kennwort) and „tenant“ (Mandant).
 2. Generieren Sie ein [SSH-Schlüsselpaar][cycle-ssh] für die sichere Anmeldung beim CycleCloud-Server.
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FCycleCloudCommunity%2Fcyclecloud_arm%2Fmaster%2Fazuredeploy.json" target="_blank">
-    <img src="https://azuredeploy.net/deploybutton.png"/>
-</a>
+    <!-- markdownlint-disable MD033 -->
+
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FCycleCloudCommunity%2Fcyclecloud_arm%2Fmaster%2Fazuredeploy.json" target="_blank">
+        <img src="https://azuredeploy.net/deploybutton.png"/>
+    </a>
+
+    <!-- markdownlint-enable MD033 -->
 
 3. [Melden Sie sich beim CycleCloud-Server an][cycle-login], um einen neuen Cluster zu konfigurieren und zu erstellen.
 4. [Erstellen Sie einen Cluster][cycle-create].
@@ -90,12 +98,12 @@ Die Kosten für die Ausführung einer HPC-Implementierung mit einem CycleCloud-S
 
 Dieses Szenario zeigt, wie CFD-Anwendungen in Azure ausgeführt werden können- Die Computer erfordern daher RDMA-Funktionen, die nur für bestimmte VM-Größen verfügbar sind. Im Folgenden sind Beispiele für die Kosten aufgeführt, die in einem Monat für eine Skalierungsgruppe mit einem ausgehenden Datenverkehr von 1 TB, die kontinuierlich für acht Stunden pro Tag zugeordnet ist, anfallen können. Enthalten sind auch die Preise für den Azure CycleCloud-Server und die Installation von Avere vFXT für Azure:
 
-* Region: Nordeuropa
-* Azure CycleCloud-Server: 1x Standard D3 (vier CPUs, 14 GB Arbeitsspeicher, HDD Standard-Datenträger mit 32 GB)
-* Azure CycleCloud-Masterserver: 1x Standard D12 v2 (vier CPUs, 28 GB Arbeitsspeicher, HDD Standard-Datenträger mit 32 GB)
-* Azure CycleCloud-Knotenarray: 10x Standard H16r (16 CPUs, 112 GB Arbeitsspeicher)
-* Avere vFXT für Azure-Cluster: 3x D16s v3 (200 GB Betriebssystem, SSD Premium-Datenträger mit 1 TB)
-* Ausgehende Daten: 1 TB
+- Region: Nordeuropa
+- Azure CycleCloud-Server: 1x Standard D3 (vier CPUs, 14 GB Arbeitsspeicher, HDD Standard-Datenträger mit 32 GB)
+- Azure CycleCloud-Masterserver: 1x Standard D12 v2 (vier CPUs, 28 GB Arbeitsspeicher, HDD Standard-Datenträger mit 32 GB)
+- Azure CycleCloud-Knotenarray: 10x Standard H16r (16 CPUs, 112 GB Arbeitsspeicher)
+- Avere vFXT für Azure-Cluster: 3x D16s v3 (200 GB Betriebssystem, SSD Premium-Datenträger mit 1 TB)
+- Ausgehende Daten: 1 TB
 
 Die Preisschätzung für die oben genannte Hardware finden Sie [hier][pricing].
 
@@ -105,8 +113,8 @@ Nachdem Sie das Beispiel bereitgestellt haben, können Sie sich ausführlicher �
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
-* [RDMA-fähige Instanzen][rdma]
-* [Anpassen einer VM für RDMA-fähige Instanzen][rdma-custom]
+- [RDMA-fähige Instanzen][rdma]
+- [Anpassen einer VM für RDMA-fähige Instanzen][rdma-custom]
 
 <!-- links -->
 [architecture]: ./media/architecture-hpc-cfd.png

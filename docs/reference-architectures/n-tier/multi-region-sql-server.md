@@ -5,12 +5,12 @@ description: Stellen Sie eine Anwendung auf virtuellen Azure-Computern in mehrer
 author: MikeWasson
 ms.date: 07/19/2018
 ms.custom: seodec18
-ms.openlocfilehash: 5036d8c74dbf92d9547ab866b15b1576df48e3eb
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 84da8aaef7e552beff1f06befbaa2e50a3ac3d8b
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119998"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643704"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>Ausführen einer n-schichtigen Anwendung in mehreren Azure-Regionen für Hochverfügbarkeit
 
@@ -159,6 +159,13 @@ Testen Sie die Resilienz des Systems gegenüber Fehlern. Hier sind einige häufi
 - Herunterfahren des DNS-Diensts auf den Domänencontrollern
 
 Messen Sie die Wiederherstellungszeiten, und stellen Sie sicher, dass diese Ihren geschäftlichen Anforderungen entsprechen. Testen Sie auch Kombinationen von Fehlermodi.
+
+## <a name="related-resources"></a>Zugehörige Ressourcen
+
+Es wird empfohlen, sich das folgende [Azure-Beispielszenario](/azure/architecture/example-scenario) anzusehen. Darin wird veranschaulicht, wie einige dieser Technologien in spezifischen Lösungen verwendet werden:
+
+- [Webanwendung mit mehreren Ebenen, die für Hochverfügbarkeit und Notfallwiederherstellung in Azure konzipiert ist](/azure/architecture/example-scenario/infrastructure/multi-tier-app-disaster-recovery)
+- [Erstellen von sicheren Webanwendungen mit virtuellen Windows-Computern in Azure](/azure/architecture/example-scenario/infrastructure/regulated-multitier-app)
 
 <!-- links -->
 

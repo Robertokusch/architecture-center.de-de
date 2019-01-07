@@ -3,12 +3,12 @@ title: Microservicearchitektur in Azure Kubernetes Service (AKS)
 description: Bereitstellen einer Microservicearchitektur in Azure Kubernetes Service (AKS)
 author: MikeWasson
 ms.date: 12/10/2018
-ms.openlocfilehash: c8fa92e012374882e3af89f7ef8f7d800a52dacb
-ms.sourcegitcommit: a0a9981e7586bed8d876a54e055dea1e392118f8
+ms.openlocfilehash: 9e4b607cd7f5b33bbf08ce3af67dd5d4071ae8ef
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/11/2018
-ms.locfileid: "53233913"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644239"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Microservicearchitektur in Azure Kubernetes Service (AKS)
 
@@ -21,7 +21,7 @@ In diesem Artikel werden Kubernetes-Grundkenntnisse vorausgesetzt. Es geht haupt
 
 ![AKS-Referenzarchitektur](./_images/aks.png)
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 Die Architektur umfasst die folgenden Komponenten.
 
@@ -29,17 +29,17 @@ Die Architektur umfasst die folgenden Komponenten.
 
 **Kubernetes-Cluster**: AKS ist für die Bereitstellung des Kubernetes-Clusters und die Verwaltung der Kubernetes-Masterkomponenten zuständig. Sie verwalten nur die Agent-Knoten.
 
-**Virtuelles Netzwerk**: Standardmäßig erstellt AKS ein virtuelles Netzwerk, in dem die Agent-Knoten bereitgestellt werden können. Bei anspruchsvolleren Szenarien können Sie zuerst das virtuelle Netzwerk erstellen, damit Sie Dinge wie die Konfiguration der Subnetze, lokale Konnektivität und IP-Adressierung steuern können. Weitere Informationen finden Sie unter [Konfigurieren von erweiterten Netzwerken in Azure Kubernetes Service (AKS)](/azure/aks/configure-advanced-networking).
+**Virtuelles Netzwerk**. Standardmäßig erstellt AKS ein virtuelles Netzwerk, in dem die Agent-Knoten bereitgestellt werden können. Bei anspruchsvolleren Szenarien können Sie zuerst das virtuelle Netzwerk erstellen, damit Sie Dinge wie die Konfiguration der Subnetze, lokale Konnektivität und IP-Adressierung steuern können. Weitere Informationen finden Sie unter [Konfigurieren von erweiterten Netzwerken in Azure Kubernetes Service (AKS)](/azure/aks/configure-advanced-networking).
 
 **Eingang**: Mit einem Eingang werden HTTP(S)-Routen für Dienste im Cluster verfügbar gemacht. Weitere Informationen finden Sie unten im Abschnitt [API-Gateway](#api-gateway).
 
 **Externe Datenspeicher**: Microservices sind normalerweise zustandslos und schreiben den Status in externe Datenspeicher, z.B. Azure SQL-Datenbank oder Cosmos DB.
 
-**Azure Active Directory**: AKS nutzt eine Azure AD-Identität (Azure Active Directory), um andere Azure-Ressourcen, z.B. Azure Load Balancers, zu erstellen und zu verwalten. Azure AD wird auch für die Benutzerauthentifizierung in Clientanwendungen empfohlen.
+**Azure Active Directory:** AKS nutzt eine Azure AD-Identität (Azure Active Directory), um andere Azure-Ressourcen, z.B. Azure Load Balancers, zu erstellen und zu verwalten. Azure AD wird auch für die Benutzerauthentifizierung in Clientanwendungen empfohlen.
 
 **Azure Container Registry**: Verwenden Sie Container Registry zum Speichern von privaten Docker-Images, die im Cluster bereitgestellt werden. AKS kann die Authentifizierung mit Container Registry durchführen, indem die eigene Azure AD-Identität verwendet wird. Beachten Sie hierbei, dass Azure Container Registry für AKS nicht zwingend erforderlich ist. Sie können auch andere Containerregistrierungen nutzen, z.B. Docker-Hub.
 
-**Azure Pipelines**: Pipelines ist Teil von Azure DevOps Services und führt automatisierte Build-, Test- und Bereitstellungsvorgänge durch. Sie können auch CI/CD-Lösungen von Drittanbietern, z.B. Jenkins, verwenden. 
+**Azure Pipelines**. Pipelines ist Teil von Azure DevOps Services und führt automatisierte Build-, Test- und Bereitstellungsvorgänge durch. Sie können auch CI/CD-Lösungen von Drittanbietern, z.B. Jenkins, verwenden. 
 
 **Helm**: Helm ist ein Paket-Manager für Kubernetes und ermöglicht das Bündeln von Kubernetes-Objekten als Einheit, die Sie veröffentlichen, bereitstellen, mit einer Versionsangabe versehen und aktualisieren können.
 
@@ -53,9 +53,9 @@ In dieser Referenzarchitektur geht es zwar um Microservicearchitekturen, aber ei
 
 Das Kubernetes Service-Objekt ist eine natürliche Möglichkeit zum Modellieren von Microservices in Kubernetes. Ein Microservice ist eine lose gekoppelte, unabhängig bereitstellbare Codeeinheit. Microservices kommunizieren normalerweise über gut definierte APIs und können per Dienstermittlung ermittelt werden. Mit dem Kubernetes Service-Objekt werden Funktionen bereitgestellt, die die folgenden Anforderungen erfüllen:
 
-- IP-Adresse: Das Kubernetes Service-Objekt umfasst eine statische interne IP-Adresse für eine Gruppe von Pods (ReplicaSet). Wenn Pods erstellt oder verschoben werden, ist der Dienst über diese interne IP-Adresse immer erreichbar.
+- IP-Adresse. Das Kubernetes Service-Objekt umfasst eine statische interne IP-Adresse für eine Gruppe von Pods (ReplicaSet). Wenn Pods erstellt oder verschoben werden, ist der Dienst über diese interne IP-Adresse immer erreichbar.
 
-- Lastenausgleich: Für den Datenverkehr, der an die IP-Adresse des Diensts gesendet wird, wird ein Lastenausgleich auf die Pods durchgeführt. 
+- Lastenausgleich. Für den Datenverkehr, der an die IP-Adresse des Diensts gesendet wird, wird ein Lastenausgleich auf die Pods durchgeführt. 
 
 - Dienstermittlung: Diensten werden vom Kubernetes-DNS-Dienst interne DNS-Einträge zugewiesen. Dies bedeutet, dass das API-Gateway mit dem DNS-Namen einen Back-End-Dienst aufrufen kann. Derselbe Mechanismus kann auch für die Kommunikation von Dienst zu Dienst verwendet werden. Die DNS-Einträge sind nach Namespace organisiert. Wenn Ihre Namespaces also den Kontextgrenzen entsprechen, wird der DNS-Name für einen Dienst automatisch der Anwendungsdomäne zugeordnet.
 
@@ -63,7 +63,7 @@ Im folgenden Diagramm ist die konzeptionelle Beziehung zwischen Diensten und Pod
 
 ![Dienste und Pods](./_images/aks-services.png)
 
-### <a name="api-gateway"></a>API-Gateway
+### <a name="api-gateway"></a>API Gateway
 
 Ein *API-Gateway* ist ein Gateway, das zwischen externen Clients und den Microservices angeordnet ist. Es fungiert als Reverseproxy und leitet Anforderungen von Clients an Microservices weiter. Darüber hinaus kann es verschiedene übergreifende Aufgaben wie Authentifizierung, SSL-Beendigung und Ratenbegrenzung übernehmen. 
 
@@ -73,7 +73,7 @@ Die von einem Gateway bereitgestellte Funktionalität kann wie folgt gruppiert w
 
 - [Gatewayaggregation](../../patterns/gateway-aggregation.md): Dient zum Aggregieren mehrerer Anforderungen in einer einzelnen Anforderung, um umfangreiche Interaktionen („Chattiness“) zwischen dem Client und dem Back-End zu verringern.
 
-- [Gatewayabladung](../../patterns/gateway-offloading.md): Ein Gateway kann Funktionalität für die Back-End-Dienste abladen, z.B. SSL-Beendigung, Authentifizierung, IP-Whitelisting oder Clientratenbegrenzung (Drosselung).
+- [Gatewayabladung:](../../patterns/gateway-offloading.md) Ein Gateway kann Funktionalität für die Back-End-Dienste abladen, z.B. SSL-Beendigung, Authentifizierung, IP-Whitelisting oder Clientratenbegrenzung (Drosselung).
 
 API-Gateways sind ein allgemeines [Microserviceentwurfsmuster](https://microservices.io/patterns/apigateway.html). Sie können mit unterschiedlichen Technologien implementiert werden. Die häufigste Implementierung ist wahrscheinlich die Bereitstellung eines Edgerouters oder Reverseproxys, z.B. Nginx, HAProxy oder Traefik, im Cluster. 
 
@@ -255,7 +255,7 @@ Automatisieren Sie das Patchen der Images mit ACR Tasks, einem Feature von Azure
 
 Hier sind einige Ziele eines stabilen CI/CD-Prozesses für eine Microservicearchitektur aufgeführt:
 
-- Jedes Team kann die eigenen Dienste unabhängig erstellen und bereitstellen, ohne dass andere Teams hierdurch beeinträchtigt oder gestört werden. 
+- Jedes Team kann die eigenen Dienste unabhängig erstellen und bereitstellen, ohne dass andere Teams hierdurch beeinträchtigt oder gestört werden.
 
 - Bevor eine neue Version eines Diensts für die Produktion bereitgestellt wird, wird sie zunächst zur Überprüfung in Umgebungen für die Entwicklung, Tests und Qualitätssicherung bereitgestellt. Jede Phase verfügt über so genannte „Quality Gates“.
 
@@ -280,27 +280,85 @@ Erwägen Sie die Verwendung von Helm zum Erstellen und Bereitstellen von Dienste
 - Nachverfolgen von Updates und Revisionen per semantischer Versionierung und möglicher Rollback auf eine vorherige Version
 - Verwenden von Vorlagen zur Vermeidung von doppelten Informationen, z.B. Bezeichnungen und Selektoren, über viele Dateien hinweg
 - Verwalten von Abhängigkeiten zwischen Diagrammen
-- Veröffentlichen von Diagrammen in einem Helm-Repository, z.B. Azure Container Registry, und Integrieren in die Buildpipeline 
+- Veröffentlichen von Diagrammen in einem Helm-Repository, z.B. Azure Container Registry, und Integrieren in die Buildpipeline
 
 Weitere Informationen zur Verwendung von Container Registry als Helm-Repository finden Sie unter [Verwenden Sie Azure Container Registry als Helm-Repository für Ihre Anwendungsdiagramme](/azure/container-registry/container-registry-helm-repos).
 
 ### <a name="cicd-workflow"></a>CI/CD-Workflow
 
-Im folgenden Diagramm ist ein möglicher CI/CD-Workflow dargestellt. In diesem Beispiel wird davon ausgegangen, dass eine Qualitätssicherungsrolle vorhanden ist, die von der Entwicklerrolle getrennt ist.
+Vor dem Erstellen eines CI/CD-Workflows müssen Sie sich darüber im Klaren sein, wie die Codebasis strukturiert sein und verwaltet werden soll.
 
-![CI/CD-Workflow](./_images/aks-cicd.png)
+- Arbeiten die Teams in separaten Repositorys oder in einem „Monorepo“ (einzelnen Repository)?
+- Wie sieht Ihre Strategie für das „Branchen“ aus?
+- Wer kann Code per Pushvorgang in die Produktion übertragen? Ist eine Release Manager-Rolle vorhanden?
 
-1. Der Entwickler committet eine Änderung, mit der
-1. die CI-Pipeline ausgelöst wird. Diese Pipeline dient zum Erstellen des Codes, Ausführen von Tests und Erstellen des Containerimages.
-1. Wenn alle Quality Gate-Prüfungen bestanden werden, wird das Image per Pushvorgang in das Imagerepository übertragen.
-1. Wenn eine neue Version eines Diensts bereit für die Bereitstellung ist, wird ein Tag hinzugefügt.
-1. Mit dem Tag wird die CD-Testpipeline ausgelöst, die einen Helm-Upgradebefehl zum Aktualisieren des Testclusters ausführt.
-1. Wenn die neue Version für die Bereitstellung in der Produktion bereit ist, löst die Qualitätssicherungsrolle manuell die CD-Produktionspipeline aus.
+Die Beliebtheit des Monorepo-Ansatzes ist gestiegen, aber beide Ansätze haben sowohl Vor- als auch Nachteile.
 
-### <a name="recommended-cicd-practices"></a>Empfohlene Vorgehensweisen für CI/CD
+| &nbsp; | Monorepo | Mehrere Repositorys |
+|--------|----------|----------------|
+| **Vorteile** | Codefreigabe<br/>Einfacheres Standardisieren von Code und Tools<br/>Einfacheres Umgestalten von Code<br/>Auffindbarkeit: Zentrale Codeansicht<br/> | Eindeutige Eigentümerschaft pro Team<br/>Potenziell weniger Zusammenführungskonflikte<br/>Unterstützung bei der Durchsetzung der Entkopplung von Microservices |
+| **Herausforderungen** | Änderungen an freigegebenem Code können sich auf mehrere Microservices auswirken<br/>Höheres Potenzial für Zusammenführungskonflikte<br/>Tools müssen auf große Codebasis skaliert werden<br/>Zugriffssteuerung<br/>Komplexerer Bereitstellungsprozess | Schwierigere Codefreigabe<br/>Schwierigeres Durchsetzen von Codierungsstandards<br/>Verwaltung von Abhängigkeiten<br/>Diffuse Codebasis, schlechte Auffindbarkeit<br/>Mangel an freigegebener Infrastruktur
 
-Legen Sie „imagePullPolicy“ auf „Always“ fest, damit Kubernetes immer das aktuelle Image per Pullvorgang aus dem Repository abruft und kein zwischengespeichertes Image verwendet. Sie können dies für den gesamten Cluster erzwingen, indem Sie AlwaysPullImages für die Aufnahmekontrolle verwenden.
+In diesem Abschnitt wird ein möglicher CI/CD-Workflow veranschaulicht, der auf den folgenden Annahmen basiert:
 
-Verwenden Sie das Tag `latest` nicht für Images in einer Podspezifikation. Geben Sie immer die Imageversion an.
+- Für das Coderepository wird der Monorepo-Ansatz genutzt, und die Ordner sind nach Microservice organisiert.
+- Die Branchstrategie des Teams basiert auf der [Trunk-basierten Entwicklung](https://trunkbaseddevelopment.com/).
+- Das Team nutzt [Azure Pipelines](/azure/devops/pipelines), um den CI/CD-Prozess auszuführen.
+- Das Team verwendet [Namespaces](/azure/container-registry/container-registry-best-practices#repository-namespaces) in Azure Container Registry, um Images, die bereits für die Produktion genehmigt wurden, von den noch in der Testphase befindlichen Images zu isolieren.
 
-Verwenden Sie in Azure Container Service Namespaces, um Containerimages nach Microservice oder Entwicklungsteam zu organisieren.
+In diesem Beispiel arbeitet ein Entwickler an einem Microservice mit dem Namen „Delivery Service“ (Lieferdienst). (Der Name stammt aus der Referenzimplementierung, die [hier](../../microservices/index.md#the-drone-delivery-application) beschrieben ist.) Beim Entwickeln eines neuen Features checkt der Entwickler Code in einen Featurebranch ein.
+
+![CI/CD-Workflow](./_images/aks-cicd-1.png)
+
+Wenn Commits per Pushvorgang an diesen Branch übertragen werden, wird ein CI-Build für den Microservice ausgelöst. Für Featurebranches wird die Benennungskonvention `feature/*` verwendet. Die [Builddefinitionsdatei](/azure/devops/pipelines/yaml-schema) enthält einen Trigger, der nach dem Branchnamen und dem Quellpfad filtert. Mit diesem Ansatz kann jedes Team über eine eigene Buildpipeline verfügen.
+
+```yaml
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+    - feature/*
+
+    exclude:
+    - feature/experimental/*
+
+  paths:
+     include:
+     - /src/shipping/delivery/
+```
+
+An diesem Punkt des Workflows führt der CI-Build eine Codeüberprüfung mit minimalem Umfang durch:
+
+1. Erstellen des Codes
+1. Ausführen von Komponententests
+
+Hierbei werden die Buildzeiten kurz gehalten, damit der Entwickler schnell Feedback erhält. Wenn das Feature für die Zusammenführung mit dem Master bereit ist, öffnet der Entwickler einen PR-Vorgang. Hierdurch wird ein weiterer CI-Build ausgelöst, bei dem einige zusätzliche Überprüfungen durchgeführt werden:
+
+1. Erstellen des Codes
+1. Durchführen von Komponententests
+1. Erstellen des Runtime-Containerimages
+1. Durchführen von Überprüfungen auf Sicherheitsrisiken für das Image
+
+![CI/CD-Workflow](./_images/aks-cicd-2.png)
+
+> [!NOTE]
+> In Azure Repos können Sie [Richtlinien](/azure/devops/repos/git/branch-policies) zum Schützen von Branches definieren. Für die Richtlinie sind beispielsweise ggf. ein erfolgreicher CI-Build sowie eine Genehmigung eines Prüfers erforderlich, damit die Zusammenführung mit dem Master erfolgen kann.
+
+An einem bestimmten Punkt ist das Team zum Bereitstellen einer neuen Version des Lieferdiensts bereit. Hierzu erstellt der Release Manager einen Branch vom Master, indem er das folgende Benennungsmuster verwendet: `release/<microservice name>/<semver>`. Beispiel: `release/delivery/v1.0.2`.
+Hierdurch wird ein vollständiger CI-Buildvorgang ausgelöst, bei dem alle obigen Schritte und zusätzlich die folgenden Schritte ausgeführt werden:
+
+1. Übertragen des Docker-Images an Azure Container Registry per Pushvorgang. Das Image wird mit der Versionsnummer aus dem Branchnamen versehen.
+2. Ausführen von `helm package` zum Verpacken des Helm-Diagramms
+3. Übertragen des Helm-Pakets an Container Registry, indem `az acr helm push` ausgeführt wird
+
+Wenn dieser Buildvorgang erfolgreich ist, wird mithilfe einer [Releasepipeline](/azure/devops/pipelines/release/what-is-release-management) von Azure Pipelines ein Bereitstellungsprozess ausgelöst. Diese Pipeline
+
+1. Führen Sie `helm upgrade` aus, um das Helm-Diagramm in einer Umgebung für die Qualitätssicherung bereitzustellen.
+1. Eine genehmigende Person meldet sich ab, bevor das Paket für die Produktion bereitgestellt wird. Weitere Informationen finden Sie unter [Release deployment control using approvals](/azure/devops/pipelines/release/approvals/approvals) (Steuerung von Releasebereitstellungen durch Genehmigungen).
+1. Versehen Sie das Docker-Image für den Produktionsnamespace in Azure Container Registry mit einem neuen Tag. Wenn das derzeitige Tag beispielsweise `myrepo.azurecr.io/delivery:v1.0.2` lautet, lautet das Tag für die Produktion `reponame.azurecr.io/prod/delivery:v1.0.2`.
+1. Führen Sie `helm upgrade` aus, um das Helm-Diagramm für die Produktionsumgebung bereitzustellen.
+
+![CI/CD-Workflow](./_images/aks-cicd-3.png)
+
+Es ist wichtig, Folgendes zu beachten: Auch beim Monorepo-Ansatz können diese Aufgaben einzelnen Microservices zugeordnet werden, damit die Teams Bereitstellungen schneller durchführen können. Dieser Prozess umfasst einige manuelle Schritte: Genehmigen von PRs, Erstellen von Releasebranches und Genehmigen von Bereitstellungen im Produktionscluster. Der Richtlinie nach sind dies manuelle Schritte, aber sie können auch vollständig automatisiert werden, falls die Organisation dies vorzieht.

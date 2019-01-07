@@ -5,12 +5,12 @@ description: Bewährte Methoden zum Ausführen von SAP S/4HANA in einer Linux-Um
 author: lbrader
 ms.date: 08/03/2018
 ms.custom: seodec18
-ms.openlocfilehash: 4014d5736527a2f29692720d199b4a1aa8f76020
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: ace5348ccb32299b2f4167b3d384ba72972ca9ad
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120185"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644015"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Bereitstellen von SAP NetWeaver (Windows) für AnyDB auf virtuellen Azure-Computern
 
@@ -149,7 +149,7 @@ Zur Notfallwiederherstellung muss es möglich sein, ein Failover zu einer sekund
 
 - **Anwendungsserverschicht**. SAP-Anwendungsserver enthalten keine Geschäftsdaten. In Azure besteht eine einfache Strategie für die Notfallwiederherstellung darin, SAP-Anwendungsserver in der sekundären Region zu erstellen und die Server dann herunterzufahren. Bei Konfigurationsänderungen oder Kernel-Updates auf dem primären Anwendungsserver müssen die gleichen Änderungen auf die virtuellen Computern in der sekundären Region kopiert werden. Beispielsweise werden die ausführbaren Kerneldateien auf die virtuellen Computer für die Notfallwiederherstellung kopiert. Sollen Anwendungsserver automatisch in einer sekundären Region repliziert werden, ist [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) die empfohlene Lösung.
 
-- **Central Services**. Auch bei dieser Komponente des SAP-Anwendungsstapels werden keine Geschäftsdaten beibehalten. Sie können einen virtuellen Computer in der Notfallwiederherstellungregion erstellen, um die Central Services-Rolle auszuführen. Der einzige Inhalt, der vom primären Central Services-Knoten synchronisiert wird, ist der Inhalt der Freigabe „/sapmnt“. Wenn Konfigurationsänderungen oder Kernel-Updates auf den primären Central Services-Servern stattfinden, müssen sie auf dem virtuellen Computer in der Notfallwiederherstellungsregion, auf dem Central Services ausgeführt wird, wiederholt werden. Um die beiden Server zu synchronisieren, können Sie entweder Azure Site Recovery verwenden, um die Clusterknoten zu replizieren, oder einfach einen regelmäßig geplanten Kopierauftrag verwenden, um „/sapmnt“ in die Notfallwiederherstellungsregion zu kopieren. Ausführliche Informationen zum Erstellungs-, Kopier- und Testfailoverprozess für diese einfache Replikationsmethode erhalten Sie, indem Sie den Artikel [SAP NetWeaver: Building a Hyper-V and Microsoft Azure-based Disaster Recovery Solution](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Erstellen einer Lösung für die Notfallwiederherstellung auf Basis von Hyper-V und Microsoft Azure) herunterladen und im Abschnitt 4.3. „SAP SPOF layer (ASCS)“ (4.3. SAP-SPOF-Schicht (ASCS)) nachsehen.
+- **Central Services**. Auch bei dieser Komponente des SAP-Anwendungsstapels werden keine Geschäftsdaten beibehalten. Sie können einen virtuellen Computer in der Notfallwiederherstellungregion erstellen, um die Central Services-Rolle auszuführen. Der einzige Inhalt, der vom primären Central Services-Knoten synchronisiert wird, ist der Inhalt der Freigabe „/sapmnt“. Wenn Konfigurationsänderungen oder Kernel-Updates auf den primären Central Services-Servern stattfinden, müssen sie auf dem virtuellen Computer in der Notfallwiederherstellungsregion, auf dem Central Services ausgeführt wird, wiederholt werden. Um die beiden Server zu synchronisieren, können Sie entweder Azure Site Recovery verwenden, um die Clusterknoten zu replizieren, oder einfach einen regelmäßig geplanten Kopierauftrag verwenden, um „/sapmnt“ in die Notfallwiederherstellungsregion zu kopieren. Ausführliche Informationen zum Erstellungs-, Kopier- und Testfailoverprozess für diese einfache Replikationsmethode erhalten Sie, indem Sie den Artikel [SAP NetWeaver: Building a Hyper-V and Microsoft Azure-based Disaster Recovery Solution](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Erstellen einer Lösung für die Notfallwiederherstellung auf Basis von Hyper-V und Microsoft Azure) herunterladen und im Abschnitt 4.3. SAP SPOF layer (ASCS)“ (4.3. SAP-SPOF-Schicht (ASCS)) nachsehen.
 
 - **Datenbankschicht**. Notfallwiederherstellung lässt sich am besten mit der in die Datenbank integrierten Replikationstechnologie implementieren. Im Fall von SQL Server empfiehlt sich beispielsweise die Verwendung einer AlwaysOn-Verfügbarkeitsgruppe, um ein Replikat in einer Remoteregion einzurichten, wozu Transaktionen asynchron mit manuellem Failover repliziert werden. Asynchrone Replikation vermeidet Auswirkungen auf die Leistung von interaktiven Workloads am primären Standort. Manuelles Failover bietet für eine Person die Möglichkeit, die Notfallwiederherstellungsauswirkungen zu bewerten und zu entscheiden, ob ein Betrieb aus dem Notfallwiederherstellungsstandort gerechtfertigt ist.
 
@@ -179,5 +179,14 @@ Communitys können Fragen beantworten und Sie beim Einrichten einer erfolgreiche
 - [Azure-Communitysupport](https://azure.microsoft.com/support/community/)
 - [SAP Community](https://www.sap.com/community.html)
 - [Stack Overflow](https://stackoverflow.com/tags/sap/)
+
+## <a name="related-resources"></a>Zugehörige Ressourcen
+
+Es wird empfohlen, sich das folgende [Azure-Beispielszenario](/azure/architecture/example-scenario) anzusehen. Darin wird veranschaulicht, wie einige dieser Technologien in spezifischen Lösungen verwendet werden:
+
+- [Ausführen von SAP-Produktionsworkloads mit einer Oracle Database-Instanz in Azure](/azure/architecture/example-scenario/apps/sap-production)
+- [Entwicklungs-/Testumgebungen für SAP-Workloads in Azure](/azure/architecture/example-scenario/apps/sap-dev-test)
+
+<!-- links -->
 
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

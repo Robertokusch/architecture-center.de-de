@@ -1,15 +1,16 @@
 ---
-title: Erstellen von sicheren Web-Apps mit virtuellen Windows-Computern in Azure
+title: Erstellen von sicheren Web-Apps mit Windows-VMs
+titleSuffix: Azure Example Scenarios
 description: Erstellen Sie mithilfe von Windows Server eine sichere Webanwendung mit mehreren Ebenen in Azure, für die Skalierungsgruppen, Application Gateway und Lastenausgleichsmodule verwendet werden.
 author: iainfoulds
 ms.date: 12/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 4e4d2117fbc46eda46f7ef276a71739e3a79270e
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 2c5f77f265c10388f42138e7d3f6da9e3ead1cd8
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307060"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643532"
 ---
 # <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>Erstellen von sicheren Webanwendungen mit virtuellen Windows-Computern in Azure
 
@@ -21,11 +22,11 @@ Bisher mussten Organisationen lokale Legacyanwendungen und -dienste betreiben, u
 
 Im Anschluss finden Sie einige Beispiele für dieses Szenario:
 
-* Modernisieren von Anwendungsbereitstellungen in einer sicheren Cloudumgebung
-* Verringern des Verwaltungsaufwands für lokale Legacyanwendungen und -dienste
-* Verbessern der Gesundheitsversorgung für Patienten und der Benutzerfreundlichkeit neuer Anwendungsplattformen
+- Modernisieren von Anwendungsbereitstellungen in einer sicheren Cloudumgebung
+- Verringern des Verwaltungsaufwands für lokale Legacyanwendungen und -dienste
+- Verbessern der Gesundheitsversorgung für Patienten und der Benutzerfreundlichkeit neuer Anwendungsplattformen
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Übersicht über die Architektur der Azure-Komponenten von Windows Server-Anwendungen mit mehreren Ebenen für Branchen mit Regulierung][architecture]
 
@@ -39,26 +40,26 @@ Dieses Szenario zeigt eine Front-End-Webanwendung, die eine Verbindung mit einer
 
 ### <a name="components"></a>Komponenten
 
-* [Azure Application Gateway][appgateway-docs] ist ein Layer-7-Lastenausgleichsmodul für Webdatenverkehr, das anwendungsorientiert ist und Datenverkehr basierend auf spezifischen Routingregeln verteilen kann. Per App Gateway kann auch die SSL-Abladung zur Verbesserung der Webserverleistung verarbeitet werden.
-* Mit [Azure Virtual Network][vnet-docs] können Ressourcen, z.B. VMs, auf sichere Weise miteinander, im Internet und mit lokalen Netzwerken kommunizieren. Virtuelle Netzwerke ermöglichen Isolation und Segmentierung, die Filterung und Weiterleitung von Datenverkehr und die Verbindungsherstellung zwischen Standorten. In diesem Szenario werden zwei virtuelle Netzwerke in Kombination mit den entsprechenden NSGs verwendet, um eine [demilitarisierte Zone][dmz] (DMZ) bereitzustellen und für die Isolation der Anwendungskomponenten zu sorgen. Per VNET-Peering werden die beiden Netzwerke verbunden.
-* Mit [Azure-VM-Skalierungsgruppen][scaleset-docs] können Sie eine Gruppe von identischen virtuellen Computern mit Lastenausgleich erstellen und verwalten. Die Anzahl von VM-Instanzen kann automatisch erhöht oder verringert werden, wenn sich der Bedarf ändert, oder es kann ein Zeitplan festgelegt werden. In diesem Szenario werden zwei separate virtuelle VM-Skalierungsgruppen verwendet: eine für die ASP.NET-Front-End-Anwendungsinstanzen und eine für die VM-Instanzen des SQL Server-Back-End-Clusters. PowerShell DSC (Desired State Configuration, Konfiguration des gewünschten Zustands) oder die benutzerdefinierte Azure-Skripterweiterung können verwendet werden, um die VM-Instanzen mit der erforderlichen Software und den Konfigurationseinstellungen bereitzustellen.
-* [Azure-Netzwerksicherheitsgruppen][nsg-docs] enthalten eine Liste mit Sicherheitsregeln, die ein- oder ausgehenden Netzwerkdatenverkehr basierend auf IP-Adresse, Port und Protokoll (für die Quelle bzw. das Ziel) zulassen oder ablehnen. Die virtuellen Netzwerke in diesem Szenario sind durch Netzwerksicherheitsgruppen-Regeln geschützt, mit denen der Datenverkehrsfluss zwischen den Anwendungskomponenten eingeschränkt wird.
-* Per [Azure Load Balancer][loadbalancer-docs] wird der eingehende Datenverkehr gemäß den Regeln und Integritätstests verteilt. Ein Lastenausgleichsmodul sorgt für niedrige Latenzen und einen hohen Durchsatz und kann eine Skalierung auf Millionen von Datenflüssen für alle TCP- und UDP-Anwendungen durchführen. In diesem Szenario wird ein internes Lastenausgleichsmodul genutzt, um Datenverkehr von der Front-End-Anwendungsebene auf den SQL Server-Back-End-Cluster zu verteilen.
-* [Azure Blob Storage][cloudwitness-docs] fungiert als Cloudzeugenstandort für den SQL Server-Cluster. Dieser Zeuge wird für Clustervorgänge und Entscheidungen verwendet, für die eine zusätzliche Abstimmung zum Treffen der Quorumentscheidung erforderlich ist. Bei der Nutzung von Cloudzeugen ist es nicht mehr erforderlich, dass eine zusätzliche VM als herkömmlicher Dateifreigabenzeuge fungiert.
+- [Azure Application Gateway][appgateway-docs] ist ein Layer-7-Lastenausgleichsmodul für Webdatenverkehr, das anwendungsorientiert ist und Datenverkehr basierend auf spezifischen Routingregeln verteilen kann. Per App Gateway kann auch die SSL-Abladung zur Verbesserung der Webserverleistung verarbeitet werden.
+- Mit [Azure Virtual Network][vnet-docs] können Ressourcen, z.B. VMs, auf sichere Weise miteinander, im Internet und mit lokalen Netzwerken kommunizieren. Virtuelle Netzwerke ermöglichen Isolation und Segmentierung, die Filterung und Weiterleitung von Datenverkehr und die Verbindungsherstellung zwischen Standorten. In diesem Szenario werden zwei virtuelle Netzwerke in Kombination mit den entsprechenden NSGs verwendet, um eine [demilitarisierte Zone][dmz] (DMZ) bereitzustellen und für die Isolation der Anwendungskomponenten zu sorgen. Per VNET-Peering werden die beiden Netzwerke verbunden.
+- Mit [Azure-VM-Skalierungsgruppen][scaleset-docs] können Sie eine Gruppe von identischen virtuellen Computern mit Lastenausgleich erstellen und verwalten. Die Anzahl von VM-Instanzen kann automatisch erhöht oder verringert werden, wenn sich der Bedarf ändert, oder es kann ein Zeitplan festgelegt werden. In diesem Szenario werden zwei separate virtuelle VM-Skalierungsgruppen verwendet: eine für die ASP.NET-Front-End-Anwendungsinstanzen und eine für die VM-Instanzen des SQL Server-Back-End-Clusters. PowerShell DSC (Desired State Configuration, Konfiguration des gewünschten Zustands) oder die benutzerdefinierte Azure-Skripterweiterung können verwendet werden, um die VM-Instanzen mit der erforderlichen Software und den Konfigurationseinstellungen bereitzustellen.
+- [Azure-Netzwerksicherheitsgruppen][nsg-docs] enthalten eine Liste mit Sicherheitsregeln, die ein- oder ausgehenden Netzwerkdatenverkehr basierend auf IP-Adresse, Port und Protokoll (für die Quelle bzw. das Ziel) zulassen oder ablehnen. Die virtuellen Netzwerke in diesem Szenario sind durch Netzwerksicherheitsgruppen-Regeln geschützt, mit denen der Datenverkehrsfluss zwischen den Anwendungskomponenten eingeschränkt wird.
+- Per [Azure Load Balancer][loadbalancer-docs] wird der eingehende Datenverkehr gemäß den Regeln und Integritätstests verteilt. Ein Lastenausgleichsmodul sorgt für niedrige Latenzen und einen hohen Durchsatz und kann eine Skalierung auf Millionen von Datenflüssen für alle TCP- und UDP-Anwendungen durchführen. In diesem Szenario wird ein internes Lastenausgleichsmodul genutzt, um Datenverkehr von der Front-End-Anwendungsebene auf den SQL Server-Back-End-Cluster zu verteilen.
+- [Azure Blob Storage][cloudwitness-docs] fungiert als Cloudzeugenstandort für den SQL Server-Cluster. Dieser Zeuge wird für Clustervorgänge und Entscheidungen verwendet, für die eine zusätzliche Abstimmung zum Treffen der Quorumentscheidung erforderlich ist. Bei der Nutzung von Cloudzeugen ist es nicht mehr erforderlich, dass eine zusätzliche VM als herkömmlicher Dateifreigabenzeuge fungiert.
 
 ### <a name="alternatives"></a>Alternativen
 
-* Da die Infrastruktur nicht vom Betriebssystem abhängig ist, kann sowohl Linux als auch Windows verwendet werden.
+- Da die Infrastruktur nicht vom Betriebssystem abhängig ist, kann sowohl Linux als auch Windows verwendet werden.
 
-* [SQL Server für Linux][sql-linux] kann den Back-End-Datenspeicher ersetzen.
+- [SQL Server für Linux][sql-linux] kann den Back-End-Datenspeicher ersetzen.
 
-* [Cosmos DB](/azure/cosmos-db/introduction) ist eine weitere Alternative für den Datenspeicher.
+- [Cosmos DB](/azure/cosmos-db/introduction) ist eine weitere Alternative für den Datenspeicher.
 
 ## <a name="considerations"></a>Überlegungen
 
 ### <a name="availability"></a>Verfügbarkeit
 
-Die VM-Instanzen in diesem Szenario werden für Verfügbarkeitszonen übergreifend bereitgestellt. Jede Zone besteht aus mindestens einem Rechenzentrum, dessen Stromversorgung, Kühlung und Netzwerkbetrieb unabhängig funktionieren. Mindestens drei Zonen sind in allen aktivierten Regionen verfügbar. Diese zonenübergreifende Verteilung von VM-Instanzen sorgt für Hochverfügbarkeit auf den Anwendungsebenen. Weitere Informationen finden Sie unter [Was sind Verfügbarkeitszonen in Azure?][azureaz-docs].
+Die VM-Instanzen in diesem Szenario werden für [Verfügbarkeitszonen](/azure/availability-zones/az-overview) übergreifend bereitgestellt. Jede Zone besteht aus mindestens einem Rechenzentrum, dessen Stromversorgung, Kühlung und Netzwerkbetrieb unabhängig funktionieren. Jede aktivierte Region verfügt mindestens über drei Verfügbarkeitszonen. Diese zonenübergreifende Verteilung von VM-Instanzen sorgt für Hochverfügbarkeit auf den Anwendungsebenen.
 
 Die Datenbankebene kann so konfiguriert werden, dass Always On-Verfügbarkeitsgruppen konfiguriert werden. Mit dieser SQL Server-Konfiguration wird eine primäre Datenbank in einem Cluster mit bis zu acht sekundären Datenbanken konfiguriert. Falls für die primäre Datenbank ein Problem besteht, führt der Cluster ein Failover auf eine der sekundären Datenbanken aus, damit die Anwendung weiterhin verfügbar ist. Weitere Informationen finden Sie unter [Übersicht über Always On-Verfügbarkeitsgruppen für SQL Server][sqlalwayson-docs].
 
@@ -84,20 +85,27 @@ Allgemeine Informationen zur Entwicklung robuster Szenarien finden Sie unter [En
 
 ## <a name="deploy-the-scenario"></a>Bereitstellen des Szenarios
 
-**Voraussetzungen:**
+### <a name="prerequisites"></a>Voraussetzungen
 
-* Sie benötigen ein bestehendes Azure-Konto. Wenn Sie kein Azure-Abonnement besitzen, können Sie ein [kostenloses Konto](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) erstellen, bevor Sie beginnen.
-* Sie benötigen eine Domäne in Azure Active Directory (AD) Domain Services, um einen SQL Server-Cluster in der Back-End-Skalierungsgruppe bereitstellen zu können.
+- Sie benötigen ein bestehendes Azure-Konto. Wenn Sie kein Azure-Abonnement besitzen, können Sie ein [kostenloses Konto](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) erstellen, bevor Sie beginnen.
+
+- Sie benötigen eine Domäne in Azure Active Directory (AD) Domain Services, um einen SQL Server-Cluster in der Back-End-Skalierungsgruppe bereitstellen zu können.
+
+### <a name="deploy-the-components"></a>Bereitstellen der Komponenten
 
 Führen Sie die unten angegebenen Schritte aus, um die Kerninfrastruktur für dieses Szenario mit einer Azure Resource Manager-Vorlage bereitzustellen.
 
+<!-- markdownlint-disable MD033 -->
+
 1. Wählen Sie die Schaltfläche **Deploy to Azure** (In Azure bereitstellen):<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Finfrastructure%2Fregulated-multitier-app%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. Warten Sie, bis die Vorlagenbereitstellung im Azure-Portal geöffnet wurde, und führen Sie anschließend folgende Schritte aus:
-   * Erstellen Sie über **Neu erstellen** eine neue Ressourcengruppe, und geben Sie einen Namen (beispielsweise *myWindowsscenario*) in das Textfeld ein.
-   * Wählen Sie im Dropdownfeld **Standort** eine Region aus.
-   * Geben Sie einen Benutzernamen und ein sicheres Kennwort für die VM-Skalierungsgruppeninstanzen an.
-   * Lesen Sie die allgemeinen Geschäftsbedingungen, und aktivieren Sie dann das Kontrollkästchen **Ich stimme den oben genannten Geschäftsbedingungen zu**.
-   * Klicken Sie auf die Schaltfläche **Kaufen**.
+   - Erstellen Sie über **Neu erstellen** eine neue Ressourcengruppe, und geben Sie einen Namen (beispielsweise *myWindowsscenario*) in das Textfeld ein.
+   - Wählen Sie im Dropdownfeld **Standort** eine Region aus.
+   - Geben Sie einen Benutzernamen und ein sicheres Kennwort für die VM-Skalierungsgruppeninstanzen an.
+   - Lesen Sie die allgemeinen Geschäftsbedingungen, und aktivieren Sie dann das Kontrollkästchen **Ich stimme den oben genannten Geschäftsbedingungen zu**.
+   - Klicken Sie auf die Schaltfläche **Kaufen**.
+
+<!-- markdownlint-enable MD033 -->
 
 Der Bereitstellungsvorgang kann zwischen 15 und 20 Minuten dauern.
 
@@ -107,9 +115,9 @@ Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kost
 
 Wir haben basierend auf der Anzahl von VM-Instanzen, über die Ihre Anwendungen ausgeführt werden, drei Beispielkostenprofile bereitgestellt.
 
-* [Klein][small-pricing]: Dieses Preisbeispiel entspricht zwei Front-End- und zwei Back-End-VM-Instanzen.
-* [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht 20 Front-End- und fünf Back-End-VM-Instanzen.
-* [Groß][large-pricing]: Dieses Preisbeispiel entspricht 100 Front-End- und 10 Back-End-VM-Instanzen.
+- [Klein][small-pricing]: Dieses Preisbeispiel entspricht zwei Front-End- und zwei Back-End-VM-Instanzen.
+- [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht 20 Front-End- und fünf Back-End-VM-Instanzen.
+- [Groß][large-pricing]: Dieses Preisbeispiel entspricht 100 Front-End- und 10 Back-End-VM-Instanzen.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
@@ -122,14 +130,13 @@ Ausführlichere Informationen zur Implementierung finden Sie in der [Referenzarc
 [architecture]: ./media/architecture-regulated-multitier-app.png
 [autoscaling]: /azure/architecture/best-practices/auto-scaling
 [availability]: ../../checklist/availability.md
-[azureaz-docs]: /azure/availability-zones/az-overview
 [cloudwitness-docs]: /windows-server/failover-clustering/deploy-cloud-witness
 [loadbalancer-docs]: /azure/load-balancer/load-balancer-overview
 [nsg-docs]: /azure/virtual-network/security-overview
 [ntiersql-ra]: /azure/architecture/reference-architectures/n-tier/n-tier-sql-server
-[resiliency]: /azure/architecture/resiliency/ 
+[resiliency]: /azure/architecture/resiliency/
 [security]: /azure/security/
-[scalability]: /azure/architecture/checklist/scalability 
+[scalability]: /azure/architecture/checklist/scalability
 [scaleset-docs]: /azure/virtual-machine-scale-sets/overview
 [sqlalwayson-docs]: /sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server
 [vmssautoscale-docs]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview

@@ -1,14 +1,15 @@
 ---
-title: Bildklassifizierung für Versicherungsansprüche in Azure
+title: Bildklassifizierung für Versicherungsansprüche
+titleSuffix: Azure Example Scenarios
 description: Integrieren Sie Bildverarbeitung in Ihre Azure-Anwendungen.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 9640f8b5454891ed00f669bada9f7c9c69b89734
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 12dd197c6df4a8d7a90a09436d86ce4a9e5ccc72
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610531"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643444"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Bildklassifizierung für Versicherungsansprüche in Azure
 
@@ -22,8 +23,8 @@ Durch die Verwendung von Azure-Diensten wie Maschinelles Sehen-API und Azure Fun
 
 Zu den weiteren relevanten Anwendungsfällen zählen:
 
-* Klassifizieren von Bildern auf einer Modewebsite
-* Klassifizieren von Telemetriedaten aus Screenshots von Spielen
+- Klassifizieren von Bildern auf einer Modewebsite
+- Klassifizieren von Telemetriedaten aus Screenshots von Spielen
 
 ## <a name="architecture"></a>Architecture
 
@@ -39,22 +40,22 @@ Dieses Szenario umfasst die Back-End-Komponenten einer webbasierten oder mobilen
 
 ### <a name="components"></a>Komponenten
 
-* [Maschinelles Sehen-API](/azure/cognitive-services/computer-vision/home) ist Teil der Cognitive Services-Suite und dient zum Abrufen von Informationen zu den einzelnen Bildern.
-* [Azure Functions](/azure/azure-functions/functions-overview) stellt die Back-End-API für die Webanwendung sowie die Ereignisverarbeitung für hochgeladene Bilder bereit.
-* [Event Grid](/azure/event-grid/overview) löst ein Ereignis aus, wenn ein neues Bild in Blob Storage hochgeladen wird. Das Bild wird dann mit Azure Functions verarbeitet.
-* [Blob Storage](/azure/storage/blobs/storage-blobs-introduction) speichert alle in die Webanwendung hochgeladenen Bilddateien sowie alle statischen Dateien, die von der Webanwendung genutzt werden.
-* [Cosmos DB](/azure/cosmos-db/introduction) speichert Metadaten zu den einzelnen hochgeladenen Bildern sowie die Verarbeitungsergebnisse der Maschinelles Sehen-API.
+- [Maschinelles Sehen-API](/azure/cognitive-services/computer-vision/home) ist Teil der Cognitive Services-Suite und dient zum Abrufen von Informationen zu den einzelnen Bildern.
+- [Azure Functions](/azure/azure-functions/functions-overview) stellt die Back-End-API für die Webanwendung sowie die Ereignisverarbeitung für hochgeladene Bilder bereit.
+- [Event Grid](/azure/event-grid/overview) löst ein Ereignis aus, wenn ein neues Bild in Blob Storage hochgeladen wird. Das Bild wird dann mit Azure Functions verarbeitet.
+- [Blob Storage](/azure/storage/blobs/storage-blobs-introduction) speichert alle in die Webanwendung hochgeladenen Bilddateien sowie alle statischen Dateien, die von der Webanwendung genutzt werden.
+- [Cosmos DB](/azure/cosmos-db/introduction) speichert Metadaten zu den einzelnen hochgeladenen Bildern sowie die Verarbeitungsergebnisse der Maschinelles Sehen-API.
 
 ## <a name="alternatives"></a>Alternativen
 
-* [Custom Vision Service](/azure/cognitive-services/custom-vision-service/home). Die Maschinelles Sehen-API gibt eine Reihe [taxonomiebasierter Kategorien][cv-categories] zurück. Falls Sie Informationen verarbeiten müssen, die nicht von der Maschinelles Sehen-API zurückgegeben werden, ziehen Sie ggf. die Verwendung von Custom Vision Service in Betracht. Dieser Dienst ermöglicht die Erstellung benutzerdefinierter Bildklassifizierungen.
-* [Azure Search](/azure/search/search-what-is-azure-search). Wenn in Ihrem Szenario die Metadaten abgefragt werden müssen, um Bilder zu finden, die bestimmten Kriterien entsprechen, empfiehlt sich ggf. die Verwendung von Azure Search. [Cognitive Search](/azure/search/cognitive-search-concept-intro) (momentan in der Vorschauphase) ermöglicht die nahtlose Integration dieses Workflows.
+- [Custom Vision Service](/azure/cognitive-services/custom-vision-service/home). Die Maschinelles Sehen-API gibt eine Reihe [taxonomiebasierter Kategorien][cv-categories] zurück. Falls Sie Informationen verarbeiten müssen, die nicht von der Maschinelles Sehen-API zurückgegeben werden, ziehen Sie ggf. die Verwendung von Custom Vision Service in Betracht. Dieser Dienst ermöglicht die Erstellung benutzerdefinierter Bildklassifizierungen.
+- [Azure Search](/azure/search/search-what-is-azure-search). Wenn in Ihrem Szenario die Metadaten abgefragt werden müssen, um Bilder zu finden, die bestimmten Kriterien entsprechen, empfiehlt sich ggf. die Verwendung von Azure Search. [Cognitive Search](/azure/search/cognitive-search-concept-intro) (momentan in der Vorschauphase) ermöglicht die nahtlose Integration dieses Workflows.
 
 ## <a name="considerations"></a>Überlegungen
 
 ### <a name="scalability"></a>Skalierbarkeit
 
-Bei den Komponenten dieses Szenarios handelt es sich größtenteils um verwaltete Dienste mit automatischer Skalierung. Es gibt jedoch ein paar Ausnahmen: Die maximale Anzahl von Azure Functions-Instanzen ist auf 200 beschränkt. Sollten Ihre Skalierungsanforderungen über diesen Grenzwert hinausgehen, erwägen Sie die Verwendung mehrerer Regionen oder App-Pläne.
+Bei den Komponenten dieses Szenarios handelt es sich größtenteils um verwaltete Dienste mit automatischer Skalierung. Wichtige Ausnahmen sind: Azure Functions ist auf maximal 200 Instanzen begrenzt. Sollten Ihre Skalierungsanforderungen über diesen Grenzwert hinausgehen, erwägen Sie die Verwendung mehrerer Regionen oder App-Pläne.
 
 Bei Cosmos DB erfolgt keine automatische Skalierung der bereitgestellten Anforderungseinheiten (Request Units, RUs). Einen Leitfaden für die Schätzung Ihrer Anforderungen finden Sie in unserer Dokumentation unter [Anforderungseinheiten](/azure/cosmos-db/request-units). Machen Sie sich zur optimalen Nutzung der Skalierung in Cosmos DB mit der Funktionsweise von [Partitionsschlüsseln](/azure/cosmos-db/partition-data) in Cosmos DB vertraut.
 
@@ -80,9 +81,9 @@ Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kost
 
 Auf der Grundlage des Datenverkehrs (und unter der Annahme, dass alle Bilder 100 KB groß sind) haben wir drei exemplarische Kostenprofile erstellt:
 
-* [Klein][small-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von &lt; 5.000 Bildern pro Monat.
-* [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von 500.000 Bildern pro Monat.
-* [Groß][large-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von 50 Millionen Bildern pro Monat.
+- [Klein][small-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von &lt; 5.000 Bildern pro Monat.
+- [Mittel][medium-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von 500.000 Bildern pro Monat.
+- [Groß][large-pricing]: Dieses Preisbeispiel entspricht der Verarbeitung von 50 Millionen Bildern pro Monat.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 

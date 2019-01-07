@@ -5,12 +5,12 @@ description: Bewährte Methoden zum Ausführen von SAP HANA in einer Hochverfüg
 author: lbrader
 ms.date: 05/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: c21a5ac83d8d8ee9a9b9d7edad07288c85544994
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: ef3c57f292024af0abbeb4ead62ab4b3aeb57a90
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120151"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644086"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>Ausführen von SAP HANA in Azure (große Instanzen)
 
@@ -168,6 +168,15 @@ Communitys können Fragen beantworten und Sie beim Einrichten einer erfolgreiche
 - [Azure-Communitysupport][azure-forum]
 - [SAP Community][sap-community]
 - [Stack Overflow SAP][stack-overflow]
+
+## <a name="related-resources"></a>Zugehörige Ressourcen
+
+Es wird empfohlen, sich das folgende [Azure-Beispielszenario](/azure/architecture/example-scenario) anzusehen. Darin wird veranschaulicht, wie einige dieser Technologien in spezifischen Lösungen verwendet werden:
+
+- [Ausführen von SAP-Produktionsworkloads mit einer Oracle Database-Instanz in Azure](/azure/architecture/example-scenario/apps/sap-production)
+- [Entwicklungs-/Testumgebungen für SAP-Workloads in Azure](/azure/architecture/example-scenario/apps/sap-dev-test)
+
+<!-- links -->
 
 [azure-forum]: https://azure.microsoft.com/support/forums/
 [azure-large-instances]: /azure/virtual-machines/workloads/sap/hana-overview-architecture

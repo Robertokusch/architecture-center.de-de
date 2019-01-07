@@ -1,14 +1,15 @@
 ---
-title: Hochgradig skalierbare und sichere WordPress-Websites in Azure
+title: Hochgradig skalierbare und sichere WordPress-Websites
+titleSuffix: Azure Example Scenarios
 description: Erstellen Sie eine hochgradig skalierbare und sichere WordPress-Website für Medienereignisse.
 author: david-stanford
 ms.date: 09/18/2018
-ms.openlocfilehash: 6ff39d09fa301c8c68ce2a644cc489c0e87a22fa
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: c0dad12e1da1f17b75d0661195123da4a8267152
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610600"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644041"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>Hochgradig skalierbare und sichere WordPress-Websites
 
@@ -18,10 +19,10 @@ Dieses Beispielszenario richtet sich an Unternehmen, die eine hochgradig skalier
 
 Zu den weiteren relevanten Anwendungsfällen zählen:
 
-* Medienereignisse, die einen raschen Datenverkehrsanstieg verursachen
-* Blogs, die WordPress als Content Management-System nutzen
-* Unternehmen oder E-Commerce-Websites, die WordPress verwenden
-* Websites, die mit anderen Content Management-Systemen erstellt wurden
+- Medienereignisse, die einen raschen Datenverkehrsanstieg verursachen
+- Blogs, die WordPress als Content Management-System nutzen
+- Unternehmen oder E-Commerce-Websites, die WordPress verwenden
+- Websites, die mit anderen Content Management-Systemen erstellt wurden
 
 ## <a name="architecture"></a>Architecture
 
@@ -47,19 +48,19 @@ Mit dem zweiten Workflow tragen Autoren neuen Inhalt bei:
 
 ### <a name="components"></a>Komponenten
 
-* [Azure Content Delivery Network (CDN)](/azure/cdn/cdn-overview) ist ein verteiltes Netzwerk mit Servern, über die Webinhalte auf effiziente Weise für Benutzer bereitgestellt werden. CDNs minimieren die Wartezeit, indem zwischengespeicherter Inhalt auf Edgeservern an POP-Standorten (Point-of-Presence) in der Nähe von Endbenutzern gespeichert wird.
-* Mit [virtuellen Netzwerken](/azure/virtual-network/virtual-networks-overview) können Ressourcen, z.B. virtuelle Computer, auf sichere Weise miteinander, im Internet und mit lokalen Netzwerken kommunizieren. Virtuelle Netzwerke ermöglichen Isolation und Segmentierung, die Filterung und Weiterleitung von Datenverkehr und die Verbindungsherstellung zwischen Standorten. Die beiden Netzwerke sind über VNET-Peering verbunden.
-* [Netzwerksicherheitsgruppen](/azure/virtual-network/security-overview) enthalten eine Liste mit Sicherheitsregeln, die ein- oder ausgehenden Netzwerkdatenverkehr basierend auf IP-Adresse, Port und Protokoll (für die Quelle bzw. das Ziel) zulassen oder ablehnen. Die virtuellen Netzwerke in diesem Szenario sind durch Netzwerksicherheitsgruppen-Regeln geschützt, mit denen der Datenverkehrsfluss zwischen den Anwendungskomponenten eingeschränkt wird.
-* [Lastenausgleiche](/azure/load-balancer/load-balancer-overview) verteilen eingehenden Datenverkehr gemäß den Regeln und Integritätstests. Ein Lastenausgleichsmodul sorgt für niedrige Latenzen und einen hohen Durchsatz und kann eine Skalierung auf Millionen von Datenflüssen für alle TCP- und UDP-Anwendungen durchführen. In diesem Szenario wird ein Lastenausgleich verwendet, um Datenverkehr aus dem Content Delivery Network an die Front-End-Webserver zu verteilen.
-* Mit [VM-Skalierungsgruppen][docs-vmss] können Sie eine Gruppe identischer virtueller Computer mit Lastenausgleich erstellen und verwalten. Die Anzahl von VM-Instanzen kann automatisch erhöht oder verringert werden, wenn sich der Bedarf ändert, oder es kann ein Zeitplan festgelegt werden. In diesem Szenario werden zwei separate VM-Skalierungsgruppen verwendet – eine für die Front-End-Webserver, die Inhalt bereitstellen, und eine für die Front-End-Webserver, die zum Erstellen neuer Inhalte dienen.
-* [Azure Files](/azure/storage/files/storage-files-introduction) stellt eine vollständig verwaltete Dateifreigabe in der Cloud bereit, die den gesamten WordPress-Inhalt in diesem Szenario hostet, sodass alle virtuellen Computer Zugriff auf die Daten haben.
-* [Azure Key Vault](/azure/key-vault/key-vault-overview) wird zum Speichern von Kennwörtern, Zertifikaten und Schlüsseln sowie zur strengen Kontrolle des Zugriffs auf diese verwendet.
-* [Azure Active Directory (Azure AD)](/azure/active-directory/fundamentals/active-directory-whatis) ist ein mehrinstanzenfähiger cloudbasierter Verzeichnis- und Identitätsverwaltungsdienst. In diesem Szenario stellt Azure AD Authentifizierungsdienste für die Website und die VPN-Tunnel bereit.
+- [Azure Content Delivery Network (CDN)](/azure/cdn/cdn-overview) ist ein verteiltes Netzwerk mit Servern, über die Webinhalte auf effiziente Weise für Benutzer bereitgestellt werden. CDNs minimieren die Wartezeit, indem zwischengespeicherter Inhalt auf Edgeservern an POP-Standorten (Point-of-Presence) in der Nähe von Endbenutzern gespeichert wird.
+- Mit [virtuellen Netzwerken](/azure/virtual-network/virtual-networks-overview) können Ressourcen, z.B. virtuelle Computer, auf sichere Weise miteinander, im Internet und mit lokalen Netzwerken kommunizieren. Virtuelle Netzwerke ermöglichen Isolation und Segmentierung, die Filterung und Weiterleitung von Datenverkehr und die Verbindungsherstellung zwischen Standorten. Die beiden Netzwerke sind über VNET-Peering verbunden.
+- [Netzwerksicherheitsgruppen](/azure/virtual-network/security-overview) enthalten eine Liste mit Sicherheitsregeln, die ein- oder ausgehenden Netzwerkdatenverkehr basierend auf IP-Adresse, Port und Protokoll (für die Quelle bzw. das Ziel) zulassen oder ablehnen. Die virtuellen Netzwerke in diesem Szenario sind durch Netzwerksicherheitsgruppen-Regeln geschützt, mit denen der Datenverkehrsfluss zwischen den Anwendungskomponenten eingeschränkt wird.
+- [Lastenausgleiche](/azure/load-balancer/load-balancer-overview) verteilen eingehenden Datenverkehr gemäß den Regeln und Integritätstests. Ein Lastenausgleichsmodul sorgt für niedrige Latenzen und einen hohen Durchsatz und kann eine Skalierung auf Millionen von Datenflüssen für alle TCP- und UDP-Anwendungen durchführen. In diesem Szenario wird ein Lastenausgleich verwendet, um Datenverkehr aus dem Content Delivery Network an die Front-End-Webserver zu verteilen.
+- Mit [VM-Skalierungsgruppen][docs-vmss] können Sie eine Gruppe identischer virtueller Computer mit Lastenausgleich erstellen und verwalten. Die Anzahl von VM-Instanzen kann automatisch erhöht oder verringert werden, wenn sich der Bedarf ändert, oder es kann ein Zeitplan festgelegt werden. In diesem Szenario werden zwei separate VM-Skalierungsgruppen verwendet – eine für die Front-End-Webserver, die Inhalt bereitstellen, und eine für die Front-End-Webserver, die zum Erstellen neuer Inhalte dienen.
+- [Azure Files](/azure/storage/files/storage-files-introduction) stellt eine vollständig verwaltete Dateifreigabe in der Cloud bereit, die den gesamten WordPress-Inhalt in diesem Szenario hostet, sodass alle virtuellen Computer Zugriff auf die Daten haben.
+- [Azure Key Vault](/azure/key-vault/key-vault-overview) wird zum Speichern von Kennwörtern, Zertifikaten und Schlüsseln sowie zur strengen Kontrolle des Zugriffs auf diese verwendet.
+- [Azure Active Directory (Azure AD)](/azure/active-directory/fundamentals/active-directory-whatis) ist ein mehrinstanzenfähiger cloudbasierter Verzeichnis- und Identitätsverwaltungsdienst. In diesem Szenario stellt Azure AD Authentifizierungsdienste für die Website und die VPN-Tunnel bereit.
 
 ### <a name="alternatives"></a>Alternativen
 
-* [SQL Server für Linux](/azure/virtual-machines/linux/sql/sql-server-linux-virtual-machines-overview) kann den MariaDB-Datenspeicher ersetzen.
-* [Azure Database for MySQL](/azure/mysql/overview) kann den MariaDB-Datenspeicher ersetzen, wenn Sie eine vollständig verwaltete Lösung bevorzugen.
+- [SQL Server für Linux](/azure/virtual-machines/linux/sql/sql-server-linux-virtual-machines-overview) kann den MariaDB-Datenspeicher ersetzen.
+- [Azure Database for MySQL](/azure/mysql/overview) kann den MariaDB-Datenspeicher ersetzen, wenn Sie eine vollständig verwaltete Lösung bevorzugen.
 
 ## <a name="considerations"></a>Überlegungen
 
@@ -95,9 +96,9 @@ Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kost
 
 Wir haben ein vorkonfiguriertes [Kostenprofil][pricing] basierend auf dem obigen Architekturdiagramm bereitgestellt. Bei der Konfiguration des Preisrechners für Ihren Anwendungsfall sind einige wichtige Aspekte zu beachten:
 
-* Wie viel GB an Datenverkehr erwarten Sie pro Monat? Die Menge des Datenverkehrs hat den größten Einfluss auf Ihre Kosten, da sie die Anzahl der virtuellen Computer bestimmt, die erforderlich sind, um die Daten in der VM-Skalierungsgruppe zugänglich zu machen. Darüber korreliert sie direkt mit der Menge an Daten, der über das CDN zugänglich gemacht werden.
-* Wie viele neue Daten werden Sie auf Ihre Website schreiben? Neue Daten, die auf Ihre Website geschrieben werden, korrelieren mit der Menge an Daten, die in allen Regionen gespiegelt werden.
-* Wie viel von Ihren Inhalt ist dynamisch? Wie viel ist statisch? Die Varianz rund um dynamische und statische Inhalte wirkt sich darauf aus, wie viele Daten von der Datenbankebene abgerufen und wie viele Daten im CDN zwischengespeichert werden.
+- Wie viel GB an Datenverkehr erwarten Sie pro Monat? Die Menge des Datenverkehrs hat den größten Einfluss auf Ihre Kosten, da sie die Anzahl der virtuellen Computer bestimmt, die erforderlich sind, um die Daten in der VM-Skalierungsgruppe zugänglich zu machen. Darüber korreliert sie direkt mit der Menge an Daten, der über das CDN zugänglich gemacht werden.
+- Wie viele neue Daten werden Sie auf Ihre Website schreiben? Neue Daten, die auf Ihre Website geschrieben werden, korrelieren mit der Menge an Daten, die in allen Regionen gespiegelt werden.
+- Wie viel von Ihren Inhalt ist dynamisch? Wie viel ist statisch? Die Varianz rund um dynamische und statische Inhalte wirkt sich darauf aus, wie viele Daten von der Datenbankebene abgerufen und wie viele Daten im CDN zwischengespeichert werden.
 
 <!-- links -->
 [architecture]: ./media/architecture-secure-scalable-wordpress.png

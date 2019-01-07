@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: 9a2eecdff7494fb627ea5c4655e6edc789bd5bdf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: de9530f7dd55c0ce5460cd3b58ab9f216c9b5c8c
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429688"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450869"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>Muster „CQRS“ (Command and Query Responsibility Segregation)
 
@@ -39,8 +39,6 @@ Die konventionelle CRUD-Vorgehensweise birgt jedoch auch einige Nachteile:
 - Bei dieser Vorgehensweise besteht das Risiko eines Datenkonflikts, wenn Datensätze im Datenspeicher in einer gemeinsamen Domäne gesperrt werden, in der mehrere Darsteller parallel in derselben Gruppe von Daten ausgeführt werden. Anderenfalls werden Updatekonflikte durch gleichzeitige Updates verursacht, wenn eine optimistische Sperre verwendet wird. Diese Risiken steigen mit zunehmender Komplexität und steigendem Durchsatz des Systems. Darüber hinaus kann sich die konventionelle Vorgehensweise negativ auf die Leistung auswirken, was auf die Auslastung im Datenspeicher und der Datenzugriffsschicht sowie die Komplexität der zum Abrufen von Informationen erforderlichen Abfragen zurückzuführen ist.
 
 - Sie kann die Verwaltung von Sicherheitsfeatures und Berechtigungen verkomplizieren, da jede Entität sowohl Lese- als auch Schreibvorgängen unterworfen ist. Hierdurch werden Daten möglicherweise im falschen Kontext verfügbar gemacht.
-
-> Einen ausführlicheren Überblick über die Einschränkungen des CRUD-Ansatzes finden Sie unter [CRUD, Only When You Can Afford It](https://blogs.msdn.microsoft.com/maarten_mullender/2004/07/23/crud-only-when-you-can-afford-it-revisited/) (CRUD, aber nur wenn Sie es sich leisten können).
 
 ## <a name="solution"></a>Lösung
 
@@ -248,6 +246,6 @@ Die folgenden Muster und Anweisungen könnten für die Implementierung dieses Mu
 
 - [Muster „Materialisierte Sichten“](materialized-view.md): Das Lesemodell einer CQRS-Implementierung kann materialisierte Sichten der Daten des Schreibmodells enthalten. Das Modell kann alternativ auch zur Generierung materialisierter Sichten verwendet werden.
 
-- Muster und Vorgehensweisen zu [CQRS](https://aka.ms/cqrs): Im Artikel [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Einführung zum Command Query Responsibility Segregation-Muster) werden insbesondere das Muster und die entsprechenden Anwendungsfälle erläutert. Der Artikel [Epilog: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) (Epilog: Gesammelte Erfahrungen) enthält Informationen zu einigen Problemen, die bei der Verwendung dieses Musters auftreten.
+- Muster und Vorgehensweisen zu [CQRS](https://aka.ms/cqrs): Unter [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Einführung in das Muster „Command and Query Responsibility Segregation“) wird vor allem das Muster beschrieben und außerdem erläutert, wann die Nutzung sinnvoll ist. Unter [Epilogue: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) (Epilog: Erkenntnisse) werden einige Probleme beschrieben, die bei Verwendung dieses Musters auftreten können.
 
 - In dem Beitrag [CQRS](https://martinfowler.com/bliki/CQRS.html) von Martin Fowler werden die Grundlagen des Musters erklärt und Links zu anderen nützlichen Ressourcen angegeben.

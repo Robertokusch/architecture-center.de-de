@@ -1,16 +1,16 @@
 ---
 title: Erweitern einer lokalen AD FS-Instanz auf Azure
 titleSuffix: Azure Reference Architectures
-description: Erfahren Sie, wie Sie eine sichere hybride Netzwerkarchitektur mit Active Directory-Verbunddienst-Autorisierung in Azure implementieren.
+description: Es wird beschrieben, wie Sie eine sichere hybride Netzwerkarchitektur mit Active Directory-Verbunddienst-Autorisierung in Azure implementieren.
 author: telmosampaio
-ms.date: 11/28/2016
+ms.date: 12/18.2018
 ms.custom: seodec18
-ms.openlocfilehash: 95866961cd92f44e0925c5e47eafdc5df71652db
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: bd07ce1502c29c1543dca42f74b2f19f3a6d3878
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120219"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644103"
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>Erweitern von Active Directory Federation Services (AD FS) auf Azure
 
@@ -53,7 +53,7 @@ Diese Architektur erweitert die Implementierung, die unter [Erweitern von Active
 
   - Empfangen von Sicherheitstoken, die Ansprüche enthalten, die ein Partnerverbundserver im Auftrag eines Partnerbenutzers stellt. AD FS überprüft, ob die Token gültig sind, bevor die Ansprüche an die in Azure ausgeführte Webanwendung übergeben werden, um die Anforderungen zu autorisieren.
 
-    Die in Azure ausgeführte Webanwendung ist die *vertrauende Seite*. Die Partnerverbundserver muss Ansprüche ausgeben, die von der Webanwendung verstanden werden. Die Partnerverbundserver werden als *Kontopartner* bezeichnet, weil sie Anforderungen im Auftrag von authentifizierten Konten in der Partnerorganisation übergeben. Die AD FS-Server werden als *Ressourcenpartner* bezeichnet, weil sie Zugriff auf Ressourcen (die Webanwendung) ermöglichen.
+    Die in Azure ausgeführte Anwendung ist die *vertrauende Seite*. Die Partnerverbundserver muss Ansprüche ausgeben, die von der Webanwendung verstanden werden. Die Partnerverbundserver werden als *Kontopartner* bezeichnet, weil sie Anforderungen im Auftrag von authentifizierten Konten in der Partnerorganisation übergeben. Die AD FS-Server werden als *Ressourcenpartner* bezeichnet, weil sie Zugriff auf Ressourcen (die Webanwendung) ermöglichen.
 
   - Authentifizieren und Autorisieren von eingehenden Anforderungen von externen Benutzern, die einen Webbrowser oder ein Gerät ausführen, der oder das Zugriff auf Webanwendungen benötigt, durch Verwenden von AD DS und dem [Active Directory-Geräteregistrierungsdienst][ADDRS].
 
@@ -75,61 +75,17 @@ Diese Architektur erweitert die Implementierung, die unter [Erweitern von Active
   > Sie können auch mit einem Azure-Gateway einen VPN-Tunnel konfigurieren, um für vertrauenswürdige Partner direkten Zugriff auf AD FS zu ermöglichen. Anforderungen, die von diesen Partnern eingehen, durchlaufen nicht den WAP-Server.
   >
 
-Weitere Informationen über die Teile der Architektur, die nichts mit AD FS zu tun haben, finden Sie hier:
-
-- [Implementieren einer sicheren hybriden Netzwerkarchitektur in Azure][implementing-a-secure-hybrid-network-architecture]
-- [Implementieren einer sicheren hybriden Netzwerkarchitektur mit Internetzugriff in Azure][implementing-a-secure-hybrid-network-architecture-with-internet-access]
-- [Implementieren einer sicheren hybriden Netzwerkarchitektur mit Active Directory-Identitäten in Azure][extending-ad-to-azure]
-
 ## <a name="recommendations"></a>Empfehlungen
 
 Die folgenden Empfehlungen gelten für die meisten Szenarios. Sofern Sie keine besonderen Anforderungen haben, die Vorrang haben, sollten Sie diese Empfehlungen befolgen.
-
-### <a name="vm-recommendations"></a>Empfehlungen für virtuelle Computer
-
-Erstellen Sie virtuelle Computer, die genügend Ressourcen haben, um den erwarteten Umfang an Datenverkehr zu verarbeiten. Verwenden Sie die Größe der vorhandenen Computer, die AD FS lokal hosten, als Ausgangspunkt. Überwachen Sie die Ressourcennutzung. Sie können die Größen der virtuellen Computer ändern und zentral herunterskalieren, wenn sie zu groß sind.
-
-Gehen Sie entsprechend den Empfehlungen vor, die unter [Ausführen eines virtuellen Windows-Computers in Azure][vm-recommendations] aufgelistet sind.
 
 ### <a name="networking-recommendations"></a>Netzwerkempfehlungen
 
 Konfigurieren Sie die Netzwerkschnittstelle für jeden der virtuellen Computer, die AD FS und WAP-Server hosten, mit statischen privaten IP-Adressen.
 
-Geben Sie den virtuellen Computern mit AD FS keine öffentlichen IP-Adressen. Weitere Informationen hierzu finden Sie im Abschnitt „Sicherheitshinweise“.
+Geben Sie den virtuellen Computern mit AD FS keine öffentlichen IP-Adressen. Weitere Informationen hierzu finden Sie im Abschnitt [Sicherheitshinweise](#security-considerations).
 
 Legen Sie die IP-Adresse des bevorzugten und die des sekundären DNS-Servers (Domain Name System) für die Netzwerkschnittstellen für jeden virtuellen AD FS- und WAP-Computer so fest, dass sie auf die virtuellen Active Directory Domain Services-Computer verweisen. DNS sollte auf den virtuellen Active Directory Domain Services-Computern ausgeführt werden. Dieser Schritt ist notwendig, damit jeder virtuelle Computer der Domäne beitreten kann.
-
-### <a name="ad-fs-availability"></a>AD FS-Verfügbarkeit
-
-Erstellen Sie eine AD FS-Farm mit mindestens zwei Servern, um die Verfügbarkeit des Diensts zu erhöhen. Verwenden Sie verschiedene Speicherkonten für jeden virtuellen AD FS-Computer in der Farm. Mit dieser Vorgehensweise lässt sich sicherstellen, dass ein Fehler in einem Speicherkonto nicht dazu führt, dass die gesamte Farm unzugänglich wird.
-
-> [!IMPORTANT]
-> Es empfiehlt sich, [verwaltete Datenträger](/azure/storage/storage-managed-disks-overview) zu verwenden. Bei verwalteten Datenträgern ist kein Speicherkonto erforderlich. Sie geben einfach die Größe und den Typ des Datenträgers an, und dieser wird mit Hochverfügbarkeit bereitgestellt. In unseren [Referenzarchitekturen](/azure/architecture/reference-architectures/) werden derzeit keine verwalteten Datenträger bereitgestellt, aber die [Vorlagenbausteine](https://github.com/mspnp/template-building-blocks/wiki) werden aktualisiert, sodass in Version 2 verwaltete Datenträger bereitgestellt werden.
-
-Erstellen Sie getrennte Azure-Verfügbarkeitsgruppen für die virtuellen AD FS- und WAP-Computer. Stellen Sie sicher, dass in jeder Gruppe mindestens zwei virtuelle Computer vorhanden sind. Jede Verfügbarkeitsgruppe muss mindestens zwei Upgdatedomänen und zwei Fehlerdomänen haben.
-
-Konfigurieren Sie die Lastenausgleiche für die virtuellen AD FS- und WAP-Computer wie folgt:
-
-- Verwenden Sie einen Azure-Lastenausgleich, um externen Zugriff auf die virtuellen WAP-Computer zu bieten, und einen internen Lastenausgleich, um die Last auf die AD FS-Server in der Farm zu verteilen.
-- Übergeben Sie an die AD FS/WAP-Server nur Datenverkehr, der am Port 443 (HTTPS) ankommt.
-- Geben Sie dem Lastenausgleich eine statische IP-Adresse.
-- Erstellen Sie einen Integritätstest, indem Sie HTTP für `/adfs/probe` verwenden. Weitere Informationen finden Sie unter [Hardware Load Balancer Health Checks and Web Application Proxy/AD FS 2012 R2](https://blogs.technet.microsoft.com/applicationproxyblog/2014/10/17/hardware-load-balancer-health-checks-and-web-application-proxy-ad-fs-2012-r2/) (Hardware-Load Balancer-Integritätsprüfungen und Webanwendungsproxy/AD FS 2012 R2).
-
-  > [!NOTE]
-  > AD FS-Server verwenden das SNI-Protokoll (Server Name Indication), daher schlägt ein Versuch, den Test über einen HTTPS-Endpunkt aus dem Lastenausgleich auszuführen, fehl.
-  >
-
-- Fügen Sie einen DNS-*A*-Datensatz zu der Domäne für den AD FS-Lastenausgleich hinzu. Geben Sie die IP-Adresse des Lastenausgleichs an, und geben sie ihm einen Namen in der Domäne (z.B. „adfs.contoso.com“). Dies ist der Name, den Clients und WAP-Server verwenden, um auf die AD FS-Serverfarm zuzugreifen.
-
-### <a name="ad-fs-security"></a>AD FS-Sicherheit
-
-Verhindern Sie, dass AD FS-Server direkt für das Internet verfügbar gemacht werden. AD FS-Server sind zur Domäne gehörende Computer, die die vollständige Autorisierung haben, Sicherheitstoken zu gewähren. Wenn ein Server kompromittiert ist, kann ein böswilliger Benutzer Token für Vollzugriff auf alle Webanwendungen und alle Verbundserver ausgeben, die durch AD FS geschützt sind. Muss Ihr System Anforderungen von externen Benutzern verarbeiten, die nicht über vertrauenswürdige Partnerwebsites zugreifen, sollten Sie diese Anforderungen mit WAP-Servern verarbeiten. Weitere Informationen hierzu finden Sie unter [Platzieren eines Verbundserverproxys][where-to-place-an-fs-proxy].
-
-Platzieren Sie AD FS-Server und WAP-Server in getrennten Subnetzen mit jeweils eigener Firewall. Sie können NSG-Regeln verwenden, um Firewallregeln zu definieren. Wenn Sie umfassenderen Schutz benötigen, können Sie eine zusätzliche Sicherheitszone um Server herum implementieren, indem Sie ein Paar aus Subnetzen und virtuellen Netzwerkgeräten (Network Virtual Appliances, NVAs) verwenden, wie dies im Dokument [Implementieren einer sicheren hybriden Netzwerkarchitektur mit Internetzugriff in Azure][implementing-a-secure-hybrid-network-architecture-with-internet-access] beschrieben ist. Alle Firewalls müssen Datenverkehr über den Port 443 (HTTPS) zulassen.
-
-Beschränken Sie direkten Anmeldezugriff auf die AD FS- und WAP-Server. Nur DevOps-Mitarbeiter sollten Verbindungen herstellen können.
-
-Binden Sie die WAP-Server nicht in die Domäne ein.
 
 ### <a name="ad-fs-installation"></a>AD FS-Installation
 
@@ -192,6 +148,23 @@ Wenn Sie die interne Windows-Datenbank verwenden, um die AD FS-Konfigurationsdat
 
 ## <a name="availability-considerations"></a>Überlegungen zur Verfügbarkeit
 
+Erstellen Sie eine AD FS-Farm mit mindestens zwei Servern, um die Verfügbarkeit des Diensts zu erhöhen. Verwenden Sie verschiedene Speicherkonten für jeden virtuellen AD FS-Computer in der Farm. Mit dieser Vorgehensweise lässt sich sicherstellen, dass ein Fehler in einem Speicherkonto nicht dazu führt, dass die gesamte Farm unzugänglich wird.
+
+Erstellen Sie getrennte Azure-Verfügbarkeitsgruppen für die virtuellen AD FS- und WAP-Computer. Stellen Sie sicher, dass in jeder Gruppe mindestens zwei virtuelle Computer vorhanden sind. Jede Verfügbarkeitsgruppe muss mindestens zwei Upgdatedomänen und zwei Fehlerdomänen haben.
+
+Konfigurieren Sie die Lastenausgleiche für die virtuellen AD FS- und WAP-Computer wie folgt:
+
+- Verwenden Sie einen Azure-Lastenausgleich, um externen Zugriff auf die virtuellen WAP-Computer zu bieten, und einen internen Lastenausgleich, um die Last auf die AD FS-Server in der Farm zu verteilen.
+- Übergeben Sie an die AD FS/WAP-Server nur Datenverkehr, der am Port 443 (HTTPS) ankommt.
+- Geben Sie dem Lastenausgleich eine statische IP-Adresse.
+- Erstellen Sie einen Integritätstest, indem Sie HTTP für `/adfs/probe` verwenden. Weitere Informationen finden Sie unter [Hardware Load Balancer Health Checks and Web Application Proxy/AD FS 2012 R2](https://blogs.technet.microsoft.com/applicationproxyblog/2014/10/17/hardware-load-balancer-health-checks-and-web-application-proxy-ad-fs-2012-r2/) (Hardware-Load Balancer-Integritätsprüfungen und Webanwendungsproxy/AD FS 2012 R2).
+
+  > [!NOTE]
+  > AD FS-Server verwenden das SNI-Protokoll (Server Name Indication), daher schlägt ein Versuch, den Test über einen HTTPS-Endpunkt aus dem Lastenausgleich auszuführen, fehl.
+  >
+
+- Fügen Sie einen DNS-*A*-Datensatz zu der Domäne für den AD FS-Lastenausgleich hinzu. Geben Sie die IP-Adresse des Lastenausgleichs an, und geben sie ihm einen Namen in der Domäne (z.B. „adfs.contoso.com“). Dies ist der Name, den Clients und WAP-Server verwenden, um auf die AD FS-Serverfarm zuzugreifen.
+
 Sie können entweder SQL Server oder die interne Windows-Datenbank verwenden, um die AD FS-Konfigurationsinformationen zu speichern. Die interne Windows-Datenbank bietet grundlegende Redundanz. Änderungen werden direkt nur in eine der AD FS-Datenbanken im AD FS-Cluster geschrieben, während die anderen Server Pullreplikation verwenden, um ihre Datenbanken auf dem neuesten Stand zu halten. Wird SQL Server verwendet, können vollständige Datenbankredundanz und hohe Verfügbarkeit bereitgestellt werden, indem Failoverclustering oder Spiegelung verwendet wird.
 
 ## <a name="manageability-considerations"></a>Überlegungen zur Verwaltbarkeit
@@ -205,80 +178,189 @@ DevOps-Mitarbeiter sollten darauf vorbereitet sein, die folgenden Aufgaben auszu
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
-Da AD FS das HTTPS-Protokoll verwendet, müssen Sie darauf achten, dass die NSG-Regeln für das Subnetz, das die virtuellen Computer auf Webebene enthält, HTTPS-Anforderungen zulassen. Diese Anforderungen können aus dem lokalen Netzwerk, aus den Subnetzen, die die Webebene, die Geschäftsebene, die Datenebene, die private DMZ oder die öffentliche DMZ enthalten, oder aus dem Subnetz stammen, das die AD FS-Server enthält.
+Da für AD FS HTTPS verwendet wird, müssen Sie darauf achten, dass die NSG-Regeln für das Subnetz, in dem die virtuellen Computer auf Webebene enthalten sind, HTTPS-Anforderungen zulassen. Diese Anforderungen können aus dem lokalen Netzwerk, aus den Subnetzen, die die Webebene, die Geschäftsebene, die Datenebene, die private DMZ oder die öffentliche DMZ enthalten, oder aus dem Subnetz stammen, das die AD FS-Server enthält.
+
+Verhindern Sie, dass AD FS-Server direkt für das Internet verfügbar gemacht werden. AD FS-Server sind zur Domäne gehörende Computer, die die vollständige Autorisierung haben, Sicherheitstoken zu gewähren. Wenn ein Server kompromittiert ist, kann ein böswilliger Benutzer Token für Vollzugriff auf alle Webanwendungen und alle Verbundserver ausgeben, die durch AD FS geschützt sind. Muss Ihr System Anforderungen von externen Benutzern verarbeiten, die nicht über vertrauenswürdige Partnerwebsites zugreifen, sollten Sie diese Anforderungen mit WAP-Servern verarbeiten. Weitere Informationen hierzu finden Sie unter [Platzieren eines Verbundserverproxys][where-to-place-an-fs-proxy].
+
+Platzieren Sie AD FS-Server und WAP-Server in getrennten Subnetzen mit jeweils eigener Firewall. Sie können NSG-Regeln verwenden, um Firewallregeln zu definieren. Alle Firewalls müssen Datenverkehr über den Port 443 (HTTPS) zulassen.
+
+Beschränken Sie direkten Anmeldezugriff auf die AD FS- und WAP-Server. Nur DevOps-Mitarbeiter sollten Verbindungen herstellen können. Binden Sie die WAP-Server nicht in die Domäne ein.
 
 Sie sollten erwägen, eine Reihe von virtuellen Netzwerkgeräten zu verwenden, die zu Überwachungszwecken ausführliche Informationen zu dem Datenverkehr protokollieren, der in Ihrem virtuellen Netzwerk empfangen wird.
 
 ## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Eine Lösung zur Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github] verfügbar. Sie benötigen die neueste Version der [Azure-Befehlszeilenschnittstelle][azure-cli], um das PowerShell-Skript auszuführen, mit dem die Lösung bereitgestellt wird. Um die Referenzarchitektur bereitzustellen, gehen Sie folgendermaßen vor:
+Eine Bereitstellung für diese Architektur ist auf [GitHub][github] verfügbar. Beachten Sie, dass die gesamte Bereitstellung bis zu zwei Stunden dauern kann. Dieser Vorgang umfasst die Erstellung des VPN-Gateways und die Ausführung der Skripts, mit denen Active Directory und AD FS konfiguriert werden.
 
-1. Laden Sie den Projektmappenordner von [GitHub][github] auf Ihren lokalen Computer herunter, oder klonen Sie ihn.
+### <a name="prerequisites"></a>Voraussetzungen
 
-2. Öffnen Sie die Azure-Befehlszeilenschnittstelle, und navigieren Sie zum lokalen Projektmappenordner.
+1. Führen Sie das Klonen, Forken oder Herunterladen der ZIP-Datei für das [GitHub-Repository](https://github.com/mspnp/identity-reference-architectures) durch.
 
-3. Führen Sie den folgenden Befehl aus:
+1. Installieren Sie [Azure CLI 2.0](/cli/azure/install-azure-cli?view=azure-cli-latest).
 
-    ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> <mode>
+1. Installieren Sie das npm-Paket mit den [Azure Bausteinen](https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks).
+
+   ```bash
+   npm install -g @mspnp/azure-building-blocks
+   ```
+
+1. Melden Sie sich über eine Eingabeaufforderung, eine Bash-Eingabeaufforderung oder die PowerShell-Eingabeaufforderung folgendermaßen bei Ihrem Azure-Konto an:
+
+   ```bash
+   az login
+   ```
+
+### <a name="deploy-the-simulated-on-premises-datacenter"></a>Bereitstellen des simulierten lokalen Rechenzentrums
+
+1. Navigieren Sie zum Ordner `adfs` des GitHub-Repositorys.
+
+1. Öffnen Sie die Datei `onprem.json` . Suchen Sie nach Instanzen von `adminPassword`, `Password` und `SafeModeAdminPassword`, und aktualisieren Sie die Kennwörter.
+
+1. Führen Sie den folgenden Befehl aus, und warten Sie, bis die Bereitstellung abgeschlossen ist:
+
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p onprem.json --deploy
     ```
 
-    Ersetzen Sie `<subscription id>` durch Ihre Azure-Abonnement-ID.
+### <a name="deploy-the-azure-infrastructure"></a>Bereitstellen der Azure-Infrastruktur
 
-    Geben Sie für `<location>` eine Azure-Region an, z.B. `eastus` oder `westus`.
+1. Öffnen Sie die Datei `azure.json` .  Suchen Sie nach Instanzen von `adminPassword` und `Password`, und fügen Sie Werte für die Kennwörter hinzu.
 
-    Der `<mode>`-Parameter steuert die Granularität der Bereitstellung. Er kann einen der folgenden Werte annehmen:
+1. Führen Sie den folgenden Befehl aus, und warten Sie, bis die Bereitstellung abgeschlossen ist:
 
-   - `Onpremise`: Stellt eine simulierte lokale Umgebung bereit. Sie können diese Bereitstellung verwenden, um zu testen und zu experimentieren, wenn Sie kein vorhandenes lokales Netzwerk haben, oder wenn Sie diese Referenzarchitektur testen möchten, ohne die Konfiguration Ihres vorhandenen lokalen Netzwerks zu ändern.
-   - `Infrastructure`: Stellt die VNet-Infrastruktur und die Jumpbox bereit.
-   - `CreateVpn`: Stellt ein Gateway des virtuellen Azure-Netzwerks bereit und verbindet es mit dem simulierten lokalen Netzwerk.
-   - `AzureADDS`: Stellt die virtuellen Computer bereit, die als Active Directory DS-Server fungieren, stellt Active Directory auf diesen virtuellen Computern bereit und erstellt die Domäne in Azure.
-   - `AdfsVm`: Stellt die virtuellen AD FS-Computer bereit und bindet sie in die Domäne in Azure ein.
-   - `PublicDMZ`: Stellt die öffentliche DMZ in Azure bereit.
-   - `ProxyVm`: Stellt die virtuellen AD FS-Proxycomputer bereit und bindet sie in die Domäne in Azure ein.
-   - `Prepare`: Stellt alle vorherigen Bereitstellungen bereit. **Dies ist die empfohlene Option, wenn Sie eine vollständig neue Bereitstellung erstellen und keine vorhandene lokale Infrastruktur haben.**
-   - `Workload`: Stellt optional virtuelle Computer für die Web-, Geschäfts- und Datenebene sowie ein unterstützendes Netzwerk bereit. Ist nicht im `Prepare`-Bereitstellungsmodus enthalten.
-   - `PrivateDMZ`: Stellt optional die private DMZ in Azure vor den virtuellen `Workload`-Computern bereit, die im vorherigen Schritt bereitgestellt wurden. Ist nicht im `Prepare`-Bereitstellungsmodus enthalten.
-
-4. Warten Sie, bis die Bereitstellung abgeschlossen ist. Wenn Sie die `Prepare`-Option verwendet haben, dauert es mehrere Stunden, bis die Bereitstellung abgeschlossen ist und die Meldung `Preparation is completed. Please install certificate to all AD FS and proxy VMs.` angezeigt wird.
-
-5. Starten Sie die Jumpbox (*ra-adfs-mgmt-vm1* in der *ra-adfs-security-rg*-Gruppe) neu, damit die DNS-Einstellungen wirksam werden.
-
-6. [Rufen Sie ein SSL-Zertifikat für AD FS ab][adfs_certificates], und installieren Sie dieses Zertifikat auf den virtuellen AD FS-Computern. Über die Jumpbox können Sie Verbindungen mit diesen Computern herstellen. Die IP-Adressen sind **10.0.5.4** und **10.0.5.5**. Der Benutzername lautet **contoso\testuser** mit dem Kennwort **AweSome@PW**.
-
-   > [!NOTE]
-   > Die Kommentare im Skript „Deploy-ReferenceArchitecture.ps1“ bieten hier detaillierte Anweisungen zur Erstellung eines selbstsignierten Testzertifikats und einer Zertifizierungsstelle mit dem `makecert`-Befehl. Sie sollten diese Schritte jedoch als **Test** ausführen und die von „makecert“ generierten Zertifikate nicht in einer Produktionsumgebung verwenden.
-
-7. Führen Sie den folgenden PowerShell-Befehl aus, um die AD FS-Serverfarm bereitzustellen:
-
-    ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> Adfs
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p azure.json --deploy
     ```
 
-8. Navigieren Sie auf der Jumpbox zu `https://adfs.contoso.com/adfs/ls/idpinitiatedsignon.htm`, um die AD FS-Installation zu testen (möglicherweise wird eine Zertifikatwarnung angezeigt, die Sie für diesen Test ignorieren können). Vergewissern Sie sich, dass die Anmeldeseite von Contoso Corporation angezeigt wird. Melden Sie sich als **contoso\testuser** mit dem Kennwort **AweS0me@PW** an.
+### <a name="set-up-the-ad-fs-farm"></a>Einrichten der AD FS-Farm
 
-9. Installieren Sie das SSL-Zertifikat auf den virtuellen AD FS-Proxycomputern. Die IP-Adressen sind *10.0.6.4* und *10.0.6.5*.
+1. Öffnen Sie die Datei `adfs-farm-first.json` .  Suchen Sie nach `AdminPassword`, und ersetzen Sie das Standardkennwort.
 
-10. Führen Sie den folgenden PowerShell-Befehl aus, um den ersten AD FS-Proxyserver bereitzustellen:
+1. Führen Sie den folgenden Befehl aus:
 
-    ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> Proxy1
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p adfs-farm-first.json --deploy
     ```
 
-11. Gehen Sie gemäß den angezeigten Anweisungen vor, um die Installation des ersten Proxyservers zu testen.
+1. Öffnen Sie die Datei `adfs-farm-rest.json` .  Suchen Sie nach `AdminPassword`, und ersetzen Sie das Standardkennwort.
 
-12. Führen Sie den folgenden PowerShell-Befehl aus, um den zweiten Proxyserver bereitzustellen:
+1. Führen Sie den folgenden Befehl aus, und warten Sie, bis die Bereitstellung abgeschlossen ist:
 
-    ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> Proxy2
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p adfs-farm-rest.json --deploy
     ```
 
-13. Gehen Sie gemäß den vom Skript angezeigten Anweisungen vor, um die vollständige Proxykonfiguration zu testen.
+### <a name="configure-ad-fs-part-1"></a>Konfigurieren von AD FS (Teil 1)
 
-## <a name="next-steps"></a>Nächste Schritte
+1. Öffnen Sie eine Remotedesktopsitzung mit dem virtuellen Computer mit dem Namen `ra-adfs-jb-vm1`. Dies ist die Jumpbox-VM. Der Benutzername lautet `testuser`.
 
-- Weitere Informationen zu [Azure Active Directory][aad]
-- Weitere Informationen zu [Azure Active Directory B2C][aadb2c]
+1. Öffnen Sie über die Jumpbox eine Remotedesktopsitzung mit dem virtuellen Computer `ra-adfs-proxy-vm1`. Die private IP-Adresse lautet 10.0.6.4.
+
+1. Führen Sie für diese Remotedesktopsitzung die [PowerShell ISE](/powershell/scripting/components/ise/windows-powershell-integrated-scripting-environment--ise-) aus.
+
+1. Navigieren Sie in PowerShell zum folgenden Verzeichnis:
+
+    ```powershell
+    C:\Packages\Plugins\Microsoft.Powershell.DSC\2.77.0.0\DSCWork\adfs-v2.0
+    ```
+
+1. Fügen Sie den folgenden Code in einen Skriptbereich ein, und führen Sie ihn aus:
+
+    ```powershell
+    . .\adfs-webproxy.ps1
+    $cd = @{
+        AllNodes = @(
+            @{
+                NodeName = 'localhost'
+                PSDscAllowPlainTextPassword = $true
+                PSDscAllowDomainUser = $true
+            }
+        )
+    }
+
+    $c1 = Get-Credential -UserName testuser -Message "Enter password"
+    InstallWebProxyApp -DomainName contoso.com -FederationName adfs.contoso.com -WebApplicationProxyName "Contoso App" -AdminCreds $c1 -ConfigurationData $cd
+    Start-DscConfiguration .\InstallWebProxyApp
+    ```
+
+    Geben Sie an der `Get-Credential`-Eingabeaufforderung das Kennwort ein, das Sie in der Bereitstellungsparameterdatei angegeben haben.
+
+1. Führen Sie den folgenden Befehl aus, um den Status der [DSC](/powershell/dsc/overview/overview)-Konfiguration zu überwachen:
+
+    ```powershell
+    Get-DscConfigurationStatus
+    ```
+
+    Es kann mehrere Minuten dauern, um Konsistenz zu erzielen. Während dieses Zeitraums werden unter Umständen Fehler für den Befehl angezeigt. Wenn die Konfiguration erfolgreich ist, sollte die Ausgabe etwa wie folgt aussehen:
+
+    ```powershell
+    PS C:\Packages\Plugins\Microsoft.Powershell.DSC\2.77.0.0\DSCWork\adfs-v2.0> Get-DscConfigurationStatus
+
+    Status     StartDate                 Type            Mode  RebootRequested      NumberOfResources
+    ------     ---------                 ----            ----  ---------------      -----------------
+    Success    12/17/2018 8:21:09 PM     Consistency     PUSH  True                 4
+    ```
+
+### <a name="configure-ad-fs-part-2"></a>Konfigurieren von AD FS (Teil 2)
+
+1. Öffnen Sie über die Jumpbox eine Remotedesktopsitzung mit dem virtuellen Computer `ra-adfs-proxy-vm2`. Die private IP-Adresse lautet 10.0.6.5.
+
+1. Führen Sie für diese Remotedesktopsitzung die [PowerShell ISE](/powershell/scripting/components/ise/windows-powershell-integrated-scripting-environment--ise-) aus.
+
+1. Navigieren Sie zum folgenden Verzeichnis:
+
+    ```powershell
+    C:\Packages\Plugins\Microsoft.Powershell.DSC\2.77.0.0\DSCWork\adfs-v2.0
+    ```
+
+1. Fügen Sie Folgendes in einen Skriptbereich ein, und führen Sie das Skript aus:
+
+    ```powershell
+    . .\adfs-webproxy-rest.ps1
+    $cd = @{
+        AllNodes = @(
+            @{
+                NodeName = 'localhost'
+                PSDscAllowPlainTextPassword = $true
+                PSDscAllowDomainUser = $true
+            }
+        )
+    }
+
+    $c1 = Get-Credential -UserName testuser -Message "Enter password"
+    InstallWebProxy -DomainName contoso.com -FederationName adfs.contoso.com -WebApplicationProxyName "Contoso App" -AdminCreds $c1 -ConfigurationData $cd
+    Start-DscConfiguration .\InstallWebProxy
+    ```
+
+    Geben Sie an der `Get-Credential`-Eingabeaufforderung das Kennwort ein, das Sie in der Bereitstellungsparameterdatei angegeben haben.
+
+1. Führen Sie den folgenden Befehl aus, um den Status der DSC-Konfiguration zu überwachen:
+
+    ```powershell
+    Get-DscConfigurationStatus
+    ```
+
+    Es kann mehrere Minuten dauern, um Konsistenz zu erzielen. Während dieses Zeitraums werden unter Umständen Fehler für den Befehl angezeigt. Wenn die Konfiguration erfolgreich ist, sollte die Ausgabe etwa wie folgt aussehen:
+
+    ```powershell
+    PS C:\Packages\Plugins\Microsoft.Powershell.DSC\2.77.0.0\DSCWork\adfs-v2.0> Get-DscConfigurationStatus
+
+    Status     StartDate                 Type            Mode  RebootRequested      NumberOfResources
+    ------     ---------                 ----            ----  ---------------      -----------------
+    Success    12/17/2018 8:21:09 PM     Consistency     PUSH  True                 4
+    ```
+
+    Es kann vorkommen, dass ein DSC-Fehler auftritt. Wenn bei der Statusprüfung `Status=Failure` und `Type=Consistency` angezeigt werden, können Sie versuchen, Schritt 4 erneut auszuführen.
+
+### <a name="sign-into-ad-fs"></a>Anmelden an AD FS
+
+1. Öffnen Sie über die Jumpbox eine Remotedesktopsitzung mit dem virtuellen Computer `ra-adfs-adfs-vm1`. Die private IP-Adresse lautet 10.0.5.4.
+
+1. Führen Sie die Schritte unter [Enable the Idp-Initiated Sign on page](/windows-server/identity/ad-fs/troubleshooting/ad-fs-tshoot-initiatedsignon#enable-the-idp-intiated-sign-on-page) (Aktivieren der vom Identitätsanbieter initiierten Anmeldeseite) aus.
+
+1. Navigieren Sie von der Jumpbox zu `https://adfs.contoso.com/adfs/ls/idpinitiatedsignon.htm`. Unter Umständen wird eine Zertifikatwarnung angezeigt, die Sie für diesen Test ignorieren können.
+
+1. Vergewissern Sie sich, dass die Anmeldeseite von Contoso Corporation angezeigt wird. Melden Sie sich als **contoso\testuser** an.
 
 <!-- links -->
 [extending-ad-to-azure]: adds-extend-domain.md

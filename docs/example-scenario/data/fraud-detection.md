@@ -1,14 +1,15 @@
 ---
-title: Betrugserkennung in Echtzeit in Azure
+title: Betrugsermittlung in Echtzeit
+titleSuffix: Azure Example Scenarios
 description: Erkennen Sie betrügerische Aktivitäten mithilfe von Azure Event Hubs und Stream Analytics in Echtzeit.
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: bd9eb4d572651c4e57a0043226860623cd8d17e1
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 9e4d8c5d24acc414ab38722d2df59102395250fb
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610606"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643404"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Betrugserkennung in Echtzeit in Azure
 
@@ -24,9 +25,9 @@ Dieses Beispiel ist Teil einer umfassenderen Datenverarbeitungsarchitektur und -
 
 Zu den weiteren relevanten Anwendungsfällen zählen:
 
-* Erkennen betrügerischer Mobiltelefonanrufe in Telekommunikationsszenarien
-* Identifizieren betrügerischer Kreditkartentransaktionen für Banken
-* Identifizieren betrügerischer Einkäufe in Einzelhandels- oder E-Commerce-Szenarien
+- Erkennen betrügerischer Mobiltelefonanrufe in Telekommunikationsszenarien
+- Identifizieren betrügerischer Kreditkartentransaktionen für Banken
+- Identifizieren betrügerischer Einkäufe in Einzelhandels- oder E-Commerce-Szenarien
 
 ## <a name="architecture"></a>Architecture
 
@@ -34,28 +35,28 @@ Zu den weiteren relevanten Anwendungsfällen zählen:
 
 Dieses Szenario umfasst die Back-End-Komponenten einer Pipeline für Echtzeitanalysen. Die Daten durchlaufen das Szenario wie folgt:
 
-1. Metadaten von Mobiltelefonanrufen werden aus dem Quellsystem an eine Azure Event Hubs-Instanz gesendet. 
+1. Metadaten von Mobiltelefonanrufen werden aus dem Quellsystem an eine Azure Event Hubs-Instanz gesendet.
 2. Ein Stream Analytics-Auftrag wird gestartet, der Daten über die Event Hub-Quelle empfängt.
 3. Der Stream Analytics-Auftrag führt eine vordefinierte Abfrage aus, um den Eingabedatenstrom zu transformieren und auf der Grundlage eines Algorithmus für betrügerische Transaktionen zu analysieren. Diese Abfrage verwendet ein rollierendes Fenster, um den Datenstrom in unterschiedliche Zeiteinheiten zu unterteilen.
 4. Der Stream Analytics-Auftrag schreibt den transformierten Datenstrom, der erkannte betrügerische Anrufe darstellt, in eine Ausgabesenke in Azure Blob Storage.
 
 ### <a name="components"></a>Komponenten
 
-* [Azure Event Hubs][docs-event-hubs] ist eine Echtzeitstreaming-Plattform und ein Ereigniserfassungsdienst, der pro Sekunde Millionen von Ereignissen empfangen und verarbeiten kann. Event Hubs kann Ereignisse, Daten oder Telemetriedaten, die von verteilter Software und verteilten Geräten erzeugt wurden, verarbeiten und speichern. In diesem Szenario empfängt Event Hubs alle Anrufmetadaten, die auf betrügerische Aktivitäten analysiert werden sollen.
-* [Azure Stream Analytics][docs-stream-analytics] ist eine Ereignisverarbeitungsengine, die große Datenmengen analysieren kann, die von Geräten und anderen Quellen gestreamt werden. Zur Identifizierung von Mustern und Beziehungen wird zudem das Extrahieren von Informationen aus Datenströmen unterstützt. Diese Muster können weitere Downstreamaktionen auslösen. In diesem Szenario transformiert Stream Analytics den Eingabedatenstrom aus Event Hubs, um betrügerische Anrufe zu identifizieren.
-* [Blob Storage](/azure/storage/blobs/storage-blobs-introduction) wird in diesem Szenario zum Speichern der Ergebnisse des Stream Analytics-Auftrags verwendet.
+- [Azure Event Hubs][docs-event-hubs] ist eine Echtzeitstreaming-Plattform und ein Ereigniserfassungsdienst, der pro Sekunde Millionen von Ereignissen empfangen und verarbeiten kann. Event Hubs kann Ereignisse, Daten oder Telemetriedaten, die von verteilter Software und verteilten Geräten erzeugt wurden, verarbeiten und speichern. In diesem Szenario empfängt Event Hubs alle Anrufmetadaten, die auf betrügerische Aktivitäten analysiert werden sollen.
+- [Azure Stream Analytics][docs-stream-analytics] ist eine Ereignisverarbeitungsengine, die große Datenmengen analysieren kann, die von Geräten und anderen Quellen gestreamt werden. Zur Identifizierung von Mustern und Beziehungen wird zudem das Extrahieren von Informationen aus Datenströmen unterstützt. Diese Muster können weitere Downstreamaktionen auslösen. In diesem Szenario transformiert Stream Analytics den Eingabedatenstrom aus Event Hubs, um betrügerische Anrufe zu identifizieren.
+- [Blob Storage](/azure/storage/blobs/storage-blobs-introduction) wird in diesem Szenario zum Speichern der Ergebnisse des Stream Analytics-Auftrags verwendet.
 
 ## <a name="considerations"></a>Überlegungen
 
 ### <a name="alternatives"></a>Alternativen
 
-Für Echtzeiterfassung von Nachrichten, Datenspeicherung, Datenstromverarbeitung und die Speicherung von Analysedaten sowie für Analysen und Berichte stehen zahlreiche Technologieoptionen zur Verfügung. Eine Übersicht über diese Optionen, ihre Funktionen und wichtige Auswahlkriterien finden Sie im Azure-Datenarchitekturleitfaden unter [Auswählen einer Technologie für die Echtzeiterfassung von Nachrichten in Azure](/azure/architecture/data-guide/technology-choices/real-time-ingestion).
+Für Echtzeiterfassung von Nachrichten, Datenspeicherung, Datenstromverarbeitung und die Speicherung von Analysedaten sowie für Analysen und Berichte stehen zahlreiche Technologieoptionen zur Verfügung. Eine Übersicht über diese Optionen, die zugehörigen Funktionen und wichtige Auswahlkriterien finden Sie unter [Big Data-Architekturen: Echtzeitverarbeitung](/azure/architecture/data-guide/technology-choices/real-time-ingestion) im Azure-Datenarchitekturleitfaden.
 
 Von verschiedenen Machine Learning-Diensten in Azure können zudem komplexere Algorithmen für die Betrugserkennung generiert werden. Eine Übersicht über diese Optionen finden Sie im [Azure-Datenarchitekturleitfaden](../../data-guide/index.md) unter [Auswählen einer Machine Learning-Technologie in Azure](/azure/architecture/data-guide/technology-choices/data-science-and-machine-learning).
 
 ### <a name="availability"></a>Verfügbarkeit
 
-Azure Monitor bietet einheitliche Benutzeroberflächen für die übergreifende Überwachung verschiedener Azure-Dienste. Weitere Informationen finden Sie unter [Überwachen von Azure-Anwendungen und -Ressourcen](/azure/monitoring-and-diagnostics/monitoring-overview). Event Hubs und Stream Analytics sind jeweils mit Azure Monitor verknüpft. 
+Azure Monitor bietet einheitliche Benutzeroberflächen für die übergreifende Überwachung verschiedener Azure-Dienste. Weitere Informationen finden Sie unter [Überwachen von Azure-Anwendungen und -Ressourcen](/azure/monitoring-and-diagnostics/monitoring-overview). Event Hubs und Stream Analytics sind jeweils mit Azure Monitor verknüpft.
 
 Weitere Überlegungen zur Verfügbarkeit finden Sie im Azure Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
 
@@ -85,9 +86,9 @@ Zur Ermittlung der Betriebskosten für dieses Szenario sind alle Dienste im Kost
 
 Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir drei exemplarische Kostenprofile erstellt:
 
-* [Klein:][small-pricing] Verarbeitung von einer Million Ereignissen über eine einzelne Standardstreamingeinheit pro Monat.
-* [Mittel:][medium-pricing] Verarbeitung von 100 Millionen Ereignissen über fünf Standardstreamingeinheiten pro Monat.
-* [Groß:][large-pricing] Verarbeitung von 999 Millionen Ereignissen über 20 Standardstreamingeinheiten pro Monat.
+- [Klein:][small-pricing] Verarbeitung von einer Million Ereignissen über eine einzelne Standardstreamingeinheit pro Monat.
+- [Mittel:][medium-pricing] Verarbeitung von 100 Millionen Ereignissen über fünf Standardstreamingeinheiten pro Monat.
+- [Groß:][large-pricing] Verarbeitung von 999 Millionen Ereignissen über 20 Standardstreamingeinheiten pro Monat.
 
 ## <a name="related-resources"></a>Zugehörige Ressourcen
 
@@ -110,4 +111,3 @@ Bei komplexeren Betrugserkennungsszenarien kann die Verwendung eines Machine Lea
 [scalability]: /azure/architecture/checklist/scalability
 [resiliency]: ../../resiliency/index.md
 [security]: /azure/security/
-

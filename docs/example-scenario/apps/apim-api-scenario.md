@@ -1,15 +1,16 @@
 ---
-title: Migrieren einer älteren Webanwendung zu einer API-basierten Architektur in Azure
+title: Migrieren einer Web-App zu einer API-basierten Architektur
+titleSuffix: Azure Example Scenarios
 description: Modernisieren Sie eine ältere Webanwendung mithilfe von Azure API Management.
 author: begim
 ms.date: 09/13/2018
 ms.custom: fasttrack
-ms.openlocfilehash: ea063653b4962e42cbec7f9d98c16e22e987efd1
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 257b9bb5c69afb00917f8934585c1164f909feb6
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004702"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643482"
 ---
 # <a name="migrating-a-legacy-web-application-to-an-api-based-architecture-on-azure"></a>Migrieren einer älteren Webanwendung zu einer API-basierten Architektur in Azure
 
@@ -17,9 +18,9 @@ Ein E-Commerce-Unternehmen in der Reisebranche modernisiert seinen bestehenden b
 
 Zu den Zielen für das Projekt zählen der Abbau technischer Schulden, die Verbesserung der laufenden Wartung und die Beschleunigung der Featureentwicklung mit weniger Regressionsfehlern. Bei dem Projekt wird zur Vermeidung von Risiken ein iterativer Prozess eingesetzt, und einige Schritte werden parallel ausgeführt:
 
-* Das Entwicklungsteam wird das Anwendungs-Back-End modernisieren, das aus auf VMs gehosteten relationalen Datenbanken besteht.
-* Das interne Entwicklungsteam wird neue Geschäftsfunktionen entwickeln, die über neue HTTP-APIs verfügbar gemacht werden.
-* Ein externes Entwicklungsteam wird eine neue browserbasierte Benutzeroberfläche erstellen, die in Azure gehostet wird.
+- Das Entwicklungsteam wird das Anwendungs-Back-End modernisieren, das aus auf VMs gehosteten relationalen Datenbanken besteht.
+- Das interne Entwicklungsteam wird neue Geschäftsfunktionen entwickeln, die über neue HTTP-APIs verfügbar gemacht werden.
+- Ein externes Entwicklungsteam wird eine neue browserbasierte Benutzeroberfläche erstellen, die in Azure gehostet wird.
 
 Neue Anwendungsfeatures werden in mehreren Phasen bereitgestellt. Diese Features werden die vorhandene (lokal gehostete) browserbasierte Client/Server-Benutzeroberfläche, die gegenwärtig für das E-Commerce-Geschäft des Unternehmens genutzt wird, schrittweise ersetzen.
 
@@ -36,38 +37,38 @@ Die neue Benutzeroberfläche wird als PaaS-Anwendung (Platform-as-a-Service) in 
 1. Die vorhandene lokale Webanwendung wird die vorhandenen lokalen Webdienste weiterhin direkt nutzen.
 2. Aufrufe von der vorhandenen Web-App an die vorhandenen HTTP-Dienste bleiben unverändert. Diese Aufrufe erfolgen intern im Unternehmensnetzwerk.
 3. Eingehende Aufrufe werden von Azure an die vorhandenen internen Dienste gesendet:
-    * Das Sicherheitsteam verwendet den [sicheren Transport (HTTPS/SSL)][apim-ssl], um zuzulassen, dass Datenverkehr von der APIM-Instanz durch die Unternehmensfirewall zu den vorhandenen lokalen Diensten geleitet wird.
-    * Das operative Team lässt eingehende Aufrufe der Dienste nur von der APIM-Instanz zu. Innerhalb der Unternehmensnetzwerkumgebung wird die [IP-Adresse der APIM-Instanz auf die Whitelist gesetzt][apim-whitelist-ip], um diese Anforderung zu erfüllen.
-    * In der Anforderungspipeline der lokalen HTTP-Dienste wird ein neues Modul konfiguriert (um **nur** externe Verbindungen zu verarbeiten), das [ein von APIM bereitgestelltes Zertifikat][apim-mutualcert-auth] überprüft.
-1. Für die neue API gilt Folgendes:
-    * Die neue API wird nur über die APIM-Instanz verfügbar gemacht, die die API-Fassade bereitstellt. Auf die neue API wird nicht direkt zugegriffen.
-    * Die neue API wird als eine [Azure-PaaS-Web-API-App][azure-api-apps] entwickelt und veröffentlicht.
-    * Die neue API wird auf die Whitelist gesetzt (über [Web-App-Einstellungen][azure-appservice-ip-restrict]), um nur die [virtuelle IP (VIP) der APIM-Instanz][apim-faq-vip] zu akzeptieren.
-    * Die neue API wird mit aktiviertem sicheren Transport/SSL-Protokoll in Azure-Web-Apps gehostet.
-    * Für die neue API ist die Autorisierung aktiviert. Diese wird von [Azure App Service][azure-appservice-auth] mithilfe von Azure Active Directory und OAuth2 bereitgestellt.
-2. Die neue browserbasierte Webanwendung ist für die vorhandene HTTP-API **und** die neue API von der Azure API Management-Instanz abhängig.
+    - Das Sicherheitsteam verwendet den [sicheren Transport (HTTPS/SSL)][apim-ssl], um zuzulassen, dass Datenverkehr von der APIM-Instanz durch die Unternehmensfirewall zu den vorhandenen lokalen Diensten geleitet wird.
+    - Das operative Team lässt eingehende Aufrufe der Dienste nur von der APIM-Instanz zu. Innerhalb der Unternehmensnetzwerkumgebung wird die [IP-Adresse der APIM-Instanz auf die Whitelist gesetzt][apim-whitelist-ip], um diese Anforderung zu erfüllen.
+    - In der Anforderungspipeline der lokalen HTTP-Dienste wird ein neues Modul konfiguriert (um **nur** externe Verbindungen zu verarbeiten), das [ein von APIM bereitgestelltes Zertifikat][apim-mutualcert-auth] überprüft.
+4. Für die neue API gilt Folgendes:
+    - Die neue API wird nur über die APIM-Instanz verfügbar gemacht, die die API-Fassade bereitstellt. Auf die neue API wird nicht direkt zugegriffen.
+    - Die neue API wird als eine [Azure-PaaS-Web-API-App][azure-api-apps] entwickelt und veröffentlicht.
+    - Die neue API wird auf die Whitelist gesetzt (über [Web-App-Einstellungen][azure-appservice-ip-restrict]), um nur die [virtuelle IP (VIP) der APIM-Instanz][apim-faq-vip] zu akzeptieren.
+    - Die neue API wird mit aktiviertem sicheren Transport/SSL-Protokoll in Azure-Web-Apps gehostet.
+    - Für die neue API ist die Autorisierung aktiviert. Diese wird von [Azure App Service][azure-appservice-auth] mithilfe von Azure Active Directory und OAuth2 bereitgestellt.
+5. Die neue browserbasierte Webanwendung ist für die vorhandene HTTP-API **und** die neue API von der Azure API Management-Instanz abhängig.
 
 Die APIM-Instanz wird so konfiguriert, dass sie die älteren HTTP-Dienste einem neuen API-Vertrag zuordnet. Der neuen Webbenutzeroberfläche ist die Integration einer Gruppe von älteren Diensten/APIs und neuen APIs daher nicht bekannt. Das Projektteam wird in der Zukunft schrittweise Funktionen zu den neuen APIs portieren und die ursprünglichen Dienste außer Betrieb setzen. Diese Änderungen werden in der APIM-Konfiguration vorgenommen, sodass die Front-End-Benutzeroberfläche davon nicht betroffen ist und Neuentwicklungen vermieden werden.
 
 ### <a name="alternatives"></a>Alternativen
 
-* Wenn die Organisation eine Migration ihrer vollständigen Infrastruktur (einschließlich der VMs, die ältere Anwendungen hosten) zu Azure planen würde, wäre APIM dennoch eine gute Option, da der Dienst als Fassade für alle adressierbaren HTTP-Endpunkte fungieren kann.
-* Wenn sich der Kunde dafür entschieden hätte, die vorhandenen Endpunkte privat zu halten und nicht öffentlich verfügbar zu machen, könnte die API Management-Instanz mit einem [virtuellen Azure-Netzwerk (VNET)][azure-vnet] verknüpft werden:
-  * In einem [Azure-Lift & Shift-Szenario][azure-vm-lift-shift], das direkt mit dem bereitgestellten virtuellen Azure-Netzwerk verknüpft ist, könnte der Kunde den Back-End-Dienst direkt über private IP-Adressen adressieren.
-  * Im lokalen Szenario könnte die API Management-Instanz eine private Verbindung über [ein Azure-VPN-Gateway und eine Site-to-Site-IPSec-VPN-Verbindung][azure-vpn] oder [ ExpressRoute][azure-er] mit dem internen Dienst herstellen, wodurch ein [Hybridszenario mit Azure und einer lokalen Umgebung][azure-hybrid] entstehen würde.
-* Die API Management-Instanz kann privat gehalten werden, indem sie im internen Modus bereitgestellt wird. Die Bereitstellung könnte dann mit einer [Azure Application Gateway][azure-appgw]-Instanz verwendet werden, um den öffentlichen Zugriff für einige APIs zu ermöglichen, während andere APIs weiterhin nur intern zugänglich sind. Weitere Informationen finden Sie unter [Verbinden von API Management mit einem VNET im internen Modus][apim-vnet-internal].
+- Wenn die Organisation eine Migration ihrer vollständigen Infrastruktur (einschließlich der VMs, die ältere Anwendungen hosten) zu Azure planen würde, wäre APIM dennoch eine gute Option, da der Dienst als Fassade für alle adressierbaren HTTP-Endpunkte fungieren kann.
+- Wenn sich der Kunde dafür entschieden hätte, die vorhandenen Endpunkte privat zu halten und nicht öffentlich verfügbar zu machen, könnte die API Management-Instanz mit einem [virtuellen Azure-Netzwerk (VNET)][azure-vnet] verknüpft werden:
+  - In einem [Azure-Lift & Shift-Szenario][azure-vm-lift-shift], das direkt mit dem bereitgestellten virtuellen Azure-Netzwerk verknüpft ist, könnte der Kunde den Back-End-Dienst direkt über private IP-Adressen adressieren.
+  - Im lokalen Szenario könnte die API Management-Instanz eine private Verbindung über [ein Azure-VPN-Gateway und eine Site-to-Site-IPSec-VPN-Verbindung][azure-vpn] oder [ ExpressRoute][azure-er] mit dem internen Dienst herstellen, wodurch ein [Hybridszenario mit Azure und einer lokalen Umgebung][azure-hybrid] entstehen würde.
+- Die API Management-Instanz kann privat gehalten werden, indem sie im internen Modus bereitgestellt wird. Die Bereitstellung könnte dann mit einer [Azure Application Gateway][azure-appgw]-Instanz verwendet werden, um den öffentlichen Zugriff für einige APIs zu ermöglichen, während andere APIs weiterhin nur intern zugänglich sind. Weitere Informationen finden Sie unter [Verbinden von API Management mit einem VNET im internen Modus][apim-vnet-internal].
 
 > [!NOTE]
 > Allgemeine Informationen zum Verbinden von API Management mit einem VNET finden Sie [hier][apim-vnet].
 
 ### <a name="availability-and-scalability"></a>Verfügbarkeit und Skalierbarkeit
 
-* Azure API Management kann [horizontal hochskaliert][apim-scaleout] werden, indem Sie einen Tarif auswählen und anschließend Einheiten hinzufügen.
-* Die Skalierung erfolgt auch durch [automatische Skalierung][apim-autoscale].
-* Die [Bereitstellung in mehreren Regionen][apim-multi-regions] ermöglicht die Verwendung von Failoveroptionen und ist im [Premium-Tarif][apim-pricing] verfügbar.
-* Erwägen Sie die [Integration in Azure Application Insights][azure-apim-ai]. Dadurch stehen Ihnen über [Azure Monitor][azure-mon] auch Metriken für die Überwachung zur Verfügung.
+- Azure API Management kann [horizontal hochskaliert][apim-scaleout] werden, indem Sie einen Tarif auswählen und anschließend Einheiten hinzufügen.
+- Die Skalierung erfolgt auch durch [automatische Skalierung][apim-autoscale].
+- Die [Bereitstellung in mehreren Regionen][apim-multi-regions] ermöglicht die Verwendung von Failoveroptionen und ist im [Premium-Tarif][apim-pricing] verfügbar.
+- Erwägen Sie die [Integration in Azure Application Insights][azure-apim-ai]. Dadurch stehen Ihnen über [Azure Monitor][azure-mon] auch Metriken für die Überwachung zur Verfügung.
 
-## <a name="deployment"></a>Bereitstellung
+## <a name="deploy-the-scenario"></a>Bereitstellen des Szenarios
 
 Der erste Schritt ist das [Erstellen einer Azure API Management-Instanz im Portal][apim-create].
 
@@ -88,8 +89,8 @@ Im [Azure-Preisrechner][pricing-calculator] können Sie die voraussichtlichen Ko
 
 Zu Azure API Management stehen Ihnen eine umfangreiche [Dokumentation und Referenzartikel][apim] zur Verfügung.
 
-
 <!-- links -->
+
 [architecture]: ./media/architecture-apim-api-scenario.png
 [apim-create]: /azure/api-management/get-started-create-service-instance
 [apim-git]: /azure/api-management/api-management-configuration-repository-git

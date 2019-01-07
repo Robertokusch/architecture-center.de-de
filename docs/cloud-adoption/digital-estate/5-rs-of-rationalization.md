@@ -4,12 +4,12 @@ titleSuffix: Enterprise Cloud Adoption
 description: Beschreibt die Optionen, bei der Rationalisierung digitaler Ressourcen zur Verfügung stehen.
 author: BrianBlanchard
 ms.date: 12/10/2018
-ms.openlocfilehash: 4e2765198b64c36470adc9fbe35872e4714780e8
-ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.openlocfilehash: 66eee782b63210bcba3022e3be5b8fdee11716ec
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53179668"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643678"
 ---
 # <a name="enterprise-cloud-adoption-the-5-rs-of-rationalization"></a>Enterprise Cloud-Einführung: Die fünf R der Rationalisierung
 
@@ -17,7 +17,7 @@ Cloudrationalisierung bezeichnet die Untersuchung von Ressourcen, um die bestmö
 
 Die hier aufgeführten fünf R der Rationalisierung beschreiben die gängigsten Optionen für die Rationalisierung.
 
-## <a name="rehost"></a>Rehost (Rehosten)
+## <a name="rehost"></a>Rehosten
 
 Auch „Lift & Shift“ genannt. Beim Rehosten wird die Ressource im aktuellen Zustand zum gewählten Cloudanbieter migriert. Die Architektur bleibt dabei größtenteils unverändert.
 
@@ -40,7 +40,7 @@ Faktoren für die qualitative Analyse:
 * Kritische Unternehmensereignisse
 * Prozessabhängigkeiten
 
-## <a name="refactor"></a>Refactor (Umgestalten)
+## <a name="refactor"></a>Refactoring
 
 PaaS-Optionen (Platform-as-a-Service) können zur Senkung der Betriebskosten zahlreicher Anwendungen beitragen. Unter Umständen empfiehlt es sich, eine Anwendung geringfügig umzugestalten, um sie an ein PaaS-basiertes Modell anzupassen.
 
@@ -90,7 +90,7 @@ Faktoren für die qualitative Analyse:
 * Betriebskosten
 * Potenzielle Feedbackschleifen und DevOps-Investitionen
 
-## <a name="rebuild"></a>Rebuild (Neu erstellen)
+## <a name="rebuild"></a>Neu erstellen
 
 In manchen Szenarien ist die Kluft, die für eine Weiterverwendung einer Anwendung überwunden werden muss, zu groß, um weitere Investitionen zu rechtfertigen. Das gilt insbesondere für Anwendungen, die inzwischen nicht mehr unterstützt werden und nicht mehr die Anforderungen der aktuellen Geschäftsprozesse erfüllen. In diesem Fall wird eine neue Codebasis erstellt, die auf einen nativen Cloudansatz ausgerichtet ist.
 
@@ -113,7 +113,7 @@ Faktoren für die qualitative Analyse:
 * Einschränkung von Geschäftsprozessen aufgrund des Funktionsumfangs
 * Potenzielle Verbesserungen bei Kosten, Erfahrung oder Umsatz
 
-## <a name="replace"></a>Replace (Ersetzen)
+## <a name="replace"></a>Replace
 
 Lösungen werden in der Regel mit der besten Technologie und Methode implementiert, die zum Zeitpunkt der Implementierung zur Verfügung steht. Manchmal erfüllen SaaS-Anwendungen (Software-as-a-Service) sämtliche Funktionsanforderungen der gehosteten Anwendung. In diesem Fall kann eine Workload zukünftig ersetzt werden, wodurch sie bei der Transformation praktisch nicht weiter berücksichtigt werden muss.
 

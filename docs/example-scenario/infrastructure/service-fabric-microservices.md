@@ -1,26 +1,28 @@
 ---
-title: Verwenden von Service Fabric zum Zerlegen monolithischer Anwendungen
+title: Verwenden von Service Fabric zum Zerlegen von Anwendungen
+titleSuffix: Azure Example Scenarios
 description: Zerlegen Sie eine umfangreiche monolithische Anwendung in Microservices.
 author: timomta
 ms.date: 09/20/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 438d2eabff39356a7593f2da798a74eebe94553a
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 90159b0cbfd3e7af542a79d050d153b4a3435a0d
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004629"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643814"
 ---
 # <a name="using-service-fabric-to-decompose-monolithic-applications"></a>Verwenden von Service Fabric zum Zerlegen monolithischer Anwendungen
 
 In diesem Beispielszenario wird Schritt für Schritt ein Ansatz beschrieben, bei dem [Service Fabric](/azure/service-fabric/service-fabric-overview) als Plattform zum Zerlegen einer unübersichtlichen monolithischen Anwendung verwendet wird. Wir sehen uns hier einen iterativen Ansatz zum Zerlegen einer IIS/ASP.NET-Website in eine Anwendung an, die sich aus mehreren verwaltbaren Microservices zusammensetzt.
 
 Durch die Umstellung von einer monolithischen Architektur auf eine Microservicearchitektur ergeben sich die folgenden Vorteile:
-* Sie können eine kleine, verständliche Codeeinheit ändern und nur diese Einheit bereitstellen.
-* Für die Bereitstellung jeder Codeeinheit sind maximal einige Minuten erforderlich.
-* Wenn in dieser kleinen Einheit ein Fehler enthalten ist, funktioniert nur diese Einheit nicht mehr, und es fällt nicht die gesamte Anwendung aus.
-* Kleine Codeeinheiten können einfach und diskret auf mehrere Entwicklungsteams verteilt werden.
-* Neue Entwickler können sich schnell und leicht mit der diskreten Funktionalität der einzelnen Einheiten vertraut machen.
+
+- Sie können eine kleine, verständliche Codeeinheit ändern und nur diese Einheit bereitstellen.
+- Für die Bereitstellung jeder Codeeinheit sind maximal einige Minuten erforderlich.
+- Wenn in dieser kleinen Einheit ein Fehler enthalten ist, funktioniert nur diese Einheit nicht mehr, und es fällt nicht die gesamte Anwendung aus.
+- Kleine Codeeinheiten können einfach und diskret auf mehrere Entwicklungsteams verteilt werden.
+- Neue Entwickler können sich schnell und leicht mit der diskreten Funktionalität der einzelnen Einheiten vertraut machen.
 
 In diesem Beispiel wird eine große IIS-Anwendung in einer Serverfarm verwendet, aber die Konzepte des iterativen Zerlegens und des Hostens können für alle Arten von großen Anwendungen verwendet werden. Für diese Lösung wird Windows genutzt, aber Service Fabric kann auch unter Linux ausgeführt werden. Die Lösung kann lokal, in Azure oder auf VM-Knoten unter dem Cloudanbieter Ihrer Wahl ausgeführt werden.
 
