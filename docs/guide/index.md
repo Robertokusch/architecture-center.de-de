@@ -2,12 +2,12 @@
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: a1cac753d384c0fee0af204cddaeea1e63213b9f
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: ce1642f237cfae579cc987777c61c8d6eabff571
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325858"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113874"
 ---
 # <a name="azure-application-architecture-guide"></a>Azure-Anwendungsarchitekturleitfaden
 
@@ -15,9 +15,11 @@ Dieser Leitfaden stellt eine strukturierte Vorgehensweise zum Entwerfen von Anwe
 
 ## <a name="introduction"></a>Einführung
 
-Die Cloud verändert die Art und Weise, wie Anwendungen entworfen werden. Anwendungen werden nicht mehr als Monolithen entwickelt, sondern in kleinere, dezentralisierte Dienste zerlegt. Diese Dienste kommunizieren über APIs oder durch asynchrone Nachrichten bzw. Ereignisse. Anwendungen lassen sich durch bedarfsgesteuertes Hinzufügen neuer Instanzen horizontal skalieren. 
+Die Cloud verändert die Art und Weise, wie Anwendungen entworfen werden. Anwendungen werden nicht mehr als Monolithen entwickelt, sondern in kleinere, dezentralisierte Dienste zerlegt. Diese Dienste kommunizieren über APIs oder durch asynchrone Nachrichten bzw. Ereignisse. Anwendungen lassen sich durch bedarfsgesteuertes Hinzufügen neuer Instanzen horizontal skalieren.
 
-Diese Trends bringen neue Herausforderung mit sich. Der Anwendungszustand ist verteilt. Vorgänge werden parallel und asynchron ausgeführt. Bei Ausfällen muss das System als Ganzes resilient sein. Bereitstellungen müssen automatisiert und vorhersagbar sein. Überwachung und Telemetriedaten spielen eine entscheidend Rolle, um Einblick in das System zu erhalten. Der Azure-Anwendungsarchitekturleitfaden soll Sie auf folgende Änderungen vorbereiten. 
+Diese Trends bringen neue Herausforderung mit sich. Der Anwendungszustand ist verteilt. Vorgänge werden parallel und asynchron ausgeführt. Bei Ausfällen muss das System als Ganzes resilient sein. Bereitstellungen müssen automatisiert und vorhersagbar sein. Überwachung und Telemetriedaten spielen eine entscheidend Rolle, um Einblick in das System zu erhalten. Der Azure-Anwendungsarchitekturleitfaden soll Sie auf folgende Änderungen vorbereiten.
+
+<!-- markdownlint-disable MD033 -->
 
 <table>
 <thead>
@@ -47,6 +49,8 @@ Unveränderliche Infrastruktur<br/>
 </tbody>
 </table>
 
+<!-- markdownlint-enable MD033 -->
+
 Dieser Leitfaden richtet sich an Anwendungsarchitekten, Entwickler und Betriebsteams. Er dient nicht als Anleitung für die Verwendung der einzelnen Azure-Dienste. Nachdem Sie diesen Leitfaden gelesen haben, werden Sie die Architekturmuster und bewährten Methoden, die beim Erstellen der Azure-Cloudplattform anzuwenden sind, kennen. Sie können auch eine [E-Book-Version des Handbuchs][ebook] herunterladen.
 
 ## <a name="how-this-guide-is-structured"></a>Aufbau dieses Leitfadens
@@ -63,7 +67,7 @@ Weitere Informationen:
 
 ### <a name="technology-choices"></a>Auswahl der Technologie
 
-Direkt am Anfang sollte eine Entscheidung für eine von zwei Technologieoptionen getroffen werden, da dies Auswirkungen auf die gesamte Architektur hat. Wählen Sie zwischen Computediensten und Datenspeichern. *Compute* bezieht sich auf das Hostingmodell für die Computeressourcen, mit dem Ihre Anwendungen ausgeführt werden. Zu *Datenspeichern* zählen Datenbanken, aber auch Speicher für Nachrichtenwarteschlangen, Caches, Protokolle und sonstige Daten, die eine Anwendung in einem Speicher speichern kann. 
+Direkt am Anfang sollte eine Entscheidung für eine von zwei Technologieoptionen getroffen werden, da dies Auswirkungen auf die gesamte Architektur hat. Wählen Sie zwischen Computediensten und Datenspeichern. *Compute* bezieht sich auf das Hostingmodell für die Computeressourcen, mit dem Ihre Anwendungen ausgeführt werden. Zu *Datenspeichern* zählen Datenbanken, aber auch Speicher für Nachrichtenwarteschlangen, Caches, Protokolle und sonstige Daten, die eine Anwendung in einem Speicher speichern kann.
 
 Weitere Informationen:
 
@@ -78,12 +82,10 @@ Weitere Informationen:
 
 - [Entwurfsprinzipien](./design-principles/index.md)
 
-
 ### <a name="quality-pillars"></a>Qualitätssäulen
 
-Eine gelungene Cloudanwendung basiert auf fünf Säulen der Softwarequalität, nämlich Skalierbarkeit, Verfügbarkeit, Resilienz, Verwaltung und Sicherheit. Verwenden Sie unsere Checklisten zur Entwurfsüberprüfung, um Ihre Architektur im Hinblick auf diese Qualitätssäulen zu überprüfen.
+Eine erfolgreiche Cloudanwendung basiert auf fünf Säulen der Softwarequalität: Skalierbarkeit, Verfügbarkeit, Resilienz, Verwaltung und Sicherheit. Verwenden Sie unsere Checklisten zur Entwurfsüberprüfung, um Ihre Architektur im Hinblick auf diese Qualitätssäulen zu überprüfen.
 
 - [Qualitätssäulen](./pillars.md)
-
 
 [ebook]: https://azure.microsoft.com/campaigns/cloud-application-architecture-guide/
