@@ -7,12 +7,12 @@ tags: azure-resource-manager
 ms.service: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: 1d8a9e860ab1a66104dc4133eb5f22ffb4706b84
-ms.sourcegitcommit: 5a3fa0bf35376bbe4a6dd668f2d7d44f9cf9c806
+ms.openlocfilehash: f02cc7df1e90ba3de97a1c25777ab6d27bfdf697
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53411683"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011192"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Virtuelles Azure-Rechenzentrum: Eine Netzwerkperspektive
 
@@ -51,15 +51,6 @@ Eine Implementierung eines virtuellen Rechenzentrums kann Unternehmen dabei helf
 -   Implementieren von gemeinsam genutzten oder zentralisierten Sicherheits- und Zugriffsanforderungen für verschiedene Workloads
 -   Kombinieren von Azure DevOps und der zentralen IT für große Unternehmen
 
-Um sämtliche Vorteile eines virtuellen Rechenzentrums nutzen zu können, ist eine zentrale Topologie (Hub und Spokes) mit verschiedenen Azure-Features notwendig: 
-
-- [Microsoft Azure Virtual Network][VNet] 
-- [Netzwerksicherheitsgruppen (NSGs)][NSG]
-- [Peering in virtuellen Netzwerken][VNetPeering] 
-- [Benutzerdefinierte Routen][UDR] (User-Defined Routes, UDRs)
-- Azure-Identitätsdienste mit [rollenbasierter Zugriffssteuerung][RBAC] (Role-Based Access Control, RBAC) 
-- Optional [Azure Firewall][AzFW], [Azure DNS][DNS], [Azure Front Door Service (AFD)][AFD] und [Azure Virtual WAN][vWAN]
-
 Der Schlüssel zur Nutzung der Vorteile eines virtuellen Rechenzentrums ist eine zentrale Hub-and-Spoke-Netzwerktopologie mit einer Mischung aus Azure-Diensten und -Features:
 
 * [Azure Virtual Network][VNet],
@@ -79,9 +70,6 @@ Organisationen, die auf DevOps setzen, können mit VDC-Konzepten auch autorisier
 ## <a name="considerations-for-implementing-a-virtual-datacenter"></a>Überlegungen zur Implementierung eines virtuellen Rechenzentrums
 
 Beim Entwerfen der Implementierung eines virtuellen Rechenzentrums sind mehrere zentrale Punkte zu berücksichtigen:
-
-### <a name="identity-and-directory-services"></a>Identitäts- und Verzeichnisdienste
-Identitäts- und Verzeichnisdienste sind ein wichtiger Aspekt jedes Rechenzentrums, ganz gleich, ob lokal oder in der Cloud gehostet. Identität bezieht sich auf alle Aspekte des Zugriffs und der Autorisierung für Dienste innerhalb des virtuellen Rechenzentrums. Um sicherzustellen, dass nur autorisierte Benutzer und Prozesse auf Ihr Azure-Konto und Ihre Azure-Ressourcen zugreifen, verwendet Azure mehrere Typen von Anmeldeinformationen für die Authentifizierung. Dazu zählen Kennwörter für den Zugriff auf das Azure-Konto, kryptografische Schlüssel, digitale Signaturen und Zertifikate. 
 
 ### <a name="identity-and-directory-service"></a>Identitäts- und Verzeichnisdienst
 
@@ -340,7 +328,7 @@ Die Möglichkeiten für Workloads sind endlos. Im Folgenden finden Sie einige de
 
 **Big Data + Analyse**: Wenn Daten zentral auf ein großes Volumen hochskaliert werden müssen, kann es passieren, dass Datenbanken nicht korrekt zentral hochskaliert werden. Die Hadoop-Technologie bietet ein System zum parallelen Ausführen von verteilten Abfragen auf einer großen Anzahl von Knoten. Kunden haben die Möglichkeit, Datenworkloads auf IaaS-VMs oder PaaS auszuführen ([HDInsight][HDI]). HDInsight unterstützt das Bereitstellen in einem lokalen VNET: Die Bereitstellung kann in einem Cluster in einem Spoke des virtuellen Rechenzentrums erfolgen.
 
-**Ereignisse und Messaging**: [Azure Event Hubs][EventHubs] ist ein hyperskalierbarer Dienst für die Erfassung von Telemetriedaten, der Millionen von Ereignissen sammelt, transformiert und speichert. Diese verteilte Streamingplattform bietet niedrige Latenz und konfigurierbare Aufbewahrungszeiten, wodurch Sie riesige Mengen an Telemetriedaten in Azure einspeisen und die Daten verschiedener Anwendungen lesen können. In Event Hubs kann ein einziger Datenstrom in Echtzeit und batchbasierte Pipelines unterstützen.
+**Ereignisse und Messaging**: Azure Event Hubs[EventHubs] ist ein hyperskalierbarer Dienst für die Erfassung von Telemetriedaten, der Millionen von Ereignissen sammelt, transformiert und speichert. Diese verteilte Streamingplattform bietet niedrige Latenz und konfigurierbare Aufbewahrungszeiten, wodurch Sie riesige Mengen an Telemetriedaten in Azure einspeisen und die Daten verschiedener Anwendungen lesen können. In Event Hubs kann ein einziger Datenstrom in Echtzeit und batchbasierte Pipelines unterstützen.
 
 Über [Azure Service Bus][ServiceBus] können Sie einen zuverlässigen Cloudmessagingdienst zwischen Anwendungen und Diensten implementieren. Der Dienst bietet asynchrones Brokermessaging zwischen Client und Server, strukturiertes FIFO-Messaging (First In, First Out) sowie Funktionen zum Veröffentlichen und Abonnieren.
 
