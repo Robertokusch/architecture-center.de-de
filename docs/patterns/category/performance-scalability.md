@@ -1,23 +1,23 @@
 ---
 title: Leistungs- und Skalierbarkeitsmuster
+titleSuffix: Cloud Design Patterns
 description: Die Leistung gibt Aufschluss über die Reaktionsfähigkeit eines Systems, d.h. seine Fähigkeit, alle Aktionen innerhalb eines bestimmten Zeitintervalls auszuführen. Die Skalierbarkeit ist dagegen die Fähigkeit eines Systems, einen Anstieg der Last ohne Auswirkungen auf die Leistung zu bewältigen oder die Anzahl verfügbarer Ressourcen schnell und problemlos zu erhöhen. Bei Cloudanwendungen treten in der Regel variable Arbeitsauslastungen und Aktivitätsspitzen auf. Diese vorherzusagen, ist insbesondere in einem Szenario mit mehreren Mandanten nahezu unmöglich. Stattdessen sollten sich Anwendungen innerhalb der jeweiligen Grenzen je nach Bedarf horizontal hoch- und herunterskalieren lassen. Die Skalierbarkeit betrifft nicht nur Compute-Instanzen, sondern auch andere Elemente wie den Datenspeicher, die Messaginginfrastruktur usw.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: e60c7c5779e73925d7eed51b41eb37e5c2ad49ff
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: 986e17f943e2238d70a5c9e0fd4c84e37c5f06a6
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848528"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011037"
 ---
 # <a name="performance-and-scalability-patterns"></a>Leistungs- und Skalierbarkeitsmuster
 
 [!INCLUDE [header](../../_includes/header.md)]
 
 Die Leistung gibt Aufschluss über die Reaktionsfähigkeit eines Systems, d.h. seine Fähigkeit, alle Aktionen innerhalb eines bestimmten Zeitintervalls auszuführen. Die Skalierbarkeit ist dagegen die Fähigkeit eines Systems, einen Anstieg der Last ohne Auswirkungen auf die Leistung zu bewältigen oder die Anzahl verfügbarer Ressourcen schnell und problemlos zu erhöhen. Bei Cloudanwendungen treten in der Regel variable Arbeitsauslastungen und Aktivitätsspitzen auf. Diese vorherzusagen, ist insbesondere in einem Szenario mit mehreren Mandanten nahezu unmöglich. Stattdessen sollten sich Anwendungen innerhalb der jeweiligen Grenzen je nach Bedarf horizontal hoch- und herunterskalieren lassen. Die Skalierbarkeit betrifft nicht nur Compute-Instanzen, sondern auch andere Elemente wie den Datenspeicher, die Messaginginfrastruktur usw.
-
 
 |                           Muster                            |                                                                        Zusammenfassung                                                                         |
 |--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,4 +31,3 @@ Die Leistung gibt Aufschluss über die Reaktionsfähigkeit eines Systems, d.h. s
 |                  [Sharding](../sharding.md)                  |                                           Einen Datenspeicher in einen Satz horizontaler Partitionen oder Shards unterteilen                                           |
 |    [Hosten von statischen Inhalten](../static-content-hosting.md)    |                          Stellen Sie statische Inhalte in einem cloudbasierten Speicherdienst bereit, der die Inhalte direkt an den Client übermitteln kann.                          |
 |                [Drosselung](../throttling.md)                |                Steuern Sie den Verbrauch der von einer Anwendungsinstanz, einem einzelnen Mandanten oder einem gesamten Dienst verwendeten Ressourcen.                 |
-

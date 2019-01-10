@@ -1,14 +1,16 @@
 ---
 title: Umgehung von Grenzwerten durch Partitionierung
-description: Einsetzen der Partitionierung, um Datenbank-, Netzwerk- und Computegrenzwerte zu umgehen
+titleSuffix: Azure Application Architecture Guide
+description: Setzen Sie Partitionierung ein, um Datenbank-, Netzwerk- und Computebeschränkungen zu umgehen.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 2f6bf797c2c7e5af7c487635c19eaf77eee77dec
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: f6c0daa1b1ea469413156fdf3cd6969f98528fb3
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326295"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110491"
 ---
 # <a name="partition-around-limits"></a>Umgehung von Grenzwerten durch Partitionierung
 
@@ -22,7 +24,7 @@ Es gibt viele Möglichkeiten, ein System zu partitionieren, Beispiele:
 
 - Partitionieren Sie eine Warteschlange oder einen Nachrichtenbus, um Grenzwerte für die Anzahl von Anforderungen oder die Anzahl von gleichzeitigen Verbindungen zu vermeiden.
 
-- Partitionieren Sie eine App Service-Web-App, um Grenzwerte für die Anzahl der Instanzen pro App Service-Plan zu vermeiden. 
+- Partitionieren Sie eine App Service-Web-App, um Grenzwerte für die Anzahl der Instanzen pro App Service-Plan zu vermeiden.
 
 Eine Datenbank kann *horizontal*, *vertikal* oder *funktional* partitioniert werden.
 
@@ -40,14 +42,12 @@ Ausführlichere Anleitungen finden Sie unter [Datenpartitionierung][data-partiti
 
 **Entwerfen Sie den Partitionsschlüssel, um Hotspots zu vermeiden**. Wenn Sie eine Datenbank partitionieren, aber ein Shard noch immer den Großteil der Anforderungen erhält, ist das Problem nicht gelöst. Im Idealfall wird die Last gleichmäßig auf alle Partitionen verteilt. Verwenden Sie z.B. einen Hash der Kunden-ID und nicht den ersten Buchstaben des Kundennamens, da einige Buchstaben häufiger vorkommen. Das gleiche Prinzip gilt beim Partitionieren einer Nachrichtenwarteschlange. Wählen Sie einen Partitionsschlüssel aus, der zu einer gleichmäßigen Verteilung von Nachrichten über den Satz von Warteschlangen führt. Weitere Informationen finden Sie unter [Sharding][sharding].
 
-**Umgehen Sie die Grenzwerte für Azure-Abonnements und -Dienste durch Partitionierung**. Für einzelne Komponenten und Dienste gelten Grenzwerte, aber es gibt auch Grenzwerte für Abonnements und Ressourcengruppen. Bei sehr große Anwendungen müssen Sie möglicherweise diese Grenzwerte durch Partitionierung umgehen.  
+**Umgehen Sie die Grenzwerte für Azure-Abonnements und -Dienste durch Partitionierung**. Für einzelne Komponenten und Dienste gelten Grenzwerte, aber es gibt auch Grenzwerte für Abonnements und Ressourcengruppen. Bei sehr große Anwendungen müssen Sie möglicherweise diese Grenzwerte durch Partitionierung umgehen.
 
-**Partitionieren Sie auf unterschiedlichen Ebenen**. Nehmen Sie einen Datenbankserver, der auf einer VM bereitgestellt wurde. Die VM weist eine VHD auf, die von Azure Storage gesichert wird. Das Speicherkonto gehört zu einem Azure-Abonnement. Für jeden Schritt in der Hierarchie gelten Grenzwerte. Der Datenbankserver weist möglicherweise einen Grenzwert für Verbindungspools auf. Für VMs gelten CPU- und Netzwerkgrenzwerte. Für den Speicher gelten IOPS-Grenzwerte. Für das Abonnement ist die Anzahl der VM-Kerne begrenzt. Im Allgemeinen ist es einfacher, die Partitionierung eher unten in der Hierarchie durchzuführen. Nur bei großen Anwendungen sollte eine Partitionierung auf Abonnementebene erforderlich sein. 
+**Partitionieren Sie auf unterschiedlichen Ebenen**. Nehmen Sie einen Datenbankserver, der auf einer VM bereitgestellt wurde. Die VM weist eine VHD auf, die von Azure Storage gesichert wird. Das Speicherkonto gehört zu einem Azure-Abonnement. Für jeden Schritt in der Hierarchie gelten Grenzwerte. Der Datenbankserver weist möglicherweise einen Grenzwert für Verbindungspools auf. Für VMs gelten CPU- und Netzwerkgrenzwerte. Für den Speicher gelten IOPS-Grenzwerte. Für das Abonnement ist die Anzahl der VM-Kerne begrenzt. Im Allgemeinen ist es einfacher, die Partitionierung eher unten in der Hierarchie durchzuführen. Nur bei großen Anwendungen sollte eine Partitionierung auf Abonnementebene erforderlich sein.
 
 <!-- links -->
 
 [azure-limits]: /azure/azure-subscription-service-limits
 [data-partitioning-guidance]: ../../best-practices/data-partitioning.md
 [sharding]: ../../patterns/sharding.md
-
- 

@@ -1,19 +1,17 @@
 ---
-title: Prioritätswarteschlange
+title: Muster „Prioritätswarteschlange“
+titleSuffix: Cloud Design Patterns
 description: Priorisieren Sie an Dienste gesendete Anforderungen, sodass Anforderungen mit einer höheren Priorität schneller empfangen und verarbeitet werden als Anforderungen mit einer niedrigeren Priorität.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- performance-scalability
-ms.openlocfilehash: 400bfbc03cf5640ff32a551636b01d60e6c0ec50
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: ddd9cc9ec85c6ed23fabaaa58424736ba1aa9421
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428498"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011122"
 ---
 # <a name="priority-queue-pattern"></a>Muster „Prioritätswarteschlange“
 
@@ -31,12 +29,11 @@ Eine Warteschlange folgt in der Regel dem FIFO-Prinzip (First In, First Out), un
 
 ![Abbildung 1: Verwendung eines Warteschlangenmechanismus mit Unterstützung für die Priorisierung von Nachrichten](./_images/priority-queue-pattern.png)
 
-> Die meisten Implementierungen für Nachrichtenwarteschlangen unterstützen mehrere Consumer (nach dem [Muster „Konkurrierende Consumer“](https://msdn.microsoft.com/library/dn568101.aspx)), und die Anzahl der Consumerprozesse kann je nach Bedarf zentral hoch- oder herunterskaliert werden.
+> Die meisten Implementierungen für Nachrichtenwarteschlangen unterstützen mehrere Consumer (nach dem [Muster „Konkurrierende Consumer“](./competing-consumers.md)), und die Anzahl der Consumerprozesse kann je nach Bedarf zentral hoch- oder herunterskaliert werden.
 
 In Systemen, die keine prioritätsbasierten Nachrichtenwarteschlangen unterstützen, kann alternativ für jede Priorität eine eigene Warteschlange verwaltet werden. Die Anwendung ist für die Bereitstellung von Nachrichten in der entsprechenden Warteschlange zuständig. Jede Warteschlange kann über einen separaten Pool von Consumern verfügen. Für Warteschlangen mit höherer Priorität kann ein größerer Consumerpool auf schnellerer Hardware ausgeführt werden als für Warteschlangen mit niedrigerer Priorität. Die folgende Abbildung veranschaulicht die Verwendung von separaten Nachrichtenwarteschlangen für die einzelnen Prioritäten.
 
 ![Abbildung 2: Verwendung von separaten Nachrichtenwarteschlangen für die einzelnen Prioritäten](./_images/priority-queue-separate.png)
-
 
 Eine Variante dieser Strategie besteht darin, einen einzigen Consumerpool zu verwalten, der zuerst in Warteschlangen mit hoher Priorität nach Nachrichten sucht und erst dann damit beginnt, Nachrichten aus Warteschlangen mit niedrigerer Priorität abzurufen. Es gibt einige semantische Unterschiede zwischen einer Lösung, die einen einzigen Pool von Consumerprozessen verwendet (entweder mit einer einzigen Warteschlange, die Nachrichten mit unterschiedlichen Prioritäten unterstützt, oder mit mehreren Warteschlangen, die jeweils Nachrichten mit einer einzigen Priorität verarbeiten), und einer Lösung, die mehrere Warteschlangen mit einem separaten Pool für jede Warteschlange verwendet.
 
@@ -88,7 +85,6 @@ Eine Azure-Lösung kann ein Service Bus-Thema implementieren, für das eine Anwe
 
 ![Abbildung 3: Implementierung einer Prioritätswarteschlange mit Azure Service Bus-Themen und -Abonnements](./_images/priority-queue-service-bus.png)
 
-
 In der obigen Abbildung erstellt die Anwendung mehrere Nachrichten und weist einer benutzerdefinierten Eigenschaft namens `Priority` in jeder Nachricht entweder den Wert `High` oder `Low` zu. Diese Nachrichten werden von der Anwendung für ein Thema bereitgestellt. Dem Thema sind zwei Abonnements zugeordnet, die beide anhand der Eigenschaft `Priority` Nachrichten filtern. Ein Abonnement akzeptiert Nachrichten, bei denen die Eigenschaft `Priority` auf `High` festgelegt ist, während das andere Abonnement Nachrichten akzeptiert, bei denen die Eigenschaft `Priority` auf `Low` festgelegt ist. Ein Consumerpool liest Nachrichten aus jedem Abonnement. Das Abonnement mit hoher Priorität weist einen größeren Pool auf. Diese Consumer können eventuell auf leistungsstärkeren Computern mit einer größeren Anzahl verfügbarer Ressourcen ausgeführt werden als die Consumer im Pool mit niedriger Priorität.
 
 Beachten Sie, dass die Bezeichnung von Nachrichten mit hoher und niedriger Priorität in diesem Beispiel keine Besonderheit darstellt. Es handelt sich lediglich um Bezeichnungen, die in den einzelnen Nachrichten als Eigenschaften angegeben sind und zur Weiterleitung von Nachrichten an ein bestimmtes Abonnement verwendet werden. Falls zusätzliche Prioritäten erforderlich sein sollten, ist es relativ einfach, weitere Abonnements und Pools von Consumerprozessen für die Verarbeitung dieser Prioritäten zu erstellen.
@@ -121,6 +117,7 @@ public class PriorityWorkerRole : RoleEntryPoint
   }
 }
 ```
+
 Die Workerrolle `PriorityQueue.High` und `PriorityQueue.Low` überschreiben die Standardfunktionalität der `ProcessMessage`-Methode. Im folgenden Code wird die `ProcessMessage`-Methode für die Workerrolle `PriorityQueue.High` veranschaulicht.
 
 ```csharp
@@ -170,11 +167,10 @@ Die folgenden Muster und Anweisungen können für die Implementierung dieses Mus
 
 - [Einführung in asynchrone Nachrichten](https://msdn.microsoft.com/library/dn589781.aspx). Ein Consumerdienst, der eine Anforderung verarbeitet, muss möglicherweise eine Antwort an die Instanz der Anwendung senden, die die Anforderung bereitgestellt hat. Dieser Primer stellt Informationen zu den Strategien bereit, die Sie zur Implementierung von Anforderung/Antwort-Nachrichten implementieren können.
 
-- [Muster „Konkurrierende Consumer“](competing-consumers.md): Um den Durchsatz der Warteschlangen zu erhöhen, können mehrere Consumer auf die gleiche Warteschlange lauschen und die Aufgaben parallel verarbeiten. Diese Consumer konkurrieren um Nachrichten, doch nur ein Consumer sollte in der Lage sein, die einzelnen Nachrichten zu verarbeiten. Dieses Muster bietet weitere Informationen über die Vor- und Nachteile, die sich bei der Implementierung dieser Vorgehensweise ergeben.
+- [Muster „Konkurrierende Consumer“](./competing-consumers.md): Um den Durchsatz der Warteschlangen zu erhöhen, können mehrere Consumer auf die gleiche Warteschlange lauschen und die Aufgaben parallel verarbeiten. Diese Consumer konkurrieren um Nachrichten, doch nur ein Consumer sollte in der Lage sein, die einzelnen Nachrichten zu verarbeiten. Dieses Muster bietet weitere Informationen über die Vor- und Nachteile, die sich bei der Implementierung dieser Vorgehensweise ergeben.
 
-- [Muster „Drosselung“](throttling.md): Sie können Drosselungen über Warteschlangen implementieren. Anhand von Prioritätsnachrichten kann sichergestellt werden, dass Anforderungen von kritischen Anwendungen oder Anwendungen, die von wichtigen Kunden ausgeführt werden, Vorrang gegenüber Anforderungen von weniger wichtigen Anwendungen haben.
+- [Muster „Drosselung“](./throttling.md): Sie können Drosselungen über Warteschlangen implementieren. Anhand von Prioritätsnachrichten kann sichergestellt werden, dass Anforderungen von kritischen Anwendungen oder Anwendungen, die von wichtigen Kunden ausgeführt werden, Vorrang gegenüber Anforderungen von weniger wichtigen Anwendungen haben.
 
 - [Leitfaden für die automatische Skalierung](https://msdn.microsoft.com/library/dn589774.aspx): Die Größe des Pools von Consumerprozessen, die eine Warteschlange verarbeiten, kann abhängig von der Länge der Warteschlange skaliert werden. Diese Strategie kann helfen, um die Leistung insbesondere bei Pools zu verbessern, die Nachrichten mit hoher Priorität verarbeiten.
 
 - [Enterprise Integration Patterns with Service Bus](https://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) (Unternehmensintegrationsmuster mit Service Bus) im Blog von Abhishek Lal
-

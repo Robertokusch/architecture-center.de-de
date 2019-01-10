@@ -1,19 +1,17 @@
 ---
-title: Externer Konfigurationsspeicher
+title: Muster mit externem Konfigurationsspeicher
+titleSuffix: Cloud Design Patterns
 description: Konfigurationsinformationen aus dem Anwendungsbereitstellungspaket an einen zentralen Speicherort verschieben
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- management-monitoring
-ms.openlocfilehash: 733ca979903d1526d3a1a6b281a8903893e19fda
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 7e37e5bc052a9d8e8747a3a4ac3d79a311185ea4
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542280"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011309"
 ---
 # <a name="external-configuration-store-pattern"></a>Muster mit externem Konfigurationsspeicher
 
@@ -41,12 +39,11 @@ Der Sicherungsspeicher, den Sie für Konfigurationsinformationen auswählen, sol
 
 ![Die Abbildung zeigt einen Überblick über das Muster des externen Konfigurationsspeichers mit einem optionalen lokalen Cache.](./_images/external-configuration-store-overview.png)
 
-
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
 Beachten Sie die folgenden Punkte bei der Entscheidung, wie dieses Muster implementiert werden soll:
 
-Wählen Sie einen Sicherungsspeicher aus, der eine akzeptable Leistung und eine hohe Verfügbarkeit und Stabilität bietet und im Rahmen der Anwendungswartung und -verwaltung gesichert werden kann. In einer cloudgehosteten Anwendung ist die Verwendung eines Cloudspeichermechanismus in der Regel eine gute Wahl, um diese Anforderungen zu erfüllen.
+Wählen Sie einen Sicherungsspeicher aus, der eine akzeptable Leistung, Hochverfügbarkeit und Stabilität bietet und im Rahmen der Anwendungswartung und -verwaltung gesichert werden kann. In einer cloudgehosteten Anwendung ist die Verwendung eines Cloudspeichermechanismus in der Regel eine gute Wahl, um diese Anforderungen zu erfüllen.
 
 Gestalten Sie das Schema des Sicherungsspeichers so, dass der Speicher hinsichtlich der Informationsarten, die er speichern kann, flexibel ist. Stellen Sie sicher, dass er für alle Konfigurationsanforderungen wie typisierte Daten, Sammlungen von Einstellungen, mehrere Versionen von Einstellungen und andere Funktionen geeignet ist, die die Anwendungen erfordern, die den Speicher verwenden. Das Schema sollte sich leicht erweitern lassen, um zusätzliche Einstellungen zu unterstützen, wenn sich die Anforderungen ändern.
 
@@ -78,7 +75,7 @@ Dieses Muster ist hilfreich:
 
 ## <a name="example"></a>Beispiel
 
-In einer gehosteten Microsoft Azure-Anwendung besteht eine gängige Methode für die externe Speicherung von Konfigurationsdaten darin, Azure Storage zu verwenden. Azure Storage ist stabil, bietet eine hohe Leistung und wird für eine hohe Verfügbarkeit dreimal repliziert (mit automatischem Failover). Azure Table Storage bietet einen Schlüssel/Wert-Speicher mit der Möglichkeit, ein flexibles Schema für die Werte zu verwenden. Azure Blob Storage bietet einen hierarchisch strukturierten, containerbasierten Speicher, der beliebige Datentypen in einzeln benannten Blobs aufnehmen kann.
+In einer gehosteten Microsoft Azure-Anwendung besteht eine gängige Methode für die externe Speicherung von Konfigurationsdaten darin, Azure Storage zu verwenden. Azure Storage ist stabil, bietet eine hohe Leistung und wird für Hochverfügbarkeit dreimal repliziert (mit automatischem Failover). Azure Table Storage bietet einen Schlüssel/Wert-Speicher mit der Möglichkeit, ein flexibles Schema für die Werte zu verwenden. Azure Blob Storage bietet einen hierarchisch strukturierten, containerbasierten Speicher, der beliebige Datentypen in einzeln benannten Blobs aufnehmen kann.
 
 Das folgende Beispiel zeigt, wie ein Konfigurationsspeicher über Blob Storage implementiert werden kann, um Konfigurationsinformationen zu speichern und verfügbar zu machen. Die `BlobSettingsStore`-Klasse abstrahiert Blob Storage für das Aufnehmen von Konfigurationsinformationen und implementiert die `ISettingsStore`-Schnittstelle, die im folgenden Code gezeigt wird.
 
@@ -101,7 +98,7 @@ Die `ExternalConfigurationManager`-Klasse fungiert als Wrapper um ein `BlobSetti
 
 Beachten Sie, dass alle Einstellungen für den schnellen Zugriff auch in einem `Dictionary`-Objekt innerhalb der `ExternalConfigurationManager`-Klasse zwischengespeichert werden. Die `GetSetting`-Methode zum Abrufen einer Konfigurationseinstellung liest die Daten aus dem Cache. Wenn die Einstellung nicht im Cache gefunden wird, wird sie stattdessen aus dem `BlobSettingsStore`-Objekt abgerufen.
 
-Die `GetSettings`-Methode ruft die `CheckForConfigurationChanges`-Methode ab, um festzustellen, ob sich die Konfigurationsinformationen in Blob Storage geändert haben. Hierzu wird die Versionsnummer untersucht und mit der aktuellen Versionsnummer verglichen, die im `ExternalConfigurationManager`-Objekt gespeichert ist. Wenn eine oder mehrere Änderungen aufgetreten sind, wird das `Changed`-Ereignis ausgelöst, und die im `Dictionary`-Objekt zwischengespeicherten Konfigurationseinstellungen werden aktualisiert. Dies ist eine Anwendung des [Cache-Aside-Musters](cache-aside.md).
+Die `GetSettings`-Methode ruft die `CheckForConfigurationChanges`-Methode ab, um festzustellen, ob sich die Konfigurationsinformationen in Blob Storage geändert haben. Hierzu wird die Versionsnummer untersucht und mit der aktuellen Versionsnummer verglichen, die im `ExternalConfigurationManager`-Objekt gespeichert ist. Wenn eine oder mehrere Änderungen aufgetreten sind, wird das `Changed`-Ereignis ausgelöst, und die im `Dictionary`-Objekt zwischengespeicherten Konfigurationseinstellungen werden aktualisiert. Dies ist eine Anwendung des [Cache-Aside-Musters](./cache-aside.md).
 
 Das folgende Codebeispiel zeigt, wie das `Changed`-Ereignis, die `GetSettings`-Methode und die `CheckForConfigurationChanges`-Methode implementiert werden:
 
@@ -130,7 +127,7 @@ public class ExternalConfigurationManager : IDisposable
   public string GetAppSetting(string key)
   {
     ...
-    // Try to get the value from the settings cache. 
+    // Try to get the value from the settings cache.
     // If there's a cache miss, get the setting from the settings store and refresh the settings cache.
 
     string value;

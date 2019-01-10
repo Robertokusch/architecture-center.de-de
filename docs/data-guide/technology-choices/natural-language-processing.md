@@ -3,18 +3,22 @@ title: Auswählen einer Technologie zur Verarbeitung von natürlicher Sprache
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: b1cb019164285d16b6e9d34eae220801785adab9
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 699e01bc9905d02fc8ec1113039087189f6e8caf
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902305"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114112"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>Auswählen einer Technologie zur Verarbeitung von natürlicher Sprache in Azure
 
 Die Freiformtextverarbeitung wird für Dokumente durchgeführt, die Absätze mit Text enthalten. Normalerweise dient dies der Suchunterstützung, wird aber auch für andere Aufgaben zur Verarbeitung von natürlicher Sprache (Natural Language Processing, NLP) verwendet, z.B. Stimmungsanalyse, Themenerkennung, Spracherkennung, Schlüsselwortextraktion und Dokumentkategorisierung. In diesem Artikel geht es um die Auswahlmöglichkeiten in Bezug auf Technologie, die der Unterstützung von NLP-Aufgaben dient.
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="what-are-your-options-when-choosing-an-nlp-service"></a>Welche Optionen stehen Ihnen bei der Auswahl eines NLP-Diensts zur Verfügung?
+
+<!-- markdownlint-enable MD026 -->
 
 In Azure verfügen die folgenden Dienste über Funktionen zur Verarbeitung natürlicher Sprache:
 
@@ -36,7 +40,7 @@ Beantworten Sie zunächst die folgenden Fragen, um die Auswahlmöglichkeiten ein
 
 ## <a name="capability-matrix"></a>Funktionsmatrix
 
-In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst.  
+In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst.
 
 ### <a name="general-capabilities"></a>Allgemeine Funktionen
 
@@ -50,7 +54,7 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 ### <a name="low-level-natural-language-processing-capabilities"></a>Funktionen zur speziellen Verarbeitung von natürlicher Sprache
 
 | | Azure HDInsight | Microsoft Cognitive Services |  
-| --- | --- | --- | 
+| --- | --- | --- |
 | Tokenizer | Ja (Spark NLP) | Ja (API für linguistische Analyse) |
 | Wortstammerkennung | Ja (Spark NLP) | Nein  |
 | Lemmatisierung | Ja (Spark NLP) | Nein  |
@@ -63,8 +67,8 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 ### <a name="high-level-natural-language-processing-capabilities"></a>Funktionen zur allgemeinen Verarbeitung von natürlicher Sprache
 
 | | Azure HDInsight | Microsoft Cognitive Services |
-| --- | --- | --- | 
-| Entitäts-/Absichtsidentifizierung und -extraktion | Nein  | Ja (Language Understanding Intelligent Service-API, LUIS-API) |    
+| --- | --- | --- |
+| Entitäts-/Absichtsidentifizierung und -extraktion | Nein  | Ja (Language Understanding Intelligent Service-API, LUIS-API) |
 | Themenerkennung | Ja (Spark NLP) | Ja (Textanalyse-API) |
 | Rechtschreibprüfung | Ja (Spark NLP) | Ja (Bing-Rechtschreibprüfungs-API) |
 | Stimmungsanalyse | Ja (Spark NLP) | Ja (Textanalyse-API) |

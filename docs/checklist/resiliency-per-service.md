@@ -5,12 +5,12 @@ description: Checkliste mit einer Anleitung zur Resilienz für verschiedene Azur
 author: petertaylor9999
 ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 55f17d3b24af4be4f313c66923f4153296041545
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: e1fb780cf9f54a5078cc5d3c6b597b351f93e05e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307179"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112667"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Checkliste für Resilienz für bestimmte Azure-Dienste
 
@@ -124,7 +124,7 @@ Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als p
 
 **Replizieren Sie die Datenbank.** Verwenden Sie SQL Server AlwaysOn-Verfügbarkeitsgruppen, um die Datenbank zu replizieren. Dadurch erreichen Sie hohe Verfügbarkeit, wenn eine SQL Server-Instanz ausfällt. Weitere Informationen finden Sie unter [Ausführen von Windows-VMs für eine n-schichtige Anwendung](../reference-architectures/virtual-machines-windows/n-tier.md).
 
-**Sichern Sie die Datenbank**. Wenn Sie bereits [Azure Backup](https://azure.microsoft.com/documentation/services/backup/) zum Sichern Ihrer VMs verwenden, erwägen Sie die Nutzung von [Azure Backup für SQL Server-Workloads mit DPM](/azure/backup/backup-azure-backup-sql/). Bei dieser Vorgehensweise gibt es eine Sicherungsadministratorrolle für die Organisation und ein einheitliches Wiederherstellungsverfahren für VMs und SQL Server. Verwenden Sie andernfalls die [verwaltete SQL Server-Sicherung in Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx).
+**Sichern Sie die Datenbank**. Wenn Sie bereits [Azure Backup](/azure/backup/) zum Sichern Ihrer VMs verwenden, erwägen Sie die Nutzung von [Azure Backup für SQL Server-Workloads mit DPM](/azure/backup/backup-azure-backup-sql/). Bei dieser Vorgehensweise gibt es eine Sicherungsadministratorrolle für die Organisation und ein einheitliches Wiederherstellungsverfahren für VMs und SQL Server. Verwenden Sie andernfalls die [verwaltete SQL Server-Sicherung in Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx).
 
 ## <a name="traffic-manager"></a>Traffic Manager
 

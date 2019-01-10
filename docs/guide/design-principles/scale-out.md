@@ -1,14 +1,16 @@
 ---
 title: Ausrichtung des Entwurfs auf horizontale Skalierung
+titleSuffix: Azure Application Architecture Guide
 description: Cloudanwendungen sollten mit Blick auf die horizontale Skalierung entworfen werden.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 9b57f4e6a17eece4f5283436e104c286602bb54f
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: 9e8a36146c711fda2b03e00dfeb3554caf1fd5f0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325653"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113058"
 ---
 # <a name="design-to-scale-out"></a>Ausrichtung des Entwurfs auf horizontale Skalierung
 
@@ -18,11 +20,11 @@ Einer der Hauptvorteile der Cloud ist die elastische Skalierbarkeit: Sie können
 
 ## <a name="recommendations"></a>Empfehlungen
 
-**Vermeiden Sie Instanzbindung**. Bindung oder *Sitzungsaffinität* tritt auf, wenn Anforderungen desselben Clients immer an den gleichen Server weitergeleitet werden. Dies beeinträchtigt die Fähigkeit einer Anwendung, sich horizontal hochskalieren zu lassen. Beispielsweise wird der Datenverkehr eines Benutzers mit hohem Datenvolumen nicht auf mehrere Instanzen verteilt. Gründe für die Bindung können das Speichern des Sitzungszustands im Arbeitsspeicher und die Verwendung von bestimmten Schlüsseln für die Verschlüsselung sein. Stellen Sie sicher, dass jede Instanz jede Anforderung verarbeiten kann. 
+**Vermeiden Sie Instanzbindung**. Bindung oder *Sitzungsaffinität* tritt auf, wenn Anforderungen desselben Clients immer an den gleichen Server weitergeleitet werden. Dies beeinträchtigt die Fähigkeit einer Anwendung, sich horizontal hochskalieren zu lassen. Beispielsweise wird der Datenverkehr eines Benutzers mit hohem Datenvolumen nicht auf mehrere Instanzen verteilt. Gründe für die Bindung können das Speichern des Sitzungszustands im Arbeitsspeicher und die Verwendung von bestimmten Schlüsseln für die Verschlüsselung sein. Stellen Sie sicher, dass jede Instanz jede Anforderung verarbeiten kann.
 
-**Identifizieren Sie Engpässe**. Die horizontale Skalierung ist kein Wundermittel für jedes Leistungsproblem. Wenn beispielsweise Ihre Back-End-Datenbank der Engpass ist, hilft das Hinzufügen weiterer Webserver nicht. Identifizieren und beheben Sie zuerst die Engpässe im System, bevor Sie weitere Instanzen einrichten, um das Problem zu lösen. Zustandsbehaftete Teile des Systems sind die wahrscheinlichste Ursache von Engpässen. 
+**Identifizieren Sie Engpässe**. Die horizontale Skalierung ist kein Wundermittel für jedes Leistungsproblem. Wenn beispielsweise Ihre Back-End-Datenbank der Engpass ist, hilft das Hinzufügen weiterer Webserver nicht. Identifizieren und beheben Sie zuerst die Engpässe im System, bevor Sie weitere Instanzen einrichten, um das Problem zu lösen. Zustandsbehaftete Teile des Systems sind die wahrscheinlichste Ursache von Engpässen.
 
-**Teilen Sie Workloads je nach Skalierbarkeitsanforderungen auf.**  Anwendungen bestehen häufig aus mehreren Workloads, die jeweils unterschiedliche Anforderungen an die Skalierung aufweisen. Eine Anwendung verfügt möglicherweise über eine öffentliche Site und eine separate Site für die Verwaltung. Auf der öffentlichen Site treten möglicherweise plötzliche Datenverkehrs-Lastspitzen auf, während die Verwaltungssite eine kleinere und besser vorhersehbare Last aufweist. 
+**Teilen Sie Workloads je nach Skalierbarkeitsanforderungen auf.**  Anwendungen bestehen häufig aus mehreren Workloads, die jeweils unterschiedliche Anforderungen an die Skalierung aufweisen. Eine Anwendung verfügt möglicherweise über eine öffentliche Site und eine separate Site für die Verwaltung. Auf der öffentlichen Site treten möglicherweise plötzliche Datenverkehrs-Lastspitzen auf, während die Verwaltungssite eine kleinere und besser vorhersehbare Last aufweist.
 
 **Lagern Sie ressourcenintensive Tasks aus.** Tasks, die große Mengen an CPU- oder E/A-Ressourcen benötigen, sollten nach Möglichkeit in [Hintergrundaufträge][background-jobs] verschoben werden, um die Last auf dem Front-End, das die Benutzeranforderungen verarbeitet, zu minimieren.
 
@@ -32,11 +34,10 @@ Einer der Hauptvorteile der Cloud ist die elastische Skalierbarkeit: Sie können
 
 **Konzipieren Sie Ihr System so, dass es horizontal herunterskaliert werden kann**.  Denken Sie daran, dass es bei elastischer Skalierung Zeiträume geben wird, in denen die Anwendung horizontal herunterskaliert wird, indem Instanzen entfernt werden. Die Anwendung muss die Entfernung von Instanzen ordnungsgemäß verarbeiten können. Nachfolgenden finden Sie einige Möglichkeiten, die Anwendung für ein horizontales Herunterskalieren zu konfigurieren:
 
-- Die Anwendung sollte auf „Herunterfahren“-Ereignisse lauschen (wenn verfügbar) und das Herunterfahren ordnungsgemäß ausführen. 
-- Clients/Consumer eines Diensts sollten die Behandlung vorübergehender Fehler und Wiederholungsversuche unterstützen. 
-- Ziehen Sie bei Tasks mit langer Ausführungsdauer in Betracht, die Arbeit aufzuteilen, indem Sie Prüfpunkte oder das Muster [Pipes und Filter][pipes-filters-pattern] verwenden. 
-- Platzieren Sie Arbeitselemente in einer Warteschlange, sodass eine andere Instanz die Verarbeitung aufnehmen kann, wenn eine Instanz mitten in der Verarbeitung entfernt wird. 
-
+- Die Anwendung sollte auf „Herunterfahren“-Ereignisse lauschen (wenn verfügbar) und das Herunterfahren ordnungsgemäß ausführen.
+- Clients/Consumer eines Diensts sollten die Behandlung vorübergehender Fehler und Wiederholungsversuche unterstützen.
+- Ziehen Sie bei Tasks mit langer Ausführungsdauer in Betracht, die Arbeit aufzuteilen, indem Sie Prüfpunkte oder das Muster [Pipes und Filter][pipes-filters-pattern] verwenden.
+- Platzieren Sie Arbeitselemente in einer Warteschlange, sodass eine andere Instanz die Verarbeitung aufnehmen kann, wenn eine Instanz mitten in der Verarbeitung entfernt wird.
 
 <!-- links -->
 

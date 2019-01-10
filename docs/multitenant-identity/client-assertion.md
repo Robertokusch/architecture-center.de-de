@@ -6,18 +6,19 @@ ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: adfs
 pnp.series.next: key-vault
-ms.openlocfilehash: 58eed82c982fe1c6cba0f04b237d92d117a26fd4
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: b5951153fff109b648e7e4f74daac0f414240fe4
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902262"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113143"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a>Abrufen von Zugriffstoken aus Azure AD mithilfe der Clientassertion
 
 [![GitHub](../_images/github.png)-Beispielcode][sample application]
 
 ## <a name="background"></a>Hintergrund
+
 Bei Verwendung des Autorisierungscode- oder Hybridvorgangs in OpenID Connect tauscht der Client einen Autorisierungscode gegen ein Zugriffstoken. In diesem Schritt muss der Client sich beim Server authentifizieren.
 
 ![Geheimer Clientschlüssel](./images/client-secret.png)
@@ -26,7 +27,7 @@ Eine Möglichkeit zum Authentifizieren des Clients bietet ein geheimer Clientsch
 
 In dieser Beispielanforderung fordert der Client vom Identitätsanbieter ein Zugriffstoken an. Beachten Sie den `client_secret` -Parameter.
 
-```
+```http
 POST https://login.microsoftonline.com/b9bd2162xxx/oauth2/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
@@ -45,7 +46,7 @@ Um die Sicherheit zu erhöhen, können Sie die [Clientassertion] anstelle eines 
 
 Hier eine Tokenanforderung mit Clientassertion:
 
-```
+```http
 POST https://login.microsoftonline.com/b9bd2162xxx/oauth2/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
@@ -61,8 +62,6 @@ Beachten Sie, dass der Parameter `client_secret` nicht mehr verwendet wird. Stat
 
 > [!NOTE]
 > X.509-Zertifikate sind nicht die einzige Form der Clientassertion, aber wir konzentrieren uns an dieser Stelle darauf, weil diese Zertifikate von Azure AD unterstützt werden.
-> 
-> 
 
 Zur Laufzeit liest die Webanwendung das Zertifikat aus dem Zertifikatspeicher. Das Zertifikat muss auf dem gleichen Computer wie die Web-App installiert sein.
 
@@ -100,7 +99,8 @@ Informationen zum Einrichten einer Clientassertion in der Surveys-Anwendung find
 
 [**Weiter**][key vault]
 
-<!-- Links -->
+<!-- links -->
+
 [configure-web-app]: /azure/app-service-web/web-sites-configure/
 [azure-management-portal]: https://portal.azure.com
 [Clientassertion]: https://tools.ietf.org/html/rfc7521

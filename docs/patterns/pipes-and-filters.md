@@ -1,19 +1,17 @@
 ---
-title: Pipes und Filter
+title: Muster „Pipes und Filter“
+titleSuffix: Cloud Design Patterns
 description: Unterteilen einer Aufgabe, die komplexe Verarbeitungsvorgänge ausführt, in eine Reihe wiederverwendbarer separater Elemente
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- messaging
-ms.openlocfilehash: fd616676f9487bdfe1bf23b3d0fec6c65b97a8f4
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 7084b538159f7104d2322e35f94f43e905f700bf
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429569"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011683"
 ---
 # <a name="pipes-and-filters-pattern"></a>Muster „Pipes und Filter“
 
@@ -39,7 +37,6 @@ Unterteilen Sie die für jeden Datenstrom erforderliche Verarbeitung in eine Rei
 
 ![Abbildung 2: Lösung mit implementierten Pipes und Filtern](./_images/pipes-and-filters-solution.png)
 
-
 Die Verarbeitungszeit für eine einzelne Anforderung hängt von der Geschwindigkeit des langsamsten Filters in der Pipeline ab. Ein oder mehrere Filter könnten einen Engpass darstellen, insbesondere bei einer großen Anzahl von Anforderungen in einem Datenstrom aus einer bestimmten Datenquelle. Ein wesentlicher Vorteil der Pipelinestruktur besteht darin, dass sie die Ausführung paralleler Instanzen von langsamen Filtern ermöglicht, wodurch das System die Last verteilen und den Durchsatz verbessern kann.
 
 Die Filter, aus denen sich eine Pipeline zusammensetzt, können auf verschiedenen Computern ausgeführt werden, sodass sie unabhängig voneinander skaliert werden und die Elastizität vieler Cloudumgebungen nutzen können. Ein rechenintensiver Filter kann auf leistungsstarker Hardware ausgeführt werden, während andere weniger anspruchsvolle Filter auf preiswerterer Standardhardware gehostet werden können. Die Filter müssen sich nicht einmal im selben Rechenzentrum oder am selben geografischen Standort befinden, weshalb jedes Element in einer Pipeline in einer Umgebung nahe bei den benötigten Ressourcen ausgeführt werden kann.  Die folgende Abbildung zeigt ein Beispiel, das für die Pipeline für die Daten aus Quelle 1 gilt.
@@ -50,11 +47,12 @@ Wenn die Ein- und Ausgabe eines Filters als Datenstrom strukturiert sind, ist es
 
 Ein weiterer Vorteil ist die Resilienz, die dieses Modell bieten kann. Wenn ein Filter Fehler verursacht oder der Computer, auf dem dieser ausgeführt wird, nicht mehr verfügbar ist, kann die Pipeline die von dem Filter ausgeführten Tasks erneut planen und diese Tasks an eine andere Instanz der Komponente weiterleiten. Der Ausfall eines einzelnen Filters führt nicht zwangsläufig zum Ausfall der gesamten Pipeline.
 
-Die Verwendung des Musters „Pipes und Filter“ in Verbindung mit dem [Muster „Kompensierende Transaktion“](compensating-transaction.md) ist eine alternative Vorgehensweise zur Implementierung verteilter Transaktionen. Eine verteilte Transaktion kann in einzelne, kompensierbare Tasks zerlegt werden, die mit einem für das Muster „Kompensierende Transaktion“ implementierten Filter implementiert werden können. Die Filter in einer Pipeline können als separate gehostete Tasks implementiert werden, die in der Nähe der Daten, die sie verwalten, ausgeführt werden.
+Die Verwendung des Musters „Pipes und Filter“ in Verbindung mit dem [Muster „Kompensierende Transaktion“](./compensating-transaction.md) ist eine alternative Vorgehensweise zur Implementierung verteilter Transaktionen. Eine verteilte Transaktion kann in einzelne, kompensierbare Tasks zerlegt werden, die mit einem für das Muster „Kompensierende Transaktion“ implementierten Filter implementiert werden können. Die Filter in einer Pipeline können als separate gehostete Tasks implementiert werden, die in der Nähe der Daten, die sie verwalten, ausgeführt werden.
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
 Bei der Entscheidung, wie dieses Muster implementiert werden soll, sind die folgenden Punkte zu beachten:
+
 - **Komplexität**. Durch die zusätzliche Flexibilität, die dieses Muster bietet, erhöht sich möglicherweise auch die Komplexität, insbesondere wenn die Filter in einer Pipeline auf verschiedenen Server verteilt sind.
 
 - **Zuverlässigkeit**: Verwenden Sie eine Infrastruktur, die sicherstellt, dass die zwischen Filtern in einer Pipeline weitergeleiteten Daten nicht verloren gehen.
@@ -70,11 +68,12 @@ Bei der Entscheidung, wie dieses Muster implementiert werden soll, sind die folg
 ## <a name="when-to-use-this-pattern"></a>Verwendung dieses Musters
 
 Verwenden Sie dieses Muster in folgenden Fällen:
+
 - Die von einer Anwendung benötigten Verarbeitungsschritte können mühelos in eine Reihe von unabhängigen Schritten zerlegt werden.
 
 - Die von einer Anwendung ausgeführten Verarbeitungsschritte stellen unterschiedliche Anforderungen an die Skalierbarkeit.
 
-    >  Es ist möglich, Filter zu gruppieren, die im selben Prozess skaliert werden sollen. Weitere Informationen finden Sie unter [Muster „Computeressourcenkonsolidierung“](compute-resource-consolidation.md).
+    >  Es ist möglich, Filter zu gruppieren, die im selben Prozess skaliert werden sollen. Weitere Informationen finden Sie unter [Muster „Computeressourcenkonsolidierung“](./compute-resource-consolidation.md).
 
 - Es wird Flexibilität benötigt, um eine Neuanordnung der von einer Anwendung ausgeführten Verarbeitungsschritte oder das Hinzufügen und Entfernen von Schritten zu ermöglichen.
 
@@ -83,6 +82,7 @@ Verwenden Sie dieses Muster in folgenden Fällen:
 - Es ist eine zuverlässige Lösung erforderlich, die die Auswirkungen von Fehlern in einem Schritt während der Datenverarbeitung minimiert.
 
 Dieses Muster ist in folgenden Fällen möglicherweise nicht geeignet:
+
 - Die von einer Anwendung ausgeführten Verarbeitungsschritte sind nicht unabhängig voneinander oder müssen gemeinsam im Rahmen derselben Transaktion ausgeführt werden.
 
 - Die Menge an Kontext- oder Statusinformationen, die für einen Schritt erforderlich sind, macht diese Vorgehensweise ineffizient. Statusinformationen können stattdessen möglicherweise in einer Datenbank gespeichert werden. Verwenden Sie diese Strategie jedoch nicht, wenn die zusätzliche Auslastung der Datenbank zu übermäßigen Konflikten führt.
@@ -93,10 +93,9 @@ Sie können eine Reihe von Nachrichtenwarteschlangen verwenden, um die für die 
 
 ![Abbildung 4: Implementierung einer Pipeline mithilfe von Nachrichtenwarteschlangen](./_images/pipes-and-filters-message-queues.png)
 
-
 Wenn Sie eine Lösung in Azure erstellen, können Sie durch Service Bus-Warteschlangen einen zuverlässigen und skalierbaren Warteschlangenmechanismus bereitstellen. Die unten in C# gezeigte Klasse `ServiceBusPipeFilter` zeigt, wie Sie einen Filter implementieren können, der Eingabenachrichten von einer Warteschlange empfängt, diese Nachrichten verarbeitet und die Ergebnisse für eine andere Warteschlange bereitstellt.
 
->  Die Klasse `ServiceBusPipeFilter` wird im Projekt „PipesAndFilters.Shared“ definiert, das auf [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters) zur Verfügung gestellt wird.
+> Die Klasse `ServiceBusPipeFilter` wird im Projekt „PipesAndFilters.Shared“ definiert, das auf [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters) zur Verfügung gestellt wird.
 
 ```csharp
 public class ServiceBusPipeFilter
@@ -278,8 +277,9 @@ public class FinalReceiverRoleEntry : RoleEntryPoint
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
 Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
+
 - Ein Beispiel für dieses Muster steht auf [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters).
-- [Muster „Konkurrierende Consumer“](competing-consumers.md): Eine Pipeline kann mehrere Instanzen eines oder mehrerer Filter enthalten. Diese Vorgehensweise ist nützlich, um parallele Instanzen von langsamen Filtern auszuführen, sodass das System die Last verteilen und den Durchsatz verbessern kann. Jede Instanz eines Filters konkurriert mit anderen Instanzen um die Eingabe, wobei zwei Instanzen eines Filters nicht die gleichen Daten verarbeiten können sollten. In diesem Artikel wird diese Vorgehensweise erläutert.
-- [Muster „Computeressourcenkonsolidierung“](compute-resource-consolidation.md): Filter, die im selben Prozess skaliert werden sollen, können gruppiert werden. Dieser Artikel enthält weitere Informationen über die Vor- und Nachteile dieser Vorgehensweise.
-- [Muster „Kompensierende Transaktion“](compensating-transaction.md): Ein Filter kann als umkehrbarer Vorgang oder mit einem kompensierenden Vorgang, der im Fehlerfall den Zustand einer früheren Version wiederherstellt, implementiert werden. In diesem Artikel wird erläutert, wie dieses Muster zur Verwaltung oder Bereitstellung von letztlicher Konsistenz implementiert werden kann.
+- [Muster „Konkurrierende Consumer“](./competing-consumers.md): Eine Pipeline kann mehrere Instanzen eines oder mehrerer Filter enthalten. Diese Vorgehensweise ist nützlich, um parallele Instanzen von langsamen Filtern auszuführen, sodass das System die Last verteilen und den Durchsatz verbessern kann. Jede Instanz eines Filters konkurriert mit anderen Instanzen um die Eingabe, wobei zwei Instanzen eines Filters nicht die gleichen Daten verarbeiten können sollten. In diesem Artikel wird diese Vorgehensweise erläutert.
+- [Muster „Computeressourcenkonsolidierung“](./compute-resource-consolidation.md): Filter, die im selben Prozess skaliert werden sollen, können gruppiert werden. Dieser Artikel enthält weitere Informationen über die Vor- und Nachteile dieser Vorgehensweise.
+- [Muster „Kompensierende Transaktion“](./compensating-transaction.md): Ein Filter kann als umkehrbarer Vorgang oder mit einem kompensierenden Vorgang, der im Fehlerfall den Zustand einer früheren Version wiederherstellt, implementiert werden. In diesem Artikel wird erläutert, wie dieses Muster zur Verwaltung oder Bereitstellung von letztlicher Konsistenz implementiert werden kann.
 - [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/) (Idempotenzmuster) im Blog von Jonathan Oliver

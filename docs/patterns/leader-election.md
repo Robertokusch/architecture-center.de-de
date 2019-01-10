@@ -1,19 +1,17 @@
 ---
-title: Auswahl einer übergeordneten Instanz
+title: Muster für die Auswahl einer übergeordneten Instanz
+titleSuffix: Cloud Design Patterns
 description: Koordinieren Sie die Aktionen, die von einer Sammlung zusammenarbeitender Taskinstanzen ausgeführt werden, in einer verteilten Anwendung, indem eine Instanz als übergeordnete Instanz ausgewählt wird, die die Verantwortung für die Verwaltung der anderen Instanzen übernimmt.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- resiliency
-ms.openlocfilehash: 6cc4b19e889cc9fc692e388498cc16ea56b1c981
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: cfc29e3490735c16b41c494e6cecbb8972cdc705
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429195"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010138"
 ---
 # <a name="leader-election-pattern"></a>Muster für die Auswahl einer übergeordneten Instanz
 
@@ -41,6 +39,7 @@ Eine einzelne Aufgabeninstanz sollte zur übergeordneten Instanz gewählt werden
 Das System muss einen stabilen Mechanismus für die Auswahl der übergeordneten Instanz bereitstellen. Diese Methode muss mit Ereignissen wie Netzwerkausfällen oder Prozessfehlern umgehen können. In vielen Lösungen überwachen die untergeordneten Aufgabeninstanzen die übergeordnete durch eine Taktmethode oder durch Polls. Wenn die festgelegte übergeordnete Instanz unerwartet beendet wird oder ein Netzwerkausfall dafür sorgt, dass sie nicht verfügbar ist, müssen die anderen Instanzen eine neue übergeordnete Instanz wählen.
 
 Für die Wahl einer übergeordneten Instanz zwischen mehreren in einer verteilten Umgebung gibt es mehrere Strategien, einschließlich:
+
 - Auswählen der Aufgabeninstanz mit der niedrigsten Instanz- oder Prozess-ID.
 - Wettbewerb um den Abruf eines verteilten gegenseitigen Ausschlusses. Die erste Aufgabeninstanz, die den gegenseitigen Ausschluss abruft, ist die übergeordnete Instanz. Das System muss jedoch sicherstellen, dass beim Beenden oder Trennen der übergeordneten Instanz vom restlichen System der gegenseitige Ausschluss aufgehoben wird, sodass eine andere Aufgabeninstanz die übergeordnete Instanz werden kann.
 - Implementieren eines der verbreiteten Algorithmen für die Wahl der übergeordneten Instanz, z.B. [Bullyalgorithmus](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) oder [Ringalgorithmus](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html). Bei diesen Algorithmen wird davon ausgegangen, dass jeder Kandidat im Wahlverfahren eine eindeutige ID aufweist und zuverlässig mit den anderen Kandidaten kommunizieren kann.
@@ -48,6 +47,7 @@ Für die Wahl einer übergeordneten Instanz zwischen mehreren in einer verteilte
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
 Beachten Sie die folgenden Punkte bei der Entscheidung, wie dieses Muster implementiert werden soll:
+
 - Die Wahl einer übergeordneten Instanz sollte gegenüber vorübergehenden und permanenten Fehlern robust sein.
 - Es muss möglich sein, zu erkennen, wenn die übergeordnete Instanz einen Fehler aufweist oder anderweitig nicht mehr verfügbar ist, z.B. aufgrund eines Kommunikationsfehlers. Wie schnell eine Erkennung benötigt wird, ist systemabhängig. Einige Systeme funktionieren möglicherweise für kurze Zeit ohne übergeordnete Instanz. In dieser Zeit kann ein vorübergehender Fehler behoben werden. In anderen Fällen kann es erforderlich sein, den Ausfall der übergeordneten Instanz sofort zu erkennen und eine neue Wahl auszulösen.
 - In einem System, in dem eine automatische horizontale Skalierung implementiert ist, kann die übergeordnete Instanz möglicherweise beendet werden, wenn das System zurückskaliert und einige der Verarbeitungsressourcen herunterfährt.
@@ -59,9 +59,10 @@ Beachten Sie die folgenden Punkte bei der Entscheidung, wie dieses Muster implem
 
 Verwenden Sie dieses Muster, wenn die Aufgaben in einer verteilten Anwendung wie einer in der Cloud gehosteten Lösung eine sorgfältige Koordination erfordern und keine natürliche übergeordnete Instanz besteht.
 
->  Vermeiden Sie es, die übergeordnete Instanz zu einem Engpass im System zu machen. Die übergeordnete Instanz dient zum Koordinieren der Arbeit der untergeordneten Aufgaben und muss nicht unbedingt selbst an dieser Arbeit teilnehmen – obwohl dies möglich sein sollte, wenn die Aufgabe nicht zur übergeordneten Instanz gewählt wurde.
+> Vermeiden Sie es, die übergeordnete Instanz zu einem Engpass im System zu machen. Die übergeordnete Instanz dient zum Koordinieren der Arbeit der untergeordneten Aufgaben und muss nicht unbedingt selbst an dieser Arbeit teilnehmen – obwohl dies möglich sein sollte, wenn die Aufgabe nicht zur übergeordneten Instanz gewählt wurde.
 
 Dieses Muster ist in folgenden Fällen möglicherweise nicht geeignet:
+
 - Es gibt eine natürliche übergeordnete Instanz oder einen dedizierten Prozess, der immer die Rolle der übergeordneten Instanz übernehmen kann. Beispielsweise kann es möglich sein, einen Singleton-Prozess zu implementieren, der die Aufgabeninstanzen koordiniert. Wenn bei diesem Prozess ein Fehler auftritt oder seine Integrität beeinträchtigt wird, kann das System ihn herunterfahren und neu starten.
 - Die Koordination zwischen Aufgaben kann mithilfe einer weniger aufwendigen Methode erreicht werden. Wenn beispielsweise mehrere Aufgabeninstanzen einfach einen koordinierten Zugriff auf eine freigegebene Ressource benötigen, ist eine optimistische oder pessimistische Sperrung zum Steuern des Zugriffs eine bessere Lösung.
 - Eine Lösung eines Drittanbieters ist besser geeignet. Beispielsweise verwendet der Microsoft Azure HDInsight-Dienst (basierend auf Apache Hadoop) die von Apache ZooKeeper bereitgestellten Dienste zum Koordinieren der Zuordnung und Verringerung von Aufgaben, die Daten erfassen und zusammenfassen.
@@ -70,8 +71,8 @@ Dieses Muster ist in folgenden Fällen möglicherweise nicht geeignet:
 
 Das Projekt DistributedMutex in der Projektmappe LeaderElection (ein Beispiel für dieses Muster ist bei [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election) zu finden) zeigt, wie mit einer Lease für ein Azure Storage-Blob ein Mechanismus zum Implementieren eines freigegebenen, verteilten gegenseitigen Ausschlusses bereitgestellt werden kann. Mit diesem gegenseitigen Ausschluss kann eine übergeordnete Instanz aus einer Gruppe von Rolleninstanzen in einem Azure-Clouddienst gewählt werden. Die erste Rolleninstanz, die die Lease erhält, wird als übergeordnete Instanz bestimmt und bleibt diese, bis sie die Lease freigibt oder diese nicht mehr erneuern kann. Andere Rolleninstanzen können die Bloblease für den Fall, dass die übergeordnete Instanz nicht mehr verfügbar ist, weiterhin überwachen.
 
->  Eine Bloblease ist eine exklusive Schreibsperre auf ein Blob. Ein einzelnes Blob kann jeweils nur einer Lease unterliegen. Eine Rolleninstanz kann eine Lease für ein angegebenes Blob anfordern und erhält diese, wenn keine andere Rolleninstanz über eine Lease für dasselbe Blob verfügt. Andernfalls löst die Anforderung eine Ausnahme aus.
-> 
+> Eine Bloblease ist eine exklusive Schreibsperre auf ein Blob. Ein einzelnes Blob kann jeweils nur einer Lease unterliegen. Eine Rolleninstanz kann eine Lease für ein angegebenes Blob anfordern und erhält diese, wenn keine andere Rolleninstanz über eine Lease für dasselbe Blob verfügt. Andernfalls löst die Anforderung eine Ausnahme aus.
+>
 > Um eine fehlerhafte Rolleninstanz zu vermeiden, die die Lease unbegrenzt beibehält, geben Sie eine Gültigkeitsdauer für die Lease an. Wenn diese abläuft, ist die Lease wieder verfügbar. Während eine Rolleninstanz über die Lease verfügt, kann sie jedoch eine Erneuerung der Lease anfordern und erhält dann die Lease für einen weiteren Zeitraum. Die Rolleninstanz kann diesen Vorgang fortlaufend wiederholen, wenn sie die Lease beibehalten möchte.
 > Weitere Informationen zum Leasen eines Blobs finden Sie unter [Leasen eines Blobs (REST-API)](https://msdn.microsoft.com/library/azure/ee691972.aspx).
 
@@ -167,7 +168,6 @@ Die `KeepRenewingLease`-Methode ist eine weitere Hilfsmethode, die das `BlobLeas
 
 ![Abbildung 1 zeigt die Funktionen der BlobDistributedMutex-Klasse](./_images/leader-election-diagram.png)
 
-
 Im folgenden Codebeispiel wird veranschaulicht, wie die `BlobDistributedMutex`-Klasse in einer Workerrolle verwendet wird. Dieser Code ruft eine Lease für das Blob `MyLeaderCoordinatorTask` im Container der Lease im Entwicklungsspeicher ab und gibt an, dass der in der `MyLeaderCoordinatorTask`-Methode definierte Code immer dann ausgeführt werden soll, wenn die Rolleninstanz als übergeordnete Instanz gewählt wurde.
 
 ```csharp
@@ -186,6 +186,7 @@ private static async Task MyLeaderCoordinatorTask(CancellationToken token)
 ```
 
 Beachten Sie die folgenden Punkte bezüglich der Beispiellösung:
+
 - Das Blob ist potenziell ein Single Point of Failure. Wenn der Blob-Dienst nicht mehr verfügbar ist oder nicht auf ihn zugegriffen werden kann, kann die übergeordnete Instanz die Lease nicht erneuern, und keine andere Rolleninstanz ist in der Lage, die Lease abzurufen. In diesem Fall kann keine Rolleninstanz als übergeordnete Instanz fungieren. Der Blob-Dienst ist jedoch auf Stabilität ausgelegt, daher wird ein vollständiger Ausfall des Blob-Diensts als sehr unwahrscheinlich betrachtet.
 - Wenn der von der übergeordneten Instanz ausgeführte Task angehalten wird, kann die übergeordnete Instanz die Lease weiterhin erneuern. Dadurch werden alle anderen Rolleninstanzen daran gehindert, die Lease abzurufen und die Rolle der übergeordneten Instanz zu übernehmen, um Aufgaben zu koordinieren. In der Praxis sollte die Integrität der übergeordneten Instanz häufig überprüft werden.
 - Der Wahlvorgang ist nicht deterministisch. Es sind keine Prognosen darüber möglich, welche Rolleninstanz die Bloblease abruft und zur übergeordneten Instanz wird.
@@ -194,6 +195,7 @@ Beachten Sie die folgenden Punkte bezüglich der Beispiellösung:
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
 Die folgenden Richtlinien sind unter Umständen beim Implementieren dieses Musters ebenfalls relevant:
+
 - Dieses Muster verfügt über eine herunterladbare [Beispielanwendung](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election).
 - [Richtlinien für die automatische Skalierung:](https://msdn.microsoft.com/library/dn589774.aspx) Instanzen der Aufgabenhosts können gestartet und beendet werden, wenn sich die Auslastung Anwendung ändert. Automatische Skalierung kann dabei helfen, den Durchsatz und die Leistung während Zeiten maximaler Verarbeitung beizubehalten.
 - [Richtlinien zur Computepartitionierung:](https://msdn.microsoft.com/library/dn589773.aspx) In diesen Richtlinien wird beschrieben, wie Aufgaben in einem Clouddienst so Hosts zugewiesen werden, dass die Betriebskosten minimiert und gleichzeitig die Skalierbarkeit, Leistung, Verfügbarkeit und Sicherheit des Diensts beibehalten werden.

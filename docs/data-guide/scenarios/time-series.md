@@ -3,18 +3,18 @@ title: Zeitreihendaten
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 9664940729430b08d7be52564e4971ec5e2b94d8
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 80dc797e6df16bff73fb9c5116ccce34d7d846f0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901965"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111936"
 ---
 # <a name="time-series-solutions"></a>Zeitreihenlösungen
 
 Bei Zeitreihendaten handelt es sich um eine nach Zeit strukturierte Gruppe von Werten. Beispiele für Zeitreihendaten sind Sensordaten, Aktienkurse, Clickstreamdaten und Anwendungstelemetriedaten. Durch die Analyse von Zeitreihendaten können historische Trends ermittelt, Warnungen in Echtzeit generiert oder Vorhersagemodelle erstellt werden.
 
-![Time Series Insights](./images/time-series-insights.png) 
+![Time Series Insights](./images/time-series-insights.png)
 
 Zeitreihendaten stellen dar, wie eine Ressource oder ein Prozess sich im Zeitablauf ändert. Die Daten besitzen einen Zeitstempel, und Zeit ist die aussagekräftigste Achse für die Betrachtung oder Analyse der Daten. Zeitreihendaten gehen normalerweise in zeitlich korrekter Reihenfolge ein und werden in der Regel als Einfügung und nicht als Aktualisierung der Datenbank behandelt. Veränderungen werden also im Zeitverlauf gemessen, wodurch Sie sich die Daten aus der Vergangenheit ansehen und zukünftige Veränderungen vorhersagen können. Zeitreihendaten lassen sich somit am besten mit Punkt- oder Liniendiagrammen visualisieren.
 
@@ -31,13 +31,13 @@ Wie Sie sehen, ist in jedem dieser Fälle Zeit die sinnvollste Achse. Die Darste
 
 ## <a name="when-to-use-this-solution"></a>Verwendung dieser Lösung
 
-Entscheiden Sie sich für eine Zeitreihenlösung, wenn Sie Daten erfassen müssen, deren strategischer Nutzen auf Veränderungen im Zeitverlauf zurückgeht, und Sie hauptsächlich neue Daten einfügen und nur ganz selten Aktualisierungen vornehmen (wenn überhaupt). Auf der Grundlage dieser Informationen können Sie unter anderem Anomalien erkennen, Trends visualisieren und aktuelle Daten mit historischen Daten vergleichen. Diese Art von Architektur eignet sich zudem am besten für Vorhersagemodelle und Ergebnisprognosen, da Sie über einen Änderungsverlauf verfügen, der in verschiedensten Vorhersagemodellen genutzt werden kann. 
+Entscheiden Sie sich für eine Zeitreihenlösung, wenn Sie Daten erfassen müssen, deren strategischer Nutzen auf Veränderungen im Zeitverlauf zurückgeht, und Sie hauptsächlich neue Daten einfügen und nur ganz selten Aktualisierungen vornehmen (wenn überhaupt). Auf der Grundlage dieser Informationen können Sie unter anderem Anomalien erkennen, Trends visualisieren und aktuelle Daten mit historischen Daten vergleichen. Diese Art von Architektur eignet sich zudem am besten für Vorhersagemodelle und Ergebnisprognosen, da Sie über einen Änderungsverlauf verfügen, der in verschiedensten Vorhersagemodellen genutzt werden kann.
 
 Die Verwendung von Zeitreihen bietet folgende Vorteile:
 
-* Eindeutige Darstellung der Veränderungen einer Ressource oder eines Prozesses im Zeitverlauf
-* Schnelle Erkennung von Veränderungen für eine Reihe verwandter Quellen, wodurch Anomalien und sich entwickelnde Trends deutlich sichtbar werden
-* Beste Option für Vorhersagemodelle und Prognosen
+- Eindeutige Darstellung der Veränderungen einer Ressource oder eines Prozesses im Zeitverlauf
+- Schnelle Erkennung von Veränderungen für eine Reihe verwandter Quellen, wodurch Anomalien und sich entwickelnde Trends deutlich sichtbar werden
+- Beste Option für Vorhersagemodelle und Prognosen
 
 ### <a name="internet-of-things-iot"></a>Internet der Dinge (IoT, Internet of Things)
 
@@ -53,18 +53,19 @@ Im Idealfall verfügen Sie über eine Streamverarbeitungsebene, die die eingehen
 
 ## <a name="challenges"></a>Herausforderungen
 
-* Zeitreihendaten sind häufig äußerst umfangreich. Das gilt besonders in IoT-Szenarien. Die Speicherung, Indizierung, Abfrage, Analyse und Visualisierung von Zeitreihendaten kann sich als Herausforderung erweisen. 
-* Es ist nicht immer einfach, die richtige Kombination aus Hochgeschwindigkeitsspeicher und leistungsstarken Computevorgängen für die Arbeit mit Echtzeitanalysen zu finden und gleichzeitig die Markteinführungszeit und die Gesamtkosten für Investitionen zu minimieren.
+- Zeitreihendaten sind häufig äußerst umfangreich. Das gilt besonders in IoT-Szenarien. Die Speicherung, Indizierung, Abfrage, Analyse und Visualisierung von Zeitreihendaten kann sich als Herausforderung erweisen.
+
+- Es ist nicht immer einfach, die richtige Kombination aus Hochgeschwindigkeitsspeicher und leistungsstarken Computevorgängen für die Arbeit mit Echtzeitanalysen zu finden und gleichzeitig die Markteinführungszeit und die Gesamtkosten für Investitionen zu minimieren.
 
 ## <a name="architecture"></a>Architecture
 
-In vielen Szenarien mit Zeitreihendaten (beispielsweise IoT) werden die Daten in Echtzeit erfasst. Daher ist eine Architektur mit [Echtzeitverarbeitung](../big-data/real-time-processing.md) angebracht. 
+In vielen Szenarien mit Zeitreihendaten (beispielsweise IoT) werden die Daten in Echtzeit erfasst. Daher ist eine Architektur mit [Echtzeitverarbeitung](../big-data/real-time-processing.md) angebracht.
 
 Daten aus einzelnen oder mehreren Datenquellen werden durch [IoT Hub](/azure/iot-hub/), [Event Hubs](/azure/event-hubs/) oder [Kafka in HDInsight](/azure/hdinsight/kafka/apache-kafka-introduction) auf der Streampufferungsebene erfasst. Als Nächstes werden die Daten auf der Streamverarbeitungsebene verarbeitet und optional für Vorhersageanalysen an einen Machine Learning-Dienst weitergegeben. Die verarbeiteten Daten werden in einem Analysedatenspeicher wie [HBase](/azure/hdinsight/hbase/apache-hbase-overview), [Azure Cosmos DB](/azure/cosmos-db/), Azure Data Lake oder Blob Storage gespeichert. Zur Analyse können die Zeitreihendaten mit einer Analyse- und Berichtsanwendung oder einem entsprechenden Dienst angezeigt werden. Beispiele wären etwa Power BI und OpenTSDB (sofern in HBase gespeichert).
 
 Eine weitere Option ist die Verwendung von [Azure Time Series Insights](/azure/time-series-insights/). Time Series Insights ist ein vollständig verwalteter Dienst für Zeitreihendaten. In dieser Architektur wird Time Series Insights für die Streamverarbeitung, als Datenspeicher und für Analysen und Berichte verwendet. Der Dienst akzeptiert Streamingdaten von IoT Hub oder Event Hubs, speichert, verarbeitet und analysiert sie und zeigt sie nahezu in Echtzeit an. Er aggregiert die Daten nicht vorab, sondern speichert die Rohereignisse.
 
-Time Series Insights kann an ein Schema angepasst werden, sodass Sie Insights ganz ohne vorherige Datenvorbereitung gewinnen können. Dadurch lassen sich nahtlos verschiedenste Datenquellen erkunden, vergleichen und korrelieren. Darüber hinaus bietet der Dienst SQL-ähnliche Filter und Aggregate, die Möglichkeit zum Erstellen, Visualisieren, Vergleichen und Überlagern verschiedener Zeitreihenmuster und Wärmebilder sowie die Möglichkeit zum Speichern und Weitergeben von Abfragen. 
+Time Series Insights kann an ein Schema angepasst werden, sodass Sie Insights ganz ohne vorherige Datenvorbereitung gewinnen können. Dadurch lassen sich nahtlos verschiedenste Datenquellen erkunden, vergleichen und korrelieren. Darüber hinaus bietet der Dienst SQL-ähnliche Filter und Aggregate, die Möglichkeit zum Erstellen, Visualisieren, Vergleichen und Überlagern verschiedener Zeitreihenmuster und Wärmebilder sowie die Möglichkeit zum Speichern und Weitergeben von Abfragen.
 
 ## <a name="technology-choices"></a>Auswahl der Technologie
 

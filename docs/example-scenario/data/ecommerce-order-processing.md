@@ -4,12 +4,12 @@ titleSuffix: Azure Example Scenarios
 description: Beispielszenario für die Erstellung einer hoch skalierbaren Pipeline für die Auftragsverarbeitung per Azure Cosmos DB.
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: fe4e9d64e96d0be66534198bc60e2a73dad43e84
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 285db7979f8a20ae75b534dcea5174b7151047ca
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644188"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160824"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Skalierbare Auftragsverarbeitung in Azure
 
@@ -49,7 +49,7 @@ Anhand dieser Architektur werden die wichtigsten Komponenten einer Pipeline für
 
 Für die Echtzeiterfassung von Nachrichten, Datenspeicherung, Datenstromverarbeitung und Speicherung von Analysedaten sowie für Analysen und Berichte stehen zahlreiche Technologieoptionen zur Verfügung. Eine Übersicht über diese Optionen, die zugehörigen Funktionen und wichtige Auswahlkriterien finden Sie unter [Big Data-Architekturen: Echtzeitverarbeitung](/azure/architecture/data-guide/technology-choices/real-time-ingestion) im [Azure-Datenarchitekturleitfaden](/azure/architecture/data-guide).
 
-Microservices haben sich zu einem beliebten Architekturstil für die Erstellung robuster, hochgradig skalierbarer, unabhängig bereitstellbarer Cloudanwendungen entwickelt, die sich schnell weiterentwickeln lassen. Für Microservices ist in Bezug auf das Entwerfen und Erstellen von Anwendungen ein anderer Ansatz erforderlich. Tools wie Docker, Kubernetes, Azure Service Fabric und Nomad ermöglichen die Entwicklung von Architekturen, die auf Microservices basieren. Eine Anleitung zur Erstellung und Ausführung einer auf Microservices basierenden Architektur finden Sie im Azure Architecture Center unter [Entwerfen von Microservices in Azure] (/azure/architecture/microservices).
+Microservices haben sich zu einem beliebten Architekturstil für die Erstellung robuster, hochgradig skalierbarer, unabhängig bereitstellbarer Cloudanwendungen entwickelt, die sich schnell weiterentwickeln lassen. Für Microservices ist in Bezug auf das Entwerfen und Erstellen von Anwendungen ein anderer Ansatz erforderlich. Tools wie Docker, Kubernetes, Azure Service Fabric und Nomad ermöglichen die Entwicklung von Architekturen, die auf Microservices basieren. Eine Anleitung zur Erstellung und Ausführung einer auf Microservices basierenden Architektur finden Sie im Azure Architecture Center unter [Entwerfen von Microservices in Azure](/azure/architecture/microservices).
 
 ### <a name="availability"></a>Verfügbarkeit
 

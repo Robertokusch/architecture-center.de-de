@@ -1,18 +1,17 @@
 ---
-title: Konkurrierende Consumer
+title: Muster „Konkurrierende Consumer“
+titleSuffix: Cloud Design Patterns
 description: Mehreren gleichzeitigen Consumern die Verarbeitung von Nachrichten ermöglichen, die auf dem gleichen Messagingkanal empfangen werden
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-ms.openlocfilehash: aea172dcdb33c0d8513fb69715f1549b4a20f5e6
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 77459ff42422969acdc83e66535197547d555de1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428376"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112106"
 ---
 # <a name="competing-consumers-pattern"></a>Muster „Konkurrierende Consumer“
 
@@ -34,7 +33,7 @@ Implementieren Sie den Kommunikationskanal zwischen der Anwendung und den Instan
 
 Diese Lösung hat folgende Vorteile:
 
-- Sie bietet ein für unterschiedliche Lasten abgeglichenes System, das starke Schwankungen in der Menge der von Anwendungsinstanzen gesendeten Anfragen verarbeiten kann. Die Warteschlange fungiert als Puffer zwischen den Anwendungsinstanzen und den Consumerdienstinstanzen. Dies kann dazu beitragen, die Auswirkungen auf die Verfügbarkeit und Reaktionsfähigkeit der Anwendung und der Dienstinstanzen zu minimieren, wie unter [Warteschlangenbasiertes Lastenausgleichsmuster](queue-based-load-leveling.md) beschrieben. Eine lang andauernde Verarbeitung einer Nachricht behindert nicht die gleichzeitige Verarbeitung anderer Nachrichten durch andere Instanzen des Consumerdiensts.
+- Sie bietet ein für unterschiedliche Lasten abgeglichenes System, das starke Schwankungen in der Menge der von Anwendungsinstanzen gesendeten Anfragen verarbeiten kann. Die Warteschlange fungiert als Puffer zwischen den Anwendungsinstanzen und den Consumerdienstinstanzen. Dies kann dazu beitragen, die Auswirkungen auf die Verfügbarkeit und Reaktionsfähigkeit der Anwendung und der Dienstinstanzen zu minimieren, wie unter [Warteschlangenbasiertes Lastenausgleichsmuster](./queue-based-load-leveling.md) beschrieben. Eine lang andauernde Verarbeitung einer Nachricht behindert nicht die gleichzeitige Verarbeitung anderer Nachrichten durch andere Instanzen des Consumerdiensts.
 
 - Dadurch wird die Zuverlässigkeit verbessert. Wenn ein Produzent, anstatt dieses Muster zu verwenden, direkt mit einem Consumer kommuniziert, diesen jedoch nicht überwacht, besteht eine hohe Wahrscheinlichkeit, dass Nachrichten verloren gehen oder nicht verarbeitet werden, wenn beim Consumer ein Fehler auftritt. Bei diesem Muster werden Nachrichten nicht an eine bestimmte Dienstinstanz gesendet. Wenn bei einer Dienstinstanz ein Fehler auftritt, wird kein Produzent blockiert, und Nachrichten können von jeder funktionsfähigen Dienstinstanz verarbeitet werden.
 
@@ -85,8 +84,9 @@ Dieses Muster ist in folgenden Fällen möglicherweise nicht geeignet:
 
 Azure bietet Speicherwarteschlangen und Service Bus-Warteschlangen, die als Mechanismus für die Implementierung dieses Musters verwendet werden können. Die Anwendungslogik kann Nachrichten an eine Warteschlange senden, und Consumer, die als Aufgaben in Rollen implementiert sind, können Nachrichten aus dieser Warteschlange abrufen und verarbeiten. Aus Gründen der Resilienz kann ein Consumer in einer Service Bus-Warteschlange den `PeekLock`-Modus verwenden, wenn er eine Nachricht aus der Warteschlange abruft. In diesem Modus wird die Nachricht nicht entfernt, sondern einfach vor anderen Consumern verborgen. Der ursprüngliche Consumer kann die Nachricht löschen, wenn er die Verarbeitung abgeschlossen hat. Wenn beim Consumer ein Fehler auftritt, kommt es beim Peek-Lock zu einem Timeout, und die Nachricht wird wieder sichtbar, sodass sie von einem anderen Consumer abgerufen werden kann.
 
-> Ausführliche Informationen zur Verwendung von Azure Service Bus-Warteschlangen finden Sie unter [Service Bus-Warteschlangen, -Themen und -Abonnements](https://msdn.microsoft.com/library/windowsazure/hh367516.aspx).
-Informationen zu Azure-Speicherwarteschlangen finden Sie unter [Erste Schritte mit Azure Queue Storage mit .NET](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-queues/).
+Ausführliche Informationen zur Verwendung von Azure Service Bus-Warteschlangen finden Sie unter [Service Bus-Warteschlangen, -Themen und -Abonnements](https://msdn.microsoft.com/library/windowsazure/hh367516.aspx).
+
+Informationen zu Azure-Speicherwarteschlangen finden Sie unter [Erste Schritte mit Azure Queue Storage mit .NET](/azure/storage/queues/storage-dotnet-how-to-use-queues).
 
 Der folgende Code aus der `QueueManager`-Klasse in der bei [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/competing-consumers) verfügbaren Lösung CompetingConsumers zeigt, wie Sie mithilfe einer `QueueClient`-Instanz im Ereignishandler `Start` in einer Web- oder Workerrolle eine Warteschlange erstellen können.
 
@@ -174,7 +174,7 @@ private void OptionsOnExceptionReceived(object sender,
 }
 ```
 
-Beachten Sie, dass Features für automatische Skalierung, z.B. die in Azure verfügbaren, zum Starten und Beenden von Rolleninstanzen verwendet werden können, wenn die Länge der Warteschlange variiert. Weitere Informationen finden Sie unter [Anleitungen für die automatische Skalierung](https://msdn.microsoft.com/library/dn589774.aspx). Es ist außerdem nicht notwendig, eine genaue Entsprechung zwischen Rolleninstanzen und Arbeitsprozessen zu verwalten: Eine einzelne Rolleninstanz kann mehrere Arbeitsprozesse implementieren. Weitere Informationen finden Sie unter [Computeressourcen-Konsolidierungsmuster](compute-resource-consolidation.md).
+Beachten Sie, dass Features für automatische Skalierung, z.B. die in Azure verfügbaren, zum Starten und Beenden von Rolleninstanzen verwendet werden können, wenn die Länge der Warteschlange variiert. Weitere Informationen finden Sie unter [Anleitungen für die automatische Skalierung](https://msdn.microsoft.com/library/dn589774.aspx). Es ist außerdem nicht notwendig, eine genaue Entsprechung zwischen Rolleninstanzen und Arbeitsprozessen zu verwalten: Eine einzelne Rolleninstanz kann mehrere Arbeitsprozesse implementieren. Weitere Informationen finden Sie unter [Computeressourcen-Konsolidierungsmuster](./compute-resource-consolidation.md).
 
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
@@ -184,8 +184,8 @@ Die folgenden Muster und Anweisungen könnten für die Implementierung dieses Mu
 
 - [Leitfaden für die automatische Skalierung](https://msdn.microsoft.com/library/dn589774.aspx). Es kann möglich sein, Instanzen eines Consumerdiensts zu starten und zu beenden, da die Länge der Warteschlange, in die Anwendungen Nachrichten senden, variiert. Automatische Skalierung kann dabei helfen, den Durchsatz während Zeiten hoher Verarbeitung beizubehalten.
 
-- [Computeressourcen-Konsolidierungsmuster:](compute-resource-consolidation.md) Eventuell ist es möglich, mehrere Instanzen eines Consumerdiensts in einem einzelnen Prozess zusammenzuführen, um Kosten und Verwaltungsaufwand zu reduzieren. Das Computeressourcen-Konsolidierungsmuster beschreibt die Vor- und Nachteile dieses Ansatzes.
+- [Muster „Computeressourcenkonsolidierung“](./compute-resource-consolidation.md): Eventuell ist es möglich, mehrere Instanzen eines Consumerdiensts in einem einzelnen Prozess zusammenzuführen, um Kosten und Verwaltungsaufwand zu reduzieren. Das Computeressourcen-Konsolidierungsmuster beschreibt die Vor- und Nachteile dieses Ansatzes.
 
-- [Warteschlangenbasiertes Lastenausgleichsmuster:](queue-based-load-leveling.md) Durch die Einführung einer Nachrichtenwarteschlange kann eine höhere Resilienz des Systems erreicht werden, sodass Dienstinstanzen stark abweichende Mengen von Anforderungen von Anwendungsinstanzen verarbeiten können. Die Nachrichtenwarteschlange fungiert als Puffer, in dem die Last ausgeglichen wird. Das warteschlangenbasierte Lastenausgleichsmuster beschreibt dieses Szenario ausführlicher.
+- [Muster „Warteschlangenbasierter Lastenausgleich“](./queue-based-load-leveling.md): Durch die Einführung einer Nachrichtenwarteschlange kann eine höhere Resilienz des Systems erreicht werden, sodass Dienstinstanzen stark abweichende Mengen von Anforderungen von Anwendungsinstanzen verarbeiten können. Die Nachrichtenwarteschlange fungiert als Puffer, in dem die Last ausgeglichen wird. Das warteschlangenbasierte Lastenausgleichsmuster beschreibt dieses Szenario ausführlicher.
 
 - Diesem Muster ist eine [Beispielanwendung](https://github.com/mspnp/cloud-design-patterns/tree/master/competing-consumers) zugeordnet.

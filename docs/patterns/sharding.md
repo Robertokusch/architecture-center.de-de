@@ -1,19 +1,17 @@
 ---
-title: Sharding (Horizontales Partitionieren)
+title: Sharding-Muster
+titleSuffix: Cloud Design Patterns
 description: Einen Datenspeicher in einen Satz horizontaler Partitionen oder Shards unterteilen
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: bc2b6aeb6966d14327a21849adbbfe635eae59df
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 52c0579e4b08aa18456e0cc5a26742aab39a1a7e
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428855"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010323"
 ---
 # <a name="sharding-pattern"></a>Sharding-Muster
 
@@ -57,7 +55,7 @@ Die Abstraktion der physischen Speicherorte der Daten in der Sharding-Logik biet
 
 Um eine optimale Leistung und Skalierbarkeit sicherzustellen, ist es wichtig, die Daten so aufzuteilen, dass sie für die von der Anwendung ausgeführten Abfragen geeignet sind. In vielen Fällen ist es unwahrscheinlich, dass das Sharding-Schema genau den Anforderungen jeder Abfrage entspricht. In einem mehrinstanzenfähigen System kann es z. B. erforderlich sein, dass eine Anwendung die Mandantendaten über die Mandanten-ID abrufen muss. Möglicherweise muss sie diese Daten aber auch anhand eines anderen Attributs suchen, z. B. Name oder Standort des Mandanten. Implementieren Sie zur Bewältigung dieser Situationen eine Sharding-Strategie mit einem Shard-Schlüssel, der die gängigsten Abfragen unterstützt.
 
-Wenn Abfragen regelmäßig Daten über eine Kombination von Attributwerten abrufen, können Sie wahrscheinlich einen zusammengesetzten Shard-Schlüssel definieren, indem Sie Attribute miteinander verknüpfen. Alternativ können Sie auch ein Muster wie [Indextabelle](index-table.md) verwenden, um eine schnelle Suche nach Daten zu ermöglichen, die auf Attributen basieren, die nicht durch den Shard-Schlüssel abgedeckt sind.
+Wenn Abfragen regelmäßig Daten über eine Kombination von Attributwerten abrufen, können Sie wahrscheinlich einen zusammengesetzten Shard-Schlüssel definieren, indem Sie Attribute miteinander verknüpfen. Alternativ können Sie auch ein Muster wie [Indextabelle](./index-table.md) verwenden, um eine schnelle Suche nach Daten zu ermöglichen, die auf Attributen basieren, die nicht durch den Shard-Schlüssel abgedeckt sind.
 
 ## <a name="sharding-strategies"></a>Sharding-Strategien
 
@@ -67,8 +65,7 @@ Bei der Auswahl des Shard-Schlüssels und der Entscheidung, wie die Daten auf di
 
    ![Abbildung 1: Sharding für Mandantendaten auf Grundlage der Mandanten-IDs](./_images/sharding-tenant.png)
 
-
-   Die Zuordnung zwischen Shard-Schlüssel und physischem Speicher kann auf physischen Shards basieren, wobei jeder Shard-Schlüssel einer physischen Partition zugeordnet wird. Alternativ dazu ist die virtuelle Partitionierung ein flexibleres Verfahren zum Neuverteilen von Shards, wobei die Shard-Schlüssel derselben Anzahl virtueller Shards zugeordnet wird, die wiederum auf weniger physische Partitionen abgebildet werden. Bei diesem Ansatz sucht eine Anwendung die Daten mit Hilfe eines Shard-Schlüssels, der auf einen virtuellen Shard verweist, und das System ordnet virtuelle Shards transparent physischen Partitionen zu. Die Zuordnung zwischen einem virtuellen Shard und einer physischen Partition kann sich ändern, ohne dass der Anwendungscode geändert werden muss, um einen anderen Satz von Shard-Schlüsseln zu verwenden.
+Die Zuordnung zwischen Shard-Schlüssel und physischem Speicher kann auf physischen Shards basieren, wobei jeder Shard-Schlüssel einer physischen Partition zugeordnet wird. Alternativ dazu ist die virtuelle Partitionierung ein flexibleres Verfahren zum Neuverteilen von Shards, wobei die Shard-Schlüssel derselben Anzahl virtueller Shards zugeordnet wird, die wiederum auf weniger physische Partitionen abgebildet werden. Bei diesem Ansatz sucht eine Anwendung die Daten mit Hilfe eines Shard-Schlüssels, der auf einen virtuellen Shard verweist, und das System ordnet virtuelle Shards transparent physischen Partitionen zu. Die Zuordnung zwischen einem virtuellen Shard und einer physischen Partition kann sich ändern, ohne dass der Anwendungscode geändert werden muss, um einen anderen Satz von Shard-Schlüsseln zu verwenden.
 
 **Bereichsstrategie**: Bei dieser Strategie werden zusammengehörige Elemente im selben Shard gruppiert und nach Shard-Schlüssel angeordnet. Die Shard-Schlüssel sind aufeinander folgend. Sie eignet sich für Anwendungen, die häufig Sätze von Datenelementen mithilfe von Bereichsabfragen (Abfragen, die einen Satz von Datenelementen für einen Shard-Schlüssel zurückgeben, der in einen bestimmten Bereich liegt) abrufen müssen. Wenn eine Anwendung z. B. regelmäßig alle in einem bestimmten Monat aufgegebenen Bestellungen finden muss, können diese Daten schneller abgerufen werden, wenn alle Bestellungen eines Monats im selben Shard nach Datum und Zeit gespeichert werden. Wenn jede Bestellung in einem anderen Shard gespeichert wurde, müssten sie einzeln über eine große Anzahl von Punktabfragen (Abfragen, die ein einzelnes Datenelement zurückgeben) abgeholt werden. Die folgende Abbildung veranschaulicht das Speichern von sequentiellen Datensätzen (Bereiche) in Shards.
 
@@ -124,7 +121,7 @@ Beachten Sie die folgenden Punkte bei der Entscheidung, wie dieses Muster implem
 
     >  Automatisch inkrementierte Werte in anderen Feldern, die keine Shard-Schlüssel sind, können ebenfalls Probleme verursachen. Wenn Sie z. B. automatisch inkrementierte Felder verwenden, um eindeutige IDs zu generieren, können zwei verschiedene Elemente, die sich in verschiedenen Shards befinden, dieselbe ID erhalten.
 
-- Unter Umständen ist es nicht möglich, einen Shard-Schlüssel zu entwerfen, der den Anforderungen jeder möglichen Abfrage in Bezug auf die Daten entspricht. Verteilen Sie die Daten auf Shards, um die am häufigsten ausgeführten Abfragen zu unterstützen, und erstellen Sie bei Bedarf sekundäre Indextabellen, um Abfragen zu unterstützen, die Daten mithilfe von Kriterien abrufen, die auf Attributen basieren, die nicht Teil des Shard-Schlüssels sind. Weitere Informationen finden Sie unter [Index Table Pattern](index-table.md) (Indextabellenmuster).
+- Unter Umständen ist es nicht möglich, einen Shard-Schlüssel zu entwerfen, der den Anforderungen jeder möglichen Abfrage in Bezug auf die Daten entspricht. Verteilen Sie die Daten auf Shards, um die am häufigsten ausgeführten Abfragen zu unterstützen, und erstellen Sie bei Bedarf sekundäre Indextabellen, um Abfragen zu unterstützen, die Daten mithilfe von Kriterien abrufen, die auf Attributen basieren, die nicht Teil des Shard-Schlüssels sind. Weitere Informationen finden Sie unter [Index Table Pattern](./index-table.md) (Indextabellenmuster).
 
 - Abfragen, die nur auf einen einzelnen Shard zugreifen, sind effizienter als Abfragen, die Daten von mehreren Shards abrufen. Vermeiden Sie es daher, ein Sharding-System zu implementieren, das dazu führt, dass Anwendungen eine große Anzahl von Abfragen ausführen, die Daten aus verschiedenen Shards zusammenführen. Denken Sie daran, dass ein einzelner Shard die Daten für mehrere Typen von Entitäten enthalten kann. Ziehen Sie in Betracht, Ihre Daten zu denormalisieren, um verwandte Entitäten, die häufig gemeinsam abgefragt werden (z. B. die Details von Kunden und Bestellungen, die sie aufgegeben haben), im selben Shard zu speichern, um die Anzahl der separaten Lesezugriffe zu reduzieren, die eine Anwendung ausführt.
 
@@ -150,7 +147,8 @@ Beachten Sie die folgenden Punkte bei der Entscheidung, wie dieses Muster implem
 
 Verwenden Sie dieses Muster, wenn ein Datenspeicher voraussichtlich über die Ressourcen hinaus skaliert werden muss, die für einen einzelnen Speicherknoten zur Verfügung stehen, oder um die Leistung zu verbessern, indem Sie mögliche Konflikte in einem Datenspeicher verringern.
 
->  Der primäre Fokus des Shardings liegt auf der Verbesserung von Leistung und Skalierbarkeit eines Systems, aber als Nebeneffekt kann es auch die Verfügbarkeit verbessern, da die Daten auf separate Partitionen aufgeteilt werden. Ein Ausfall einer Partition hindert eine Anwendung nicht unbedingt daran, auf Daten in anderen Partitionen zuzugreifen. Zudem kann ein Bediener die Wartung oder Wiederherstellung einer oder mehrerer Partitionen durchführen, ohne die gesamten Daten für eine Anwendung unzugänglich zu machen. Weitere Informationen finden Sie im [Leitfaden zur Datenpartitionierung](https://msdn.microsoft.com/library/dn589795.aspx).
+> [!NOTE]
+Der primäre Fokus des Shardings liegt auf der Verbesserung von Leistung und Skalierbarkeit eines Systems, aber als Nebeneffekt kann es auch die Verfügbarkeit verbessern, da die Daten auf separate Partitionen aufgeteilt werden. Ein Ausfall einer Partition hindert eine Anwendung nicht unbedingt daran, auf Daten in anderen Partitionen zuzugreifen. Zudem kann ein Bediener die Wartung oder Wiederherstellung einer oder mehrerer Partitionen durchführen, ohne die gesamten Daten für eine Anwendung unzugänglich zu machen. Weitere Informationen finden Sie im [Leitfaden zur Datenpartitionierung](https://msdn.microsoft.com/library/dn589795.aspx).
 
 ## <a name="example"></a>Beispiel
 
@@ -215,7 +213,8 @@ Trace.TraceInformation("Fanout query complete - Record Count: {0}",
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
 Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
+
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Grundlagen der Datenkonsistenz). Es ist möglicherweise erforderlich, die Konsistenz der Daten, die über verschiedene Shards verteilt sind, zu erhalten. Fasst die Probleme bei der Aufrechterhaltung von Konsistenz in verteilten Daten zusammen und beschreibt die Vor- und Nachteile der verschiedenen Konsistenzmodelle.
 - [Leitfaden zur Datenpartitionierung](https://msdn.microsoft.com/library/dn589795.aspx): Das Sharding eines Datenspeichers kann eine Reihe von zusätzlichen Problemen mit sich bringen. Beschreibt diese Probleme in Bezug auf die Partitionierung von Datenspeichern in der Cloud, um die Skalierbarkeit zu verbessern, Konflikte zu verringern und die Leistung zu optimieren.
-- [Index Table Pattern (Indextabellenmuster)](index-table.md): Mitunter ist es nicht möglich, Abfragen allein durch die Gestaltung des Shard-Schlüssels vollständig zu unterstützen. Ermöglicht einer Anwendung das schnelle Abrufen von Daten aus einem großen Datenspeicher durch die Angabe eines anderen Schlüssels als des Shard-Schlüssels.
-- [Muster für materialisierte Sichten](materialized-view.md): Um die Leistung einiger Abfragevorgänge aufrechtzuerhalten, ist es sinnvoll, materialisierte Ansichten zu erstellen, die Daten aggregieren und zusammenfassen. Dies ist insbesondere hilfreich, wenn diese zusammenfassenden Daten auf Informationen basieren, die über Shards verteilt sind. Beschreibt das Erstellen und Füllen dieser Ansichten.
+- [Index Table Pattern (Indextabellenmuster)](./index-table.md): Mitunter ist es nicht möglich, Abfragen allein durch die Gestaltung des Shard-Schlüssels vollständig zu unterstützen. Ermöglicht einer Anwendung das schnelle Abrufen von Daten aus einem großen Datenspeicher durch die Angabe eines anderen Schlüssels als des Shard-Schlüssels.
+- [Muster für materialisierte Sichten](./materialized-view.md): Um die Leistung einiger Abfragevorgänge aufrechtzuerhalten, ist es sinnvoll, materialisierte Ansichten zu erstellen, die Daten aggregieren und zusammenfassen. Dies ist insbesondere hilfreich, wenn diese zusammenfassenden Daten auf Informationen basieren, die über Shards verteilt sind. Beschreibt das Erstellen und Füllen dieser Ansichten.

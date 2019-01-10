@@ -1,19 +1,17 @@
 ---
-title: Valet-Schlüssel
+title: Muster „Valet-Schlüssel“
+titleSuffix: Cloud Design Patterns
 description: Verwenden Sie ein Token oder einen Schlüssel, das bzw. der Clients eingeschränkten direkten Zugriff auf eine bestimmte Ressource oder einen bestimmten Dienst bietet.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- security
-ms.openlocfilehash: 99d3fbe05e34d61edc0d339f34665e557b250b05
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 09173717d499d524d4d5dad2c1202c1bf361b1e5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450886"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009864"
 ---
 # <a name="valet-key-pattern"></a>Muster „Valet-Schlüssel“
 
@@ -105,7 +103,7 @@ Azure unterstützt SAS (Shared Access Signature) in Azure Storage für die granu
 
 Azure-SAS-Tokens (Shared Access Signature) unterstützen auch serverseitig gespeicherte Zugriffsrichtlinien, die mit einer bestimmten Ressource wie einer Tabelle oder einem Blob verknüpft werden können. Dieses Feature bietet zusätzliche Kontrolle und Flexibilität im Vergleich zu anwendungsgenerierten SAS-Tokens und sollte nach Möglichkeit verwendet werden. Einstellungen, die in einer serverseitig gespeicherten Richtlinie definiert sind, können geändert werden und werden im Token dargestellt, ohne dass ein neues Token ausgestellt werden muss, doch die im Token definierten Einstellungen können nur durch Ausstellung eines neuen Tokens geändert werden. Durch diese Vorgehensweise kann zudem ein gültiges SAS-Token vor dessen Ablauf widerrufen werden.
 
-> Weitere Informationen finden Sie unter [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/) (Einführung zu Tabellen-SAS (Shared Access Signature), Warteschlangen-SAS und Aktualisieren von Blob-SAS) und [Verwenden von Shared Access Signatures (SAS)](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/) auf MSDN.
+> Weitere Informationen finden Sie unter [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/) (Einführung zu Tabellen-SAS (Shared Access Signature), Warteschlangen-SAS und Aktualisieren von Blob-SAS) und [Verwenden von Shared Access Signatures (SAS)](/azure/storage/common/storage-dotnet-shared-access-signature-part-1) auf MSDN.
 
 Der folgende Code zeigt, wie ein SAS-Token erstellt wird, das fünf Minuten lang gültig ist. Die `GetSharedAccessReferenceForUpload`-Methode gibt ein SAS-Token zurück, mit dem eine Datei in Azure Blob Storage hochgeladen werden kann.
 
@@ -162,9 +160,10 @@ public class ValuesController : ApiController
 ## <a name="next-steps"></a>Nächste Schritte
 
 Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
+
 - Ein Beispiel für dieses Muster steht auf [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/valet-key).
-- [Muster „Gatekeeper“](gatekeeper.md): Dieses Muster kann in Verbindung mit dem Muster „Valet-Schlüssel“ verwendet werden, um Anwendungen und Dienste durch Verwendung einer dedizierten Hostinstanz zu schützen, die als Broker zwischen Clients und der Anwendung oder dem Dienst fungiert. Der Gatekeeper überprüft und bereinigt Anforderungen und leitet Anforderungen und Daten zwischen dem Client und der Anwendung weiter. Dies kann eine zusätzliche Sicherheitsschicht schaffen und die Angriffsfläche des Systems reduzieren.
-- [Muster „Hosten von statischen Inhalten“](static-content-hosting.md): Dieses Muster beschreibt, wie statische Ressourcen für einen cloudbasierten Speicherdienst bereitgestellt werden, der diese Ressourcen zur Verringerung des Bedarfs an kostspieligen Serverinstanzen direkt an den Client übermitteln kann. Wenn die Ressourcen nicht öffentlich zugänglich sein sollen, können diese mit dem Muster „Valet-Schlüssel“ geschützt werden.
+- [Muster „Gatekeeper“](./gatekeeper.md): Dieses Muster kann in Verbindung mit dem Muster „Valet-Schlüssel“ verwendet werden, um Anwendungen und Dienste durch Verwendung einer dedizierten Hostinstanz zu schützen, die als Broker zwischen Clients und der Anwendung oder dem Dienst fungiert. Der Gatekeeper überprüft und bereinigt Anforderungen und leitet Anforderungen und Daten zwischen dem Client und der Anwendung weiter. Dies kann eine zusätzliche Sicherheitsschicht schaffen und die Angriffsfläche des Systems reduzieren.
+- [Muster „Hosten von statischen Inhalten“](./static-content-hosting.md): Dieses Muster beschreibt, wie statische Ressourcen für einen cloudbasierten Speicherdienst bereitgestellt werden, der diese Ressourcen zur Verringerung des Bedarfs an kostspieligen Serverinstanzen direkt an den Client übermitteln kann. Wenn die Ressourcen nicht öffentlich zugänglich sein sollen, können diese mit dem Muster „Valet-Schlüssel“ geschützt werden.
 - [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS (Einführung zu Tabellen-SAS (Shared Access Signature), Warteschlangen-SAS und Aktualisieren von Blob-SAS)](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/)
-- [Verwenden von Shared Access Signatures (SAS)](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)
-- [SAS-Authentifizierung bei Service Bus](https://azure.microsoft.com/documentation/articles/service-bus-shared-access-signature-authentication/)
+- [Verwenden von Shared Access Signatures (SAS)](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)
+- [SAS-Authentifizierung bei Service Bus](/azure/service-bus-messaging/service-bus-sas)

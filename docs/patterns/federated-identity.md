@@ -1,18 +1,17 @@
 ---
-title: Verbundidentität
+title: Identitätsverbundmuster
+titleSuffix: Cloud Design Patterns
 description: Delegieren Sie die Authentifizierung an einen externen Identitätsanbieter.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- security
-ms.openlocfilehash: a1edbdd080309383201d33e73602e2f18928c080
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: b268000a81edbb2f224a9244d5949def75854f04
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542632"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110356"
 ---
 # <a name="federated-identity-pattern"></a>Identitätsverbundmuster
 
@@ -41,7 +40,6 @@ Zu den vertrauenswürdigen Identitätsanbietern gehören Unternehmensverzeichnis
 Die Abbildung zeigt das Verbundidentitätsmuster, wenn eine Clientanwendung auf einen Dienst zugreifen muss, für den eine Authentifizierung erforderlich ist. Die Authentifizierung erfolgt durch einen IdP, der zusammen mit einem STS funktioniert. Der IdP stellt Sicherheitstoken aus, die Informationen zu dem authentifizierten Benutzer bereitstellen. Diese als „Ansprüche“ bezeichneten Informationen schließen die Identität des Benutzers und möglicherweise auch andere Informationen wie z.B. Rollenmitgliedschaften und genauer abgestufte Zugriffsrechte ein.
 
 ![Übersicht über Verbundauthentifizierung](./_images/federated-identity-overview.png)
-
 
 Dieses Modell wird oft als anspruchsbasierte Zugriffssteuerung bezeichnet. Anwendungen und Dienste autorisieren den Zugriff auf Features und Funktionen anhand der im Token enthaltenen Ansprüche. Der Dienst, der eine Authentifizierung anfordert, muss dem IdP vertrauen. Die Clientanwendung kontaktiert den IdP, der die Authentifizierung durchführt. Wenn die Authentifizierung erfolgreich ist, gibt der IdP ein Token mit Ansprüchen zurück, die den Benutzer beim STS authentifizieren. (Beachten Sie, dass es sich beim IdP und dem STS um denselben Dienst handeln kann.) Der STS kann die Ansprüche im Token anhand vordefinierter Regeln transformieren und erweitern, bevor er dieses an den Client zurückgibt. Die Clientanwendung kann dieses Token dann zum Nachweis der Identität an den Dienst übergeben.
 
@@ -85,15 +83,14 @@ Eine Organisation hostet eine mehrinstanzenfähige SaaS-Anwendung (Software-as-a
 
 ![Unterschiedliche Arten des Benutzerzugriffs auf die Anwendung in einem großen Unternehmensabonnenten](./_images/federated-identity-multitenat.png)
 
-
 Die Abbildung zeigt, wie sich Mandanten mit ihrem eigenen Identitätsanbieter authentifizieren (Schritt 1), in diesem Fall AD FS. Nach einer erfolgreichen Authentifizierung eines Mandanten gibt AD FS ein Token aus. Der Clientbrowser leitet dieses Token an den Verbundanbieter der SaaS-Anwendung weiter, der dem vom AD FS des Mandanten ausgestellten Token vertraut. Anschließend erhält er ein Token, das für den Verbundanbieter der SaaS-Anwendung gültig ist (Schritt 2). Bei Bedarf wandelt der Verbundanbieter der SaaS-Anwendung die Ansprüche im Token in Ansprüche um, die die Anwendung erkennt (Schritt 3), bevor das neue Token an den Clientbrowser zurückgegeben wird. Die Anwendung vertraut den vom Verbundanbieter der SaaS-Anwendung ausgestellten Token und wendet mithilfe der Ansprüche im Token Autorisierungsregeln an (Schritt 4).
 
 Mandanten müssen keine separaten Anmeldeinformationen für den Zugriff auf die Anwendung speichern, und ein Administrator im Unternehmen des Mandanten kann im eigenen AD FS die Liste der Benutzer, die auf die Anwendung zugreifen können, konfigurieren.
 
-## <a name="related-guidance"></a>Verwandte Anweisungen
+## <a name="related-guidance"></a>Verwandte Leitfäden
 
 - [Microsoft Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
 - [Active Directory Domain Services](https://msdn.microsoft.com/library/bb897402.aspx)
 - [Active Directory-Verbunddienste (AD FS)](https://msdn.microsoft.com/library/bb897402.aspx)
-- [Identitätsverwaltung für mehrinstanzenfähige Anwendungen in Microsoft Azure](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity/)
-- [Mehrinstanzenfähige Anwendungen in Azure](https://azure.microsoft.com/documentation/articles/dotnet-develop-multitenant-applications/)
+- [Identitätsverwaltung für mehrinstanzenfähige Anwendungen in Microsoft Azure](/azure/architecture/multitenant-identity)
+- [Mehrinstanzenfähige Anwendungen in Azure](/azure/dotnet-develop-multitenant-applications)

@@ -5,12 +5,12 @@ description: Erstellen Sie eine End-to-End-Pipeline zur Datenstromverarbeitung i
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 130f297d3cfdeb1900ada79f1e9c65ec542dc2b7
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: abd020fa12883ae3d23623c53e15fe025590de6f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643746"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011581"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-stream-analytics"></a>Erstellen einer Pipeline zur Datenstromverarbeitung mit Azure Stream Analytics
 
@@ -40,13 +40,13 @@ Die Architektur umfasst die folgenden Komponenten.
 
 ## <a name="data-ingestion"></a>Datenerfassung
 
-<!-- markdownlint-disable MD033 MD034 -->
+<!-- markdownlint-disable MD033 -->
 
 Um eine Datenquelle zu simulieren, verwendet die Referenzarchitektur das Dataset [New York City Taxi Data](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797)<sup>[[1]](#note1)</sup>. Dieses Dataset enthält Daten zu Taxifahrten in New York City für einen Zeitraum von vier Jahren (2010 &ndash; 2013). Es umfasst zwei Datensatztypen: Fahrtdaten und Fahrpreisdaten. Die Fahrtdaten enthalten die Fahrtdauer, die Fahrtstrecke sowie die Abhol- und Zielorte. Die Fahrpreisdaten enthalten die Beträge von Fahrpreis, Steuern und Trinkgeld. Gemeinsame Felder in beiden Datensatztypen sind die Taxinummer (Medallion), die Taxilizenz (Hack license) und die Anbieter-ID (Vendor ID). Anhand dieser drei Felder werden ein Taxi und ein Fahrer eindeutig identifiziert. Die Daten werden im CSV-Format gespeichert.
 
-[1] <span id="note1">Donovan, Brian; Work, Dan (2016): New York City Taxi Trip Data (2010 – 2013). Universität Illinois in Urbana-Champaign. https://doi.org/10.13012/J8PN93H8
+[1] <span id="note1">Donovan, Brian; Work, Dan (2016): New York City Taxi Trip Data (2010 – 2013). Universität Illinois in Urbana-Champaign. <https://doi.org/10.13012/J8PN93H8>
 
-<!-- markdownlint-enable MD033 MD034 -->
+<!-- markdownlint-enable MD033 -->
 
 Der Datengenerator ist eine .NET Core-Anwendung, die Datensätze liest und an Azure Event Hubs sendet. Der Generator sendet Fahrtdaten im JSON-Format und Fahrpreisdaten im CSV-Format.
 

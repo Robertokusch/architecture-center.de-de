@@ -3,24 +3,24 @@ title: Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: beed0d642e85096efc0b6fe492181b8dcd771d2d
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 2f938796a741b8a26694742f1098e29728e6818d
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902597"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113568"
 ---
 # <a name="online-analytical-processing-olap"></a>Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)
 
 Die analytische Onlineverarbeitung (Online Analytical Processing, OLAP) ist eine Technologie, mit der große Geschäftsdatenbanken organisiert und komplexe Analysen unterstützt werden. OLAP kann genutzt werden, um komplexe analytische Abfragen durchzuführen, ohne dass Transaktionssysteme negativ beeinträchtigt werden.
 
-Die Datenbanken, die von einem Unternehmen zum Speichern aller Transaktionen und Datensätze verwendet werden, werden als Datenbanken mit [Onlinetransaktionsverarbeitung (Online Transaction Processing, OLTP)](online-transaction-processing.md) bezeichnet. Diese Datenbanken enthalten normalerweise Datensätze, die einzeln eingegeben werden. Häufig befinden sich darin viele Informationen, die nützlich für die Organisation sind. Die Datenbanken, die für OLTP genutzt werden, wurden dagegen nicht für Analysezwecke entworfen. Daher ist das Abrufen von Antworten aus diesen Datenbanken sehr zeitintensiv und aufwändig. OLAP-Systeme sind dafür ausgelegt, diese Business Intelligence-Informationen mit hoher Leistung aus den Daten zu extrahieren. Der Grund ist, dass OLAP-Datenbanken für Workloads mit hohem Lese- und geringem Schreibaufwand optimiert sind.
+Die Datenbanken, die von einem Unternehmen zum Speichern aller Transaktionen und Datensätze verwendet werden, werden als Datenbanken mit [Onlinetransaktionsverarbeitung (Online Transaction Processing, OLTP)](./online-transaction-processing.md) bezeichnet. Diese Datenbanken enthalten normalerweise Datensätze, die einzeln eingegeben werden. Häufig befinden sich darin viele Informationen, die nützlich für die Organisation sind. Die Datenbanken, die für OLTP genutzt werden, wurden dagegen nicht für Analysezwecke entworfen. Daher ist das Abrufen von Antworten aus diesen Datenbanken sehr zeitintensiv und aufwändig. OLAP-Systeme sind dafür ausgelegt, diese Business Intelligence-Informationen mit hoher Leistung aus den Daten zu extrahieren. Der Grund ist, dass OLAP-Datenbanken für Workloads mit hohem Lese- und geringem Schreibaufwand optimiert sind.
 
-![OLAP in Azure](../images/olap-data-pipeline.png) 
+![OLAP in Azure](../images/olap-data-pipeline.png)
 
 ## <a name="semantic-modeling"></a>Semantische Modellierung
 
-Ein semantisches Datenmodell ist ein konzeptionelles Modell, mit dem die Bedeutung der darin enthaltenen Datenelemente beschrieben wird. In Organisationen werden häufig eigene Begriffe verwendet, bei denen es sich um Synonyme handeln kann oder die für denselben Begriff unterschiedliche Bedeutungen haben. Beispiel: In einer Bestandsdatenbank wird ein Ausrüstungsteil anhand einer Asset-ID und einer Seriennummer nachverfolgt, während in einer Vertriebsdatenbank die Seriennummer als Asset-ID bezeichnet wird. Es gibt keine einfache Möglichkeit, diese Werte miteinander in Beziehung zu setzen, ohne dass ein Modell verwendet wird, mit dem die Beziehung beschrieben wird. 
+Ein semantisches Datenmodell ist ein konzeptionelles Modell, mit dem die Bedeutung der darin enthaltenen Datenelemente beschrieben wird. In Organisationen werden häufig eigene Begriffe verwendet, bei denen es sich um Synonyme handeln kann oder die für denselben Begriff unterschiedliche Bedeutungen haben. Beispiel: In einer Bestandsdatenbank wird ein Ausrüstungsteil anhand einer Asset-ID und einer Seriennummer nachverfolgt, während in einer Vertriebsdatenbank die Seriennummer als Asset-ID bezeichnet wird. Es gibt keine einfache Möglichkeit, diese Werte miteinander in Beziehung zu setzen, ohne dass ein Modell verwendet wird, mit dem die Beziehung beschrieben wird.
 
 Die semantische Modellierung ermöglicht ein bestimmtes Maß an Abstraktion für das Datenbankschema, damit Benutzer nicht über die zugrunde liegenden Datenstrukturen informiert sein müssen. Dies erleichtert Endbenutzern das Abfragen von Daten ohne Durchführung von Aggregierungs- und Verknüpfungsvorgängen für das zugrunde liegende Schema. Außerdem erhalten Spalten normalerweise benutzerfreundlichere Namen, damit der Kontext und die Bedeutung der Daten besser erkennbar ist.
 
@@ -29,7 +29,7 @@ Die semantische Modellierung wird hauptsächlich für Szenarien mit hohem Leseau
 - Das Aggregierungsverhalten ist so festgelegt, dass es von Tools für die Berichterstellung richtig angezeigt werden.
 - Die Geschäftslogik und die Berechnungen sind definiert.
 - Zeitabhängige Berechnungen sind enthalten.
-- Daten werden häufig aus mehreren Quellen integriert. 
+- Daten werden häufig aus mehreren Quellen integriert.
 
 Aus diesen Gründen wird die semantische Ebene meist über einem Data Warehouse angeordnet.
 
@@ -37,10 +37,11 @@ Aus diesen Gründen wird die semantische Ebene meist über einem Data Warehouse 
 
 Es gibt zwei Hauptarten von Semantikmodellen:
 
-* **Tabellarisch**: Hierfür werden Konstrukte der relationalen Modellierung verwendet (Modell, Tabellen, Spalten). Intern werden Metadaten von Konstrukten der OLAP-Modellierung geerbt (Cubes, Dimensionen, Measures). Für den Code und Skripts werden OLAP-Metadaten genutzt.
-* **Mehrdimensional**: Hierfür werden herkömmliche Konstrukte der OLAP-Modellierung verwendet (Cubes, Dimensionen, Measures).
+- **Tabellarisch**: Hierfür werden Konstrukte der relationalen Modellierung verwendet (Modell, Tabellen, Spalten). Intern werden Metadaten von Konstrukten der OLAP-Modellierung geerbt (Cubes, Dimensionen, Measures). Für den Code und Skripts werden OLAP-Metadaten genutzt.
+- **Mehrdimensional**: Hierfür werden herkömmliche Konstrukte der OLAP-Modellierung verwendet (Cubes, Dimensionen, Measures).
 
 In Frage kommender Azure-Dienst:
+
 - [Azure Analysis Services](https://azure.microsoft.com/services/analysis-services/)
 
 ## <a name="example-use-case"></a>Beispiel eines Anwendungsfalls
@@ -72,9 +73,9 @@ Für die semantische Modellierung und analytische Verarbeitung gelten in der Reg
 
 Erwägen Sie in den folgenden Szenarien die Verwendung von OLAP:
 
-- Sie müssen schnell komplexe Analyse- und Ad-hoc-Abfragen durchführen können, ohne dass sich negative Auswirkungen auf Ihre OLTP-Systeme ergeben. 
+- Sie müssen schnell komplexe Analyse- und Ad-hoc-Abfragen durchführen können, ohne dass sich negative Auswirkungen auf Ihre OLTP-Systeme ergeben.
 - Sie möchten geschäftlichen Benutzern das einfache Erstellen von Berichten aus Ihren Daten ermöglichen.
-- Sie möchten eine Reihe von Aggregationen bereitstellen, damit Benutzer schnelle, einheitliche Ergebnisse erhalten. 
+- Sie möchten eine Reihe von Aggregationen bereitstellen, damit Benutzer schnelle, einheitliche Ergebnisse erhalten.
 
 OLAP ist besonders nützlich zum Anwenden von Aggregatberechnungen auf große Datenmengen. OLAP-Systeme sind für Szenarien mit hohem Leseaufwand optimiert, z.B. Analytics und Business Intelligence. OLAP ermöglicht Benutzern das Segmentieren von mehrdimensionalen Daten in Slices, die in zwei Dimensionen (z.B. einer PivotTable) angezeigt werden können, oder das Filtern der Daten nach bestimmten Werten. Dieser Prozess wird im Englischen auch als „Slicing & Dicing“ der Daten bezeichnet und kann unabhängig davon erfolgen, ob die Daten über mehrere Datenquellen hinweg partitioniert sind. Benutzer können Trends ermitteln, Muster erkennen und die Daten untersuchen, ohne die Details der herkömmlichen Datenanalyse kennen zu müssen.
 
@@ -109,11 +110,11 @@ Beantworten Sie die folgenden Fragen, um die Auswahl einzuschränken:
 
 - Benötigen Sie eine sichere Authentifizierung mit Azure Active Directory (Azure AD)?
 
-- Möchten Sie Echtzeitanalysen ausführen? Ist dies der Fall, beschränken Sie sich auf die Optionen, die Echtzeitanalysen unterstützten. 
+- Möchten Sie Echtzeitanalysen ausführen? Ist dies der Fall, beschränken Sie sich auf die Optionen, die Echtzeitanalysen unterstützten.
 
     *Echtzeitanalyse* bezieht sich in diesem Kontext auf eine einzelne Datenquelle, beispielsweise eine ERP-Anwendung (Enterprise Resource Planning), die sowohl auf einer operativen als auch einer analytischen Workload ausgeführt wird. Wenn Sie Daten aus mehreren Quellen integrieren müssen oder eine sehr hohe Analyseleistung durch Verwendung von vorab aggregierten Daten wie Cubes erforderlich ist, benötigen Sie möglicherweise trotzdem ein separates Data Warehouse.
 
-- Müssen Sie vorab aggregierte Daten verwenden, beispielsweise zum Bereitstellen von semantischen Modellen, die Geschäftsbenutzern die Verwendung von Analysen erleichtern? Ist dies der Fall, wählen Sie eine Option aus, die mehrdimensionale Cubes oder tabellarische Semantikmodelle unterstützt. 
+- Müssen Sie vorab aggregierte Daten verwenden, beispielsweise zum Bereitstellen von semantischen Modellen, die Geschäftsbenutzern die Verwendung von Analysen erleichtern? Ist dies der Fall, wählen Sie eine Option aus, die mehrdimensionale Cubes oder tabellarische Semantikmodelle unterstützt.
 
     Die Bereitstellung von Aggregaten kann Benutzern die konsistente Berechnung von Datenaggregaten ermöglichen. Bei der Arbeit mit mehreren Spalten und vielen Zeilen können vorab aggregierte Daten zudem die Leistung erheblich steigern. Daten können in mehrdimensionalen Cubes oder tabellarischen Semantikmodellen vorab aggregiert werden.
 
@@ -125,6 +126,8 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 ### <a name="general-capabilities"></a>Allgemeine Funktionen
 
+<!-- markdownlint-disable MD033 -->
+
 | | Azure Analysis Services | SQL Server Analysis Services | SQL Server mit Columnstore-Indizes | Azure SQL-Datenbank mit Columnstore-Indizes |
 | --- | --- | --- | --- | --- |
 | Verwalteter Dienst | JA | Nein  | Nein  | JA |
@@ -134,6 +137,8 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 | Unterstützung von Echtzeitanalysen | Nein  | Nein  | Ja | JA |
 | Prozess zum Kopieren von Daten aus Quellen erforderlich | JA | JA | Nein  | Nein  |
 | Azure AD-Integration | JA | Nein  | Nein<sup>2</sup> | JA |
+
+<!-- markdownlint-enable MD033 -->
 
 [1] Obwohl SQL Server und Azure SQL-Datenbank nicht zum Abfragen und Integrieren mehrerer externer Datenquellen verwendet werden können, können Sie zu diesem Zweck eine Pipeline mit [SSIS](/sql/integration-services/sql-server-integration-services) oder [Azure Data Factory](/azure/data-factory/) erstellen. Eine auf einer Azure-VM gehostete SQL Server-Instanz bietet zusätzliche Optionen, beispielsweise Verbindungsserver und [PolyBase](/sql/relational-databases/polybase/polybase-guide). Weitere Informationen finden Sie unter [Pipeline orchestration, control flow, and data movement](../technology-choices/pipeline-orchestration-data-movement.md) (Pipelineorchestrierung, Ablaufsteuerung und Datenverschiebung).
 
@@ -146,4 +151,3 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 | Redundante regionale Server für Hochverfügbarkeit |           JA           |              Nein              |                 Ja                 |                     JA                     |
 |             Unterstützung des horizontalen Hochskalierens von Abfragen             |           JA           |              Nein              |                 Ja                 |                     Nein                       |
 |          Dynamische Skalierbarkeit (zentrales Hochskalieren)          |           JA           |              Nein              |                 Ja                 |                     Nein                       |
-

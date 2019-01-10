@@ -3,24 +3,29 @@ title: Auswählen eines Suchdatenspeichers
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: b5943cd1410777b974a8cefcd77c7c2f1f2bfe67
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 331777ff289b2158a1804541a01e8f61be38cdf7
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902323"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113398"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>Auswählen eines Suchdatenspeichers in Azure
 
-In diesem Artikel werden die Technologieoptionen für Suchdatenspeicher in Azure verglichen. Mit einem Suchdatenspeicher werden spezialisierte Indizes zum Ausführen von Suchvorgängen für Freiformtext erstellt und gespeichert. Der Text, der indiziert wird, kann sich in einem separaten Datenspeicher befinden, etwa einem Blobspeicher. Eine Anwendung sendet eine Abfrage an den Suchdatenspeicher. Als Ergebnis wird eine Liste der übereinstimmenden Dokumente zurückgegeben. Weitere Informationen zu diesem Szenario finden Sie unter [Processing free-form text for search](../scenarios/search.md) (Verarbeiten von Freiformtext für die Suche). 
+In diesem Artikel werden die Technologieoptionen für Suchdatenspeicher in Azure verglichen. Mit einem Suchdatenspeicher werden spezialisierte Indizes zum Ausführen von Suchvorgängen für Freiformtext erstellt und gespeichert. Der Text, der indiziert wird, kann sich in einem separaten Datenspeicher befinden, etwa einem Blobspeicher. Eine Anwendung sendet eine Abfrage an den Suchdatenspeicher. Als Ergebnis wird eine Liste der übereinstimmenden Dokumente zurückgegeben. Weitere Informationen zu diesem Szenario finden Sie unter [Processing free-form text for search](../scenarios/search.md) (Verarbeiten von Freiformtext für die Suche).
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-when-choosing-a-search-data-store"></a>Welche Suchdatenspeicher-Optionen stehen zur Verfügung?
+
+<!-- markdownlint-enable MD026 -->
+
 In Azure erfüllen durch Bereitstellung eines Suchindexes alle folgenden Datenspeicher die grundlegenden Anforderungen für das Durchsuchen von Freiformtextdaten:
+
 - [Azure Search](/azure/search/search-what-is-azure-search)
 - [Elasticsearch](https://azuremarketplace.microsoft.com/marketplace/apps/elastic.elasticsearch?tab=Overview)
 - [HDInsight mit Solr](/azure/hdinsight/hdinsight-hadoop-solr-install-linux)
 - [Azure SQL-Datenbank mit Volltextsuche](/sql/relational-databases/search/full-text-search)
-
 
 ## <a name="key-selection-criteria"></a>Wichtige Auswahlkriterien
 
@@ -44,37 +49,37 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 ### <a name="general-capabilities"></a>Allgemeine Funktionen
 
-| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank | 
-| --- | --- | --- | --- | --- | 
+| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank |
+| --- | --- | --- | --- | --- |
 | Verwalteter Dienst | JA | Nein | Ja | JA |  
 | REST-API | JA | Ja | JA | Nein  |
-| Programmierbarkeit | .NET | Java | Java | T-SQL | 
+| Programmierbarkeit | .NET | Java | Java | T-SQL |
 | Dokumentindexer für allgemeine Dateitypen (PDF, DOCX, TXT usw.) | JA | Nein | Ja | Nein  |
 
 ### <a name="manageability-capabilities"></a>Verwaltbarkeitsfeatures
 
-| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank | 
+| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank |
 | --- | --- | --- | --- | --- |
 | Aktualisierbares Schema | Nein  | Ja | Ja | JA |
 | Unterstützung für horizontales Hochskalieren  | JA | Ja | JA | Nein  |
 
 ### <a name="analytic-workload-capabilities"></a>Funktionen für Analyseworkloads
 
-| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank | 
-| --- | --- | --- | --- | --- | 
+| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank |
+| --- | --- | --- | --- | --- |
 | Unterstützung von Analysen über die Volltextsuche hinaus | Nein  | Ja | Ja | JA |
 | Teil eines Protokollanalysestapels | Nein  | Ja (ELK) |  Nein  | Nein  |
-| Unterstützung der semantischen Suche | Ja (nur Suche von ähnlichen Dokumenten) | JA | Ja | JA | 
+| Unterstützung der semantischen Suche | Ja (nur Suche von ähnlichen Dokumenten) | JA | Ja | JA |
 
 ### <a name="security-capabilities"></a>Sicherheitsfunktionen
 
-| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank | 
-| --- | --- | --- | --- | --- | 
-| Sicherheit auf Zeilenebene | Teilweise (Anwendungsabfrage zum Filtern nach Gruppen-ID erforderlich) | Teilweise (Anwendungsabfrage zum Filtern nach Gruppen-ID erforderlich) | JA | JA | 
+| | Azure Search | Elasticsearch | HDInsight mit Solr | SQL-Datenbank |
+| --- | --- | --- | --- | --- |
+| Sicherheit auf Zeilenebene | Teilweise (Anwendungsabfrage zum Filtern nach Gruppen-ID erforderlich) | Teilweise (Anwendungsabfrage zum Filtern nach Gruppen-ID erforderlich) | JA | JA |
 | Transparent Data Encryption | Nein  | Nein  | Nein  | JA |  
-| Beschränken des Zugriffs auf bestimmte IP-Adressen | Nein  | Ja | Ja | JA |   
+| Beschränken des Zugriffs auf bestimmte IP-Adressen | Nein  | Ja | Ja | JA |
 | Beschränken des Zugriffs, um nur den Zugriff auf virtuelle Netzwerke zuzulassen | Nein  | Ja | Ja | JA |  
-| Active Directory-Authentifizierung (integrierte Authentifizierung) | Nein  | Nein  | Nein  | JA | 
+| Active Directory-Authentifizierung (integrierte Authentifizierung) | Nein  | Nein  | Nein  | JA |
 
 ## <a name="see-also"></a>Weitere Informationen
 

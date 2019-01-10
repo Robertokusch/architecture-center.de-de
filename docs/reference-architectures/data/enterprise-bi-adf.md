@@ -5,18 +5,18 @@ description: Automatisieren Sie einen ELT-Workflow (Extrahieren, Laden und Trans
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 8263da7675beb61add371c945aab72b203c2349c
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 579ef0361ec44d0eb82b9076490eed5a6d88df35
+ms.sourcegitcommit: cd3de23543f739a95a1daf38886561f67add9d64
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644004"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54183591"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Data Factory
 
 Diese Referenzarchitektur veranschaulicht die Vorgehensweise für inkrementelles Laden in einer [ELT-Pipeline](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (Extrahieren, Laden und Transformieren). Sie verwendet Azure Data Factory, um die ELT-Pipeline zu automatisieren. Die Pipeline verschiebt die neuesten OLTP-Daten inkrementell aus einer lokalen SQL Server-Datenbank in SQL Data Warehouse. Transaktionsdaten werden in ein tabellarisches Modell für die Analyse transformiert.
 
-> [!VIDEO <https://www.microsoft.com/videoplayer/embed/RE2Gnz2>]
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
 
 Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] verfügbar.
 

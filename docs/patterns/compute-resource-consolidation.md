@@ -1,18 +1,17 @@
 ---
-title: Computeressourcenkonsolidierung
-description: Konsolidieren mehrerer Tasks oder Vorgänge in einer einzelnen Compute-Einheit
+title: Muster „Computeressourcenkonsolidierung“
+titleSuffix: Cloud Design Patterns
+description: Konsolidieren Sie mehrere Tasks oder Vorgänge in einer einzelnen Compute-Einheit.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-ms.openlocfilehash: bd212b8b4406a08058f811db030843f732e08cdc
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 0f787537fb97f52ad69df7f0784b7fca3c45d7d1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428838"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111477"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>Muster „Computeressourcenkonsolidierung“
 
@@ -27,7 +26,6 @@ Eine Cloudanwendung implementiert häufig eine Vielzahl von Vorgängen. Bei eini
 Die Abbildung zeigt beispielhaft die vereinfachte Struktur einer cloudbasierten Lösung, die mit mehr als einer Compute-Einheit implementiert ist. Jede Compute-Einheit wird in einer eigenen virtuellen Umgebung ausgeführt. Jede Funktion wurde als separater Task implementiert (Task A bis Task E), der in einer eigenen Compute-Einheit ausgeführt wird.
 
 ![Ausführen von Tasks in einer Cloudumgebung mit einer Gruppe dedizierter Compute-Einheiten](./_images/compute-resource-consolidation-diagram.png)
-
 
 Jede Compute-Einheit verbraucht kostenpflichtige Ressourcen, auch wenn sie sich im Leerlauf befindet oder nur selten genutzt wird. Daher ist dies nicht immer die kosteneffizienteste Lösung.
 
@@ -67,7 +65,7 @@ Beachten Sie bei der Implementierung dieses Musters die folgenden Punkte:
 **Konflikte**. Vermeiden Sie Konflikte zwischen Tasks, die um Ressourcen in derselben Compute-Einheit konkurrieren. Im Idealfall sollten Tasks, die dieselbe Compute-Einheit verwenden, unterschiedliche Merkmale in Bezug auf die Ressourcennutzung aufweisen. Beispielsweise sollten zwei rechenintensive Tasks nicht in derselben Compute-Einheit platziert werden, und ebenso auch keine zwei Tasks, die viel Speicher verbrauchen. Die Zusammenlegung eines rechenintensiven Tasks mit einem Task, der viel Arbeitsspeicher benötigt, ist hingegen eine geeignete Kombination.
 
 > [!NOTE]
->  Ziehen Sie in Betracht, die Computerressourcen nur für ein System zu konsolidieren, das seit einiger Zeit in Produktion ist, sodass Operatoren und Entwickler das System überwachen und ein _Wärmebild_ erstellen können, das die Nutzung der verschiedenen Ressourcen durch jeden Task zeigt. Anhand dieses Wärmebilds kann festgestellt werden, welche Tasks gute Kandidaten für die gemeinsame Nutzung von Computeressourcen sind.
+> Ziehen Sie in Betracht, die Computerressourcen nur für ein System zu konsolidieren, das seit einiger Zeit in Produktion ist, sodass Operatoren und Entwickler das System überwachen und ein _Wärmebild_ erstellen können, das die Nutzung der verschiedenen Ressourcen durch jeden Task zeigt. Anhand dieses Wärmebilds kann festgestellt werden, welche Tasks gute Kandidaten für die gemeinsame Nutzung von Computeressourcen sind.
 
 **Komplexität**. Die Kombination mehrerer Tasks in einer einzigen Compute-Einheit erhöht die Komplexität des Codes in der Einheit und erschwert möglicherweise das Testen, Debuggen sowie die Wartung.
 
@@ -85,7 +83,7 @@ Dieses Muster eignet sich möglicherweise nicht für Tasks, die kritische fehler
 
 Beim Erstellen eines Clouddiensts in Azure ist es möglich, die Verarbeitung mehrerer Tasks in einer einzigen Rolle zu konsolidieren. Typischerweise handelt es sich dabei um eine Workerrolle, die Hintergrund- oder asynchrone Verarbeitungstasks ausführt.
 
-> In einigen Fällen ist es möglich, Hintergrund- oder asynchrone Verarbeitungsaufgaben in die Webrolle einzubinden. Diese Technik trägt zur Kostensenkung bei und vereinfacht die Bereitstellung, wenngleich sie sich auf die Skalierbarkeit und Reaktionsfähigkeit der öffentlich zugänglichen Schnittstelle auswirken kann, die von der Webrolle bereitgestellt wird. 
+> In einigen Fällen ist es möglich, Hintergrund- oder asynchrone Verarbeitungsaufgaben in die Webrolle einzubinden. Diese Technik trägt zur Kostensenkung bei und vereinfacht die Bereitstellung, wenngleich sie sich auf die Skalierbarkeit und Reaktionsfähigkeit der öffentlich zugänglichen Schnittstelle auswirken kann, die von der Webrolle bereitgestellt wird.
 
 Die Rolle ist für das Starten und Beenden der Tasks verantwortlich. Wenn der Azure Fabric Controller eine Rolle lädt, löst er das Ereignis `Start` für die Rolle aus. Sie können die Methode `OnStart` der Klasse `WebRole` oder `WorkerRole` überschreiben, um dieses Ereignis zu behandeln – um beispielsweise die Daten und andere Ressourcen zu initialisieren, von denen die Tasks in dieser Methode abhängen.
 
@@ -104,7 +102,6 @@ Wenn eine Rolle heruntergefahren oder recycelt wird, verhindert der Fabric Contr
 Die Tasks werden von der Methode `Run` gestartet, die auf den Abschluss der Tasks wartet. Die Tasks implementieren die Geschäftslogik des Clouddiensts und können auf Nachrichten reagieren, die über den Azure-Load Balancer an die Rolle gesendet werden. Die Abbildung zeigt den Lebenszyklus von Tasks und Ressourcen in einer Rolle im Azure-Clouddienst.
 
 ![Der Lebenszyklus von Tasks und Ressourcen in einer Rolle im Azure-Clouddienst](./_images/compute-resource-consolidation-lifecycle.png)
-
 
 Die Datei _WorkerRole.cs_ im Projekt _ComputeResourceConsolidation.Worker_ zeigt ein Beispiel, wie Sie dieses Muster in einem Azure-Clouddienst implementieren können.
 

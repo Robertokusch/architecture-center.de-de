@@ -1,21 +1,21 @@
 ---
 title: Entwurfs- und Implementierungsmuster
+titleSuffix: Cloud Design Patterns
 description: Ein guter Entwurf berücksichtigt Faktoren wie Konsistenz und Kohärenz im Komponentenentwurf und in der Bereitstellung, Wartbarkeit zur Vereinfachung der Verwaltung und Entwicklung sowie Wiederverwendbarkeit, um die Verwendung von Komponenten und Subsystemen in anderen Anwendungen und Szenarien zu ermöglichen. Während der Entwurfs- und Implementierungsphase getroffene Entscheidungen haben großen Einfluss auf die Qualität und die Gesamtkosten von in der Cloud gehosteten Anwendungen und Diensten.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: 861445ceeca62e5b1e62fd4cb33924c35e10c0b0
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: 38b20fad513109051d40c1b9556f75fa86e03dd7
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847797"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009796"
 ---
 # <a name="design-and-implementation-patterns"></a>Entwurfs- und Implementierungsmuster
 
 Ein guter Entwurf berücksichtigt Faktoren wie Konsistenz und Kohärenz im Komponentenentwurf und in der Bereitstellung, Wartbarkeit zur Vereinfachung der Verwaltung und Entwicklung sowie Wiederverwendbarkeit, um die Verwendung von Komponenten und Subsystemen in anderen Anwendungen und Szenarien zu ermöglichen. Während der Entwurfs- und Implementierungsphase getroffene Entscheidungen haben großen Einfluss auf die Qualität und die Gesamtkosten von in der Cloud gehosteten Anwendungen und Diensten.
-
 
 |                                Muster                                 |                                                                                                      Zusammenfassung                                                                                                       |
 |------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -33,4 +33,3 @@ Ein guter Entwurf berücksichtigt Faktoren wie Konsistenz und Kohärenz im Kompo
 |                        [Sidecar](../sidecar.md)                        |                                                  Komponenten einer Anwendung zwecks Isolation und Kapselung in einem separaten Prozess oder Container bereitstellen                                                  |
 |         [Hosten von statischen Inhalten](../static-content-hosting.md)         |                                                        Statische Inhalte in einem cloudbasierten Speicherdienst bereitstellen, der die Inhalte direkt an den Client übermitteln kann                                                        |
 |                      [Einschnürung](../strangler.md)                      |                                         Migrieren Sie ein älteres System inkrementell, indem Sie bestimmte Teile der Funktionalität nach und nach durch neue Anwendungen und Dienste ersetzen.                                          |
-

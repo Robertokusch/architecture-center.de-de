@@ -1,19 +1,17 @@
 ---
-title: Indextabelle
-description: Erstellen von Indizes für die Felder im Datenspeicher, auf die häufig von Abfragen verwiesen wird
+title: Muster „Indextabelle“
+titleSuffix: Cloud Design Patterns
+description: Erstellen Sie Indizes für die Felder im Datenspeicher, auf die häufig von Abfragen verwiesen wird.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 24a1061349af84d13f05f88a1698b4efe4b0f449
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 206d064b80dd980c9b5fdfb1233ff2dd8baafbaf
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541784"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011000"
 ---
 # <a name="index-table-pattern"></a>Muster „Indextabelle“
 
@@ -26,7 +24,6 @@ Erstellen Sie Indizes für die Felder im Datenspeicher, auf die häufig von Abfr
 Viele Datenspeicher organisieren die Daten für eine Sammlung von Entitäten unter Verwendung des Primärschlüssels. Mit diesem Schlüssel kann eine Anwendung Daten suchen und abrufen. Die Abbildung zeigt ein Beispiel für einen Datenspeicher, der Kundeninformationen enthält. Bei dem Primärschlüssel handelt es sich um die Kunden-ID. Die Abbildung zeigt die nach Primärschlüssel (Kunden-ID) organisierten Kundeninformationen.
 
 ![Abbildung 1: Nach Primärschlüssel (Kunden-ID) organisierte Kundeninformationen](./_images/index-table-figure-1.png)
-
 
 Der Primärschlüssel ist zwar für Abfragen nützlich, die Daten basierend auf dem Wert dieses Schlüssels abrufen, eine Anwendung kann den Primärschlüssel möglicherweise jedoch nicht verwenden, wenn sie Daten basierend auf einem anderen Feld abrufen muss. Im Beispiel mit den Kundendaten kann eine Anwendung keine Kunden mithilfe der als Primärschlüssel dienenden Kunden-ID abrufen, wenn Daten ausschließlich über den Wert eines anderen Attributs abfragt werden (z.B. der Stadt, in der der Kunde ansässig ist). Um eine solche Abfrage durchzuführen, muss die Anwendung möglicherweise jeden Kundendatensatz abrufen und untersuchen, was sich als langwieriger Prozess erweisen kann.
 
@@ -44,13 +41,11 @@ Die erste Strategie besteht darin, die Daten in jeder Indextabelle zu dupliziere
 
 ![Abbildung 2: Duplizieren von Daten in jeder Indextabelle](./_images/index-table-figure-2.png)
 
-
 Diese Strategie ist sinnvoll, wenn die Daten im Verhältnis zur Anzahl der Abfragen, die mit den einzelnen Schlüsseln durchgeführt werden, relativ statisch sind. Wenn die Daten dynamischer sind, wird der Verarbeitungsaufwand für die Verwaltung der einzelnen Indextabellen zu groß, als dass dieser Ansatz sinnvoll wäre. Zudem ist bei einem sehr großen Datenvolumen der Speicherplatzbedarf für die Speicherung der doppelten Daten beträchtlich.
 
 Die zweite Strategie besteht darin, normalisierte, nach verschiedenen Schlüsseln organisierte Indextabellen zu erstellen und mithilfe des Primärschlüssels auf die Originaldaten zu verweisen, anstatt sie zu duplizieren, wie in der folgenden Abbildung gezeigt wird. Die Originaldaten werden als „Faktentabelle“ bezeichnet.
 
 ![Abbildung 3: Von den einzelnen Indextabellen referenzierte Daten](./_images/index-table-figure-3.png)
-
 
 Diese Methode spart Speicherplatz und reduziert den Aufwand für die Verwaltung doppelter Daten. Der Nachteil ist, dass eine Anwendung zwei Suchvorgänge durchführen muss, um Daten mithilfe eines Sekundärschlüssels zu suchen. Sie muss den Primärschlüssel für die Daten in der Indextabelle suchen und die Daten dann mithilfe des Primärschlüssels in der Faktentabelle nachschlagen.
 
@@ -58,18 +53,15 @@ Die dritte Strategie besteht darin, teilweise normalisierte Indextabellen – or
 
 ![Abbildung 4: In den einzelnen Indextabellen duplizierte häufig verwendete Daten](./_images/index-table-figure-4.png)
 
-
 Diese Strategie ist der goldene Mittelweg zwischen den ersten beiden Vorgehensweisen. Die Daten für häufige Abfragen können durch einen einzigen Suchvorgang schnell abgerufen werden, wobei der Speicherplatzbedarf und Verwaltungsaufwand nicht so hoch ausfallen wie bei der Duplizierung des gesamten Datasets.
 
 Wenn eine Anwendung häufig durch eine Kombination von Werten Daten abfragt (z.B. „Finde alle Kunden, die in Redmond leben und mit Nachnamen „Smith“ heißen“), können Sie die Schlüssel für die Elemente in der Indextabelle als Verkettung des Town- und LastName-Attributs implementieren. Die folgende Abbildung zeigt eine Indextabelle basierend auf zusammengesetzten Schlüsseln. Sortiert werden die Schlüssel nach dem Town-Attribut und bei Datensätzen, die den gleichen Wert für das Town-Attribut enthalten, dann nach dem LastName-Attribut.
 
 ![Abbildung 5: Eine auf zusammengesetzten Schlüsseln basierende Indextabelle](./_images/index-table-figure-5.png)
 
-
 Indextabellen können Abfragevorgänge durch in Shards unterteilte Daten beschleunigen und sind besonders nützlich, wenn der Shardschlüssel mit Hashes versehen ist. Die folgende Abbildung zeigt ein Beispiel, bei dem der Shardschlüssel einen Hash der Kunden-ID darstellt. Die Indextabelle kann die Daten nach dem Wert ohne Hash (Town und LastName) organisieren und den Shardschlüssel mit Hash als Suchdaten zur Verfügung stellen. Dies erspart der Anwendung das wiederholte Berechnen von Hashschlüsseln (ein kostspieliger Vorgang), wenn sie Daten innerhalb eines Bereichs abrufen oder in der Reihenfolge des Schlüssels ohne Hash abrufen muss. Beispielsweise kann eine Abfrage wie „Finde alle Kunden, die in Redmond leben“ schnell gelöst werden, indem die entsprechenden Elemente in der Indextabelle, in der alle Elemente in einem zusammenhängenden Block gespeichert sind, gesucht werden. Folgen Sie dann mithilfe der in der Indextabelle gespeicherten Shardschlüssel den Verweisen auf die Kundendaten.
 
 ![Abbildung 6: Indextabelle für schnelle Suchvorgänge nach Daten in Shards](./_images/index-table-figure-6.png)
-
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
@@ -104,18 +96,16 @@ Sehen wir uns zum Beispiel eine Anwendung an, die Informationen über Filme spei
 
 ![Abbildung 7: In einer Azure-Tabelle gespeicherte Filmdaten](./_images/index-table-figure-7.png)
 
-
 Diese Vorgehensweise ist nicht sehr effizient, wenn die Anwendung auch Filme nach Darstellern abfragen muss. In diesem Fall können Sie eine separate Azure-Tabelle erstellen, die als Indextabelle fungiert. Als Partitionsschlüssel dient der Darsteller und als Zeilenschlüssel der Filmname. Die Daten für jeden Darsteller werden in separaten Partitionen gespeichert. Wenn ein Film mehrere Darsteller enthält, wird derselbe Film in mehreren Partitionen angezeigt.
 
 Sie können die Filmdaten in den Werten der einzelnen Partitionen duplizieren, indem Sie die im oben beschriebenen Abschnitt „Lösung“ erste Vorgehensweise befolgen. Da jeder Film jedoch wahrscheinlich mehrmals repliziert wird (einmal pro Darsteller), kann es effizienter sein, die Daten teilweise zu denormalisieren, um die gängigsten Abfragen (z.B. für die Namen der anderen Darsteller) zu unterstützen. Zudem sollte eine Anwendung alle verbleibenden Details abrufen können, indem sie den Partitionsschlüssel verwendet, der für die Suche nach vollständigen Informationen in den Genrepartitionen notwendig ist. Diese Vorgehensweise wird durch die dritte Option im Abschnitt „Lösung“ beschrieben. In der folgenden Abbildung wird diese Vorgehensweise veranschaulicht.
 
 ![Abbildung 8: Als Indextabellen fungierende Darstellerpartitionen für Filmdaten](./_images/index-table-figure-8.png)
 
-
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
-Die folgenden Muster und Anweisungen können ebenfalls für die Implementierung dieses Musters relevant sein:
+Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
 
 - [Data Consistency Primer (Grundlagen der Datenkonsistenz)](https://msdn.microsoft.com/library/dn589800.aspx): Eine Indextabelle muss bei Änderungen an Daten, die sie indiziert, aktualisiert werden. In der Cloud ist es eventuell nicht möglich oder angebracht, Vorgänge durchzuführen, die im Rahmen derselben Transaktion für die Datenänderung einen Index aktualisieren. In diesem Fall ist eine letztlich konsistente Vorgehensweise angebrachter. Dieser Artikel enthält Informationen über die mit letztlicher Konsistenz verbundenen Probleme.
-- [Muster „Sharding“](https://msdn.microsoft.com/library/dn589797.aspx): Das Muster „Indextabelle“ wird häufig in Verbindung mit Daten, die durch Shards partitioniert werden, verwendet. Das Muster „Sharding“ enthält weitere Informationen darüber, wie ein Datenspeicher in eine Gruppe von Shards aufgeteilt wird.
-- [Muster „Materialisierte Sichten“](materialized-view.md): Statt Daten zu indizieren, um Abfragen zum Zusammenfassen von Daten zu unterstützen, kann es sinnvoller sein, eine materialisierte Sicht der Daten zu erstellen. In diesem Artikel wird beschrieben, wie effizientere Zusammenfassungsabfragen durch die Generierung von vordefinierten Datenansichten unterstützt werden.
+- [Muster „Sharding“](./sharding.md): Das Muster „Indextabelle“ wird häufig in Verbindung mit Daten, die durch Shards partitioniert werden, verwendet. Das Muster „Sharding“ enthält weitere Informationen darüber, wie ein Datenspeicher in eine Gruppe von Shards aufgeteilt wird.
+- [Muster „Materialisierte Sichten“](./materialized-view.md): Statt Daten zu indizieren, um Abfragen zum Zusammenfassen von Daten zu unterstützen, kann es sinnvoller sein, eine materialisierte Sicht der Daten zu erstellen. In diesem Artikel wird beschrieben, wie effizientere Zusammenfassungsabfragen durch die Generierung von vordefinierten Datenansichten unterstützt werden.

@@ -3,18 +3,22 @@ title: Auswählen einer Technologie für die Echtzeiterfassung von Nachrichten
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 64d6fca0a8ffac45f605e90a11cd2b3e53db287f
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 961e377591f67aec995c8495fa9188c851e464fc
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901616"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111239"
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>Auswählen einer Technologie für die Echtzeiterfassung von Nachrichten in Azure
 
-Bei der Echtzeitverarbeitung werden Datenströme in Echtzeit erfasst und mit minimaler Wartezeit verarbeitet. Viele Lösungen für die Echtzeitverarbeitung erfordern jedoch einen Speicher für die Erfassung von Nachrichten, der als Puffer für Nachrichten fungiert. Der Speicher muss zudem die Verarbeitung mit horizontaler Skalierung, eine zuverlässige Übermittlung sowie weitere Semantik für das Nachrichtenqueuing unterstützen. 
+Bei der Echtzeitverarbeitung werden Datenströme in Echtzeit erfasst und mit minimaler Wartezeit verarbeitet. Viele Lösungen für die Echtzeitverarbeitung erfordern jedoch einen Speicher für die Erfassung von Nachrichten, der als Puffer für Nachrichten fungiert. Der Speicher muss zudem die Verarbeitung mit horizontaler Skalierung, eine zuverlässige Übermittlung sowie weitere Semantik für das Nachrichtenqueuing unterstützen.
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-for-real-time-message-ingestion"></a>Welche Optionen stehen Ihnen bei der Auswahl einer Technologie für die Echtzeiterfassung von Nachrichten zur Verfügung?
+
+<!-- markdownlint-enable MD026 -->
 
 - [Azure Event Hubs](/azure/event-hubs/)
 - [Azure IoT Hub](/azure/iot-hub/)
@@ -30,24 +34,24 @@ Bei der Echtzeitverarbeitung werden Datenströme in Echtzeit erfasst und mit min
 
 IoT Hub bietet folgende Features:
 
-* Mehrere Optionen für die Kommunikation zwischen Geräten und Cloud (Device-to-Cloud, D2C) sowie zwischen Cloud und Geräten (Cloud-to-Device, C2D). Dazu zählen unter anderem unidirektionales Messaging, Dateiübertragungen und Anforderung-Antwort-Methoden.
-* Nachrichtenrouting zu anderen Azure-Diensten.
-* Abfragbarer Speicher für Gerätemetadaten und synchronisierte Zustandsinformationen.
-* Sichere Kommunikation und Zugriffssteuerung mithilfe von geräteabhängigen Sicherheitsschlüsseln oder X.509-Zertifikaten.
-* Überwachung der Ereignisse zur Verwaltung der Gerätekonnektivität und -identität.
+- Mehrere Optionen für die Kommunikation zwischen Geräten und Cloud (Device-to-Cloud, D2C) sowie zwischen Cloud und Geräten (Cloud-to-Device, C2D). Dazu zählen unter anderem unidirektionales Messaging, Dateiübertragungen und Anforderung-Antwort-Methoden.
+- Nachrichtenrouting zu anderen Azure-Diensten.
+- Abfragbarer Speicher für Gerätemetadaten und synchronisierte Zustandsinformationen.
+- Sichere Kommunikation und Zugriffssteuerung mithilfe von geräteabhängigen Sicherheitsschlüsseln oder X.509-Zertifikaten.
+- Überwachung der Ereignisse zur Verwaltung der Gerätekonnektivität und -identität.
 
-Im Hinblick auf die Erfassung von Nachrichten ist IoT Hub von der Funktion her mit Event Hubs vergleichbar. IoT Hub wurde jedoch speziell für die Verwaltung der IoT-Gerätekonnektivität konzipiert und nicht nur für die Erfassung von Nachrichten. Weitere Informationen finden Sie unter [Vergleich zwischen Azure IoT Hub und Azure Event Hubs](/azure/iot-hub/iot-hub-compare-event-hubs). 
+Im Hinblick auf die Erfassung von Nachrichten ist IoT Hub von der Funktion her mit Event Hubs vergleichbar. IoT Hub wurde jedoch speziell für die Verwaltung der IoT-Gerätekonnektivität konzipiert und nicht nur für die Erfassung von Nachrichten. Weitere Informationen finden Sie unter [Vergleich zwischen Azure IoT Hub und Azure Event Hubs](/azure/iot-hub/iot-hub-compare-event-hubs).
 
 ## <a name="kafka-on-hdinsight"></a>Kafka in HDInsight
 
-[Apache Kafka](https://kafka.apache.org/) ist eine verteilte Open Source-Streamingplattform, die zum Erstellen von Echtzeit-Datenpipelines und Streaminganwendungen verwendet werden kann. Kafka verfügt auch über Nachrichtenbrokerfunktionen, die einer Nachrichtenwarteschlange ähneln, über die Sie benannte Datenströme veröffentlichen und diese abonnieren können. Apache Kafka ist horizontal skalierbar, fehlertolerant und extrem schnell. [Kafka in HDInsight](/azure/hdinsight/kafka/apache-kafka-get-started) stellt Kafka als verwalteten, hoch skalierbaren und hoch verfügbaren Dienst in Azure bereit. 
+[Apache Kafka](https://kafka.apache.org/) ist eine verteilte Open Source-Streamingplattform, die zum Erstellen von Echtzeit-Datenpipelines und Streaminganwendungen verwendet werden kann. Kafka verfügt auch über Nachrichtenbrokerfunktionen, die einer Nachrichtenwarteschlange ähneln, über die Sie benannte Datenströme veröffentlichen und diese abonnieren können. Apache Kafka ist horizontal skalierbar, fehlertolerant und extrem schnell. [Kafka in HDInsight](/azure/hdinsight/kafka/apache-kafka-get-started) stellt Kafka als verwalteten, hoch skalierbaren und hoch verfügbaren Dienst in Azure bereit.
 
 Gängige Anwendungsfälle für Kafka sind beispielsweise:
 
-* **Messaging**: Da das Veröffentlichen/Abonnieren-Nachrichtenmuster unterstützt wird, wird Kafka häufig als Nachrichtenbroker genutzt.
-* **Aktivitätsüberwachung**. Da Kafka die geordnete Protokollierung von Datensätzen unterstützt, kann die Anwendung zum Nachverfolgen und Neuerstellen von Aktivitäten verwendet werden (beispielsweise Benutzeraktionen auf einer Website).
-* **Aggregation**. Mit der Datenstromverarbeitung können Sie Informationen aus unterschiedlichen Datenströmen aggregieren, um die Informationen zu operativen Daten zu kombinieren und zu zentralisieren.
-* **Transformation**. Mit der Datenstromverarbeitung können Sie Daten aus mehreren Eingabethemen zu einem oder mehreren Ausgabethemen kombinieren und erweitern.
+- **Messaging**: Da das Veröffentlichen/Abonnieren-Nachrichtenmuster unterstützt wird, wird Kafka häufig als Nachrichtenbroker genutzt.
+- **Aktivitätsüberwachung**. Da Kafka die geordnete Protokollierung von Datensätzen unterstützt, kann die Anwendung zum Nachverfolgen und Neuerstellen von Aktivitäten verwendet werden (beispielsweise Benutzeraktionen auf einer Website).
+- **Aggregation**. Mit der Datenstromverarbeitung können Sie Informationen aus unterschiedlichen Datenströmen aggregieren, um die Informationen zu operativen Daten zu kombinieren und zu zentralisieren.
+- **Transformation**. Mit der Datenstromverarbeitung können Sie Daten aus mehreren Eingabethemen zu einem oder mehreren Ausgabethemen kombinieren und erweitern.
 
 ## <a name="key-selection-criteria"></a>Wichtige Auswahlkriterien
 
@@ -59,7 +63,9 @@ Beantworten Sie die folgenden Fragen, um die Auswahl einzuschränken:
 
 ## <a name="capability-matrix"></a>Funktionsmatrix
 
-In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefasst: 
+In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefasst:
+
+<!-- markdownlint-disable MD033 -->
 
 | | IoT Hub | Event Hubs | Kafka in HDInsight |
 | --- | --- | --- | --- |
@@ -68,6 +74,8 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | Gerätestatusinformationen | [Gerätezwillinge](/azure/iot-hub/iot-hub-devguide-device-twins) | Nein  | Nein  |
 | Protokollunterstützung | MQTT, AMQP, HTTPS<sup>1</sup> | AMQP, HTTPS | [Kafka-Protokoll](https://cwiki.apache.org/confluence/display/KAFKA/A+Guide+To+The+Kafka+Protocol) |
 | Sicherheit | Geräteabhängige Identität, widerrufbare Zugriffssteuerung | Freigegebene Zugriffsrichtlinien, begrenzte Sperrung über Herausgeberrichtlinien | Authentifizierung mit SASL, austauschbare Autorisierung, Unterstützung der Integration in externe Authentifizierungsdienste |
+
+<!-- markdownlint-enable MD026 -->
 
 [1] Sie können auch das [Azure IoT-Protokollgateway](/azure/iot-hub/iot-hub-protocol-gateway) als benutzerdefiniertes Gateway verwenden, um die Protokollanpassung für IoT Hub zu ermöglichen.
 

@@ -3,12 +3,12 @@ title: Onlinetransaktionsverarbeitung (OLTP)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: be24bc173359539785385de4a188e7536f6d2ffe
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 331da288384bf14581eeda35116085d759807245
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902755"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113959"
 ---
 # <a name="online-transaction-processing-oltp"></a>Onlinetransaktionsverarbeitung (OLTP)
 
@@ -16,11 +16,11 @@ Die Verwaltung von Transaktionsdaten mithilfe von Computersystemen wird als Onli
 
 ## <a name="transactional-data"></a>Transaktionsdaten
 
-Transaktionsdaten sind Informationen, mit denen Interaktionen in Zusammenhang mit den Aktivitäten einer Organisation nachverfolgt werden. Bei diesen Interaktionen handelt es sich in der Regel um Geschäftstransaktionen, etwa von Kunden erhaltene Zahlungen, Zahlungen an Zulieferer, Produkte im Bestand, entgegengenommene Aufträge oder bereitgestellte Dienste. Transaktionsereignisse, die die Transaktionen selbst darstellen, enthalten in der Regel eine Zeitdimension, einige numerische Werte und Verweise auf andere Daten. 
+Transaktionsdaten sind Informationen, mit denen Interaktionen in Zusammenhang mit den Aktivitäten einer Organisation nachverfolgt werden. Bei diesen Interaktionen handelt es sich in der Regel um Geschäftstransaktionen, etwa von Kunden erhaltene Zahlungen, Zahlungen an Zulieferer, Produkte im Bestand, entgegengenommene Aufträge oder bereitgestellte Dienste. Transaktionsereignisse, die die Transaktionen selbst darstellen, enthalten in der Regel eine Zeitdimension, einige numerische Werte und Verweise auf andere Daten.
 
 Transaktionen müssen normalweise *unteilbar* und *konsistent* sein. Unteilbarkeit bedeutet, dass eine gesamte Transaktion immer als eine Arbeitseinheit erfolgreich ist oder fehlschlägt und nie in einem halb abgeschlossenen Zustand belassen wird. Wenn eine Transaktion nicht abgeschlossen werden kann, muss das Datenbanksystem einen Rollback für alle Schritte ausführen, die im Rahmen der Transaktion bereits durchgeführt wurden. In einem herkömmlichen RDBMS erfolgt dieser Rollback automatisch, wenn eine Transaktion nicht abgeschlossen werden kann. Konsistenz bedeutet, dass Transaktionen die Daten immer in einem gültigen Zustand hinterlassen. (Hierbei handelt es sich um sehr informelle Beschreibungen von Unteilbarkeit und Konsistenz. Es gibt offiziellere Definitionen für diese Eigenschaften, etwa [ACID](https://en.wikipedia.org/wiki/ACID).)
 
-Transaktionsdatenbanken können mit verschiedenen Sperrstrategien (etwa pessimistisches Sperren) hohe Konsistenz für Transaktionen unterstützen, um eine hohe Konsistenz aller Daten im Unternehmenskontext für alle Benutzer und Prozesse zu gewährleisten. 
+Transaktionsdatenbanken können mit verschiedenen Sperrstrategien (etwa pessimistisches Sperren) hohe Konsistenz für Transaktionen unterstützen, um eine hohe Konsistenz aller Daten im Unternehmenskontext für alle Benutzer und Prozesse zu gewährleisten.
 
 Die Datenspeicherebene in einer dreischichtigen Architektur ist die am häufigsten verwendete Bereitstellungsarchitektur, die Transaktionsdaten verwendet. Eine dreischichtige Architektur setzt sich üblicherweise aus einer Präsentationsebene, einer Geschäftslogikebene und einer Datenspeicherebene zusammen. Eine ähnliche Bereitstellungsarchitektur ist die [n-schichtige](/azure/architecture/guide/architecture-styles/n-tier) Architektur, die mehrere mittlere Ebenen für die Verarbeitung von Geschäftslogik enthalten kann.
 
@@ -44,7 +44,7 @@ Transaktionsdaten weisen tendenziell die folgenden Merkmale auf:
 | Modell | Relational |
 | Datenform | Tabellarisch |
 | Abfrageflexibilität | Sehr flexibel |
-| Skalieren | Klein (MBs) bis groß (einige TBs) | 
+| Skalieren | Klein (MBs) bis groß (einige TBs) |
 
 ## <a name="when-to-use-this-solution"></a>Verwendung dieser Lösung
 
@@ -53,6 +53,7 @@ OLTP ist die geeignete Wahl, wenn Sie Geschäftstransaktionen effizient verarbei
 OLTP-Systeme sind zur effizienten Verarbeitung und Speicherung von Transaktionen sowie zum effizienten Abfragen von Transaktionsdaten konzipiert. Die effiziente Verarbeitung und Speicherung einzelner Transaktionen durch ein OLTP-System wird zum Teil durch Datennormalisierung erzielt, d. h. die Aufteilung der Daten in kleinere weniger redundante Blöcke. Dies steigert die Effizienz, da das OLTP-System so eine große Anzahl von Transaktionen unabhängig voneinander verarbeiten kann und die zusätzliche Verarbeitung entfällt, die zum Aufrechterhalten der Datenintegrität erforderlich ist, wenn redundante Daten vorhanden sind.
 
 ## <a name="challenges"></a>Herausforderungen
+
 Die Implementierung und Verwendung eines OLTP-Systems kann einige Herausforderungen mit sich bringen:
 
 - OLTP-Systeme eignen sich nicht immer gut zum Verarbeiten von Aggregaten für große Datenmengen, es gibt jedoch Ausnahmen, beispielsweise eine sorgfältig geplante SQL Server-basierte Lösung. Analysen der Daten, die auf Aggregatberechnungen für Millionen einzelner Transaktionen beruhen, sind für ein OLTP-System sehr ressourcenintensiv. Ihre Ausführung kann viel Zeit in Anspruch nehmen und andere Transaktionen in der Datenbank verlangsamen oder blockieren.
@@ -80,7 +81,7 @@ Beantworten Sie die folgenden Fragen, um die Auswahl einzuschränken:
 
 - Gelten für Ihre Lösung bestimmte Abhängigkeiten bezüglich der Kompatibilität mit Microsoft SQL Server, MySQL oder PostgreSQL? Die Treiber, die Ihre Anwendung zur Kommunikation mit dem Datenspeicher unterstützt, oder die Annahmen, die sie bezüglich der verwendeten Datenbank trifft, können die zur Auswahl verfügbaren Datenspeicher begrenzen.
 
-- Sind Ihre Anforderungen im Hinblick auf den Durchsatz von Schreibvorgängen besonders hoch? Wenn dies der Fall ist, sollten Sie eine Option auswählen, die In-Memory-Tabellen bereitstellt. 
+- Sind Ihre Anforderungen im Hinblick auf den Durchsatz von Schreibvorgängen besonders hoch? Wenn dies der Fall ist, sollten Sie eine Option auswählen, die In-Memory-Tabellen bereitstellt.
 
 - Ist Ihre Lösung mehrinstanzenfähig? Wenn dies der Fall ist, sollten Sie Optionen mit Unterstützung für Kapazitätspools erwägen, bei denen mehrere Datenbankinstanzen anstelle von festen Ressourcen pro Datenbank einen Pool für elastische Ressourcen nutzen. Dadurch können Sie die Kapazität besser auf alle Datenbankinstanzen verteilen und die Kosteneffektivität Ihrer Lösung verbessern.
 
@@ -94,13 +95,17 @@ Beantworten Sie die folgenden Fragen, um die Auswahl einzuschränken:
 
 In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst.
 
-### <a name="general-capabilities"></a>Allgemeine Funktionen 
+### <a name="general-capabilities"></a>Allgemeine Funktionen
+
+<!-- markdownlint-disable MD033 -->
 
 |                              | Azure SQL-Datenbank | SQL Server auf einer Azure-VM | Azure Database for MySQL | Azure Database for PostgreSQL |
 |------------------------------|--------------------|----------------------------------------|--------------------------|-------------------------------|
 |      Verwalteter Dienst      |        JA         |                   Nein                   |           Ja            |              JA              |
 |       Unterstützte Plattformen       |        N/V         |         Windows, Linux, Docker         |           N/V            |              N/V              |
 | Programmierbarkeit<sup>1</sup> |   T-SQL, .NET, R   |         T-SQL, .NET, R, Python         |  T-SQL, .NET, R, Python  |              SQL              |
+
+<!-- markdownlint-enable MD033 -->
 
 [1] Ohne Clienttreiberunterstützung, wodurch viele Programmiersprachen eine Verbindung mit dem OLTP-Datenspeicher herstellen und diesen verwenden können
 
@@ -116,7 +121,7 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 ### <a name="analytic-workload-capabilities"></a>Funktionen für Analyseworkloads
 
 | | Azure SQL-Datenbank | SQL Server auf einer Azure-VM| Azure Database for MySQL | Azure Database for PostgreSQL|
-| --- | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- |
 | Temporäre Tabellen | JA | JA | Nein  | Nein  |
 | In-Memory-Tabellen (speicheroptimiert) | JA | JA | Nein  | Nein  |
 | Columnstore-Unterstützung | JA | JA | Nein  | Nein  |
@@ -125,9 +130,9 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 ### <a name="availability-capabilities"></a>Verfügbarkeitsfunktionen
 
 | | Azure SQL-Datenbank | SQL Server auf einer Azure-VM| Azure Database for MySQL | Azure Database for PostgreSQL|
-| --- | --- | --- | --- | --- | --- | 
-| Lesbare sekundäre Replikate | JA | JA | Nein  | Nein  | 
-| Geografische Replikation | JA | JA | Nein  | Nein  | 
+| --- | --- | --- | --- | --- | --- |
+| Lesbare sekundäre Replikate | JA | JA | Nein  | Nein  |
+| Geografische Replikation | JA | JA | Nein  | Nein  |
 | Automatisches Failover zum sekundären Replikat | JA | Nein  | Nein  | Nein |
 | Point-in-Time-Wiederherstellung | JA | Ja | Ja | JA |
 
@@ -145,4 +150,3 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 |                                         Multi-Factor Authentication                                         |        JA         |                  JA                   |            Nein             |              Nein                |
 | Unterstützung von [Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine) |        JA         |                  Ja                   |           JA            |              Nein                |
 |                                                 Private IP-Adresse                                                  |         Nein          |                  Ja                   |           JA            |              Nein                |
-

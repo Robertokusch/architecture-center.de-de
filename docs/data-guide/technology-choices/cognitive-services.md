@@ -3,12 +3,12 @@ title: Auswählen einer Cognitive Services-Technologie
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 0551bf05cb47cb3972b0d5f2e5226e23cbdacc68
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 13d510056e4b1ce6eeec603427658215691e48ab
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902545"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110985"
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a>Auswählen einer Cognitive Services-Technologie von Microsoft
 
@@ -16,26 +16,33 @@ Microsoft Cognitive Services sind cloudbasierte APIs, die Sie in KI-Anwendungen 
 
 Cognitive Services umfassen Folgendes:
 
-* Textanalyse
-* Maschinelles Sehen
-* Videoanalyse
-* Spracherkennung und -generierung
-* Verstehen natürlicher Sprache
-* Intelligente Suche
+- Textanalyse
+- Maschinelles Sehen
+- Videoanalyse
+- Spracherkennung und -generierung
+- Verstehen natürlicher Sprache
+- Intelligente Suche
 
 Hauptvorteile:
 
-* Minimaler Entwicklungsaufwand für modernste KI-Dienste
-* Einfache Integration in Apps über HTTP-REST-Schnittstellen
-* Integrierte Unterstützung der Nutzung von Cognitive Services in Azure Data Lake Analytics
+- Minimaler Entwicklungsaufwand für modernste KI-Dienste
+- Einfache Integration in Apps über HTTP-REST-Schnittstellen
+- Integrierte Unterstützung der Nutzung von Cognitive Services in Azure Data Lake Analytics
 
 Überlegungen:
 
-* Nur über das Web verfügbar. Im Allgemeinen ist eine Internetverbindung erforderlich. Eine Ausnahme ist der Custom Vision Service, dessen trainiertes Modell Sie exportieren können, um Vorhersagen auf Geräten und im IoT-Edgebereich zu treffen.
-* Eine umfassende Anpassung wird zwar unterstützt, aber die verfügbaren Dienste sind unter Umständen nicht für alle Predictive Analytics-Anforderungen geeignet.
+- Nur über das Web verfügbar. Im Allgemeinen ist eine Internetverbindung erforderlich. Eine Ausnahme ist der Custom Vision Service, dessen trainiertes Modell Sie exportieren können, um Vorhersagen auf Geräten und im IoT-Edgebereich zu treffen.
+
+- Eine umfassende Anpassung wird zwar unterstützt, aber die verfügbaren Dienste sind unter Umständen nicht für alle Predictive Analytics-Anforderungen geeignet.
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-when-choosing-amongst-the-cognitive-services"></a>Welche Optionen haben Sie bei der Auswahl der Cognitive Services?
+
+<!-- markdownlint-disable MD026 -->
+
 In Azure sind Dutzende von Cognitive Services verfügbar. Die aktuelle Liste ist jeweils in einem Verzeichnis enthalten, das nach dem unterstützten Funktionsbereich kategorisiert ist:
+
 - [Bildanalyse](https://azure.microsoft.com/services/cognitive-services/directory/vision/)
 - [Spracheingabe](https://azure.microsoft.com/services/cognitive-services/directory/speech/)
 - [Einblicke und Wissen](https://azure.microsoft.com/services/cognitive-services/directory/know/)
@@ -46,13 +53,13 @@ In Azure sind Dutzende von Cognitive Services verfügbar. Die aktuelle Liste ist
 
 Beantworten Sie zunächst die folgenden Fragen, um die Auswahlmöglichkeiten einzuschränken:
 
-- Welche Art von Daten verarbeiten Sie? Grenzen Sie Ihre Optionen basierend auf dem Typ der Eingabedaten ein, die Sie verarbeiten. Wenn es bei Ihrer Eingabe beispielsweise um Text geht, sollten Sie einen Dienst mit dem Eingabetyp „Text“ wählen. 
+- Welche Art von Daten verarbeiten Sie? Grenzen Sie Ihre Optionen basierend auf dem Typ der Eingabedaten ein, die Sie verarbeiten. Wenn es bei Ihrer Eingabe beispielsweise um Text geht, sollten Sie einen Dienst mit dem Eingabetyp „Text“ wählen.
 
-- Verfügen Sie über die Daten zum Trainieren eines Modells? Wenn ja, können Sie die Verwendung der benutzerdefinierten Dienste erwägen, die Ihnen das Trainieren der zugrunde liegenden Modelle mit von Ihnen bereitgestellten Daten ermöglichen, um die Genauigkeit und Leistung zu verbessern. 
+- Verfügen Sie über die Daten zum Trainieren eines Modells? Wenn ja, können Sie die Verwendung der benutzerdefinierten Dienste erwägen, die Ihnen das Trainieren der zugrunde liegenden Modelle mit von Ihnen bereitgestellten Daten ermöglichen, um die Genauigkeit und Leistung zu verbessern.
 
 ## <a name="capability-matrix"></a>Funktionsmatrix
 
-In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst: 
+In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst:
 
 ### <a name="uses-prebuilt-models"></a>Verwendung von vordefinierten Modellen
 
@@ -89,7 +96,6 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 | | Eingabetyp | Hauptvorteil |
 | --- | --- | --- |
 | Custom Vision Service | Bilder (oder Frames aus Videos) | Passen Sie Ihre eigenen Modelle für maschinelles Sehen an. |
-| Custom Speech Service | Spracheingabe | Überwinden Sie die Grenzen der Spracherkennung, z.B. Sprachstil, Hintergrundgeräusche und Vokabular. | 
+| Custom Speech Service | Spracheingabe | Überwinden Sie die Grenzen der Spracherkennung, z.B. Sprachstil, Hintergrundgeräusche und Vokabular. |
 | Custom Decision Service | Webinhalt (z.B. RSS-Feed) | Verwenden Sie Machine Learning, um automatisch die richtigen Inhalte für Ihre Homepage auswählen zu lassen. |
 | API für die benutzerdefinierte Bing-Suche | Text (Websuchabfrage) | Kommerziell einsetzbares Suchtool |
-

@@ -5,12 +5,12 @@ description: Stellen Sie virtuelle Netzwerkgeräte mit hoher Verfügbarkeit bere
 author: telmosampaio
 ms.date: 12/08/2018
 ms.custom: seodec18
-ms.openlocfilehash: d3f9017db1bbf9741b10db16eb5a3dbab78f1160
-ms.sourcegitcommit: 7d21aec9d9de0004ac777c1d1e364f53aac2350d
+ms.openlocfilehash: 646721f80d19f493b7674884f8108762d743201b
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53120751"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011088"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>Bereitstellen hochverfügbarer virtueller Netzwerkgeräte
 
@@ -30,6 +30,8 @@ Um Hochverfügbarkeit für ein NVA zu gewährleisten, stellen Sie mehrere NCAs i
 
 In den folgenden Architekturen sind die für hochverfügbare NVAs erforderlichen Ressourcen und die Konfiguration angegeben:
 
+<!-- markdownlint-disable MD033 -->
+
 | Lösung | Vorteile | Überlegungen |
 | --- | --- | --- |
 | [Eingehender Datenverkehr mit Layer-7-NVAs][ingress-with-layer-7] |Alle NVA-Knoten sind aktiv. |Erfordert ein NVA, das Verbindungen beenden und SNAT verwenden kann.<br/> Erfordert eine separate Gruppe von NVAs für den Datenverkehr aus dem Internet und von Azure. <br/> Kann nur für Datenverkehr verwendet werden, dessen Ursprung außerhalb von Azure liegt. |
@@ -37,6 +39,8 @@ In den folgenden Architekturen sind die für hochverfügbare NVAs erforderlichen
 | [Eingehender/ausgehender Datenverkehr mit Layer-7-NVAs][ingress-egress-with-layer-7] |Alle Knoten sind aktiv.<br/>Kann den aus Azure stammenden Datenverkehr abwickeln. |Erfordert ein NVA, das Verbindungen beenden und SNAT verwenden kann.<br/>Erfordert eine separate Gruppe von NVAs für den Datenverkehr aus dem Internet und von Azure. |
 | [PIP/UDR-Switch][pip-udr-switch] |Einzelne Gruppe von NVAs für den gesamten Datenverkehr.<br/>Kann den gesamten Datenverkehr abwickeln (keine Beschränkung für Portregeln). |Aktiv/Passiv<br/>Erfordert einen Failoverprozess. |
 | [PIP/UDR ohne SNAT](#pip-udr-nvas-without-snat) | Einzelne Gruppe von NVAs für den gesamten Datenverkehr.<br/>Kann den gesamten Datenverkehr abwickeln (keine Beschränkung für Portregeln).<br/>Erfordert keine SNAT-Konfiguration für eingehende Anforderungen. |Aktiv/Passiv<br/>Erfordert einen Failoverprozess.<br/>Sondierung und Failoverlogik werden außerhalb des virtuellen Netzwerks ausgeführt. |
+
+<!-- markdown-enable MD033 -->
 
 ## <a name="ingress-with-layer-7-nvas"></a>Eingehender Datenverkehr mit Layer-7-NVAs
 

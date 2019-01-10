@@ -2,20 +2,20 @@
 title: Echtzeitbewertung von R-Machine Learning-Modellen
 description: Implementieren Sie mithilfe von Machine Learning Server unter Azure Kubernetes Service (AKS) einen Echtzeit-Prognosedienst in R.
 author: njray
-ms.date: 12/12/18
+ms.date: 12/12/2018
 ms.custom: azcat-ai
-ms.openlocfilehash: a6069704c48fbc1f1a1e4b5df428011d6b5b883d
-ms.sourcegitcommit: 62d2211badd1d6950e8cb819d70c9a4ab1ee01d9
+ms.openlocfilehash: 6f3447d1dcab801ccdaf4cf88611725cc00eb68d
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53318991"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112276"
 ---
 # <a name="real-time-scoring-of-r-machine-learning-models"></a>Echtzeitbewertung von R-Machine Learning-Modellen
 
 Diese Referenzarchitektur zeigt, wie Sie mithilfe von Microsoft Machine Learning Server unter Azure Kubernetes Service (AKS) einen (synchronen) Echtzeit-Prognosedienst in R implementieren. Diese generische Architektur eignet sich für jedes beliebige R-basierte Prognosemodell, das Sie als Echtzeitdienst bereitstellen möchten. **[Stellen Sie diese Lösung bereit.][github]**
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Echtzeitbewertung von R-Machine Learning-Modellen in Azure][0]
 
@@ -51,7 +51,7 @@ Die [Modelloperationalisierung][operationalization] von Machine Learning Server 
 
 Damit die Modelloperationalisierung mit Machine Learning Server in Containern ordnungsgemäß funktioniert, muss ein JWT-Zertifikat (JSON Web Token) installiert werden. In dieser Bereitstellung wird ein von Microsoft bereitgestelltes Zertifikat verwendet. In einer Produktionsumgebung muss ein eigenes Zertifikat verwendet werden.
 
-Für den Datenverkehr zwischen Container Registry und AKS empfiehlt sich ggf. die Aktivierung der [rollenbasierten Zugriffssteuerung][rbac] (role-based access control, RBAC), um Zugriffsrechte auf ein Mindestmaß zu beschränken. 
+Für den Datenverkehr zwischen Container Registry und AKS empfiehlt sich ggf. die Aktivierung der [rollenbasierten Zugriffssteuerung][rbac] (role-based access control, RBAC), um Zugriffsrechte auf ein Mindestmaß zu beschränken.
 
 ### <a name="separate-storage"></a>Trennen des Speichers
 

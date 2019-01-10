@@ -1,20 +1,17 @@
 ---
-title: Überwachung der Integrität von Endpunkten
+title: Muster für Überwachung der Integrität von Endpunkten
+titleSuffix: Cloud Design Patterns
 description: Implementieren Sie Funktionsprüfungen in einer Anwendung, auf die externe Tools in regelmäßigen Abständen über verfügbar gemachte Endpunkte zugreifen können.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- availability
-- management-monitoring
-- resiliency
-ms.openlocfilehash: 22a4e47c4dd8dd3dd11a4238e859acbea49f9d1b
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 85a1355ff47e6fce80d9b2ed114024651eb994db
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428974"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114248"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>Muster für Überwachung der Integrität von Endpunkten
 
@@ -42,6 +39,7 @@ Der Antwortcode gibt den Status der Anwendung und optional der von ihr verwendet
 ![Übersicht über das Muster](./_images/health-endpoint-monitoring-pattern.png)
 
 Andere Prüfungen, die vom Code für die Integritätsüberwachung in der Anwendung durchgeführt werden können, sind z.B:
+
 - Überprüfung der Verfügbarkeit und Antwortzeit eines Cloudspeichers oder einer Datenbank
 - Überprüfung anderer Ressourcen oder Dienste, die sich in der Anwendung befinden oder an anderer Stelle, aber von der Anwendung verwendet werden
 
@@ -67,7 +65,7 @@ Beachten Sie die folgenden Punkte bei der Entscheidung, wie dieses Muster implem
 
 Validierung der Antwort. Ist zum Beispiel bloß der Statuscode 200 (OK) ausreichend, um zu bestätigen, dass die Anwendung ordnungsgemäß funktioniert? Obwohl dies die grundlegendste Kennzahl für die Anwendungsverfügbarkeit und die Minimalimplementierung dieses Musters ist, liefert es wenig Informationen über die Vorgänge, Trends und mögliche anstehende Probleme in der Anwendung.
 
-   >  Stellen Sie sicher, dass die Anwendung 200 (OK) richtigerweise nur dann zurückgibt, wenn die Zielressource gefunden und verarbeitet wird. In einigen Szenarien, wie z.B. bei Verwendung einer Masterseite als Host der Zielwebseite, sendet der Server den Statuscode 200 (OK) statt 404 (Nicht gefunden) zurück, auch wenn die Zielinhaltsseite nicht gefunden wurde.
+   > Stellen Sie sicher, dass die Anwendung 200 (OK) richtigerweise nur dann zurückgibt, wenn die Zielressource gefunden und verarbeitet wird. In einigen Szenarien, wie z.B. bei Verwendung einer Masterseite als Host der Zielwebseite, sendet der Server den Statuscode 200 (OK) statt 404 (Nicht gefunden) zurück, auch wenn die Zielinhaltsseite nicht gefunden wurde.
 
 Die Anzahl der Endpunkte, die für eine Anwendung verfügbar gemacht werden. Ein Ansatz sieht vor, dass mindestens ein Endpunkt für die Kerndienste, die die Anwendung verwendet, und ein weiterer Endpunkt für Dienste mit geringerer Priorität verfügbar gemacht wird, sodass jedem Überwachungsergebnis unterschiedliche Wichtigkeitsstufen zugewiesen werden können. Erwägen Sie außerdem, weitere Endpunkte, wie z.B. einen für jeden Kerndienst, für mehr Granularität bei der Überwachung verfügbar zu machen. Beispielsweise kann eine Integritätsprüfung die Datenbank, den Speicher und einen externen Geocodierungsdienst einer Anwendung überprüfen, wobei jede Komponente einen anderen Grad an Verfügbarkeit und Antwortzeit erfordert. Die Anwendung kann immer noch funktionieren, auch wenn der Geocodierungsdienst oder eine andere Hintergrundaufgabe für einige Minuten nicht verfügbar ist.
 
@@ -98,6 +96,7 @@ Konfigurieren der Sicherheit der Überwachungsendpunkte zum Schutz vor öffentli
 ## <a name="when-to-use-this-pattern"></a>Verwendung dieses Musters
 
 Dieses Muster ist hilfreich:
+
 - Überwachung von Websites und Webanwendungen auf Verfügbarkeit.
 - Überwachung von Websites und Webanwendungen auf ordnungsgemäßen Betrieb.
 - Überwachung von Diensten auf mittlerer Ebene oder gemeinsam genutzten Diensten, um einen Fehler zu erkennen und zu isolieren, der andere Anwendungen stören könnte.
@@ -134,6 +133,7 @@ public ActionResult CoreServices()
   return new HttpStatusCodeResult((int)HttpStatusCode.OK);
 }
 ```
+
 Die `ObscurePath`-Methode zeigt, wie Sie einen Pfad in der Anwendungskonfiguration lesen und als Endpunkt für Tests verwenden können. Dieses Beispiel in C# zeigt auch, wie Sie eine ID als Parameter akzeptieren und verwenden können, um nach gültigen Anforderungen zu suchen.
 
 ```csharp
@@ -178,6 +178,7 @@ public ActionResult TestResponseFromConfig()
   return new HttpStatusCodeResult(returnStatusCode);
 }
 ```
+
 ## <a name="monitoring-endpoints-in-azure-hosted-applications"></a>Überwachen von Endpunkten in von Azure gehosteten Anwendungen
 
 Es folgen Optionen für die Überwachung von Endpunkten in Azure-Anwendungen:
@@ -192,7 +193,7 @@ Es folgen Optionen für die Überwachung von Endpunkten in Azure-Anwendungen:
 
 Die Bedingungen, die Sie überwachen können, variieren je nach Hostingmechanismus, den Sie für Ihre Anwendung wählen (wie z. B. Azure Web Sites, Azure Cloud Services, Azure Virtual Machines oder Azure Mobile Services). Doch alle bieten die Möglichkeit, eine Warnungsregel zu erstellen, die einen Webendpunkt verwendet, den Sie in den Einstellungen für Ihren Dienst angeben. Dieser Endpunkt muss rechtzeitig reagieren, damit das Warnsystem erkennen kann, dass die Anwendung ordnungsgemäß funktioniert.
 
->  Weitere Informationen finden Sie unter [Erstellen von Warnungsbenachrichtigungen][portal-alerts].
+> Weitere Informationen finden Sie unter [Erstellen von Warnungsbenachrichtigungen][portal-alerts].
 
 Wenn Sie Ihre Anwendung in Azure Cloud Services-Web- und -Workerrollen oder Azure Virtual Machines hosten, können Sie einen der in Azure integrierten Dienste namens Traffic Manager nutzen. Traffic Manager ist ein Routing- und Lastenausgleichsdienst, der Anforderungen an bestimmte Instanzen Ihrer gehosteten Cloud Services-Anwendung auf Grundlage einer Reihe von Regeln und Einstellungen verteilen kann.
 
@@ -200,13 +201,14 @@ Zusätzlich zu den Routinganforderungen pingt Traffic Manager regelmäßig eine 
 
 Traffic Manager wartet jedoch nur zehn Sekunden auf eine Antwort von der Überwachungs-URL. Daher müssen Sie sicherstellen, dass Ihr Code zur Überprüfung des Integritätsstatus in dieser Zeit ausgeführt wird, wobei die Netzwerklatenz für den Roundtrip vom Traffic Manager zu Ihrer Anwendung und zurück berücksichtigt werden muss.
 
->  Erfahren Sie mehr zur Verwendung von [Traffic Manager zum Überwachen Ihrer Anwendungen](https://azure.microsoft.com/documentation/services/traffic-manager/). Traffic Manager wird auch unter [Multiple Datacenter Deployment Guidance](https://msdn.microsoft.com/library/dn589779.aspx) (Bereitstellungsanleitung für mehrere Rechenzentren) erläutert.
+> Erfahren Sie mehr zur Verwendung von [Traffic Manager zum Überwachen Ihrer Anwendungen](/azure/traffic-manager/). Traffic Manager wird auch unter [Multiple Datacenter Deployment Guidance](https://msdn.microsoft.com/library/dn589779.aspx) (Bereitstellungsanleitung für mehrere Rechenzentren) erläutert.
 
 ## <a name="related-guidance"></a>Verwandte Leitfäden
 
 Der folgende Leitfaden kann für die Implementierung dieses Musters relevant sein:
+
 - [Instrumentations- und Telemetrieanleitungen](https://msdn.microsoft.com/library/dn589775.aspx). Die Überprüfung des Status von Diensten und Komponenten erfolgt in der Regel mithilfe von Tests. Es ist jedoch auch nützlich, über Informationen zu verfügen, um die Anwendungsleistung zu überwachen und Ereignisse zu erkennen, die zur Laufzeit auftreten. Diese Daten können an Überwachungstools als Zusatzinformationen für die Integritätsüberwachung zurückgegeben werden. In der Instrumentierungs- und Telemetrieanleitung wird das Erfassen von Ferndiagnoseinformationen untersucht, die mithilfe der Instrumentierung in Anwendungen gesammelt werden.
 - [Empfangen von Warnungsbenachrichtigungen][portal-alerts].
 - Zu diesem Muster gehört eine herunterladbare [Beispielanwendung](https://github.com/mspnp/cloud-design-patterns/tree/master/health-endpoint-monitoring).
 
-[portal-alerts]: https://azure.microsoft.com/documentation/articles/insights-receive-alert-notifications/
+[portal-alerts]: /azure/azure-monitor/platform/alerts-metric

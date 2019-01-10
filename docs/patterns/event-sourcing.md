@@ -1,19 +1,17 @@
 ---
-title: Ereignissourcing
+title: Muster „Ereignissourcing“
+titleSuffix: Cloud Design Patterns
 description: Verwenden Sie einen nur zum Anfügen vorgesehenen Speicher, um die vollständige Serie von Ereignissen aufzuzeichnen, die die mit Daten in einer Domäne ausgeführten Aktionen beschreiben.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 1cb63b61f5eb97726e266f797dfe13011907c95f
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 56db321e33ecef17704eda4eda971ff3c7e44133
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429331"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011632"
 ---
 # <a name="event-sourcing-pattern"></a>Muster „Ereignissourcing“
 
@@ -42,14 +40,13 @@ Das Ereignissourcingmuster definiert eine Vorgehensweise zur Verarbeitung von Da
 
 Die Ereignisse werden in einem Ereignisspeicher dauerhaft gespeichert, der als Aufzeichnungssystem (die maßgebliche Datenquelle) für den aktuellen Zustand der Daten fungiert. Der Ereignisspeicher veröffentlicht diese Ereignisse in der Regel, sodass Consumer benachrichtigt werden und die Ereignisse bei Bedarf verarbeiten können. Consumer könnten z.B. Tasks initiieren, die die Vorgänge in den Ereignissen auf andere Systeme anwenden, oder eine andere verknüpfte Aktion ausführen, die zum Abschließen des Vorgangs erforderlich ist. Beachten Sie, dass der Anwendungscode, der die Ereignisse generiert, von den Systemen abgekoppelt ist, die die Ereignisse abonnieren.
 
-Typische Anwendungen der vom Ereignisspeicher veröffentlichten Ereignisse sind die Verwaltung materialisierter Sichten von Entitäten, wenn Aktionen in der Anwendung diese ändern, und die Integration in externe Systeme. Ein System kann z.B. eine materialisierte Sicht aller Kundenaufträge verwalten, die zum Auffüllen von Teilen der Benutzeroberfläche verwendet wird. Wenn die Anwendung neue Aufträge hinzufügt, einzelne Posten im Auftrag hinzufügt oder daraus entfernt und Versandinformationen hinzufügt, können die Ereignisse, die diese Änderungen beschreiben, verarbeitet und zum Aktualisieren der [materialisierten Sicht](materialized-view.md) verwendet werden.
+Typische Anwendungen der vom Ereignisspeicher veröffentlichten Ereignisse sind die Verwaltung materialisierter Sichten von Entitäten, wenn Aktionen in der Anwendung diese ändern, und die Integration in externe Systeme. Ein System kann z.B. eine materialisierte Sicht aller Kundenaufträge verwalten, die zum Auffüllen von Teilen der Benutzeroberfläche verwendet wird. Wenn die Anwendung neue Aufträge hinzufügt, einzelne Posten im Auftrag hinzufügt oder daraus entfernt und Versandinformationen hinzufügt, können die Ereignisse, die diese Änderungen beschreiben, verarbeitet und zum Aktualisieren der [materialisierten Sicht](./materialized-view.md) verwendet werden.
 
 Darüber hinaus können Anwendungen zu jeder Zeit den Verlauf der Ereignisse lesen und zum Materialisieren des aktuellen Zustands einer Entität verwenden. Dazu werden alle Ereignisse, die mit dieser Entität in Zusammenhang stehen, wiedergegeben und genutzt. Dies kann bei Bedarf erfolgen, um bei der Verarbeitung einer Anforderung ein Domänenobjekt zu materialisieren, oder durch einen geplanten Task, sodass der Zustand der Entität als materialisierte Sicht gespeichert werden kann, um die Darstellungsschicht zu unterstützen.
 
 Die Abbildung zeigt eine Übersicht über das Muster, einschließlich einiger Optionen für die Verwendung des Ereignisstroms: Erstellen einer materialisierten Sicht, Integrieren von Ereignissen in externe Anwendungen und Systeme und die Wiedergabe von Ereignissen, um Projektionen des aktuellen Zustands bestimmter Entitäten zu erstellen.
 
 ![Übersicht und Beispiel des Ereignissourcingmusters](./_images/event-sourcing-overview.png)
-
 
 Das Ereignissourcingmuster bietet folgende Vorteile:
 
@@ -128,7 +125,6 @@ Das folgende Diagramm veranschaulicht, wie das Platzreservierungs-Subsystem des 
 
 ![Verwenden von Ereignissourcing zum Erfassen von Informationen zu Platzreservierungen in einem Konferenzverwaltungssystem](./_images/event-sourcing-bounded-context.png)
 
-
 Die Aktionssequenz für die Reservierung von zwei Plätzen lautet folgendermaßen:
 
 1. Die Benutzeroberfläche gibt einen Befehl aus, um Plätze für zwei Teilnehmer zu reservieren. Der Befehl wird von einem separaten Befehlshandler verarbeitet. Dies ist ein Stück Logik, das von der Benutzeroberfläche abgekoppelt ist und für die Verarbeitung von Anforderungen zuständig ist, die als Befehle übermittelt werden.
@@ -153,11 +149,11 @@ Ein Ereignisspeicher bietet nicht nur mehr Raum für Skalierbarkeit, sondern auc
 
 Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
 
-- [CQRS-Muster (Command and Query Responsibility Segregation)](cqrs.md). Der Schreibspeicher, der die permanente Informationsquelle für eine CQRS-Implementierung bereitstellt, basiert oft auf einer Implementierung des Ereignissourcingmusters. Das Muster beschreibt, wie mithilfe separater Schnittstellen die Vorgänge, die Daten in einer Anwendung lesen, von den Vorgängen getrennt werden, die Daten aktualisieren.
+- [CQRS-Muster (Command and Query Responsibility Segregation)](./cqrs.md). Der Schreibspeicher, der die permanente Informationsquelle für eine CQRS-Implementierung bereitstellt, basiert oft auf einer Implementierung des Ereignissourcingmusters. Das Muster beschreibt, wie mithilfe separater Schnittstellen die Vorgänge, die Daten in einer Anwendung lesen, von den Vorgängen getrennt werden, die Daten aktualisieren.
 
-- [Muster „Materialisierte Sichten“](materialized-view.md). Der Datenspeicher, der in einem auf Ereignissourcing basierenden System verwendet wird, eignet sich in der Regel nicht gut für effiziente Abfragen. Ein häufiger Ansatz besteht darin, in regelmäßigen Abständen oder bei Änderung von Daten vorab aufgefüllte Sichten der Daten zu generieren. Das Muster zeigt, wie dies umgesetzt wird.
+- [Muster „Materialisierte Sichten“](./materialized-view.md): Der Datenspeicher, der in einem auf Ereignissourcing basierenden System verwendet wird, eignet sich in der Regel nicht gut für effiziente Abfragen. Ein häufiger Ansatz besteht darin, in regelmäßigen Abständen oder bei Änderung von Daten vorab aufgefüllte Sichten der Daten zu generieren. Das Muster zeigt, wie dies umgesetzt wird.
 
-- [Muster „Kompensierende Transaktion“](compensating-transaction.md). Die vorhandenen Daten in einem Ereignissourcingspeicher werden nicht aktualisiert. Stattdessen werden neue Einträge hinzugefügt, die den Zustand der Entitäten auf die neuen Werte übertragen. Um eine Änderung rückgängig zu machen, werden kompensierende Einträge verwendet, da es nicht möglich ist, die vorherige Änderung einfach rückgängig zu machen. Dieses Muster beschreibt, wie die Ergebnisse eines vorherigen Vorgangs rückgängig gemacht werden können.
+- [Muster „Kompensierende Transaktion“](./compensating-transaction.md): Die vorhandenen Daten in einem Ereignissourcingspeicher werden nicht aktualisiert. Stattdessen werden neue Einträge hinzugefügt, die den Zustand der Entitäten auf die neuen Werte übertragen. Um eine Änderung rückgängig zu machen, werden kompensierende Einträge verwendet, da es nicht möglich ist, die vorherige Änderung einfach rückgängig zu machen. Dieses Muster beschreibt, wie die Ergebnisse eines vorherigen Vorgangs rückgängig gemacht werden können.
 
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Grundlagen der Datenkonsistenz). Wenn das Ereignissourcing mit einem separaten Lesespeicher oder materialisierten Sichten verwendet wird, sind die gelesenen Daten nicht sofort, sondern nur letztlich konsistent. Das Muster bietet eine Übersicht über die Probleme bei der Gewährleistung von Konsistenz bei verteilten Daten.
 
