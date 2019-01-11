@@ -4,12 +4,12 @@ description: Es wird beschrieben, wie Sie in Azure robuste Anwendungen mit Hochv
 author: MikeWasson
 ms.date: 12/18/2018
 ms.custom: resiliency
-ms.openlocfilehash: 28ad589c6d54a1574b5cd5c4f08e3c6adfe349c3
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: ef8fd64756c483528aa83048e23f6387dedb74d6
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113126"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160858"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Entwerfen robuster Anwendungen für Azure
 
@@ -148,7 +148,7 @@ Dieser Ansatz hat aber auch Nachteile. Die Anwendungslogik ist komplexer, es fal
 
 **SLA für Bereitstellung in mehreren Regionen**. Ein weiteres Verfahren für Hochverfügbarkeit ist die Bereitstellung der Anwendung in mehr als einer Region und die Verwendung von Azure Traffic Manager zum Durchführen eines Failovers, wenn die Anwendung in einer Region ausfällt. Für eine Bereitstellung in mehreren Regionen wird die zusammengesetzte Vereinbarung zum Servicelevel wie folgt berechnet:
 
-*N* steht für die zusammengesetzte SLA für die in einer Region bereitgestellten Anwendung. *R* steht für die Anzahl von Regionen, in denen die Anwendung bereitgestellt wird. Die erwartete Wahrscheinlichkeit, dass die Anwendung in beiden Regionen gleichzeitig ausfällt, ist ((1 &minus N) ^ R).
+*N* steht für die zusammengesetzte SLA für die in einer Region bereitgestellten Anwendung. *R* steht für die Anzahl von Regionen, in denen die Anwendung bereitgestellt wird. Die erwartete Wahrscheinlichkeit, dass die Anwendung in beiden Regionen gleichzeitig ausfällt, ist ((1 &minus; N) ^ R).
 
 Beispiel: Wenn die SLA für die einzelne Region 99,95% ist, gilt:
 
