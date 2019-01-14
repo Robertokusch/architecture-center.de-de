@@ -5,12 +5,12 @@ description: Anleitungen zum Caching zur Verbesserung von Leistung und Skalierba
 author: dragon119
 ms.date: 05/24/2017
 ms.custom: seodec18
-ms.openlocfilehash: b7f720b9e08b0316f9967a19e1b93069aa04e55f
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: da676ba3037f5c232ea97b9cb41488c7c2202476
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307468"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113109"
 ---
 # <a name="caching"></a>Caching
 
@@ -476,9 +476,9 @@ var customer1 = cache.Wait(task1);
 var customer2 = cache.Wait(task2);
 ```
 
-Weitere Informationen zum Schreiben von Clientanwendungen, für die Azure Redis Cache verwendet werden kann, finden Sie in der [Dokumentation zu Redis Cache](https://azure.microsoft.com/documentation/services/cache/). Weitere Informationen finden Sie auch unter [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Basics.md).
+Weitere Informationen zum Schreiben von Clientanwendungen, für die Azure Redis Cache verwendet werden kann, finden Sie in der [Dokumentation zu Azure Cache for Redis](/azure/azure-cache-for-redis/). Weitere Informationen finden Sie auch unter [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Basics.md).
 
-Die Seite [Pipelines and Multiplexers](https://stackexchange.github.io/StackExchange.Redis/PipelinesMultiplexers) (Pipelines und Multiplexer) auf der gleichen Website bietet darüber hinaus Informationen zu asynchronen Vorgängen und Pipelining mit Redis und der StackExchange-Bibliothek. 
+Die Seite [Pipelines and Multiplexers](https://stackexchange.github.io/StackExchange.Redis/PipelinesMultiplexers) (Pipelines und Multiplexer) auf der gleichen Website bietet darüber hinaus Informationen zu asynchronen Vorgängen und Pipelining mit Redis und der StackExchange-Bibliothek.
 
 ## <a name="using-redis-caching"></a>Verwenden des Redis-Zwischenspeicherns
 
@@ -898,7 +898,7 @@ Eventuell sind auch folgende Muster für Ihr Szenario interessant, wenn Sie Cach
 
 ## <a name="more-information"></a>Weitere Informationen
 
-- [Dokumentation zu Azure Redis Cache](https://azure.microsoft.com/documentation/services/cache/) 
+- [Dokumentation zu Azure Redis Cache](/azure/azure-cache-for-redis/)
 - [Azure Redis Cache – häufig gestellte Fragen](/azure/redis-cache/cache-faq)
 - [Aufgabenbasiertes asynchrones Muster](/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)
 - [Redis-Dokumentation](https://redis.io/documentation)
