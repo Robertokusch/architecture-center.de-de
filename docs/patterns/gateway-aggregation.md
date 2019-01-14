@@ -1,26 +1,29 @@
 ---
 title: Muster „Gatewayaggregation“
-description: Aggregieren Sie mithilfe eines Gateways mehrere einzelne Anforderungen in einer einzelnen Anforderung.
+titleSuffix: Cloud Design Patterns
+description: Aggregieren Sie mithilfe eines Gateways mehrere einzelne Anforderungen in einer einzigen Anforderung.
+keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: f59c8b8b02c6db28024d13621b782997e63a4e9e
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 8d929b1b3937d8f9ef50c1b08e8aea0b5c1f92c1
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541272"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009456"
 ---
 # <a name="gateway-aggregation-pattern"></a>Muster „Gatewayaggregation“
 
-Aggregieren Sie mithilfe eines Gateways mehrere einzelne Anforderungen in einer einzelnen Anforderung. Dieses Muster ist hilfreich, wenn ein Client zur Durchführung eines Vorgangs mehrere Aufrufe an verschiedene Back-End-Systeme tätigen muss.
+Aggregieren Sie mithilfe eines Gateways mehrere einzelne Anforderungen in einer einzigen Anforderung. Dieses Muster ist hilfreich, wenn ein Client zur Durchführung eines Vorgangs mehrere Aufrufe an verschiedene Back-End-Systeme tätigen muss.
 
 ## <a name="context-and-problem"></a>Kontext und Problem
 
-Um eine einzelne Aufgabe auszuführen, muss ein Client möglicherweise mehrere Aufrufe von verschiedenen Back-End-Diensten durchführen. Eine Anwendung, die zur Ausführung einer Aufgabe auf viele Dienste angewiesen ist, muss für jede Anforderung Ressourcen aufwenden. Wenn der Anwendung neue Features oder Dienste hinzugefügt werden, sind zusätzliche Anforderungen erforderlich, durch die sich der Ressourcenbedarf und die Anzahl der Netzwerkaufrufe weiter erhöhen. Eine derart umfangreiche Interaktion (Chattiness) zwischen einer Client- und einer Back-End-Anwendung können Leistung und Skalierung der Anwendung beeinträchtigen.  Durch Microservicearchitekturen ist dieses Problem immer verbreiteter geworden, da Anwendungen, die um viele kleinere Dienste herum erstellt werden, in der Regel eine größere Anzahl von dienstübergreifenden Aufrufen aufweisen. 
+Um eine einzelne Aufgabe auszuführen, muss ein Client möglicherweise mehrere Aufrufe von verschiedenen Back-End-Diensten durchführen. Eine Anwendung, die zur Ausführung einer Aufgabe auf viele Dienste angewiesen ist, muss für jede Anforderung Ressourcen aufwenden. Wenn der Anwendung neue Features oder Dienste hinzugefügt werden, sind zusätzliche Anforderungen erforderlich, durch die sich der Ressourcenbedarf und die Anzahl der Netzwerkaufrufe weiter erhöhen. Eine derart umfangreiche Interaktion (Chattiness) zwischen einer Client- und einer Back-End-Anwendung können Leistung und Skalierung der Anwendung beeinträchtigen.  Durch Microservicearchitekturen ist dieses Problem immer verbreiteter geworden, da Anwendungen, die um viele kleinere Dienste herum erstellt werden, in der Regel eine größere Anzahl von dienstübergreifenden Aufrufen aufweisen.
 
 Im folgenden Diagramm sendet der Client Anforderungen an jeden Dienst (1, 2, 3). Jeder Dienst verarbeitet die Anforderung und sendet die Antwort an die Anwendung zurück (4, 5, 6). Bei einem Mobilfunknetz mit üblicherweise hohen Latenzen ist ein derartiger Einsatz einzelner Anforderungen ineffizient und kann Konnektivitätsabbrüche oder unvollständige Anforderungen verursachen. Die einzelnen Anforderungen können zwar parallel ausgeführt werden, allerdings muss die Anwendung für jede Anforderung Daten senden und verarbeiten bzw. auf diese warten. Da all diese Vorgänge über separate Verbindungen erfolgen, besteht hierbei eine höhere Wahrscheinlichkeit eines Ausfalls.
 
-![](./_images/gateway-aggregation-problem.png) 
+![Problemdiagramm für das Muster „Gatewayaggregation“](./_images/gateway-aggregation-problem.png)
 
 ## <a name="solution"></a>Lösung
 
@@ -30,7 +33,7 @@ Dieses Muster kann die Anzahl der Anforderungen, die die Anwendung an Back-End-D
 
 Im folgenden Diagramm sendet die Anwendung eine Anforderung an das Gateway (1). Die Anforderung enthält ein Paket mit zusätzlichen Anforderungen. Das Gateway zerlegt diese und verarbeitet jede Anforderung, indem es diese an den entsprechenden Dienst (2) sendet. Jeder Dienst gibt eine Antwort an das Gateway zurück (3). Das Gateway fasst die Antworten der einzelnen Dienste zusammen und sendet die Antwort an die Anwendung (4). Die Anwendung erstellt eine einzige Anforderung und erhält nur eine einzige Antwort vom Gateway.
 
-![](./_images/gateway-aggregation.png)
+![Lösungsdiagramm für das Muster „Gatewayaggregation“](./_images/gateway-aggregation.png)
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 

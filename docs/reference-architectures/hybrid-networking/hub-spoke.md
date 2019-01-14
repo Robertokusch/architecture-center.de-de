@@ -5,12 +5,12 @@ description: Implementieren einer Hub-Spoke-Netzwerktopologie in Azure
 author: telmosampaio
 ms.date: 10/08/2018
 ms.custom: seodec18
-ms.openlocfilehash: fe56630b621f02fe71b864642b75688ba1965862
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: c7cf2923856b3c659876afcc89bb312e492c6409
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329431"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112446"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementieren einer Hub-Spoke-Netzwerktopologie in Azure
 
@@ -176,11 +176,9 @@ Führen Sie die folgenden Schritte aus, um das Hub-VNet bereitzustellen.
 
 5. Warten Sie, bis die Bereitstellung abgeschlossen ist. Bei dieser Bereitstellung werden ein virtuelles Netzwerk, ein virtueller Computer, ein VPN-Gateway und eine Verbindung mit dem Gateway erstellt.  Das Erstellen des VPN-Gateways kann etwa 40 Minuten dauern.
 
-### <a name="test-connectivity-with-the-hub"></a>Testen der Konnektivität mit dem Hub
+### <a name="test-connectivity-to-the-hub-vnet-mdash-windows-deployment"></a>Testen der Konnektivität mit dem Hub-VNET – Windows-Bereitstellung
 
-Testen Sie die Konnektivität zwischen der simulierten lokalen Umgebung und dem Hub-VNET.
-
-**Windows-Bereitstellung**
+Führen Sie die folgenden Schritte aus, um die Konnektivität der simulierten lokalen Umgebung mit dem Hub-VNET mit virtuellen Windows-Computern zu testen:
 
 1. Suchen Sie im Azure-Portal die VM namens `jb-vm1` in der `onprem-jb-rg`-Ressourcengruppe.
 
@@ -206,11 +204,13 @@ TcpTestSucceeded : True
 > [!NOTE]
 > Standardmäßig lassen Windows Server-VMs in Azure keine ICMP-Antworten zu. Wenn Sie `ping` zum Testen der Konnektivität nutzen möchten, müssen Sie für jede VM ICMP-Datenverkehr in der erweiterten Windows-Firewall aktivieren.
 
-**Linux-Bereitstellung**
+### <a name="test-connectivity-to-the-hub-vnet-mdash-linux-deployment"></a>Testen der Konnektivität mit dem Hub-VNET – Linux-Bereitstellung
+
+Führen Sie die folgenden Schritte aus, um die Konnektivität der simulierten lokalen Umgebung mit dem Hub-VNET mit virtuellen Linux-Computern zu testen:
 
 1. Suchen Sie im Azure-Portal die VM namens `jb-vm1` in der `onprem-jb-rg`-Ressourcengruppe.
 
-2. Klicken Sie auf `Connect`, und kopieren Sie den im Portal angezeigten `ssh`-Befehl. 
+2. Klicken Sie auf `Connect`, und kopieren Sie den im Portal angezeigten `ssh`-Befehl.
 
 3. Führen Sie in einer Linux-Eingabeaufforderung `ssh` zum Herstellen der Verbindung mit der simulierten lokalen Umgebung aus. Verwenden Sie das Kennwort, das Sie in der `onprem.json`-Parameterdatei angegeben haben.
 
@@ -253,11 +253,9 @@ Führen Sie die folgenden Schritte aus, um die Spoke-VNETs bereitzustellen.
    azbb -s <subscription_id> -g hub-vnet-rg -l <location> -p hub-vnet-peering.json --deploy
    ```
 
-### <a name="test-connectivity"></a>Testen der Konnektivität
+### <a name="test-connectivity-to-the-spoke-vnets-mdash-windows-deployment"></a>Testen der Konnektivität mit den Spoke-VNETs – Windows-Bereitstellung
 
-Testen Sie die Konnektivität zwischen der simulierten lokalen Umgebung und den Spoke-VNets.
-
-**Windows-Bereitstellung**
+Führen Sie die folgenden Schritte aus, um die Konnektivität der simulierten lokalen Umgebung mit den Spoke-VNETs mit virtuellen Windows-Computern zu testen:
 
 1. Suchen Sie im Azure-Portal die VM namens `jb-vm1` in der `onprem-jb-rg`-Ressourcengruppe.
 
@@ -270,7 +268,7 @@ Testen Sie die Konnektivität zwischen der simulierten lokalen Umgebung und den 
    Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
    ```
 
-**Linux-Bereitstellung**
+### <a name="test-connectivity-to-the-spoke-vnets-mdash-linux-deployment"></a>Testen der Konnektivität mit den Spoke-VNETs – Linux-Bereitstellung
 
 Führen Sie die folgenden Schritte aus, um die Konnektivität der simulierten lokalen Umgebung mit den Spoke-VNETs mit Linux-VMs zu testen:
 
@@ -329,4 +327,3 @@ Dieser Schritt ist optional. Wenn Sie zulassen möchten, dass Spokes Verbindunge
 [1]: ./images/hub-spoke-gateway-routing.svg "Hub-Spoke-Topologie in Azure mit transitivem Routing"
 [2]: ./images/hub-spoke-no-gateway-routing.svg "Hub-Spoke-Topologie in Azure mit transitivem Routing unter Verwendung eines NVA"
 [3]: ./images/hub-spokehub-spoke.svg "Hub-Spoke-Hub-Spoke-Topologie in Azure"
-[ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/

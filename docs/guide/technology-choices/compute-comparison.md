@@ -1,20 +1,24 @@
 ---
 title: Kriterien für die Auswahl einer Azure-Compute-Option
-description: Vergleichen von Azure-Computediensten unter verschiedenen Aspekten
+titleSuffix: Azure Application Architecture Guide
+description: Dieser Artikel vergleicht Azure-Computedienste unter verschiedenen Aspekten miteinander.
 author: MikeWasson
 ms.date: 08/08/2018
-ms.openlocfilehash: dbd5314c4c77e83f5b45ef0b49e83860479c8f92
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seojan19
+ms.openlocfilehash: 4874e68d6ac1b9bac2bc1e4d2ac3c8c2f1a428d6
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916371"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112242"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>Kriterien für die Auswahl einer Azure-Compute-Option
 
 Der Begriff *Compute* bezieht sich auf das Hostingmodell für die Computeressourcen, auf denen Ihre Anwendungen ausgeführt werden. Die folgenden Tabellen vergleichen Azure-Computedienste unter verschiedenen Aspekten miteinander. Ziehen Sie diese Tabellen zu Rate, wenn Sie eine Compute-Option für Ihre Anwendung auswählen.
 
 ## <a name="hosting-model"></a>Hostingmodell
+
+<!-- markdownlint-disable MD033 -->
 
 | Kriterien | Virtual Machines | App Service | Service Fabric | Azure-Funktionen | Azure Kubernetes Service | Container Instances | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
@@ -47,8 +51,7 @@ Notizen
 Notizen
 
 1. <span id="note1b">Optionen umfassen IIS Express für ASP.NET oder node.js (iisnode); PHP-Webserver; Azure Toolkit für IntelliJ, Azure Toolkit für Eclipse. App Service unterstützt auch das Remotedebuggen einer bereitgestellten Web-App.</span>
-2. <span id="note2b">Informationen dazu finden Sie unter [Ressourcenanbieter und -typen][resource-manager-supported-services].</span> 
-
+2. <span id="note2b">Informationen dazu finden Sie unter [Ressourcenanbieter und -typen][resource-manager-supported-services].</span>
 
 ## <a name="scalability"></a>Skalierbarkeit
 
@@ -67,7 +70,7 @@ Notizen
 | Kriterien | Virtual Machines | App Service | Service Fabric | Azure-Funktionen | Azure Kubernetes Service | Container Instances | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | SLA | [SLA für virtuelle Computer][sla-vm] | [SLA für App Service][sla-app-service] | [SLA für Service Fabric][sla-sf] | [SLA für Functions][sla-functions] | [SLA für AKS][sla-acs] | [SLA für Container Instances](https://azure.microsoft.com/support/legal/sla/container-instances/) | [SLA für Azure Batch][sla-batch] |
-| Failover über mehrere Regionen | Traffic Manager | Traffic Manager | Traffic Manager, regionsübergreifender Cluster | Nicht unterstützt  | Traffic Manager | Nicht unterstützt | Nicht unterstützt |
+| Failover über mehrere Regionen | Traffic Manager | Traffic Manager | Traffic Manager, regionsübergreifender Cluster | Nicht unterstützt | Traffic Manager | Nicht unterstützt | Nicht unterstützt |
 
 ## <a name="other"></a>Andere
 
@@ -76,6 +79,8 @@ Notizen
 | SSL | In VM konfiguriert | Unterstützt | Unterstützt  | Unterstützt | [Eingangscontroller](/azure/aks/ingress) | Verwenden eines [Sidecar](../../patterns/sidecar.md)-Containers | Unterstützt |
 | Kosten | [Windows][cost-windows-vm], [Linux][cost-linux-vm] | [App Service – Preise][cost-app-service] | [Service Fabric – Preise][cost-service-fabric] | [Azure Functions – Preise][cost-functions] | [AKS – Preise][cost-acs] | [Container Instances – Preise](https://azure.microsoft.com/pricing/details/container-instances/) | [Azure Batch – Preise][cost-batch]
 | Geeignete Architekturstile | [N-schichtig][n-tier], [Big Compute][big-compute] (HPC) | [Web-Warteschlange-Worker][w-q-w], [n-schichtig][n-tier] | [Microservices][microservices], [ereignisgesteuerte Architektur][event-driven] | [Microservices][microservices], [ereignisgesteuerte Architektur][event-driven] | [Microservices][microservices], [ereignisgesteuerte Architektur][event-driven] | [Microservices][microservices], Automatisierung von Aufgaben, Batchaufträge  | [Big Compute][big-compute] (HPC) |
+
+<!-- markdownlint-enable MD033 -->
 
 [cost-linux-vm]: https://azure.microsoft.com/pricing/details/virtual-machines/linux/
 [cost-windows-vm]: https://azure.microsoft.com/pricing/details/virtual-machines/windows/

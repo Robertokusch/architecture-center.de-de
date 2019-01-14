@@ -1,18 +1,17 @@
 ---
-title: Gatekeeper
+title: Muster „Gatekeeper“
+titleSuffix: Cloud Design Patterns
 description: Schützen Sie Anwendungen und Dienste durch Verwendung einer dedizierten Hostinstanz, die als Broker zwischen Clients und der Anwendung oder dem Dienst fungiert, Anforderungen überprüft und bereinigt sowie Anforderungen und Daten zwischen ihnen weiterleitet.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- security
-ms.openlocfilehash: 39f8548bbccb5e19d433f65b2e7e09147d676996
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: a45ace8ea05e4a7dd1d8a48653e94a5fe5bfb0f6
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541320"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009694"
 ---
 # <a name="gatekeeper-pattern"></a>Muster „Gatekeeper“
 
@@ -31,7 +30,6 @@ Wenn ein böswilliger Benutzer in der Lage ist, das System zu gefährden und Zug
 Um das Risiko eines clientseitigen Zugriffs auf vertrauliche Informationen und Dienste zu minimieren, entkoppeln Sie Hosts oder Aufgaben, die öffentliche Endpunkte von dem Code, der Anforderungen verarbeitet und auf Speicher zugreift, verfügbar machen. Hierfür können Sie eine Fassade oder eine dedizierte Aufgabe verwenden, die mit Clients interagiert und die Anforderung dann – wahrscheinlich über eine entkoppelte Schnittstelle – an die Hosts oder Aufgaben übergibt, die die Anforderung bearbeiten. Die Abbildung zeigt eine allgemeine Übersicht über dieses Muster.
 
 ![Allgemeine Übersicht über dieses Muster](./_images/gatekeeper-diagram.png)
-
 
 Das Muster „Gatekeeper“ kann einfach zum Schutz des Speichers oder als umfangreichere Fassade verwendet werden, um alle Funktionen der Anwendung zu schützen. Zu den wichtigsten Faktoren zählen Folgende:
 
@@ -65,7 +63,6 @@ In einem Szenario, bei dem eine Anwendung in der Cloud gehostet wird, kann diese
 
 ![Beispiel des Musters unter Verwendung von Cloud Services-Web- und Workerrollen](./_images/gatekeeper-endpoint.png)
 
-
 ## <a name="related-patterns"></a>Verwandte Muster
 
-Das [Muster „Valet-Schlüssel“](valet-key.md) kann ebenfalls für die Implementierung des Gatekeeper-Musters relevant sein. Bei der Kommunikation zwischen dem Gatekeeper und den vertrauenswürdigen Rollen ist es empfehlenswert, die Sicherheit durch die Verwendung von Schlüsseln oder Tokens zu erhöhen, die die Berechtigungen für den Zugriff auf Ressourcen einschränken. Es beschreibt, wie ein Token oder ein Schlüssel verwendet wird, das bzw. der Clients eingeschränkten direkten Zugriff auf eine bestimmte Ressource oder einen bestimmten Dienst bietet.
+Das [Muster „Valet-Schlüssel“](./valet-key.md) kann ebenfalls für die Implementierung des Gatekeeper-Musters relevant sein. Bei der Kommunikation zwischen dem Gatekeeper und den vertrauenswürdigen Rollen ist es empfehlenswert, die Sicherheit durch die Verwendung von Schlüsseln oder Tokens zu erhöhen, die die Berechtigungen für den Zugriff auf Ressourcen einschränken. Es beschreibt, wie ein Token oder ein Schlüssel verwendet wird, das bzw. der Clients eingeschränkten direkten Zugriff auf eine bestimmte Ressource oder einen bestimmten Dienst bietet.

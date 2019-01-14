@@ -1,14 +1,17 @@
 ---
 title: Muster „Gatewayabladung“
-description: Es wird beschrieben, wie Sie freigegebene oder spezielle Dienstfunktionen an einen Gatewayproxy auslagern.
+titleSuffix: Cloud Design Patterns
+description: Lagern Sie gemeinsam genutzte oder spezielle Dienstfunktionen an einen Gatewayproxy aus.
+keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 6b3e4541aae77349ca91c18c788ddb508912361d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 50af3d8593279986ed6efee55667187424c18e56
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540008"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010210"
 ---
 # <a name="gateway-offloading-pattern"></a>Muster „Gatewayabladung“
 
@@ -24,12 +27,12 @@ Andere gemeinsam genutzte Dienste, z.B. Authentifizierung, Autorisierung, Protok
 
 ## <a name="solution"></a>Lösung
 
-Lagern Sie einige Features auf ein API-Gateway aus. Dies gilt vor allem für sich überschneidende Bereiche wie die Zertifikatverwaltung, Authentifizierung, SSL-Beendigung, Überwachung, Protokollübersetzung oder Drosselung. 
+Lagern Sie einige Features auf ein API-Gateway aus. Dies gilt vor allem für sich überschneidende Bereiche wie die Zertifikatverwaltung, Authentifizierung, SSL-Beendigung, Überwachung, Protokollübersetzung oder Drosselung.
 
 Im folgenden Diagramm ist ein API-Gateway dargestellt, mit dem eingehende SSL-Verbindungen beendet werden. Hiermit werden Daten im Namen des ursprünglichen Anforderers von einem beliebigen HTTP-Server abgerufen, der dem API-Gateway vorgeschaltet ist.
 
- ![](./_images/gateway-offload.png)
- 
+ ![Diagramm des Musters „Gatewayabladung“](./_images/gateway-offload.png)
+
 Vorteile dieses Musters:
 
 - Die Entwicklung von Diensten wird vereinfacht, indem das Verteilen und Warten von unterstützenden Ressourcen entfällt, z.B. Webserverzertifikate und die Konfiguration für sichere Websites. Eine einfachere Konfiguration führt zu einer Vereinfachung der Verwaltung und Skalierbarkeit und erleichtert die Durchführung von Dienstupgrades.
@@ -40,10 +43,10 @@ Vorteile dieses Musters:
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
-- Stellen Sie sicher, dass das API-Gateway hoch verfügbar und robust gegenüber Fehlern ist. Vermeiden Sie Single Points of Failure, indem Sie mehrere Instanzen Ihres API-Gateways ausführen. 
+- Stellen Sie sicher, dass das API-Gateway hoch verfügbar und robust gegenüber Fehlern ist. Vermeiden Sie Single Points of Failure, indem Sie mehrere Instanzen Ihres API-Gateways ausführen.
 - Stellen Sie sicher, dass das Gateway für die Kapazitäts- und Skalierungsanforderungen Ihrer Anwendung und Endpunkte ausgelegt ist. Sorgen Sie dafür, dass das Gateway nicht zu einem Engpass für die Anwendung wird und in ausreichendem Maße skaliert werden kann.
 - Lagern Sie nur Features aus, die von der gesamten Anwendung genutzt werden, z.B. Sicherheit oder Datenübertragung.
-- Geschäftslogik sollte niemals auf das API-Gateway ausgelagert werden. 
+- Geschäftslogik sollte niemals auf das API-Gateway ausgelagert werden.
 - Wenn Sie Transaktionen nachverfolgen müssen, sollten Sie erwägen, Korrelations-IDs für Protokollierungszwecke zu generieren.
 
 ## <a name="when-to-use-this-pattern"></a>Verwendung dieses Musters
@@ -60,7 +63,7 @@ Dieses Muster ist unter Umständen nicht geeignet, wenn es dabei zu einer Kopplu
 
 Indem Nginx als Appliance für die SSL-Auslagerung verwendet wird, wird mit der folgenden Konfiguration eine eingehende SSL-Verbindung beendet und die Verbindung auf einen von drei vorgeschalteten HTTP-Servern verteilt.
 
-```
+```console
 upstream iis {
         server  10.3.0.10    max_fails=3    fail_timeout=15s;
         server  10.3.0.20    max_fails=3    fail_timeout=15s;
@@ -84,9 +87,8 @@ proxy_set_header X-Real-IP $remote_addr;
 }
 ```
 
-## <a name="related-guidance"></a>Verwandte Anweisungen
+## <a name="related-guidance"></a>Verwandte Leitfäden
 
 - [Muster „Back-Ends für Front-Ends“](./backends-for-frontends.md)
 - [Muster „Gatewayaggregation“](./gateway-aggregation.md)
 - [Muster „Gatewayrouting“](./gateway-routing.md)
-

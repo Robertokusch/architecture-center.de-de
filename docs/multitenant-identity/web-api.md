@@ -1,17 +1,17 @@
 ---
 title: Schützen einer Back-End-Web-API in einer mehrinstanzenfähigen Anwendung
-description: Schützen einer Back-End-Web-API
+description: Hier erfahren Sie, wie Sie eine Back-End-Web-API schützen.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: e738eb94b5978efa4e7a4bebcc72daa7968ac904
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 517bdbb6e1a1063db9337b63905e2ff5f4bdd4d4
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901591"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114027"
 ---
 # <a name="secure-a-backend-web-api"></a>Schützen einer Back-End-Web-API
 
@@ -19,13 +19,13 @@ ms.locfileid: "52901591"
 
 Die Anwendung [Tailspin Surveys] verwendet eine Back-End-Web-API zum Verwalten von CRUD-Vorgängen für Umfragen. Klickt ein Benutzer beispielsweise auf „My Surveys“, sendet die Webanwendung eine HTTP-Anforderung an die Web-API:
 
-```
+```http
 GET /users/{userId}/surveys
 ```
 
 Die Web-API gibt ein JSON-Objekt zurück:
 
-```
+```http
 {
   "Published":[],
   "Own":[
@@ -40,8 +40,6 @@ Die Web-API lässt keine anonymen Anforderungen zu, sodass sich die Web-App mith
 
 > [!NOTE]
 > Dies ist ein Szenario zwischen Servern. Die Anwendung richtet aus dem Browserclient keine AJAX-Aufrufe an die API.
-> 
-> 
 
 Sie können zwischen zwei Ansätzen wählen:
 
@@ -50,7 +48,7 @@ Sie können zwischen zwei Ansätzen wählen:
 
 Die Tailspin-Anwendung implementiert die delegierte Benutzeridentität. Im Folgenden werden die Hauptunterschiede erläutert:
 
-**Delegierte Benutzeridentität**
+**Delegierte Benutzeridentität:**
 
 * Das an die Web-API gesendete Bearertoken enthält die Identität des Benutzers.
 * Die Web-API trifft Autorisierungsentscheidungen basierend auf der Identität des Benutzers.
@@ -58,7 +56,7 @@ Die Tailspin-Anwendung implementiert die delegierte Benutzeridentität. Im Folge
 * Zumeist trifft die Webanwendung weiterhin einige sich auf die Benutzeroberfläche beziehende Autorisierungsentscheidungen (wie das Ein- und Ausblenden von Benutzeroberflächenelementen).
 * Die Web-API kann möglicherweise von nicht vertrauenswürdigen Clients verwendet werden, z. B. einer JavaScript-Anwendung oder einer systemeigenen Clientanwendung.
 
-**Anwendungsidentität**
+**Anwendungsidentität:**
 
 * Die Web-API ruft keine Informationen zum Benutzer ab.
 * Die Web-API kann keine Autorisierung anhand der Identität des Benutzers vornehmen. Alle Autorisierungsentscheidungen werden von der Webanwendung getroffen.  
@@ -75,6 +73,7 @@ Im Rest dieses Artikels wird davon ausgegangen, dass die Anwendung mithilfe von 
 ![Abrufen des Zugriffstokens](./images/access-token.png)
 
 ## <a name="register-the-web-api-in-azure-ad"></a>Registrieren der Web-API in Azure AD
+
 Damit Azure AD ein Bearertoken für die Web-API ausstellen kann, müssen in Azure AD verschiedene Einstellungen konfiguriert werden.
 
 1. Registrieren Sie die Web-API in Azure AD.
@@ -82,16 +81,17 @@ Damit Azure AD ein Bearertoken für die Web-API ausstellen kann, müssen in Azur
 2. Fügen Sie dem Anwendungsmanifest der Web-API in der `knownClientApplications` -Eigenschaft die Client-ID der Web-App hinzu. Siehe [Aktualisieren des Anwendungsmanifests].
 
 3. Erteilen Sie der Webanwendung Berechtigungen zum Aufrufen der Web-API. Im Azure-Verwaltungsportal können Sie zwei Arten von Berechtigungen festlegen: „Anwendungsberechtigungen“ für die Anwendungsidentität (Vorgang mit Clientanmeldeinformationen) oder „Delegierte Berechtigungen“ für die delegierte Benutzeridentität.
-   
+
    ![Delegierte Berechtigungen](./images/delegated-permissions.png)
 
 ## <a name="getting-an-access-token"></a>Abrufen eines Zugriffstokens
+
 Vor dem Aufruf der Web-API ruft die Webanwendung ein Zugriffstoken aus Azure AD ab. Verwenden Sie in einer .NET-Anwendung die [Azure AD-Authentifizierungsbibliothek (ADAL) für .NET][ADAL].
 
 Beim Vorgang mit OAuth 2-Autorisierungscode tauscht die Anwendung einen Autorisierungscode gegen ein Zugriffstoken. Der folgende Code verwendet die ADAL, um das Zugriffstoken abzurufen. Dieser Code wird während des `AuthorizationCodeReceived` -Ereignisses abgerufen.
 
 ```csharp
-// The OpenID Connect middleware sends this event when it gets the authorization code.   
+// The OpenID Connect middleware sends this event when it gets the authorization code.
 public override async Task AuthorizationCodeReceived(AuthorizationCodeReceivedContext context)
 {
     string authorizationCode = context.ProtocolMessage.Code;
@@ -127,9 +127,10 @@ var result = await authContext.AcquireTokenSilentAsync(resourceID, credential, n
 Hierbei ist `userId` die Objekt-ID des Benutzers, die sich im Anspruch `http://schemas.microsoft.com/identity/claims/objectidentifier` befindet.
 
 ## <a name="using-the-access-token-to-call-the-web-api"></a>Aufrufen der Web-API mithilfe des Zugriffstokens
+
 Sobald Sie das Token haben, senden Sie es im „Authorization“-Header der HTTP-Anforderungen an die Web-API.
 
-```
+```http
 Authorization: Bearer xxxxxxxxxx
 ```
 
@@ -155,6 +156,7 @@ public static async Task<HttpResponseMessage> SendRequestWithBearerTokenAsync(th
 ```
 
 ## <a name="authenticating-in-the-web-api"></a>Authentifizierung in der Web-API
+
 Die Web-API muss das Bearertoken authentifizieren. In ASP.NET Core, können Sie das Paket [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer] verwenden. Dieses Paket enthält Middleware, die der Anwendung das Empfangen von OpenID Connect-Bearertoken ermöglicht.
 
 Registrieren Sie die Middleware in Ihrer Web-API-Klasse `Startup` .
@@ -172,7 +174,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, Applicat
         },
         Events= new SurveysJwtBearerEvents(loggerFactory.CreateLogger<SurveysJwtBearerEvents>())
     });
-    
+
     // ...
 }
 ```
@@ -183,6 +185,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, Applicat
 * **Events** ist eine von **JwtBearerEvents** abgeleitete Klasse.
 
 ### <a name="issuer-validation"></a>Überprüfung des Ausstellers
+
 Überprüfen Sie den Aussteller des Tokens im **JwtBearerEvents.TokenValidated**-Ereignis. Der Aussteller wird im Anspruch „iss“ gesendet.
 
 In der Anwendung „Surveys“ wird die [Mandantenanmeldung]nicht von der Web-API verarbeitet. Daher wird nur überprüft, ob der Aussteller bereits in der Anwendungsdatenbank vorhanden ist. Falls nicht, wird eine Ausnahme ausgelöst, die einen Authentifizierungsfehler verursacht.
@@ -221,7 +224,8 @@ public override async Task TokenValidated(TokenValidatedContext context)
 Wie dieses Beispiel zeigt, können Sie auch das **TokenValidated**-Ereignis zum Ändern der Ansprüche verwenden. Denken Sie daran, dass die Ansprüche direkt von Azure AD stammen. Wenn die Webanwendung die abgerufenen Ansprüche ändert, werden diese Änderungen nicht in dem von der Web-API empfangenen Bearertoken angezeigt. Weitere Informationen finden Sie unter [Transformationen von Ansprüchen][claims-transformation].
 
 ## <a name="authorization"></a>Autorisierung
-Eine allgemeine Erörterung der Autorisierung finden Sie unter [Rollenbasierte und ressourcenbasierte Autorisierung][Authorization]. 
+
+Eine allgemeine Erörterung der Autorisierung finden Sie unter [Rollenbasierte und ressourcenbasierte Autorisierung][Authorization].
 
 Die JwtBearer-Middleware verarbeitet die Autorisierungsantworten. Wenn Sie z. B. eine Controlleraktion auf authentifizierte Benutzer beschränken möchten, verwenden Sie das Attribut **[Authorize]**, und geben Sie **JwtBearerDefaults.AuthenticationScheme** als Authentifizierungsschema an:
 
@@ -248,18 +252,18 @@ public void ConfigureServices(IServiceCollection services)
             policy =>
             {
                 policy.AddRequirements(new SurveyCreatorRequirement());
-                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
                 policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
             });
         options.AddPolicy(PolicyNames.RequireSurveyAdmin,
             policy =>
             {
                 policy.AddRequirements(new SurveyAdminRequirement());
-                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
                 policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
             });
     });
-    
+
     // ...
 }
 ```

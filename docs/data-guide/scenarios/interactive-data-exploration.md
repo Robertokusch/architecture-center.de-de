@@ -3,26 +3,26 @@ title: Interaktive Datenuntersuchung
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 81301e1d81a76d074d001cc9b20bdaf5231e536b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 1b77f3ced551f5d71578a9b09fd50cd8b0d5587c
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901574"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113194"
 ---
 # <a name="interactive-data-exploration"></a>Interaktive Datenuntersuchung
 
 In vielen Business Intelligence-Lösungen (BI) von Unternehmen werden Berichte und Semantikmodelle von BI-Experten erstellt und zentral verwaltet. Immer häufiger möchten Organisationen es Benutzern aber ermöglichen, datengestützte Entscheidungen zu treffen. Außerdem stellen immer mehr Unternehmen *Data Scientists* oder *Datenanalysten* ein, deren Aufgabe darin besteht, Daten interaktiv zu untersuchen und Statistikmodelle und Analyseverfahren anzuwenden, um in den Daten Trends und Muster zu ermitteln. Bei der interaktiven Datenuntersuchung sind Tools und Plattformen erforderlich, die für Ad-hoc-Abfragen und Datenvisualisierungen eine Verarbeitung mit kurzen Wartezeiten ermöglichen.
 
-![](./images/data-exploration.png)
+![Interaktive Datenuntersuchung](./images/data-exploration.png)
 
 ## <a name="self-service-bi"></a>Self-Service-Business Intelligence
 
 Self-Service-Business Intelligence (Self-Service-BI) ist die Bezeichnung des modernen Ansatzes zum Treffen von Entscheidungen in Unternehmen, bei dem Benutzer in die Lage versetzt werden, aus Daten gewonnene Erkenntnisse zu ermitteln, zu untersuchen und für das gesamte Unternehmen bereitzustellen. Hierfür muss die Datenlösung mehrere Anforderungen erfüllen:
 
-* Ermittlung von Unternehmensdatenquellen über einen Datenkatalog
-* Masterdatenverwaltung zur Sicherstellung der Einheitlichkeit von Datenentitätsdefinitionen und -werten
-* Tools für die interaktive Datenmodellierung und Visualisierung für geschäftliche Benutzer
+- Ermittlung von Unternehmensdatenquellen über einen Datenkatalog
+- Masterdatenverwaltung zur Sicherstellung der Einheitlichkeit von Datenentitätsdefinitionen und -werten
+- Tools für die interaktive Datenmodellierung und Visualisierung für geschäftliche Benutzer
 
 In einer Self-Service-BI-Lösung suchen und verwenden Benutzer normalerweise Datenquellen, die für ihren jeweiligen Geschäftsbereich relevant sind, und nutzen intuitive Tools und Produktivitätsanwendungen zum Definieren von persönlichen Datenmodellen und Berichten, die sie für Kollegen bereitstellen können.
 
@@ -32,6 +32,7 @@ In Frage kommender Azure-Dienst:
 - [Microsoft Power BI](https://powerbi.microsoft.com/)
 
 ## <a name="data-science-experimentation"></a>Data Science-Experimente
+
 Wenn eine Organisation Advanced Analytics und die Vorhersagemodellierung benötigt, wird die anfängliche Vorbereitung normalerweise von Data Science-Experten durchgeführt. Ein Data Scientist untersucht die Daten und wendet Verfahren der statistischen Analyse an, um Beziehungen zwischen den *Features* der Daten und den gewünschten vorhergesagten *Bezeichnungen* zu ermitteln. Für die Datenuntersuchung werden meist Programmiersprachen eingesetzt, z.B. Python oder R, die über eine native Unterstützung der statistischen Modellierung und Visualisierung verfügen. Die für die Datenuntersuchung verwendeten Skripts werden normalerweise in speziellen Umgebungen gehostet, z.B. Jupyter-Notebooks. Mit diesen Tools können Data Scientists die Daten programmgesteuert untersuchen und die gefundenen Erkenntnisse dokumentieren und bereitstellen.
 
 In Frage kommender Azure-Dienst:
@@ -43,7 +44,7 @@ In Frage kommender Azure-Dienst:
 
 ## <a name="challenges"></a>Herausforderungen
 
-- **Einhaltung des Datenschutzes:** Gehen Sie mit Bedacht vor, wenn Sie für Benutzer persönliche Daten für die Self-Service-Analyse und -Berichterstellung bereitstellen. Aufgrund von Organisationsrichtlinien und gesetzlichen Bestimmungen können sich hierbei Compliance-Konflikte ergeben. 
+- **Einhaltung des Datenschutzes:** Gehen Sie mit Bedacht vor, wenn Sie für Benutzer persönliche Daten für die Self-Service-Analyse und -Berichterstellung bereitstellen. Aufgrund von Organisationsrichtlinien und gesetzlichen Bestimmungen können sich hierbei Compliance-Konflikte ergeben.
 
 - **Datenvolumen:** Es kann zwar nützlich sein, Benutzern den Zugriff auf die gesamte Datenquelle zu gewähren, aber dies kann zu Excel- oder Power BI-Vorgängen mit sehr langer Ausführungsdauer oder zu Spark SQL-Abfragen führen, für die sehr viele Clusterressourcen verwendet werden.
 
@@ -74,7 +75,8 @@ Weitere Informationen finden Sie im Artikel zur [Batchverarbeitung](../technolog
 
 ### <a name="analytical-data-store"></a>Analysedatenspeicher
 
-- **Spark SQL**: Spark SQL ist eine API, die auf Spark basiert und die Erstellung von Datenrahmen und Tabellen unterstützt, für die das Abfragen per SQL-Syntax möglich ist. Unabhängig davon, ob die zu analysierenden Datendateien Rohquelldateien oder neue Dateien sind, die per Batchprozess bereinigt und vorbereitet wurden, können Benutzer für weitere Abfragen und Analysen Spark SQL-Tabellen dafür definieren. 
+- **Spark SQL**: Spark SQL ist eine API, die auf Spark basiert und die Erstellung von Datenrahmen und Tabellen unterstützt, für die das Abfragen per SQL-Syntax möglich ist. Unabhängig davon, ob die zu analysierenden Datendateien Rohquelldateien oder neue Dateien sind, die per Batchprozess bereinigt und vorbereitet wurden, können Benutzer für weitere Abfragen und Analysen Spark SQL-Tabellen dafür definieren.
+
 - **Hive**: Zusätzlich zur Batchverarbeitung von Rohdaten per Hive können Sie eine Hive-Datenbank erstellen, die Hive-Tabellen und -Ansichten basierend auf den Ordnern enthält, in denen die Daten gespeichert sind. Auf diese Weise werden interaktive Abfragen für Analyse- und Berichterstellungszwecke ermöglicht. HDInsight enthält einen Interactive Hive-Clustertyp, für den die speicherinterne Zwischenspeicherung verwendet wird, um die Antwortzeiten für Hive-Abfragen zu reduzieren. Benutzer, die sich mit SQL-ähnlicher Syntax auskennen, können Interactive Hive zum Untersuchen von Daten nutzen.
 
 Weitere Informationen finden Sie unter [Analysedatenspeicher](../technology-choices/analytical-data-stores.md).
@@ -82,7 +84,9 @@ Weitere Informationen finden Sie unter [Analysedatenspeicher](../technology-choi
 ### <a name="analytics-and-reporting"></a>Analysen und Berichte
 
 - **Jupyter**: Jupyter-Notebooks verfügen über eine browserbasierte Oberfläche zum Ausführen von Code in Sprachen wie R, Python oder Scala. Bei Verwendung von R Server oder Spark für die Batchverarbeitung von Daten oder von Spark SQL zum Definieren eines Schemas mit Tabellen für Abfragen kann Jupyter eine gute Wahl sein, um Abfragen für die Daten durchzuführen. Bei der Nutzung von Spark können Sie die Spark Dataframe-Standard-API oder die Spark SQL-API sowie eingebettete SQL-Anweisungen verwenden, um die Daten abzufragen und Visualisierungen zu erstellen.
-- **Drill**: [Apache Drill](https://drill.apache.org/) ist eine schemalose SQL-Abfrage-Engine, mit der Sie spontan Daten untersuchen können. Da sie kein Schema benötigt, können Sie Daten aus verschiedensten Datenquellen abfragen. Die Engine kann die Struktur der Daten automatisch nachvollziehen.  Sie können Drill mit Azure Blob Storage verwenden. Nutzung Sie dazu das [Azure Blob Storage-Plug-In](https://drill.apache.org/docs/azure-blob-storage-plugin/). Mit diesem Plug-In können Sie Abfragen für Daten in Blob Storage ausführen, ohne die Daten verschieben zu müssen. 
+
+- **Drill**: [Apache Drill](https://drill.apache.org/) ist eine schemalose SQL-Abfrage-Engine, mit der Sie spontan Daten untersuchen können. Da sie kein Schema benötigt, können Sie Daten aus verschiedensten Datenquellen abfragen. Die Engine kann die Struktur der Daten automatisch nachvollziehen.  Sie können Drill mit Azure Blob Storage verwenden. Nutzung Sie dazu das [Azure Blob Storage-Plug-In](https://drill.apache.org/docs/azure-blob-storage-plugin/). Mit diesem Plug-In können Sie Abfragen für Daten in Blob Storage ausführen, ohne die Daten verschieben zu müssen.
+
 - **Interactive Hive-Clients**: Bei Verwendung eines Interactive Hive-Clusters zum Abfragen der Daten können Sie die Hive-Ansicht im Ambari-Cluster-Dashboard, das Befehlszeilentool Beeline oder ein beliebiges ODBC-basiertes Tool (mit dem Hive ODBC-Treiber) nutzen, z.B. Microsoft Excel oder Power BI.
 
 Weitere Informationen finden Sie im Artikel zur [Technologie für die Datenanalyse und Berichterstellung](../technology-choices/analysis-visualizations-reporting.md).

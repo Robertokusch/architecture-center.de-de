@@ -1,24 +1,27 @@
 ---
 title: Sidecar-Muster
-description: Stellen Sie Komponenten einer Anwendung zwecks Isolation und Kapselung in einem separaten Prozess oder Container bereit.
+titleSuffix: Cloud Design Patterns
+description: Komponenten einer Anwendung zwecks Isolation und Kapselung in einem separaten Prozess oder Container bereitstellen
+keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: ec168009aa99f412c3f1222a1c404ea4ea5cb669
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 8d3cdd5297b99bc369de6192bca50bd9f02dca47
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541768"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010002"
 ---
 # <a name="sidecar-pattern"></a>Sidecar-Muster
 
-Stellen Sie Komponenten einer Anwendung zwecks Isolation und Kapselung in einem separaten Prozess oder Container bereit. Dieses Muster kann Anwendungen auch eine Zusammenstellung aus heterogenen Komponenten und Technologien ermöglichen.
+Komponenten einer Anwendung zwecks Isolation und Kapselung in einem separaten Prozess oder Container bereitstellen Dieses Muster kann Anwendungen auch eine Zusammenstellung aus heterogenen Komponenten und Technologien ermöglichen.
 
 Dieses Muster trägt den Namen *Sidecar*, da es an einen Beiwagen erinnert, der an ein Motorrad angebracht wird. Im Muster wird der Sidecar an eine übergeordnete Anwendung angefügt und stellt unterstützende Funktionen für die Anwendung bereit. Der Sidecar weist auch denselben Lebenszyklus wie die übergeordnete Anwendung auf und wird zusammen mit dieser erstellt und außer Kraft gesetzt. Das Sidecar-Muster wird manchmal auch als Sidekick-Muster bezeichnet und ist ein Aufgliederungsmuster.
 
 ## <a name="context-and-problem"></a>Kontext und Problem
 
-Anwendungen und Dienste benötigen häufig zusammengehörige Funktionen, wie z. B. Überwachung, Protokollierung, Konfiguration und Netzwerkdienste. Diese Peripherieaufgaben können als separate Komponenten oder Dienste implementiert werden. 
+Anwendungen und Dienste benötigen häufig zusammengehörige Funktionen, wie z. B. Überwachung, Protokollierung, Konfiguration und Netzwerkdienste. Diese Peripherieaufgaben können als separate Komponenten oder Dienste implementiert werden.
 
 Wenn sie eng in die Anwendung integriert sind, können sie in demselben Prozess wie die Anwendung ausgeführt werden und dadurch gemeinsam verwendete Ressourcen effizient nutzen. Dies bedeutet aber auch, dass sie nicht gut isoliert sind, und ein Ausfall in einer dieser Komponenten kann Auswirkungen auf andere Komponenten oder die gesamte Anwendung haben. Außerdem müssen sie üblicherweise mit derselben Sprache wie die übergeordnete Anwendung implementiert werden. Daher weisen die Komponente und die Anwendung eine starke wechselseitige Abhängigkeit auf.
 
@@ -26,23 +29,23 @@ Wenn die Anwendung in Dienste aufgegliedert wird, kann jeder Dienst mit einer an
 
 ## <a name="solution"></a>Lösung
 
-Verbinden Sie eine zusammenhängende Gruppe von Aufgaben mit der primären Anwendung, aber platzieren Sie diese in einem eigenen Prozess oder Container, um eine homogene Schnittstelle für Plattformdienste sprachübergreifend bereitzustellen. 
+Verbinden Sie eine zusammenhängende Gruppe von Aufgaben mit der primären Anwendung, aber platzieren Sie diese in einem eigenen Prozess oder Container, um eine homogene Schnittstelle für Plattformdienste sprachübergreifend bereitzustellen.
 
-![](./_images/sidecar.png)
+![Diagramm des Sidecar-Musters](./_images/sidecar.png)
 
-Ein Sidecar-Dienst ist nicht notwendigerweise Teil der Anwendung, ist aber mit ihr verbunden. Er befindet sich dort, wo sich auch die übergeordnete Anwendung befindet. Sidecars sind unterstützte Prozesse oder Dienste, die mit der primären Anwendung bereitgestellt werden. Bei einem Motorrad wird ein Sidecar (Beiwagen) an ein einzelnes Fahrzeug angebracht, und jedes Motorrad kann einen eigenen Beiwagen haben. Auf die gleiche Weise teilt auch ein Sidecar-Dienst das Schicksal der übergeordneten Anwendung. Für jede Instanz der Anwendung wird eine Instanz des Sidecar bereitgestellt und parallel gehostet. 
+Ein Sidecar-Dienst ist nicht notwendigerweise Teil der Anwendung, ist aber mit ihr verbunden. Er befindet sich dort, wo sich auch die übergeordnete Anwendung befindet. Sidecars sind unterstützte Prozesse oder Dienste, die mit der primären Anwendung bereitgestellt werden. Bei einem Motorrad wird ein Sidecar (Beiwagen) an ein einzelnes Fahrzeug angebracht, und jedes Motorrad kann einen eigenen Beiwagen haben. Auf die gleiche Weise teilt auch ein Sidecar-Dienst das Schicksal der übergeordneten Anwendung. Für jede Instanz der Anwendung wird eine Instanz des Sidecar bereitgestellt und parallel gehostet.
 
 Die Verwendung eines Sidecar-Musters bietet unter anderem folgende Vorteile:
 
-- Ein Sidecar ist in Hinsicht auf die Laufzeitumgebung und die Programmiersprache von der primären Anwendung unabhängig, sodass Sie nicht einen Sidecar pro Sprache entwickeln müssen. 
+- Ein Sidecar ist in Hinsicht auf die Laufzeitumgebung und die Programmiersprache von der primären Anwendung unabhängig, sodass Sie nicht einen Sidecar pro Sprache entwickeln müssen.
 
-- Der Sidecar kann auf dieselben Ressourcen wie die primäre Anwendung zugreifen. Beispielsweise kann ein Sidecar Systemressourcen überwachen, die sowohl vom Sidecar als auch der primären Anwendung verwendet werden. 
+- Der Sidecar kann auf dieselben Ressourcen wie die primäre Anwendung zugreifen. Beispielsweise kann ein Sidecar Systemressourcen überwachen, die sowohl vom Sidecar als auch der primären Anwendung verwendet werden.
 
 - Aufgrund der Nähe zur primären Anwendung besteht keine wesentliche Latenz bei der Kommunikation zwischen beiden.
 
 - Selbst bei Anwendungen, die keinen Erweiterbarkeitsmechanismus bieten, können Sie einen Sidecar zum Erweitern der Funktionalität verwenden, indem Sie ihn als eigenen Prozess in demselben Host- oder Untercontainer wie die primäre Anwendung anfügen.
 
-Das Sidecar-Muster wird häufig mit Containern verwendet und als Sidecar-Container oder Sidekick-Container bezeichnet. 
+Das Sidecar-Muster wird häufig mit Containern verwendet und als Sidecar-Container oder Sidekick-Container bezeichnet.
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
@@ -61,7 +64,7 @@ Verwenden Sie dieses Muster in folgenden Fällen:
 - Sie benötigen einen Dienst, der den gesamten Lebenszyklus Ihrer Hauptanwendung teilt, aber unabhängig aktualisiert werden kann.
 - Sie benötigen eine präzisere Kontrolle über Einschränkungen für eine bestimmte Ressource oder Komponente. Sie möchten beispielsweise die Speichermenge beschränken, die eine bestimmte Komponente verwendet. Sie können die Komponente als einen Sidecar bereitstellen und die Speichernutzung unabhängig von der Hauptanwendung verwalten.
 
-Dieses Muster ist in folgenden Fällen möglicherweise nicht geeignet:
+Dieses Muster ist in folgenden Fällen unter Umständen nicht geeignet:
 
 - Wenn die prozessübergreifende Kommunikation optimiert werden muss. Die Kommunikation zwischen einer übergeordneten Anwendung und Sidecar-Diensten bedeutet einen gewissen Mehraufwand, insbesondere Latenz bei den Aufrufen. Dies ist bei Schnittstellen mit einer hohen Anzahl von Einzelaufrufen möglicherweise nicht annehmbar.
 - Bei kleinen Anwendungen, bei denen der Vorteil der Isolation die Ressourcenkosten für die Bereitstellung eines Sidecar-Diensts für jede Instanz nicht aufheben.
@@ -73,14 +76,9 @@ Das Sidecar-Muster kann für viele Szenarien angewendet werden. Hier einige typi
 
 - Infrastruktur API. Das Infrastruktur-Entwicklungsteam erstellt einen Dienst, der zusammen mit den einzelnen Anwendungen bereitgestellt wird, anstelle einer sprachspezifischen Clientbibliothek für den Zugriff auf die Infrastruktur. Der Dienst wird als Sidecar geladen und stellt eine allgemeine Ebene für Infrastrukturdienste bereit, einschließlich Protokollierung, Umgebungsdaten, Konfigurationsspeicher, Ermittlung, Integritätsüberprüfungen und Watchdog-Dienste. Der Sidecar überwacht auch die Hostumgebung und den Prozess (oder Container) der übergeordneten Anwendung und protokolliert die Informationen in einem zentralen Dienst.
 - Verwalten von NGINX/HAProxy. Stellen Sie NGINX mit einem Sidecar-Dienst bereit, der den Zustand der Umgebung überwacht, dann die NGINX-Konfigurationsdatei aktualisiert und den Prozess wiederverwendet, wenn eine Zustandsänderung benötigt wird.
-- Ambassador-Sidecar. Stellen Sie einen [Ambassador][ambassador]-Dienst als Sidecar bereit. Die Aufrufe der Anwendung erfolgen über Ambassador, der Anforderungsprotokollierung, Routing, Verbindungsunterbrechung und andere Funktionen im Zusammenhang mit der Konnektivität handhabt.
+- Ambassador-Sidecar. Stellen Sie einen [Ambassador](./ambassador.md)-Dienst als Sidecar bereit. Die Aufrufe der Anwendung erfolgen über Ambassador, der Anforderungsprotokollierung, Routing, Verbindungsunterbrechung und andere Funktionen im Zusammenhang mit der Konnektivität handhabt.
 - Auslagern des Proxy. Platzieren Sie einen NGINX-Proxy vor einer node.js-Dienstinstanz, um die Bereitstellung statischer Dateiinhalte für den Dienst zu handhaben.
 
+## <a name="related-guidance"></a>Verwandte Leitfäden
 
-## <a name="related-guidance"></a>Verwandte Anweisungen
-
-- [Ambassador-Muster][ambassador]
-
-
-[ambassador]: ./ambassador.md
-
+- [Botschaftermuster](./ambassador.md)

@@ -3,27 +3,31 @@ title: Auswählen einer Datenspeichertechnologie
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: c97249228ca45a7a17822b6dd55acad6360c6f6b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 9fe28249b51083bb588808770aba9ac7d48d560e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902645"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113160"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>Auswählen einer Big Data-Speichertechnologie in Azure
 
 In diesem Thema werden Datenspeicheroptionen für Big Data-Lösungen verglichen – insbesondere Datenspeicher für Massendatenerfassung und Batchverarbeitung (im Gegensatz zu [Analysedatenspeichern](./analytical-data-stores.md) oder [Echtzeit-Streamingerfassung](./real-time-ingestion.md)).
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="what-are-your-options-when-choosing-data-storage-in-azure"></a>Welche Datenspeicheroptionen stehen in Azure zur Verfügung?
+
+<!-- markdownlint-enable MD026 -->
 
 Daten können auf verschiedene Arten in Azure erfasst werden. Für welche Option Sie sich entscheiden, hängt ganz von Ihren Anforderungen ab.
 
-**File Storage**
+**Dateispeicher**:
 
 - [Azure Storage-Blobs](/azure/storage/blobs/storage-blobs-introduction)
 - [Azure Data Lake Store](/azure/data-lake-store/)
 
-**NoSQL-Datenbanken**
+**NoSQL-Datenbanken:**
 
 - [Azure Cosmos DB](/azure/cosmos-db/)
 - [HBase in HDInsight](https://hbase.apache.org/)
@@ -59,7 +63,7 @@ In Verbindung mit Azure Data Lake Analytics wurde Data Lake Store speziell für 
 
 [Azure Cosmos DB](/azure/cosmos-db/) ist eine global verteilte Datenbank von Microsoft mit mehreren Modellen. Cosmos DB garantiert Wartezeiten im einstelligen Millisekundenbereich im 99. Perzentil an jedem Ort der Welt, bietet mehrere gut definierte Konsistenzmodelle zur Optimierung der Leistung und garantiert Hochverfügbarkeit mit Multihostingfunktionen.
 
-Azure Cosmos DB ist schemaunabhängig. Die Lösung indiziert automatisch alle Daten, sodass Sie sich nicht mit der Schema- und Indexverwaltung befassen müssen. Außerdem unterstützt sie nativ mehrere Datenmodelle wie Dokumente, Schlüssel-Wert-Paare, Diagramme und spaltenbasierte Daten. 
+Azure Cosmos DB ist schemaunabhängig. Die Lösung indiziert automatisch alle Daten, sodass Sie sich nicht mit der Schema- und Indexverwaltung befassen müssen. Außerdem unterstützt sie nativ mehrere Datenmodelle wie Dokumente, Schlüssel-Wert-Paare, Diagramme und spaltenbasierte Daten.
 
 Features von Azure Cosmos DB:
 
@@ -119,4 +123,3 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | Native Azure Functions-Integration |                        [Ja](/azure/cosmos-db/serverless-computing-database)                        |                                                                     Nein                                                                      |
 |   Automatische globale Verteilung    |                          [Ja](/azure/cosmos-db/distribute-data-globally)                           | Nein. Die [HBase-Clusterreplikation kann so konfiguriert werden](/azure/hdinsight/hbase/apache-hbase-replication), dass sie sich über Regionen mit letztlicher Konsistenz erstreckt. |
 |           Preismodell            | Flexibel skalierbare Anforderungseinheiten (Request Units, RUs), die nach Bedarf pro Sekunde berechnet werden; flexibel skalierbarer Speicher |                              Minutenpreise für HDInsight-Cluster (horizontale Skalierung von Knoten), Speicher                               |
-

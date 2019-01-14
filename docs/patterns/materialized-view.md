@@ -1,25 +1,23 @@
 ---
-title: Materialisierte Sicht
-description: Generieren Sie vorausgefüllte Sichten für die Daten in einem oder mehreren Datenspeichern, wenn die Daten für erforderliche Abfrageoperationen nicht ideal formatiert sind.
+title: Muster für materialisierte Sichten
+titleSuffix: Cloud Design Patterns
+description: Voraufgefüllte Sichten für die Daten in einem oder mehreren Datenspeichern generieren, wenn die Daten für erforderliche Abfragevorgänge nicht ideal formatiert sind
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 992abcb57204c65a7ca9e9e2525d3ea7339c4a2c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 42795e218d1a46c9aec98c207d1207f1afdbc2fd
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540232"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011564"
 ---
 # <a name="materialized-view-pattern"></a>Muster für materialisierte Sichten
 
 [!INCLUDE [header](../_includes/header.md)]
 
-Generieren Sie vorausgefüllte Sichten für die Daten in einem oder mehreren Datenspeichern, wenn die Daten für erforderliche Abfrageoperationen nicht ideal formatiert sind. Dies kann für die Unterstützung effizienter Abfragen und Datenextraktionen hilfreich sein und die Leistung verbessern.
+Voraufgefüllte Sichten für die Daten in einem oder mehreren Datenspeichern generieren, wenn die Daten für erforderliche Abfragevorgänge nicht ideal formatiert sind Dies kann für die Unterstützung effizienter Abfragen und Datenextraktionen hilfreich sein und die Leistung verbessern.
 
 ## <a name="context-and-problem"></a>Kontext und Problem
 
@@ -38,7 +36,6 @@ Ein wichtiger Punkt ist, dass eine materialisierte Sicht und die darin enthalten
 Wenn sich die Quelldaten für die Sicht ändern, muss die Sicht aktualisiert werden, sodass die neuen Informationen enthalten sind. Sie können einrichten, dass dies automatisch oder immer dann, wenn das System eine Änderung an den ursprünglichen Daten erkennt, durchgeführt wird. In einigen Fällen kann es notwendig sein, die Sicht manuell erneut zu generieren. Die Abbildung zeigt ein Beispiel für eine mögliche Verwendung des Musters für materialisierte Sichten.
 
 ![Abbildung 1 zeigt ein Beispiel für eine mögliche Verwendung des Musters für materialisierte Sichten](./_images/materialized-view-pattern-diagram.png)
-
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
@@ -61,6 +58,7 @@ Wenn der Speichermechanismus dies unterstützt, sollten Sie die materialisierte 
 ## <a name="when-to-use-this-pattern"></a>Verwendung dieses Musters
 
 Dieses Muster ist für Folgendes hilfreich:
+
 - Zum Erstellen von materialisierten Sichten für Daten, die nicht einfach direkt abgefragt werden können oder bei denen Abfragen sehr komplex sein müssen, um Daten zu extrahieren, die auf normalisierte, teilweise strukturierte oder unstrukturierte Weise gespeichert sind.
 - Zum Erstellen temporärer Sichten, die die Abfrageleistung deutlich verbessern können oder direkt als Quellensichten oder Datenübertragungsobjekte für die Benutzeroberfläche, die Berichterstellung oder die Anzeige dienen können.
 - Zum Unterstützen von Szenarien mit gelegentlichen oder ohne Verbindungen, wenn die Verbindung mit dem Datenspeicher nicht immer verfügbar ist. In diesem Fall kann die Sicht lokal zwischengespeichert werden.
@@ -69,6 +67,7 @@ Dieses Muster ist für Folgendes hilfreich:
 - Zum Überbrücken unterschiedlicher Datenspeicher, um deren jeweilige Funktionen zu nutzen. Beispiel: Verwenden eines Cloudspeichers, der beim Schreiben als Referenzdatenspeicher effizient ist, und einer relationalen Datenbank, die gute Abfrage- und Leseleistungen bietet, um die materialisierten Sichten zu speichern.
 
 Dieses Muster ist in den folgenden Situationen nicht nützlich:
+
 - Die Quelldaten sind einfach und können leicht abgefragt werden.
 - Die Quelldaten ändern sich sehr schnell, oder Zugriff ist ohne eine Sicht möglich. In diesen Fällen sollten Sie den Verarbeitungsaufwand durch das Erstellen von Sichten vermeiden.
 - Konsistenz hat einen hohen Stellenwert. Die Sichten sind möglicherweise nicht immer vollständig mit den ursprünglichen Daten konsistent.
@@ -79,15 +78,15 @@ Die folgende Abbildung zeigt ein Beispiel für die Verwendung des Musters für m
 
 ![Abbildung 2: Verwenden des Musters für materialisierte Sichten zum Generieren einer Umsatzzusammenfassung](./_images/materialized-view-summary-diagram.png)
 
-
 Das Erstellen dieser materialisierten Sicht erfordert komplexe Abfragen. Indem jedoch das Abfrageergebnis als materialisierte Sicht verfügbar gemacht wird, können Benutzer problemlos die Ergebnisse abrufen und sie direkt verwenden oder in eine andere Abfrage integrieren. Die Sicht wird wahrscheinlich in einem Berichtssystem oder in einem Dashboard verwendet und kann nach einem Zeitplan z.B. wöchentlich aktualisiert werden.
 
->  Obwohl in diesem Beispiel Azure-Tabellenspeicher genutzt wird, bieten viele Managementsysteme für relationale Datenbanken auch native Unterstützung für materialisierte Sichten.
+> Obwohl in diesem Beispiel Azure-Tabellenspeicher genutzt wird, bieten viele Managementsysteme für relationale Datenbanken auch native Unterstützung für materialisierte Sichten.
 
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
-Die folgenden Muster und Anleitungen können auch relevant sein, wenn dieses Muster implementiert wird:
-- [Data Consistency Primer (Grundlagen der Datenkonsistenz)](https://msdn.microsoft.com/library/dn589800.aspx). Die Zusammenfassungsinformationen in einer materialisierten Sicht müssen verwaltet werden, sodass sie die zugrunde liegenden Datenwerte widerspiegeln. Wenn sich die Datenwerte ändern, ist es möglicherweise nicht praktikabel, die Zusammenfassungsdaten in Echtzeit zu aktualisieren. Stattdessen müssen Sie einen letztendlich konsistenten Ansatz einsetzen. Fasst die Probleme bei der Aufrechterhaltung von Konsistenz in verteilten Daten zusammen und beschreibt die Vor- und Nachteile der verschiedenen Konsistenzmodelle.
-- [CQRS-Muster (Command and Query Responsibility Segregation)](cqrs.md). Wird verwendet, um die Informationen in einer materialisierten Sicht zu aktualisieren, indem auf Ereignisse reagiert wird, die aufgrund von Änderungen der zugrunde liegenden Datenwerte auftreten.
-- [Muster für Ereignisherkunftsermittlung](event-sourcing.md). Wird in Verbindung mit dem CQRS-Muster verwendet, um die Informationen in einer materialisierten Sicht zu verwalten. Wenn die Datenwerte, auf denen eine materialisierte Sicht basiert, geändert werden, kann das System Ereignisse auslösen, die diese Änderungen beschreiben, und in einem Ereignisspeicher speichern.
-- [Indextabellenmuster](index-table.md). Die Daten in einer materialisierten Sicht sind in der Regel mit einem Primärschlüssel organisiert. Abfragen müssen aber möglicherweise Informationen aus dieser Sicht abrufen, indem sie Daten in anderen Feldern untersuchen. Verwenden Sie dieses Muster, um für Datenspeicher, die native sekundäre Indizes nicht unterstützen, sekundäre Indizes über Datasets zu erstellen.
+Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
+
+- [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Grundlagen der Datenkonsistenz). Die Zusammenfassungsinformationen in einer materialisierten Sicht müssen verwaltet werden, sodass sie die zugrunde liegenden Datenwerte widerspiegeln. Wenn sich die Datenwerte ändern, ist es möglicherweise nicht praktikabel, die Zusammenfassungsdaten in Echtzeit zu aktualisieren. Stattdessen müssen Sie einen letztendlich konsistenten Ansatz einsetzen. Fasst die Probleme bei der Aufrechterhaltung von Konsistenz in verteilten Daten zusammen und beschreibt die Vor- und Nachteile der verschiedenen Konsistenzmodelle.
+- [CQRS-Muster (Command and Query Responsibility Segregation)](./cqrs.md). Wird verwendet, um die Informationen in einer materialisierten Sicht zu aktualisieren, indem auf Ereignisse reagiert wird, die aufgrund von Änderungen der zugrunde liegenden Datenwerte auftreten.
+- [Muster für Ereignisherkunftsermittlung](./event-sourcing.md). Wird in Verbindung mit dem CQRS-Muster verwendet, um die Informationen in einer materialisierten Sicht zu verwalten. Wenn die Datenwerte, auf denen eine materialisierte Sicht basiert, geändert werden, kann das System Ereignisse auslösen, die diese Änderungen beschreiben, und in einem Ereignisspeicher speichern.
+- [Indextabellenmuster](./index-table.md). Die Daten in einer materialisierten Sicht sind in der Regel mit einem Primärschlüssel organisiert. Abfragen müssen aber möglicherweise Informationen aus dieser Sicht abrufen, indem sie Daten in anderen Feldern untersuchen. Verwenden Sie dieses Muster, um für Datenspeicher, die native sekundäre Indizes nicht unterstützen, sekundäre Indizes über Datasets zu erstellen.

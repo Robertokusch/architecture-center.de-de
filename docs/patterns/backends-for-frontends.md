@@ -1,14 +1,17 @@
 ---
 title: Muster „Back-Ends für Front-Ends“
+titleSuffix: Cloud Design Patterns
 description: Erstellen Sie separate Back-End-Dienste zur Nutzung durch bestimmte Front-End-Anwendungen oder -Schnittstellen.
+keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: a0dbc9ab58aa218f6faf40b70dad1bdc22d71458
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 1fc597ded3e87ca7b4a200a13af9dce5ba2dbec5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428787"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009745"
 ---
 # <a name="backends-for-frontends-pattern"></a>Muster „Back-Ends für Front-Ends“
 
@@ -18,19 +21,19 @@ Erstellen Sie separate Back-End-Dienste zur Nutzung durch bestimmte Front-End-An
 
 Eine Anwendung kann ursprünglich auf eine Desktop-Webbenutzeroberfläche ausgerichtet sein. Normalerweise wird ein Back-End-Dienst parallel entwickelt, mit dem die für die Benutzeroberfläche benötigten Features bereitgestellt werden. Wenn die Benutzerbasis der Anwendung wächst, wird eine mobile Anwendung entwickelt, die mit demselben Back-End interagieren muss. Der Back-End-Dienst wird zu einem Back-End für allgemeine Zwecke, mit dem die Anforderungen der Desktopbenutzeroberfläche und mobilen Benutzeroberfläche erfüllt werden.
 
-Die Funktionen eines mobilen Geräts unterscheiden sich aufgrund von Bildschirmgröße, Leistung und Anzeigebeschränkungen aber erheblich von einem Desktopbrowser. Die Anforderungen für das Back-End einer mobilen Anwendung unterscheiden sich von der Desktop-Webbenutzeroberfläche. 
+Die Funktionen eines mobilen Geräts unterscheiden sich aufgrund von Bildschirmgröße, Leistung und Anzeigebeschränkungen aber erheblich von einem Desktopbrowser. Die Anforderungen für das Back-End einer mobilen Anwendung unterscheiden sich von der Desktop-Webbenutzeroberfläche.
 
 Diese Unterschiede führen zu konkurrierenden Anforderungen für das Back-End. Für das Back-End sind regelmäßige und signifikante Änderungen erforderlich, damit es sowohl für die Desktop-Webbenutzeroberfläche als auch für die mobile Anwendung genutzt werden kann. Häufig arbeiten separate Benutzeroberflächenteams an den einzelnen Front-Ends, sodass das Back-End im Entwicklungsprozess zu einem Engpass wird. In Konflikt stehende Updateanforderungen und die Notwendigkeit, dass der Dienst für beide Front-Ends betriebsbereit gehalten werden muss, kann dazu führen, dass für eine einzelne bereitstellbare Ressource hoher Aufwand entsteht.
 
-![](./_images/backend-for-frontend.png) 
+![Kontext- und Problemdiagramm des Musters „Back-Ends für Front-Ends“](./_images/backend-for-frontend.png)
 
-Da die Entwicklungsaktivitäten auf den Back-End-Dienst ausgerichtet sind, kann ggf. ein separates Team zusammengestellt werden, um das Back-End zu verwalten und zu warten. Dies führt letztendlich zu einer Trennung zwischen den Teams für die Entwicklung der Benutzeroberfläche und des Back-Ends, und das Back-End-Team muss die konkurrierenden Anforderungen der verschiedenen Benutzeroberflächenteams ausgleichen. Wenn ein Benutzeroberflächenteam Änderungen des Back-Ends fordert, müssen diese Änderungen von anderen Benutzeroberflächenteams überprüft werden, bevor sie in das Back-End integriert werden können. 
+Da die Entwicklungsaktivitäten auf den Back-End-Dienst ausgerichtet sind, kann ggf. ein separates Team zusammengestellt werden, um das Back-End zu verwalten und zu warten. Dies führt letztendlich zu einer Trennung zwischen den Teams für die Entwicklung der Benutzeroberfläche und des Back-Ends, und das Back-End-Team muss die konkurrierenden Anforderungen der verschiedenen Benutzeroberflächenteams ausgleichen. Wenn ein Benutzeroberflächenteam Änderungen des Back-Ends fordert, müssen diese Änderungen von anderen Benutzeroberflächenteams überprüft werden, bevor sie in das Back-End integriert werden können.
 
 ## <a name="solution"></a>Lösung
 
 Erstellen Sie ein Back-End pro Benutzeroberfläche. Optimieren Sie das Verhalten und die Leistung jedes Back-Ends, um die Anforderungen der Front-End-Umgebung bestmöglich zu erfüllen, ohne sich Gedanken darüber machen zu müssen, dass andere Front-End-Umgebungen betroffen sind.
 
-![](./_images/backend-for-frontend-example.png) 
+![Diagramm des Musters „Back-Ends für Front-Ends“](./_images/backend-for-frontend-example.png)
 
 Da jedes Back-End spezifisch für eine Benutzeroberfläche gilt, kann es für diese Schnittstelle optimiert werden. Das Ergebnis ist, dass es kleiner, weniger komplex und meist auch schneller als ein generisches Back-End ist, mit dem versucht wird, die Anforderungen aller Benutzeroberflächen zu erfüllen. Jedes Benutzeroberflächenteam kann das eigene Back-End selbst steuern und ist nicht von einem zentralen Back-End-Entwicklungsteam abhängig. So kann das Benutzeroberflächenteam in den Bereichen Sprachwahl, Release-Rhythmus, Priorisierung der Workload und Featureintegration auf seinem Back-End jeweils flexibel vorgehen.
 
@@ -64,5 +67,3 @@ Dieses Muster ist in folgenden Fällen unter Umständen nicht geeignet:
 - [Muster „Gatewayaggregation“](./gateway-aggregation.md)
 - [Muster „Gatewayabladung“](./gateway-offloading.md)
 - [Muster „Gatewayrouting“](./gateway-routing.md)
-
-

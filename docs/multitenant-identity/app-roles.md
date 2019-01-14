@@ -1,23 +1,23 @@
 ---
 title: Anwendungsrollen
-description: Informationen zur Autorisierung mithilfe von Anwendungsrollen
+description: Hier erfahren Sie, wie Sie die Autorisierung mithilfe von Anwendungsrollen ausführen.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: signup
 pnp.series.next: authorize
-ms.openlocfilehash: 4a694eb65de717e6b5a7c65a2d6fb28f192dcdc5
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 04749bff820132e40f3cbb5195bf65648ab39ab3
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902509"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112531"
 ---
 # <a name="application-roles"></a>Anwendungsrollen
 
 [![GitHub](../_images/github.png)-Beispielcode][sample application]
 
-Anwendungsrollen werden verwendet, um Benutzern Berechtigungen zuzuweisen. Die [Tailspin Surveys][Tailspin]-Anwendung definiert beispielsweise die folgenden Rollen:
+Anwendungsrollen werden verwendet, um Benutzern Berechtigungen zuzuweisen. Die [Tailspin Surveys][tailspin]-Anwendung definiert beispielsweise die folgenden Rollen:
 
 * Administrator. Kann alle Erstellungs-, Lese-, Aktualisierungs- und Löschaktionen auf alle Umfragen anwenden, die zu diesem Mandanten gehören.
 * Creator (Ersteller). Kann neue Umfragen erstellen.
@@ -30,14 +30,13 @@ Sie sehen, dass Rollen während der [Autorisierung]in Berechtigungen übersetzt 
 * [Anwendungsrollen-Manager](#roles-using-an-application-role-manager)
 
 ## <a name="roles-using-azure-ad-app-roles"></a>Rollen auf Grundlage von Azure AD-App-Rollen
+
 Dies ist der Ansatz, den wir für die Tailspin-App „Surveys“ gewählt haben.
 
 Bei diesem Ansatz legt der SaaS-Anbieter Anwendungsrollen fest, indem diese dem Anwendungsmanifest hinzugefügt werden. Nachdem sich ein Kunde registriert hat, werden Benutzern von einem Administrator des AD-Verzeichnisses Rollen zugewiesen. Wenn sich ein Benutzer anmeldet, werden die dem Benutzer zugewiesenen Rollen als Ansprüche gesendet.
 
 > [!NOTE]
 > Wenn der Kunde über Azure AD Premium verfügt, kann der Administrator eine Sicherheitsgruppe zu einer Rolle zuweisen, und die Mitglieder der Gruppe erben die App-Rolle. Dies ist eine praktische Möglichkeit, Rollen zu verwalten, da der Gruppenbesitzer kein AD-Administrator sein muss.
-> 
-> 
 
 Vorteile dieses Ansatzes:
 
@@ -52,6 +51,7 @@ Nachteile:
 * Wenn Sie eine Back-End-Web-API haben, die von der Web-App getrennt ist, gelten die Rollenzuweisungen für die Web-App nicht für die Web-API. Informationen zu diesem Punkt finden Sie unter [Schützen einer Back-End-Web-API].
 
 ### <a name="implementation"></a>Implementierung
+
 **Definieren der Rollen.** Der SaaS-Anbieter deklariert die App-Rollen im [Anwendungsmanifest]. Hier ein Beispiel des Manifesteintrags für die App „Surveys“.
 
 ```json
@@ -85,8 +85,6 @@ Die `value`-Eigenschaft wird im Rollenanspruch angezeigt. Die `id` -Eigenschaft 
 
 > [!NOTE]
 > Wie zuvor erwähnt, können Kunden mit Azure AD Premium Sicherheitsgruppen zu Rollen zuweisen.
-> 
-> 
 
 Der folgende Screenshot aus dem Azure-Portal zeigt Benutzer und Gruppen für die Survey-Anwendung. „Admin“ und „Creator“ sind Gruppen, die den Rollen SurveyAdmin bzw. SurveyCreator zugewiesen wurden. Alice ist eine Benutzerin, die direkt der SurveyAdmin-Rolle zugewiesen wurde. Bob und Charles sind Benutzer, die noch nicht direkt einer Rolle zugewiesen wurden.
 
@@ -96,12 +94,10 @@ Wie im folgenden Screenshot gezeigt, gehört Charles zur Gruppe „Admin“ und 
 
 ![Gruppenmitglieder von „Admin“](./images/running-the-app/admin-members.png)
 
-
 > [!NOTE]
 > Ein alternativer Ansatz besteht darin, dass die Anwendung Rollen programmgesteuert über die Azure AD-Graph-API zuweist. Dazu muss die Anwendung jedoch Schreibberechtigungen für das AD-Verzeichnis des Kunden erhalten. Eine Anwendung mit solchen Berechtigungen könnte eine Menge Unheil anrichten – der Kunde muss darauf vertrauen, dass die App keinen Schaden im Verzeichnis verursacht. Viele Kunden werden einen Zugriff auf dieser Ebene nicht gewähren.
-> 
 
-**Rollenansprüche abrufen**. Wenn sich ein Benutzer anmeldet, empfängt die Anwendung die dem Benutzer zugewiesenen Rollen in einem Anspruch des Typs `http://schemas.microsoft.com/ws/2008/06/identity/claims/role`.  
+**Rollenansprüche abrufen**. Wenn sich ein Benutzer anmeldet, empfängt die Anwendung die dem Benutzer zugewiesenen Rollen in einem Anspruch des Typs `http://schemas.microsoft.com/ws/2008/06/identity/claims/role`.
 
 Ein Benutzer kann mehrere Rollen oder keine Rolle haben. Setzen Sie in Ihrem Autorisierungscode nicht voraus, dass der Benutzer genau einen Rollenanspruch aufweist. Schreiben Sie stattdessen Code, der prüft, ob ein bestimmter Anspruchswert vorhanden ist:
 
@@ -110,6 +106,7 @@ if (context.User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
 ```
 
 ## <a name="roles-using-azure-ad-security-groups"></a>Rollen auf Grundlage von Azure AD-Sicherheitsgruppen
+
 Bei diesem Ansatz werden Rollen als AD-Sicherheitsgruppen dargestellt. Die Anwendung weist Berechtigungen für Benutzer anhand ihrer Mitgliedschaft in Sicherheitsgruppen zu.
 
 Vorteile:
@@ -121,7 +118,12 @@ Nachteile:
 * Komplexität. Da jeder Mandant verschiedene Gruppenansprüche sendet, muss die App für jeden Mandanten nachverfolgen, welche Sicherheitsgruppen zu welchen Anwendungsrollen gehören.
 * Wenn der Kunde die Anwendung aus seinem AD-Mandanten entfernt, verbleiben die Sicherheitsgruppen in seinem AD-Verzeichnis.
 
+<!-- markdownlint-disable MD024 -->
+
 ### <a name="implementation"></a>Implementierung
+
+<!-- markdownlint-enable MD024 -->
+
 Legen Sie im Anwendungsmanifest die `groupMembershipClaims` -Eigenschaft auf „SecurityGroup“ fest. Dies ist erforderlich, um Ansprüche von Gruppenmitgliedschaften aus AAD abzurufen.
 
 ```json
@@ -135,8 +137,6 @@ Wenn sich ein neuer Kunde registriert, weist die Anwendung den Kunden an, Sicher
 
 > [!NOTE]
 > Alternativ dazu könnte die Anwendung die Gruppen über die Azure AD-Graph-API programmgesteuert erstellen.  Dieses Verfahren wäre weniger fehleranfällig. Dazu muss die Anwendung jedoch Lese- und Schreibberechtigungen für alle Gruppen für das AD-Verzeichnis des Kunden erhalten. Viele Kunden werden einen Zugriff auf dieser Ebene nicht gewähren.
-> 
-> 
 
 Wenn sich ein Benutzer anmeldet:
 
@@ -148,6 +148,7 @@ Wenn sich ein Benutzer anmeldet:
 Autorisierungsrichtlinien müssen den benutzerdefinierten Rollenanspruch und nicht den Gruppenanspruch verwenden.
 
 ## <a name="roles-using-an-application-role-manager"></a>Rollen auf Grundlage eines Anwendungsrollen-Managers
+
 Bei diesem Ansatz werden Anwendungsrollen überhaupt nicht in Azure AD gespeichert. Stattdessen speichert die Anwendung die Rollenzuweisungen für jeden Benutzer in der eigenen Datenbank, z.B. über die **RoleManager**-Klasse in ASP.NET Identity.
 
 Vorteile:
@@ -158,14 +159,13 @@ Nachteile:
 
 * Komplexer, schwieriger zu verwalten.
 * AD-Sicherheitsgruppen können nicht zum Verwalten von Rollenzuweisungen verwendet werden.
-* Benutzerinformationen werden in der Anwendungsdatenbank gespeichert und können die Synchronität mit dem AD-Verzeichnis des Mandanten verlieren, wenn Benutzer hinzugefügt oder entfernt werden.   
-
+* Benutzerinformationen werden in der Anwendungsdatenbank gespeichert und können die Synchronität mit dem AD-Verzeichnis des Mandanten verlieren, wenn Benutzer hinzugefügt oder entfernt werden.
 
 [**Weiter**][Autorisierung]
 
-<!-- Links -->
-[Tailspin]: tailspin.md
+<!-- links -->
 
+[tailspin]: tailspin.md
 [Autorisierung]: authorize.md
 [Schützen einer Back-End-Web-API]: web-api.md
 [Anwendungsmanifest]: /azure/active-directory/active-directory-application-manifest/

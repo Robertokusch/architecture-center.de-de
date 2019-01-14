@@ -1,14 +1,16 @@
 ---
 title: Entwurf mit Blick auf den Betrieb
-description: Setzen Sie es sich beim Entwurf Ihrer Anwendung als Ziel, dem Betriebsteam die benötigten Verwaltungstools zur Verfügung zu stellen.
+titleSuffix: Azure Application Architecture Guide
+description: Entwerfen Sie eine Anwendung, die dem Betriebsteam die nötigen Tools zur Verfügung stellt.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: a73479a7661c042d05db61907d1f993fc04ac11d
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: c14f3d14330633e7a8c88eedd38f1844291195b1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326237"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110406"
 ---
 # <a name="design-for-operations"></a>Entwurf mit Blick auf den Betrieb
 
@@ -30,19 +32,16 @@ Stabile Protokollierung und Nachverfolgung sind in Cloudanwendungen besonders wi
 
 **Ermöglichen Sie die Überwachung**. Überwachung bietet Einblicke in die (gute oder schlechte) Leistung einer Anwendung im Hinblick auf Verfügbarkeit, Leistung und Systemintegrität. Beispielsweise erhalten Sie durch Überwachung Aufschluss darüber, ob Sie die SLA erfüllen. Die Überwachung erfolgt während des normalen Systembetriebs. Sie sollte möglichst nah an Echtzeit liegen, damit die Betriebsmitarbeiter schnell auf Probleme reagieren können. Im Idealfall hilft Überwachung dabei, Probleme zu vermeiden, bevor sie zu einem kritischen Fehler führen. Weitere Informationen finden Sie unter [Überwachung und Diagnose][monitoring].
 
-**Bereiten Sie eine Grundursachenanalyse vor**. Als Grundursachenanalyse wird der Vorgang bezeichnet, die zugrunde liegende Ursache von Ausführungsfehlern zu suchen. Dies geschieht, nachdem ein Fehler bereits aufgetreten ist. 
+**Bereiten Sie eine Grundursachenanalyse vor**. Als Grundursachenanalyse wird der Vorgang bezeichnet, die zugrunde liegende Ursache von Ausführungsfehlern zu suchen. Dies geschieht, nachdem ein Fehler bereits aufgetreten ist.
 
-**Verwenden Sie die verteilte Ablaufverfolgung**. Verwenden Sie ein verteiltes Ablaufverfolgungssystem, das für Parallelität, asynchrone Abläufe und Cloudvolumen entwickelt wurde. Ablaufverfolgungen sollten eine Korrelations-ID einschließen, die über Dienstgrenzen hinweg gilt. In einem einzelnen Vorgang können mehrere Anwendungsdienste aufgerufen werden. Wenn bei einem Vorgang ein Fehler auftritt, hilft die Korrelations-ID dabei, die Ursache des Fehlers zu ermitteln. 
+**Verwenden Sie die verteilte Ablaufverfolgung**. Verwenden Sie ein verteiltes Ablaufverfolgungssystem, das für Parallelität, asynchrone Abläufe und Cloudvolumen entwickelt wurde. Ablaufverfolgungen sollten eine Korrelations-ID einschließen, die über Dienstgrenzen hinweg gilt. In einem einzelnen Vorgang können mehrere Anwendungsdienste aufgerufen werden. Wenn bei einem Vorgang ein Fehler auftritt, hilft die Korrelations-ID dabei, die Ursache des Fehlers zu ermitteln.
 
 **Standardisieren Sie Protokollen und Metriken**. Das Betriebsteam muss Protokolle von den verschiedenen Diensten in der Lösung sammeln. Wenn jeder Dienst ein eigenes Protokollierungsformat verwendet, ist es schwierig oder unmöglich, hilfreiche Informationen zu gewinnen. Definieren Sie ein gemeinsames Schema, das Felder wie Korrelations-ID, Ereignisname, IP-Adresse des Senders usw. enthält. Die einzelnen Dienste können benutzerdefinierte Schemas ableiten, die das Basisschema erben und zusätzliche Felder enthalten.
 
-**Automatisieren Sie Verwaltungsaufgaben**, einschließlich der Bereitstellung und Überwachung. Durch das Automatisieren einer Aufgabe wird sie wiederholbar und weniger anfällig für menschliche Fehler. 
+**Automatisieren Sie Verwaltungsaufgaben**, einschließlich der Bereitstellung und Überwachung. Durch das Automatisieren einer Aufgabe wird sie wiederholbar und weniger anfällig für menschliche Fehler.
 
-**Behandeln Sie Konfiguration als Code**. Pflegen Sie Konfigurationsdateien in ein Versionskontrollsystem ein, sodass Sie Änderungen nachverfolgen und mit einer Version versehen und bei Bedarf ein Rollback durchführen können. 
-
+**Behandeln Sie Konfiguration als Code**. Pflegen Sie Konfigurationsdateien in ein Versionskontrollsystem ein, sodass Sie Änderungen nachverfolgen und mit einer Version versehen und bei Bedarf ein Rollback durchführen können.
 
 <!-- links -->
 
 [monitoring]: ../../best-practices/monitoring.md
-
-

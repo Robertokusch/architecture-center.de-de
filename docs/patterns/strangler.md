@@ -1,18 +1,21 @@
 ---
 title: Einschnürungsmuster
+titleSuffix: Cloud Design Patterns
 description: Migrieren Sie ein älteres System inkrementell, indem Sie bestimmte Teile der Funktionalität nach und nach durch neue Anwendungen und Dienste ersetzen.
+keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 0bf0b76a69f947419da83edd894a04dbea02371b
-ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
+ms.custom: seodec18
+ms.openlocfilehash: 7d7c58c97537537ae9f2f96b7ecf1b437fc258b4
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50001880"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010212"
 ---
 # <a name="strangler-pattern"></a>Einschnürungsmuster
 
-Migrieren Sie ein älteres System inkrementell, indem Sie bestimmte Teile der Funktionalität nach und nach durch neue Anwendungen und Dienste ersetzen. Durch das fortgesetzte Austauschen von Features des älteren Systems ersetzt das neue System schließlich alle Features des alten Systems, wodurch das alte System unbrauchbar wird und von Ihnen außer Betrieb genommen werden kann. 
+Migrieren Sie ein älteres System inkrementell, indem Sie bestimmte Teile der Funktionalität nach und nach durch neue Anwendungen und Dienste ersetzen. Durch das fortgesetzte Austauschen von Features des älteren Systems ersetzt das neue System schließlich alle Features des alten Systems, wodurch das alte System unbrauchbar wird und von Ihnen außer Betrieb genommen werden kann.
 
 ## <a name="context-and-problem"></a>Kontext und Problem
 
@@ -24,7 +27,7 @@ Das vollständige Ersetzen eines komplexen Systems kann eine große Herausforder
 
 Ersetzen Sie bestimmte Teile der Funktionalität nach und nach durch neue Anwendungen und Dienste. Erstellen Sie eine Fassade, die Anforderungen an das ältere Back-End-System abfängt. Die Fassade leitet diese Anforderungen entweder an die ältere Anwendung oder die neuen Dienste weiter. Vorhandene Features können allmählich zum neuen System migriert werden, und Kunden können weiterhin die gleiche Schnittstelle verwenden, ohne zu merken, dass eine Migration stattgefunden hat.
 
-![](./_images/strangler.png)  
+![Diagramm des Einschnürungsmusters](./_images/strangler.png)
 
 Dieses Muster hilft, das Risiko der Migration zu minimieren und den Entwicklungsaufwand über einen Zeitraum zu verteilen. Da die Fassade die Benutzer sicher an die richtige Anwendung weiterleitet, können Sie dem neuen System in der jeweils gewünschten Geschwindigkeit Funktionalität hinzufügen und gleichzeitig sicherstellen, dass die ältere Anwendung weiterhin funktioniert. Wenn im Laufe der Zeit immer mehr Features zum neuen System migriert werden, ist das ältere System schließlich unbrauchbar und wird nicht mehr benötigt. Sobald dieser Vorgang abgeschlossen ist, kann das ältere System sicher außer Betrieb genommen werden.
 
@@ -48,9 +51,3 @@ Dieses Muster ist in folgenden Fällen unter Umständen nicht geeignet:
 ## <a name="related-guidance"></a>Verwandte Leitfäden
 
 - Blogbeitrag von Martin Fowler zu [StranglerApplication](https://www.martinfowler.com/bliki/StranglerApplication.html)
-- [Muster „Antibeschädigungsebene“](./anti-corruption-layer.md)
-- [Muster „Gatewayrouting“](./gateway-routing.md)
-
-
- 
-

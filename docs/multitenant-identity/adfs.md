@@ -1,23 +1,24 @@
 ---
 title: Einrichten eines Verbunds mit der AD FS-Instanz eines Kunden
-description: Wie ein Verbund mit den AD FS eines Kunden in einer mehrinstanzenfähigen Anwendung eingegangen wird
+description: Hier erfahren Sie, wie Sie in einer mehrinstanzenfähigen Anwendung einen Verbund mit der AD FS-Instanz eines Kunden einrichten.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: fec10ca0e067b3b51bf9dba70d66ceb12423787d
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 27fad1aab8d359346353cc031a2e8d8746294818
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902696"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113551"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Einrichten eines Verbunds mit der AD FS-Instanz eines Kunden
 
 In diesem Artikel wird beschrieben, wie eine SaaS-Anwendung mit mehreren Mandanten eine Authentifizierung über Active Directory-Verbunddienste (AD FS) unterstützen kann, um einen Verbund mit den AD FS eines Kunden einzugehen.
 
 ## <a name="overview"></a>Übersicht
+
 Azure Active Directory (Azure AD) vereinfacht das Anmelden von Benutzern von Azure AD-Mandanten sowie Kunden von Office 365 und Dynamics CRM Online. Doch wie sieht es mit Kunden aus, die ein lokales Active Directory in einem Unternehmensintranet nutzen?
 
 Eine Möglichkeit für diese Kunden ist die Synchronisierung ihres lokalen AD mit Azure AD unter Verwendung von [Azure AD Connect]. Einigen Kunden ist es eventuell aufgrund IT-Unternehmensrichtlinien oder anderen Gründen nicht möglich, diese Methode zu nutzen. In diesem Fall wäre eine weitere Möglichkeit, einen Verbund über Active Directory-Verbunddienste (AD FS) einzurichten.
@@ -38,22 +39,24 @@ Die Vertrauensbeziehung umfasst drei wichtige Rollen:
 
 > [!NOTE]
 > In diesem Artikel wird davon ausgegangen, dass die Anwendung OpenID Connect als Authentifizierungsprotokoll verwendet. Eine andere Möglichkeit ist die Verwendung von WS-Verbund.
-> 
+>
 > Für OpenID Connect muss der SaaS-Anbieter AD FS 2016 unter Windows Server 2016 verwenden. OpenID Connect wird von AD FS 3.0 nicht unterstützt.
-> 
+>
 > ASP.NET Core bietet keine integrierte Unterstützung für WS-Verbund.
-> 
-> 
+>
+>
 
 Eine Beispielverwendung von WS-Verbund mit ASP.NET 4 finden Sie im Beispiel [active-directory-dotnet-webapp-wsfederation][active-directory-dotnet-webapp-wsfederation].
 
 ## <a name="authentication-flow"></a>Authentifizierungsfluss
+
 1. Klickt der Benutzer auf „Anmelden“, leitet die Anwendung diesen an einen OpenID Connect-Endpunkt der AD FS des SaaS-Anbieters weiter.
 2. Der Benutzer/die Benutzerin gibt seinen/ihren Organisationsbenutzernamen ein („`alice@corp.contoso.com`“). AD FS verwenden Startbereichserkennung, um zu den AD FS des Kunden umzuleiten, wo Benutzer ihre Anmeldeinformationen eingeben.
 3. Die AD FS des Kunden senden mithilfe des WF-Verbunds (oder SAML) Benutzeransprüche an die AD FS des SaaS-Anbieters.
 4. Ansprüche werden von den AD FS mithilfe von OpenID Connect an die App übertragen. Dies erfordert einen Protokollübergang von WS-Verbund.
 
 ## <a name="limitations"></a>Einschränkungen
+
 Standardmäßig empfängt die Anwendung der vertrauenden Seite nur einen festgelegten Satz an Ansprüchen, der in „id_token“ verfügbar ist, wie in der folgenden Tabelle gezeigt. In AD FS 2016 können Sie „id_token“ in OpenID Connect-Szenarien anpassen. Weitere Informationen finden Sie unter [Benutzerdefinierte ID-Token in AD FS](/windows-server/identity/ad-fs/development/customize-id-token-ad-fs-2016).
 
 | Anspruch | BESCHREIBUNG |
@@ -72,12 +75,11 @@ Standardmäßig empfängt die Anwendung der vertrauenden Seite nur einen festgel
 
 > [!NOTE]
 > Der Anspruch „iss“ enthält die AD FS des Partners (dieser Anspruch identifiziert typischerweise den SaaS-Anbieter als Aussteller). Er identifiziert nicht die AD FS des Kunden. Die Domäne des Kunden ist Bestandteil des Benutzerprinzipalnamens.
-> 
-> 
 
 Im restlichen Artikel wird das Einrichten der Vertrauensstellung zwischen der Anwendung der RP (der App) und dem Kontopartner (dem Kunden) beschrieben.
 
 ## <a name="ad-fs-deployment"></a>AD FS-Bereitstellung
+
 Der SaaS-Anbieter kann AD FS lokal oder auf Azure-VMs bereitstellen. Für die Sicherheit und Verfügbarkeit sind die folgenden Richtlinien zu beachten:
 
 * Stellen Sie mindestens zwei AD FS-Server und zwei AD FS-Proxyserver bereit, um die beste Verfügbarkeit der Active Directory-Verbunddienste zu gewährleisten.
@@ -87,13 +89,15 @@ Der SaaS-Anbieter kann AD FS lokal oder auf Azure-VMs bereitstellen. Für die Si
 Das Einrichten einer ähnlichen Topologie in Azure erfordert die Verwendung von virtuellen Netzwerken, NSGs, Azure VMs und Verfügbarkeitsgruppen. Weitere Informationen finden Sie unter [Richtlinien für die Bereitstellung von Windows Server Active Directory auf virtuellen Computern in Azure][active-directory-on-azure].
 
 ## <a name="configure-openid-connect-authentication-with-ad-fs"></a>Konfigurieren der OpenID Connect-Authentifizierung mit AD FS
-Der SaaS-Anbieter muss OpenID Connect zwischen der Anwendung und den AD FS aktivieren. Fügen Sie zu diesem Zweck in AD FS eine Anwendungsgruppe hinzu.  Detaillierte Anweisungen dazu finden Sie in diesem [Blogbeitrag] unter „Setting up a Web App for OpenId Connect sign in AD FS“ (Einrichten einer Web-App für die OpenID Connect-Anmeldung über AD FS). 
+
+Der SaaS-Anbieter muss OpenID Connect zwischen der Anwendung und den AD FS aktivieren. Fügen Sie zu diesem Zweck in AD FS eine Anwendungsgruppe hinzu.  Detaillierte Anweisungen dazu finden Sie in diesem [Blogbeitrag] unter „Setting up a Web App for OpenId Connect sign in AD FS“ (Einrichten einer Web-App für die OpenID Connect-Anmeldung über AD FS).
 
 Konfigurieren Sie als Nächstes die OpenID Connect-Middleware. Der Metadatenendpunkt lautet `https://domain/adfs/.well-known/openid-configuration`, wobei „domain“ die AD FS-Domäne des SaaS-Anbieters ist.
 
 In der Regel kombinieren Sie dies mit anderen OpenID Connect-Endpunkten (wie z.B. AAD). Sie benötigen zwei verschiedene Anmeldeschaltflächen oder eine andere Möglichkeit, die Anmeldungen zu unterscheiden, damit der Benutzer an den richtigen Authentifizierungsendpunkt weitergeleitet wird.
 
 ## <a name="configure-the-ad-fs-resource-partner"></a>Konfigurieren des AD FS-Ressourcenpartners
+
 Der SaaS-Anbieter muss für jeden Kunden folgende Schritte ausführen, wenn dieser über AD FS eine Verbindung herstellen möchte:
 
 1. Fügen Sie eine Vertrauensstellung für Anspruchsanbieter hinzu.
@@ -103,6 +107,7 @@ Der SaaS-Anbieter muss für jeden Kunden folgende Schritte ausführen, wenn dies
 Hier werden die Schritte im Detail veranschaulicht.
 
 ### <a name="add-the-claims-provider-trust"></a>Fügen Sie die Anspruchsanbieter-Vertrauensstellung hinzu.
+
 1. Klicken Sie im Server-Manager auf **Tools**, und wählen Sie **AD FS-Verwaltung** aus.
 2. Klicken Sie in der Konsolenstruktur unter **AD FS** mit der rechten Maustaste auf **Anspruchsanbieter-Vertrauensstellungen**. Wählen Sie **Anspruchsanbieter-Vertrauensstellung hinzufügen**.
 3. Klicken Sie auf **Starten** , um den Assistenten zu starten.
@@ -110,6 +115,7 @@ Hier werden die Schritte im Detail veranschaulicht.
 5. Schließen Sie den Assistenten unter Verwendung der angegebenen Standardoptionen ab.
 
 ### <a name="edit-claims-rules"></a>Anspruchsregeln bearbeiten.
+
 1. Führen Sie einen Rechtsklick auf die neu hinzugefügte Anspruchsanbieter-Vertrauensstellung aus, und wählen Sie **Anspruchsregeln bearbeiten**.
 2. Klicken Sie auf **Regel hinzufügen**.
 3. Wählen Sie „Eingehenden Anspruch filtern oder zulassen“, und klicken Sie auf **Weiter**.
@@ -123,9 +129,10 @@ Hier werden die Schritte im Detail veranschaulicht.
 9. Klicken Sie auf **OK** , um den Assistenten abzuschließen.
 
 ### <a name="enable-home-realm-discovery"></a>Aktivierung der Startbereichsermittlung
+
 Führen Sie das folgende PowerShell-Skript aus:
 
-```
+```powershell
 Set-ADFSClaimsProviderTrust -TargetName "name" -OrganizationalAccountSuffix @("suffix")
 ```
 
@@ -134,12 +141,14 @@ Bei „name“ handelt es sich um den Anzeigenamen des Anspruchsanbieters, „su
 Mit dieser Konfiguration können Endbenutzer ihr Organisationskonto eingeben, und AD FS wählen automatisch den entsprechenden Anspruchsanbieter aus. Siehe unter [Anpassen der AD FS-Sign-in-Webseiten]den Abschnitt „Konfigurieren von Identitätsanbietern, um bestimmte E-Mail-Suffixe zu verwenden“.
 
 ## <a name="configure-the-ad-fs-account-partner"></a>Konfigurieren des AD FS-Kontopartners
+
 Kunden müssen wie folgt vorgehen:
 
 1. Eine Vertrauensstellung der vertrauenden Seite (RP) hinzufügen.
 2. Anspruchsregeln hinzufügen.
 
 ### <a name="add-the-rp-trust"></a>Die RP-Vertrauensstellung hinzufügen.
+
 1. Klicken Sie im Server-Manager auf **Tools**, und wählen Sie **AD FS-Verwaltung** aus.
 2. Klicken Sie in der Konsolenstruktur unter **AD FS** mit der rechten Maustaste auf **Vertrauensstellungen der vertrauenden Seite**. Wählen Sie **Hinzufügen der Vertrauensstellung der vertrauenden Seite**.
 3. Wählen Sie **Ansprüche unterstützend** aus, und klicken Sie auf **Start**.
@@ -152,6 +161,7 @@ Kunden müssen wie folgt vorgehen:
 8. Klicken Sie auf **Weiter** , um den Assistenten abzuschließen.
 
 ### <a name="add-claims-rules"></a>Fügen Sie Anspruchsregeln hinzu
+
 1. Klicken Sie mit der rechten Maustaste auf die neu hinzugefügte Vertrauensstellung der vertrauenden Seite, und wählen Sie **Anspruchsausstellungsrichtlinie bearbeiten**.
 2. Klicken Sie auf **Regel hinzufügen**.
 3. Wählen Sie „Senden von LDAP-Attributen als Ansprüche“, und klicken Sie auf **Weiter**.
@@ -167,19 +177,19 @@ Kunden müssen wie folgt vorgehen:
 9. Wählen Sie „Ansprüche per benutzerdefinierter Regel senden“, und klicken Sie auf **Weiter**.
 10. Geben Sie einen Namen für die Regel ein, z.B. „Ankeranspruchstyp“.
 11. Geben Sie Folgendes unter **Benutzerdefinierte Regel**ein:
-    
-    ```
+
+    ```console
     EXISTS([Type == "http://schemas.microsoft.com/ws/2014/01/identity/claims/anchorclaimtype"])=>
     issue (Type = "http://schemas.microsoft.com/ws/2014/01/identity/claims/anchorclaimtype",
           Value = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn");
     ```
-    
+
     Diese Regel gibt einen Anspruch vom Typ `anchorclaimtype` aus. Der Anspruch informiert die vertrauende Seite darüber, dass der UPN als unveränderliche ID des Benutzers verwendet werden soll.
 12. Klicken Sie auf **Fertig stellen**.
 13. Klicken Sie auf **OK** , um den Assistenten abzuschließen.
 
+<!-- links -->
 
-<!-- Links -->
 [Azure AD Connect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [Verbundvertrauensstellung]: https://technet.microsoft.com/library/cc770993(v=ws.11).aspx
 [Kontopartner]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx

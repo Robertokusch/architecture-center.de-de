@@ -1,18 +1,17 @@
 ---
-title: Wiederholen
+title: Wiederholungsmuster
+titleSuffix: Cloud Design Patterns
 description: Ermöglichen Sie einer Anwendung beim Herstellen einer Verbindung mit einem Dienst oder einer Netzwerkressource die Behandlung antizipierter, temporärer Fehler, indem ein zuvor nicht erfolgreich durchgeführter Vorgang transparent wiederholt wird.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- resiliency
-ms.openlocfilehash: 73fdcbcc2bd75593a4c8e33dc2259c90593e14db
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.custom: seodec18
+ms.openlocfilehash: 44a9c7e188bcf76a5f6904879c2121d50397da6c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29478254"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011510"
 ---
 # <a name="retry-pattern"></a>Wiederholungsmuster
 
@@ -36,7 +35,7 @@ Wenn eine Anwendung beim Senden einer Anforderung an einen Remotedienst einen Fe
 
 - **Wiederholen**. Ist der gemeldete Fehler ungewöhnlich oder selten, wurde er möglicherweise durch ungewöhnliche Umstände verursacht, wie z. B. ein Netzwerkpaket, das während der Übertragung beschädigt wurde. In diesem Fall kann die Anwendung die fehlgeschlagene Anforderung sofort wiederholen, da der gleiche Fehler wahrscheinlich nicht erneut auftreten wird und die Anforderung dann erfolgreich ausgeführt werden kann.
 
-- **Wiederholen nach Verzögerung.** Wenn der Fehler durch einen der eher häufig auftretenden Konnektivitäts- oder Auslastungsfehler verursacht wird, benötigt das Netzwerk oder der Dienst möglicherweise eine kurze Zeit, um die Verbindungsprobleme zu beheben oder die Arbeitsrückstände aufzuarbeiten. Die Anwendung sollte eine entsprechende Zeit lang warten, bevor die Anforderung wiederholt wird.
+- **Wiederholen nach Verzögerung**. Wenn der Fehler durch einen der eher häufig auftretenden Konnektivitäts- oder Auslastungsfehler verursacht wird, benötigt das Netzwerk oder der Dienst möglicherweise eine kurze Zeit, um die Verbindungsprobleme zu beheben oder die Arbeitsrückstände aufzuarbeiten. Die Anwendung sollte eine entsprechende Zeit lang warten, bevor die Anforderung wiederholt wird.
 
 Bei häufiger auftretenden vorübergehenden Fehlern sollte der Zeitraum zwischen den Wiederholungen so gewählt werden, dass Anforderungen von mehreren Instanzen der Anwendung so gleichmäßig wie möglich verteilt werden. Dadurch sinkt die Wahrscheinlichkeit, dass ein ausgelasteter Dienst weiterhin überlastet wird. Wenn viele Instanzen einer Anwendung einen Dienst ständig mit Wiederholungsanforderungen überlasten, benötigt der Dienst mehr Zeit zur Wiederherstellung.
 
@@ -60,7 +59,7 @@ Die Wiederholungsrichtlinie sollte entsprechend den geschäftlichen Anforderunge
 
 Durch eine aggressive Wiederholungsrichtlinie mit minimaler Verzögerung zwischen den Versuchen und einer großen Anzahl von Wiederholungen kann ein ausgelasteter Dienst, der nahe oder an seiner Kapazitätsgrenze ausgeführt wird, zusätzlich beeinträchtigt werden. Diese Wiederholungsrichtlinie könnte sich auch auf die Reaktionsfähigkeit der Anwendung auswirken, wenn ständig versucht wird, einen fehlgeschlagenen Vorgang auszuführen.
 
-Wenn eine Anforderung nach einer erheblichen Anzahl von Wiederholungen immer noch fehlschlägt, ist es besser, wenn die Anwendung weitere Anforderungen an die gleiche Ressource verhindert und einfach sofort einen Fehler meldet. Nach Ablauf des Zeitraums kann die Anwendung eine oder mehrere Anforderungen vorläufig zulassen, um festzustellen, ob diese erfolgreich ausgeführt werden. Weitere Informationen zu dieser Strategie finden Sie unter [Trennschalter-Muster](circuit-breaker.md).
+Wenn eine Anforderung nach einer erheblichen Anzahl von Wiederholungen immer noch fehlschlägt, ist es besser, wenn die Anwendung weitere Anforderungen an die gleiche Ressource verhindert und einfach sofort einen Fehler meldet. Nach Ablauf des Zeitraums kann die Anwendung eine oder mehrere Anforderungen vorläufig zulassen, um festzustellen, ob diese erfolgreich ausgeführt werden. Weitere Informationen zu dieser Strategie finden Sie unter [Trennschalter-Muster](./circuit-breaker.md).
 
 Achten Sie darauf, ob der Vorgang idempotent ist. Wenn das der Fall ist, ist eine Wiederholung grundsätzlich sicher. Andernfalls könnte der Vorgang bei Wiederholungen mehr als einmal ausgeführt werden, was unbeabsichtigte Nebeneffekte haben kann. Beispielsweise kann ein Dienst die Anforderung empfangen, sie erfolgreich verarbeiten, jedoch das Senden einer Antwort fehlschlagen. An diesem Punkt kann die Wiederholungslogik die Anforderung erneut senden, da davon ausgegangen wird, dass die erste Anforderung nicht empfangen wurde.
 
@@ -74,7 +73,7 @@ Implementieren Sie eine Wiederholungslogik nur unter Berücksichtigung des gesam
 
 Es ist wichtig, alle Konnektivitätsfehler zu protokollieren, die zu einer Wiederholung führen, damit zugrunde liegende Probleme mit der Anwendung, Diensten oder Ressourcen ermittelt werden können.
 
-Untersuchen Sie die Fehler, die am wahrscheinlichsten für einen Dienst oder eine Ressource auftreten können, um festzustellen, ob diese wahrscheinlich lang andauernd oder terminal sind. Wenn das der Fall ist, sollte der Fehler besser als Ausnahme behandelt werden. Die Anwendung kann die Ausnahme melden oder protokollieren und dann fortfahren, indem entweder ein alternativer Dienst (sofern verfügbar) aufgerufen oder eingeschränkte Funktionalität geboten wird. Weitere Informationen zum Erkennen und Behandeln lang andauernder Fehler finden Sie unter der [Trennschalter-Muster](circuit-breaker.md).
+Untersuchen Sie die Fehler, die am wahrscheinlichsten für einen Dienst oder eine Ressource auftreten können, um festzustellen, ob diese wahrscheinlich lang andauernd oder terminal sind. Wenn das der Fall ist, sollte der Fehler besser als Ausnahme behandelt werden. Die Anwendung kann die Ausnahme melden oder protokollieren und dann fortfahren, indem entweder ein alternativer Dienst (sofern verfügbar) aufgerufen oder eingeschränkte Funktionalität geboten wird. Weitere Informationen zum Erkennen und Behandeln lang andauernder Fehler finden Sie unter der [Trennschalter-Muster](./circuit-breaker.md).
 
 ## <a name="when-to-use-this-pattern"></a>Verwendung dieses Musters
 
@@ -120,7 +119,7 @@ public async Task OperationWithBasicRetryAsync()
       // long to wait, based on the retry strategy.
       if (currentRetry > this.retryCount || !IsTransient(ex))
       {
-        // If this isn't a transient error or we shouldn't retry, 
+        // If this isn't a transient error or we shouldn't retry,
         // rethrow the exception.
         throw;
       }
@@ -173,6 +172,6 @@ private bool IsTransient(Exception ex)
 
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
-- [Muster „Trennschalter“](circuit-breaker.md). Das Wiederholungsmuster eignet sich zum Behandeln vorübergehender Fehler. Wenn bei einem Fehler davon ausgegangen wird, dass er länger andauert, ist es möglicherweise besser, das Trennschalter-Muster zu implementieren. Das Wiederholungsmuster kann auch in Verbindung mit einem Trennschalter verwendet werden, um einen umfassenden Ansatz zur Behandlung von Fehlern bereitzustellen.
+- [Muster „Trennschalter“](./circuit-breaker.md). Das Wiederholungsmuster eignet sich zum Behandeln vorübergehender Fehler. Wenn bei einem Fehler davon ausgegangen wird, dass er länger andauert, ist es möglicherweise besser, das Trennschalter-Muster zu implementieren. Das Wiederholungsmuster kann auch in Verbindung mit einem Trennschalter verwendet werden, um einen umfassenden Ansatz zur Behandlung von Fehlern bereitzustellen.
 - [Wiederholungsanleitung für bestimmte Dienste](https://docs.microsoft.com/azure/architecture/best-practices/retry-service-specific)
 - [Verbindungsstabilität](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)

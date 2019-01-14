@@ -1,21 +1,23 @@
 ---
 title: Entscheidungsstruktur für Azure-Computedienste
-description: Ein Flussdiagramm zur Auswahl eines Computediensts
+titleSuffix: Azure Application Architecture Guide
+description: Ein Flussdiagramm für die Wahl eines Computediensts.
 author: MikeWasson
 ms.date: 11/03/2018
-ms.openlocfilehash: cb074272b8d00a71223d8c5755ef8cde3a3f2592
-ms.sourcegitcommit: 225251ee2dd669432a9c9abe3aa8cd84d9e020b7
+ms.custom: seojan19
+ms.openlocfilehash: 905b9956c9dcddddb21a87ea588af0ad5160ae2a
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/04/2018
-ms.locfileid: "50981979"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114078"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Entscheidungsstruktur für Azure-Computedienste
 
-Azure bietet eine Vielzahl von Möglichkeiten zum Hosten Ihres Anwendungscodes. Der Begriff *Compute* bezieht sich auf das Hostingmodell für die Computeressourcen, auf denen Ihre Anwendung ausgeführt wird. Das folgende Flussdiagramm unterstützt Sie bei der Auswahl eines Computediensts für Ihre Anwendung. Das Flussdiagramm führt Sie durch eine Reihe wichtiger Entscheidungskriterien, um eine Empfehlung zu erzielen. 
+Azure bietet eine Vielzahl von Möglichkeiten zum Hosten Ihres Anwendungscodes. Der Begriff *Compute* bezieht sich auf das Hostingmodell für die Computeressourcen, auf denen Ihre Anwendung ausgeführt wird. Das folgende Flussdiagramm unterstützt Sie bei der Auswahl eines Computediensts für Ihre Anwendung. Das Flussdiagramm führt Sie durch eine Reihe wichtiger Entscheidungskriterien, um eine Empfehlung zu erzielen.
 
 **Betrachten Sie dieses Flussdiagramm als Ausgangspunkt.** Da jede Anwendung besondere Anforderungen aufweist, betrachten Sie die Empfehlung als Ausgangspunkt. Führen Sie dann eine ausführlichere Auswertung durch, bei der Sie z.B. folgende Aspekte betrachten:
- 
+
 - Funktionsumfang
 - [Diensteinschränkungen](/azure/azure-subscription-service-limits)
 - [Kosten](https://azure.microsoft.com/pricing/)
@@ -26,11 +28,11 @@ Azure bietet eine Vielzahl von Möglichkeiten zum Hosten Ihres Anwendungscodes. 
 
 Wenn Ihre Anwendung aus mehreren Workloads besteht, bewerten Sie jede Workload getrennt. Eine vollständige Lösung kann zwei oder mehr Computedienste umfassen.
 
-Weitere Informationen zu den Optionen für das Hosten von Containern in Azure finden Sie unter https://azure.microsoft.com/overview/containers/.
+Weitere Informationen zu den Optionen für das Hosten von Containern in Azure finden Sie unter [Die richtige Plattform für Ihre Containeranforderungen](https://azure.microsoft.com/overview/containers/).
 
 ## <a name="flowchart"></a>Flussdiagramm
 
-![](../images/compute-decision-tree.svg)
+![Entscheidungsstruktur für Azure-Computedienste](../images/compute-decision-tree.svg)
 
 ## <a name="definitions"></a>Definitionen
 

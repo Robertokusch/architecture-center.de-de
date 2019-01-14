@@ -3,14 +3,14 @@ title: Entwicklungs-/Testumgebungen für SAP-Workloads
 titleSuffix: Azure Example Scenarios
 description: Erstellen Sie eine Dev/Test-Umgebung für SAP-Workloads.
 author: AndrewDibbins
-ms.date: 7/11/18
+ms.date: 07/11/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 3f6c828e8757a3f82ad6972a8f21cd2fed629162
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 9f9e8ec971373e4309703800c200ba2c62fe9a66
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643967"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111018"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Entwicklungs-/Testumgebungen für SAP-Workloads in Azure
 
@@ -31,12 +31,12 @@ Zu den weiteren relevanten Anwendungsfällen zählen:
 
 ## <a name="architecture"></a>Architecture
 
-![Architekturdiagramm für Entwicklungs-/Testumgebungen für SAP-Workloads](media/architecture-sap-dev-test.png)
+![Architekturdiagramm für Entwicklungs-/Testumgebungen für SAP-Workloads](./media/architecture-sap-dev-test.png)
 
 Dieses Szenario veranschaulicht die Bereitstellung einer einzelnen SAP-Systemdatenbank und eines SAP-Anwendungsservers auf einer einzelnen VM. Die Daten durchlaufen das Szenario wie folgt:
 
 1. Kunden verwenden die SAP-Benutzeroberfläche oder andere Clienttools (Excel, einen Webbrowser oder andere Webanwendungen), um auf das Azure-basierte SAP-System zuzugreifen.
-2. Die Konnektivität wird über eine eingerichtete ExpressRoute-Verbindung bereitgestellt. Die ExpressRoute-Verbindung endet in Azure auf dem ExpressRoute-Gateway. Netzwerkdatenverkehr wird über das ExpressRoute-Gateway an das Gatewaysubnetz und von dort an das Spokesubnetz auf der Anwendungsebene geleitet (siehe [Hub-Spoke-Muster][hub-spoke]). Anschließend fließt der Datenverkehr über ein Netzwerksicherheitsgateway zur VM mit der SAP-Anwendung.
+2. Die Konnektivität wird über eine eingerichtete ExpressRoute-Verbindung bereitgestellt. Die ExpressRoute-Verbindung endet in Azure auf dem ExpressRoute-Gateway. Netzwerkdatenverkehr wird über das ExpressRoute-Gateway an das Gatewaysubnetz und von dort an das Spokesubnetz auf der Anwendungsebene geleitet (siehe [Hub-Spoke-Netzwerktopologie][hub-spoke]). Anschließend fließt der Datenverkehr über ein Netzwerksicherheitsgateway zum virtuellen Computer mit der SAP-Anwendung.
 3. Die Server für die Identitätsverwaltung stellen Authentifizierungsdienste bereit.
 4. Über die Jumpbox sind lokale Verwaltungsfunktionen verfügbar.
 
@@ -52,7 +52,7 @@ Dieses Szenario veranschaulicht die Bereitstellung einer einzelnen SAP-Systemdat
 
 ### <a name="availability"></a>Verfügbarkeit
 
- Microsoft bietet eine Vereinbarung zum Servicelevel (Service Level Agreement, SLA) für einzelne VM-Instanzen an. Weitere Informationen zur Vereinbarung zum Servicelevel von Microsoft Azure für Virtual Machines finden Sie unter [SLA für Virtual Machines](https://azure.microsoft.com/support/legal/sla/virtual-machines).
+Microsoft bietet eine Vereinbarung zum Servicelevel (Service Level Agreement, SLA) für einzelne VM-Instanzen an. Weitere Informationen zur Vereinbarung zum Servicelevel von Microsoft Azure für Virtual Machines finden Sie unter [SLA für Virtual Machines](https://azure.microsoft.com/support/legal/sla/virtual-machines).
 
 ### <a name="scalability"></a>Skalierbarkeit
 

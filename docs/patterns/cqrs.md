@@ -1,20 +1,17 @@
 ---
-title: CQRS-Architektur
+title: Muster „CQRS“ (Command and Query Responsibility Segregation)
+titleSuffix: Cloud Design Patterns
 description: Trennen Sie mithilfe separater Schnittstellen Datenlesevorgänge von Vorgängen zur Aktualisierung von Daten.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- design-implementation
-- performance-scalability
-ms.openlocfilehash: de9530f7dd55c0ce5460cd3b58ab9f216c9b5c8c
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 320f6cd51a44b3a6732d8395f0a5e1db8f9f5774
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450869"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010374"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>Muster „CQRS“ (Command and Query Responsibility Segregation)
 
@@ -56,7 +53,7 @@ Beim Speicher für Lesevorgänge kann es sich um ein schreibgeschütztes Replika
 
 Durch die Trennung von Speichern für Lese- und Schreibvorgänge kann können beide Speicher entsprechend der Auslastung skaliert werden. Beispielsweise ist in Speichern für Lesevorgänge in der Regel eine weitaus höhere Auslastung anzutreffen als bei Speichern für Schreibvorgänge.
 
-Wenn das Abfrage-/Lesemodell denormalisierte Daten enthält (siehe [Muster „Materialisierte Sichten“](materialized-view.md)), wird die Leistung beim Lesen von Daten für jede der Sichten in einer Anwendung oder beim Abfragen der Daten im System maximiert.
+Wenn das Abfrage-/Lesemodell denormalisierte Daten enthält (siehe [Muster „Materialisierte Sichten“](./materialized-view.md)), wird die Leistung beim Lesen von Daten für jede der Sichten in einer Anwendung oder beim Abfragen der Daten im System maximiert.
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
@@ -96,7 +93,7 @@ Dieses Muster wird in folgenden Situationen empfohlen:
 
 ## <a name="event-sourcing-and-cqrs"></a>Ereignisherkunftsermittlung und CQRS
 
-Das Muster „CQRS“ wird häufig zusammen mit dem Muster „Ereignisherkunftsermittlung“ verwendet. CQRS-basierte Systeme verwenden getrennte Lese- und Schreibdatenmodelle, die auf ihre jeweiligen Tasks zugeschnitten sind und sich häufig in räumlich getrennten Speichern befinden. Bei Verwendung mit dem Muster [Ereignisherkunftsermittlung](event-sourcing.md) weist der Ereignisspeicher das Schreibmodell auf und stellt die offizielle Informationsquelle dar. Das Lesemodell eines CQRS-basierten Systems bietet materialisierte Sichten der Daten, üblicherweise in Form von hochgradig denormalisierten Sichten. Diese Sichten sind auf die Schnittstellen und die Anzeigeanforderungen der Anwendung zugeschnitten, wodurch sowohl die Anzeige- als auch die Abfrageleistung maximiert werden können.
+Das Muster „CQRS“ wird häufig zusammen mit dem Muster „Ereignisherkunftsermittlung“ verwendet. CQRS-basierte Systeme verwenden getrennte Lese- und Schreibdatenmodelle, die auf ihre jeweiligen Tasks zugeschnitten sind und sich häufig in räumlich getrennten Speichern befinden. Bei Verwendung mit dem Muster [Ereignisherkunftsermittlung](./event-sourcing.md) ist der Ereignisspeicher das Schreibmodell und stellt die offizielle Informationsquelle dar. Das Lesemodell eines CQRS-basierten Systems bietet materialisierte Sichten der Daten, üblicherweise in Form von hochgradig denormalisierten Sichten. Diese Sichten sind auf die Schnittstellen und die Anzeigeanforderungen der Anwendung zugeschnitten, wodurch sowohl die Anzeige- als auch die Abfrageleistung maximiert werden können.
 
 Durch die Verwendung des Ereignisdatenstroms als Speicher für Schreibvorgänge anstelle der eigentlichen Daten zu einem bestimmten Zeitpunkt werden Aktualisierungskonflikte in einem einzigen Aggregat vermieden und die Leistung sowie Skalierbarkeit maximiert. Mit den Ereignissen können materialisierte Sichten der Daten asynchron generiert werden, mit denen Speicher für Lesevorgänge aufgefüllt werden.
 
@@ -242,10 +239,10 @@ Die folgenden Muster und Anweisungen könnten für die Implementierung dieses Mu
 
 - [Anweisungen zur Datenpartitionierung](https://msdn.microsoft.com/library/dn589795.aspx): In diesem Artikel wird beschrieben, wie die im Muster „CQRS“ verwendeten Speicher für Lese- und Schreibvorgänge in Partitionen aufgeteilt werden, die separat verwaltet und abgerufen werden können, um die Skalierbarkeit zu verbessern, Konflikte zu verringern und die Leistung zu optimieren.
 
-- [Muster „Ereignisherkunftsermittlung“](event-sourcing.md): In diesem Artikel wird ausführlich beschrieben, wie das Muster „CQRS“ mithilfe der Ereignisherkunftsermittlung eingesetzt werden kann, um Tasks in komplexen Domänen zu vereinfachen und gleichzeitig die Leistung, Skalierbarkeit und Reaktionsfähigkeit zu verbessern. Außerdem erfahren Sie, wie Sie die Konsistenz von Transaktionsdaten sicherstellen und gleichzeitig vollständige Audit-Trails und Überwachungsverläufe erstellen können, die kompensierende Maßnahmen ermöglichen.
+- [Muster für Ereignisherkunftsermittlung](./event-sourcing.md). In diesem Artikel wird ausführlich beschrieben, wie das Muster „CQRS“ mithilfe der Ereignisherkunftsermittlung eingesetzt werden kann, um Tasks in komplexen Domänen zu vereinfachen und gleichzeitig die Leistung, Skalierbarkeit und Reaktionsfähigkeit zu verbessern. Außerdem erfahren Sie, wie Sie die Konsistenz von Transaktionsdaten sicherstellen und gleichzeitig vollständige Audit-Trails und Überwachungsverläufe erstellen können, die kompensierende Maßnahmen ermöglichen.
 
-- [Muster „Materialisierte Sichten“](materialized-view.md): Das Lesemodell einer CQRS-Implementierung kann materialisierte Sichten der Daten des Schreibmodells enthalten. Das Modell kann alternativ auch zur Generierung materialisierter Sichten verwendet werden.
+- [Muster „Materialisierte Sichten“](./materialized-view.md): Das Lesemodell einer CQRS-Implementierung kann materialisierte Sichten der Daten des Schreibmodells enthalten. Das Modell kann alternativ auch zur Generierung materialisierter Sichten verwendet werden.
 
-- Muster und Vorgehensweisen zu [CQRS](https://aka.ms/cqrs): Unter [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Einführung in das Muster „Command and Query Responsibility Segregation“) wird vor allem das Muster beschrieben und außerdem erläutert, wann die Nutzung sinnvoll ist. Unter [Epilogue: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) (Epilog: Erkenntnisse) werden einige Probleme beschrieben, die bei Verwendung dieses Musters auftreten können.
+- Muster und Vorgehensweisen zu [CQRS](https://aka.ms/cqrs): Unter [Reference 2: Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Referenz 2: Einführung in das Muster „Command and Query Responsibility Segregation“) wird insbesondere das Muster beschrieben und außerdem erläutert, wann die Nutzung sinnvoll ist. Unter [Epilogue: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) (Epilog: Erkenntnisse) werden einige Probleme beschrieben, die bei Verwendung dieses Musters auftreten können.
 
 - In dem Beitrag [CQRS](https://martinfowler.com/bliki/CQRS.html) von Martin Fowler werden die Grundlagen des Musters erklärt und Links zu anderen nützlichen Ressourcen angegeben.

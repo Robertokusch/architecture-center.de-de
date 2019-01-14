@@ -5,12 +5,12 @@ description: Empfehlungen für die Benennung von virtuellen Computern, Speicherk
 author: telmosampaio
 ms.date: 10/19/2018
 ms.custom: seodec18
-ms.openlocfilehash: 4f934102acea24e8e1070ed6a25d63927f0bd252
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: f0349b5db7eb15037bd92567eaf917b5d044daa0
+ms.sourcegitcommit: 036cd03c39f941567e0de4bae87f4e2aa8c84cf8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307077"
+ms.lasthandoff: 01/05/2019
+ms.locfileid: "54058198"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Namenskonventionen für Azure-Ressourcen
 
@@ -62,7 +62,7 @@ Affixe können auf verschiedene Aspekte verweisen, die die entsprechenden Ressou
 | --- | --- | --- |
 | Environment |dev, prod, QA |identifiziert die Umgebung für die Ressource |
 | Standort |uw (USA, Westen), ue (USA, Osten) |identifiziert die Region, in welcher die Ressource bereitgestellt wird |
-| Instanz |01, 02 |für Ressourcen, die mehr als eine benannte Instanz besitzen (Webdienste usw.) |
+| Instanz |1, 2... |Für Ressourcen mit mehreren benannten Instanzen (beispielsweise virtuelle Computer oder NICs). |
 | Produkt oder Dienst |service |identifiziert das Element (Produkt, Anwendung oder Dienst), das von der Ressource unterstützt wird |
 | Rolle |sql, web, messaging |identifiziert die Rolle der zugeordneten Ressource |
 
@@ -139,7 +139,7 @@ Weitere Informationen zur Verwendung von Tags für Ressourcen finden Sie unter [
 
 Einige der üblichen Anwendungsfälle für die Verwendung von Tags sind:
 
-- **Abrechnung:** Gruppieren von Ressourcen und Zuordnen zu Codes für die Abrechnung oder verbrauchsbasierte Kostenzuteilung
+- **Abrechnung**. Gruppieren von Ressourcen und Zuordnen zu Codes für die Abrechnung oder verbrauchsbasierte Kostenzuteilung
 - **Servicekontextidentifikation:** Identifizieren von Gruppen von Ressourcen über Ressourcengruppen hinweg für allgemeine Vorgänge und Gruppierungen
 - **Zugriffssteuerung und Sicherheitskontext:** Identifizieren der Administratorrolle basierend auf Portfolio, System, Dienst, App, Instanz usw.
 
@@ -175,7 +175,7 @@ Es gibt zwei vorrangige Anwendungsfälle für Speicherkonten: Sicherung von Date
 
 Es ist möglich, einen benutzerdefinierten Domänennamen zu konfigurieren, mit dem Sie auf Blobdaten in Ihrem Azure Storage-Konto zugreifen können. Der Standardendpunkt für den Blobdienst ist `https://<name>.blob.core.windows.net`
 
-Aber wenn Sie dem Blobendpunkt für Ihr Speicherkonto eine benutzerdefinierte Domäne zuordnen (z.B. www.contoso.com), können Sie auch unter Verwendung dieser Domäne auf Blobdaten in Ihrem Speicherkonto zugreifen. Mit einem benutzerdefinierten Domänennamen kann auf `https://mystorage.blob.core.windows.net/mycontainer/myblob` beispielsweise mit `https://www.contoso.com/mycontainer/myblob` zugegriffen werden.
+Aber wenn Sie dem Blobendpunkt für Ihr Speicherkonto eine benutzerdefinierte Domäne zuordnen (beispielsweise `www.contoso.com`), können Sie auch unter Verwendung dieser Domäne auf Blobdaten in Ihrem Speicherkonto zugreifen. Mit einem benutzerdefinierten Domänennamen kann auf `https://mystorage.blob.core.windows.net/mycontainer/myblob` beispielsweise mit `https://www.contoso.com/mycontainer/myblob` zugegriffen werden.
 
 Weitere Informationen zum Konfigurieren dieser Funktion finden Sie unter [Konfigurieren eines benutzerdefinierten Domänennamens für Ihren Blob Storage-Endpunkt](/azure/storage/storage-custom-domain-name/).
 

@@ -4,14 +4,14 @@ description: Beschreibt ein Gerüst, mit dem Unternehmen eine sichere und verwal
 author: rdendtler
 ms.author: rodend
 ms.date: 9/22/2018
-ms.openlocfilehash: a1962a3d5be79715de4781d955b6be1db5923bea
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 66af73f5bfc7f7145c20446af05f33a9d69e6c28
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429288"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011734"
 ---
-# <a name="azure-enterprise-scaffold-prescriptive-subscription-governance"></a>Azure-Unternehmensgerüst – präskriptive Abonnementgovernance
+# <a name="azure-enterprise-scaffold-prescriptive-subscription-governance"></a>Azure-Unternehmensgerüst: Präskriptive Abonnementgovernance
 
 Immer mehr Unternehmen führen für Mobilität und Flexibilität eine öffentliche Cloud ein. Sie nutzen die Stärken der Cloud, um Umsatz zu generieren und die Ressourcennutzung im Unternehmen zu optimieren. Microsoft Azure bietet eine Vielzahl von Diensten und Funktionen, die Unternehmen wie Bausteine zusammenstellen können, um ein umfangreiches Spektrum an Workloads und Anwendungen zu berücksichtigen.
 
@@ -58,13 +58,13 @@ Die drei allgemeinen Muster für Azure-Registrierungen sind:
 
 * Das auf **Funktionen** basierende Muster
 
-    ![Funktionen](./_images/functional.png)
+    ![functional](./_images/functional.png)
 * Das auf **Unternehmenseinheiten** basierende Muster
 
-    ![Unternehmenseinheiten](./_images/business.png)
+    ![business](./_images/business.png)
 * Das auf **geografischen Regionen** basierende Muster
 
-    ![Geografische Regionen](./_images/geographic.png)
+    ![geographic](./_images/geographic.png)
 
 Jedes dieser Muster hat seine Vorteile, Organisationen nutzen aber zunehmend das Muster der **Unternehmenseinheiten**, da dieses sowohl Flexibilität beim Erstellen eines Kostenmodells für die Organisation auch eine große Bandbreite an Steuerungsmöglichkeiten bietet. Die Microsoft-Unternehmensgruppe „Core Engineering and Operations“ hat eine Teilmenge des auf **Unternehmenseinheiten** basierenden Musters erstellt, das sich als sehr effektiv erwiesen hat. Die Hierarchieebenen hierbei sind **Federal**, **State** und **Local**. (Weitere Informationen finden Sie unter [Organizing subscriptions and resource groups within the Enterprise](https://azure.microsoft.com/blog/organizing-subscriptions-and-resource-groups-within-the-enterprise/) [Organisieren von Abonnements und Ressourcengruppen im Unternehmen].)
 
@@ -81,9 +81,9 @@ Sorgfältig konzipierte Verwaltungsgruppen sind neben Azure Policy und Azure-Ini
 
 Wenn Sie Ihre Abteilungen und Konten (bzw. Verwaltungsgruppen) festlegen, liegt Ihr Hauptaugenmerk darauf, wie Sie Ihre Azure-Umgebung Ihrer Organisation entsprechend aufteilen. In den Abonnements dagegen findet die eigentliche Arbeit statt – daher wirken sich Ihre Entscheidungen hier auf Sicherheit, Skalierbarkeit und Abrechnung aus.  Viele Organisationen nutzen die folgenden Muster als Leitlinien:
 
-* **Anwendung/Dienst**: Abonnements repräsentieren eine Anwendung oder einen Dienst (Anwendungsportfolio).
-* **Lebenszyklus**: Abonnements repräsentieren einen Lebenszyklusabschnitt eines Dienst, z.B. „Produktion“ oder „Entwicklung“.
-* **Abteilung**: Abonnements repräsentieren Abteilungen in der Organisation.
+* **Anwendung/Dienst:** Abonnements stellen eine Anwendung oder einen Dienst dar (Anwendungsportfolio).
+* **Lebenszyklus:** Abonnements stellen einen Lebenszyklus eines Diensts dar (beispielsweise Produktion oder Entwicklung).
+* **Abteilung:** Abonnements stellen Abteilungen in der Organisation dar.
 
 Die ersten beiden Muster werden am häufigsten verwendet und sind sehr empfehlenswert. Der Lebenszyklusansatz eignet sich für die meisten Organisationen. In diesem Fall lautet die allgemeine Empfehlung, zwei grundlegende Abonnements zu verwenden. Eines wird als „produktionsbezogen“ festgelegt, das andere als „nicht produktionsbezogen“. Dann verwenden Sie Ressourcengruppen, um die Umgebung weiter zu unterteilen.
 
@@ -112,7 +112,7 @@ Die erste Säule des Gerüsts ist ein konsistenter Benennungsstandard. Mit sorgf
 
 Konzentrieren Sie sich bei Ihren Benennungsstandards auf die Ressourcen, die am häufigsten gesucht und verwendet werden.  Ressourcengruppen sollten z.B. aus Gründen der Klarheit einem sehr strikten Standard folgen.
 
-### <a name="resource-tags"></a>Ressourcentags
+### <a name="resource-tags"></a>Ressource Tags
 
 Ressourcentags sind eng an Benennungsstandards gekoppelt. Je mehr Ressourcen den Abonnements hinzugefügt werden, desto wichtiger wird es, diese für Abrechnung, Verwaltung und Betrieb logisch zu kategorisieren. Weitere Informationen finden Sie unter [Verwenden von Tags zum Organisieren von Azure-Ressourcen](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-using-tags).
 
@@ -124,7 +124,6 @@ Tags dienen neben der Abrechnung und Verwaltung zu vielen weiteren Zwecken. Sie 
 ## <a name="azure-policy-and-initiatives"></a>Azure Policy und Azure-Initiativen
 
 Die zweite Säule des Gerüsts ist die Verwendung von [Azure Policy und Azure-Initiativen](/azure/azure-policy/azure-policy-introduction) für das Risikomanagement, indem Regeln (mit Auswirkungen) für die Ressourcen und Dienste in Ihren Abonnements erzwungen werden. Azure-Initiativen sind Sammlungen aus Richtlinien, die alle einem einzigen Ziel dienen. Azure Policy und Azure-Initiativen werden dann einem Ressourcenbereich zugewiesen, um die Erzwingung dieser Richtlinien zu starten.
-<Abbildung: Initiativen/Richtlinien/Zuweisungen>
 
 Azure Policy und Azure-Initiativen sind noch leistungsstärker, wenn sie mit den oben beschriebenen Verwaltungsgruppen eingesetzt werden. Verwaltungsgruppen ermöglichen die Zuweisung einer Initiative oder Richtlinie zu einer ganzen Gruppe von Abonnements.
 
@@ -155,13 +154,13 @@ In [diesem GitHub-Repository](https://github.com/Azure/azure-policy) finden Sie 
 
 ## <a name="identity-and-access-management"></a>Identitäts- und Zugriffsverwaltung
 
-Eine der ersten und entscheidendsten Fragen, die Sie sich vor dem Einstieg in die öffentliche Cloud stellen sollten, lautet „Wer darf auf die Ressourcen zugreifen und wie steuere ich diesen Zugriff?“ Das Zulassen oder Untersagen des Zugriffs auf das Azure-Portal und das Steuern des Zugriffs auf Ressourcen im Portal ist entscheidend für den langfristigen Erfolg und die Sicherheit Ihrer Ressourcen in der Cloud.
+Eine der ersten und entscheidendsten Fragen, die Sie sich vor dem Einstieg in die öffentliche Cloud stellen sollten, lautet „Wer darf auf die Ressourcen zugreifen und wie dieser Zugriff gesteuert werden kann. Das Zulassen oder Untersagen des Zugriffs auf das Azure-Portal und das Steuern des Zugriffs auf Ressourcen im Portal ist entscheidend für den langfristigen Erfolg und die Sicherheit Ihrer Ressourcen in der Cloud.
 
 Um den Zugriff auf Ihre Ressourcen zu sichern, konfigurieren Sie zuerst Ihren Identitätsanbieter und dann die Rollen und den Zugriff. Azure Active Directory (Azure AD) – verknüpft mit Ihrem lokalen Active Directory – ist die Grundlage von Identitäten in Azure. Azure AD ist allerdings *nicht* Active Directory, und es ist wichtig zu wissen, was ein Azure AD-Mandant ist und wie Mandanten mit Ihrer Azure-Registrierung in Verbindung stehen.  Sehen Sie sich die verfügbaren [Informationen](../getting-started/azure-resource-access.md) an, um ein solides Grundwissen zu Azure AD und AD zu erhalten. Um Ihr Active Directory mit Azure AD zu verbinden und zu synchronisieren, installieren und konfigurieren Sie das [AD Connect-Tool](/azure/active-directory/connect/active-directory-aadconnect) lokal.
 
 ![arch.png](./_images/arch.png)
 
-Als Azure ursprünglich veröffentlicht wurde, waren Zugriffssteuerungen für ein Abonnement einfach: Administrator oder Co-Administrator. Durch den Zugriff auf ein Abonnement im klassischen Modell war Zugriff auf alle Ressourcen im Portal möglich. Dieses Fehlen einer präziseren Steuerung hat zur Zunahme von Abonnements geführt, um eine angemessene Zugriffssteuerung für eine Azure-Registrierung bereitzustellen. Diese Zunahme von Abonnements ist nicht mehr erforderlich. Mit der rollenbasierten Zugriffssteuerung (Role-Based Access Control, RBAC) können Sie Benutzer zu Standardrollen zuweisen, die Zugriffsrechte als „Besitzer“, „Mitwirkender“ oder „Leser“ gewähren. Sie können auch selbst Rollen erstellen.
+Als Azure ursprünglich veröffentlicht wurde, waren Zugriffssteuerungen für ein Abonnement sehr einfach: Administrator oder Co-Administrator. Durch den Zugriff auf ein Abonnement im klassischen Modell war Zugriff auf alle Ressourcen im Portal möglich. Dieses Fehlen einer präziseren Steuerung hat zur Zunahme von Abonnements geführt, um eine angemessene Zugriffssteuerung für eine Azure-Registrierung bereitzustellen. Diese Zunahme von Abonnements ist nicht mehr erforderlich. Mit der rollenbasierten Zugriffssteuerung (Role-Based Access Control, RBAC) können Sie Benutzer zu Standardrollen zuweisen, die Zugriffsrechte als „Besitzer“, „Mitwirkender“ oder „Leser“ gewähren. Sie können auch selbst Rollen erstellen.
 
 Beim Implementieren des rollenbasierten Zugriffs empfiehlt es sich dringend, folgende Punkte zu beachten:
 
@@ -219,7 +218,7 @@ Das Sammeln und Analysieren von Telemetriedaten, die Einblicke in die Aktivität
 * **Diagnoseprotokolle** werden von einem Azure-Dienst ausgegeben und stellen umfangreiche und in kurzen Abständen erfasste Daten zum Betrieb dieses Diensts bereit.
 
 Sie können diese Daten auf verschiedenen Ebenen betrachten und Aktionen daraus ableiten, und die Daten werden kontinuierlich verbessert. Azure bietet **gemeinsam genutzte**, **grundlegende** und **tiefgreifende** Überwachungsfunktionen für Azure-Ressourcen durch die in der Abbildung unten gezeigten Dienste.
-![Überwachung](./_images/monitoring.png)
+![monitoring](./_images/monitoring.png)
 
 ### <a name="shared-capabilities"></a>Gemeinsam genutzte Funktionen
 
@@ -231,13 +230,13 @@ Sie können diese Daten auf verschiedenen Ebenen betrachten und Aktionen daraus 
 
 ### <a name="core-monitoring"></a>Kernüberwachung
 
-* **Azure Monitor**: Dies ist der grundlegende Plattformdienst, mit dem Sie Ihre Azure-Ressourcen an einem zentralen Ort überwachen können. Die Azure-Portal-Schnittstelle von Azure Monitor bietet einen zentralen Startpunkt für alle Überwachungsfunktionen in Azure, einschließlich der tiefgreifenden Überwachungsfunktionen von Application Insights, Log Analytics, Network Monitoring, Management Solutions und Service Maps. Mit Azure Monitor können Sie Metriken und Protokolle aus Azure-Ressourcen in Ihrer gesamten Cloudstruktur visualisieren, abfragen, weiterleiten und archivieren und ggf. notwendige Maßnahmen ergreifen. Sie können Daten nicht nur über das Portal, sondern auch über PowerShell-Cmdlets, eine plattformübergreifende Befehlszeilenschnittstelle oder die Azure Monitor-REST-APIs abrufen.
+* **Azure Monitor**: Azure Monitor ist der grundlegende Plattformdienst, mit dem Sie Ihre Azure-Ressourcen an einem zentralen Ort verwalten können. Die Azure-Portal-Schnittstelle von Azure Monitor bietet einen zentralen Startpunkt für alle Überwachungsfunktionen in Azure, einschließlich der tiefgreifenden Überwachungsfunktionen von Application Insights, Log Analytics, Network Monitoring, Management Solutions und Service Maps. Mit Azure Monitor können Sie Metriken und Protokolle aus Azure-Ressourcen in Ihrer gesamten Cloudstruktur visualisieren, abfragen, weiterleiten und archivieren und ggf. notwendige Maßnahmen ergreifen. Sie können Daten nicht nur über das Portal, sondern auch über PowerShell-Cmdlets, eine plattformübergreifende Befehlszeilenschnittstelle oder die Azure Monitor-REST-APIs abrufen.
 
-* **Azure Advisor**: Dieser Dienst überwacht kontinuierlich Telemetriedaten aus all Ihren Abonnements und Umgebungen und bietet Empfehlungen zu bewährten Methoden, mit denen Sie Ihre Azure-Ressourcen optimieren können, um Geld zu sparen und die Leistung, Sicherheit und Verfügbarkeit der Ressourcen zu verbessern, auf denen Ihre Anwendungen basieren.
+* **Azure Advisor**: Azure Advisor überwacht kontinuierlich Telemetriedaten aus allen Ihren Abonnements und Umgebungen und bietet Empfehlungen zu bewährten Methoden, mit denen Sie Ihre Azure-Ressourcen optimieren können, um Geld zu sparen und die Leistung, Sicherheit und Verfügbarkeit der Ressourcen zu verbessern, auf denen Ihre Anwendungen basieren.
 
-* **Service Health**: Azure Service Health identifiziert Probleme bei Azure-Diensten, die sich auf Ihre Anwendungen auswirken können, und unterstützt Sie der Planung von Wartungsfenstern.
+* **Service Health**: Azure Service Health erkennt Probleme bei Azure-Diensten, die sich auf Ihre Anwendungen auswirken können, und unterstützt Sie bei der Planung von Wartungsfenstern.
 
-* **Aktivitätsprotokoll**: Hier werden alle Vorgänge beschrieben, die für die Ressourcen in Ihren Abonnements durchgeführt wurden. Sie erhalten ein Überwachungsprotokoll, mit dem Sie das „Was“, „Wer“ und „Wann“ aller Erstellungs-, Aktualisierungs- und Löschvorgänge in Ressourcen ermitteln können. Aktivitätsprotokollereignisse werden auf der Plattform gespeichert und sind 90 Tage verfügbar. Sie können Aktivitätsprotokolle in Log Analytics einspeisen, um eine längere Beibehaltungsdauer sowie tiefgreifendere Abfragen und Analysen über mehrere Ressourcen hinweg zu erzielen.
+* **Aktivitätsprotokoll**: Im Aktivitätsprotokoll werden sämtliche Vorgänge beschrieben, die für Ressourcen in Ihren Abonnements ausgeführt wurden. Sie erhalten ein Überwachungsprotokoll, mit dem Sie das „Was“, „Wer“ und „Wann“ aller Erstellungs-, Aktualisierungs- und Löschvorgänge in Ressourcen ermitteln können. Aktivitätsprotokollereignisse werden auf der Plattform gespeichert und sind 90 Tage verfügbar. Sie können Aktivitätsprotokolle in Log Analytics einspeisen, um eine längere Beibehaltungsdauer sowie tiefgreifendere Abfragen und Analysen über mehrere Ressourcen hinweg zu erzielen.
 
 ### <a name="deep-application-monitoring"></a>Umfassende Anwendungsüberwachung
 
@@ -245,13 +244,13 @@ Sie können diese Daten auf verschiedenen Ebenen betrachten und Aktionen daraus 
 
 ### <a name="deep-infrastructure-monitoring"></a>Umfassende Infrastrukturüberwachung
 
-* **Log Analytics**: Dieser Dienst spielt eine zentrale Rolle bei der Azure-Überwachung, da er Telemetriedaten und andere Daten aus vielen verschiedenen Quellen sammelt sowie eine Abfragesprache und eine Analyse-Engine bereitstellt, damit Sie Einblicke in die Abläufe Ihrer Anwendungen und Ressourcen erhalten. Sie können über leistungsfähige Protokollsuchvorgänge und -ansichten direkt mit Log Analytics-Daten interagieren, oder Sie können Analysetools in anderen Azure-Diensten nutzen – z.B. Application Insights oder Azure Security Center –, die Daten in Log Analytics speichern.
+* **Log Analytics**: Log Analytics spielt eine zentrale Rolle bei der Azure-Überwachung, da er Telemetriedaten und andere Daten aus vielen verschiedenen Quellen sammelt sowie eine Abfragesprache und eine Analyse-Engine bereitstellt, damit Sie Einblicke in die Abläufe Ihrer Anwendungen und Ressourcen erhalten. Sie können über leistungsfähige Protokollsuchvorgänge und -ansichten direkt mit Log Analytics-Daten interagieren, oder Sie können Analysetools in anderen Azure-Diensten nutzen – z.B. Application Insights oder Azure Security Center –, die Daten in Log Analytics speichern.
 
 * **Netzwerküberwachung**: Mit den Netzwerküberwachungsdiensten von Azure erhalten Sie Einblicke in Netzwerkdatenverkehr, Leistung, Sicherheit, Konnektivität und Engpässe. Ein sorgfältig geplanter Netzwerkentwurf sollte die Konfiguration von Azure-Netzwerküberwachungsdiensten wie z.B. Network Watcher und ExpressRoute Monitor umfassen.
 
-* **Verwaltungslösungen**: Hierbei handelt es sich um Pakete aus Logik, Einblicken und vordefinierten Log Analytics-Abfragen für eine Anwendung oder einen Dienst. Log Analytics bildet die Grundlage für die Speicherung und Analyse von Ereignisdaten. Zu den Verwaltungslösungen gehören beispielsweise die Überwachung von Containern und die Azure SQL-Datenbank-Analyse.
+* **Verwaltungslösungen**: Verwaltungslösungen sind Pakete mit Logik, Einblicken und vordefinierten Log Analytics-Abfragen für eine Anwendung oder einen Dienst. Log Analytics bildet die Grundlage für die Speicherung und Analyse von Ereignisdaten. Zu den Verwaltungslösungen gehören beispielsweise die Überwachung von Containern und die Azure SQL-Datenbank-Analyse.
 
-* **Dienstzuordnung**: Diese Lösung bietet eine grafische Ansicht Ihrer Infrastrukturkomponenten sowie der zugehörigen Prozesse und gegenseitigen Abhängigkeiten mit anderen Computern und externen Prozessen. Die Dienstzuordnung integriert Ereignisse, Leistungsdaten und Verwaltungslösungen in Log Analytics.
+* **Dienstzuordnung**: Die Dienstzuordnung bietet eine grafische Darstellung Ihrer Infrastrukturkomponenten sowie der zugehörigen Prozesse und gegenseitigen Abhängigkeiten mit anderen Computern und externen Prozessen. Die Dienstzuordnung integriert Ereignisse, Leistungsdaten und Verwaltungslösungen in Log Analytics.
 
 > [!TIP]
 > Bevor Sie einzelne Warnungen erstellen, erstellen und verwalten Sie einen Satz freigegebener Aktionsgruppen, die für alle Azure-Warnungen verwendet werden können. So können Sie den Lebenszyklus Ihrer Empfängerlisten, Methoden für die Nachrichtenübermittlung (E-Mail, SMS, Telefonnummern) und Webhooks zu externen Aktionen (Azure Automation-Runbooks, Azure Functions / Logic Apps, ITSM) zentral verwalten.
@@ -260,7 +259,7 @@ Sie können diese Daten auf verschiedenen Ebenen betrachten und Aktionen daraus 
 
 Eine der wichtigsten Veränderungen, die ein Umstieg von der lokalen in die öffentliche Cloud mit sich bringt, ist die Art der Finanzierung: Diese verlagert sich vom Kapitalaufwand (Hardwarekauf) hin zum Betriebsaufwand (Zahlung nur für tatsächlich genutzte Dienste). Dieser Wechsel führt auch zu der Notwendigkeit, die Kosten noch sorgfältiger zu kontrollieren. Der große Vorteil der Cloud besteht darin, dass Sie die Kosten eines von Ihnen genutzten Diensts grundlegend und positiv beeinflussen können, indem Sie den Dienst einfach deaktivieren (oder herunterskalieren), wenn Sie ihn nicht benötigen. Die Verwaltung der Kosten in der Cloud ist eine empfohlene Vorgehensweise, die erfahrene Kunden bereits täglich befolgen.
 
-Microsoft stellt Ihnen verschiedene Tools zur Verfügung, mit denen Sie Ihre Kosten visualisieren, nachverfolgen und verwalten können. Wir bieten Ihnen auch einen vollständigen Satz APIs, mit denen Sie das Kostenmanagement anpassen und in Ihre eigenen Tools und Dashboards integrieren können. Diese Tools sind locker in zwei Gruppen zusammengefasst: Azure-Portal-Funktionen und externe Funktionen.
+Microsoft stellt Ihnen verschiedene Tools zur Verfügung, mit denen Sie Ihre Kosten visualisieren, nachverfolgen und verwalten können. Wir bieten Ihnen auch einen vollständigen Satz APIs, mit denen Sie das Kostenmanagement anpassen und in Ihre eigenen Tools und Dashboards integrieren können. Diese Tools sind grob in zwei Gruppen zusammengefasst: Azure-Portal-Funktionen und externe Funktionen.
 
 ### <a name="azure-portal-capabilities"></a>Azure-Portal-Funktionen
 
@@ -292,7 +291,7 @@ Einer der vielen Aspekte, mit denen sich der Reifegrad von Organisationen bemess
 
 Für diese Funktion steht eine Vielzahl von Tools zur Verfügung – von Erstanbietertools wie Azure Automation, Event Grid und Azure CLI bis hin zu einer umfangreichen Menge an Drittanbietertools wie Terraform, Jenkins, Chef und Puppet (um nur einige zu nennen). Die wichtigsten Tools, die Ihr Betriebsteam für die Automatisierung benötigt, sind Azure Automation, Event Grid und die Azure Cloud Shell:
 
-* **Azure Automation**: Mit dieser cloudbasierten Funktion können Sie Runbooks erstellen (in PowerShell oder Python) und damit Prozesse automatisieren, Ressourcen konfigurieren und sogar Patches aufspielen.  [Azure Automation](/azure/automation/automation-intro) bietet eine umfangreiche Palette an plattformübergreifenden Funktionen, die von großer Bedeutung für Ihre Bereitstellung sind, aber aufgrund ihrer Vielzahl hier nicht im Detail erläutert werden können.
+* **Azure Automation**: Mit dieser cloudbasierten Funktion können Sie Runbooks erstellen (in PowerShell oder Python) und damit Prozesse automatisieren, Ressourcen konfigurieren und sogar Patches anwenden.  [Azure Automation](/azure/automation/automation-intro) bietet eine umfangreiche Palette an plattformübergreifenden Funktionen, die von großer Bedeutung für Ihre Bereitstellung sind, aber aufgrund ihrer Vielzahl hier nicht im Detail erläutert werden können.
 * **Event Grid**: Bei diesem [Dienst](/azure/event-grid) handelt es sich um ein vollständig verwaltetes Ereignisroutingsystem, mit dem Sie auf Ereignisse in Ihrer Azure-Umgebung reagieren können. So wie Automation das Bindegewebe weit entwickelter Cloudorganisationen ist, stellt Event Grid das Bindegewebe einer guten Automatisierungslösung dar. Mit Event Grid können Sie eine einfache serverlose Aktion erstellen, die bei jeder Erstellung einer neuen Ressource eine E-Mail an einen Administrator sendet und diese Ressource in einer Datenbank protokolliert. Event Grid kann Sie auch benachrichtigen, wenn eine Ressource gelöscht wurde, und das Element aus der Datenbank entfernen.
 * **Azure Cloud Shell**: Dies ist eine interaktive, browserbasierte [Shell](/azure/cloud-shell/overview) für die Verwaltung von Ressourcen in Azure. Sie stellt eine vollständige Umgebung für PowerShell oder Bash bereit, die nach Bedarf gestartet (und für Sie verwaltet) wird, sodass Sie eine konsistente Umgebung erhalten, in der Sie Ihre Skripts ausführen können. Die Azure Cloud Shell bietet Zugriff auf weitere wichtige und bereits installierte Tools zum Automatisieren Ihrer Umgebung: [Azure CLI](/cli/azure/get-started-with-azure-cli?view=azure-cli-latest), [Terraform](/azure/virtual-machines/linux/terraform-install-configure) sowie eine ständig wachsende Liste zusätzlicher [Tools](https://azure.microsoft.com/updates/cloud-shell-new-cli-tools-and-font-size-selection/), mit denen Sie Container, Datenbanken (sqlcmd) und vieles mehr verwalten können.
 

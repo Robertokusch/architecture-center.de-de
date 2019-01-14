@@ -5,12 +5,12 @@ description: Implementieren Sie eine hochverfügbare und sichere Site-to-Site-Ne
 author: telmosampaio
 ms.date: 10/22/2017
 ms.custom: seodec18
-ms.openlocfilehash: d44c046f2351d6103a01108574e0295302f0ba11
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: d32e4dfa81cf74a4ca74746120c15f1ddc066c3e
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119947"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011105"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute-with-vpn-failover"></a>Verbinden eines lokalen Netzwerks mit Azure unter Verwendung von ExpressRoute mit VPN-Failover
 
@@ -71,7 +71,7 @@ $vnet = Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
 Stellen Sie sicher, dass Ihre Organisation die [ExpressRoute-Voraussetzungen][expressroute-prereq] zum Herstellen der Verbindung mit Azure erfüllt.
 
-Wenn Sie bereits im Azure-VNet über ein VPN-Gateway für virtuelle Netzwerke verfügen, entfernen Sie es mit dem folgenden Powershell-Befehl:
+Falls Sie im Azure-VNET bereits über ein VPN-Gateway für virtuelle Netzwerke verfügen, entfernen Sie es mithilfe des folgenden PowerShell-Befehls:
 
 ```powershell
 Remove-AzureRmVirtualNetworkGateway -Name <yourgatewayname> -ResourceGroupName <yourresourcegroup>

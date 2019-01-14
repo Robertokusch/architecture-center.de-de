@@ -1,23 +1,24 @@
 ---
 title: Arbeiten mit anspruchsbasierten Identitäten in mehrinstanzenfähigen Anwendungen
-description: Informationen zum Verwenden von Ansprüchen für die Ausstellerüberprüfung und Autorisierung
+description: Hier erfahren Sie, wie Sie Ansprüche zur Ausstellerüberprüfung und Autorisierung verwenden.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: 3ed6c7c9a48f3617f82112e76878c770099fde3e
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: ffaa6085dd9ca9ddec203e6661575e984b2e25e0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902407"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113585"
 ---
 # <a name="work-with-claims-based-identities"></a>Arbeiten mit anspruchsbasierten Identitäten
 
 [![GitHub](../_images/github.png)-Beispielcode][sample application]
 
 ## <a name="claims-in-azure-ad"></a>Ansprüche in Azure AD
+
 Wenn sich ein Benutzer anmeldet, sendet Azure AD ein ID-Token, das einen Satz mit Ansprüchen des Benutzers enthält. Ein Anspruch ist eine einfache Information, die als Schlüssel-Wert-Paar ausgedrückt wird. Beispiel: `email`=`bob@contoso.com`  Ansprüche haben einen Aussteller &mdash; in diesem Fall Azure AD &mdash;, bei dem es sich um die Entität handelt, die den Benutzer authentifiziert und die Ansprüche erstellt. Sie vertrauen den Ansprüchen, da Sie dem Aussteller vertrauen. (Wenn Sie umgekehrt dem Aussteller nicht trauen, vertrauen Sie nicht den Ansprüchen!)
 
 Allgemeines:
@@ -51,15 +52,15 @@ Diese Tabelle enthält die Anspruchstypen, wie sie im ID-Token angezeigt werden.
 * upn > `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn`
 
 ## <a name="claims-transformations"></a>Transformationen von Ansprüchen
+
 Während des Authentifizierungsvorgangs empfiehlt es sich, die Ansprüche zu ändern, die Sie vom Identitätsanbieter erhalten. In ASP.NET Core können Sie eine Transformation von Ansprüchen innerhalb des **AuthenticationValidated**-Ereignisses von der OpenID Connect-Middleware ausführen. (Informationen finden Sie unter [Authentifizierungsereignisse].)
 
 Alle Ansprüche, die Sie während des **AuthenticationValidated** -Ereignisses hinzufügen, werden im Authentifizierungscookie der Sitzung gespeichert. Sie werden nicht per Push zurück an Azure AD übertragen.
 
 Hier einige Beispiele für die Transformation von Ansprüchen:
 
-* **Normalisierung von Ansprüchen** oder Schaffung konsistenter Ansprüche für alle Benutzer. Dies trifft insbesondere zu, wenn Sie Ansprüche von mehreren Identitätsanbietern erhalten, die möglicherweise unterschiedliche Anspruchstypen für ähnliche Informationen verwenden.
-  Beispielsweise sendet Azure AD einen „upn“-Anspruch, der die E-Mail-Adresse des Benutzers enthält. Andere Identitätsanbieter senden möglicherweise einen „email“-Anspruch. Der folgende Code konvertiert den „upn“-Anspruch in einen „email“-Anspruch:
-  
+* **Normalisierung von Ansprüchen** oder Schaffung konsistenter Ansprüche für alle Benutzer. Dies trifft insbesondere zu, wenn Sie Ansprüche von mehreren Identitätsanbietern erhalten, die möglicherweise unterschiedliche Anspruchstypen für ähnliche Informationen verwenden. Beispielsweise sendet Azure AD einen „upn“-Anspruch, der die E-Mail-Adresse des Benutzers enthält. Andere Identitätsanbieter senden möglicherweise einen „email“-Anspruch. Der folgende Code konvertiert den „upn“-Anspruch in einen „email“-Anspruch:
+
   ```csharp
   var email = principal.FindFirst(ClaimTypes.Upn)?.Value;
   if (!string.IsNullOrWhiteSpace(email))
@@ -67,12 +68,14 @@ Hier einige Beispiele für die Transformation von Ansprüchen:
       identity.AddClaim(new Claim(ClaimTypes.Email, email));
   }
   ```
+
 * Hinzufügen **standardmäßiger Anspruchswerte** für Ansprüche, die nicht vorhanden sind, z. B. Zuweisen eines Benutzers zu einer Standardrolle. In einigen Fällen kann dies die Autorisierungslogik vereinfachen.
-* Hinzufügen **benutzerdefinierter Anspruchstypen** mit anwendungsspezifischen Informationen über den Benutzer. Beispielsweise können Sie einige Informationen über den Benutzer in einer Datenbank speichern und einen benutzerdefinierten Anspruch mit diesen Informationen zum Authentifizierungsticket hinzufügen. Der Anspruch wird in einem Cookie gespeichert, sodass Sie ihn nur einmal pro Anmeldesitzung aus der Datenbank abrufen müssen. Andererseits sollte auch die Erstellung übermäßig großer Cookies verhindert werden, sodass Sie zwischen Cookiegröße und Datenbanksuchen abwägen müssen.   
+* Hinzufügen **benutzerdefinierter Anspruchstypen** mit anwendungsspezifischen Informationen über den Benutzer. Beispielsweise können Sie einige Informationen über den Benutzer in einer Datenbank speichern und einen benutzerdefinierten Anspruch mit diesen Informationen zum Authentifizierungsticket hinzufügen. Der Anspruch wird in einem Cookie gespeichert, sodass Sie ihn nur einmal pro Anmeldesitzung aus der Datenbank abrufen müssen. Andererseits sollte auch die Erstellung übermäßig großer Cookies verhindert werden, sodass Sie zwischen Cookiegröße und Datenbanksuchen abwägen müssen.
 
 Nach Abschluss des Authentifizierungsvorgangs stehen die Ansprüche in `HttpContext.User`zur Verfügung. An diesem Punkt sollten Sie sie als eine schreibgeschützte Auflistung behandeln und z. B. zum Treffen von Autorisierungsentscheidungen verwenden.
 
 ## <a name="issuer-validation"></a>Überprüfung des Ausstellers
+
 In OpenID Connect (OIDC) identifiziert der Ausstelleranspruch (iss) den Identitätsanbieter, der das ID-Token ausgestellt hat. Im Rahmen des OIDC-Authentifizierungsvorgangs muss überprüft werden, ob der Ausstelleranspruch dem tatsächlichen Aussteller entspricht. Dies übernimmt die OIDC-Middleware für Sie.
 
 In Azure AD ist der „issuer“-Wert pro AD-Mandant eindeutig (`https://sts.windows.net/<tenantID>`). Deshalb sollte eine Anwendung eine zusätzliche Prüfung vornehmen, um sicherzustellen, dass der Aussteller einen Mandanten darstellt, der sich bei der App anmelden darf.
@@ -87,25 +90,28 @@ Bei einer Anwendung mit nur einem Mandanten können Sie prüfen, ob der Ausstell
 Eine ausführlichere Beschreibung finden Sie unter [Registrierung und Onboarding von Mandanten in einer mehrmandantenfähigen Anwendung][signup].
 
 ## <a name="using-claims-for-authorization"></a>Verwenden von Ansprüchen für die Autorisierung
+
 Mit Ansprüchen ist die Identität eines Benutzers keine monolithische Entität mehr. Für einen Benutzer können z. B. E-Mail-Adresse, Telefonnummer, Geburtstag, Geschlecht usw. angegeben sein. Möglicherweise speichert der Identitätsanbieter des Benutzers alle diese Informationen. Wenn Sie aber den Benutzer authentifizieren, erhalten Sie in der Regel eine Teilmenge dieser Angaben als Ansprüche. In diesem Modell ist die Identität des Benutzers einfach ein Bündel von Ansprüchen. Wenn Sie Autorisierungsentscheidungen für einen Benutzer treffen, suchen Sie nach bestimmten Sätzen von Ansprüchen. Das heißt, die Frage „Kann Benutzer X die Aktion Y ausführen“ wird letztlich zur Frage „Verfügt Benutzer X über Anspruch Z“.
 
 Es folgen einige grundlegende Muster für die Überprüfung von Ansprüchen.
 
 * So überprüfen Sie, ob der Benutzer einen bestimmten Anspruch mit einem bestimmten Wert hat:
-  
+
    ```csharp
    if (User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
    ```
+
    Dieser Code prüft, ob der Benutzer einen Rollenanspruch mit dem Wert „Admin“ hat. Er verarbeitet ordnungsgemäß den Fall, bei dem der Benutzer keine oder mehrere Rollenansprüche hat.
   
    Die **ClaimTypes** -Klasse definiert Konstanten für häufig verwendete Anspruchstypen. Dennoch können Sie einen beliebigen Zeichenfolgenwert für den Anspruchstyp verwenden.
 * So rufen Sie einen einzelnen Wert für einen Anspruchstyp ab, wenn Sie mindestens einen Wert erwarten:
-  
+
   ```csharp
   string email = User.FindFirst(ClaimTypes.Email)?.Value;
   ```
+
 * So rufen Sie alle Werte für einen Anspruchstyp ab:
-  
+
   ```csharp
   IEnumerable<Claim> groups = User.FindAll("groups");
   ```
@@ -114,8 +120,7 @@ Weitere Informationen finden Sie unter [Rollen- und ressourcenbasierte Autorisie
 
 [**Weiter**][signup]
 
-
-<!-- Links -->
+<!-- links -->
 
 [Bereichsparameter]: https://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
 [Unterstützte Token- und Anspruchstypen]: /azure/active-directory/active-directory-token-and-claims/

@@ -1,17 +1,14 @@
 ---
 title: Informationen zur Tailspin-Anwendung „Surveys“
-description: Übersicht über die Tailspin-Anwendung „Surveys“
+description: Eine Übersicht über die Tailspin-Anwendung „Surveys“.
 author: MikeWasson
 ms.date: 07/21/2017
-pnp.series.title: Manage Identity in Multitenant Applications
-pnp.series.prev: index
-pnp.series.next: authenticate
-ms.openlocfilehash: a1c357bd1b5306d1255c66aaea96d86be55e7b77
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 95e170c584b8ec5694be69e595b7791c1bcdfdc0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902067"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111460"
 ---
 # <a name="the-tailspin-scenario"></a>Das Tailspin-Szenario
 
@@ -25,10 +22,9 @@ Tailspin ist ein fiktives Unternehmen, das eine SaaS-Anwendung mit dem Namen „
 
 > [!NOTE]
 > Informationen zu den ersten Schritten mit der Anwendung finden Sie unter [Ausführen der Surveys-Anwendung].
-> 
-> 
 
 ## <a name="users-can-create-edit-and-view-surveys"></a>Benutzer können Umfragen erstellen, bearbeiten und anzeigen
+
 Ein authentifizierter Benutzer kann alle Umfragen anzeigen, die er erstellt hat oder für die er über Rechte vom Typ „Mitwirkender“ besitzt, und neue Umfragen erstellen. Beachten Sie, dass der Benutzer mit seiner Organisationsidentität angemeldet ist: `bob@contoso.com`.
 
 ![Surveys-App](./images/surveys-screenshot.png)
@@ -42,7 +38,8 @@ Benutzer können innerhalb desselben Mandanten auch alle von anderen Benutzern e
 ![Mandantenumfragen](./images/tenant-surveys.png)
 
 ## <a name="survey-owners-can-invite-contributors"></a>Besitzer von Umfragen können Mitwirkende einladen
-Wenn ein Benutzer eine Umfrage erstellt, kann er andere Personen als Teilnehmer zur Umfrage einladen. Teilnehmer können die Umfrage bearbeiten, sie aber nicht löschen oder bereitstellen.  
+
+Wenn ein Benutzer eine Umfrage erstellt, kann er andere Personen als Teilnehmer zur Umfrage einladen. Teilnehmer können die Umfrage bearbeiten, sie aber nicht löschen oder bereitstellen.
 
 ![Teilnehmer hinzufügen](./images/add-contributor.png)
 
@@ -55,6 +52,7 @@ Wenn sich Alice anmeldet, sieht sie die Umfrage unter „Surveys I can contribut
 Beachten Sie, dass sich Alice an Ihrem eigenen Mandanten und nicht als Gast des Contoso-Mandanten anmeldet. Alice verfügt nur für diese Umfrage über eine Berechtigung vom Typ „Mitwirkender“ und kann keine anderen Umfragen des Contoso-Mandanten anzeigen.
 
 ## <a name="architecture"></a>Architecture
+
 Die Anwendung „Surveys“ besteht aus einem Web-Front-End und einem Web-API-Back-End. Beide werden mit [ASP.NET Core] implementiert.
 
 Die Webanwendung nutzt Azure Active Directory (Azure AD) zum Authentifizieren von Benutzern. Die Webanwendung ruft auch Azure AD auf, um OAuth 2-Zugriffstoken für die Web-API zu erhalten. Zugriffstoken werden im Azure Redis Cache zwischengespeichert. Mit diesem Cache können mehrere Instanzen denselben Tokencache gemeinsam nutzen (z.B. in einer Serverfarm).
@@ -63,7 +61,7 @@ Die Webanwendung nutzt Azure Active Directory (Azure AD) zum Authentifizieren vo
 
 [**Weiter**][authentication]
 
-<!-- Links -->
+<!-- links -->
 
 [authentication]: authenticate.md
 

@@ -1,18 +1,17 @@
 ---
-title: Trennschalter
+title: Trennschalter-Muster
+titleSuffix: Cloud Design Patterns
 description: Behandeln Sie Fehler, deren Behebung beim Herstellen einer Verbindung mit einem Remotedienst oder einer Remoteressource unterschiedlich lange dauern kann.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- resiliency
-ms.openlocfilehash: 5a9c8254bf62488b46517ee3582c2323e206df8a
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.custom: seodec18
+ms.openlocfilehash: 56c90fcb23fd68b0d1b545db90adeab3272705c2
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37090950"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009762"
 ---
 # <a name="circuit-breaker-pattern"></a>Trennschalter-Muster
 
@@ -20,7 +19,7 @@ Behandeln Sie Fehler, deren Behebung beim Herstellen einer Verbindung mit einem 
 
 ## <a name="context-and-problem"></a>Kontext und Problem
 
-In einer verteilten Umgebung können bei Aufrufen von Remoteressourcen und -diensten vorübergehende Störungen auftreten, z. B. langsame Netzwerkverbindungen, Timeouts oder überlastete bzw. vorübergehend nicht verfügbare Ressourcen, die zu Fehlern führen können. Diese Störungen korrigieren sich typischerweise nach kurzer Zeit selbst, und eine robuste Cloudanwendung sollte bereit sein, sie mit einer Strategie wie dem [Wiederholungsmuster][retry-pattern] zu behandeln.
+In einer verteilten Umgebung können bei Aufrufen von Remoteressourcen und -diensten vorübergehende Störungen auftreten, z. B. langsame Netzwerkverbindungen, Timeouts oder überlastete bzw. vorübergehend nicht verfügbare Ressourcen, die zu Fehlern führen können. Diese Fehler beheben sich in der Regel nach kurzer Zeit von selbst, und eine robuste Cloudanwendung sollte bereit sein, sie mit einer Strategie wie dem [Wiederholungsmuster][retry-pattern] zu behandeln.
 
 Es kann aber auch Situationen geben, in denen Störungen bzw. Fehler auf unvorhergesehene Ereignisse zurückzuführen sind, deren Behebung viel länger dauern kann. Der Schweregrad dieser Störungen kann von einem teilweisen Verlust der Konnektivität bis hin zum vollständigen Ausfall eines Diensts reichen. In solchen Situationen kann es für eine Anwendung zwecklos sein, einen Vorgang, der unwahrscheinlich ist, ständig zu wiederholen. Stattdessen sollte die Anwendung schnell akzeptieren, dass der Vorgang fehlerhaft ist, und diesen Fehler entsprechend behandeln.
 
@@ -36,13 +35,13 @@ Ein Trennschalter fungiert als Proxy für Vorgänge, bei denen möglicherweise F
 
 Der Proxy kann als Zustandsautomat mit den folgenden Zuständen implementiert werden, die die Funktionalität eines elektrischen Trennschalters simulieren:
 
-- **Geschlossen**: Die Anforderung der Anwendung wird an den Vorgang weitergeleitet. Der Proxy führt eine Zählung der Anzahl der letzten Fehler durch, und wenn der Aufruf des Vorgangs erfolglos ist, inkrementiert der Proxy diesen Zähler. Überschreitet die Anzahl der letzten Fehler innerhalb eines bestimmten Zeitraums einen bestimmten Schwellenwert, wird der Proxy in den Zustand **Geöffnet** versetzt. An diesem Punkt startet der Proxy einen Timeout-Timer, und wenn dieser Timer abläuft, wird der Proxy in den Zustand **Halb geöffnet** versetzt.
+- **Geschlossen:** Die Anforderung der Anwendung wird an den Vorgang weitergeleitet. Der Proxy führt eine Zählung der Anzahl der letzten Fehler durch, und wenn der Aufruf des Vorgangs erfolglos ist, inkrementiert der Proxy diesen Zähler. Überschreitet die Anzahl der letzten Fehler innerhalb eines bestimmten Zeitraums einen bestimmten Schwellenwert, wird der Proxy in den Zustand **Geöffnet** versetzt. An diesem Punkt startet der Proxy einen Timeout-Timer, und wenn dieser Timer abläuft, wird der Proxy in den Zustand **Halb geöffnet** versetzt.
 
     > Der Zweck des Timeout-Timers ist es, dem System Zeit zur Behebung des Problems zu geben, das die Störung verursacht hat, bevor es der Anwendung erlaubt wird, den Vorgang erneut auszuführen.
 
-- **Geöffnet**: Die Anforderung der Anwendung schlägt sofort fehl und eine Ausnahme wird an die Anwendung zurückgegeben.
+- **Geöffnet:** Bei der Anforderung der Anwendung tritt sofort ein Fehler auf, und an die Anwendung wird eine Ausnahme zurückgegeben.
 
-- **Halb geöffnet**: Eine begrenzte Anzahl von Anforderungen aus der Anwendung dürfen den Vorgang durchlaufen und aufrufen. Wenn diese Anforderungen erfolgreich sind, wird davon ausgegangen, dass die Störung, die zuvor den Fehler verursacht hat, behoben wurde und der Trennschalter in den Zustand **Geschlossen** wechselt (der Fehlerzähler wird zurückgesetzt). Wenn bei einer Anforderung ein Fehler auftritt, geht der Trennschalter davon aus, dass die Störung noch vorhanden ist, sodass er in den Zustand **Geöffnet** zurückkehrt und den Timeout-Timer neu startet, um dem System eine weitere Frist für die Wiederherstellung nach dem Fehler zu geben.
+- **Halb geöffnet:** Eine begrenzte Anzahl von Anforderungen aus der Anwendung wird zugelassen und darf den Vorgang aufrufen. Wenn diese Anforderungen erfolgreich sind, wird davon ausgegangen, dass die Störung, die zuvor den Fehler verursacht hat, behoben wurde und der Trennschalter in den Zustand **Geschlossen** wechselt (der Fehlerzähler wird zurückgesetzt). Wenn bei einer Anforderung ein Fehler auftritt, geht der Trennschalter davon aus, dass die Störung noch vorhanden ist, sodass er in den Zustand **Geöffnet** zurückkehrt und den Timeout-Timer neu startet, um dem System eine weitere Frist für die Wiederherstellung nach dem Fehler zu geben.
 
     > Mit dem Zustand **Halb geöffnet** kann verhindert werden, dass ein in der Wiederherstellung befindlicher Dienst plötzlich mit Anforderungen überschwemmt wird. Wenn ein Dienst wiederhergestellt wird, kann er möglicherweise eine begrenzte Anzahl von Anforderungen unterstützen, bis die Wiederherstellung abgeschlossen ist. Aber während der Wiederherstellung kann eine Vielzahl an Aufgaben dazu führen, dass der Dienst erneut den Timeout überschreitet oder ausfällt.
 
@@ -68,7 +67,7 @@ Bei der Entscheidung, wie dieses Muster implementiert werden soll, sind die folg
 
 **Wiederherstellbarkeit**: Sie sollten den Trennschalter so konfigurieren, dass er dem wahrscheinlichen Wiederherstellungsmuster des zu schützenden Vorgangs entspricht. Wenn sich der Trennschalter z. B. über einen längeren Zeitraum im Zustand **Geöffnet** befindet, kann er Ausnahmen auslösen, auch wenn die Fehlerursache behoben ist. Ebenso könnte ein Trennschalter schwanken und die Reaktionszeiten von Anwendungen verkürzen, wenn er zu schnell vom Zustand **Geöffnet** in den Zustand **Halb geöffnet** wechselt.
 
-**Testen fehlerhafter Vorgänge**: Im Zustand **Geöffnet** kann ein Trennschalter für den Remotedienst oder die Ressource regelmäßig den Ping-Befehl ausführen, um zu ermitteln, ob der Dienst oder die Ressource wieder verfügbar ist, anstatt einen Timer zur Ermittlung zu verwenden, wann in den Zustand **Halb geöffnet** gewechselt werden muss. Dieser Ping-Befehl könnte die Form eines Aufrufversuchs für einen Vorgang annehmen, der zuvor fehlerhaft war, oder er könnte einen speziellen Vorgang verwenden, der vom Remotedienst speziell für die Prüfung der Integrität des Dienstes bereitgestellt wird, wie durch das [Muster zur Überwachung des Integritätsendpunkts](health-endpoint-monitoring.md) beschrieben.
+**Testen fehlerhafter Vorgänge**: Im Zustand **Geöffnet** kann ein Trennschalter für den Remotedienst oder die Ressource regelmäßig den Ping-Befehl ausführen, um zu ermitteln, ob der Dienst oder die Ressource wieder verfügbar ist, anstatt einen Timer zur Ermittlung zu verwenden, wann in den Zustand **Halb geöffnet** gewechselt werden muss. Dieser Ping-Befehl könnte die Form eines Aufrufversuchs für einen Vorgang annehmen, der zuvor fehlerhaft war, oder er könnte einen speziellen Vorgang verwenden, der vom Remotedienst speziell für die Prüfung der Integrität des Dienstes bereitgestellt wird, wie durch das [Muster zur Überwachung des Integritätsendpunkts](./health-endpoint-monitoring.md) beschrieben.
 
 **Manuelle Außerkraftsetzung**: In einem System, in sich dem die Wiederherstellungszeit für einen fehlerhaften Vorgang als extrem variabel erweist, ist es vorteilhaft, eine manuelle Option zum Zurücksetzen bereitzustellen, mit der ein Administrator einen Trennschalter schließen (und den Fehlerzähler zurücksetzen) kann. Ebenso könnte ein Administrator einen Trennschalter in den Zustand **Geöffnet** zwingen (und den Timeout-Timer neu starten), wenn der durch den Trennschalter geschützte Vorgang vorübergehend nicht verfügbar ist.
 
@@ -284,9 +283,6 @@ catch (Exception ex)
 
 Die folgenden Muster können für die Implementierung dieses Musters relevant sein:
 
-- [Wiederholungsmuster][retry-pattern]: Beschreibt, wie eine Anwendung beim Herstellen einer Verbindung mit einem Dienst oder einer Netzwerkressource antizipierte, temporäre Fehler behandeln kann, indem ein zuvor nicht erfolgreich durchgeführter Vorgang transparent wiederholt wird.
+- [Wiederholungsmuster:](./retry.md) Beschreibt, wie eine Anwendung beim Herstellen einer Verbindung mit einem Dienst oder einer Netzwerkressource antizipierte, temporäre Fehler behandeln kann, indem ein zuvor nicht erfolgreich durchgeführter Vorgang transparent wiederholt wird.
 
-- [Muster für Überwachung des Integritätsendpunkts](health-endpoint-monitoring.md): Ein Trennschalter könnte in der Lage sein, den Zustand eines Diensts zu testen, indem er eine Anforderung an einen Endpunkt sendet, der durch den Dienst exponiert wird. Der Dienst sollte Informationen über seinen Zustand zurückgeben.
-
-
-[retry-pattern]: ./retry.md
+- [Muster für Überwachung der Integrität von Endpunkten:](./health-endpoint-monitoring.md) Ein Trennschalter könnte in der Lage sein, den Zustand eines Diensts zu testen, indem er eine Anforderung an einen Endpunkt sendet, der durch den Dienst exponiert wird. Der Dienst sollte Informationen über seinen Zustand zurückgeben.

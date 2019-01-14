@@ -1,25 +1,19 @@
 ---
-title: Warteschlangenbasierter Lastenausgleich
+title: Warteschlangenbasiertes Lastenausgleichsmuster
+titleSuffix: Cloud Design Patterns
 description: Verwenden Sie eine Warteschlange, die als Puffer zwischen einem Task und einem von diesem aufgerufenen Dienst fungiert, um unregelmäßig auftretende hohe Lasten aufzufangen.
 keywords: Entwurfsmuster
 author: dragon119
-ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- availability
-- performance-scalability
-- resiliency
-ms.openlocfilehash: 99b226511fe14bffdab3cdcf65d4e6cffe89bba6
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.date: 01/02/2019
+ms.custom: seodec18
+ms.openlocfilehash: bb519fa52fcb6472733b6e52d7332d470eda8349
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359318"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011547"
 ---
 # <a name="queue-based-load-leveling-pattern"></a>Warteschlangenbasiertes Lastenausgleichsmuster
-
-[!INCLUDE [header](../_includes/header.md)]
 
 Verwenden Sie eine Warteschlange, die als Puffer zwischen einem Task und einem von ihm aufgerufenen Dienst fungiert, um unregelmäßig auftretende hohe Lasten aufzufangen, die den Ausfall des Diensts oder eine Zeitüberschreitung des Tasks verursachen können. Dies kann dazu beitragen, die Auswirkungen von Bedarfsspitzen auf die Verfügbarkeit und Reaktionsfähigkeit von Task und Dienst zu minimieren.
 
@@ -63,20 +57,26 @@ Dieses Muster ist nicht hilfreich, wenn die Anwendung eine Antwort vom Dienst mi
 
 ## <a name="example"></a>Beispiel
 
-Eine Microsoft Azure-Webrolle speichert Daten mit einem eigenen Speicherdienst. Wenn eine große Anzahl von Instanzen der Webrolle gleichzeitig ausgeführt wird, kann der Speicherdienst möglicherweise nicht schnell genug auf Anforderungen reagieren, um zu verhindern, dass für diese Anforderungen eine Zeitüberschreitung auftritt oder dass sie fehlschlagen. In dieser Abbildung wird ein Dienst veranschaulicht, der durch eine große Anzahl gleichzeitiger Anforderungen von Instanzen einer Webrolle überlastet wird.
+Eine Web-App schreibt Daten in einen externen Datenspeicher. Bei gleichzeitiger Ausführung zahlreicher Instanzen der Web-App kann der Datenspeicher möglicherweise nicht schnell genug auf Anforderungen reagieren, was zu Anforderungstimeouts, zur Drosselung von Anforderungen oder zu anderen Fehlern führen kann. Das folgende Diagramm zeigt einen Datenspeicher, der aufgrund einer großen Menge gleichzeitiger Anforderungen von Instanzen einer Anwendung überlastet ist:
 
-![Abbildung 2 – Ein Dienst, der durch eine große Anzahl gleichzeitiger Anforderungen von Instanzen einer Webrolle überlastet wird](./_images/queue-based-load-leveling-overwhelmed.png)
+![Abbildung 2: Ein Dienst, der aufgrund einer großen Menge gleichzeitiger Anforderungen von Instanzen einer Web-App überlastet ist.](./_images/queue-based-load-leveling-overwhelmed.png)
+
+Zur Behebung dieses Problems können Sie eine Warteschlange für den Lastenausgleich zwischen den Anwendungsinstanzen und dem Datenspeicher verwenden. Eine Azure Functions-App liest die Nachrichten aus der Warteschlange und führt die an den Datenspeicher gerichteten Lese-/Schreibanforderungen aus. Die Anwendungslogik in der Funktions-App kann die Rate steuern, mit der Anforderungen an den Datenspeicher übergeben werden, um eine Überlastung des Datenspeichers zu verhindern. (Andernfalls verursacht die Funktions-App das gleiche Problem am Back-End.)
+
+![Abbildung 3: Verwenden einer Warteschlange und einer Funktions-App für den Lastenausgleich](./_images/queue-based-load-leveling-function.png)
 
 
-Zum Beheben dieses Problems können Sie eine Warteschlange für den Lastenausgleich zwischen den Webrolleninstanzen und dem Speicherdienst verwenden. Der Speicherdienst ist jedoch zum Akzeptieren synchroner Anforderungen konzipiert und kann nicht problemlos geändert werden, um Nachrichten zu lesen und den Durchsatz zu bewältigen. Sie können eine Workerrolle einführen, die als Proxydienst fungiert, der Anforderungen aus der Warteschlange empfängt und an den Speicherdienst weiterleitet. Die Anwendungslogik in der Workerrolle kann die Rate steuern, mit der Anforderungen an den Speicherdienst übergeben werden, um eine Überlastung des Speicherdiensts zu verhindern. In dieser Abbildung wird die Verwendung einer Warteschlange und einer Workerrolle für den Lastenausgleich zwischen Instanzen der Webrolle und des Diensts veranschaulicht.
-
-![Abbildung 3 – Verwendung einer Warteschlange und einer Workerrolle für den Lastenausgleich zwischen Instanzen der Webrolle und des Diensts](./_images/queue-based-load-leveling-worker-role.png)
 
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
 Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
 
 - [Einführung in asynchrone Nachrichten](https://msdn.microsoft.com/library/dn589781.aspx). Nachrichtenwarteschlangen sind grundsätzlich asynchron. Möglicherweise muss die Anwendungslogik in einem Task neu entworfen werden, wenn dieser nicht mehr direkt mit einem Dienst kommuniziert, sondern eine Nachrichtenwarteschlange verwendet. Ebenso kann es erforderlich sein, einen Dienst umzugestalten, damit er Anforderungen aus einer Nachrichtenwarteschlange akzeptiert. Alternativ kann möglicherweise ein Proxydienst implementiert werden, wie im Beispiel beschrieben.
-- [Muster „Konkurrierende Consumer“](competing-consumers.md). Möglicherweise können mehrere Instanzen eines Diensts ausgeführt werden, von denen jede als Consumer von Nachrichten aus der Warteschlange für den Lastenausgleich fungiert. Sie können diesen Ansatz verwenden, um die Rate anzupassen, mit der Nachrichten empfangen und an einen Dienst übergeben werden.
-- [Drosselungsmuster](throttling.md). Eine einfache Möglichkeit zum Implementieren von Drosselung für einen Dienst ist die Verwendung von warteschlangenbasiertem Lastenausgleich und die Weiterleitung aller Anforderungen an einen Dienst über eine Nachrichtenwarteschlange. Der Dienst kann Anforderungen mit einer Rate verarbeiten, die sicherstellt, dass die für den Dienst erforderlichen Ressourcen nicht erschöpft werden, und mit der die möglicherweise auftretenden Konflikte reduziert werden.
-- [Konzepte des Warteschlangendiensts](https://msdn.microsoft.com/library/azure/dd179353.aspx). Informationen zum Auswählen eines Nachrichten- und Warteschlangenmechanismus in Azure-Anwendungen.
+
+- [Muster „Konkurrierende Consumer“](./competing-consumers.md). Möglicherweise können mehrere Instanzen eines Diensts ausgeführt werden, von denen jede als Consumer von Nachrichten aus der Warteschlange für den Lastenausgleich fungiert. Sie können diesen Ansatz verwenden, um die Rate anzupassen, mit der Nachrichten empfangen und an einen Dienst übergeben werden.
+
+- [Drosselungsmuster](./throttling.md). Eine einfache Möglichkeit zum Implementieren von Drosselung für einen Dienst ist die Verwendung von warteschlangenbasiertem Lastenausgleich und die Weiterleitung aller Anforderungen an einen Dienst über eine Nachrichtenwarteschlange. Der Dienst kann Anforderungen mit einer Rate verarbeiten, die sicherstellt, dass die für den Dienst erforderlichen Ressourcen nicht erschöpft werden, und mit der die möglicherweise auftretenden Konflikte reduziert werden.
+
+- [Auswahl von Azure-Messagingdiensten: Event Grid, Event Hubs und Service Bus](/azure/event-grid/compare-messaging-services). Informationen zum Auswählen eines Nachrichten- und Warteschlangenmechanismus in Azure-Anwendungen.
+
+- [Verbessern der Skalierbarkeit in einer Azure-Webanwendung](../reference-architectures/app-service-web-app/scalable-web-app.md). Diese Referenzarchitektur enthält einen warteschlangenbasierten Lastenausgleich.

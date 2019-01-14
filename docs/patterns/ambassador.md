@@ -1,14 +1,17 @@
 ---
 title: Botschaftermuster
+titleSuffix: Cloud Design Patterns
 description: Erstellen Sie Hilfsdienste, die im Auftrag von Consumerdiensten oder -anwendungen Netzwerkanforderungen senden.
+keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 6c545619aab6a5817e55854350e3769834df27cd
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: f03bfa0b45494ac1428aeee5cc6c413d5607ba79
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540792"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009779"
 ---
 # <a name="ambassador-pattern"></a>Botschaftermuster
 
@@ -18,7 +21,7 @@ Dieses Muster kann hilfreich sein, um allgemeine Clientkonnektivitätstasks spra
 
 ## <a name="context-and-problem"></a>Kontext und Problem
 
-Resiliente cloudbasierte Anwendungen erfordern Features wie [Sicherung][circuit-breaker], Routing, Messung und Überwachung sowie die Fähigkeit, netzwerkbezogene Konfigurationsupdates durchzuführen. Es kann schwierig oder sogar unmöglich sein, ältere Anwendungen oder vorhandene Codebibliotheken zu aktualisieren und diese Features hinzuzufügen, weil der Code nicht mehr verwaltet wird oder durch das Entwicklungsteam nicht einfach geändert werden kann.
+Resiliente cloudbasierte Anwendungen erfordern Features wie [Sicherung](./circuit-breaker.md), Routing, Messung und Überwachung sowie die Fähigkeit, netzwerkbezogene Konfigurationsupdates durchzuführen. Es kann schwierig oder sogar unmöglich sein, ältere Anwendungen oder vorhandene Codebibliotheken zu aktualisieren und diese Features hinzuzufügen, weil der Code nicht mehr verwaltet wird oder durch das Entwicklungsteam nicht einfach geändert werden kann.
 
 Netzwerkaufrufe erfordern möglicherweise auch einen hohen Konfigurationsaufwand hinsichtlich Verbindung, Authentifizierung und Autorisierung. Wenn diese Aufrufe über mehrere Anwendungen hinweg verwendet werden, die mit verschiedenen Sprachen und Frameworks erstellt wurden, müssen die Aufrufe für jede dieser Instanzen konfiguriert werden. Darüber hinaus müssen möglicherweise Netzwerk- und Sicherheitsfunktionen durch ein zentrales Team in Ihrer Organisation verwaltet werden. Bei einer umfangreichen Codebasis kann es riskant sein, wenn das Team Anwendungscode aktualisieren soll, mit dem es nicht vertraut ist.
 
@@ -26,11 +29,11 @@ Netzwerkaufrufe erfordern möglicherweise auch einen hohen Konfigurationsaufwand
 
 Platzieren Sie Clientframeworks und -bibliotheken in einen externen Prozess, der als Proxy zwischen Ihrer Anwendung und externen Diensten fungiert. Stellen Sie den Proxy in der gleichen Hostumgebung bereit wie Ihre Anwendung, um Routing-, Resilienz- und Sicherheitsfeatures steuern zu können und um Zugriffseinschränkungen aufgrund des Hosts zu verhindern. Sie können das Botschaftermuster auch zum Standardisieren und Erweitern der Instrumentierung verwenden. Der Proxy kann Leistungsmetriken wie Latenz und Ressourcennutzung überwachen. Diese Überwachung erfolgt in der gleichen Hostumgebung, in der sich auch die Anwendung befindet.
 
-![](./_images/ambassador.png)
+![Diagramm des Botschaftermusters](./_images/ambassador.png)
 
 Features, die in den Botschafter ausgelagert werden, können unabhängig von der Anwendung verwaltet werden. Sie können den Botschafter aktualisieren und ändern, ohne die Legacyfunktionen der Anwendung zu beeinträchtigen. Das Muster ermöglicht es separaten Spezialistenteams auch, Sicherheits-, Netzwerk- oder Authentifizierungsfeatures zu implementieren und zu verwalten, die in den Botschafter verschoben wurden.
 
-Botschafterdienste können als [Sidecar][sidecar] bereitgestellt werden, um den Lebenszyklus einer konsumierenden Anwendung oder eines konsumierenden Diensts zu begleiten. Alternativ dazu kann ein Botschafter auch als Daemon oder Windows-Dienst bereitgestellt werden, wenn er von mehreren separaten Prozessen auf einem gemeinsamen Host verwendet wird. Wenn der konsumierende Dienst in Form von Containern bereitgestellt wurde, sollte der Botschafter als separater Container auf dem gleichen Host erstellt werden. Für die Kommunikation müssen die geeigneten Links konfiguriert werden.
+Botschafterdienste können als [Sidecar](./sidecar.md) bereitgestellt werden, um den Lebenszyklus einer konsumierenden Anwendung oder eines konsumierenden Diensts zu begleiten. Alternativ dazu kann ein Botschafter auch als Daemon oder Windows-Dienst bereitgestellt werden, wenn er von mehreren separaten Prozessen auf einem gemeinsamen Host verwendet wird. Wenn der konsumierende Dienst in Form von Containern bereitgestellt wurde, sollte der Botschafter als separater Container auf dem gleichen Host erstellt werden. Für die Kommunikation müssen die geeigneten Links konfiguriert werden.
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
@@ -58,7 +61,7 @@ Dieses Muster ist in folgenden Fällen möglicherweise nicht geeignet:
 
 Das folgende Diagramm zeigt eine Anwendung, die über einen Botschafterproxy eine Anforderung an einen Remotedienst sendet. Der Botschafter sorgt für Routing, Sicherung und Protokollierung. Er ruft den Remotedienst auf und gibt die Antwort an die Clientanwendung zurück:
 
-![](./_images/ambassador-example.png) 
+![Beispiel für das Botschaftermuster](./_images/ambassador-example.png)
 
 ## <a name="related-guidance"></a>Verwandte Leitfäden
 
@@ -66,6 +69,4 @@ Das folgende Diagramm zeigt eine Anwendung, die über einen Botschafterproxy ein
 
 <!-- links -->
 
-[circuit-breaker]: ./circuit-breaker.md
 [resiliency-patterns]: ./category/resiliency.md
-[sidecar]: ./sidecar.md

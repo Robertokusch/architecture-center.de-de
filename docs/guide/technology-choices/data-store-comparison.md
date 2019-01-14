@@ -1,14 +1,16 @@
 ---
 title: Kriterien für die Auswahl eines Datenspeichers
-description: Übersicht über Azure-Computeoptionen
+titleSuffix: Azure Application Architecture Guide
+description: Übersicht über Azure-Computeoptionen.
 author: MikeWasson
 ms.date: 06/01/2018
-ms.openlocfilehash: f8996cdeb937a28b3f3056da3921a3f89dd36b1a
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seojan19
+ms.openlocfilehash: 156df11d74d033d40d943c60e8e41d4920a24175
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916429"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114316"
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>Kriterien für die Auswahl eines Datenspeichers
 
@@ -21,46 +23,68 @@ Sammeln Sie für den Vergleich zunächst möglichst viele der folgenden Informat
 ### <a name="functional-requirements"></a>Funktionsanforderungen
 
 - **Datenformat:** Welche Arten von Daten möchten Sie speichern? Zu den allgemeinen Typen gehören Transaktionsdaten, JSON-Objekte, Telemetriedaten, Suchindizes oder Flatfiles.
+
 - **Datengröße:** Wie umfangreich sind die Entitäten, die Sie speichern möchten? Müssen diese Entitäten als einzelnes Dokument beibehalten werden, oder können sie auf mehrere Dokumente, Tabellen, Sammlungen usw. aufgeteilt werden?
-- **Skalierung und Struktur:** Welche Gesamtmenge an Speicherkapazität benötigen Sie? Gehen Sie davon aus, dass Sie die Daten partitionieren? 
-- **Datenbeziehungen:** Müssen Ihre Daten 1:n- oder m:n-Beziehungen unterstützen? Sind die Beziehungen selbst ein wichtiger Teil der Daten? Müssen Sie Daten innerhalb des gleichen DataSets oder aus externen DataSets verknüpfen oder auf andere Weise kombinieren? 
+
+- **Skalierung und Struktur:** Welche Gesamtmenge an Speicherkapazität benötigen Sie? Gehen Sie davon aus, dass Sie die Daten partitionieren?
+
+- **Datenbeziehungen:** Müssen Ihre Daten 1:n- oder m:n-Beziehungen unterstützen? Sind die Beziehungen selbst ein wichtiger Teil der Daten? Müssen Sie Daten innerhalb des gleichen DataSets oder aus externen DataSets verknüpfen oder auf andere Weise kombinieren?
+
 - **Konsistenzmodell:** Wie wichtig ist es, dass in einem Knoten durchgeführte Aktualisierungen in anderen Knoten angezeigt werden, damit weitere Änderungen vorgenommen werden können? Können Sie letztlich Konsistenz akzeptieren? Benötigen Sie ACID-Garantien für Transaktionen?
+
 - **Schemaflexibilität:** Welche Art von Schemas wenden Sie auf Ihre Daten an? Verwenden Sie ein festes Schema, ein Schema bei Schreibvorgängen oder ein Schema bei Lesevorgängen?
+
 - **Parallelität:** Welche Art von Parallelitätsmechanismus möchten Sie beim Aktualisieren und Synchronisieren von Daten verwenden? Werden in der Anwendung viele Aktualisierungen durchgeführt, die potenziell zu Konflikten führen? Wenn dies der Fall ist, benötigen Sie unter Umständen die Datensatzsperrung und Steuerung für pessimistische Parallelität. Können Sie alternativ die Steuerung für optimistische Parallelität unterstützen? Wenn ja, ist eine einfache zeitstempelbasierte Parallelitätssteuerung ausreichend. Oder benötigen Sie die erweiterte Funktion der Parallelitätssteuerung mit mehreren Versionen?
+
 - **Datenverschiebung:** Müssen in Ihrer Lösung ETL-Aufgaben durchgeführt werden, um Daten in andere Speicher oder Data Warehouses zu verschieben?
+
 - **Datenlebenszyklus:** Werden die Daten einmal geschrieben und häufig gelesen? Können sie in Cool oder Cold Storage verschoben werden?
+
 - **Andere unterstützte Features:** Benötigen Sie andere spezifische Features, z.B. Schemaüberprüfung, Aggregation, Indizierung, Volltextsuche, MapReduce oder andere Abfragefunktionen?
 
 ### <a name="non-functional-requirements"></a>Nicht funktionsbezogene Anforderungen
 
 - **Leistung und Skalierbarkeit:** Wie lauten Ihre Anforderungen an die Datenleistung? Haben Sie spezielle Anforderungen an Datenerfassungs- und Datenverarbeitungsraten? Welche zulässigen Antwortzeiten für die Abfrage und Aggregation der Daten nach der Erfassung werden benötigt? Auf welche Größe muss der Datenspeicher zentral hochskaliert werden können? Ist Ihre Workload eher leseintensiv oder schreibintensiv?
-- **Zuverlässigkeit:** Welche Gesamt-SLA muss unterstützt werden? Welche Fehlertoleranzebene müssen Sie für Datenconsumer bereitstellen? Welche Art von Sicherungs-und Wiederherstellungsfunktionen benötigen Sie? 
-- **Replikation:** Müssen Ihre Daten auf mehrere Replikate oder Regionen verteilt werden? Welche Art von Datenreplikationsfunktionen benötigen Sie? 
-- **Einschränkungen:** Entsprechen die Einschränkungen eines bestimmten Datenspeichers Ihren Anforderungen an die Skalierung, die Anzahl der Verbindungen und den Durchsatz? 
+
+- **Zuverlässigkeit:** Welche Gesamt-SLA muss unterstützt werden? Welche Fehlertoleranzebene müssen Sie für Datenconsumer bereitstellen? Welche Art von Sicherungs-und Wiederherstellungsfunktionen benötigen Sie?
+
+- **Replikation:** Müssen Ihre Daten auf mehrere Replikate oder Regionen verteilt werden? Welche Art von Datenreplikationsfunktionen benötigen Sie?
+
+- **Einschränkungen:** Entsprechen die Einschränkungen eines bestimmten Datenspeichers Ihren Anforderungen an die Skalierung, die Anzahl der Verbindungen und den Durchsatz?
 
 ### <a name="management-and-cost"></a>Verwaltung und Kosten
 
 - **Verwalteter Dienst:** Verwenden Sie nach Möglichkeit einen verwalteten Datendienst, es sei denn, Sie benötigen bestimmte Funktionen, die nur in einem IaaS-gehosteten Datenspeicher enthalten sind.
+
 - **Regionale Verfügbarkeit:** Ist der Dienst im Fall von verwalteten Diensten in allen Azure-Regionen verfügbar? Muss Ihre Lösung in bestimmten Azure-Regionen gehostet werden?
+
 - **Übertragbarkeit:** Müssen Ihre Daten zu lokalen oder externen Rechenzentren oder zu anderen Cloudhostingumgebungen migriert werden?
+
 - **Lizenzierung:** Bevorzugen Sie einen proprietären gegenüber einem OSS-Lizenztyp? Gibt es andere externe Einschränkungen im Hinblick auf den zu verwendenden Lizenztyp?
+
 - **Gesamtkosten:** Wie hoch sind die Gesamtkosten für die Verwendung des Diensts in Ihrer Lösung? Wie viele Instanzen müssen ausgeführt werden, um Ihren Anforderungen an die Betriebszeit und den Durchsatz gerecht zu werden? Berücksichtigen Sie bei dieser Berechnung auch die Betriebskosten. Ein Grund für verwaltete Dienste sind die reduzierten Betriebskosten.
+
 - **Kosteneffizienz:** Können Sie Ihre Daten partitionieren, um sie kosteneffektiver zu speichern? Können beispielsweise umfangreiche Objekte aus einer kostenintensiven relationalen Datenbank in einen Objektspeicher verschoben werden?
 
 ### <a name="security"></a>Sicherheit
 
 - **Sicherheit**. Welche Art von Verschlüsselung benötigen Sie? Benötigen Sie die Verschlüsselung ruhender Daten? Welche Authentifizierungsmethode möchten Sie zur Herstellung einer Verbindung mit den Daten verwenden?
+
 - **Überwachung:** Welche Art von Überwachungsprotokoll müssen Sie generieren?
+
 - **Netzwerkanforderungen:** Muss der Zugriff auf Ihre Daten über andere Netzwerkressourcen beschränkt oder auf andere Weise verwaltet werden? Darf nur innerhalb der Azure-Umgebung auf die Daten zugegriffen werden? Müssen die Daten über bestimmte IP-Adressen oder Subnetze zugänglich sein? Müssen sie über Anwendungen oder Dienste zugänglich sein, die lokal oder in anderen externen Rechenzentren gehostet werden?
 
 ### <a name="devops"></a>DevOps
 
 - **Fähigkeiten:** Ist Ihr Team besonders vertraut mit der Verwendung bestimmter Programmiersprachen, Betriebssysteme oder anderen Technologien? Stellen andere dagegen potenziell eine Schwierigkeit für das Team dar?
+
 - **Clients:** Besteht eine gute Clientunterstützung für Ihre Entwicklungssprachen?
 
 In den folgenden Abschnitten werden verschiedene Datenspeichermodelle in Bezug auf das Workloadprofil, die Datentypen und Beispiele für Anwendungsfälle verglichen.
 
 ## <a name="relational-database-management-systems-rdbms"></a>Managementsysteme für relationale Datenbanken (RDBMS)
+
+<!-- markdownlint-disable MD033 -->
 
 <table>
 <tr><td><strong>Workload</strong></td>
@@ -305,7 +329,7 @@ In den folgenden Abschnitten werden verschiedene Datenspeichermodelle in Bezug a
     <td>
         <ul>
             <li>Datenanalysen</li>
-            <li>Enterprise BI   </li>
+            <li>Enterprise BI</li>
         </ul>
     </td>
 </tr>
@@ -324,7 +348,6 @@ In den folgenden Abschnitten werden verschiedene Datenspeichermodelle in Bezug a
     </td>
 </tr>
 </table>
-
 
 ## <a name="time-series-databases"></a>Zeitreihendatenbanken
 
@@ -424,3 +447,5 @@ In den folgenden Abschnitten werden verschiedene Datenspeichermodelle in Bezug a
     </td>
 </tr>
 </table>
+
+<!-- markdownlint-enable MD033 -->

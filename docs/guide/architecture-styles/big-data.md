@@ -1,22 +1,24 @@
 ---
 title: Architekturstil für Big Data
-description: Dieser Artikel beschreibt die Vorteile, Herausforderungen und bewährten Methoden für Big Data-Architekturen in Azure.
+titleSuffix: Azure Application Architecture Guide
+description: In diesem Artikel werden die Vorteile, Herausforderungen und bewährten Methoden für Big Data-Architekturen in Azure beschrieben.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 107ea7ad4e97a891236596291b0cee41a72eb865
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seojan19
+ms.openlocfilehash: 507cd4dcf74ed7e106a99b93dd029dfdffd6e4bc
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295564"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112497"
 ---
 # <a name="big-data-architecture-style"></a>Architekturstil für Big Data
 
 Eine Big Data-Architektur ist für die Erfassung, Verarbeitung und Analyse von Daten konzipiert, die für herkömmliche Datenbanksysteme zu groß oder zu komplex sind.
 
-![](./images/big-data-logical.svg)
+![Logisches Diagramm einer Big Data-Architektur](./images/big-data-logical.svg)
 
- Big Data-Lösungen umfassen üblicherweise mindestens einen der folgenden Workloadtypen:
+Big Data-Lösungen umfassen üblicherweise mindestens einen der folgenden Workloadtypen:
 
 - Batchverarbeitung von ruhenden Big Data-Quellen
 - Echtzeitverarbeitung von Big Data während der Übertragung
@@ -25,25 +27,25 @@ Eine Big Data-Architektur ist für die Erfassung, Verarbeitung und Analyse von D
 
 Die meisten Big Data-Architekturen enthalten einige oder alle der folgenden Komponenten:
 
-- **Datenquellen**. Alle Big Data-Lösungen beginnen mit mindestens einer Datenquelle. Beispiele:
+- **Datenquellen**: Alle Big Data-Lösungen beginnen mit mindestens einer Datenquelle. Beispiele:
 
-    - Anwendungsdatenspeicher wie z.B. relationale Datenbanken
-    - Von Anwendungen erzeugte statische Dateien, z.B. Webserver-Protokolldateien
-    - Echtzeitdatenquellen wie z.B. IoT-Geräte
+  - Anwendungsdatenspeicher wie z.B. relationale Datenbanken
+  - Von Anwendungen erzeugte statische Dateien, z.B. Webserver-Protokolldateien
+  - Echtzeitdatenquellen wie z.B. IoT-Geräte
 
-- **Datenspeicher**. Daten für die Batchverarbeitung werden in der Regel in einem verteilten Dateispeicher gespeichert, der große Mengen umfangreicher Dateien in verschiedenen Formaten aufnehmen kann. Diese Art Speicher wird häufig als *Data Lake* bezeichnet. Ein solcher Speicher lässt sich beispielsweise über Azure Data Lake Store oder Blobcontainer in Azure Storage implementieren. 
+- **Datenspeicherung:** Daten für die Batchverarbeitung werden in der Regel in einem verteilten Dateispeicher gespeichert, der große Mengen an umfangreichen Dateien in verschiedenen Formaten aufnehmen kann. Diese Art Speicher wird häufig als *Data Lake* bezeichnet. Ein solcher Speicher lässt sich beispielsweise über Azure Data Lake Store oder Blobcontainer in Azure Storage implementieren.
 
-- **Batchverarbeitung**. Da die Datasets so umfangreich sind, muss eine Big Data-Lösung Datendateien mithilfe von Batchaufträgen mit langer Ausführungszeit verarbeiten, um die Daten zu filtern, zu aggregieren und auch anderweitig auf die Analyse vorzubereiten. Diese Aufträge beinhalten in der Regel das Lesen von Quelldateien, ihre Verarbeitung und das Schreiben der Ausgabe in neue Dateien. Zu den Optionen gehört z.B. Folgendes: die Ausführung von U-SQL-Aufträgen in Azure Data Lake Analytics, die Verwendung von Hive-, Pig- oder benutzerdefinierten MapReduce-Aufträgen in einem HDInsight Hadoop-Cluster oder die Verwendung von Java-, Scala- oder Python-Programmen in einem HDInsight Spark-Cluster.
+- **Batchverarbeitung:** Da die Datasets so umfangreich sind, muss eine Big Data-Lösung Datendateien mithilfe von Batchaufträgen mit langer Ausführungszeit verarbeiten, um die Daten zu filtern, zu aggregieren und anderweitig auf die Analyse vorzubereiten. Diese Aufträge beinhalten in der Regel das Lesen von Quelldateien, ihre Verarbeitung und das Schreiben der Ausgabe in neue Dateien. Zu den Optionen gehört z.B. Folgendes: die Ausführung von U-SQL-Aufträgen in Azure Data Lake Analytics, die Verwendung von Hive-, Pig- oder benutzerdefinierten MapReduce-Aufträgen in einem HDInsight Hadoop-Cluster oder die Verwendung von Java-, Scala- oder Python-Programmen in einem HDInsight Spark-Cluster.
 
-- **Echtzeiterfassung von Nachrichten**. Wenn die Lösung Echtzeitquellen umfasst, muss die Architektur eine Möglichkeit bieten, Echtzeitnachrichten für die Verarbeitung des Datenstroms zu erfassen und zu speichern. Hierbei kann es sich um einen einfachen Datenspeicher handeln, in dem eingehende Nachrichten zur Verarbeitung in einem Ordner abgelegt werden. Viele Lösungen benötigen jedoch einen Speicher für die Erfassung von Nachrichten, der als Puffer für Nachrichten fungiert. Der Speicher muss zudem die Verarbeitung der horizontalen Skalierung, eine zuverlässige Übermittlung sowie weitere Semantik für das Nachrichtenqueuing unterstützen. Zu den Optionen gehören Azure Event Hubs, Azure IoT Hubs und Kafka.
+- **Echtzeiterfassung von Nachrichten:** Wenn die Lösung Echtzeitquellen umfasst, muss die Architektur eine Möglichkeit bieten, Echtzeitnachrichten für die Verarbeitung des Datenstroms zu erfassen und zu speichern. Hierbei kann es sich um einen einfachen Datenspeicher handeln, in dem eingehende Nachrichten zur Verarbeitung in einem Ordner abgelegt werden. Viele Lösungen benötigen jedoch einen Speicher für die Erfassung von Nachrichten, der als Puffer für Nachrichten fungiert. Der Speicher muss zudem die Verarbeitung der horizontalen Skalierung, eine zuverlässige Übermittlung sowie weitere Semantik für das Nachrichtenqueuing unterstützen. Zu den Optionen gehören Azure Event Hubs, Azure IoT Hubs und Kafka.
 
-- **Datenstromverarbeitung**. Nach dem Erfassen von Echtzeitnachrichten muss die Lösung diese verarbeiten, indem die Daten gefiltert, aggregiert und auch anderweitig auf die Analyse vorbereitet werden. Die verarbeiteten Daten aus dem Datenstrom werden dann in eine Ausgabesenke geschrieben. Azure Stream Analytics stellt einen verwalteten Dienst für die Datenstromverarbeitung bereit, basierend auf kontinuierlich ausgeführten SQ-Abfragen, die in ungebundenen Datenströmen arbeiten. Sie können auch Open Source-Apache-Streamingtechnologien wie Storm und Spark Streaming in einem HDInsight-Cluster verwenden.
+- **Streamverarbeitung:** Die erfassten Echtzeitnachrichten müssen von der Lösung verarbeitet werden, indem die Daten gefiltert, aggregiert und anderweitig auf die Analyse vorbereitet werden. Die verarbeiteten Daten aus dem Datenstrom werden dann in eine Ausgabesenke geschrieben. Azure Stream Analytics stellt einen verwalteten Dienst für die Datenstromverarbeitung bereit, basierend auf kontinuierlich ausgeführten SQ-Abfragen, die in ungebundenen Datenströmen arbeiten. Sie können auch Open Source-Apache-Streamingtechnologien wie Storm und Spark Streaming in einem HDInsight-Cluster verwenden.
 
-- **Analysedatenspeicher**: Viele Big Data-Lösungen bereiten Daten für die Analyse vor und stellen die verarbeiteten Daten dann in einem strukturierten Format bereit, das mithilfe von Analysetools abgefragt werden kann. Der Analysedatenspeicher, in dem diese Abfragen ausgeführt werden, kann ein relationales Data Warehouse im Kimball-Stil sein, wie es in den meisten herkömmlichen BI-Lösungen (Business Intelligence) zu finden ist. Alternativ dazu können die Daten auch über eine NoSQL-Technologie mit niedriger Latenz bereitgestellt werden, wie z.B. HBase. Eine weitere Möglichkeit ist eine interaktive Hive-Datenbank, die eine Metadatenabstraktion der Datendateien in einem verteilten Datenspeicher bereitstellt. Azure SQL Data Warehouse bietet einen verwalteten Dienst für umfangreiches cloudbasiertes Data Warehousing. HDInsight unterstützt Interactive Hive, HBase und Spark SQL – diese Module können auch zum Bereitstellen von Daten für die Analyse verwendet werden.
+- **Analysedatenspeicher:** Viele Big Data-Lösungen bereiten Daten für die Analyse vor und stellen die verarbeiteten Daten dann in einem strukturierten Format bereit, das mithilfe von Analysetools abgefragt werden kann. Der Analysedatenspeicher, in dem diese Abfragen ausgeführt werden, kann ein relationales Data Warehouse im Kimball-Stil sein, wie es in den meisten herkömmlichen BI-Lösungen (Business Intelligence) zu finden ist. Alternativ dazu können die Daten auch über eine NoSQL-Technologie mit niedriger Latenz bereitgestellt werden, wie z.B. HBase. Eine weitere Möglichkeit ist eine interaktive Hive-Datenbank, die eine Metadatenabstraktion der Datendateien in einem verteilten Datenspeicher bereitstellt. Azure SQL Data Warehouse bietet einen verwalteten Dienst für umfangreiches cloudbasiertes Data Warehousing. HDInsight unterstützt Interactive Hive, HBase und Spark SQL – diese Module können auch zum Bereitstellen von Daten für die Analyse verwendet werden.
 
-- **Analysen und Berichte**. Ziel der meisten Big Data-Lösungen ist es, über Analysen und Berichte Einblicke in die Daten zu bieten. Um Benutzer die Datenanalyse zu ermöglichen, kann die Architektur eine Datenmodellierungsschicht umfassen, wie z.B. einen multidimensionalen OLAP-Cube oder ein Tabellendatenmodell in Azure Analysis Services. Sie kann auch Self-Service-BI unterstützen – hierbei kommen die Modellierungs- und Visualisierungstechnologien von Microsoft Power BI oder Microsoft Excel zum Einsatz. Analysen und Berichterstellung können auch in Form einer interaktiven Datenerkundung durch Data Scientists oder Data Analysts erfolgen. Für diese Szenarios unterstützen viele Azure-Dienste Analysenotebooks, z.B. Jupyter, sodass diese Benutzer ihre vorhandenen Kenntnisse von Python oder R nutzen können. Zum Erkunden sehr umfangreicher Daten können Sie Microsoft R Server als eigenständige Lösung oder zusammen mit Spark verwenden.
+- **Analysen und Berichte:** Ziel der meisten Big Data-Lösungen ist es, über Analysen und Berichte Einblicke in die Daten zu bieten. Um Benutzer die Datenanalyse zu ermöglichen, kann die Architektur eine Datenmodellierungsschicht umfassen, wie z.B. einen multidimensionalen OLAP-Cube oder ein Tabellendatenmodell in Azure Analysis Services. Sie kann auch Self-Service-BI unterstützen – hierbei kommen die Modellierungs- und Visualisierungstechnologien von Microsoft Power BI oder Microsoft Excel zum Einsatz. Analysen und Berichterstellung können auch in Form einer interaktiven Datenerkundung durch Data Scientists oder Data Analysts erfolgen. Für diese Szenarios unterstützen viele Azure-Dienste Analysenotebooks, z.B. Jupyter, sodass diese Benutzer ihre vorhandenen Kenntnisse von Python oder R nutzen können. Zum Erkunden sehr umfangreicher Daten können Sie Microsoft R Server als eigenständige Lösung oder zusammen mit Spark verwenden.
 
-- **Orchestrierung**. Die meisten Big Data-Lösungen bestehen aus wiederholten Datenverarbeitungsvorgängen, die in Workflows gekapselt sind. Diese Vorgänge transformieren Quelldaten, verschieben Daten zwischen mehreren Quellen und Senken, laden die verarbeiteten Daten in einen Analysedatenspeicher oder übermitteln die Ergebnisse direkt in einen Bericht oder auf ein Dashboard. Um diese Workflows zu automatisieren, können Sie eine Orchestrierungstechnologie wie such Azure Data Factory oder Apache Oozie und Sqoop verwenden.
+- **Orchestrierung:** Die meisten Big Data-Lösungen bestehen aus wiederholten Datenverarbeitungsvorgängen, die in Workflows gekapselt sind. Diese Vorgänge transformieren Quelldaten, verschieben Daten zwischen mehreren Quellen und Senken, laden die verarbeiteten Daten in einen Analysedatenspeicher oder übermitteln die Ergebnisse direkt in einen Bericht oder an ein Dashboard. Um diese Workflows zu automatisieren, können Sie eine Orchestrierungstechnologie wie such Azure Data Factory oder Apache Oozie und Sqoop verwenden.
 
 Azure bietet eine Vielzahl von Diensten, die in einer Big Data-Architektur verwendet werden können. Sie lassen sich in zwei Kategorien unterteilen:
 
@@ -97,7 +99,7 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 
 Das Internet der Dinge (Internet of Things, IoT) ist ein spezieller Teilbereich von Big Data-Lösungen. Das folgende Diagramm zeigt eine mögliche logische Architektur für IoT. Das Diagramm veranschaulicht die Komponenten der Architektur, die Ereignisströme verarbeiten.
 
-![](./images/iot.png)
+![Diagramm einer IoT-Architektur](./images/iot.png)
 
 Das **Cloudgateway** erfasst Geräteereignisse an der Cloudgrenze mithilfe eines zuverlässigen Messagingsystems mit niedriger Latenz.
 
@@ -109,9 +111,9 @@ Nachfolgend finden Sie einige häufige Verarbeitungsarten. (Diese Liste ist sich
 
 - Schreiben von Ereignisdaten in einen Cold Storage zur Archivierung oder Batchanalyse.
 
-- Analyse des langsamsten Pfads – der Ereignisstrom wird (nahezu) in Echtzeit analysiert, um Anomalien zu erkennen, Muster in rollierenden Zeitfenstern zu ermitteln oder Warnungen auszulösen, wenn eine bestimmte Bedingung im Ereignisstrom auftritt. 
+- Analyse des langsamsten Pfads – der Ereignisstrom wird (nahezu) in Echtzeit analysiert, um Anomalien zu erkennen, Muster in rollierenden Zeitfenstern zu ermitteln oder Warnungen auszulösen, wenn eine bestimmte Bedingung im Ereignisstrom auftritt.
 
-- Verarbeitung bestimmter Arten von nicht telemetriebezogenen Nachrichten von Geräten, z.B. Benachrichtigungen und Warnungen. 
+- Verarbeitung bestimmter Arten von nicht telemetriebezogenen Nachrichten von Geräten, z.B. Benachrichtigungen und Warnungen.
 
 - Machine Learning.
 

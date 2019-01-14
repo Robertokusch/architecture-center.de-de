@@ -3,12 +3,12 @@ title: Auswählen einer Datenübertragungstechnologie
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: d5fbdc3a49ab16be2626b772ffd1af782963a2f0
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 1cb763ade2aa263d07a59cc6bfc29d59bec7af19
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902679"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113041"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>Übertragen von Daten in und aus Azure
 
@@ -20,24 +20,25 @@ In folgenden Fällen empfiehlt sich die Verwendung physischer Hardware für die 
 
 - Ihr Netzwerk ist langsam oder unzuverlässig.
 - Zusätzliche Netzwerkbandbreite ist zu teuer.
-- Im Zusammenhang mit sensiblen Daten können aufgrund von Sicherheits- oder Organisationsrichtlinien keine ausgehenden Verbindungen verwendet werden. 
+- Im Zusammenhang mit sensiblen Daten können aufgrund von Sicherheits- oder Organisationsrichtlinien keine ausgehenden Verbindungen verwendet werden.
 
 Wenn es Ihnen hauptsächlich auf die Übertragungsgeschwindigkeit Ihrer Daten ankommt, sollten Sie testen, ob die Netzwerkübertragung tatsächlich langsamer ist als der physische Transport.
 
 Für den physischen Transport von Daten in Azure stehen zwei Hauptoptionen zur Verfügung:
+
 - **Azure Import/Export:** Der [Azure Import/Export-Dienst](/azure/storage/common/storage-import-export-service) ermöglicht die sichere Übertragung großer Datenmengen in Azure Blob Storage oder Azure Files durch den Versand interner SATA-HDDs oder -SDDs an ein Azure-Datencenter. Mit diesem Dienst können Sie auch Daten aus Azure Storage auf Festplattenlaufwerke übertragen und sich diese zusenden lassen, um sie lokal zu laden.
 
-- **Azure Data Box:** [Azure Data Box](https://azure.microsoft.com/services/storage/databox/) ist eine von Microsoft bereitgestellte Appliance, die ganz ähnlich funktioniert wie der Azure Import/Export-Dienst. Microsoft schickt Ihnen eine proprietäre, sichere und manipulationsgeschützte Übertragungsappliance und kümmert sich um die gesamte Logistik, was Sie über das Portal verfolgen können. Ein Vorteil von Azure Data Box ist die hohe Benutzerfreundlichkeit. Sie müssen nicht mehrere Festplatten kaufen, vorbereiten und die Dateien auf die einzelnen Festplatten übertragen. Azure Data Box wird von zahlreichen branchenführenden Azure-Partnern unterstützt, um in ihren Produkten den nahtlosen Offlinetransport in die Cloud zu erleichtern. 
+- **Azure Data Box:** [Azure Data Box](https://azure.microsoft.com/services/storage/databox/) ist eine von Microsoft bereitgestellte Appliance, die ganz ähnlich funktioniert wie der Azure Import/Export-Dienst. Microsoft schickt Ihnen eine proprietäre, sichere und manipulationsgeschützte Übertragungsappliance und kümmert sich um die gesamte Logistik, was Sie über das Portal verfolgen können. Ein Vorteil von Azure Data Box ist die hohe Benutzerfreundlichkeit. Sie müssen nicht mehrere Festplatten kaufen, vorbereiten und die Dateien auf die einzelnen Festplatten übertragen. Azure Data Box wird von zahlreichen branchenführenden Azure-Partnern unterstützt, um in ihren Produkten den nahtlosen Offlinetransport in die Cloud zu erleichtern.
 
 ## <a name="command-line-tools-and-apis"></a>Befehlszeilentools und APIs
 
 Erwägen Sie die Verwendung dieser Optionen, wenn Sie eine skript- und programmgesteuerte Datenübertragung benötigen.
 
-- **Azure-Befehlszeilenschnittstelle**. Die [Azure-Befehlszeilenschnittstelle](/azure/hdinsight/hdinsight-upload-data#commandline) ist ein plattformübergreifendes Tool, mit dem Sie Azure-Dienste verwalten und Daten in Azure Storage hochladen können. 
+- **Azure-Befehlszeilenschnittstelle**. Die [Azure-Befehlszeilenschnittstelle](/azure/hdinsight/hdinsight-upload-data#commandline) ist ein plattformübergreifendes Tool, mit dem Sie Azure-Dienste verwalten und Daten in Azure Storage hochladen können.
 
-- **AzCopy**. Verwenden Sie AzCopy an einer Befehlszeile unter [Windows](/azure/storage/common/storage-use-azcopy?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) oder [Linux](/azure/storage/common/storage-use-azcopy-linux?toc=%2fazure%2fstorage%2fblobs%2ftoc.json), um Daten ganz einfach und mit optimaler Leistung aus bzw. in Azure Blob Storage, Azure File Storage oder Azure Table Storage zu kopieren. AzCopy unterstützt Nebenläufigkeit und Parallelität sowie die Fortsetzung unterbrochener Kopiervorgänge. Darüber hinaus ist AzCopy schneller als die meisten anderen Optionen. Für den programmgesteuerten Zugriff nutzt AzCopy die [Microsoft Azure Storage Data Movement-Bibliothek](/azure/storage/common/storage-use-data-movement-library) als Kernframework. Diese wird als .NET Core-Bibliothek bereitgestellt. 
+- **AzCopy**. Verwenden Sie AzCopy an einer Befehlszeile unter [Windows](/azure/storage/common/storage-use-azcopy?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) oder [Linux](/azure/storage/common/storage-use-azcopy-linux?toc=%2fazure%2fstorage%2fblobs%2ftoc.json), um Daten ganz einfach und mit optimaler Leistung aus bzw. in Azure Blob Storage, Azure File Storage oder Azure Table Storage zu kopieren. AzCopy unterstützt Nebenläufigkeit und Parallelität sowie die Fortsetzung unterbrochener Kopiervorgänge. Darüber hinaus ist AzCopy schneller als die meisten anderen Optionen. Für den programmgesteuerten Zugriff nutzt AzCopy die [Microsoft Azure Storage Data Movement-Bibliothek](/azure/storage/common/storage-use-data-movement-library) als Kernframework. Diese wird als .NET Core-Bibliothek bereitgestellt.
 
-- **PowerShell**: Das [PowerShell-Cmdlet `Start-AzureStorageBlobCopy`](/powershell/module/azure.storage/start-azurestorageblobcopy?view=azurermps-5.0.0) ist eine Option für Windows-Administratoren mit PowerShell-Erfahrung.  
+- **PowerShell**: Das [PowerShell-Cmdlet `Start-AzureStorageBlobCopy`](/powershell/module/azure.storage/start-azurestorageblobcopy?view=azurermps-5.0.0) ist eine Option für Windows-Administratoren mit PowerShell-Erfahrung.
 
 - **AdlCopy:** [AdlCopy](/azure/data-lake-store/data-lake-store-copy-data-azure-storage-blob) ermöglicht das Kopieren von Daten aus Azure Storage Blob-Instanzen in Data Lake Store. Diese Option kann auch zum Kopieren von Daten zwischen zwei Azure Data Lake Store-Konten verwendet werden. Sie kann jedoch nicht verwendet werden, um Daten aus Data Lake Store in Speicherblobs zu kopieren.
 
@@ -79,7 +80,11 @@ Die folgenden Fragen unterstützen Sie bei der Ermittlung eines geeigneten Syste
 
 In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefasst:
 
+<!-- markdownlint-disable MD024 -->
+
 ### <a name="physical-transfer"></a>Physische Übertragung
+
+<!-- markdownlint-enable MD033 -->
 
 | | Azure Import/Export-Dienst | Azure Data Box |
 | --- | --- | --- |
@@ -90,7 +95,7 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 ### <a name="command-line-tools"></a>Befehlszeilentools
 
-**Hadoop/HDInsight**
+**Hadoop/HDInsight:**
 
 | | Distcp | Sqoop | Hadoop-Befehlszeilenschnittstelle |
 | --- | --- | --- | --- |
@@ -102,19 +107,22 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | Kopieren in Data Lake Store | JA | Ja | JA |
 | Kopieren aus Data Lake Store | JA | JA | Nein  |
 
-**Andere**
+**Sonstige:**
+
+<!-- markdownlint-disable MD033 -->
 
 | | Azure-Befehlszeilenschnittstelle | AzCopy | PowerShell | AdlCopy | PolyBase |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Kompatible Plattformen | Linux, OS X, Windows | Linux, Windows | Windows | Linux, OS X, Windows | SQL Server, Azure SQL Data Warehouse | 
+| Kompatible Plattformen | Linux, OS X, Windows | Linux, Windows | Windows | Linux, OS X, Windows | SQL Server, Azure SQL Data Warehouse |
 | Für Big Data optimiert | Nein  | Nein  | Nein  | Ja<sup>1</sup> | Ja<sup>2</sup> |
-| Kopieren in relationale Datenbank | Nein  | Nein  | Nein  | Nein  | JA | 
-| Kopieren aus relationaler Datenbank | Nein  | Nein  | Nein  | Nein  | JA | 
-| Kopieren in Blob Storage | JA | Ja | JA | Nein | JA | 
+| Kopieren in relationale Datenbank | Nein  | Nein  | Nein  | Nein  | JA |
+| Kopieren aus relationaler Datenbank | Nein  | Nein  | Nein  | Nein  | JA |
+| Kopieren in Blob Storage | JA | Ja | JA | Nein | JA |
 | Kopieren aus Blob Storage | JA | Ja | Ja | Ja | JA |
-| Kopieren in Data Lake Store | Nein  | Nein  | Ja | Ja |  JA | 
-| Kopieren aus Data Lake Store | Nein  | Nein  | Ja | Ja | JA | 
+| Kopieren in Data Lake Store | Nein  | Nein  | Ja | Ja |  JA |
+| Kopieren aus Data Lake Store | Nein  | Nein  | Ja | Ja | JA |
 
+<!-- markdownlint-enable MD033 -->
 
 [1] AdlCopy ist bei Verwendung mit einem Data Lake Analytics-Konto für die Übertragung von Big Data optimiert.
 
@@ -124,7 +132,7 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | Azure Storage-Explorer | Azure-Portal* | Azure Data Factory |
 | --- | --- | --- | --- |
-| Für Big Data optimiert | Nein  | Nein  | JA | 
+| Für Big Data optimiert | Nein  | Nein  | JA |
 | Kopieren in relationale Datenbank | Nein  | Nein  | JA |
 | Kopieren in relationale Datenbank | Nein  | Nein  | JA |
 | Kopieren in Blob Storage | JA | Nein | JA |
@@ -138,4 +146,3 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | Preismodell | Kostenlos | Kostenlos | Nutzungsbasierte Bezahlung |
 
 \* Azure-Portal bedeutet in diesem Fall die Verwendung der webbasierten Erkundungstools für Blob Storage und Data Lake Store.
-

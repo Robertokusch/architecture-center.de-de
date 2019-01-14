@@ -1,17 +1,17 @@
 ---
 title: Registrierung und Onboarding von Mandanten in einer mehrinstanzenfähigen Anwendung
-description: Informationen zum Onboarding in einer mehrmandantenfähigen Anwendung
+description: Hier finden Sie Informationen zum Onboarding in einer mehrmandantenfähigen Anwendung.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: claims
 pnp.series.next: app-roles
-ms.openlocfilehash: 541a4dd9abb2168eef4a60a0ec99e1e7c06049b5
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: d112cb65e3cd8bae7b273a974bf8e5d2b04aff8a
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902475"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112718"
 ---
 # <a name="tenant-sign-up-and-onboarding"></a>Registrierung und Onboarding von Mandanten
 
@@ -25,6 +25,7 @@ Es gibt mehrere Gründe für das Implementieren eines Registrierungsprozesses:
 * Durchführen der pro Mandant einmal erforderlichen Einrichtung für Ihre Anwendung.
 
 ## <a name="admin-consent-and-azure-ad-permissions"></a>Zustimmung des Administrators und Azure AD-Berechtigungen
+
 Für die Authentifizierung bei Azure AD benötigt eine Anwendung Zugriff auf das Verzeichnis des Benutzers. Die Anwendung benötigt mindestens die Leseberechtigung für das Profil des Benutzers. Bei der ersten Anmeldung zeigt Azure AD eine Zustimmungsseite mit einer Auflistung der angeforderten Berechtigungen. Durch Klicken auf **Annehmen**erteilt der Benutzer die Zugriffsberechtigung für die Anwendung.
 
 Die Zustimmung wird standardmäßig benutzerbezogen gegeben. Jedem Benutzer, der sich anmeldet, wird die Zustimmungsseite angezeigt. Azure AD unterstützt jedoch auch die *Zustimmung des Administrators*, wodurch ein AD-Administrator für eine gesamte Organisation zustimmen kann.
@@ -39,9 +40,10 @@ Nur ein AD-Administrator kann die Zustimmung des Administrators erteilen, da die
 
 ![Zustimmungsfehler](./images/consent-error.png)
 
-Wenn die Anwendung zu einem späteren Zeitpunkt zusätzliche Berechtigungen erfordert, muss sich der Kunde erneut registrieren und den aktualisierten Berechtigungen zustimmen.  
+Wenn die Anwendung zu einem späteren Zeitpunkt zusätzliche Berechtigungen erfordert, muss sich der Kunde erneut registrieren und den aktualisierten Berechtigungen zustimmen.
 
 ## <a name="implementing-tenant-sign-up"></a>Implementieren der Registrierung von Mandanten
+
 Für die Anwendung [Tailspin Surveys][Tailspin] wurden mehrere Anforderungen an den Registrierungsvorgang definiert:
 
 * Ein Mandant muss sich registrieren, bevor sich Benutzer anmelden können.
@@ -58,7 +60,7 @@ Wenn ein anonymer Benutzer die Tailspin-Anwendung „Surveys“ besucht, werden 
 
 Diese Schaltflächen lösen Aktionen in der `AccountController`-Klasse aus.
 
-Die `SignIn` -Aktion gibt ein **ChallegeResult**zurück, was bewirkt, dass die OpenID Connect-Middleware zum Authentifizierungsendpunkt umgeleitet wird. Dies ist die Standardmethode zum Auslösen der Authentifizierung in ASP.NET Core.  
+Die `SignIn` -Aktion gibt ein **ChallegeResult**zurück, was bewirkt, dass die OpenID Connect-Middleware zum Authentifizierungsendpunkt umgeleitet wird. Dies ist die Standardmethode zum Auslösen der Authentifizierung in ASP.NET Core.
 
 ```csharp
 [AllowAnonymous]
@@ -101,11 +103,16 @@ Die Zustandsinformationen in `AuthenticationProperties` werden dem OpenID Connec
 Nachdem der Benutzer in Azure AD authentifiziert und zur Anwendung umgeleitet wurde, enthält das Authentifizierungsticket den Zustand. Wir nutzen diese Tatsache, um sicherzustellen, dass der Wert von „signup“ sich im gesamten Authentifizierungsablauf nicht ändert.
 
 ## <a name="adding-the-admin-consent-prompt"></a>Hinzufügen der Aufforderung zur Administratorzustimmung
+
 In Azure AD wird der Vorgang zur Administratorzustimmung ausgelöst, indem in der Authentifizierungsanforderung der Abfragezeichenfolge ein „prompt“-Parameter hinzugefügt wird:
+
+<!-- markdownlint-disable MD040 -->
 
 ```
 /authorize?prompt=admin_consent&...
 ```
+
+<!-- markdownlint-enable MD040 -->
 
 Die Tailspin-Anwendung „Surveys“ fügt die Aufforderung während des `RedirectToAuthenticationEndpoint` -Ereignisses hinzu. Dieses Ereignis wird aufgerufen, unmittelbar bevor die Middleware an den Authentifizierungsendpunkt umgeleitet wird.
 
@@ -122,7 +129,7 @@ public override Task RedirectToAuthenticationEndpoint(RedirectContext context)
 }
 ```
 
-Durch Festlegen von` ProtocolMessage.Prompt` wird die Middleware aufgefordert, den „prompt“-Parameter der Authentifizierungsanforderung hinzuzufügen.
+Durch Festlegen von `ProtocolMessage.Prompt` wird die Middleware angewiesen, der Authentifizierungsanforderung den Parameter „prompt“ hinzuzufügen.
 
 Beachten Sie, dass die Aufforderung nur während der Registrierung erforderlich ist. In der regulären Anmeldung darf sie nicht enthalten sein. Um sie zu unterscheiden, prüfen wir, ob der `signup` -Wert im Authentifizierungsstatus enthalten ist. Die folgende Erweiterungsmethode überprüft diese Bedingung:
 
@@ -143,7 +150,8 @@ internal static bool IsSigningUp(this BaseControlContext context)
     bool isSigningUp;
     if (!bool.TryParse(signupValue, out isSigningUp))
     {
-        // The value for signup is not a valid boolean, throw                
+        // The value for signup is not a valid boolean, throw
+
         throw new InvalidOperationException($"'{signupValue}' is an invalid boolean value");
     }
 
@@ -152,6 +160,7 @@ internal static bool IsSigningUp(this BaseControlContext context)
 ```
 
 ## <a name="registering-a-tenant"></a>Registrieren eines Mandanten
+
 Die Tailspin-Anwendung „Surveys“ speichert Informationen zu jedem Mandanten und Benutzer in der Datenbank.
 
 ![Tabelle „Tenant“](./images/tenant-table.png)
@@ -255,7 +264,8 @@ Es folgt eine Zusammenfassung des gesamten Registrierungsprozesses in der Tailsp
 
 [**Weiter**][app roles]
 
-<!-- Links -->
+<!-- links -->
+
 [app roles]: app-roles.md
 [Tailspin]: tailspin.md
 

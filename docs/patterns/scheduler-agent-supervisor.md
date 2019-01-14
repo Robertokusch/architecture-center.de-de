@@ -1,19 +1,17 @@
 ---
-title: Scheduler-Agent-Supervisor
+title: Muster „Scheduler-Agent-Supervisor“
+titleSuffix: Cloud Design Patterns
 description: Koordinieren Sie eine Reihe von Aktionen in einer verteilten Gruppe von Diensten und anderen Remoteressourcen.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- resiliency
-ms.openlocfilehash: 7914708413d68689e2326df28ced00e5fc3a5dd8
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 7e1f45b1f2f206e1739d69bab6d4b2641f58a0f9
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428668"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011717"
 ---
 # <a name="scheduler-agent-supervisor-pattern"></a>Muster „Scheduler-Agent-Supervisor“
 
@@ -25,7 +23,7 @@ Koordinieren Sie eine Reihe von verteilten Aktionen als einen einzelnen Vorgang.
 
 Eine Anwendung führt Tasks aus, die eine Reihe von Schritten umfassen, von denen einige möglicherweise Remotedienste aufrufen oder auf Remoteressourcen zugreifen. Die einzelnen Schritte können voneinander unabhängig sein, aber sie werden von der Anwendungslogik orchestriert, die die Aufgabe implementiert.
 
-Wann immer dies möglich ist, sollte die Anwendung sicherstellen, dass der Task bis zum Abschluss ausgeführt wird, und alle Fehler beheben, die beim Zugriff auf Remotedienste oder Ressourcen auftreten können. Fehler können verschiedenste Ursachen haben. Beispielsweise kann das Netzwerk ausgefallen sein, die Kommunikation unterbrochen werden, ein Remotedienst reagiert möglicherweise nicht oder befindet sich in einem instabilen Zustand, oder eine Remoteressource ist vielleicht aufgrund von Ressourcenbeschränkungen vorübergehend nicht erreichbar. In vielen Fällen sind die Fehler vorübergehend und können mithilfe des [Musters „Wiederholung“][retry-pattern] behandelt werden.
+Wann immer dies möglich ist, sollte die Anwendung sicherstellen, dass der Task bis zum Abschluss ausgeführt wird, und alle Fehler beheben, die beim Zugriff auf Remotedienste oder Ressourcen auftreten können. Fehler können verschiedenste Ursachen haben. Beispielsweise kann das Netzwerk ausgefallen sein, die Kommunikation unterbrochen werden, ein Remotedienst reagiert möglicherweise nicht oder befindet sich in einem instabilen Zustand, oder eine Remoteressource ist vielleicht aufgrund von Ressourcenbeschränkungen vorübergehend nicht erreichbar. In vielen Fällen sind die Fehler vorübergehend und können mithilfe des [Wiederholungsmusters](./retry.md) behandelt werden.
 
 Wenn die Anwendung einen langfristigeren Fehler feststellt, für den keine einfache Wiederherstellung möglich ist, muss sie in der Lage sein, das System in einen konsistenten Zustand zu versetzen und die Integrität für den gesamten Vorgang zu gewährleisten.
 
@@ -47,8 +45,8 @@ Der Scheduler verwaltet Informationen über den Fortschritt des Tasks und den Zu
 
 ![Abbildung 1: Die Akteure im Muster „Scheduler-Agent-Supervisor“](./_images/scheduler-agent-supervisor-pattern.png)
 
-
-> Dieses Diagramm zeigt eine vereinfachte Version des Musters. In einer echten Implementierung können viele Instanzen des Schedulers parallel ausgeführt werden, jede als Teilmenge von Tasks. Ebenso könnte das System mehrere Instanzen von jedem Agent oder sogar mehrere Supervisors ausführen. In diesem Fall müssen die Supervisors ihre Arbeit sorgfältig aufeinander abstimmen, um sicherzustellen, dass sie nicht dieselben fehlerhaften Schritte und Tasks wiederherstellen. Das [Muster für die Auswahl einer übergeordneten Instanz](leader-election.md) bietet eine mögliche Lösung für dieses Problem.
+> [!NOTE]
+> Dieses Diagramm zeigt eine vereinfachte Version des Musters. In einer echten Implementierung können viele Instanzen des Schedulers parallel ausgeführt werden, jede als Teilmenge von Tasks. Ebenso könnte das System mehrere Instanzen von jedem Agent oder sogar mehrere Supervisors ausführen. In diesem Fall müssen die Supervisors ihre Arbeit sorgfältig aufeinander abstimmen, um sicherzustellen, dass sie nicht dieselben fehlerhaften Schritte und Tasks wiederherstellen. Das [Muster für die Auswahl einer übergeordneten Instanz](./leader-election.md) bietet eine mögliche Lösung für dieses Problem.
 
 Wenn die Anwendung bereit ist, einen Task auszuführen, sendet sie eine Anforderung an den Scheduler. Der Scheduler zeichnet im Zustandsspeicher anfängliche Zustandsinformationen zum Task und den zugehörigen Schritten (z.B. „Schritt noch nicht gestartet“) auf und beginnt dann mit der Ausführung der durch den Workflow definierten Vorgänge. Wenn der Scheduler einen Schritt startet, aktualisiert er die Informationen über den Zustand dieses Schritts im Zustandsspeicher (z.B. „Schritt wird ausgeführt“).
 
@@ -60,11 +58,11 @@ Bei einem Fehler des Agents erhält der Scheduler keine Antwort. Das Muster unte
 
 Wenn für einen Schritt ein Timeout oder ein Fehler auftritt, weist ein Datensatz im Zustandsspeicher darauf hin, dass der Schritt ausgeführt wird, aber die Zeit bis zum Abschluss abgelaufen ist. Der Supervisor sucht nach solchen Schritten und versucht, sie wiederherzustellen. Eine mögliche Strategie besteht darin, dass der Supervisor den Wert für die Zeit bis zum Abschluss aktualisiert, um den verfügbaren Zeitraum bis zum Abschluss des Schritts zu verlängern, und dann den Scheduler mithilfe einer Nachricht über den Schritt informiert, für den ein Timeout aufgetreten ist. Der Scheduler kann dann versuchen, diesen Schritt zu wiederholen. Dieser Entwurf erfordert jedoch, dass die Tasks idempotent sind.
 
-Der Supervisor muss möglicherweise verhindern, dass ein und derselbe Schritt wiederholt wird, wenn er fortlaufend zu einem Fehler oder einem Timeout führt. Zu diesem Zweck kann der Supervisor im Zustandsspeicher zusätzlich zu den Zustandsinformationen einen Zähler für die Wiederholungsversuche für jeden Schritt verwalten. Wenn die Anzahl von Wiederholungsversuchen einen vordefinierten Schwellenwert überschreitet, kann der Supervisor eine bestimmte Zeit abwarten, bevor der Scheduler darüber benachrichtigt wird, dass der Schritt wiederholt werden muss. Hierbei wird die Erwartung zugrunde gelegt, dass der Fehler innerhalb der Wartezeit gelöst wird. Alternativ kann der Supervisor eine Nachricht an den Scheduler senden, um den gesamten Task rückgängig zu machen, indem er ein [Muster für eine ausgleichende Transaktion](compensating-transaction.md) implementiert. Dieser Ansatz hängt davon ab, dass der Scheduler und die Agents die notwendigen Informationen zur Verfügung stellen, um die Ausgleichsvorgänge für jeden erfolgreich ausgeführten Schritt zu implementieren.
+Der Supervisor muss möglicherweise verhindern, dass ein und derselbe Schritt wiederholt wird, wenn er fortlaufend zu einem Fehler oder einem Timeout führt. Zu diesem Zweck kann der Supervisor im Zustandsspeicher zusätzlich zu den Zustandsinformationen einen Zähler für die Wiederholungsversuche für jeden Schritt verwalten. Wenn die Anzahl von Wiederholungsversuchen einen vordefinierten Schwellenwert überschreitet, kann der Supervisor eine bestimmte Zeit abwarten, bevor der Scheduler darüber benachrichtigt wird, dass der Schritt wiederholt werden muss. Hierbei wird die Erwartung zugrunde gelegt, dass der Fehler innerhalb der Wartezeit gelöst wird. Alternativ kann der Supervisor eine Nachricht an den Scheduler senden, um den gesamten Task rückgängig zu machen, indem er ein [Muster für eine ausgleichende Transaktion](./compensating-transaction.md) implementiert. Dieser Ansatz hängt davon ab, dass der Scheduler und die Agents die notwendigen Informationen zur Verfügung stellen, um die Ausgleichsvorgänge für jeden erfolgreich ausgeführten Schritt zu implementieren.
 
 > Es ist nicht die Aufgabe des Supervisors, den Scheduler und die Agents zu überwachen und sie bei einem Fehler neu zu starten. Dieser Aspekt des Systems sollte durch die Infrastruktur abgedeckt werden, in der diese Komponenten ausgeführt werden. Ebenso sollte der Supervisor keine Kenntnis von den tatsächlichen Geschäftsvorgängen haben, die mit den vom Scheduler verarbeiteten Tasks ausgeführt werden (dies schließt auch Informationen zum Ausgleich ein, falls diese Tasks nicht erfolgreich sind). Diese Aufgabe übernimmt die vom Scheduler implementierte Workflowlogik. Die alleinige Verantwortung des Supervisors besteht darin, fehlerhafte Schritte zu ermitteln und dafür zu sorgen, dass nicht erfolgreiche Schritte entweder wiederholt werden oder der gesamte Task rückgängig gemacht wird, der den fehlerhaften Schritt enthält.
 
-Wenn der Scheduler nach einem Fehler neu gestartet oder der vom Scheduler ausgeführte Workflow unerwartet beendet wird, muss der Scheduler in der Lage sein, den Status aller aktiven Tasks zu ermitteln, die er beim Auftreten des Fehlers verarbeitet hat. Außerdem muss er fähig sein, diesen Task von diesem Zeitpunkt an wieder aufzunehmen. Die Implementierungsdetails dieses Prozesses sind wahrscheinlich systemspezifisch. Wenn der Task nicht wiederhergestellt werden kann, muss die vom Task bereits ausgeführte Arbeit möglicherweise rückgängig gemacht werden. Dies kann auch die Implementierung einer [ausgleichenden Transaktion](compensating-transaction.md) erfordern.
+Wenn der Scheduler nach einem Fehler neu gestartet oder der vom Scheduler ausgeführte Workflow unerwartet beendet wird, muss der Scheduler in der Lage sein, den Status aller aktiven Tasks zu ermitteln, die er beim Auftreten des Fehlers verarbeitet hat. Außerdem muss er fähig sein, diesen Task von diesem Zeitpunkt an wieder aufzunehmen. Die Implementierungsdetails dieses Prozesses sind wahrscheinlich systemspezifisch. Wenn der Task nicht wiederhergestellt werden kann, muss die vom Task bereits ausgeführte Arbeit möglicherweise rückgängig gemacht werden. Dies kann auch die Implementierung einer [ausgleichenden Transaktion](./compensating-transaction.md) erfordern.
 
 Der Hauptvorteil dieses Musters besteht darin, dass das System bei unerwarteten, vorübergehenden oder nicht behebbaren Fehlern stabil bleibt. Das System kann für eine Selbstreparatur konzipiert werden. Wenn z.B. ein Agent oder der Scheduler ausfällt, kann ein neuer Agent gestartet werden, und der Supervisor kann die Wiederaufnahme eines Tasks veranlassen. Fällt der Supervisor aus, kann eine weitere Instanz gestartet werden, die an der Stelle übernimmt, an der der Fehler aufgetreten ist. Wenn der Supervisor in regelmäßigen Abständen ausgeführt wird, kann eine neue Instanz nach einem vordefinierten Intervall automatisch gestartet werden. Der Zustandsspeicher kann repliziert werden, um eine noch höhere Resilienz zu erreichen.
 
@@ -102,15 +100,16 @@ Der Übermittlungsprozess erstellt die folgenden Zustandsinformationen zum Auftr
 
 - **ProcessState**. Der aktuelle Zustand des Tasks, der den Auftrag bearbeitet. Mögliche Zustandswerte:
 
-    - **Pending**. Der Auftrag wurde erstellt, aber die Verarbeitung wurde noch nicht gestartet.
-    - **Processing**. Der Auftrag wird aktuell verarbeitet.
-    - **Processed**. Der Auftrag wurde erfolgreich verarbeitet.
-    - **Error**. Bei der Auftragsverarbeitung ist ein Fehler aufgetreten.
+  - **Pending**. Der Auftrag wurde erstellt, aber die Verarbeitung wurde noch nicht gestartet.
+  - **Processing**. Der Auftrag wird aktuell verarbeitet.
+  - **Processed**. Der Auftrag wurde erfolgreich verarbeitet.
+  - **Error**. Bei der Auftragsverarbeitung ist ein Fehler aufgetreten.
 
 - **FailureCount**. Gibt an, wie oft versucht wurde, den Auftrag zu verarbeiten.
 
 In diesen Zustandsinformation wird das Feld `OrderID` aus der Auftrags-ID des neuen Auftrags übernommen. Die Felder `LockedBy` und `CompleteBy` werden auf `null` festgelegt, das Feld `ProcessState` ist auf `Pending`, das Feld `FailureCount` ist auf 0 festgelegt.
 
+> [!NOTE]
 > In diesem Beispiel ist die Logik der Auftragsabwicklung relativ einfach und besteht nur aus einem einzigen Schritt, der einen Remotedienst aufruft. In einem komplexeren mehrstufigen Szenario würde der Übermittlungsprozess wahrscheinlich mehrere Schritte umfassen, sodass mehrere Datensätze im Zustandsspeicher erstellt werden – jeder dieser Datensätze beschreibt den Zustand eines einzelnen Schritts.
 
 Der Scheduler wird ebenfalls als Bestandteil der Workerrolle ausgeführt und implementiert die Geschäftslogik zur Verarbeitung des Auftrags. Eine Instanz des Schedulers zum Abrufen neuer Aufträge untersucht den Zustandsspeicher auf Datensätze, bei denen das Feld `LockedBy` NULL ist und das Feld `ProcessState` den Wert „Pending“ aufweist. Wenn der Scheduler einen neuen Auftrag ermittelt, füllt er das Feld `LockedBy` sofort mit seiner eigenen Instanz-ID auf, legt das Feld `CompleteBy` auf eine angemessene Zeit und das Feld `ProcessState` auf „Processing“ fest. Der Code ist als exklusiv und unteilbar konzipiert, um sicherzustellen, dass zwei parallel ausgeführte Instanzen des Schedulers nicht denselben Auftrag verarbeiten können.
@@ -136,14 +135,13 @@ Um den Auftragsstatus rückmelden zu können, kann die Anwendung beispielsweise 
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
 Die folgenden Muster und Anweisungen können für die Implementierung dieses Musters ebenfalls relevant sein:
-- [Muster „Wiederholung“][retry-pattern]. Ein Agent kann dieses Muster verwenden, um einen Vorgang zum Zugriff auf einen Remotedienst oder eine Remoteressource transparent zu wiederholen, bei dem zuvor ein Fehler aufgetreten ist. Verwenden Sie dieses Muster, wenn erwartet wird, dass die Fehlerursache vorübergehend ist und korrigiert werden kann.
-- [Muster „Trennschalter“](circuit-breaker.md). Ein Agent kann mit diesem Muster Fehler behandeln, deren Behebung beim Herstellen einer Verbindung mit einem Remotedienst oder einer Remoteressource unterschiedlich lange dauern kann.
-- [Muster „Ausgleichende Transaktion“](compensating-transaction.md). Wenn der von einem Scheduler ausgeführte Workflow nicht erfolgreich abgeschlossen werden kann, muss möglicherweise die gesamte zuvor ausgeführte Arbeit rückgängig gemacht werden. Das Muster „Ausgleichende Transaktion“ beschreibt, wie dies für Vorgänge erreicht werden kann, die dem Modell der letztlichen Konsistenz folgen. Solche Vorgänge werden üblicherweise von einem Scheduler implementiert, der komplexe Geschäftsprozesse und Workflows ausführt.
-- [Einführung in asynchrone Nachrichten](https://msdn.microsoft.com/library/dn589781.aspx). Die Komponenten im Muster „Scheduler-Agent-Supervisor“ werden typischerweise entkoppelt voneinander ausgeführt und kommunizieren asynchron. Hier werden einige der Ansätze beschrieben, mit denen eine asynchrone Kommunikation auf der Basis von Nachrichtenwarteschlangen realisiert werden kann.
-- [Muster für die Auswahl einer übergeordneten Instanz](leader-election.md). Die Aktionen mehrerer Instanzen eines Supervisors müssen ggf. koordiniert werden, damit nicht versucht wird, dieselben fehlerhaften Prozesse wiederherzustellen. Das Muster für die Auswahl einer übergeordneten Instanz beschreibt, wie dies erreicht wird.
-- [Cloud Architecture: The Scheduler-Agent-Supervisor Pattern](https://blogs.msdn.microsoft.com/clemensv/2010/09/27/cloud-architecture-the-scheduler-agent-supervisor-pattern/) (Cloudarchitektur: Das Scheduler-Agent-Supervisor-Muster) im Blog von Clements Vasters
-- [Muster „Prozess-Manager“](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)
-- [Reference 6: A Saga on Sagas](https://msdn.microsoft.com/library/jj591569.aspx) (Referenz 6: Eine Saga zur Saga). In diesem Beispiel wird gezeigt, wie das CQRS-Muster einen Prozess-Manager verwendet (Teil des CQRS Journey-Leitfadens).
-- [Microsoft Azure Scheduler](https://azure.microsoft.com/services/scheduler/)
 
-[retry-pattern]: ./retry.md
+- [Wiederholungsmuster](./retry.md). Ein Agent kann dieses Muster verwenden, um einen Vorgang zum Zugriff auf einen Remotedienst oder eine Remoteressource transparent zu wiederholen, bei dem zuvor ein Fehler aufgetreten ist. Verwenden Sie dieses Muster, wenn erwartet wird, dass die Fehlerursache vorübergehend ist und korrigiert werden kann.
+- [Muster „Trennschalter“](./circuit-breaker.md). Ein Agent kann mit diesem Muster Fehler behandeln, deren Behebung beim Herstellen einer Verbindung mit einem Remotedienst oder einer Remoteressource unterschiedlich lange dauern kann.
+- [Muster „Ausgleichende Transaktion“](./compensating-transaction.md). Wenn der von einem Scheduler ausgeführte Workflow nicht erfolgreich abgeschlossen werden kann, muss möglicherweise die gesamte zuvor ausgeführte Arbeit rückgängig gemacht werden. Das Muster „Ausgleichende Transaktion“ beschreibt, wie dies für Vorgänge erreicht werden kann, die dem Modell der letztlichen Konsistenz folgen. Solche Vorgänge werden üblicherweise von einem Scheduler implementiert, der komplexe Geschäftsprozesse und Workflows ausführt.
+- [Einführung in asynchrone Nachrichten](https://msdn.microsoft.com/library/dn589781.aspx). Die Komponenten im Muster „Scheduler-Agent-Supervisor“ werden typischerweise entkoppelt voneinander ausgeführt und kommunizieren asynchron. Hier werden einige der Ansätze beschrieben, mit denen eine asynchrone Kommunikation auf der Basis von Nachrichtenwarteschlangen realisiert werden kann.
+- [Muster für die Auswahl einer übergeordneten Instanz](./leader-election.md). Die Aktionen mehrerer Instanzen eines Supervisors müssen ggf. koordiniert werden, damit nicht versucht wird, dieselben fehlerhaften Prozesse wiederherzustellen. Das Muster für die Auswahl einer übergeordneten Instanz beschreibt, wie dies erreicht wird.
+- [Cloud Architecture: The Scheduler-Agent-Supervisor Pattern](https://blogs.msdn.microsoft.com/clemensv/2010/09/27/cloud-architecture-the-scheduler-agent-supervisor-pattern/) (Cloudarchitektur: Das Scheduler-Agent-Supervisor-Muster) im Blog von Clemens Vasters
+- [Muster „Prozess-Manager“](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)
+- [Referenz 6: A Saga on Sagas](https://msdn.microsoft.com/library/jj591569.aspx) (Referenz 6: Eine Saga zur Saga). In diesem Beispiel wird gezeigt, wie das CQRS-Muster einen Prozess-Manager verwendet (Teil des CQRS Journey-Leitfadens).
+- [Microsoft Azure Scheduler](https://azure.microsoft.com/services/scheduler/)

@@ -1,36 +1,38 @@
 ---
 title: Architekturstil „Web-Warteschlange-Worker“
+titleSuffix: Azure Application Architecture Guide
 description: In diesem Artikel werden die Vorteile, Herausforderungen und bewährten Methoden für Architekturen vom Typ „Web-Warteschlange-Worker“ in Azure beschrieben.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 0ebcf49c08c74cec3f1820da2d6f30ba95256e81
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: 0b478344c4b64808d30156bd563917d9d8d7ec30
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325350"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113279"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Architekturstil „Web-Warteschlange-Worker“
 
-Die Hauptkomponenten dieser Architektur sind ein **Web-Front-End**, mit dem Clientanforderungen bereitgestellt werden, und ein **Worker**, der ressourcenintensive Aufgaben, Workflows mit langer Ausführungsdauer oder Batchaufträge durchführt.  Das Web-Front-End kommuniziert mit dem Worker über eine **Nachrichtenwarteschlange**.  
+Die Hauptkomponenten dieser Architektur sind ein **Web-Front-End**, mit dem Clientanforderungen bereitgestellt werden, und ein **Worker**, der ressourcenintensive Aufgaben, Workflows mit langer Ausführungsdauer oder Batchaufträge durchführt.  Das Web-Front-End kommuniziert mit dem Worker über eine **Nachrichtenwarteschlange**.
 
-![](./images/web-queue-worker-logical.svg)
+![Logisches Diagramm der Architektur „Web-Warteschlange-Worker“](./images/web-queue-worker-logical.svg)
 
 Andere Komponenten, die häufig in diese Architektur eingebunden werden, sind:
 
-- Eine oder mehrere Datenbanken 
+- Eine oder mehrere Datenbanken
 - Ein Cache zum Speichern von Werten aus der Datenbank, um schnelle Lesevorgänge zu ermöglichen
 - CDN zur Bereitstellung von statischem Inhalt
 - Remotedienste, z.B. E-Mail- oder SMS-Dienst (häufig von Drittanbietern bereitgestellt)
 - Identitätsanbieter für die Authentifizierung
 
-Web und Worker sind jeweils zustandslos. Der Sitzungsstatus kann in einem verteilten Cache zwischengespeichert werden. Alle Vorgänge mit langer Ausführungsdauer werden asynchron vom Worker durchgeführt. Der Worker kann über Nachrichten in der Warteschlange ausgelöst oder nach einem Zeitplan für die Batchverarbeitung ausgeführt werden. Der Worker ist eine optionale Komponente. Wenn keine Vorgänge mit langer Ausführungsdauer vorhanden sind, kann der Worker weggelassen werden.  
+Web und Worker sind jeweils zustandslos. Der Sitzungsstatus kann in einem verteilten Cache zwischengespeichert werden. Alle Vorgänge mit langer Ausführungsdauer werden asynchron vom Worker durchgeführt. Der Worker kann über Nachrichten in der Warteschlange ausgelöst oder nach einem Zeitplan für die Batchverarbeitung ausgeführt werden. Der Worker ist eine optionale Komponente. Wenn keine Vorgänge mit langer Ausführungsdauer vorhanden sind, kann der Worker weggelassen werden.
 
 Das Front-End kann aus einer Web-API bestehen. Auf Clientseite kann die Web-API von einer Single-Page-Anwendung, die AJAX-Aufrufe durchführt, oder von einer nativen Clientanwendung genutzt werden.
 
 ## <a name="when-to-use-this-architecture"></a>Einsatzmöglichkeiten für diese Architektur
 
-Die Architektur „Web-Warteschlange-Worker“ wird häufig mit verwalteten Computediensten implementiert (entweder Azure App Service oder Azure Cloud Services). 
+Die Architektur „Web-Warteschlange-Worker“ wird häufig mit verwalteten Computediensten implementiert (entweder Azure App Service oder Azure Cloud Services).
 
 Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 
@@ -49,7 +51,7 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 ## <a name="challenges"></a>Herausforderungen
 
 - Ohne eine sorgfältige Vorgehensweise beim Entwerfen können das Front-End und der Worker zu großen, monolithischen Komponenten werden, die schwierig zu verwalten und zu aktualisieren sind.
-- Es können versteckte Abhängigkeiten vorhanden sein, wenn das Front-End und der Worker Datenschemas oder Codemodule gemeinsam nutzen. 
+- Es können versteckte Abhängigkeiten vorhanden sein, wenn das Front-End und der Worker Datenschemas oder Codemodule gemeinsam nutzen.
 
 ## <a name="best-practices"></a>Bewährte Methoden
 
@@ -60,14 +62,13 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 - Verwenden Sie „Polyglot Persistence“, falls zutreffend. Siehe [Use the best data store for the job][polyglot] (Verwenden des besten Datenspeichers für den Auftrag).
 - Partitionieren Sie Daten, um die Skalierbarkeit zu verbessern, Konflikte zu reduzieren und die Leistung zu optimieren. Siehe [Data partitioning][data-partition] (Datenpartitionierung).
 
-
 ## <a name="web-queue-worker-on-azure-app-service"></a>Web-Warteschlange-Worker in Azure App Service
 
-In diesem Abschnitt wird eine empfohlene Architektur vom Typ „Web-Warteschlange-Worker“ beschrieben, für die Azure App Service verwendet wird. 
+In diesem Abschnitt wird eine empfohlene Architektur vom Typ „Web-Warteschlange-Worker“ beschrieben, für die Azure App Service verwendet wird.
 
-![](./images/web-queue-worker-physical.png)
+![Physisches Diagramm der Architektur „Web-Warteschlange-Worker“](./images/web-queue-worker-physical.png)
 
-Das Front-End wird als Azure App Service-Web-App implementiert, und der Worker wird als WebJob implementiert. Die Web-App und der WebJob werden beide einem App Service-Plan zugeordnet, über den die VM-Instanzen bereitgestellt werden. 
+Das Front-End wird als Azure App Service-Web-App implementiert, und der Worker wird als WebJob implementiert. Die Web-App und der WebJob werden beide einem App Service-Plan zugeordnet, über den die VM-Instanzen bereitgestellt werden.
 
 Sie können entweder Azure Service Bus- oder Azure Storage-Warteschlangen als Nachrichtenwarteschlange verwenden. (Im Diagramm ist eine Azure Storage-Warteschlange dargestellt.)
 
@@ -75,7 +76,7 @@ Bei Azure Redis Cache werden der Sitzungszustand und andere Daten gespeichert, f
 
 Azure CDN wird verwendet, um statischen Inhalt zwischenzuspeichern, z.B. Images, CSS oder HTML.
 
-Wählen Sie für die Speicherung die Speichertechnologie aus, mit der die Anforderungen der Anwendung am besten erfüllt werden. Sie können auch mehrere Speichertechnologien („Polyglot Persistence“) verwenden. Zur Verdeutlichung sind im Diagramm die Komponenten Azure SQL-Datenbank und Azure Cosmos DB dargestellt.  
+Wählen Sie für die Speicherung die Speichertechnologie aus, mit der die Anforderungen der Anwendung am besten erfüllt werden. Sie können auch mehrere Speichertechnologien („Polyglot Persistence“) verwenden. Zur Verdeutlichung sind im Diagramm die Komponenten Azure SQL-Datenbank und Azure Cosmos DB dargestellt.
 
 Weitere Informationen finden Sie unter [Improve scalability in a web application][scalable-web-app] (Verbessern der Skalierbarkeit in einer Webanwendung).
 
@@ -83,9 +84,9 @@ Weitere Informationen finden Sie unter [Improve scalability in a web application
 
 - Nicht jede Transaktion muss über die Warteschlange und den Worker in den Speicher verlaufen. Das Web-Front-End kann einfache Lese- und Schreibvorgänge direkt durchführen. Worker sind für ressourcenintensive Aufgaben oder Workflows mit langer Ausführungsdauer ausgelegt. In einigen Fällen benötigen Sie unter Umständen gar keinen Worker.
 
-- Verwenden Sie die integrierte App Service-Funktion für die automatische Skalierung, um für die Anzahl von VM-Instanzen das horizontale Hochskalieren durchzuführen. Verwenden Sie die automatische Skalierung nach Zeitplan, wenn die Last der Anwendung vorhersagbaren Mustern folgt. Falls die Last nicht vorhersagbar ist, sollten Sie auf Metriken basierende Regeln für die automatische Skalierung nutzen.      
+- Verwenden Sie die integrierte App Service-Funktion für die automatische Skalierung, um für die Anzahl von VM-Instanzen das horizontale Hochskalieren durchzuführen. Verwenden Sie die automatische Skalierung nach Zeitplan, wenn die Last der Anwendung vorhersagbaren Mustern folgt. Falls die Last nicht vorhersagbar ist, sollten Sie auf Metriken basierende Regeln für die automatische Skalierung nutzen.
 
-- Erwägen Sie, die Web-App und den WebJob in separaten App Service-Plänen anzuordnen. Auf diese Weise werden sie auf separaten VM-Instanzen gehostet und können unabhängig voneinander skaliert werden. 
+- Erwägen Sie, die Web-App und den WebJob in separaten App Service-Plänen anzuordnen. Auf diese Weise werden sie auf separaten VM-Instanzen gehostet und können unabhängig voneinander skaliert werden.
 
 - Verwenden Sie separate App Service-Pläne für die Produktion und für das Testen. Wenn Sie denselben Plan verwenden, bedeutet dies sonst, dass Ihre Tests auf den VMs für die Produktion durchgeführt werden.
 

@@ -1,18 +1,20 @@
 ---
 title: Säulen der Softwarequalität
+titleSuffix: Azure Application Architecture Guide
 description: 'Beschreibt die fünf Säulen der Softwarequalität: Skalierbarkeit, Verfügbarkeit, Resilienz, Verwaltung und Sicherheit.'
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: dce87aba849c61750416f277bcc5558c400c1f25
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: 2f013063afea89e3e322aa6f36484f6df50210be
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326155"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113942"
 ---
-# <a name="pillars-of-software-quality"></a>Säulen der Softwarequalität 
+# <a name="pillars-of-software-quality"></a>Säulen der Softwarequalität
 
-Eine gelungene Cloudanwendung basiert auf fünf Säulen der Softwarequalität, nämlich Skalierbarkeit, Verfügbarkeit, Resilienz, Verwaltung und Sicherheit.
+Eine erfolgreiche Cloudanwendung basiert auf fünf Säulen der Softwarequalität: Skalierbarkeit, Verfügbarkeit, Resilienz, Verwaltung und Sicherheit.
 
 | Säule | BESCHREIBUNG |
 |--------|-------------|
@@ -24,17 +26,17 @@ Eine gelungene Cloudanwendung basiert auf fünf Säulen der Softwarequalität, n
 
 ## <a name="scalability"></a>Skalierbarkeit
 
-Skalierbarkeit ist die Fähigkeit eines Systems, eine höhere Last zu verarbeiten. Es gibt im Wesentlichen zwei Möglichkeiten, eine Anwendung zu skalieren. Beim *vertikalen Hochskalieren* wird die Kapazität einer Ressource erhöht, z.B. durch Verwenden eines größeren virtuellen Computers. Beim *horizontalen Hochskalieren* werden neue Instanzen einer Ressource hinzugefügt, z.B. virtuelle Computer oder Datenbankreplikate. 
+Skalierbarkeit ist die Fähigkeit eines Systems, eine höhere Last zu verarbeiten. Es gibt im Wesentlichen zwei Möglichkeiten, eine Anwendung zu skalieren. Beim *vertikalen Hochskalieren* wird die Kapazität einer Ressource erhöht, z.B. durch Verwenden eines größeren virtuellen Computers. Beim *horizontalen Hochskalieren* werden neue Instanzen einer Ressource hinzugefügt, z.B. virtuelle Computer oder Datenbankreplikate.
 
 Die horizontale Skalierung bietet gegenüber der vertikalen Skalierung einige wichtige Vorteile:
 
 - Echter Cloudmaßstab. Anwendung können für die Ausführung auf Hunderten oder sogar Tausenden von Knoten entworfen werden und damit einen Maßstab erreichen, der auf einem Einzelknoten nicht möglich ist.
 - Die horizontale Skalierung ist elastisch. Sie können Instanzen hinzufügen, wenn die Last wächst, und diese in ruhigeren Zeiträumen wieder entfernen.
-- Die horizontale Hochskalierung kann automatisch ausgelöst werden, entweder gemäß einem Zeitplan oder als Reaktion auf Änderungen der Auslastung. 
-- Das horizontale Hochskalieren kann kostengünstiger sein als das vertikale Hochskalieren. Die Ausführung verschiedener kleiner virtueller Computer kann weniger kosten als ein einziger großer virtueller Computer. 
+- Die horizontale Hochskalierung kann automatisch ausgelöst werden, entweder gemäß einem Zeitplan oder als Reaktion auf Änderungen der Auslastung.
+- Das horizontale Hochskalieren kann kostengünstiger sein als das vertikale Hochskalieren. Die Ausführung verschiedener kleiner virtueller Computer kann weniger kosten als ein einziger großer virtueller Computer.
 - Die horizontale Skalierung kann durch Hinzufügen von Redundanz auch die Resilienz verbessern. Wenn eine Instanz ausfällt, wird die Anwendung trotzdem weiter ausgeführt.
 
-Ein Vorteil der vertikalen Skalierung besteht darin, dass Sie hierfür keine Änderungen der Anwendung erforderlich sind. An einem bestimmten Punkt ist jedoch eine Obergrenze erreicht, ab der eine weitere vertikale Hochskalierung nicht mehr möglich ist. An diesem Punkt muss jede weitere Skalierung horizontal erfolgen. 
+Ein Vorteil der vertikalen Skalierung besteht darin, dass Sie hierfür keine Änderungen der Anwendung erforderlich sind. An einem bestimmten Punkt ist jedoch eine Obergrenze erreicht, ab der eine weitere vertikale Hochskalierung nicht mehr möglich ist. An diesem Punkt muss jede weitere Skalierung horizontal erfolgen.
 
 Die horizontale Skalierung muss im System konzipiert werden. Sie können z.B. virtuelle Computer horizontal hochskalieren, indem Sie sie hinter einem Lastenausgleichsmodul platzieren. Allerdings muss jeder virtuelle Computer im Pool in der Lage sein, jede Clientanforderung zu verarbeiten, daher muss der virtuelle Computer zustandslos sein oder den Zustand extern speichern (beispielsweise in einem verteilten Cache). In verwalteten PaaS-Diensten ist die horizontale und automatische Skalierung häufig bereits integriert. Die einfache Skalierbarkeit ist ein großer Vorteil von PaaS-Diensten.
 
@@ -47,13 +49,13 @@ Verwenden Sie die [Checkliste für die Skalierbarkeit][scalability-checklist], u
 ### <a name="scalability-guidance"></a>Leitfaden für die Skalierbarkeit
 
 - [Entwurfsmuster für Skalierbarkeit und Leistung][scalability-patterns]
-- Bewährte Methoden: [Automatische Skalierung][autoscale], [Hintergrundaufträge][background-jobs], [Caching][caching], [CDN][cdn], [Datenpartitionierung][data-partitioning]
+- Bewährten Methoden: [Automatische Skalierung][autoscale], [Hintergrundaufträge][background-jobs], [Caching][caching], [CDN][cdn], [Datenpartitionierung][data-partitioning]
 
 ## <a name="availability"></a>Verfügbarkeit
 
-Verfügbarkeit ist der Zeitanteil, in dem ein System funktioniert und erreichbar ist. Sie wird üblicherweise als Prozentsatz der Betriebszeit gemessen. Anwendungsfehler, Infrastrukturprobleme und Systemauslastung können die Verfügbarkeit reduzieren. 
+Verfügbarkeit ist der Zeitanteil, in dem ein System funktioniert und erreichbar ist. Sie wird üblicherweise als Prozentsatz der Betriebszeit gemessen. Anwendungsfehler, Infrastrukturprobleme und Systemauslastung können die Verfügbarkeit reduzieren.
 
-Eine Cloudanwendung sollte ein Servicelevelziel (Service Level Objective, SLO) aufweisen, das die erwartete Verfügbarkeit klar definiert und angibt, wie die Verfügbarkeit gemessen wird. Betrachten Sie beim Definieren der Verfügbarkeit den kritischen Pfad. Möglicherweise kann das Web-Front-End Clientanforderungen verarbeiten, aber wenn keine Transaktion ausgeführt werden kann, weil eine Verbindung mit der Datenbank nicht möglich ist, ist die Anwendung für Benutzer nicht verfügbar. 
+Eine Cloudanwendung sollte ein Servicelevelziel (Service Level Objective, SLO) aufweisen, das die erwartete Verfügbarkeit klar definiert und angibt, wie die Verfügbarkeit gemessen wird. Betrachten Sie beim Definieren der Verfügbarkeit den kritischen Pfad. Möglicherweise kann das Web-Front-End Clientanforderungen verarbeiten, aber wenn keine Transaktion ausgeführt werden kann, weil eine Verbindung mit der Datenbank nicht möglich ist, ist die Anwendung für Benutzer nicht verfügbar.
 
 Verfügbarkeit wird oft in Form von Neunen angegeben – „vier Neunen“ bedeutet beispielsweise eine Verfügbarkeit von 99,99 %. Die folgende Tabelle zeigt die potenziellen kumulativen Ausfallzeiten für verschiedene Verfügbarkeitsebenen.
 
@@ -69,14 +71,14 @@ Beachten Sie, dass eine Betriebszeit von 99 % eine Ausfallzeit von fast zwei Stu
 
 In Azure wird in der Vereinbarung zum Servicelevel (SLA) die garantierte Betriebszeit und Konnektivität beschrieben, die Microsoft zusichert. Wenn die Vereinbarung zum Servicelevel für einen bestimmten Dienst 99,95 % beträgt, können Sie erwarten, dass der Dienst 99,95 % der Zeit verfügbar ist.
 
-Anwendungen benötigen häufig mehrere Dienste. Im Allgemeinen ist die Wahrscheinlichkeit, dass einer der Dienste ausfällt, von den anderen Diensten unabhängig. Angenommen, Ihre Anwendung verwendet zwei Dienste, und jeder weist eine SLA von 99,9 % auf. Die kombinierte SLA für beide Dienste beträgt 99,9% &times; 99,9% &asymp; 99,8% oder geringfügig weniger als jeder Dienst für sich genommen. 
+Anwendungen benötigen häufig mehrere Dienste. Im Allgemeinen ist die Wahrscheinlichkeit, dass einer der Dienste ausfällt, von den anderen Diensten unabhängig. Angenommen, Ihre Anwendung verwendet zwei Dienste, und jeder weist eine SLA von 99,9 % auf. Die kombinierte SLA für beide Dienste beträgt 99,9% &times; 99,9% &asymp; 99,8% oder geringfügig weniger als jeder Dienst für sich genommen.
 
 Verwenden Sie die [Checkliste für die Verfügbarkeit][availability-checklist], um Ihren Entwurf vom Standpunkt der Verfügbarkeit aus zu überprüfen.
 
 ### <a name="availability-guidance"></a>Leitfaden für die Verfügbarkeit
 
 - [Entwurfsmuster für Verfügbarkeit][availability-patterns]
-- Bewährte Methoden: [automatische Skalierung][autoscale], [Hintergrundaufträge][background-jobs]
+- Bewährten Methoden: [automatische Skalierung][autoscale], [Hintergrundaufträge][background-jobs]
 
 ## <a name="resiliency"></a>Resilienz
 
@@ -85,8 +87,8 @@ Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine W
 In der herkömmlichen Anwendungsentwicklung lag der Fokus darauf, die MTBF (Mean Time Between Failures) zu verkürzen. Es wurde viel Mühe darauf verwandt, das System vor Ausfällen zu schützen. Beim Cloud Computing ist aufgrund verschiedener Faktoren eine andere Herangehensweise erforderlich:
 
 - Verteilte Systeme sind komplex, und ein Ausfall an einem Punkt kann durch das gesamte System kaskadieren.
-- Die Kosten für Cloudumgebungen werden niedrig gehalten, indem Standardhardware eingesetzt wird. Mit gelegentlichen Hardwarefehlern muss also gerechnet werden. 
-- Anwendungen nutzen oft externe Dienste, die zeitweilig nicht verfügbar sein können oder Benutzer mit hohem Volumen drosseln. 
+- Die Kosten für Cloudumgebungen werden niedrig gehalten, indem Standardhardware eingesetzt wird. Mit gelegentlichen Hardwarefehlern muss also gerechnet werden.
+- Anwendungen nutzen oft externe Dienste, die zeitweilig nicht verfügbar sein können oder Benutzer mit hohem Volumen drosseln.
 - Benutzer erwarten heute, dass eine Anwendung rund um die Uhr verfügbar ist und niemals offline geschaltet wird.
 
 All diese Faktoren bedeuten, dass Cloudanwendungen so entworfen werden müssen, dass gelegentliche Ausfälle erwartet werden und die Anwendung danach wiederhergestellt werden kann. In der Azure-Plattform sind viele Resilienzfeatures bereits integriert. Beispiel: 
@@ -105,7 +107,7 @@ Verwenden Sie die [Checkliste für die Resilienz][resiliency-checklist], um Ihre
 
 - [Entwickeln robuster Anwendungen für Azure][resiliency]
 - [Entwurfsmuster für Resilienz][resiliency-patterns]
-- Bewährte Methoden: [Behandeln vorübergehender Fehler][transient-fault-handling], [Wiederholungsanleitung für bestimmte Dienste][retry-service-specific]
+- Bewährten Methoden: [Behandeln vorübergehender Fehler][transient-fault-handling], [Wiederholungsanleitung für bestimmte Dienste][retry-service-specific]
 
 ## <a name="management-and-devops"></a>Verwaltung und DevOps
 
@@ -127,13 +129,13 @@ Verwenden Sie die [DevOps-Checkliste][devops-checklist], um Ihren Entwurf vom Ve
 ### <a name="management-and-devops-guidance"></a>Leitfaden für Verwaltung und DevOps
 
 - [Entwurfsmuster für Verwaltung und Überwachung][management-patterns]
-- Bewährte Methoden: [Überwachung und Diagnose][monitoring]
+- Bewährten Methoden: [Überwachung und Diagnose][monitoring]
 
 ## <a name="security"></a>Sicherheit
 
 Sie müssen die Sicherheit für den gesamten Lebenszyklus einer Anwendung berücksichtigen – von Entwurf und Implementierung bis hin zu Bereitstellung und Betrieb. Die Azure-Plattform bietet Schutz vor einer Vielzahl von Bedrohungen, z.B. Eindringen in das Netzwerk und DDoS-Angriffe. Dennoch müssen Sie weiterhin Sicherheitsfunktionen in Ihre Anwendung und Ihre DevOps-Prozesse integrieren.
 
-Im Folgenden finden Sie einige allgemeine Sicherheitsbereiche, die es zu berücksichtigen gilt. 
+Im Folgenden finden Sie einige allgemeine Sicherheitsbereiche, die es zu berücksichtigen gilt.
 
 ### <a name="identity-management"></a>Identitätsverwaltung
 
@@ -141,29 +143,28 @@ Ziehen Sie in Betracht, Azure Active Directory (Azure AD) zur Authentifizierung 
 
 Wenn Sie eine lokale Active Directory-Umgebung in ein Azure-Netzwerk integrieren möchten, gibt es je nach Anforderungen verschiedene Herangehensweisen. Weitere Informationen finden Sie in unseren Referenzarchitekturen zur [Identitätsverwaltung][identity-ref-arch].
 
-### <a name="protecting-your-infrastructure"></a>Schützen Ihrer Infrastruktur 
+### <a name="protecting-your-infrastructure"></a>Schützen Ihrer Infrastruktur
 
-Kontrollieren Sie den Zugriff auf die von Ihnen bereitgestellten Azure-Ressourcen. Jedes Azure-Abonnement weist eine [Vertrauensstellung][ad-subscriptions] mit einem Azure AD-Mandanten auf. Verwenden Sie die [rollenbasierte Zugriffssteuerung][rbac] (Role-Based Access Control, RBAC), um den Benutzern in Ihrer Organisation die richtigen Berechtigungen für Azure-Ressourcen zu gewähren. Gewähren Sie den Zugriff, indem Sie Benutzern oder Gruppen für einen bestimmten Bereich RBAC-Rollen zuweisen. Bei dem Bereich kann es sich um ein Abonnement, eine Ressourcengruppe oder eine einzelne Ressource handeln. [Überwachen][resource-manager-auditing] Sie alle Änderungen an der Infrastruktur. 
+Kontrollieren Sie den Zugriff auf die von Ihnen bereitgestellten Azure-Ressourcen. Jedes Azure-Abonnement weist eine [Vertrauensstellung][ad-subscriptions] mit einem Azure AD-Mandanten auf.
+Verwenden Sie die [rollenbasierte Zugriffssteuerung][rbac] (Role-Based Access Control, RBAC), um den Benutzern in Ihrer Organisation die richtigen Berechtigungen für Azure-Ressourcen zu gewähren. Gewähren Sie den Zugriff, indem Sie Benutzern oder Gruppen für einen bestimmten Bereich RBAC-Rollen zuweisen. Bei dem Bereich kann es sich um ein Abonnement, eine Ressourcengruppe oder eine einzelne Ressource handeln. [Überwachen][resource-manager-auditing] Sie alle Änderungen an der Infrastruktur.
 
 ### <a name="application-security"></a>Anwendungssicherheit
 
-Im Allgemeinen gelten die bewährten Methoden für die Sicherheit in der Anwendungsentwicklung auch in der Cloud weiterhin. Hierzu gehören Aspekte wie standortunabhängiges SSL, Schutz vor CSRF- und XSS-Angriffen, Verhindern von Angriffen durch Einschleusung von SQL-Befehlen usw. 
+Im Allgemeinen gelten die bewährten Methoden für die Sicherheit in der Anwendungsentwicklung auch in der Cloud weiterhin. Hierzu gehören Aspekte wie standortunabhängiges SSL, Schutz vor CSRF- und XSS-Angriffen, Verhindern von Angriffen durch Einschleusung von SQL-Befehlen usw.
 
 Cloudanwendungen verwenden häufig verwaltete Dienste, die über Zugriffsschlüssel verfügen. Implementieren Sie diese niemals in die Quellcodeverwaltung. Speichern Sie Anwendungsgeheimnisse in Azure Key Vault.
 
 ### <a name="data-sovereignty-and-encryption"></a>Datensouveränität und -verschlüsselung
 
-Stellen Sie sicher, dass Ihre Daten in der richtigen geopolitischen Zone bleiben, wenn Sie die Hochverfügbarkeitsfeatures von Azure verwenden. Der georeplizierte Azure-Speicher nutzt das Konzept der [Regionspaare][paired-region] in der gleichen geopolitischen Region. 
+Stellen Sie sicher, dass Ihre Daten in der richtigen geopolitischen Zone bleiben, wenn Sie die Hochverfügbarkeitsfeatures von Azure verwenden. Der georeplizierte Azure-Speicher nutzt das Konzept der [Regionspaare][paired-region] in der gleichen geopolitischen Region.
 
 Verwenden Sie Key Vault, um Kryptografieschlüssel und Geheimnisse zu sichern. Mit Key Vault können Sie Schlüssel und Geheimnisse mithilfe von Schlüsseln verschlüsseln, die durch Hardwaresicherheitsmodule (HSMs) geschützt werden. Viele Speicher- und Datenbankdienste in Azure unterstützen die Verschlüsselung ruhender Daten – hierzu gehören [Azure Storage][storage-encryption], [Azure SQL-Datenbank][sql-db-encryption], [Azure SQL Data Warehouse][data-warehouse-encryption] und [Cosmos DB][cosmosdb-encryption].
 
 ### <a name="security-resources"></a>Sicherheitsressourcen
 
-- [Azure Security Center][security-center] bietet eine integrierte Sicherheitsüberwachung und Richtlinienverwaltung für all Ihre Azure-Abonnements. 
+- [Azure Security Center][security-center] bietet eine integrierte Sicherheitsüberwachung und Richtlinienverwaltung für all Ihre Azure-Abonnements.
 - [Dokumentation zur Azure-Sicherheit][security-documentation]
 - [Microsoft Trust Center][trust-center]
-
-
 
 <!-- links -->
 
@@ -183,14 +184,12 @@ Verwenden Sie Key Vault, um Kryptografieschlüssel und Geheimnisse zu sichern. M
 [sql-db-encryption]: /azure/sql-database/sql-database-always-encrypted-azure-key-vault
 [storage-encryption]: /azure/storage/storage-service-encryption
 [trust-center]: https://azure.microsoft.com/support/trust-center/
- 
 
 <!-- patterns -->
 [availability-patterns]: ../patterns/category/availability.md
 [management-patterns]: ../patterns/category/management-monitoring.md
 [resiliency-patterns]: ../patterns/category/resiliency.md
 [scalability-patterns]: ../patterns/category/performance-scalability.md
-
 
 <!-- practices -->
 [autoscale]: ../best-practices/auto-scaling.md
@@ -201,7 +200,6 @@ Verwenden Sie Key Vault, um Kryptografieschlüssel und Geheimnisse zu sichern. M
 [monitoring]: ../best-practices/monitoring.md
 [retry-service-specific]: ../best-practices/retry-service-specific.md
 [transient-fault-handling]: ../best-practices/transient-faults.md
-
 
 <!-- checklist -->
 [availability-checklist]: ../checklist/availability.md

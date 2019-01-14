@@ -1,19 +1,17 @@
 ---
-title: Drosselung
+title: Muster „Drosselung“
+titleSuffix: Cloud Design Patterns
 description: Steuern Sie den Verbrauch der von einer Anwendungsinstanz, einem einzelnen Mandanten oder einem gesamten Dienst verwendeten Ressourcen.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- availability
-- performance-scalability
-ms.openlocfilehash: 29156fc72f40a952dd53adcb20ffa7c3d0af79b4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 9babe6b3c81b0846e83dfef98bbd76a89661d911
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541256"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010666"
 ---
 # <a name="throttling-pattern"></a>Muster „Drosselung“
 
@@ -37,14 +35,13 @@ Das System kann mehrere Drosselungsstrategien implementieren, wie etwa Folgende:
 
 - Deaktivieren oder Beschränken der Funktionalität ausgewählter nicht wesentlicher Dienste, sodass wesentliche Dienste ungehindert mit ausreichenden Ressourcen ausgeführt werden können. Wenn die Anwendung beispielsweise Videoausgaben streamt, kann sie zu einer geringeren Auflösung wechseln.
 
-- Abschwächen des Aktivitätsvolumens durch einen Lastenausgleich (diese Vorgehensweise wird unter [Muster „Warteschlangenbasierter Lastenausgleich“](queue-based-load-leveling.md) näher beschrieben). In einer mehrinstanzenfähigen Umgebung wird die Leistung durch diese Vorgehensweise bei jedem Mandanten beeinträchtigt. Wenn das System eine Kombination von Mandanten mit unterschiedlichen SLAs unterstützen muss, können die Aufgaben für Mandanten mit hoher Priorität sofort durchgeführt werden. Anforderungen für andere Mandanten können zurückgehalten und bearbeitet werden, wenn der Rückstand nachgelassen hat. Zur Implementierung dieser Vorgehensweise kann als Unterstützung das [Muster „Prioritätswarteschlange“][] verwendet werden.
+- Abschwächen des Aktivitätsvolumens durch einen Lastenausgleich (diese Vorgehensweise wird unter [Muster „Warteschlangenbasierter Lastenausgleich“](./queue-based-load-leveling.md) näher beschrieben). In einer mehrinstanzenfähigen Umgebung wird die Leistung durch diese Vorgehensweise bei jedem Mandanten beeinträchtigt. Wenn das System eine Kombination von Mandanten mit unterschiedlichen SLAs unterstützen muss, können die Aufgaben für Mandanten mit hoher Priorität sofort durchgeführt werden. Anforderungen für andere Mandanten können zurückgehalten und bearbeitet werden, wenn der Rückstand nachgelassen hat. Bei der Implementierung dieser Vorgehensweise kann zur Unterstützung das [Muster „Prioritätswarteschlange“][] verwendet werden.
 
 - Verschieben von Vorgängen, die für Anwendungen oder Mandanten mit geringerer Priorität durchgeführt werden. Diese Vorgänge können angehalten oder beschränkt werden, wobei eine Ausnahme erzeugt wird, um den Mandanten darüber zu informieren, dass das System ausgelastet ist und der Vorgang später erneut wiederholt werden sollte.
 
 Die Abbildung zeigt ein Flächendiagramm zum Ressourcenverbrauch (eine Kombination aus Speicher, CPU, Bandbreite und anderen Faktoren) im Zeitverlauf für Anwendungen, die auf alle drei Funktionen zurückgreifen. Ein Feature ist ein Funktionsbereich wie etwa eine Komponente, die eine bestimmte Gruppe von Aufgaben ausführt, ein Codeausschnitt, der eine komplexe Berechnung durchführt, oder ein Element, das einen Dienst bereitstellt (z.B. ein In-Memory-Cache). Diese Features sind mit den Buchstaben A, B und C gekennzeichnet.
 
 ![Abbildung 1: Diagramm zur Darstellung des Ressourcenverbrauchs im Zeitverlauf für Anwendungen, die für drei Benutzer ausgeführt werden](./_images/throttling-resource-utilization.png)
-
 
 > Der Bereich unmittelbar unter der Linie eines Features stellt die Ressourcen dar, die von Anwendungen beim Aufrufen dieses Features verwendet werden. Der Bereich unterhalb der Linie von Feature A beispielsweise stellt die Ressourcen dar, die von Anwendungen verwendet werden, die Feature A verwenden, während der Bereich zwischen den Linien von Feature A und Feature B die Ressourcen darstellt, die von Anwendungen verwendet werden, die Feature B aufrufen. Die aggregierten Bereiche der einzelnen Features stellen die gesamte Ressourcennutzung des Systems dar.
 
@@ -55,7 +52,6 @@ Die Vorgehensweisen zur automatischen Skalierung und Drosselung können auch kom
 Die folgende Abbildung zeigt ein Flächendiagramm zum gesamten Ressourcenverbrauch sämtlicher Anwendungen, die in einem bestimmten Zeitraum in einem System ausgeführt werden, und wie die Drosselung mit automatischer Skalierung kombiniert werden kann.
 
 ![Abbildung 2: Diagramm zu den Auswirkungen einer Kombination von Drosselung und automatischer Skalierung](./_images/throttling-autoscaling.png)
-
 
 Bei Zeitpunkt T1 ist der Schwellenwert erreicht, der den weichen Grenzwert des Ressourcenverbrauchs angibt. An dieser Stelle kann das System mit der horizontalen Skalierung beginnen. Wenn die neuen Ressourcen jedoch nicht schnell genug zur Verfügung stehen, werden die vorhandenen Ressourcen möglicherweise aufgebraucht, und das System könnte ausfallen. Um dies zu verhindern, wird das System wie zuvor beschrieben vorübergehend gedrosselt. Wenn die automatische Skalierung abgeschlossen ist und die zusätzlichen Ressourcen zur Verfügung stehen, kann die Drosselung wieder gelockert werden.
 
@@ -93,14 +89,12 @@ Um zu verhindern, dass Benutzer eines Mandanten die Reaktionsfähigkeit und Verf
 
 ![Abbildung 3: Implementieren der Drosselung in einer mehrinstanzenfähigen Anwendung](./_images/throttling-multi-tenant.png)
 
-
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 
 Die folgenden Muster und Anleitungen können auch relevant sein, wenn dieses Muster implementiert wird:
+
 - [Instrumentations- und Telemetrieanleitungen](https://msdn.microsoft.com/library/dn589775.aspx). Für die Drosselung müssen Informationen über die Nutzlast eines Diensts gesammelt werden. Dieser Leitfaden beschreibt, wie benutzerdefinierte Überwachungsinformationen generiert und erfasst werden.
 - [Leitfaden zur Dienstmessung](https://msdn.microsoft.com/library/dn589796.aspx): Dieser Leitfaden beschreibt, wie die Nutzung von Diensten gemessen wird, um Einblick über deren Verwendung zu erhalten. Diese Informationen können als Entscheidungshilfe zur Auswahl einer Drosselungsmethode für einen Dienst dienen.
-- [Leitfaden für die automatische Skalierung](https://msdn.microsoft.com/library/dn589774.aspx): Die Drosselung kann als Übergangsmaßnahme während der automatischen Skalierung eines Systems oder zur Vermeidung der automatischen Skalierung eines Systems verwendet werden. Dieser Leitfaden enthält Informationen über Strategien zur automatischen Skalierung.
-- [Muster „Warteschlangenbasierter Lastenausgleich“](queue-based-load-leveling.md): Ein warteschlangenbasierter Lastenausgleich ist eine häufig verwendete Methode zur Implementierung der Drosselung. Eine Warteschlange kann als Puffer herangezogen werden, um die Geschwindigkeit auszugleichen, mit der die von einer Anwendung gesendeten Anforderungen an einen Dienst gesendet werden.
-- [Muster „Prioritätswarteschlange“][]: Ein System kann im Rahmen seiner Drosselungsstrategie Prioritätswarteschlangen einsetzen, um die Leistung von kritischen oder höherwertigen Anwendungen aufrechtzuerhalten und gleichzeitig die von weniger wichtigen Anwendungen zu reduzieren.
-
-[Muster „Prioritätswarteschlange“]: priority-queue.md
+- [Leitfaden für die automatische Skalierung](https://msdn.microsoft.com/library/dn589774.aspx). Die Drosselung kann als Übergangsmaßnahme während der automatischen Skalierung eines Systems oder zur Vermeidung der automatischen Skalierung eines Systems verwendet werden. Dieser Leitfaden enthält Informationen über Strategien zur automatischen Skalierung.
+- [Muster „Warteschlangenbasierter Lastenausgleich“](./queue-based-load-leveling.md): Ein warteschlangenbasierter Lastenausgleich ist eine häufig verwendete Methode zur Implementierung der Drosselung. Eine Warteschlange kann als Puffer herangezogen werden, um die Geschwindigkeit auszugleichen, mit der die von einer Anwendung gesendeten Anforderungen an einen Dienst gesendet werden.
+- [Muster „Prioritätswarteschlange“](./priority-queue.md): Ein System kann im Rahmen seiner Drosselungsstrategie Prioritätswarteschlangen einsetzen, um die Leistung von kritischen oder höherwertigen Anwendungen aufrechtzuerhalten und gleichzeitig die von weniger wichtigen Anwendungen zu reduzieren.

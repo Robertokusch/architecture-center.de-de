@@ -3,12 +3,12 @@ title: Extrahieren, Transformieren und Laden (ETL)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 6f56da72bd7a93ecd40b0be2a19e93d9062038fb
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: b23e1ab35f278bd8e1b203cd0026ee356be022dc
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901540"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113432"
 ---
 # <a name="extract-transform-and-load-etl"></a>Extrahieren, Transformieren und Laden (ETL)
 
@@ -16,7 +16,7 @@ Viele Organisationen fragen sich, wie sie Daten aus mehreren Datenquellen und in
 
 Zur Bewältigung dieser Herausforderungen wurden im Laufe der Jahre verschiedene Tools, Dienste und Prozesse entwickelt. Unabhängig vom verwendeten Prozess muss im Allgemeinen die Arbeit koordiniert und ein gewisses Maß an Datentransformation innerhalb der Datenpipeline angewendet werden. In den folgenden Abschnitten werden gängige Methoden für die Durchführung dieser Aufgaben erläutert.
 
-## <a name="extract-transform-and-load-etl"></a>Extrahieren, Transformieren und Laden (ETL)
+## <a name="extract-transform-and-load-etl-process"></a>Extrahieren, Transformieren und Laden (ETL-Prozess)
 
 Extrahieren, Transformieren und Laden (ETL) ist eine Datenpipeline und wird verwendet, um Daten aus verschiedenen Quellen zu sammeln, gemäß den Geschäftsregeln zu transformieren und in einen Zieldatenspeicher zu laden. Die Transformation in ETL findet in einem speziellen Modul statt und beinhaltet häufig die Verwendung von Stagingtabellen zur vorübergehenden Speicherung von Daten, während diese transformiert und schließlich in das Ziel geladen werden.
 
@@ -27,9 +27,11 @@ Die durchgeführte Datentransformation umfasst in der Regel verschiedene Vorgän
 Die drei ETL-Phasen werden häufig parallel ausgeführt, um Zeit zu sparen. Während der Datenextraktion kann also beispielsweise ein Transformationsprozess für bereits empfangene Daten ausgeführt werden, um die Daten für das Laden vorzubereiten, und ein Ladevorgang kann mit der Arbeit an den vorbereiteten Daten beginnen, anstatt auf den Abschluss des gesamten Extraktionsprozesses zu warten.
 
 In Frage kommender Azure-Dienst:
+
 - [Azure Data Factory v2](https://azure.microsoft.com/services/data-factory/)
 
 Weitere Tools:
+
 - [SQL Server Integration Services (SSIS)](/sql/integration-services/sql-server-integration-services)
 
 ## <a name="extract-load-and-transform-elt"></a>Extrahieren, Laden und Transformieren (ELT)
@@ -40,11 +42,11 @@ Extrahieren, Laden und Transformieren (ELT) unterscheidet sich von ETL lediglich
 
 ELT kommt üblicherweise in Big Data-Szenarien zum Einsatz. So können Sie beispielsweise zunächst alle Quelldaten in Flatfiles in einem skalierbaren Speicher wie HDFS (Hadoop Distributed File System) oder Azure Data Lake Store extrahieren. Anschließend können Sie die Quelldaten mit Technologien wie Spark, Hive oder PolyBase abfragen. Entscheidend bei ELT ist, dass der für die Transformation verwendete Datenspeicher der gleiche Datenspeicher ist, in dem die Daten später auch genutzt werden. Dieser Datenspeicher liest direkt aus dem skalierbaren Speicher, anstatt die Daten in seinen eigenen proprietären Speicher zu laden. Bei diesem Ansatz wird also der Datenkopierschritt aus ELT übersprungen, der bei umfangreichen Datasets sehr zeitaufwendig sein kann.
 
-In der Praxis ist der Zieldatenspeicher ein [Data Warehouse](./data-warehousing.md) mit einem Hadoop-Cluster (Hive oder Spark) oder ein SQL Data Warehouse. Im Allgemeinen wird bei der Abfrage ein Schema auf die Flatfiledaten angewendet und als Tabelle gespeichert, wodurch die Daten wie jede andere Tabelle im Datenspeicher abgefragt werden können. Diese Tabellen werden als externe Tabellen bezeichnet, da sich die Daten nicht in dem Speicher befinden, der vom Datenspeicher selbst verwaltet wird, sondern in einem externen skalierbaren Speicher. 
+In der Praxis ist der Zieldatenspeicher ein [Data Warehouse](./data-warehousing.md) mit einem Hadoop-Cluster (Hive oder Spark) oder ein SQL Data Warehouse. Im Allgemeinen wird bei der Abfrage ein Schema auf die Flatfiledaten angewendet und als Tabelle gespeichert, wodurch die Daten wie jede andere Tabelle im Datenspeicher abgefragt werden können. Diese Tabellen werden als externe Tabellen bezeichnet, da sich die Daten nicht in dem Speicher befinden, der vom Datenspeicher selbst verwaltet wird, sondern in einem externen skalierbaren Speicher.
 
 Der Datenspeicher verwaltet nur das Schema der Daten und wendet es beim Lesen an. Ein Hadoop-Cluster mit Hive beschreibt beispielsweise eine Hive-Tabelle, in der die Datenquelle im Grunde ein Pfad zu einer Gruppe von Dateien in HDFS ist. In SQL Data Warehouse lässt sich mit PolyBase das gleiche Ergebnis erzielen: Es wird eine Tabelle für Daten erstellt, die außerhalb der eigentlichen Datenbank gespeichert sind. Nach dem Laden der Quelldaten können die in externen Tabellen enthaltenen Daten mithilfe der Funktionen des Datenspeichers verarbeitet werden. In Big Data-Szenarien muss der Datenspeicher für MPP (Massively Parallel Processing) geeignet sein. Dabei werden die Daten in kleinere Blöcke aufgeteilt, die dann parallel von mehreren Computern verarbeitet werden.
 
-In der letzten Phase der ELT-Pipeline werden die Quelldaten üblicherweise in ein endgültiges Format transformiert, das besser für die Arten von Abfragen geeignet ist, die unterstützt werden müssen. So können die Daten beispielsweise partitioniert werden. ELT kann außerdem optimierte Speicherformate wie Parquet verwendet, das zeilenorientierte Daten spaltenförmig speichert und eine optimierte Indizierung bietet. 
+In der letzten Phase der ELT-Pipeline werden die Quelldaten üblicherweise in ein endgültiges Format transformiert, das besser für die Arten von Abfragen geeignet ist, die unterstützt werden müssen. So können die Daten beispielsweise partitioniert werden. ELT kann außerdem optimierte Speicherformate wie Parquet verwendet, das zeilenorientierte Daten spaltenförmig speichert und eine optimierte Indizierung bietet.
 
 In Frage kommender Azure-Dienst:
 
@@ -68,9 +70,11 @@ Ablaufsteuerungen führen Datenflüsse als Task aus. In einem Datenflusstask wer
 Das obige Diagramm enthält mehrere Tasks innerhalb der Ablaufsteuerung. Einer davon ist ein Datenflusstask. Einer der Tasks ist in einen Container geschachtelt. Container ermöglichen die Strukturierung von Tasks, um eine Arbeitseinheit bereitzustellen. Ein Beispiel wäre etwa die Wiederholung von Elementen in einer Sammlung (beispielsweise Dateien in einem Ordner oder Datenbankanweisungen).
 
 In Frage kommender Azure-Dienst:
+
 - [Azure Data Factory v2](https://azure.microsoft.com/services/data-factory/)
 
 Weitere Tools:
+
 - [SQL Server Integration Services (SSIS)](/sql/integration-services/sql-server-integration-services)
 
 ## <a name="technology-choices"></a>Auswahl der Technologie

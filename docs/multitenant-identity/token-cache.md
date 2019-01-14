@@ -1,17 +1,17 @@
 ---
 title: Zwischenspeichern von Zugangstoken in einer mehrinstanzenfähigen Anwendung
-description: Informationen zum Zwischenspeichern von Zugriffstoken zum Aufrufen einer Back-End-Web-API.
+description: Zwischenspeichern von Zugriffstoken zum Aufrufen einer Back-End-Web-API.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: web-api
 pnp.series.next: adfs
-ms.openlocfilehash: 950b638e629ad97e24b05e781da844bc110bad91
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 0cf4b3c3b9187759522b4530c94268ce8d7baa86
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901710"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110951"
 ---
 # <a name="cache-access-tokens"></a>Zwischenspeichern von Zugriffstoken
 
@@ -41,14 +41,14 @@ In der Tailspin-Anwendung „Surveys“ implementiert die `DistributedTokenCache
 Der Sicherungsspeicher ist nach Benutzer partitioniert. Für jede HTTP-Anforderung werden die Token für den Benutzer aus dem Sicherungsspeicher gelesen und in das `TokenCache`-Wörterbuch geladen. Wenn Redis als Sicherungsspeicher verwendet wird, liest/schreibt jede Serverinstanz in einer Serverfarm in den gleichen Cache bzw. aus dem gleichen Cache, und dieser Ansatz wird auf viele Benutzer skaliert.
 
 ## <a name="encrypting-cached-tokens"></a>Verschlüsseln zwischengespeicherter Token
+
 Token sind vertrauliche Daten, da sie den Zugriff auf Ressourcen eines Benutzers gewähren. (Sie können zudem, im Gegensatz zum Kennwort eines Benutzers, nicht einfach den Hash eines Tokens speichern.) Deshalb müssen Token unbedingt vor Gefährdung geschützt werden. Doch wenn sich jemand das Kennwort verschafft, können alle zwischengespeicherten Zugriffstoken abgerufen werden. Aus diesem Grund verschlüsselt der `DistributedTokenCache` alle Elemente, die in den Sicherungsspeicher geschrieben werden. Die Verschlüsselung erfolgt mithilfe der [Datenschutz][data-protection]-APIs von ASP.NET Core.
 
 > [!NOTE]
 > Wenn die Bereitstellung auf Azure-Websites erfolgt, werden die Verschlüsselungsschlüssel im Netzwerkspeicher gesichert und auf allen Computern synchronisiert (siehe [Schlüsselverwaltung und Lebensdauer][key-management]). Bei der Ausführung auf Azure-Websites werden Schlüssel standardmäßig nicht verschlüsselt. Sie können jedoch [die Verschlüsselung mit einem X.509-Zertifikat aktivieren][x509-cert-encryption].
-> 
-> 
 
 ## <a name="distributedtokencache-implementation"></a>„DistributedTokenCache“-Implementierung
+
 Die `DistributedTokenCache`-Klasse wird von der ADAL-[TokenCache][tokencache-class]-Klasse abgeleitet.
 
 Im Konstruktor erstellt die `DistributedTokenCache` -Klasse einen Schlüssel für den aktuellen Benutzer und lädt den Cache aus dem Sicherungsspeicher:

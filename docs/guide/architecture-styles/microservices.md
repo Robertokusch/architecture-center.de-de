@@ -1,21 +1,23 @@
 ---
 title: Architekturstil für Microservices
-description: Dieser Artikel beschreibt die Vorteile, Herausforderungen und bewährten Methoden für Architekturen für Microservices in Azure.
+titleSuffix: Azure Application Architecture Guide
+description: In diesem Artikel werden die Vorteile, Herausforderungen und bewährten Methoden für Microservicearchitekturen in Azure beschrieben.
 author: MikeWasson
 ms.date: 11/13/2018
-ms.openlocfilehash: 4e5d50f829323829c953977257e690354566ebf6
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seojan19
+ms.openlocfilehash: fb9f97b41306a2f1aa6cfc6c1639c152a7e556b6
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295530"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111222"
 ---
 # <a name="microservices-architecture-style"></a>Architekturstil für Microservices
 
-Eine Microservicearchitektur besteht aus einer Sammlung kleiner, autonomer Dienste. Jeder Dienst ist eigenständig und sollte eine einzige Geschäftsfunktion implementieren. 
+Eine Microservicearchitektur besteht aus einer Sammlung kleiner, autonomer Dienste. Jeder Dienst ist eigenständig und sollte eine einzige Geschäftsfunktion implementieren.
 
-![](./images/microservices-logical.svg)
- 
+![Logisches Diagramm der Microservicearchitektur](./images/microservices-logical.svg)
+
 Auf gewisse Weise sind Microservices die natürliche Weiterentwicklung von serviceorientierten Architekturen (SOAs), es gibt jedoch einige Unterschiede zwischen Microservices und SOAs. Im Folgenden finden Sie einige definierende Merkmale eines Microservice:
 
 - In einer Microservicearchitektur sind die Dienste klein, unabhängig und lose gekoppelt.
@@ -32,17 +34,17 @@ Auf gewisse Weise sind Microservices die natürliche Weiterentwicklung von servi
 
 Abgesehen von den Diensten selbst gibt es in einer typischen Architektur für Microservices noch einige weitere Komponenten:
 
-**Verwaltung**. Die Verwaltungskomponente ist dafür zuständig, Dienste auf Knoten zu platzieren, Fehler zu ermitteln, die Dienste auf Knoten zu verteilen usw.  
+**Verwaltung**. Die Verwaltungskomponente ist dafür zuständig, Dienste auf Knoten zu platzieren, Fehler zu ermitteln, die Dienste auf Knoten zu verteilen usw.
 
-**Dienstermittlung**.  Diese Komponente verwaltet eine Liste der Dienste und der Knoten, auf denen sich die Dienste befinden. Sie ermöglicht eine Dienstsuche, um den Endpunkt für einen Dienst zu finden. 
+**Dienstermittlung**. Diese Komponente verwaltet eine Liste der Dienste und der Knoten, auf denen sich die Dienste befinden. Sie ermöglicht eine Dienstsuche, um den Endpunkt für einen Dienst zu finden.
 
-**API-Gateway**. Das API-Gateway ist der Einstiegspunkt für Clients. Clients rufen Dienste nicht direkt auf. Stattdessen rufen sie das API-Gateway auf, das den Aufruf an die geeigneten Dienste im Back-End weiterleitet. Das API-Gateway kann die Antworten mehrerer Dienste aggregieren und die aggregierte Antwort zurückgeben. 
+**API-Gateway**. Das API-Gateway ist der Einstiegspunkt für Clients. Clients rufen Dienste nicht direkt auf. Stattdessen rufen sie das API-Gateway auf, das den Aufruf an die geeigneten Dienste im Back-End weiterleitet. Das API-Gateway kann die Antworten mehrerer Dienste aggregieren und die aggregierte Antwort zurückgeben.
 
 Ein API-Gateway bietet u.a. folgende Vorteile:
 
 - Es entkoppelt die Clients von den Diensten. Für Dienste kann eine Versionierung oder Umgestaltung durchgeführt werden, ohne dass sämtliche Clients aktualisiert werden müssen.
 
--  Dienste können nicht webfähige Messagingprotokolle verwenden, z.B. AMQP.
+- Dienste können nicht webfähige Messagingprotokolle verwenden, z.B. AMQP.
 
 - Das API-Gateway kann weitere übergreifende Funktionen ausführen, beispielsweise Authentifizierung, Protokollierung, SSL-Terminierung und Lastenausgleich.
 
@@ -58,18 +60,17 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 
 - Eine Organisation, die aus vielen kleinen Entwicklungsteams besteht
 
-
-## <a name="benefits"></a>Vorteile 
+## <a name="benefits"></a>Vorteile
 
 - **Unabhängige Bereitstellungen**. Sie können einen Dienst aktualisieren, ohne die gesamte Anwendung erneut bereitstellen zu müssen, und einen Rollback oder Rollforward für ein Update ausführen, falls ein Problem auftritt. Fehlerbehebungen und Featurereleases lassen sich besser verwalten und bergen weniger Risiken.
 
-- **Unabhängige Entwicklung**. Ein einziges Entwicklungsteam kann einen Dienst erstellen, testen und bereitstellen. Dies fördert kontinuierliche Innovationen und einen schnelleren Releaserhythmus. 
+- **Unabhängige Entwicklung**. Ein einziges Entwicklungsteam kann einen Dienst erstellen, testen und bereitstellen. Dies fördert kontinuierliche Innovationen und einen schnelleren Releaserhythmus.
 
 - **Kleine, fokussierte Teams**. Teams können sich auf einen Dienst konzentrieren. Dank des geringeren Umfangs der einzelnen Services ist die Codebasis einfacher zu verstehen, und neue Teammitglieder können schneller eingearbeitet werden.
 
 - **Fehlerisolation**. Wenn ein Dienst ausfällt, ist nicht gleich die gesamte Anwendung betroffen. Das bedeutet aber nicht, dass Sie kostenlos Resilienz erhalten. Sie müssen weiterhin bewährte Methoden und Entwurfsmuster für die Resilienz befolgen. Weitere Informationen finden Sie unter [Entwerfen robuster Anwendungen für Azure][resiliency-overview].
 
-- **Verschiedene Technologiestapel**. Teams können die Technologie auswählen, die sich für ihren Dienst am besten eignet. 
+- **Verschiedene Technologiestapel**. Teams können die Technologie auswählen, die sich für ihren Dienst am besten eignet.
 
 - **Genau abgestimmte Skalierung**. Die Dienste können unabhängig voneinander skaliert werden. Gleichzeitig bedeutet die höhere Dienstdichte pro virtuellem Computer, dass die Ressourcen der virtuellen Computer vollständig genutzt werden. Mithilfe von Platzierungseinschränkungen kann ein Dienst auf das Profil eines virtuellen Computers abgestimmt werden (hohe CPU-Leistung, viel Arbeitsspeicher usw.).
 
@@ -93,11 +94,11 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 
 ## <a name="best-practices"></a>Bewährte Methoden
 
-- Modellieren Sie Dienste rund um die geschäftliche Domäne. 
+- Modellieren Sie Dienste rund um die geschäftliche Domäne.
 
-- Dezentralisieren Sie alles. Einzelne Teams sind für den Entwurf und die Erstellung von Diensten verantwortlich. Vermeiden Sie die gemeinsame Nutzung von Code oder Datenschemas. 
+- Dezentralisieren Sie alles. Einzelne Teams sind für den Entwurf und die Erstellung von Diensten verantwortlich. Vermeiden Sie die gemeinsame Nutzung von Code oder Datenschemas.
 
-- Die Datenspeicherung sollte ausschließlich in dem Dienst erfolgen, der die Daten besitzt. Verwenden Sie den optimalen Speicher für jeden Dienst- und Datentyp. 
+- Die Datenspeicherung sollte ausschließlich in dem Dienst erfolgen, der die Daten besitzt. Verwenden Sie den optimalen Speicher für jeden Dienst- und Datentyp.
 
 - Dienste kommunizieren über sorgfältig entworfene APIs. Vermeiden Sie die Weitergabe von Implementierungsdetails. APIs sollten die Domäne modellieren, nicht die interne Implementierung des Diensts.
 
@@ -107,7 +108,7 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 
 - Informationen über die Domäne haben im Gateway nichts zu suchen. Das Gateway sollte Clientanforderungen ohne Kenntnis der Geschäftsregeln oder Domänenlogik verarbeiten und weiterleiten. Andernfalls wird das Gateway zu einer Abhängigkeit und kann zu Kopplung zwischen den Diensten führen.
 
-- Dienste sollten eine lose Kopplung und eine hohe funktionale Kohäsion aufweisen. Funktionen, die wahrscheinlich zusammen geändert werden, sollten auch zusammen gepackt und bereitgestellt werden. Wenn sie sich in verschiedenen Diensten befinden, sind diese Dienste letztlich eng gekoppelt, da eine Änderung in einem Dienst ein Update des anderen Diensts erfordert. Eine übermäßige Kommunikation zwischen zwei Diensten kann ein Symptom für enge Kopplung und geringe Kohäsion sein. 
+- Dienste sollten eine lose Kopplung und eine hohe funktionale Kohäsion aufweisen. Funktionen, die wahrscheinlich zusammen geändert werden, sollten auch zusammen gepackt und bereitgestellt werden. Wenn sie sich in verschiedenen Diensten befinden, sind diese Dienste letztlich eng gekoppelt, da eine Änderung in einem Dienst ein Update des anderen Diensts erfordert. Eine übermäßige Kommunikation zwischen zwei Diensten kann ein Symptom für enge Kopplung und geringe Kohäsion sein.
 
 - Isolieren Sie Fehler. Nutzen Sie Resilienzstrategien, um zu verhindern, dass Fehler in einem Dienst kaskadieren. Weitere Informationen finden Sie unter [Resilienzmuster][resiliency-patterns] und [Entwerfen resilienter Anwendungen][resiliency-overview].
 
@@ -115,11 +116,7 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 
 Ausführliche Anleitungen zum Erstellen einer Microservices-Architektur in Azure finden unter [Entwerfen, Erstellen und Betreiben von Microservices in Azure](../../microservices/index.md).
 
-
 <!-- links -->
 
 [resiliency-overview]: ../../resiliency/index.md
 [resiliency-patterns]: ../../patterns/category/resiliency.md
-
-
-

@@ -3,18 +3,18 @@ title: Verarbeitung in Echtzeit
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: ccd098ab0d5393231eeb26eb1c56c52cdcb78fbe
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 75b52ae9bf7419b451084bb1a1eaf0984258433c
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901609"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113908"
 ---
 # <a name="real-time-processing"></a>Verarbeitung in Echtzeit
 
 Bei der Verarbeitung in Echtzeit geht es um Datenströme, die in Echtzeit erfasst und mit minimaler Wartezeit verarbeitet werden, um Berichte oder automatisierte Antworten in Echtzeit (bzw. nahezu in Echtzeit) zu erstellen. Für eine Lösung zur Echtzeitüberwachung von Datenverkehr werden unter Umständen Sensordaten zum Erkennen von hohen Datenverkehrsvolumen eingesetzt. Diese Daten können genutzt werden, um eine Karte dynamisch zu aktualisieren und Staus anzuzeigen oder Fahrgemeinschaftsspuren oder andere Verkehrsleitsysteme automatisch zu initiieren.
 
-![](./images/real-time-pipeline.png)
+![Diagramm einer Pipeline für die Echtzeitverarbeitung](./images/real-time-pipeline.png)
 
 Die Echtzeitverarbeitung ist als die Verarbeitung eines ungebundenen Eingabedatenstroms definiert, dessen Daten mit sehr kurzen Wartezeiten verarbeitet werden müssen (im Millisekunden- oder Sekundenbereich). Diese eingehenden Daten liegen meist in einem unstrukturierten oder halbstrukturierten Format vor, z.B. JSON, und es gelten die gleichen Verarbeitungsanforderungen wie bei der [Batchverarbeitung](./batch-processing.md), aber mit kürzeren Dauern, um die Nutzung in Echtzeit zu unterstützen.
 
@@ -32,9 +32,9 @@ Eine Architektur für die Echtzeitverarbeitung verfügt über die folgenden logi
 
 - **Datenstromverarbeitung:** Die erfassten Echtzeitnachrichten müssen von der Lösung verarbeitet werden, indem die Daten gefiltert, aggregiert und anderweitig auf die Analyse vorbereitet werden.
 
-- **Analysedatenspeicher:** Viele Big Data-Lösungen bereiten Daten für die Analyse vor und stellen die verarbeiteten Daten dann in einem strukturierten Format bereit, das mithilfe von Analysetools abgefragt werden kann. 
+- **Analysedatenspeicher:** Viele Big Data-Lösungen bereiten Daten für die Analyse vor und stellen die verarbeiteten Daten dann in einem strukturierten Format bereit, das mithilfe von Analysetools abgefragt werden kann.
 
-- **Analysen und Berichte**: Ziel der meisten Big Data-Lösungen ist es, über Analysen und Berichte Einblicke in die Daten zu bieten. 
+- **Analysen und Berichte**: Ziel der meisten Big Data-Lösungen ist es, über Analysen und Berichte Einblicke in die Daten zu bieten.
 
 ## <a name="technology-choices"></a>Auswahl der Technologie
 

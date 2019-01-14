@@ -1,28 +1,28 @@
 ---
 title: CD/CI für Microservices
-description: Continuous Integration und Continuous Delivery für Microservices
+description: Continuous Integration und Continuous Delivery für Microservices.
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: b411e687a111e55a5821d4fdc66975e80f73584b
-ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
+ms.openlocfilehash: b96ea4fd864cfd0ce5cb221ead7beafe02c79bfa
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49962856"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113228"
 ---
 # <a name="designing-microservices-continuous-integration"></a>Entwerfen von Microservices: Continuous Integration
 
 Continuous Integration und Continuous Delivery (CI/CD) sind eine wichtige Voraussetzung für die erfolgreiche Verwendung von Microservices. Die Agilität, die von Microservices erwartet wird, lässt sich nur mit einem zuverlässigen CI/CD-Prozess erreichen. Einige der CI/CD-bedingten Herausforderungen für Microservices sind auf die Verwendung mehrerer Codebasen und heterogener Buildumgebungen für die verschiedenen Dienste zurückzuführen. In diesem Kapitel werden die Herausforderungen und einige Lösungsansätze für das Problem beschrieben.
 
-![](./images/ci-cd.png)
+![Diagramm von CI/CD für Microservices](./images/ci-cd.png)
 
-Einer der Hauptgründe für die Implementierung einer Microservices-Architektur sind kürzere Versionszyklen. 
+Einer der Hauptgründe für die Implementierung einer Microservices-Architektur sind kürzere Versionszyklen.
 
-In einer rein monolithischen Anwendung gibt es eine einzelne Buildpipeline, die die ausführbare Datei der Anwendung ausgibt. Sämtliche Entwicklungsarbeiten werden dieser Pipeline zugeführt. Bei einem Fehler mit hoher Priorität muss eine Korrektur integriert, getestet und veröffentlicht werden, was die Veröffentlichung neuer Features verzögern kann. Diese Probleme lassen sich durch eine sorgfältige Modulgestaltung sowie durch die Verwendung von Featurebranches behandeln, die die Auswirkungen von Codeänderungen minimieren. Mit zunehmender Komplexität und wachsendem Funktionsumfang einer monolithischen Anwendung nimmt jedoch häufig auch die Fehleranfälligkeit des Releaseprozesses zu. 
+In einer rein monolithischen Anwendung gibt es eine einzelne Buildpipeline, die die ausführbare Datei der Anwendung ausgibt. Sämtliche Entwicklungsarbeiten werden dieser Pipeline zugeführt. Bei einem Fehler mit hoher Priorität muss eine Korrektur integriert, getestet und veröffentlicht werden, was die Veröffentlichung neuer Features verzögern kann. Diese Probleme lassen sich durch eine sorgfältige Modulgestaltung sowie durch die Verwendung von Featurebranches behandeln, die die Auswirkungen von Codeänderungen minimieren. Mit zunehmender Komplexität und wachsendem Funktionsumfang einer monolithischen Anwendung nimmt jedoch häufig auch die Fehleranfälligkeit des Releaseprozesses zu.
 
 Die Microservices-Philosophie sieht kein langwieriges Releaseverfahren vor, in das sich die einzelnen Teams einreihen müssen. Das Team, das den Dienst „A“ erstellt, kann jederzeit ein Update veröffentlichen und muss nicht warten, bis Änderungen für den Dienst „B“ zusammengeführt, getestet und bereitgestellt wurden. Hierfür ist der CI/CD-Prozess unerlässlich. Ihre Releasepipeline muss automatisiert und äußerst zuverlässig sein, um die Risiken von Updatebereitstellungen zu minimieren. Bei täglich oder mehrmals täglich durchgeführten Veröffentlichungen in der Produktionsumgebung darf es nur ganz selten zu Regressionen oder Dienstausfällen kommen. Sollte doch einmal ein fehlerhaftes Update bereitgestellt werden, müssen Sie schnell und zuverlässig einen Rollback oder Rollforward auf eine frühere Dienstversion ausführen können.
 
-![](./images/cicd-monolith.png)
+![Diagramm einer monolithischen CI/CD-Anwendung](./images/cicd-monolith.png)
 
 CI/CD umfasst eigentlich mehrere verwandte Prozesse: Continuous Integration, Continuous Delivery und Continuous Deployment.
 
@@ -36,31 +36,31 @@ Im Kontext von Kubernetes und Microservices werden in der CI-Phase Containerimag
 
 ## <a name="challenges"></a>Herausforderungen
 
-- **Zahlreiche kompakte und unabhängige Codebasen:** Jedes Team ist für die Erstellung seines eigenen Diensts verantwortlich und verfügt über eine eigene Buildpipeline. In einigen Organisationen verwenden die Teams unter Umständen separate Coderepositorys. Dies kann dazu führen, dass das Know-how für die Erstellung des Systems auf mehrere Teams verteilt ist und niemand in der Organisation weiß, wie die gesamte Anwendung bereitgestellt wird. Was passiert beispielsweise in einem Notfallwiederherstellungsszenario, wenn Sie schnell eine Bereitstellung in einem neuen Cluster durchführen müssen?   
+- **Zahlreiche kompakte und unabhängige Codebasen:** Jedes Team ist für die Erstellung seines eigenen Diensts verantwortlich und verfügt über eine eigene Buildpipeline. In einigen Organisationen verwenden die Teams unter Umständen separate Coderepositorys. Dies kann dazu führen, dass das Know-how für die Erstellung des Systems auf mehrere Teams verteilt ist und niemand in der Organisation weiß, wie die gesamte Anwendung bereitgestellt wird. Was passiert beispielsweise in einem Notfallwiederherstellungsszenario, wenn Sie schnell eine Bereitstellung in einem neuen Cluster durchführen müssen?
 
-- **Mehrere Sprachen und Frameworks:** Wenn jedes Team seinen eigenen Technologie-Mix verwendet, kann es schwierig sein, einen einzelnen Buildprozess zu erstellen, der für die gesamte Organisation geeignet ist. Der Buildprozess muss so flexibel sein, dass jedes Team ihn für die gewählte Sprache oder das gewählte Framework anpassen kann. 
+- **Mehrere Sprachen und Frameworks:** Wenn jedes Team seinen eigenen Technologie-Mix verwendet, kann es schwierig sein, einen einzelnen Buildprozess zu erstellen, der für die gesamte Organisation geeignet ist. Der Buildprozess muss so flexibel sein, dass jedes Team ihn für die gewählte Sprache oder das gewählte Framework anpassen kann.
 
-- **Integration und Auslastungstests:** Wenn Teams Updates nach ihrem eigenen Zeitplan veröffentlichen, kann die Entwicklung zuverlässiger End-to-End-Tests zur Herausforderung werden – insbesondere, wenn Dienste von anderen Diensten abhängen. Darüber hinaus kann der Betrieb eines vollwertigen Produktionsclusters teuer sein, weshalb es unwahrscheinlich ist, dass jedes Team allein zu Testzwecken einen eigenen vollwertigen Cluster auf Produktionsniveau betreiben kann. 
+- **Integration und Auslastungstests:** Wenn Teams Updates nach ihrem eigenen Zeitplan veröffentlichen, kann die Entwicklung zuverlässiger End-to-End-Tests zur Herausforderung werden – insbesondere, wenn Dienste von anderen Diensten abhängen. Darüber hinaus kann der Betrieb eines vollwertigen Produktionsclusters teuer sein, weshalb es unwahrscheinlich ist, dass jedes Team allein zu Testzwecken einen eigenen vollwertigen Cluster auf Produktionsniveau betreiben kann.
 
 - **Releaseverwaltung:** Jedes Team sollte die Möglichkeit haben, ein Update in der Produktionsumgebung bereitzustellen. Das bedeutet nicht, dass jedes einzelne Teammitglied über entsprechende Berechtigungen verfügt. Durch eine zentrale Release-Manager-Rolle werden Bereitstellungen jedoch unter Umständen ausgebremst. Je zuverlässiger und stärker automatisiert Ihr CI/CD-Prozess ist, desto weniger Bedarf besteht für eine zentrale Instanz. Für die Veröffentlichung wichtiger Featureupdates und kleinerer Fehlerbehebung können jeweils unterschiedliche Richtlinien gelten. Die Verwendung eines dezentralen Konzepts darf jedoch nicht als Verzicht auf jegliche Art von Governance missverstanden werden.
 
-- **Versionsverwaltung für Containerimages:** Im Rahmen des Entwicklungs- und Testzyklus erstellt der CI/CD-Prozess zahlreiche Containerimages. Nicht alle dieser Images kommen für die Veröffentlichung in Frage, und nur einige der so genannten Release Candidates werden mithilfe von Push in die Produktionsumgebung übertragen. Entwickeln Sie eine klare Versionsverwaltungsstrategie, damit Sie wissen, welche Images derzeit in der Produktionsumgebung bereitgestellt sind, und bei Bedarf einen Rollback auf eine vorherige Version ausführen können. 
+- **Versionsverwaltung für Containerimages:** Im Rahmen des Entwicklungs- und Testzyklus erstellt der CI/CD-Prozess zahlreiche Containerimages. Nicht alle dieser Images kommen für die Veröffentlichung in Frage, und nur einige der so genannten Release Candidates werden mithilfe von Push in die Produktionsumgebung übertragen. Entwickeln Sie eine klare Versionsverwaltungsstrategie, damit Sie wissen, welche Images derzeit in der Produktionsumgebung bereitgestellt sind, und bei Bedarf einen Rollback auf eine vorherige Version ausführen können.
 
-- **Dienstupdates:** Wenn Sie einen Dienst auf eine neue Version aktualisieren, dürfen dadurch keine anderen Dienste beeinträchtigt werden, die von diesem Dienst abhängen. Bei einem parallelen Update werden vorübergehend verschiedene Versionen ausgeführt. 
- 
-Diese Herausforderungen spiegeln ein grundlegendes Dilemma wider: Einerseits müssen Teams so unabhängig wie möglich arbeiten können. Andererseits ist eine gewisse Koordinierung erforderlich, damit eine einzelne Person beispielsweise einen Integrationstest durchführen, die gesamte Lösung in einem neuen Cluster erneut bereitstellen oder im Falle eines fehlerhaften Updates einen Rollback ausführen kann. 
- 
+- **Dienstupdates:** Wenn Sie einen Dienst auf eine neue Version aktualisieren, dürfen dadurch keine anderen Dienste beeinträchtigt werden, die von diesem Dienst abhängen. Bei einem parallelen Update werden vorübergehend verschiedene Versionen ausgeführt.
+
+Diese Herausforderungen spiegeln ein grundlegendes Dilemma wider: Einerseits müssen Teams so unabhängig wie möglich arbeiten können. Andererseits ist eine gewisse Koordinierung erforderlich, damit eine einzelne Person beispielsweise einen Integrationstest durchführen, die gesamte Lösung in einem neuen Cluster erneut bereitstellen oder im Falle eines fehlerhaften Updates einen Rollback ausführen kann.
+
 ## <a name="cicd-approaches-for-microservices"></a>CI/CD-Ansätze für Microservices
 
-Jedes Dienstteam sollte seine Buildumgebung in einem eigenen Container platzieren. Dieser Container muss über sämtliche Buildtools verfügen, die zum Erstellen der Codeartefakte für den jeweiligen Dienst erforderlich sind. Häufig steht ein offizielles Docker-Image für Ihre Kombination aus Sprache und Framework zur Verfügung. Anschließend können Sie den Build mithilfe von `docker run` oder Docker Compose ausführen. 
+Jedes Dienstteam sollte seine Buildumgebung in einem eigenen Container platzieren. Dieser Container muss über sämtliche Buildtools verfügen, die zum Erstellen der Codeartefakte für den jeweiligen Dienst erforderlich sind. Häufig steht ein offizielles Docker-Image für Ihre Kombination aus Sprache und Framework zur Verfügung. Anschließend können Sie den Build mithilfe von `docker run` oder Docker Compose ausführen.
 
-Mit diesem Ansatz ist die Einrichtung einer neuen Buildumgebung ein Kinderspiel. Ein Entwickler, der Ihren Code erstellen möchte, muss nicht erst eine Reihe von Buildtools installieren, sondern einfach nur das Containerimage ausführen. Vielleicht sogar noch wichtiger: Auch Ihr Buildserver kann für diese Aufgabe konfiguriert werden. Dadurch müssen Sie die Tools nicht auf dem Buildserver installieren oder sich mit Toolversionskonflikten beschäftigen. 
+Mit diesem Ansatz ist die Einrichtung einer neuen Buildumgebung ein Kinderspiel. Ein Entwickler, der Ihren Code erstellen möchte, muss nicht erst eine Reihe von Buildtools installieren, sondern einfach nur das Containerimage ausführen. Vielleicht sogar noch wichtiger: Auch Ihr Buildserver kann für diese Aufgabe konfiguriert werden. Dadurch müssen Sie die Tools nicht auf dem Buildserver installieren oder sich mit Toolversionskonflikten beschäftigen.
 
-Führen Sie den Dienst bei lokalen Entwicklungs- und Testaufgaben mithilfe von Docker innerhalb eines Containers aus. Im Zuge dieses Prozesses müssen Sie unter Umständen weitere Container mit Pseudodiensten oder Testdatenbanken ausführen, die für lokale Tests benötigt werden. Sie können diese Container mithilfe von Docker Compose koordinieren oder Kubernetes mithilfe von Minikube lokal ausführen. 
+Führen Sie den Dienst bei lokalen Entwicklungs- und Testaufgaben mithilfe von Docker innerhalb eines Containers aus. Im Zuge dieses Prozesses müssen Sie unter Umständen weitere Container mit Pseudodiensten oder Testdatenbanken ausführen, die für lokale Tests benötigt werden. Sie können diese Container mithilfe von Docker Compose koordinieren oder Kubernetes mithilfe von Minikube lokal ausführen.
 
 Wenn der Code bereit ist, öffnen Sie eine Pull-Anforderung, und führen Sie ihn zu einem Master zusammen. Dadurch wird auf dem Buildserver ein Auftrag gestartet, der Folgendes umfasst:
 
-1. Erstellen der Codeobjekte 
+1. Erstellen der Codeobjekte
 2. Ausführen von Komponententests für den Code
 3. Erstellen des Containerimages
 4. Testen des Containerimages durch Ausführen von Funktionstests in einem aktiven Container. Dieser Schritt dient zur Erkennung von Fehlern in der Docker-Datei (beispielsweise ein fehlerhafter Einstiegspunkt).
@@ -70,8 +70,8 @@ Wenn der Code bereit ist, öffnen Sie eine Pull-Anforderung, und führen Sie ihn
 Wenn das Image für die Produktionsumgebung bereit ist, aktualisieren Sie die Bereitstellungsdateien nach Bedarf, um das neueste Image anzugeben (einschließlich möglicher Kubernetes-Konfigurationsdateien). Wenden Sie dann das Update auf den Produktionscluster an.
 
 Im Anschluss folgen einige Empfehlungen zur Verbesserung der Zuverlässigkeit von Bereitstellungen:
- 
-- Definieren Sie organisationsweite Konventionen für Containertags und für die Versionsverwaltung sowie Namenskonventionen für im Cluster bereitgestellte Ressourcen (Pods, Dienste und Ähnliches). Dies kann die Diagnose von Bereitstellungsproblemen vereinfachen. 
+
+- Definieren Sie organisationsweite Konventionen für Containertags und für die Versionsverwaltung sowie Namenskonventionen für im Cluster bereitgestellte Ressourcen (Pods, Dienste und Ähnliches). Dies kann die Diagnose von Bereitstellungsproblemen vereinfachen.
 
 - Erstellen Sie zwei separate Containerregistrierungen: eine für Entwicklungs-/Testaufgaben und eine für die Produktion. Übertragen Sie ein Image erst dann mithilfe von Push in die Produktionsregistrierung, wenn Sie bereit sind, es in der Produktionsumgebung bereitzustellen. Wenn Sie diese Vorgehensweise mit der semantischen Versionsverwaltung von Containerimages kombinieren, verringert sich die Wahrscheinlichkeit, dass Sie versehentlich eine Version bereitstellen, die nicht für die Veröffentlichung freigegeben wurde.
 
@@ -79,15 +79,15 @@ Im Anschluss folgen einige Empfehlungen zur Verbesserung der Zuverlässigkeit vo
 
 Für die Aktualisierung eines Diensts, der sich bereits in Produktion befindet, gibt es verschiedene Strategien. Hier werden drei gängige Optionen erläutert: paralleles Update, Blaugrün-Bereitstellung und Canary-Release.
 
-### <a name="rolling-update"></a>Paralleles Update 
+### <a name="rolling-update"></a>Paralleles Update
 
 Bei einem parallelen Update stellen Sie neue Instanzen eines Diensts bereit, und diese neuen Instanzen nehmen sofort Anforderungen entgegen. Wenn die neuen Instanzen online geschaltet werden, werden die vorherigen Instanzen entfernt.
 
-Parallele Updates sind das Standardverhalten in Kubernetes, wenn Sie die Pod-Spezifikation für eine Bereitstellung aktualisieren. Der Bereitstellungscontroller erstellt eine neue Replikatgruppe (ReplicaSet) für die aktualisierten Pods. Anschließend wird die neue Replikatgruppe zentral hoch- und die alte Gruppe zentral herunterskaliert, sodass die gewünschte Replikatanzahl erhalten bleibt. Alte Pods werden erst gelöscht, wenn die neuen Pods bereit sind. Kubernetes protokolliert den Verlauf des Updates, damit Sie bei Bedarf mithilfe von kubectl einen Rollback für das Update ausführen können. 
+Parallele Updates sind das Standardverhalten in Kubernetes, wenn Sie die Pod-Spezifikation für eine Bereitstellung aktualisieren. Der Bereitstellungscontroller erstellt eine neue Replikatgruppe (ReplicaSet) für die aktualisierten Pods. Anschließend wird die neue Replikatgruppe zentral hoch- und die alte Gruppe zentral herunterskaliert, sodass die gewünschte Replikatanzahl erhalten bleibt. Alte Pods werden erst gelöscht, wenn die neuen Pods bereit sind. Kubernetes protokolliert den Verlauf des Updates, damit Sie bei Bedarf mithilfe von kubectl einen Rollback für das Update ausführen können.
 
-Falls Ihr Dienst eine langwierige Startaufgabe ausführt, können Sie einen Bereitschaftstest definieren. Der Bereitschaftstest meldet, wenn der Container für den Empfang von Datenverkehr bereit ist. Kubernetes sendet erst dann Datenverkehr an den Pod, wenn der Test eine Erfolgsmeldung zurückgibt. 
+Falls Ihr Dienst eine langwierige Startaufgabe ausführt, können Sie einen Bereitschaftstest definieren. Der Bereitschaftstest meldet, wenn der Container für den Empfang von Datenverkehr bereit ist. Kubernetes sendet erst dann Datenverkehr an den Pod, wenn der Test eine Erfolgsmeldung zurückgibt.
 
-Eine der Herausforderungen bei parallelen Updates besteht darin, dass während der Aktualisierung eine Mischung aus alten und neuen Versionen ausgeführt wird und Datenverkehr empfängt. Während dieser Zeit können Anforderungen jeweils an eine der beiden Versionen weitergeleitet werden. Dies kann abhängig vom Umfang der Änderungen zwischen den beiden Versionen zu Problemen führen. 
+Eine der Herausforderungen bei parallelen Updates besteht darin, dass während der Aktualisierung eine Mischung aus alten und neuen Versionen ausgeführt wird und Datenverkehr empfängt. Während dieser Zeit können Anforderungen jeweils an eine der beiden Versionen weitergeleitet werden. Dies kann abhängig vom Umfang der Änderungen zwischen den beiden Versionen zu Problemen führen.
 
 ### <a name="blue-green-deployment"></a>Blaugrün-Bereitstellung
 
@@ -95,9 +95,9 @@ Bei einer Blaugrün-Bereitstellung stellen Sie die neue Version zusammen mit der
 
 Bei einer eher traditionellen monolithischen oder n-schichtigen Anwendung war eine Blaugrün-Bereitstellung in der Regel mit der Bereitstellung zweier identischer Umgebungen verbunden. Dabei musste die neue Version in einer Stagingumgebung bereitgestellt und der Clientdatenverkehr anschließend an die Stagingumgebung umgeleitet werden (beispielsweise durch Austauschen der VIP-Adressen).
 
-In Kubernetes müssen Sie für eine Blaugrün-Bereitstellung keinen separaten Cluster bereitstellen. Stattdessen können Sie Selektoren nutzen. Erstellen Sie eine neue Bereitstellungsressource mit einer neuen Pod-Spezifikation und einem anderen Satz von Bezeichnungen. Erstellen Sie diese Bereitstellung, ohne die vorherige Bereitstellung zu löschen oder den Dienst zu ändern, der darauf verweist. Wenn die neuen Pods aktiv sind, können Sie den Selektor des Diensts auf die neue Bereitstellung aktualisieren. 
+In Kubernetes müssen Sie für eine Blaugrün-Bereitstellung keinen separaten Cluster bereitstellen. Stattdessen können Sie Selektoren nutzen. Erstellen Sie eine neue Bereitstellungsressource mit einer neuen Pod-Spezifikation und einem anderen Satz von Bezeichnungen. Erstellen Sie diese Bereitstellung, ohne die vorherige Bereitstellung zu löschen oder den Dienst zu ändern, der darauf verweist. Wenn die neuen Pods aktiv sind, können Sie den Selektor des Diensts auf die neue Bereitstellung aktualisieren.
 
-Ein Vorteil von Blaugrün Bereitstellungen ist, dass alle Pods gleichzeitig gewechselt werden. Nach der Aktualisierung des Diensts werden alle neuen Anforderungen an die neue Version weitergeleitet. Ein Nachteil ist, dass während der Aktualisierung doppelt so viele Pods für den Dienst (aktuelle und neue Version) aktiv sind. Wenn die Pods einen hohen Bedarf an CPU- oder Arbeitsspeicherressourcen haben, müssen Sie den Cluster zur Bewältigung des Ressourcenbedarfs möglicherweise vorübergehend horizontal hochskalieren. 
+Ein Vorteil von Blaugrün Bereitstellungen ist, dass alle Pods gleichzeitig gewechselt werden. Nach der Aktualisierung des Diensts werden alle neuen Anforderungen an die neue Version weitergeleitet. Ein Nachteil ist, dass während der Aktualisierung doppelt so viele Pods für den Dienst (aktuelle und neue Version) aktiv sind. Wenn die Pods einen hohen Bedarf an CPU- oder Arbeitsspeicherressourcen haben, müssen Sie den Cluster zur Bewältigung des Ressourcenbedarfs möglicherweise vorübergehend horizontal hochskalieren.
 
 ### <a name="canary-release"></a>Canary-Release
 
@@ -119,5 +119,4 @@ Im Verbraucherbereich kann eine höhere Benutzerfreundlichkeit einen messbaren g
 
 Microservices sind eine Reaktion auf diese Veränderungen. Durch die Aufspaltung einer monolithischen Anwendung in eine Reihe lose gekoppelter Dienste können wir den Releasezyklus der einzelnen Dienste steuern und häufige Updates ohne Ausfallzeiten oder beeinträchtigende Änderungen ermöglichen. Microservices tragen auch zur besseren Skalierbarkeit, Fehlerisolation und Resilienz bei. Inzwischen vereinfachen Cloudplattformen die Erstellung und Ausführung von Microservices mit automatisierter Bereitstellung von Computeressourcen, Containerorchestratoren als Dienst und ereignisgesteuerten serverlosen Umgebungen.
 
-Andererseits sind Microservices-Architekturen auch mit zahlreichen Herausforderungen verbunden. Entscheidend ist ein solides Design. Gehen Sie bei der Analyse der Domäne, bei der Wahl der Technologien, bei der Modellierung der Daten, bei der Gestaltung der APIs sowie beim Aufbau einer ausgereiften DevOps-Kultur mit der nötigen Sorgfalt vor. Wir hoffen, wir konnten Ihnen mit diesem Leitfaden und der dazugehörigen [Referenzimplementierung](https://github.com/mspnp/microservices-reference-implementation) weiterhelfen. 
-
+Andererseits sind Microservices-Architekturen auch mit zahlreichen Herausforderungen verbunden. Entscheidend ist ein solides Design. Gehen Sie bei der Analyse der Domäne, bei der Wahl der Technologien, bei der Modellierung der Daten, bei der Gestaltung der APIs sowie beim Aufbau einer ausgereiften DevOps-Kultur mit der nötigen Sorgfalt vor. Wir hoffen, wir konnten Ihnen mit diesem Leitfaden und der dazugehörigen [Referenzimplementierung](https://github.com/mspnp/microservices-reference-implementation) weiterhelfen.

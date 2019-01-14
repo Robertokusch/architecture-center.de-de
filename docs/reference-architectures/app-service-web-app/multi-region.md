@@ -5,12 +5,12 @@ description: Empfohlene Architektur für eine hochverfügbare Webanwendung, die 
 author: MikeWasson
 ms.date: 10/25/2018
 ms.custom: seodec18
-ms.openlocfilehash: 61ee7220dbc37140ff1598de78f89aaef8a3e922
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 04ba786ea16aa3245a8f0b7fcafeacc60ac447c2
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119845"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113330"
 ---
 # <a name="run-a-web-application-in-multiple-azure-regions-for-high-availability"></a>Ausführen einer Webanwendung in mehreren Azure-Regionen für Hochverfügbarkeit
 
@@ -65,7 +65,7 @@ Sie sollten die primäre Region, die sekundäre Region und Traffic Manager unter
 
 Es hat sich bewährt, einen fehlerfreien Testendpunkt zu erstellen, der die Gesamtintegrität der Anwendung meldet, und diesen Endpunkt für den Integritätstest zu verwenden. Der Endpunkt sollte alle wichtigen Abhängigkeiten überprüfen, dazu gehören z.B. App Service-Apps, die Speicherwarteschlange und SQL-Datenbank. Andernfalls meldet der Test eventuell einen fehlerfreien Endpunkt, obwohl wichtige Teile der Anwendung fehlerhaft sind.
 
-Andererseits sollten Sie den Integritätstest nicht zum Überprüfen von Diensten mit einer niedrigeren Priorität verwenden. Wenn beispielsweise ein E-Mail-Dienst ausfällt, kann die Anwendung zu einem zweiten Anbieter wechseln oder die E-Mails einfach später senden. Dies ist keine ausreichend hohe Priorität, die zu einem Failover der Anwendung führen sollte. Weitere Informationen finden Sie unter [Überwachungsmuster für den Integritätsendpunkt][health-endpoint-monitoring-pattern].
+Andererseits sollten Sie den Integritätstest nicht zum Überprüfen von Diensten mit einer niedrigeren Priorität verwenden. Wenn beispielsweise ein E-Mail-Dienst ausfällt, kann die Anwendung zu einem zweiten Anbieter wechseln oder die E-Mails einfach später senden. Dies ist keine ausreichend hohe Priorität, die zu einem Failover der Anwendung führen sollte. Weitere Informationen finden Sie unter [Muster für Überwachung der Integrität von Endpunkten][health-endpoint-monitoring-pattern].
 
 ### <a name="sql-database"></a>SQL-Datenbank
 
@@ -147,7 +147,7 @@ Wenn die primäre Datenbank fehlerhaft ist, führen Sie ein manuelles Failover z
 
 <!-- links -->
 
-[azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[azure-sql-db]: /azure/sql-database/
 [azure-dns]: /azure/dns/dns-overview
 [cosmosdb-geo]: /azure/cosmos-db/distribute-data-globally
 [guidance-web-apps-scalability]: ./scalable-web-app.md

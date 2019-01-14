@@ -3,12 +3,12 @@ title: Batchverarbeitung
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: fe07d4d6501d4778025b75807f4d6be5854c3e09
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 50e50ae121fda7ceb9dd298b8a072bd7cc4053d9
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901982"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114180"
 ---
 # <a name="batch-processing"></a>Batchverarbeitung
 
@@ -16,7 +16,7 @@ Ein verbreitetes Big Data-Szenario ist die Batchverarbeitung ruhender Daten. In 
 
 So können beispielsweise die Protokolle eines Webservers in einen Ordner kopiert und über Nacht verarbeitet werden, um tägliche Berichte zur Webaktivität zu generieren.
 
-![](./images/batch-pipeline.png)
+![Diagramm einer Pipeline für die Batchverarbeitung](./images/batch-pipeline.png)
 
 ## <a name="when-to-use-this-solution"></a>Verwendung dieser Lösung
 
@@ -34,15 +34,15 @@ Ein Beispiel für die Batchverarbeitung ist die Transformation zahlreicher teilw
 
 Eine Batchverarbeitungsarchitektur verfügt über folgende logische Komponenten, die auch im obigen Diagramm dargestellt sind:
 
-- **Datenspeicher**: In der Regel ein verteilter Datenspeicher, der als Repository für zahlreiche große Dateien in verschiedenen Formaten fungieren kann. Diese Art von Speicher wird allgemein häufig als Data Lake bezeichnet. 
+- **Datenspeicher**. In der Regel ein verteilter Datenspeicher, der als Repository für zahlreiche große Dateien in verschiedenen Formaten fungieren kann. Diese Art von Speicher wird allgemein häufig als Data Lake bezeichnet.
 
-- **Batchverarbeitung**: Aufgrund des großen Umfangs von Big Data müssen Lösungen oftmals Datendateien mithilfe von Batchaufträgen mit langer Ausführungszeit verarbeiten, um die Daten zu filtern, zu aggregieren und anderweitig auf die Analyse vorzubereiten. Diese Aufträge beinhalten in der Regel das Lesen von Quelldateien, ihre Verarbeitung und das Schreiben der Ausgabe in neue Dateien. 
+- **Batchverarbeitung:** Aufgrund des großen Umfangs von Big Data müssen Lösungen oftmals Datendateien mithilfe von Batchaufträgen mit langer Ausführungszeit verarbeiten, um die Daten zu filtern, zu aggregieren und anderweitig auf die Analyse vorzubereiten. Diese Aufträge beinhalten in der Regel das Lesen von Quelldateien, ihre Verarbeitung und das Schreiben der Ausgabe in neue Dateien.
 
-- **Analysedatenspeicher**: Viele Big Data-Lösungen bereiten Daten für die Analyse vor und stellen die verarbeiteten Daten dann in einem strukturierten Format bereit, das mithilfe von Analysetools abgefragt werden kann. 
+- **Analysedatenspeicher:** Viele Big Data-Lösungen bereiten Daten für die Analyse vor und stellen die verarbeiteten Daten dann in einem strukturierten Format bereit, das mithilfe von Analysetools abgefragt werden kann.
 
-- **Analysen und Berichte**: Ziel der meisten Big Data-Lösungen ist es, über Analysen und Berichte Einblicke in die Daten zu bieten. 
+- **Analysen und Berichte:** Ziel der meisten Big Data-Lösungen ist es, über Analysen und Berichte Einblicke in die Daten zu bieten.
 
-- **Orchestrierung**: In Verbindung mit der Batchverarbeitung ist in der Regel auch ein gewisses Maß an Orchestrierung erforderlich, um die Daten in Ihren Datenspeicher, in die Batchverarbeitung, in den Analysedatenspeicher und in die Berichterstellungsebenen zu kopieren bzw. zu migrieren.
+- **Orchestrierung:** In Verbindung mit der Batchverarbeitung ist in der Regel auch ein gewisses Maß an Orchestrierung erforderlich, um die Daten in Ihren Datenspeicher, in die Batchverarbeitung, in den Analysedatenspeicher und in die Berichterstellungsebenen zu kopieren bzw. zu migrieren.
 
 ## <a name="technology-choices"></a>Auswahl der Technologie
 
@@ -55,7 +55,11 @@ Für Batchverarbeitungslösungen in Azure werden folgende Technologien empfohlen
 
 Weitere Informationen finden Sie im Artikel zur [Datenspeicherung](../technology-choices/data-storage.md).
 
+<!-- markdownlint-disable MD024 -->
+
 ### <a name="batch-processing"></a>Batchverarbeitung
+
+<!-- markdownlint-enable MD024 -->
 
 - **U-SQL**: U-SQL ist die von Azure Data Lake Analytics verwendete Abfrageverarbeitungssprache. Sie kombiniert den deklarativen Charakter von SQL mit der prozeduralen Erweiterbarkeit von C# und den Vorteilen der Parallelität, um eine effiziente Verarbeitung umfangreicher Daten zu ermöglichen.
 - **Hive**: Hive ist eine SQL-ähnliche Sprache, die von den meisten Hadoop-Distributionen (einschließlich HDInsight) unterstützt wird. Sie kann zum Verarbeiten von Daten aus einem beliebigen HDFS-kompatiblen Speicher (einschließlich Azure Blob Storage und Azure Data Lake Store) verwendet werden.

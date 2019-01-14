@@ -1,14 +1,14 @@
 ---
 title: Verwenden eines Objekts als Parameter in einer Azure Resource Manager-Vorlage
-description: Beschreibt das Erweitern der Funktionalität der Azure Resource Manager-Vorlagen für die Verwendung von Objekten als Parameter.
+description: Hier erfahren Sie, wie Sie die Funktionalität der Azure Resource Manager-Vorlagen erweitern, um Objekte als Parameter verwenden zu können.
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: c1955823b3474efa0abea1d9634add5f13d02eda
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: f0826d8ed1ce446d295ebdacc66d8b0bef0b0dec
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251888"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111205"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>Verwenden eines Objekts als Parameter in einer Azure Resource Manager-Vorlage
 
@@ -24,10 +24,11 @@ Wir sehen uns ein Beispiel an, in dem eine virtuelle Netzwerkressource bereitges
     "VNetSettings":{"type":"object"}
 },
 ```
+
 Als Nächstes geben wir Werte für das Objekt `VNetSettings` an:
 
 > [!NOTE]
-> Informationen zum Angeben von Parameterwerten während der Bereitstellung finden Sie im Abschnitt **Parameter** unter [Verstehen der Struktur und Syntax von Azure Resource Manager-Vorlagen][azure-resource-manager-authoring-templates]. 
+> Informationen zum Angeben von Parameterwerten während der Bereitstellung finden Sie im Abschnitt **Parameter** unter [Verstehen der Struktur und Syntax von Azure Resource Manager-Vorlagen][azure-resource-manager-authoring-templates].
 
 ```json
 "parameters":{
@@ -91,9 +92,10 @@ Nun sehen wir uns den Rest der Vorlage an, um zu ermitteln, wie das Objekt `VNet
     }
   ]
 ```
-Die Werte des Objekts `VNetSettings` werden auf die Eigenschaften angewendet, die für unsere virtuelle Netzwerkressource erforderlich sind, indem die Funktion `parameters()` mit dem `[]`-Arrayindexer und dem Punktoperator verwendet wird. Dieser Ansatz funktioniert, wenn Sie nur die Werte des Parameterobjekts statisch auf die Ressource anwenden möchten. Falls Sie aber ein Array mit Eigenschaftswerten während der Bereitstellung dynamisch zuweisen möchten, können Sie eine [Kopierschleife][azure-resource-manager-create-multiple-instances] verwenden. Für die Nutzung einer Kopierschleife geben Sie ein JSON-Array mit Ressourceneigenschaftswerten an, und die Kopierschleife wendet die Werte dynamisch auf die Eigenschaften der Ressource an. 
 
-Bei Verwendung des dynamischen Ansatzes sollte ein mögliches Problem beachtet werden. Um das Problem zu demonstrieren, sehen wir uns ein typisches Array mit Eigenschaftswerten an. In diesem Beispiel werden die Werte für unsere Eigenschaften in einer Variablen gespeichert. Beachten Sie, dass wir hier zwei Arrays verwenden: ein Array mit dem Namen `firstProperty` und ein Array mit dem Namen `secondProperty`. 
+Die Werte des Objekts `VNetSettings` werden auf die Eigenschaften angewendet, die für unsere virtuelle Netzwerkressource erforderlich sind, indem die Funktion `parameters()` mit dem `[]`-Arrayindexer und dem Punktoperator verwendet wird. Dieser Ansatz funktioniert, wenn Sie nur die Werte des Parameterobjekts statisch auf die Ressource anwenden möchten. Falls Sie aber ein Array mit Eigenschaftswerten während der Bereitstellung dynamisch zuweisen möchten, können Sie eine [Kopierschleife][azure-resource-manager-create-multiple-instances] verwenden. Für die Nutzung einer Kopierschleife geben Sie ein JSON-Array mit Ressourceneigenschaftswerten an, und die Kopierschleife wendet die Werte dynamisch auf die Eigenschaften der Ressource an.
+
+Bei Verwendung des dynamischen Ansatzes sollte ein mögliches Problem beachtet werden. Um das Problem zu demonstrieren, sehen wir uns ein typisches Array mit Eigenschaftswerten an. In diesem Beispiel werden die Werte für unsere Eigenschaften in einer Variablen gespeichert. Beachten Sie, dass wir hier zwei Arrays verwenden: ein Array mit dem Namen `firstProperty` und ein Array mit dem Namen `secondProperty`.
 
 ```json
 "variables": {
@@ -166,9 +168,9 @@ Fällt Ihnen das dritte Element im Array auf? Dafür fehlt die `number`-Eigensch
 
 ## <a name="using-a-property-object-in-a-copy-loop"></a>Verwenden eines Eigenschaftsobjekts in einer Kopierschleife
 
-Dieser Ansatz ist noch nützlicher, wenn er mit der [seriellen Kopierschleife][azure-resource-manager-create-multiple] kombiniert wird, besonders beim Bereitstellen von untergeordneten Ressourcen. 
+Dieser Ansatz ist noch nützlicher, wenn er mit der [seriellen Kopierschleife][azure-resource-manager-create-multiple] kombiniert wird, besonders beim Bereitstellen von untergeordneten Ressourcen.
 
-Zur Verdeutlichung sehen wir uns eine Vorlage an, mit der eine [Netzwerksicherheitsgruppe (NSG)][nsg] mit zwei Sicherheitsregeln bereitgestellt wird. 
+Zur Verdeutlichung sehen wir uns eine Vorlage an, mit der eine [Netzwerksicherheitsgruppe (NSG)][nsg] mit zwei Sicherheitsregeln bereitgestellt wird.
 
 Zuerst sehen wir uns die Parameter an. In der Vorlage ist zu erkennen, dass wir einen Parameter mit dem Namen `networkSecurityGroupsSettings` definiert haben, der ein Array mit dem Namen `securityRules` enthält. Dieses Array enthält zwei JSON-Objekte, die einige Einstellungen für eine Sicherheitsregel angeben.
 
@@ -176,7 +178,7 @@ Zuerst sehen wir uns die Parameter an. In der Vorlage ist zu erkennen, dass wir 
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters":{ 
+    "parameters":{
       "networkSecurityGroupsSettings": {
       "value": {
           "securityRules": [
@@ -249,7 +251,7 @@ Als Nächstes sehen wir uns unsere Vorlage an. Mit der ersten Ressource mit dem 
                 "resources": [],
                 "outputs": {}
             }
-        }       
+        }
     },
     {
         "apiVersion": "2015-01-01",
@@ -292,12 +294,12 @@ Als Nächstes sehen wir uns unsere Vorlage an. Mit der ersten Ressource mit dem 
           }
         }
     }
-  ],          
+  ],
   "outputs": {}
 }
 ```
 
-Wir werfen einen genaueren Blick darauf, wie wir die Eigenschaftswerte in der untergeordneten Ressource `securityRules` angeben. Auf unsere gesamten Eigenschaften wird mit der Funktion `parameter()` verwiesen, und anschließend verwenden wir den Punktoperator, um auf das Array `securityRules` zu verweisen, das mit dem aktuellen Wert der Iteration indiziert wird. Abschließend nutzen wir einen weiteren Punktoperator, um auf den Namen des Objekts zu verweisen. 
+Wir werfen einen genaueren Blick darauf, wie wir die Eigenschaftswerte in der untergeordneten Ressource `securityRules` angeben. Auf unsere gesamten Eigenschaften wird mit der Funktion `parameter()` verwiesen, und anschließend verwenden wir den Punktoperator, um auf das Array `securityRules` zu verweisen, das mit dem aktuellen Wert der Iteration indiziert wird. Abschließend nutzen wir einen weiteren Punktoperator, um auf den Namen des Objekts zu verweisen.
 
 ## <a name="try-the-template"></a>Testen der Vorlage
 
@@ -316,8 +318,8 @@ az group deployment create -g <resource-group-name> \
 
 - Erfahren Sie, wie Sie eine Vorlage erstellen, die ein Objektarray durchläuft und es in ein JSON-Schema transformiert. Informationen finden Sie unter [Implementieren eines Transformers und Collectors für Eigenschaften in eine Azure Resource Manager-Vorlage](./collector.md).
 
-
 <!-- links -->
+
 [azure-resource-manager-authoring-templates]: /azure/azure-resource-manager/resource-group-authoring-templates
 [azure-resource-manager-create-template]: /azure/azure-resource-manager/resource-manager-create-first-template
 [azure-resource-manager-create-multiple-instances]: /azure/azure-resource-manager/resource-group-create-multiple

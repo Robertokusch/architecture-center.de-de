@@ -3,12 +3,12 @@ title: Data Warehousing und Data Marts
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 92f8ab8d828dd4b30c43a07e15959e5670852195
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 9a3ca2daf8a94d0df50d269a7ee30902858ba970
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902781"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113488"
 ---
 # <a name="data-warehousing-and-data-marts"></a>Data Warehousing und Data Marts
 
@@ -20,7 +20,7 @@ Für ein Data Warehouse vorgesehene Daten werden in regelmäßigen Abständen au
 
 ## <a name="data-marts-and-operational-data-stores"></a>Data Marts und Speicher für operative Daten
 
-Die bedarfsgerechte Verwaltung von Daten ist eine komplexe Angelegenheit, und es wird immer seltener ein einzelnes Data Warehouse verwendet, das alle Daten des gesamten Unternehmens darstellt. Stattdessen erstellen Organisationen kleinere, spezifischere Data Warehouses. Diese werden als *Data Marts* bezeichnet und machen die gewünschten Daten für die Analyse verfügbar. Ein Orchestrierungsprozess füllt die Data Marts mit Daten aus einem Speicher für operative Daten. Der Speicher für operative Daten fungiert als Vermittler zwischen dem Quelltransaktionssystem und dem Data Mart. Bei den Daten, die durch den Speicher für operative Daten verwaltet werden, handelt es sich um eine bereinigte Version der Daten aus dem Quelltransaktionssystem und in der Regel um eine Teilmenge der historischen Daten, die vom Data Warehouse oder Data Mart verwaltet werden. 
+Die bedarfsgerechte Verwaltung von Daten ist eine komplexe Angelegenheit, und es wird immer seltener ein einzelnes Data Warehouse verwendet, das alle Daten des gesamten Unternehmens darstellt. Stattdessen erstellen Organisationen kleinere, spezifischere Data Warehouses. Diese werden als *Data Marts* bezeichnet und machen die gewünschten Daten für die Analyse verfügbar. Ein Orchestrierungsprozess füllt die Data Marts mit Daten aus einem Speicher für operative Daten. Der Speicher für operative Daten fungiert als Vermittler zwischen dem Quelltransaktionssystem und dem Data Mart. Bei den Daten, die durch den Speicher für operative Daten verwaltet werden, handelt es sich um eine bereinigte Version der Daten aus dem Quelltransaktionssystem und in der Regel um eine Teilmenge der historischen Daten, die vom Data Warehouse oder Data Mart verwaltet werden.
 
 ## <a name="when-to-use-this-solution"></a>Verwendung dieser Lösung
 
@@ -30,27 +30,29 @@ Ziehen Sie die Verwendung eines Data Warehouse in Betracht, wenn historische Dat
 
 Data Warehouses sind für Lesezugriff optimiert, was eine schnellere Berichterstellung ermöglicht (verglichen mit der Ausführung von Berichten für das Quelltransaktionssystem). Darüber hinaus bieten Data Warehouses folgende Vorteile:
 
-* Alle historischen Daten aus mehreren Quellen können über ein Data Warehouse gespeichert und als alleingültige Quelle genutzt werden.
-* Sie können die Qualität der Daten verbessern, indem Sie sie beim Importieren in das Data Warehouse bereinigen sowie präzisere Daten und konsistente Codes und Beschreibungen bereitstellen.
-* Berichtstools konkurrieren nicht mit den Quelltransaktionssystemen um Abfrageverarbeitungszyklen. Mit einem Data Warehouse kann sich das Transaktionssystem vorwiegend um die Behandlung von Schreibvorgängen kümmern, während das Data Warehouse den Großteil der Leseanforderungen bewältigt.
-* Ein Data Warehouse kann zur Konsolidierung von Daten aus anderer Software verwendet werden.
-* Mit Data Mining-Tools lassen sich automatische Methoden auf in Ihrem Warehouse gespeicherte Daten anwenden, um verborgene Muster zu finden.
-* Data Warehouses vereinfachen die Bereitstellung von sicherem Zugriff für autorisierte Benutzer sowie die Beschränkung des Zugriffs für andere. Die geschäftlichen Benutzer benötigen keinen Zugriff auf die Quelldaten, wodurch ein potenzieller Angriffsvektor für Transaktionssysteme in der Produktionsumgebung beseitigt wird.
-* Data Warehouses vereinfachen die Erstellung von Business Intelligence-Lösungen, die auf den Daten aufbauen (beispielsweise [OLAP-Cubes](online-analytical-processing.md)).
+- Alle historischen Daten aus mehreren Quellen können über ein Data Warehouse gespeichert und als alleingültige Quelle genutzt werden.
+- Sie können die Qualität der Daten verbessern, indem Sie sie beim Importieren in das Data Warehouse bereinigen sowie präzisere Daten und konsistente Codes und Beschreibungen bereitstellen.
+- Berichtstools konkurrieren nicht mit den Quelltransaktionssystemen um Abfrageverarbeitungszyklen. Mit einem Data Warehouse kann sich das Transaktionssystem vorwiegend um die Behandlung von Schreibvorgängen kümmern, während das Data Warehouse den Großteil der Leseanforderungen bewältigt.
+- Ein Data Warehouse kann zur Konsolidierung von Daten aus anderer Software verwendet werden.
+- Mit Data Mining-Tools lassen sich automatische Methoden auf in Ihrem Warehouse gespeicherte Daten anwenden, um verborgene Muster zu finden.
+- Data Warehouses vereinfachen die Bereitstellung von sicherem Zugriff für autorisierte Benutzer sowie die Beschränkung des Zugriffs für andere. Die geschäftlichen Benutzer benötigen keinen Zugriff auf die Quelldaten, wodurch ein potenzieller Angriffsvektor für Transaktionssysteme in der Produktionsumgebung beseitigt wird.
+- Data Warehouses vereinfachen die Erstellung von Business Intelligence-Lösungen, die auf den Daten aufbauen (beispielsweise [OLAP-Cubes](online-analytical-processing.md)).
 
 ## <a name="challenges"></a>Herausforderungen
 
 Benutzer, die ein Data Warehouse ordnungsgemäß für ihre geschäftlichen Anforderungen konfigurieren möchten, sehen sich unter Umständen mit einigen der folgenden Herausforderungen konfrontiert:
 
-* Zeitaufwand für die ordnungsgemäße Modellierung der Geschäftskonzepte: Dies ist ein wichtiger Aspekt, da Data Warehouses informationsgesteuert sind und der Rest des Projekts auf der Konzeptzuordnung basiert. Dieser Schritt umfasst die Standardisierung geschäftsspezifischer Begriffe und allgemeiner Formate (etwa für Währung und Datumsangaben) sowie die Strukturierung des Schemas in einer Weise, die für geschäftliche Benutzer sinnvoll ist, ohne jedoch die Präzision von Datenaggregaten und Beziehungen zu beeinträchtigen.
-* Planung und Einrichtung Ihrer Datenorchestrierung: Hierbei ist zu berücksichtigen, wie Daten aus dem Quelltransaktionssystem in das Data Warehouse kopiert und wann historische Daten aus Ihren Speichern für operative Daten in das Warehouse verschoben werden sollen.
-* Gewährleistung oder Optimierung der Datenqualität durch Bereinigung der Daten beim Importieren in das Warehouse
+- Zeitaufwand für die ordnungsgemäße Modellierung der Geschäftskonzepte: Dies ist ein wichtiger Aspekt, da Data Warehouses informationsgesteuert sind und der Rest des Projekts auf der Konzeptzuordnung basiert. Dieser Schritt umfasst die Standardisierung geschäftsspezifischer Begriffe und allgemeiner Formate (etwa für Währung und Datumsangaben) sowie die Strukturierung des Schemas in einer Weise, die für geschäftliche Benutzer sinnvoll ist, ohne jedoch die Präzision von Datenaggregaten und Beziehungen zu beeinträchtigen.
+
+- Planung und Einrichtung Ihrer Datenorchestrierung: Hierbei ist zu berücksichtigen, wie Daten aus dem Quelltransaktionssystem in das Data Warehouse kopiert und wann historische Daten aus Ihren Speichern für operative Daten in das Warehouse verschoben werden sollen.
+
+- Gewährleistung oder Optimierung der Datenqualität durch Bereinigung der Daten beim Importieren in das Warehouse
 
 ## <a name="data-warehousing-in-azure"></a>Data Warehousing in Azure
 
 In Azure können einzelne oder mehrere Datenquellen vorhanden sein, die entweder auf Kundentransaktionen oder auf verschiedenen Geschäftsanwendungen basieren, die von unterschiedlichen Abteilungen verwendet werden. Diese Daten sind üblicherweise in mindestens einer [OLTP](online-transaction-processing.md)-Datenbank gespeichert. Die Daten können auf anderen Speichermedien wie Netzwerkfreigaben, in Azure Storage-Blobs oder in einem Data Lake gespeichert werden. Die Daten können auch vom Data Warehouse selbst oder in einer relationalen Datenbank wie Azure SQL-Datenbank gespeichert werden. Die Analysedatenspeicher-Ebene dient zum Abwickeln von Abfragen, die von Analyse- und Berichtstools für das Data Warehouse oder für den Data Mart ausgegeben werden. In Azure kann für diese Analysespeicherfunktion Azure SQL Data Warehouse oder Azure HDInsight mit Hive oder Interactive Query verwendet werden. Darüber hinaus benötigen Sie ein gewisses Maß an Orchestrierung, um Daten in regelmäßigen Abständen aus dem Datenspeicher in das Data Warehouse zu verschieben oder zu kopieren. Hierzu können Sie Azure Data Factory oder Oozie in Azure HDInsight verwenden.
 
-Ein Data Warehouse kann in Azure auf verschiedene Arten implementiert werden. Für welche Option Sie sich entscheiden, hängt ganz von Ihren Anforderungen ab. Die folgenden Listen sind in zwei Kategorien unterteilt: [symmetrisches Multiprocessing](https://en.wikipedia.org/wiki/Symmetric_multiprocessing) (SMP) und [Massively Parallel Processing](https://en.wikipedia.org/wiki/Massively_parallel) (MPP). 
+Ein Data Warehouse kann in Azure auf verschiedene Arten implementiert werden. Für welche Option Sie sich entscheiden, hängt ganz von Ihren Anforderungen ab. Die folgenden Listen sind in zwei Kategorien unterteilt: [symmetrisches Multiprocessing](https://en.wikipedia.org/wiki/Symmetric_multiprocessing) (SMP) und [Massively Parallel Processing](https://en.wikipedia.org/wiki/Massively_parallel) (MPP).
 
 SMP:
 
@@ -63,23 +65,26 @@ MPP:
 - [Apache Hive in HDInsight](/azure/hdinsight/hadoop/hdinsight-use-hive)
 - [Interactive Query (Hive LLAP) in HDInsight](/azure/hdinsight/interactive-query/apache-interactive-query-get-started)
 
-Allgemein gilt: SMP-basierte Warehouses eignen sich am besten für kleine bis mittelgroße Datasets (4 bis 100 TB), während MPP häufig für Big Data verwendet wird. Die Abgrenzung zwischen kleinen/mittelgroßen Daten und Big Data hängt zum Teil mit der Definition und der unterstützenden Infrastruktur Ihres Unternehmens zusammen. (Weitere Informationen finden Sie unter [Choosing an OLTP data store](online-transaction-processing.md#scalability-capabilities) (Auswählen eines OLTP-Datenspeichers).) 
+Allgemein gilt: SMP-basierte Warehouses eignen sich am besten für kleine bis mittelgroße Datasets (4 bis 100 TB), während MPP häufig für Big Data verwendet wird. Die Abgrenzung zwischen kleinen/mittelgroßen Daten und Big Data hängt zum Teil mit der Definition und der unterstützenden Infrastruktur Ihres Unternehmens zusammen. (Weitere Informationen finden Sie unter [Choosing an OLTP data store](online-transaction-processing.md#scalability-capabilities) (Auswählen eines OLTP-Datenspeichers).)
 
 Abgesehen davon hat die Art des Workloadmusters wahrscheinlich einen größeren Einfluss auf die Entscheidung als die Datengröße. So können beispielsweise komplexe Abfragen für eine SMP-Lösung zu langsam sein und die Verwendung einer MPP-Lösung erforderlich machen. Bei MPP-basierten Systemen ist mit Leistungseinbußen bei geringen Datengrößen zu rechnen, was auf die knotenübergreifende Verteilung und Konsolidierung der Aufträge zurückzuführen ist. Wenn die Größe Ihrer Daten bereits 1 TB übersteigt und voraussichtlich weiter zunimmt, empfiehlt sich die Verwendung einer MPP-Lösung. Und auch wenn Ihre Daten kleiner sind, Ihre Workloads aber die verfügbaren Ressourcen Ihrer SMP-Lösung übersteigen, ist MPP wahrscheinlich die beste Wahl.
 
-Die Daten, auf die Ihr Data Warehouse zugreift bzw. die von Ihrem Data Warehouse gespeichert werden, können aus verschiedensten Datenquellen stammen – unter anderem auch aus einem Data Lake wie [Azure Data Lake Store](/azure/data-lake-store/). Unter [Azure Data Lake and Azure Data Warehouse: Applying Modern Practices to Your App](https://azure.microsoft.com/resources/videos/build-2016-azure-data-lake-and-azure-data-warehouse-applying-modern-practices-to-your-app/) (Azure Data Lake und Azure Data Warehouse: moderne Methoden für Ihre App) finden Sie ein Video, in dem die verschiedenen Stärken von für Azure Data Lake geeigneten MPP-Diensten miteinander verglichen werden.
+Die Daten, auf die Ihr Data Warehouse zugreift bzw. die von Ihrem Data Warehouse gespeichert werden, können aus verschiedensten Datenquellen stammen – unter anderem auch aus einem Data Lake wie [Azure Data Lake Store](/azure/data-lake-store/). Ein Video, in dem die verschiedenen Stärken von für Azure Data Lake geeigneten MPP-Diensten miteinander verglichen werden, finden Sie unter [Azure Data Lake and Azure Data Warehouse: Applying Modern Practices to Your App](https://azure.microsoft.com/resources/videos/build-2016-azure-data-lake-and-azure-data-warehouse-applying-modern-practices-to-your-app/) (Azure Data Lake und Azure Data Warehouse: moderne Methoden für Ihre App).
 
-SMP-Systeme zeichnen sich durch eine einzelne Instanz eines Managementsystems für relationale Datenbanken aus, die sämtliche Ressourcen (CPU/Arbeitsspeicher/Datenträger) gemeinsam nutzen. Ein SMP-System kann zentral hochskaliert werden. Für SQL Server auf einem virtuellen Computer können Sie die VM-Größe zentral hochskalieren. Für Azure SQL-Datenbank können Sie zum zentralen Hochskalieren einen anderen Diensttarif auswählen. 
+SMP-Systeme zeichnen sich durch eine einzelne Instanz eines Managementsystems für relationale Datenbanken aus, die sämtliche Ressourcen (CPU/Arbeitsspeicher/Datenträger) gemeinsam nutzen. Ein SMP-System kann zentral hochskaliert werden. Für SQL Server auf einem virtuellen Computer können Sie die VM-Größe zentral hochskalieren. Für Azure SQL-Datenbank können Sie zum zentralen Hochskalieren einen anderen Diensttarif auswählen.
 
-MPP-Systeme können durch Hinzufügen weiterer Computeknoten (mit eigener CPU, eigenem Arbeitsspeicher und eigenen E/A-Subsystemen) horizontal hochskaliert werden. Aufgrund physischer Einschränkungen kann ein Server nur bis zu einem gewissen Punkt zentral hochskaliert werden. Danach ist abhängig von der Workload horizontales Hochskalieren vorzuziehen. Für MPP-Lösungen werden aufgrund von Abweichungen bei Abfragen, Modellierung, Datenpartitionierung und anderen speziellen Aspekten der parallelen Verarbeitung jedoch andere Kompetenzen vorausgesetzt. 
+MPP-Systeme können durch Hinzufügen weiterer Computeknoten (mit eigener CPU, eigenem Arbeitsspeicher und eigenen E/A-Subsystemen) horizontal hochskaliert werden. Aufgrund physischer Einschränkungen kann ein Server nur bis zu einem gewissen Punkt zentral hochskaliert werden. Danach ist abhängig von der Workload horizontales Hochskalieren vorzuziehen. Für MPP-Lösungen werden aufgrund von Abweichungen bei Abfragen, Modellierung, Datenpartitionierung und anderen speziellen Aspekten der parallelen Verarbeitung jedoch andere Kompetenzen vorausgesetzt.
 
-Der Abschnitt [Genauere Betrachtung von Azure SQL-Datenbank und SQL Server auf Azure Virtual Machines](/azure/sql-database/sql-database-paas-vs-sql-server-iaas#a-closer-look-at-azure-sql-database-and-sql-server-on-azure-vms) enthält hilfreiche Informationen zur Wahl einer SMP-Lösung. 
+Der Abschnitt [Genauere Betrachtung von Azure SQL-Datenbank und SQL Server auf Azure Virtual Machines](/azure/sql-database/sql-database-paas-vs-sql-server-iaas#a-closer-look-at-azure-sql-database-and-sql-server-on-azure-vms) enthält hilfreiche Informationen zur Wahl einer SMP-Lösung.
 
 Azure SQL Data Warehouse kann auch für kleine und mittelgroße Datasets mit rechen- und speicherintensiven Workloads verwendet werden. Weitere Informationen zu SQL Data Warehouse-Mustern und gängigen Szenarien finden Sie unter den folgenden Link:
 
 - [SQL Data Warehouse Patterns and Anti-Patterns](https://blogs.msdn.microsoft.com/sqlcat/2017/09/05/azure-sql-data-warehouse-workload-patterns-and-anti-patterns/) (SQL Data Warehouse: Muster und Antimuster)
+
 - [SQL Data Warehouse Loading Patterns and Strategies](https://blogs.msdn.microsoft.com/sqlcat/2017/05/17/azure-sql-data-warehouse-loading-patterns-and-strategies/) (SQL Data Warehouse: Lademuster und -strategien)
+
 - [Migrieren von Daten zu Azure SQL Data Warehouse](https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/)
+
 - [Common ISV application patterns using Azure SQL Data Warehouse](https://blogs.msdn.microsoft.com/sqlcat/2017/09/05/common-isv-application-patterns-using-azure-sql-data-warehouse/) (Gängige ISV-Anwendungsmuster mit Azure SQL Data Warehouse)
 
 ## <a name="key-selection-criteria"></a>Wichtige Auswahlkriterien
@@ -88,13 +93,13 @@ Beantworten Sie die folgenden Fragen, um die Auswahl einzuschränken:
 
 - Möchten Sie einen verwalteten Dienst verwenden, anstatt Ihre eigenen Server zu verwalten?
 
-- Arbeiten Sie mit sehr großen Datasets oder mit sehr komplexen Abfragen mit langer Ausführungszeit? Falls ja, empfiehlt sich die Verwendung einer MPP-Option. 
+- Arbeiten Sie mit sehr großen Datasets oder mit sehr komplexen Abfragen mit langer Ausführungszeit? Falls ja, empfiehlt sich die Verwendung einer MPP-Option.
 
 - Ist die Datenquelle bei einem großen Dataset strukturiert oder unstrukturiert? Unstrukturierte Daten müssen ggf. in einer Big Data-Umgebung wie Spark in HDInsight, Azure Databricks, Hive LLAP in HDInsight oder Azure Data Lake Analytics verarbeitet werden. Alle diese Optionen können als ELT-Modul (Extrahieren, Laden, Transformieren) sowie als ETL-Modul (Extrahieren, Transformieren, Laden) fungieren. Die verarbeiteten Daten können als strukturierte Daten ausgegeben werden, um sie leichter in SQL Data Warehouse oder in eine der anderen Optionen laden zu können. Für strukturierte Daten bietet SQL Data Warehouse die Leistungsstufe „Optimiert für Compute“, die für rechenintensive Workloads mit sehr hohen Leistungsanforderungen konzipiert ist.
 
 - Möchten Sie Ihre historischen Daten und Ihre aktuellen operativen Daten trennen? Falls ja, wählen Sie eine der Optionen, die eine [Orchestrierung](../technology-choices/pipeline-orchestration-data-movement.md) erfordern. Hierbei handelt es sich um eigenständige Warehouses, die für intensiven Lesezugriff optimiert und am besten als separater Speicher für historische Daten geeignet sind.
 
-- Müssen Sie Daten aus mehreren Quellen (abgesehen von Ihrem OLTP-Datenspeicher) integrieren? Falls ja, empfiehlt sich die Verwendung einer Option mit einfacher Integration mehrerer Datenquellen. 
+- Müssen Sie Daten aus mehreren Quellen (abgesehen von Ihrem OLTP-Datenspeicher) integrieren? Falls ja, empfiehlt sich die Verwendung einer Option mit einfacher Integration mehrerer Datenquellen.
 
 - Sind Sie auf Mehrinstanzenfähigkeit angewiesen? Falls ja, ist SQL Data Warehouse nicht die ideale Lösung. Weitere Informationen finden Sie unter [SQL Data Warehouse Patterns and Anti-Patterns](https://blogs.msdn.microsoft.com/sqlcat/2017/09/05/azure-sql-data-warehouse-workload-patterns-and-anti-patterns/) (SQL Data Warehouse: Muster und Antimuster).
 
@@ -102,13 +107,13 @@ Beantworten Sie die folgenden Fragen, um die Auswahl einzuschränken:
 
 - Benötigen Sie Echtzeitberichte? Falls Sie bei Abfragen mit vielen Singleton-Einfügungen auf schnelle Antworten angewiesen sind, grenzen Sie Ihre Optionen auf Lösungen ein, die Echtzeitberichte unterstützen.
 
-- Müssen Sie eine große Anzahl von gleichzeitigen Benutzern und Verbindungen unterstützen? Die Unterstützung einer Reihe von gleichzeitigen Benutzern/Verbindungen hängt von mehreren Faktoren ab. 
+- Müssen Sie eine große Anzahl von gleichzeitigen Benutzern und Verbindungen unterstützen? Die Unterstützung einer Reihe von gleichzeitigen Benutzern/Verbindungen hängt von mehreren Faktoren ab.
 
-    - Informieren Sie sich für Azure SQL-Datenbank über die [dokumentierten Ressourcenlimits](/azure/sql-database/sql-database-resource-limits) für Ihre Dienstebene. 
-    
-    - Bei SQL Server sind maximal 32.767 Benutzerverbindungen zulässig. Bei Ausführung auf einem virtuellen Computer hängt die Leistung von der Größe des virtuellen Computers sowie von anderen Faktoren ab. 
-    
-    - Bei SQL Data Warehouse ist die Anzahl gleichzeitiger Abfragen und gleichzeitiger Verbindungen beschränkt. Weitere Informationen finden Sie unter [Parallelitäts- und Workloadverwaltung in SQL Data Warehouse](/azure/sql-data-warehouse/sql-data-warehouse-develop-concurrency). Die Einschränkungen von SQL Data Warehouse lassen sich bei Bedarf mit zusätzlichen Diensten wie [Azure Analysis Services](/azure/analysis-services/analysis-services-overview) kompensieren.
+  - Informieren Sie sich für Azure SQL-Datenbank über die [dokumentierten Ressourcenlimits](/azure/sql-database/sql-database-resource-limits) für Ihre Dienstebene.
+  
+  - Bei SQL Server sind maximal 32.767 Benutzerverbindungen zulässig. Bei Ausführung auf einem virtuellen Computer hängt die Leistung von der Größe des virtuellen Computers sowie von anderen Faktoren ab.
+
+  - Bei SQL Data Warehouse ist die Anzahl gleichzeitiger Abfragen und gleichzeitiger Verbindungen beschränkt. Weitere Informationen finden Sie unter [Parallelitäts- und Workloadverwaltung in SQL Data Warehouse](/azure/sql-data-warehouse/sql-data-warehouse-develop-concurrency). Die Einschränkungen von SQL Data Warehouse lassen sich bei Bedarf mit zusätzlichen Diensten wie [Azure Analysis Services](/azure/analysis-services/analysis-services-overview) kompensieren.
 
 - Welche Art von Workload verwenden Sie? Im Allgemeinen eignen sich MPP-basierte Warehouse-Lösungen am besten für analytische, batchorientierte Workloads. Wenn es sich bei Ihrer Workload um eine Transaktionsworkload mit zahlreichen kleinen Lese-/Schreibvorgängen oder mehreren zeilenweisen Vorgängen handelt, empfiehlt sich die Verwendung einer SMP-Option. Hiervon ausgenommen sind Szenarien, in denen eine Streamverarbeitung für einen HDInsight-Cluster (beispielsweise Spark Streaming) verwendet wird und die Daten in einer Hive-Tabelle gespeichert werden.
 
@@ -117,6 +122,8 @@ Beantworten Sie die folgenden Fragen, um die Auswahl einzuschränken:
 In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefasst:
 
 ### <a name="general-capabilities"></a>Allgemeine Funktionen
+
+<!-- markdownlint-disable MD033 -->
 
 | | Azure SQL-Datenbank | SQL Server (VM) | SQL Data Warehouse | Apache Hive in HDInsight | Hive LLAP in HDInsight |
 | --- | --- | --- | --- | --- | --- | -- |
@@ -129,6 +136,8 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | Flexible Sicherungswiederherstellungspunkte | JA | JA | Nein<sup>3</sup> | Ja<sup>4</sup> | Ja<sup>4</sup> |
 | SMP/MPP | SMP | SMP | MPP | MPP | MPP |
 
+<!-- markdownlint-enable MD033 -->
+
 [1] Manuelle Konfiguration und Skalierung.
 
 [2] Nicht benötigte HDInsight-Cluster können gelöscht und später erneut erstellt werden. Fügen Sie an Ihren Cluster einen externen Datenspeicher an, damit Ihre Daten beim Löschen des Clusters erhalten bleiben. Zur Automatisierung des Clusterlebenszyklus können Sie mithilfe von Azure Data Factory einen bedarfsgesteuerten HDInsight-Cluster für die Verarbeitung Ihrer Workload erstellen und ihn nach Abschluss der Verarbeitung wieder löschen.
@@ -139,6 +148,8 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 ### <a name="scalability-capabilities"></a>Skalierbarkeitsfunktionen
 
+<!-- markdownlint-disable MD033 -->
+
 | | Azure SQL-Datenbank | SQL Server (VM) |  SQL Data Warehouse | Apache Hive in HDInsight | Hive LLAP in HDInsight |
 | --- | --- | --- | --- | --- | --- | -- |
 | Redundante regionale Server für Hochverfügbarkeit  | JA | Ja | JA | Nein  | Nein  |
@@ -148,7 +159,11 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 [1] SQL Data Warehouse ermöglicht zentrales Hoch- und Herunterskalieren durch Anpassung der Anzahl von Data Warehouse-Einheiten (Data Warehouse Units, DWUs). Weitere Informationen finden Sie unter [Verwalten von Computeleistung in Azure SQL Data Warehouse (Übersicht)](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview).
 
+<!-- markdownlint-enable MD033 -->
+
 ### <a name="security-capabilities"></a>Sicherheitsfunktionen
+
+<!-- markdownlint-disable MD033 -->
 
 |                         |           Azure SQL-Datenbank            |  SQL Server auf einem virtuellen Computer  | SQL Data Warehouse |   Apache Hive in HDInsight    |    Hive LLAP in HDInsight     |
 |-------------------------|-----------------------------------------|-----------------------------------|--------------------|-------------------------------|-------------------------------|
@@ -160,6 +175,8 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 |   Unterstützung von Firewalls    |                   JA                   |                Ja                |        Ja         |              JA              |       Ja<sup>3</sup>        |
 |  Dynamische Datenmaskierung   |                   JA                   |                Ja                |        JA         |              Nein                |       Ja<sup>1</sup>        |
 
+<!-- markdownlint-enable MD033 -->
+
 [1] Erfordert die Verwendung eines [in die Domäne eingebundenen HDInsight-Clusters](/azure/hdinsight/domain-joined/apache-domain-joined-introduction).
 
 [2] Erfordert die Verwendung von Transparent Data Encryption (TDE) zum Verschlüsseln und Entschlüsseln ruhender Daten.
@@ -168,8 +185,10 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 Weitere Informationen zum Schutz Ihres Data Warehouse finden Sie hier:
 
-* [Sichern der SQL-Datenbank](/azure/sql-database/sql-database-security-overview#connection-security)
-* [Sichern einer Datenbank in SQL Data Warehouse](/azure/sql-data-warehouse/sql-data-warehouse-overview-manage-security)
-* [Erweitern von Azure HDInsight per Azure Virtual Network](/azure/hdinsight/hdinsight-extend-hadoop-virtual-network)
-* [Einführung in die Hadoop-Sicherheit mit in die Domäne eingebundenen HDInsight-Clustern](/azure/hdinsight/domain-joined/apache-domain-joined-introduction)
+- [Sichern der SQL-Datenbank](/azure/sql-database/sql-database-security-overview#connection-security)
 
+- [Sichern einer Datenbank in SQL Data Warehouse](/azure/sql-data-warehouse/sql-data-warehouse-overview-manage-security)
+
+- [Erweitern von Azure HDInsight per Azure Virtual Network](/azure/hdinsight/hdinsight-extend-hadoop-virtual-network)
+
+- [Einführung in die Hadoop-Sicherheit mit in die Domäne eingebundenen HDInsight-Clustern](/azure/hdinsight/domain-joined/apache-domain-joined-introduction)

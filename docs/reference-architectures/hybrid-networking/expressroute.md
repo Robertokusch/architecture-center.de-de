@@ -5,12 +5,12 @@ description: Implementieren Sie eine sichere Netzwerkarchitektur zwischen Stando
 author: telmosampaio
 ms.date: 10/22/2017
 ms.custom: seodec18
-ms.openlocfilehash: 8e9de168fe2969159f62ce84a19f4b21fd1cb538
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 1308f85f2f6d05b86e22f2558d89f164d076d182
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120389"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112786"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>Verbinden eines lokalen Netzwerks mit Azure über ExpressRoute
 
@@ -207,8 +207,7 @@ Sie können für Ihre Azure-Verbindung auf unterschiedliche Weise Hochverfügbar
 
 - Verbinden Sie das VNET mit mehreren ExpressRoute-Leitungen, die von unterschiedlichen Dienstanbietern bereitgestellt werden. Diese Strategie bietet zusätzliche Hochverfügbarkeit und Notfallwiederherstellungsfunktionen.
 
-- Konfigurieren Sie ein Site-to-Site-VPN als Failoverpfad für ExpressRoute. Weitere Informationen finden Sie unter [Verbinden eines lokalen Netzwerks mit Azure unter Verwendung von ExpressRoute mit VPN-Failover][highly-available-network-architecture].
- Diese Option gilt nur für das private Peering. Für Azure- und Office 365-Dienste ist das Internet der einzige Failoverpfad.
+- Konfigurieren Sie ein Site-to-Site-VPN als Failoverpfad für ExpressRoute. Weitere Informationen finden Sie unter [Verbinden eines lokalen Netzwerks mit Azure unter Verwendung von ExpressRoute mit VPN-Failover][highly-available-network-architecture]. Diese Option gilt nur für das private Peering. Für Azure- und Office 365-Dienste ist das Internet der einzige Failoverpfad.
 
 ## <a name="manageability-considerations"></a>Überlegungen zur Verwaltbarkeit
 
@@ -224,7 +223,7 @@ Um die Sicherheit zu maximieren, platzieren Sie Netzwerksicherheitsappliances zw
 
 ![[2]][2]
 
-Im Rahmen von Überwachung oder Compliance kann es notwendig sein, den direkten Zugriff von VNET-Komponenten auf das Internet zu verbieten und eine [Tunnelerzwingung][forced-tuneling] zu implementieren. In diesem Fall sollte der Internetdatenverkehr an einen lokal ausgeführten Proxy umgeleitet werden, wo er überwacht werden kann. Der Proxy kann so konfiguriert werden, dass er nicht autorisierten ausgehenden Datenverkehr blockiert und potenziell schädlichen eingehenden Datenverkehr filtert.
+Im Rahmen von Überwachung oder Compliance kann es notwendig sein, den direkten Zugriff von VNET-Komponenten auf das Internet zu verbieten und eine [Tunnelerzwingung][forced-tunneling] zu implementieren. In diesem Fall sollte der Internetdatenverkehr an einen lokal ausgeführten Proxy umgeleitet werden, wo er überwacht werden kann. Der Proxy kann so konfiguriert werden, dass er nicht autorisierten ausgehenden Datenverkehr blockiert und potenziell schädlichen eingehenden Datenverkehr filtert.
 
 ![[3]][3]
 
@@ -270,7 +269,7 @@ Führen Sie die folgenden Schritte aus, um die Lösung bereitzustellen.
 
 <!-- links -->
 
-[forced-tuneling]: ../dmz/secure-vnet-hybrid.md
+[forced-tunneling]: ../dmz/secure-vnet-hybrid.md
 [highly-available-network-architecture]: ./expressroute-vpn-failover.md
 
 [expressroute-technical-overview]: /azure/expressroute/expressroute-introduction
@@ -286,8 +285,8 @@ Führen Sie die folgenden Schritte aus, um die Lösung bereitzustellen.
 [azurect]: https://github.com/Azure/NetworkMonitoring/tree/master/AzureCT
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [er-circuit-parameters]: https://github.com/mspnp/reference-architectures/tree/master/hybrid-networking/expressroute/parameters/expressRouteCircuit.parameters.json
-[azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
-[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
+[azure-powershell-download]: /powershell/azure/overview
+[azure-cli]: /cli/azure/install-azure-cli
 
 [0]: ./images/expressroute.png "Hybrid-Netzwerkarchitektur mit Azure ExpressRoute"
 [1]: ../_images/guidance-hybrid-network-expressroute/figure2.png "Einsatz redundanter Router mit primären und sekundären ExpressRoute-Verbindungen"

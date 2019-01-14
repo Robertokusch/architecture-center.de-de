@@ -5,12 +5,12 @@ description: Stellen Sie eine Anwendung auf virtuellen Azure-Computern in mehrer
 author: MikeWasson
 ms.date: 07/19/2018
 ms.custom: seodec18
-ms.openlocfilehash: 84da8aaef7e552beff1f06befbaa2e50a3ac3d8b
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 5eef936dded1829ee561ce1b13df4fb147694dc7
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643704"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111987"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>Ausführen einer n-schichtigen Anwendung in mehreren Azure-Regionen für Hochverfügbarkeit
 
@@ -172,7 +172,7 @@ Es wird empfohlen, sich das folgende [Azure-Beispielszenario](/azure/architectur
 [hybrid-vpn]: ../hybrid-networking/vpn.md
 [azure-dns]: /azure/dns/dns-overview
 [azure-sla]: https://azure.microsoft.com/support/legal/sla/
-[azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[azure-sql-db]: /azure/sql-database/
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx
 [azure-cli]: /cli/azure/
 [regional-pairs]: /azure/best-practices-availability-paired-regions

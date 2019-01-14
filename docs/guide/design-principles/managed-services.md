@@ -1,14 +1,16 @@
 ---
 title: Verwenden verwalteter Dienste
+titleSuffix: Azure Application Architecture Guide
 description: Verwenden Sie nach Möglichkeit PaaS (Platform-as-a-Service) anstelle von IaaS (Infrastructure-as-a-Service).
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: f6777a19e126a8a7f64be05dfad9bc503d27b1c3
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: 6f1ea3f3bf2442b331583a59973e3d32908aadeb
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325773"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111664"
 ---
 # <a name="use-managed-services"></a>Verwenden verwalteter Dienste
 
@@ -16,7 +18,7 @@ ms.locfileid: "43325773"
 
 IaaS können Sie sich wie eine Kiste mit Einzelteilen vorstellen. Sie können beliebige Dinge bauen, aber Sie müssen alles selbst zusammensetzen. Verwaltete Dienste können einfacher konfiguriert und verwaltet werden. Sie müssen keine VMs bereitstellen, VNets einrichten oder Patches und Updates verwalten, und auch der restliche Mehraufwand für die Ausführung von Software auf einer VM fällt weg.
 
-Angenommen, Ihre Anwendung benötigt eine Nachrichtenwarteschlange. Sie können Ihren eigenen Messagingdienst auf einer VM einrichten, indem Sie beispielsweise RabbitMQ verwenden. Für Azure Service Bus wird aber bereits ein zuverlässiger Messagingdienst bereitgestellt, der leichter einzurichten ist. Erstellen Sie einfach einen Service Bus-Namespace (z.B. im Rahmen des Bereitstellungsskripts), und rufen Sie anschließend Service Bus auf, indem Sie das Client-SDK verwenden. 
+Angenommen, Ihre Anwendung benötigt eine Nachrichtenwarteschlange. Sie können Ihren eigenen Messagingdienst auf einer VM einrichten, indem Sie beispielsweise RabbitMQ verwenden. Für Azure Service Bus wird aber bereits ein zuverlässiger Messagingdienst bereitgestellt, der leichter einzurichten ist. Erstellen Sie einfach einen Service Bus-Namespace (z.B. im Rahmen des Bereitstellungsskripts), und rufen Sie anschließend Service Bus auf, indem Sie das Client-SDK verwenden.
 
 Es kann natürlich sein, dass Ihre Anwendung über bestimmte Anforderungen verfügt, für die ein IaaS-Ansatz besser geeignet ist. Auch wenn Ihre Anwendung auf IaaS basiert, sollten Sie nach Stellen suchen, für die die Einbindung von verwalteten Diensten hilfreich ist. Hierzu gehören die Bereiche Cache, Warteschlangen und Datenspeicher.
 
@@ -29,5 +31,3 @@ Es kann natürlich sein, dass Ihre Anwendung über bestimmte Anforderungen verf�
 | MongoDB | Cosmos DB |
 | Redis | Azure Redis Cache |
 | SQL Server | Azure SQL-Datenbank |
-
-

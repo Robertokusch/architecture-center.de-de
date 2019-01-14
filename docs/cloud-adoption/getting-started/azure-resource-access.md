@@ -1,14 +1,14 @@
 ---
 title: 'Enterprise Cloud-Einführung: Ressourcenzugriffsverwaltung in Azure'
-description: 'Erklärung der Konstrukte für die Verwaltung des Ressourcenzugriffs in Azure: Azure Resource Manager, Abonnements, Ressourcengruppen und Ressourcen'
+description: 'Erläuterung der Konstrukte für die Verwaltung des Ressourcenzugriffs in Azure: Azure Resource Manager, Abonnements, Ressourcengruppen und Ressourcen'
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: c26b01d207bc4eb100653a826a053b394d03d1e6
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 8cb28d0dd5dbdfcef846786083d5197f435bf3ea
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428702"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160790"
 ---
 # <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>Enterprise Cloud-Einführung: Ressourcenzugriffsverwaltung in Azure
 
@@ -46,7 +46,7 @@ Unter [Wie funktioniert Azure?](what-is-azure.md) haben Sie erfahren, dass Azure
 ![](../_images/governance-1-12.png)   
 *Abbildung 4: Azure Resource Manager*
 
-In der folgenden Abbildung sind drei Clients dargestellt: [PowerShell](/powershell/azure/overview), [das Azure-Portal](https://portal.azure.com) und die [Azure-Befehlszeilenschnittstelle (Azure CLI)](/cli/azure):
+In der folgenden Abbildung sind drei Clients dargestellt: [PowerShell](/powershell/azure/overview), das [Azure-Portal](https://portal.azure.com) und die [Azure-Befehlszeilenschnittstelle (Azure CLI)](/cli/azure):
 
 ![](../_images/governance-1-13.png)   
 *Abbildung 5: Azure-Clients stellen eine Verbindung mit der RESTful-API von Azure Resource Manager her.*

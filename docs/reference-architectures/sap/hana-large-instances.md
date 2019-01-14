@@ -5,12 +5,12 @@ description: Bewährte Methoden zum Ausführen von SAP HANA in einer Hochverfüg
 author: lbrader
 ms.date: 05/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: ef3c57f292024af0abbeb4ead62ab4b3aeb57a90
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 47953037827923ea0e4f492dfc29ce815072a20e
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644086"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011360"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>Ausführen von SAP HANA in Azure (große Instanzen)
 
@@ -41,7 +41,7 @@ Diese Architektur umfasst die folgenden Infrastrukturkomponenten.
 
 - **NFS-Speicher (Network File System )**: Der [NFS][nfs]-Server unterstützt die Netzwerkdateifreigabe, die sichere Datenpersistenz für die große HANA-Instanz bereitstellt.
 
-- **ExpressRoute**: [ExpressRoute][expressroute] ist der empfohlene Azure-Netzwerkdienst für das Erstellen privater Verbindungen zwischen einem lokalen Netzwerk und virtuellen Azure-Netzwerken, die nicht über das öffentliche Internet genutzt werden. Virtuelle Azure-Computer stellen über eine weitere ExpressRoute-Verbindung eine Verbindung mit großen HANA-Instanzen her. Die ExpressRoute-Verbindung zwischen dem virtuellen Azure-Netzwerk und den großen HANA-Instanzen wird als Teil des Microsoft-Angebots eingerichtet.
+- **ExpressRoute**: [ExpressRoute][expressroute] ist der empfohlene Azure-Netzwerkdienst für die Erstellung privater Verbindungen zwischen einem lokalen Netzwerk und virtuellen Azure-Netzwerken, die nicht über das öffentliche Internet genutzt werden. Virtuelle Azure-Computer stellen über eine weitere ExpressRoute-Verbindung eine Verbindung mit großen HANA-Instanzen her. Die ExpressRoute-Verbindung zwischen dem virtuellen Azure-Netzwerk und den großen HANA-Instanzen wird als Teil des Microsoft-Angebots eingerichtet.
 
 - **Gateway**: Das ExpressRoute-Gateway wird verwendet, um das für die SAP-Anwendungsebene verwendete virtuelle Azure-Netzwerk mit dem Netzwerk der großen HANA-Instanz zu verbinden. Verwenden Sie die SKU für [Hohe Leistung oder Höchstleistung][sku].
 

@@ -3,12 +3,12 @@ title: Schützen von Datenlösungen
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 453897d1dde205ec8eb094df06ec66da43f7de7b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 47e3be2afd14d980b98ac9659f7f1e5a4df3403f
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901642"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110874"
 ---
 # <a name="securing-data-solutions"></a>Schützen von Datenlösungen
 
@@ -16,9 +16,9 @@ Viele, die Daten in der Cloud bereitstellen, machen sich Gedanken über die erh�
 
 ## <a name="challenges"></a>Herausforderungen
 
-* Zentralisierung der Überwachung und Analyse gespeicherter Sicherheitsereignisse aus zahlreichen Protokollen
-* Implementierung von Verschlüsselung und Autorisierungsverwaltung für Ihre Anwendungen und Dienste
-* Gewährleistung einer funktionierenden Identitätsverwaltung für alle Ihre Lösungskomponenten (sowohl lokal als auch in der Cloud)
+- Zentralisierung der Überwachung und Analyse gespeicherter Sicherheitsereignisse aus zahlreichen Protokollen
+- Implementierung von Verschlüsselung und Autorisierungsverwaltung für Ihre Anwendungen und Dienste
+- Gewährleistung einer funktionierenden Identitätsverwaltung für alle Ihre Lösungskomponenten (sowohl lokal als auch in der Cloud)
 
 ## <a name="data-protection"></a>Datenschutz
 
@@ -26,8 +26,8 @@ Der erste Schritt beim Schutz von Informationen besteht darin, die zu schützend
 
 Überlegen Sie sich nach der Identifizierung der zu schützenden Daten, wie Sie sie *in Ruhe* und *während der Übertragung* schützen möchten.
 
-* **Ruhende Daten:** Daten, die sich statisch auf physischen Medien (magnetischer oder optischer Datenträger) befinden – lokal oder in der Cloud.
-* **Übertragene Daten:** Daten, die zwischen Komponenten, Speicherorten oder Programmen übertragen werden – beispielsweise über das Netzwerk, über einen Service Bus (aus der lokalen Umgebung in die Cloud oder umgekehrt) oder während eines Eingabe-/Ausgabeprozesses.
+- **Ruhende Daten:** Daten, die sich statisch auf physischen Medien (magnetischer oder optischer Datenträger) befinden – lokal oder in der Cloud.
+- **Übertragene Daten:** Daten, die zwischen Komponenten, Speicherorten oder Programmen übertragen werden – beispielsweise über das Netzwerk, über einen Service Bus (aus der lokalen Umgebung in die Cloud oder umgekehrt) oder während eines Eingabe-/Ausgabeprozesses.
 
 Weitere Informationen zum Schutz ruhender Daten sowie zum Schutz von Daten während der Übertragung finden Sie unter [Empfohlene Vorgehensweisen für Datensicherheit und Verschlüsselung in Azure](/azure/security/azure-security-data-encryption-best-practices).
 
@@ -35,14 +35,14 @@ Weitere Informationen zum Schutz ruhender Daten sowie zum Schutz von Daten währ
 
 Um Ihre Daten in der Cloud zu schützen, benötigen Sie eine Kombination aus Identitätsverwaltung und Zugriffssteuerung. Angesichts der Vielfalt und Art von Clouddiensten sowie der zunehmenden Beliebtheit von [Hybrid Cloud](../scenarios/hybrid-on-premises-and-cloud.md) sollten Sie bei der Identitäts- und Zugriffssteuerung einige wichtige Punkte berücksichtigen:
 
-* Zentralisieren Sie Ihre Identitätsverwaltung.
-* Ermöglichen Sie einmaliges Anmelden (Single Sign-On, SSO).
-* Stellen Sie eine Kennwortverwaltung bereit.
-* Erzwingen Sie für Benutzer die mehrstufige Authentifizierung (Multi-Factor Authentication, MFA).
-* Verwenden Sie die rollenbasierte Zugriffssteuerung (Role-Based Access Control, RBAC).
-* Konfigurieren Sie Richtlinien für bedingten Zugriff. Diese erweitern das klassische Konzept der Benutzeridentität um zusätzliche Eigenschaften wie den Standort des Benutzers, den Gerätetyp und die Patchebene.
-* Steuern Sie Standorte, an denen Ressourcen erstellt werden, mit Resource Manager.
-* Aktives Überwachen auf verdächtige Aktivitäten
+- Zentralisieren Sie Ihre Identitätsverwaltung.
+- Ermöglichen Sie einmaliges Anmelden (Single Sign-On, SSO).
+- Stellen Sie eine Kennwortverwaltung bereit.
+- Erzwingen Sie für Benutzer die mehrstufige Authentifizierung (Multi-Factor Authentication, MFA).
+- Verwenden Sie die rollenbasierte Zugriffssteuerung (Role-Based Access Control, RBAC).
+- Konfigurieren Sie Richtlinien für bedingten Zugriff. Diese erweitern das klassische Konzept der Benutzeridentität um zusätzliche Eigenschaften wie den Standort des Benutzers, den Gerätetyp und die Patchebene.
+- Steuern Sie Standorte, an denen Ressourcen erstellt werden, mit Resource Manager.
+- Aktives Überwachen auf verdächtige Aktivitäten
 
 Weitere Informationen finden Sie unter [Azure-Identitätsverwaltung und Sicherheit der Zugriffssteuerung – Bewährte Methoden](/azure/security/azure-security-identity-management-best-practices).
 
@@ -52,17 +52,15 @@ Zusätzlich zur bereits erwähnten Identitäts- und Zugriffsüberwachung sollten
 
 Weitere Informationen finden Sie unter [Azure-Protokollierung und -Überwachung](/azure/security/azure-log-audit).
 
-
-
 ## <a name="securing-data-solutions-in-azure"></a>Schützen von Datenlösungen in Azure
 
 ### <a name="encryption"></a>Verschlüsselung
 
-**Virtuelle Computer:** Verwenden Sie [Azure Disk Encryption](/azure/security/azure-security-disk-encryption), um die angefügten Datenträger von virtuellen Windows- oder Linux-Computern zu verschlüsseln. Die Lösung kann in [Azure Key Vault](/azure/key-vault/) integriert werden, um die Steuerung und Verwaltung der Datenträger-Verschlüsselungsschlüssel und -geheimnisse zu erleichtern. 
+**Virtuelle Computer:** Verwenden Sie [Azure Disk Encryption](/azure/security/azure-security-disk-encryption), um die angefügten Datenträger von virtuellen Windows- oder Linux-Computern zu verschlüsseln. Die Lösung kann in [Azure Key Vault](/azure/key-vault/) integriert werden, um die Steuerung und Verwaltung der Datenträger-Verschlüsselungsschlüssel und -geheimnisse zu erleichtern.
 
 **Azure Storage**. Verwenden Sie [Azure Storage Service Encryption](/azure/storage/common/storage-service-encryption), um ruhende Daten in Azure Storage automatisch zu verschlüsseln. Verschlüsselung, Entschlüsselung und Schlüsselverwaltung sind für Benutzer vollständig transparent. Durch eine clientseitige Verschlüsselung mit Azure Key Vault können Daten auch während der Übertragung geschützt werden. Weitere Informationen finden Sie unter [Clientseitige Verschlüsselung und Azure Key Vault für Microsoft Azure Storage](/azure/storage/common/storage-client-side-encryption).
 
-**SQL Database** und **Azure SQL Data Warehouse:** Verwenden Sie [Transparent Data Encryption](/sql/relational-databases/security/encryption/transparent-data-encryption-azure-sql) (TDE), um Ihre Datenbanken, die dazugehörigen Sicherungen und die Transaktionsprotokolldateien in Echtzeit zu verschlüsseln und zu entschlüsseln, ohne Änderungen an Ihren Anwendung vorzunehmen. SQL-Datenbank kann auch [Always Encrypted](/azure/sql-database/sql-database-always-encrypted-azure-key-vault) verwenden, um sensible Daten auf dem Server (ruhende Daten), auf dem Weg zwischen Client und Server sowie während der Verwendung zu schützen. Die Always Encrypted-Verschlüsselungsschlüssel können mit Azure Key Vault gespeichert werden. 
+**SQL Database** und **Azure SQL Data Warehouse:** Verwenden Sie [Transparent Data Encryption](/sql/relational-databases/security/encryption/transparent-data-encryption-azure-sql) (TDE), um Ihre Datenbanken, die dazugehörigen Sicherungen und die Transaktionsprotokolldateien in Echtzeit zu verschlüsseln und zu entschlüsseln, ohne Änderungen an Ihren Anwendung vorzunehmen. SQL-Datenbank kann auch [Always Encrypted](/azure/sql-database/sql-database-always-encrypted-azure-key-vault) verwenden, um sensible Daten auf dem Server (ruhende Daten), auf dem Weg zwischen Client und Server sowie während der Verwendung zu schützen. Die Always Encrypted-Verschlüsselungsschlüssel können mit Azure Key Vault gespeichert werden.
 
 ### <a name="rights-management"></a>Rights Management
 
@@ -72,7 +70,7 @@ Weitere Informationen finden Sie unter [Azure-Protokollierung und -Überwachung]
 
 Verwenden Sie die [rollenbasierte Zugriffssteuerung](/azure/active-directory/role-based-access-control-what-is) (Role-Based Access Control, RBAC), um den Zugriff auf Azure-Ressourcen auf der Grundlage von Benutzerrollen zu steuern. Wenn Sie Active Directory lokal verwenden, können Sie Benutzern per [Synchronisierung mit Azure AD](/azure/active-directory/active-directory-hybrid-identity-design-considerations-directory-sync-requirements) eine auf ihrer lokalen Identität basierende Cloudidentität zur Verfügung stellen.
 
-Verwenden Sie den [bedingten Zugriff in Azure Active Directory](/azure/active-directory/active-directory-conditional-access-azure-portal), um den Anwendungszugriff in Ihrer Umgebung auf der Grundlage bestimmter Bedingungen zu steuern. Ein Beispiel für eine solche Richtlinienanweisung wäre etwa: _Wenn Auftragnehmer versuchen, über nicht vertrauenswürdige Netzwerke auf unsere Cloud-Apps zuzugreifen, soll der Zugriff blockiert werden._ 
+Verwenden Sie den [bedingten Zugriff in Azure Active Directory](/azure/active-directory/active-directory-conditional-access-azure-portal), um den Anwendungszugriff in Ihrer Umgebung auf der Grundlage bestimmter Bedingungen zu steuern. Ein Beispiel für eine solche Richtlinienanweisung wäre etwa: _Wenn Auftragnehmer versuchen, über nicht vertrauenswürdige Netzwerke auf unsere Cloud-Apps zuzugreifen, soll der Zugriff blockiert werden._
 
 [Azure AD Privileged Identity Management](/azure/active-directory/active-directory-privileged-identity-management-configure) kann Sie bei der Verwaltung, Steuerung und Überwachung Ihrer Benutzer sowie der Aufgaben unterstützen, die sie mit ihren Administratorrechten ausführen. Dies ist ein wichtiger Schritt, um einzuschränken, wer in Ihrer Organisation privilegierte Vorgänge in Azure AD, Azure, Office 365 oder SaaS-Apps ausführen sowie deren Aktivitäten überwachen kann.
 
@@ -80,7 +78,7 @@ Verwenden Sie den [bedingten Zugriff in Azure Active Directory](/azure/active-di
 
 Verwenden Sie zum Schutz von Daten während der Übertragung immer SSL/TLS, wenn Daten zwischen verschiedenen Standorten ausgetauscht werden. Manchmal muss der gesamte Kommunikationskanal zwischen der lokalen Infrastruktur und der Cloudinfrastruktur mithilfe eines virtuellen privaten Netzwerks (VPN) oder mithilfe von [ExpressRoute](/azure/expressroute/) isoliert werden. Weitere Informationen finden Sie unter [Erweitern lokaler Datenlösungen auf die Cloud](../scenarios/hybrid-on-premises-and-cloud.md).
 
-Verwenden Sie [Netzwerksicherheitsgruppen](/azure/virtual-network/virtual-networks-nsg) (NSGs), um die Anzahl potenzieller Angriffsvektoren zu verringern. Eine Netzwerksicherheitsgruppe enthält eine Liste mit Sicherheitsregeln, die ein- oder ausgehenden Netzwerkdatenverkehr basierend auf IP-Adresse, Port und Protokoll (für die Quelle bzw. das Ziel) zulassen oder ablehnen. 
+Verwenden Sie [Netzwerksicherheitsgruppen](/azure/virtual-network/virtual-networks-nsg) (NSGs), um die Anzahl potenzieller Angriffsvektoren zu verringern. Eine Netzwerksicherheitsgruppe enthält eine Liste mit Sicherheitsregeln, die ein- oder ausgehenden Netzwerkdatenverkehr basierend auf IP-Adresse, Port und Protokoll (für die Quelle bzw. das Ziel) zulassen oder ablehnen.
 
 Verwenden Sie [Dienstendpunkte im virtuellen Netzwerk](/azure/virtual-network/virtual-network-service-endpoints-overview), um Azure SQL- oder Azure Storage-Ressourcen zu schützen, sodass nur Datenverkehr aus Ihrem virtuellen Netzwerk auf diese Ressourcen zugreifen kann.
 
@@ -90,10 +88,8 @@ Weitere Informationen finden Sie unter [Azure-Netzwerksicherheit](/azure/securit
 
 ### <a name="monitoring"></a>Überwachung
 
-[Azure Security Center](/azure/security-center/security-center-intro) erfasst, analysiert und integriert automatisch Protokolldaten aus Ihren Azure-Ressourcen, aus dem Netzwerk und aus verbundenen Partnerlösungen (beispielsweise Firewalllösungen), um echte Bedrohungen zu erkennen und weniger falsch positive Ergebnisse zu generieren. 
+[Azure Security Center](/azure/security-center/security-center-intro) erfasst, analysiert und integriert automatisch Protokolldaten aus Ihren Azure-Ressourcen, aus dem Netzwerk und aus verbundenen Partnerlösungen (beispielsweise Firewalllösungen), um echte Bedrohungen zu erkennen und weniger falsch positive Ergebnisse zu generieren.
 
 [Log Analytics](/azure/log-analytics/log-analytics-overview) bietet zentralen Zugriff auf Ihre Protokolle und unterstützt Sie bei der Datenanalyse sowie bei der Erstellung benutzerdefinierter Warnungen.
 
 Die [Bedrohungserkennung von Azure SQL-Datenbank](/azure/sql-database/sql-database-threat-detection) erkennt anomale Aktivitäten, die auf ungewöhnliche und potenziell schädliche Versuche hindeuten, auf Datenbanken zuzugreifen oder diese zu missbrauchen. Sicherheitsbeauftragte oder andere zugewiesene Administratoren können eine sofortige Benachrichtigung über verdächtige Datenbankaktivitäten erhalten, sobald diese auftreten. Jede Benachrichtigung enthält Details zur verdächtigen Aktivität und empfiehlt die Vorgehensweise zur weiteren Untersuchung und Abwendung der Bedrohung.
-
-

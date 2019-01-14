@@ -1,16 +1,16 @@
 ---
 title: Wiederherstellung nach Datenbeschädigung oder unbeabsichtigtem Löschen
-description: In diesem Leitfaden erfahren Sie, wie Sie nach Datenbeschädigung oder versehentlichem Löschen eine Wiederherstellung ausführen, ausfallsichere, hochverfügbare und fehlertolerante Anwendungen erstellen und die Notfallwiederherstellung planen
+description: Hier erfahren Sie, wie Sie nach einer Datenbeschädigung oder nach dem versehentlichen Löschen von Daten eine Wiederherstellung ausführen, ausfallsichere, hochverfügbare und fehlertolerante Anwendungen erstellen und die Notfallwiederherstellung planen.
 author: MikeWasson
 ms.date: 11/11/2018
-ms.openlocfilehash: 1f3dd448ac6172727481c437fb8a113f25d83464
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 40379f32c6af47002e897c28392816fa1578502a
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916267"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111256"
 ---
-# <a name="recover-from-data-corruption-or-accidental-deletion"></a>Wiederherstellung nach Datenbeschädigung oder unbeabsichtigtem Löschen 
+# <a name="recover-from-data-corruption-or-accidental-deletion"></a>Wiederherstellung nach Datenbeschädigung oder unbeabsichtigtem Löschen
 
 Teil eines zuverlässigen Plans für Geschäftskontinuität sind Maßnahmen für den Fall, dass Daten beschädigt oder versehentlich gelöscht werden. Im Anschluss finden Sie Informationen zur Wiederherstellung von Daten, die durch Anwendungs- oder Bedienerfehler beschädigt oder versehentlich gelöscht wurden.
 
@@ -18,9 +18,9 @@ Teil eines zuverlässigen Plans für Geschäftskontinuität sind Maßnahmen für
 
 Verwenden Sie [Azure Backup](/azure/backup/), um virtuelle Azure-Computer vor Anwendungsfehlern oder versehentlichem Löschen zu schützen. Mit Azure Backup können Sie über mehrere VM-Datenträger hinweg konsistente Sicherungen erstellen. Darüber hinaus kann der Sicherungstresor über Regionen hinweg repliziert werden, um bei Ausfall einer Region eine Wiederherstellung zu ermöglichen.
 
-## <a name="storage"></a>Speicher
+## <a name="storage"></a>Storage
 
-Azure Storage bietet Datenresilienz durch automatisierte Replikate. Allerdings verhindert dies nicht die Beschädigung von Daten durch Anwendungscode oder Benutzer, ob versehentlich oder mit böser Absicht. Um Datengenauigkeit bei Anwendungs- oder Benutzerfehlern zu gewährleisten, sind weitergehende Methoden erforderlich – beispielsweise das Kopieren der Daten an einen sekundären Speicherort mit einem Überwachungsprotokoll. 
+Azure Storage bietet Datenresilienz durch automatisierte Replikate. Allerdings verhindert dies nicht die Beschädigung von Daten durch Anwendungscode oder Benutzer, ob versehentlich oder mit böser Absicht. Um Datengenauigkeit bei Anwendungs- oder Benutzerfehlern zu gewährleisten, sind weitergehende Methoden erforderlich – beispielsweise das Kopieren der Daten an einen sekundären Speicherort mit einem Überwachungsprotokoll.
 
 - **Blockblobs.** Erstellen Sie eine Zeitpunkt-Momentaufnahme von jedem Blockblob. Weitere Informationen finden Sie unter [Erstellen einer Momentaufnahme eines Blobs](/rest/api/storageservices/creating-a-snapshot-of-a-blob). Bei jeder Momentaufnahme wird Ihnen nur die erforderliche Speicherkapazität berechnet, die Sie benötigen, um die Veränderungen innerhalb des Blobs seit der letzten Momentaufnahme zu speichern. Die Momentaufnahmen sind von der Existenz des zugrunde liegenden Originalblobs abhängig, sodass ein Kopiervorgang in ein anderes Blob oder sogar in ein anderes Speicherkonto empfohlen wird. Dadurch sind die Sicherungsdaten dann ordnungsgemäß vor versehentlichem Löschen geschützt. Verwenden Sie [AzCopy](/azure/storage/common/storage-use-azcopy) oder [Azure PowerShell](/azure/storage/common/storage-powershell-guide-full), um die Blobs in ein anderes Speicherkonto zu kopieren.
 
@@ -30,7 +30,7 @@ Azure Storage bietet Datenresilienz durch automatisierte Replikate. Allerdings v
 
 ## <a name="database"></a>Datenbank
 
-### <a name="azure-sql-database"></a>Azure SQL-Datenbank 
+### <a name="azure-sql-database"></a>Azure SQL-Datenbank
 
 SQL-Datenbank führt automatisch eine Kombination aus wöchentlichen vollständigen Datenbanksicherungen, stündlichen differenziellen Datenbanksicherungen sowie Transaktionsprotokollsicherungen im Abstand von fünf bis zehn Minuten durch, um Ihr Unternehmen vor Datenverlusten zu schützen. Verwenden Sie die Point-in-Time-Wiederherstellung, um eine Datenbank zu einem früheren Zeitpunkt wiederherzustellen. Weitere Informationen finden Sie unter
 
@@ -46,11 +46,10 @@ Für SQL Server auf virtuellen Computern gibt es zwei Optionen: herkömmliche Si
 
 Azure Cosmos DB erstellt in regelmäßigen Abständen automatisch Sicherungen. Sicherungskopien werden in einem anderen Speicherdienst getrennt gespeichert, und diese Sicherungen werden zum besseren Schutz vor regionalen Ausfällen global repliziert. Falls Sie Ihre Datenbank oder -sammlung versehentlich löschen, können Sie ein Supportticket anfordern oder den Azure Support bitten, die Daten aus der letzten automatischen Sicherung wiederherzustellen. Weitere Informationen finden Sie unter [Automatische Onlinesicherung und -wiederherstellung mit Azure Cosmos DB](/azure/cosmos-db/online-backup-and-restore).
 
-### <a name="azure-database-for-mysql-azure-database-for-postresql"></a>Azure Database for MySQL, Azure Database for PostgreSQL
+### <a name="azure-database-for-mysql-azure-database-for-postgresql"></a>Azure Database for MySQL, Azure Database for PostgreSQL
 
-Bei der Verwendung von Azure Database for MySQL oder Azure Database for PostgreSQL erstellt der Datenbankdienst automatisch alle fünf Minuten eine Sicherung des Diensts. Mithilfe dieses automatischen Sicherungsfeatures können Sie einen früheren Zustand des Servers und aller seiner Datenbanken wiederherstellen. Weitere Informationen finden Sie unter
+Bei Verwendung von Azure Database for MySQL oder Azure Database for PostgreSQL erstellt der Datenbankdienst automatisch alle fünf Minuten eine Sicherung des Diensts. Mithilfe dieses automatischen Sicherungsfeatures können Sie einen früheren Zustand des Servers und aller seiner Datenbanken wiederherstellen. Weitere Informationen finden Sie unter
 
 - [Sichern und Wiederherstellen eines Servers in Azure Database for MySQL mit dem Azure-Portal](/azure/mysql/howto-restore-server-portal)
 
 - [Sichern und Wiederherstellen eines Servers in Azure Database for PostgreSQL mit dem Azure-Portal](/azure/postgresql/howto-restore-server-portal)
-

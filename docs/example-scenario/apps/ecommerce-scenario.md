@@ -3,14 +3,14 @@ title: E-Commerce-Front-End
 titleSuffix: Azure Example Scenarios
 description: Hosten Sie eine E-Commerce-Website in Azure.
 author: masonch
-ms.date: 7/13/18
+ms.date: 07/13/2018
 ms.custom: fasttrack
-ms.openlocfilehash: d6587218813fa450b284f3a300c7254a3c9fe41f
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: f07c21b8eb9d812b9831abe8f2e4f6d131893df2
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643950"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160807"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Ein E-Commerce-Front-End in Azure
 
@@ -67,7 +67,7 @@ Weitere Optionen für die Webebene und Funktionen sind:
 - [Service Fabric][docs-service-fabric]: Eine Plattform für die Erstellung von verteilten Komponenten, die davon profitieren, dass sie über einen Cluster mit einem hohen Kontrollgrad bereitgestellt und ausgeführt werden. Service Fabric kann auch zum Hosten von Containern verwendet werden.
 - [Azure Kubernetes Service][docs-kubernetes-service]: Eine Plattform zum Erstellen und Bereitstellen von containerbasierten Lösungen, die als eine einzelne Implementierung einer Microservicearchitektur verwendet werden können. Dies ermöglicht eine flexible Nutzung der unterschiedlichen Komponenten der Anwendung, damit unabhängig bedarfsabhängig skaliert werden kann.
 - [Azure Container Instances][docs-container-instances]: Ermöglicht eine schnelle Bereitstellung und Ausführung von Containern mit einem kurzen Lebenszyklus. Container werden hier bereitgestellt, um einen schnellen Verarbeitungsauftrag auszuführen (etwa die Verarbeitung einer Nachricht oder die Durchführung einer Berechnung). Nach Abschluss des Vorgangs wird die Bereitstellung dann so schnell wie möglich wieder aufgehoben.
-- [Service Bus][service-bus] kann anstelle von Speicherwarteschlangen genutzt werden.
+- Anstelle einer Speicherwarteschlange kann auch [Service Bus][service-bus] verwendet werden.
 
 Andere Optionen für die Datenschicht:
 
@@ -156,5 +156,6 @@ Auf der Grundlage des zu erwartenden Datenverkehrsaufkommens haben wir drei exem
 [resiliency]: /azure/architecture/checklist/resiliency
 [scalability]: /azure/architecture/checklist/scalability
 [secure-development]: https://www.microsoft.com/SDL/process/design.aspx
+[service-bus]: /azure/service-bus-messaging/
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
 [storage-geo-redudancy]: /azure/storage/common/storage-redundancy-grs

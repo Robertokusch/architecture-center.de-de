@@ -1,14 +1,14 @@
 ---
 title: Bedingtes Bereitstellen einer Ressource in einer Azure Resource Manager-Vorlage
-description: Erfahren Sie, wie Sie die Funktionalität von Azure Resource Manager-Vorlagen erweitern, um eine bedingte Bereitstellung einer Ressource in Abhängigkeit vom Wert eines Parameters zu erzielen.
+description: Hier erfahren Sie, wie Sie die Funktionalität von Azure Resource Manager-Vorlagen erweitern, um eine bedingte Bereitstellung einer Ressource in Abhängigkeit vom Wert eines Parameters zu erzielen.
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: 2c74e17a5f38f9225b696640a23b55b1285276bb
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 0e02fbbd130bd6be2fc10173c8466b028d5d61da
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251837"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113466"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a>Bedingtes Bereitstellen einer Ressource in einer Azure Resource Manager-Vorlage
 
@@ -22,7 +22,7 @@ Sehen wir uns eine Beispielvorlage an, die dies veranschaulicht. Unsere Vorlage 
 
 Werfen wir einen Blick auf die einzelnen Abschnitte der Vorlage.
 
-Das `parameters`-Element definiert einen einzelnen Parameter mit dem Namen `virtualNetworkPeerings`: 
+Das `parameters`-Element definiert einen einzelnen Parameter mit dem Namen `virtualNetworkPeerings`:
 
 ```json
 {
@@ -35,6 +35,7 @@ Das `parameters`-Element definiert einen einzelnen Parameter mit dem Namen `virt
     }
   },
 ```
+
 Unser `virtualNetworkPeerings`-Parameter ist ein `array` mit dem folgenden Schema:
 
 ```json
@@ -95,9 +96,10 @@ Die Eigenschaften in unserem Parameter geben die [Einstellungen im Zusammenhang 
     }
 ]
 ```
+
 Es gibt mehrere Dinge, die in diesem Teil der Vorlage passieren. Zunächst einmal ist die eigentliche Ressource, die bereitgestellt wird, eine Inlinevorlage vom Typ `Microsoft.Resources/deployments`, die eine eigene Vorlage enthält, die `Microsoft.Network/virtualNetworks/virtualNetworkPeerings` eigentlich bereitstellt.
 
-Unser `name` für die Inlinevorlage wird durch Anhängen der aktuellen Iteration von `copyIndex()` mit dem Präfix `vnp-` eindeutig gemacht. 
+Unser `name` für die Inlinevorlage wird durch Anhängen der aktuellen Iteration von `copyIndex()` mit dem Präfix `vnp-` eindeutig gemacht.
 
 Das `condition`-Element gibt an, dass unsere Ressource verarbeitet werden sollte, wenn die `greater()`-Funktion `true` ergibt. Hier testen wir, ob für das `virtualNetworkPeerings`-Parameterarray gilt: `greater()` als 0 (null). Wenn dies der Fall ist, lautet das Ergebnis `true`, und die `condition` ist erfüllt. Andernfalls ist das Ergebnis `false`.
 
@@ -116,7 +118,7 @@ Als Nächstes geben wir unsere `copy`-Schleife an. Es ist eine `serial`-Schleife
   },
 ```
 
-Unsere `workaround`-Variable enthält die beiden Eigenschaften `true` und `false`. Die `true`-Eigenschaft wird anhand des Werts des `virtualNetworkPeerings`-Parameterarrays ausgewertet. Die `false`-Eigenschaft wird in ein leeres Objekt ausgewertet. Dies schließt auch die benannten Eigenschaften ein, die Resource Manager erwartet – beachten Sie, dass `false` tatsächlich ein Array ist (ebenso wie unser `virtualNetworkPeerings`-Parameter), sodass die Überprüfung erfüllt wird. 
+Unsere `workaround`-Variable enthält die beiden Eigenschaften `true` und `false`. Die `true`-Eigenschaft wird anhand des Werts des `virtualNetworkPeerings`-Parameterarrays ausgewertet. Die `false`-Eigenschaft wird in ein leeres Objekt ausgewertet. Dies schließt auch die benannten Eigenschaften ein, die Resource Manager erwartet – beachten Sie, dass `false` tatsächlich ein Array ist (ebenso wie unser `virtualNetworkPeerings`-Parameter), sodass die Überprüfung erfüllt wird.
 
 Unsere `peerings`-Variable verwendet unsere `workaround`-Variable, indem sie erneut testet, ob die Länge des `virtualNetworkPeerings`-Parameterarrays größer als 0 (null) ist. Wenn dies der Fall, wird `string` als `true` und die `workaround`-Variable als `virtualNetworkPeerings`-Parameterarray ausgewertet. Andernfalls lautet das Ergebnis `false`, und die `workaround`-Variable wird zu einem leeren Objekt ausgewertet, das das erste Element des Arrays ist.
 
@@ -137,7 +139,7 @@ az group deployment create -g <resource-group-name> \
 * Verwenden Sie anstelle von Skalarwerten Objekte als Vorlagenparameter. Informationen finden Sie unter [Verwenden eines Objekts als Parameter in einer Azure Resource Manager-Vorlage](./objects-as-parameters.md).
 
 <!-- links -->
-[azure-resource-manager-condition]: /azure/azure-resource-manager/resource-group-authoring-templates#resources
+[azure-resource-manager-condition]: /azure/azure-resource-manager/resource-manager-templates-resources#condition
 [azure-resource-manager-variable]: /azure/azure-resource-manager/resource-group-authoring-templates#variables
 [vnet-peering-resource-schema]: /azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
 [cli]: /cli/azure/?view=azure-cli-latest

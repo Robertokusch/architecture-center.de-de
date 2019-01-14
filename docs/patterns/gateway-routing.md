@@ -1,14 +1,17 @@
 ---
 title: Muster „Gatewayrouting“
-description: Anforderungen werden über einen einzigen Endpunkt an mehrere Dienste weitergeleitet.
+titleSuffix: Cloud Design Patterns
+description: Leiten Sie Anforderungen an mehrere Dienste mit einem einzelnen Endpunkt weiter.
+keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: ea0bc4d31b745043a7ac3afb277dfc46d87ff109
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.custom: seodec18
+ms.openlocfilehash: 4db98038f582e0315a743a55d46013d2eda187e3
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252599"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010476"
 ---
 # <a name="gateway-routing-pattern"></a>Muster „Gatewayrouting“
 
@@ -26,8 +29,8 @@ Bei diesem Muster muss die Clientanwendung nur einen einzigen Endpunkt kennen un
 
 Mit einem Gateway können Sie auch die Back-End-Dienste von den Clients abstrahieren, sodass Clientaufrufe einfach bleiben, aber Änderungen in den Back-End-Diensten hinter dem Gateway möglich sind. Clientaufrufe können an jeden Dienst weitergeleitet werden, der das erwartete Clientverhalten verarbeiten muss. So können Sie Dienste hinter dem Gateway hinzufügen, teilen und neu anordnen, ohne den Client ändern zu müssen.
 
-![](./_images/gateway-routing.png)
- 
+![Diagramm des Musters „Gatewayrouting“](./_images/gateway-routing.png)
+
 Dieses Muster kann auch bei der Bereitstellung helfen, da Sie bestimmen können, wie Updates für die Benutzer bereitgestellt werden. Wenn eine neue Version Ihres Diensts bereitgestellt wird, kann diese Bereitstellung parallel zur vorhandenen Version erfolgen. Durch Routing können Sie steuern, welche Version des Diensts den Clients präsentiert wird. So können Sie flexibel verschiedene Releasestrategien für Updates nutzen – als inkrementelle, parallele oder vollständige Rollouts. Sollten nach der Bereitstellung eines neuen Diensts Probleme auftreten, können Sie einfach eine Konfigurationsänderung auf dem Gateway vornehmen, ohne dass Clients beeinträchtigt werden.
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
@@ -51,7 +54,7 @@ Dieses Muster eignet sich wahrscheinlich nicht, wenn Sie über eine einfache Anw
 
 Der folgende Code ist eine einfache Beispielkonfigurationsdatei für einen Server, der Anforderungen für Anwendungen, die sich in verschiedenen virtuellen Verzeichnissen befinden, an verschiedene Computer im Back-End weiterleitet. Als Router wird nginx verwendet.
 
-```
+```console
 server {
     listen 80;
     server_name domain.com;
@@ -75,6 +78,3 @@ server {
 - [Muster „Back-Ends für Front-Ends“](./backends-for-frontends.md)
 - [Gatewayaggregationsmuster](./gateway-aggregation.md)
 - [Muster „Gatewayabladung“](./gateway-offloading.md)
-
-
-

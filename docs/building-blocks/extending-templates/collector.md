@@ -1,14 +1,14 @@
 ---
 title: Implementieren eines Transformers und Collectors für Eigenschaften in eine Azure Resource Manager-Vorlage
-description: Es wird beschrieben, wie Sie einen Transformer und Collector für Eigenschaften in eine Azure Resource Manager-Vorlage implementieren.
+description: Hier erfahren Sie, wie Sie einen Transformer und Collector für Eigenschaften in einer Azure Resource Manager-Vorlage implementieren.
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: ad5b3a71f516ec12fee311e25c43f434f9f306ed
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 1a6a01ee513609132d8522a79ccb81b7938651b5
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251786"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113806"
 ---
 # <a name="implement-a-property-transformer-and-collector-in-an-azure-resource-manager-template"></a>Implementieren eines Transformers und Collectors für Eigenschaften in eine Azure Resource Manager-Vorlage
 
@@ -24,12 +24,14 @@ Wir sehen uns nun an, wie wir einen Collector und Transformer für Eigenschaften
 ![Architektur für Collectors und Transformers für Eigenschaften](../_images/collector-transformer.png)
 
 Unsere **aufrufende Vorlage** enthält zwei Ressourcen:
-* Einen Vorlagenlink, über den die **Collector-Vorlage** aufgerufen wird.
-* Die bereitzustellende NSG-Ressource.
+
+- Einen Vorlagenlink, über den die **Collector-Vorlage** aufgerufen wird.
+- Die bereitzustellende NSG-Ressource.
 
 Unsere **Collector-Vorlage** enthält zwei Ressourcen:
-* Eine **anchor**-Ressource.
-* Einen Vorlagenlink, über den die Transformer-Vorlage in einer Kopierschleife aufgerufen wird.
+
+- Eine **anchor**-Ressource.
+- Einen Vorlagenlink, über den die Transformer-Vorlage in einer Kopierschleife aufgerufen wird.
 
 Unsere **Transformer-Vorlage** enthält eine einzelne Ressource: eine leere Vorlage mit einer Variablen, die den `source`-JSON-Code in das JSON-Schema transformiert, der von der NSG-Ressource in der **Hauptvorlage** erwartet wird.
 
@@ -41,7 +43,7 @@ Wir verwenden das Parameterobjekt `securityRules` aus [Objekte als Parameter][ob
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters":{ 
+    "parameters": {
       "networkSecurityGroupsSettings": {
       "value": {
           "securityRules": [
@@ -80,9 +82,10 @@ Wir sehen uns zuerst die **Transformer-Vorlage** an.
 
 ## <a name="transform-template"></a>Transformer-Vorlage
 
-Die **Transformer-Vorlage** enthält zwei Parameter, die von der **Collector-Vorlage** übergeben werden: 
-* `source` ist ein Objekt, das eines der Eigenschaftswertobjekte aus dem Eigenschaftenarray empfängt. In unserem Beispiel wird jedes Objekt aus dem Array `"securityRules"` einzeln übergeben.
-* `state` ist ein Array, das die verketteten Ergebnisse aller vorherigen Transformationen empfängt. Dies ist die Sammlung mit dem transformierten JSON-Code.
+Die **Transformer-Vorlage** enthält zwei Parameter, die von der **Collector-Vorlage** übergeben werden:
+
+- `source` ist ein Objekt, das eines der Eigenschaftswertobjekte aus dem Eigenschaftenarray empfängt. In unserem Beispiel wird jedes Objekt aus dem Array `"securityRules"` einzeln übergeben.
+- `state` ist ein Array, das die verketteten Ergebnisse aller vorherigen Transformationen empfängt. Dies ist die Sammlung mit dem transformierten JSON-Code.
 
 Unsere Parameter sehen wie folgt aus:
 
@@ -115,7 +118,7 @@ In unserer Vorlage wird auch eine Variable mit dem Namen `instance` definiert. H
             "destinationAddressPrefix": "[parameters('source').destinationAddressPrefix]",
             "access": "[parameters('source').access]",
             "priority": "[parameters('source').priority]",
-            "direction": "[parameters('source').direction]"            
+            "direction": "[parameters('source').direction]"
         }
       }
     ]
@@ -139,9 +142,10 @@ Als Nächstes sehen wir uns unsere **Collector-Vorlage** an, um zu verfolgen, wi
 ## <a name="collector-template"></a>Collector-Vorlage
 
 Die **Collector-Vorlage** enthält drei Parameter:
-* `source` ist unser vollständiges Parameterobjektarray. Es wird von der **aufrufenden Vorlage** übergeben. Dieses Array hat den gleichen Namen wie der Parameter `source` in der **Transformer-Vorlage**, aber es gibt einen wichtigen Unterschied, den Sie vielleicht schon bemerkt haben: Dies ist das vollständige Array, aber es wird jeweils nur ein Element dieses Arrays an die **Transformer-Vorlage** übergeben.
-* `transformTemplateUri` ist der URI der **Transformer-Vorlage**. Wir definieren ihn hier als Parameter, um die Vorlage wiederverwenden zu können.
-* `state` ist ein ursprünglich leeres Array, das wir an die **Transformer-Vorlage** übergeben. Darin wird die Sammlung mit den transformierten Parameterobjekten gespeichert, wenn die Kopierschleife abgeschlossen ist.
+
+- `source` ist unser vollständiges Parameterobjektarray. Es wird von der **aufrufenden Vorlage** übergeben. Dieses Array hat den gleichen Namen wie der Parameter `source` in der **Transformer-Vorlage**, aber es gibt einen wichtigen Unterschied, den Sie vielleicht schon bemerkt haben: Dies ist das vollständige Array, aber es wird jeweils nur ein Element dieses Arrays an die **Transformer-Vorlage** übergeben.
+- `transformTemplateUri` ist der URI der **Transformer-Vorlage**. Wir definieren ihn hier als Parameter, um die Vorlage wiederverwenden zu können.
+- `state` ist ein ursprünglich leeres Array, das wir an die **Transformer-Vorlage** übergeben. Darin wird die Sammlung mit den transformierten Parameterobjekten gespeichert, wenn die Kopierschleife abgeschlossen ist.
 
 Unsere Parameter sehen wie folgt aus:
 
@@ -153,7 +157,7 @@ Unsere Parameter sehen wie folgt aus:
       "type": "array",
       "defaultValue": [ ]
     }
-``` 
+```
 
 Als Nächstes definieren wir eine Variable mit dem Namen `count`. Ihr Wert ist die Länge des Parameterobjektarrays `source`:
 
@@ -166,8 +170,9 @@ Als Nächstes definieren wir eine Variable mit dem Namen `count`. Ihr Wert ist d
 Wie Sie vielleicht schon erwartet haben, verwenden wir sie für die Anzahl von Durchläufen (Iterationen) unserer Kopierschleife.
 
 Wir sehen uns nun die Ressourcen an. Es werden zwei Ressourcen definiert:
-* `loop-0` ist die nullbasierte Ressource für unsere Kopierschleife.
-* `loop-` wird mit dem Ergebnis der Funktion `copyIndex(1)` verkettet, um einen eindeutigen iterationsbasierten Namen für die Ressource zu generieren, der mit `1` beginnt.
+
+- `loop-0` ist die nullbasierte Ressource für unsere Kopierschleife.
+- `loop-` wird mit dem Ergebnis der Funktion `copyIndex(1)` verkettet, um einen eindeutigen iterationsbasierten Namen für die Ressource zu generieren, der mit `1` beginnt.
 
 Unsere Ressourcen sehen wie folgt aus:
 
@@ -231,6 +236,7 @@ Abschließend gibt die Ausgabe (`output`) unserer Vorlage die Ausgabe (`output`)
     }
   }
 ```
+
 Es kann ungewöhnlich erscheinen, dass die Ausgabe (`output`) des letzten Durchlaufs der **Transformer-Vorlage** an die **aufrufende Vorlage** übergeben wird, da sie anscheinend im Parameter `source` gespeichert wurde. Bedenken Sie aber, dass dies der letzte Durchlauf der **Transformer-Vorlage** ist, die das gesamte Array mit den Eigenschaftsobjekten enthält, und dass dies die Daten sind, die wir zurückgeben möchten.
 
 Zum Schluss sehen wir uns noch an, wie die **Collector-Vorlage** aus der **aufrufenden Vorlage** aufgerufen wird.
@@ -277,8 +283,9 @@ Wie zu erwarten ist, ist dies der URI für die **Collector-Vorlage**, die von de
 ```
 
 Wir übergeben zwei Parameter an die **Collector-Vorlage**:
-* `source` ist unser Eigenschaftsobjektarray. In unserem Beispiel ist dies der Parameter `networkSecurityGroupsSettings`.
-* `transformTemplateUri` ist die Variable, die wir gerade mit dem URI der **Collector-Vorlage** definiert haben.
+
+- `source` ist unser Eigenschaftsobjektarray. In unserem Beispiel ist dies der Parameter `networkSecurityGroupsSettings`.
+- `transformTemplateUri` ist die Variable, die wir gerade mit dem URI der **Collector-Vorlage** definiert haben.
 
 Zuletzt weist die Ressource `Microsoft.Network/networkSecurityGroups` die Ausgabe (`output`) der verknüpften Vorlagenressource `collector` direkt der dazugehörigen `securityRules`-Eigenschaft zu:
 

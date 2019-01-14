@@ -3,16 +3,16 @@ title: Auswählen einer Batchverarbeitungstechnologie
 description: ''
 author: zoinerTejada
 ms.date: 11/03/2018
-ms.openlocfilehash: 51de9ab5a0d8e3f91ddcc4dceb4a748f49fa925b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 0c6392fb0a921e95f2704696fb2447ac5ec6f4c0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902288"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111324"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>Auswählen einer Batchverarbeitungstechnologie in Azure
 
-Big Data-Lösungen nutzen häufig Batchaufträge mit langer Ausführungszeit, um Daten für die Analyse zu filtern, zu aggregieren oder anderweitig vorzubereiten. In der Regel umfassen diese Aufträge das Lesen von Quelldateien aus skalierbarem Speicher (etwa HDFS, Azure Data Lake Store und Azure Storage), das Verarbeiten dieser Dateien und das Schreiben der Ausgabe in neue Dateien in skalierbarem Speicher. 
+Big Data-Lösungen nutzen häufig Batchaufträge mit langer Ausführungszeit, um Daten für die Analyse zu filtern, zu aggregieren oder anderweitig vorzubereiten. In der Regel umfassen diese Aufträge das Lesen von Quelldateien aus skalierbarem Speicher (etwa HDFS, Azure Data Lake Store und Azure Storage), das Verarbeiten dieser Dateien und das Schreiben der Ausgabe in neue Dateien in skalierbarem Speicher.
 
 Die wichtigste Anforderung bei diesen Batchverarbeitungs-Engines ist die Möglichkeit zur Skalierung von Berechnungen, um große Datenvolumen zu verarbeiten. Im Gegensatz zur Echtzeitverarbeitung werden bei der Batchverarbeitung Wartezeiten (die Zeit zwischen der Datenerfassung und der Berechnung eines Ergebnisses) erwartet, die in Minuten oder Stunden angegeben werden.
 
@@ -24,10 +24,10 @@ Die wichtigste Anforderung bei diesen Batchverarbeitungs-Engines ist die Möglic
 
 ### <a name="azure-data-lake-analytics"></a>Azure Data Lake Analytics
 
-[Data Lake Analytics](/azure/data-lake-analytics/data-lake-analytics-overview) ist ein bedarfsgesteuerter Dienst für Analyseaufträge. Er ist für die verteilte Verarbeitung von sehr großen, in Azure Data Lake Store gespeicherten Datasets optimiert. 
+[Data Lake Analytics](/azure/data-lake-analytics/data-lake-analytics-overview) ist ein bedarfsgesteuerter Dienst für Analyseaufträge. Er ist für die verteilte Verarbeitung von sehr großen, in Azure Data Lake Store gespeicherten Datasets optimiert.
 
 - Sprachen: [U-SQL](/azure/data-lake-analytics/data-lake-analytics-u-sql-get-started) (einschließlich Python-, R-, und C#-Erweiterungen).
--  Lässt sich in Azure Data Lake Store, Azure Storage-Blobs, Azure SQL-Datenbank und SQL Data Warehouse integrieren.
+- Lässt sich in Azure Data Lake Store, Azure Storage-Blobs, Azure SQL-Datenbank und SQL Data Warehouse integrieren.
 - Das Preismodell ist auftragsbasiert.
 
 ### <a name="hdinsight"></a>HDInsight
@@ -38,21 +38,21 @@ HDInsight ist ein verwalteter Hadoop-Dienst. Verwenden Sie ihn zum Bereitstellen
 - Kerberos-Authentifizierung mit Active Directory, Apache Ranger-basierte Zugriffssteuerung
 - Bietet Ihnen volle Kontrolle über den Hadoop-Cluster
 
-### <a name="azure-databricks"></a>Azure Databricks 
+### <a name="azure-databricks"></a>Azure Databricks
 
-[Azure Databricks](/azure/azure-databricks/) ist eine Apache Spark-basierte Analyseplattform. Sie können es sich als „Spark-as-a-Service“ vorstellen. Es ist die einfachste Möglichkeit zum Verwenden von Spark auf der Azure-Plattform.  
+[Azure Databricks](/azure/azure-databricks/) ist eine Apache Spark-basierte Analyseplattform. Sie können es sich als „Spark-as-a-Service“ vorstellen. Es ist die einfachste Möglichkeit zum Verwenden von Spark auf der Azure-Plattform.
 
 - Sprachen: R, Python, Java, Scala, Spark SQL
 - Schnellere Startzeiten für Cluster, automatische Beendigung, automatische Skalierung.
 - Verwaltet den Spark-Cluster für Sie.
 - Integrierte Integration in Azure Blob Storage, Azure Data Lake Storage (ADLS), Azure SQL Data Warehouse (SQL DW) und andere Dienste. Siehe [Datenquellen](https://docs.azuredatabricks.net/spark/latest/data-sources/index.html).
 - Benutzerauthentifizierung mit Azure Active Directory
-- Webbasierte [Notebooks](https://docs.azuredatabricks.net/user-guide/notebooks/index.html) für Zusammenarbeit und das Durchsuchen von Daten 
+- Webbasierte [Notebooks](https://docs.azuredatabricks.net/user-guide/notebooks/index.html) für Zusammenarbeit und das Durchsuchen von Daten
 - Unterstützt [GPU-fähige Cluster](https://docs.azuredatabricks.net/user-guide/clusters/gpu.html)
 
-### <a name="azure-distributed-data-engineering-toolkit"></a>Azure Distributed Data Engineering Toolkit 
+### <a name="azure-distributed-data-engineering-toolkit"></a>Azure Distributed Data Engineering Toolkit
 
-Das [Distributed Data Engineering Toolkit](https://github.com/azure/aztk) (AZTK) ist ein Tool für die Bereitstellung von bedarfsgesteuerten Spark-Instanzen in Docker-Clustern in Azure. 
+Das [Distributed Data Engineering Toolkit](https://github.com/azure/aztk) (AZTK) ist ein Tool für die Bereitstellung von bedarfsgesteuerten Spark-Instanzen in Docker-Clustern in Azure.
 
 AZTK ist kein Azure-Dienst. Es handelt sich vielmehr um ein clientseitiges Tool mit einer CLI und einer Python-SDK-Schnittstelle, das auf Azure Batch basiert. Diese Option bietet Ihnen beim Bereitstellen eines Spark-Clusters die größtmögliche Kontrolle über die Infrastruktur.
 
@@ -75,13 +75,15 @@ Beantworten Sie die folgenden Fragen, um die Auswahl einzuschränken:
 
 ## <a name="capability-matrix"></a>Funktionsmatrix
 
-In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst. 
+In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen zusammengefasst.
 
 ### <a name="general-capabilities"></a>Allgemeine Funktionen
 
+<!-- markdownlint-disable MD033 -->
+
 | | Azure Data Lake Analytics | Azure SQL Data Warehouse | HDInsight | Azure Databricks |
 | --- | --- | --- | --- | --- | --- |
-| Verwalteter Dienst | JA | JA | Ja<sup>1</sup> | JA | 
+| Verwalteter Dienst | JA | JA | Ja<sup>1</sup> | JA |
 | Relationaler Datenspeicher | JA | JA | Nein  | Nein  |
 | Preismodell | Pro Batchauftrag | Nach Clusterstunde | Nach Clusterstunde | Databricks-Einheit<sup>2</sup> + Clusterstunde |
 
@@ -102,6 +104,8 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 | Sicherheit auf Zeilenebene | Nein  | Nein  | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> | Nein  |
 | Unterstützung von Firewalls | JA | Ja | JA | Ja<sup>2</sup> | Ja<sup>2</sup> | Nein  |
 | Dynamische Datenmaskierung | Nein  | Nein  | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> | Nein  |
+
+<!-- markdownlint-enable MD033 -->
 
 [1] Erfordert die Verwendung eines [in die Domäne eingebundenen HDInsight-Clusters](/azure/hdinsight/domain-joined/apache-domain-joined-introduction).
 

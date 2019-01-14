@@ -1,14 +1,14 @@
 ---
 title: Aktualisieren einer Ressource in einer Azure Resource Manager-Vorlage
-description: Beschreibt das Erweitern der Funktionalität der Azure Resource Manager-Vorlagen für das Aktualisieren einer Ressource.
+description: Beschreibt das Erweitern der Funktionalität der Azure Resource Manager-Vorlagen zur Aktualisierung einer Ressource.
 author: petertay
 ms.date: 10/31/2018
-ms.openlocfilehash: dc97534e658c9728ac617b4e52031e2553600458
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 927826283163b2ae45575035168d6238de98dc00
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251820"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113415"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a>Aktualisieren einer Ressource in einer Azure Resource Manager-Vorlage
 
@@ -20,7 +20,7 @@ Als Zweites müssen Sie in der geschachtelten Vorlage den Namen der vorhandenen 
 
 ## <a name="example-template"></a>Beispielvorlage
 
-Sehen wir uns eine Beispielvorlage an, die dies veranschaulicht. Unsere Vorlage stellt das virtuelle Netzwerk `firstVNet` bereit, das ein Subnetz mit dem Namen `firstSubnet` enthält. Anschließend stellt sie die virtuelle Netzwerkschnittstelle (NIC) `nic1` bereit und ordnet sie unserem Subnetz zu. Damit enthält die Bereitstellungsressource `updateVNet` eine geschachtelte Vorlage, die unsere `firstVNet`-Ressource durch Hinzufügen eines zweiten Subnetzes namens `secondSubnet` aktualisiert. 
+Sehen wir uns eine Beispielvorlage an, die dies veranschaulicht. Unsere Vorlage stellt das virtuelle Netzwerk `firstVNet` bereit, das ein Subnetz mit dem Namen `firstSubnet` enthält. Anschließend stellt sie die virtuelle Netzwerkschnittstelle (NIC) `nic1` bereit und ordnet sie unserem Subnetz zu. Damit enthält die Bereitstellungsressource `updateVNet` eine geschachtelte Vorlage, die unsere `firstVNet`-Ressource durch Hinzufügen eines zweiten Subnetzes namens `secondSubnet` aktualisiert.
 
 ```json
 {
@@ -37,7 +37,7 @@ Sehen wir uns eine Beispielvorlage an, die dies veranschaulicht. Unsere Vorlage 
           "addressSpace":{"addressPrefixes": [
               "10.0.0.0/22"
           ]},
-          "subnets":[              
+          "subnets":[
               {
                   "name":"firstSubnet",
                   "properties":{
@@ -130,11 +130,11 @@ az group deployment create -g <resource-group-name> \
     --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example1-update/deploy.json
 ```
 
-Nachdem die Bereitstellung abgeschlossen ist, öffnen Sie die Ressourcengruppe, die Sie im Verwaltungsportal angegeben haben. Sie sehen ein virtuelles Netzwerk mit dem Namen `firstVNet` und eine NIC mit dem Namen `nic1`. Klicken Sie auf `firstVNet` und dann auf `subnets`. Sie sehen das ursprünglich erstellte `firstSubnet` und das `secondSubnet`, das in der `updateVNet`-Ressource hinzugefügt wurde. 
+Nachdem die Bereitstellung abgeschlossen ist, öffnen Sie die Ressourcengruppe, die Sie im Verwaltungsportal angegeben haben. Sie sehen ein virtuelles Netzwerk mit dem Namen `firstVNet` und eine NIC mit dem Namen `nic1`. Klicken Sie auf `firstVNet` und dann auf `subnets`. Sie sehen das ursprünglich erstellte `firstSubnet` und das `secondSubnet`, das in der `updateVNet`-Ressource hinzugefügt wurde.
 
 ![Ursprüngliches Subnetz und aktualisiertes Subnetz](../_images/firstVNet-subnets.png)
 
-Gehen Sie dann zurück zur Ressourcengruppe, und klicken Sie auf `nic1` und dann auf `IP configurations`. Im `IP configurations`-Abschnitt ist `subnet` auf `firstSubnet (10.0.0.0/24)` festgelegt. 
+Gehen Sie dann zurück zur Ressourcengruppe, und klicken Sie auf `nic1` und dann auf `IP configurations`. Im `IP configurations`-Abschnitt ist `subnet` auf `firstSubnet (10.0.0.0/24)` festgelegt.
 
 ![IP-Konfigurationseinstellungen für nic1](../_images/nic1-ipconfigurations.png)
 

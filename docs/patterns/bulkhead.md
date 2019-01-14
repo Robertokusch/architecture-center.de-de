@@ -1,20 +1,23 @@
 ---
 title: Bulkhead-Muster
-description: Isolieren Sie Elemente einer Anwendung in Pools, sodass die anderen Elemente beim Ausfall eines Elements weiterhin ausgeführt werden.
+titleSuffix: Cloud Design Patterns
+description: Isolieren Sie Elemente einer Anwendung in Pools, sodass bei Ausfall eines Elements die anderen Elemente weiterhin ausgeführt werden.
+keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 9917870e1dcbed87aaa41e051f1622ad4950456a
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.custom: seodec18
+ms.openlocfilehash: 0a2ae4789d3c1653405a59ef8cb4f6171a8abc81
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012704"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112191"
 ---
 # <a name="bulkhead-pattern"></a>Bulkhead-Muster
 
 Isolieren Sie Elemente einer Anwendung in Pools, sodass die anderen Elemente beim Ausfall eines Elements weiterhin ausgeführt werden.
 
-Dieses Muster wird als *Bulkhead* (Schottwand) bezeichnet, da die Partitionen den Schottwänden eines Schiffs ähneln. Wenn eine Schottwand eines Schiffs beschädigt ist, füllt sich nur der beschädigte Abschnitt mit Wasser, sodass das Schiff nicht sinkt. 
+Dieses Muster wird als *Bulkhead* (Schottwand) bezeichnet, da die Partitionen den Schottwänden eines Schiffs ähneln. Wenn eine Schottwand eines Schiffs beschädigt ist, füllt sich nur der beschädigte Abschnitt mit Wasser, sodass das Schiff nicht sinkt.
 
 ## <a name="context-and-problem"></a>Kontext und Problem
 
@@ -34,16 +37,16 @@ Vorteile dieses Musters:
 
 - Consumer und Dienste werden von kaskadierenden Fehlern isoliert. Ein Problem, das sich auf einen Consumer oder Dienst auswirkt, kann innerhalb des eigenen Bulkheads isoliert werden, um zu verhindern, dass die gesamte Lösung ausfällt.
 - Sie können bei einem Dienstausfall einen Teil der Funktionalität bewahren. Andere Dienste und Features der Anwendung werden weiterhin ausgeführt.
-- Sie können Dienste bereitstellen, die für Consumeranwendungen eine andere Dienstqualität bieten. Es kann ein Consumerpool hoher Priorität für die Verwendung von Diensten hoher Priorität konfiguriert werden. 
+- Sie können Dienste bereitstellen, die für Consumeranwendungen eine andere Dienstqualität bieten. Es kann ein Consumerpool hoher Priorität für die Verwendung von Diensten hoher Priorität konfiguriert werden.
 
 Im folgenden Diagramm sind Bulkheads dargestellt, die Verbindungspools umgeben, die einzelne Dienste aufrufen. Wenn Dienst A ausfällt oder ein anderes Problem verursacht, wird der Verbindungspool isoliert, sodass nur Workloads betroffen sind, die den Dienst A zugewiesenen Threadpool verwenden. Workloads, die Dienst B und C verwenden, sind nicht betroffen und können ohne Unterbrechung fortgesetzt werden.
 
-![](./_images/bulkhead-1.png) 
+![Erstes Diagramm des Bulkhead-Musters](./_images/bulkhead-1.png)
 
 Im nächsten Diagramm werden mehrere Clients gezeigt, die einen einzelnen Dienst aufgerufen. Jedem Client ist eine eigene Dienstinstanz zugewiesen. Client 1 hat zu viele Anforderungen gesendet und die zugewiesene Dienstinstanz überlastet. Da jede Dienstinstanz von den anderen isoliert ist, können alle anderen Clients weiterhin Aufrufe senden.
 
-![](./_images/bulkhead-2.png)
-     
+![Erstes Diagramm des Bulkhead-Musters](./_images/bulkhead-2.png)
+
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
 - Definieren Sie Partitionen entsprechend den geschäftlichen und technischen Anforderungen der Anwendung.
@@ -92,11 +95,10 @@ spec:
 
 ## <a name="related-guidance"></a>Verwandte Leitfäden
 
-- [Trennschalter-Muster](./circuit-breaker.md)
 - [Entwickeln robuster Anwendungen für Azure](../resiliency/index.md)
+- [Trennschalter-Muster](./circuit-breaker.md)
 - [Wiederholungsmuster](./retry.md)
 - [Drosselungsmuster](./throttling.md)
-
 
 <!-- links -->
 

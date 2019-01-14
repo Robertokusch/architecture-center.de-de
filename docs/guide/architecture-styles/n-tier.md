@@ -1,33 +1,35 @@
 ---
 title: Architekturstil für n-schichtige Anwendungen
-description: Dieser Artikel beschreibt die Vorteile, Herausforderungen und bewährten Methoden für Architekturen für n-schichtige Anwendungen in Azure.
+titleSuffix: Azure Application Architecture Guide
+description: In diesem Artikel werden die Vorteile, Herausforderungen und bewährten Methoden für n-schichtige Architekturen in Azure beschrieben.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 2a113cefec8bd1c6c524030fbc459851094c09d6
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: 4e8aae0032d20df05e1b16a47fda4afa720ed0d9
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325749"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110304"
 ---
 # <a name="n-tier-architecture-style"></a>Architekturstil für n-schichtige Anwendungen
 
-Eine n-schichtige Architektur unterteilt eine Anwendung in **logische Ebenen** und **physische Schichten**. 
+Eine n-schichtige Architektur unterteilt eine Anwendung in **logische Ebenen** und **physische Schichten**.
 
-![](./images/n-tier-logical.svg)
+![Logisches Diagramm einer n-schichtigen Architektur](./images/n-tier-logical.svg)
 
-Ebenen sind eine Möglichkeit, Zuständigkeiten zu trennen und Abhängigkeiten zu verwalten. Jede Ebene ist mit einer bestimmten Zuständigkeit verknüpft. Eine höhere Ebene kann Dienste in einer niedrigeren Ebene verwenden, nicht jedoch umgekehrt. 
+Ebenen sind eine Möglichkeit, Zuständigkeiten zu trennen und Abhängigkeiten zu verwalten. Jede Ebene ist mit einer bestimmten Zuständigkeit verknüpft. Eine höhere Ebene kann Dienste in einer niedrigeren Ebene verwenden, nicht jedoch umgekehrt.
 
-Schichten sind physisch getrennt und befinden sich auf verschiedenen Computern. Eine Schicht kann eine andere Schicht direkt aufrufen oder asynchrones Messaging verwenden (Nachrichtenwarteschlange). Jede Ebene kann auf einer eigenen Schicht gehostet werden, dies ist jedoch nicht erforderlich. Verschiedene Ebenen können auf der gleichen Schicht gehostet werden. Die physische Trennung der Schichten verbessert die Skalierbarkeit und Resilienz, erhöht jedoch aufgrund der zusätzlichen Netzwerkkommunikation die Latenz. 
+Schichten sind physisch getrennt und befinden sich auf verschiedenen Computern. Eine Schicht kann eine andere Schicht direkt aufrufen oder asynchrones Messaging verwenden (Nachrichtenwarteschlange). Jede Ebene kann auf einer eigenen Schicht gehostet werden, dies ist jedoch nicht erforderlich. Verschiedene Ebenen können auf der gleichen Schicht gehostet werden. Die physische Trennung der Schichten verbessert die Skalierbarkeit und Resilienz, erhöht jedoch aufgrund der zusätzlichen Netzwerkkommunikation die Latenz.
 
-Eine herkömmliche dreischichtige Anwendung besteht aus einer Präsentationsschicht, einer Logikschicht und einer Datenschicht. Die Logikschicht ist optional. Komplexere Anwendungen können mehr als drei Schichten aufweisen. Das Diagramm oben zeigt eine Anwendung mit zwei Logikschichten, die verschiedene Funktionalitätsbereiche kapseln. 
+Eine herkömmliche dreischichtige Anwendung besteht aus einer Präsentationsschicht, einer Logikschicht und einer Datenschicht. Die Logikschicht ist optional. Komplexere Anwendungen können mehr als drei Schichten aufweisen. Das Diagramm oben zeigt eine Anwendung mit zwei Logikschichten, die verschiedene Funktionalitätsbereiche kapseln.
 
 Eine n-schichtige Anwendung kann auf einer **Architektur mit geschlossenen Ebenen** oder einer **Architektur mit offenen Ebenen** basieren:
 
-- In einer Architektur mit geschlossenen Ebenen kann eine Ebene nur die direkt darunter liegende Ebene aufrufen. 
-- In einer Architektur mit offenen Ebenen kann eine Ebene jede darunter liegende Ebene aufrufen. 
+- In einer Architektur mit geschlossenen Ebenen kann eine Ebene nur die direkt darunter liegende Ebene aufrufen.
+- In einer Architektur mit offenen Ebenen kann eine Ebene jede darunter liegende Ebene aufrufen.
 
-Eine Architektur mit geschlossenen Ebenen begrenzt die Abhängigkeiten zwischen den Ebenen. Sie kann jedoch unnötigen Netzwerkdatenverkehr verursachen, wenn eine Ebene Anforderungen einfach nur an die nächste Ebene übergibt. 
+Eine Architektur mit geschlossenen Ebenen begrenzt die Abhängigkeiten zwischen den Ebenen. Sie kann jedoch unnötigen Netzwerkdatenverkehr verursachen, wenn eine Ebene Anforderungen einfach nur an die nächste Ebene übergibt.
 
 ## <a name="when-to-use-this-architecture"></a>Einsatzmöglichkeiten für diese Architektur
 
@@ -35,7 +37,7 @@ N-schichtige Architekturen werden in der Regel als IaaS-Anwendungen (Infrastruct
 
 Eine n-schichtige Architektur eignet sich gut für folgende Zwecke:
 
-- Einfache Webanwendungen 
+- Einfache Webanwendungen
 - Migrieren einer lokalen Anwendung zu Azure mit minimalem Umgestaltungsaufwand
 - Einheitliche Entwicklung lokaler und cloudbasierter Anwendungen
 
@@ -50,9 +52,9 @@ N-schichtige Architekturen sind bei herkömmlichen lokalen Anwendungen sehr häu
 
 ## <a name="challenges"></a>Herausforderungen
 
-- Es passiert nur allzu leicht, dass eine Logikschicht verwendet wird, die nur CRUD-Vorgänge in der Datenbank ausführt und damit die Latenz erhöht, ohne wirklich nützliche Aufgaben zu erledigen. 
+- Es passiert nur allzu leicht, dass eine Logikschicht verwendet wird, die nur CRUD-Vorgänge in der Datenbank ausführt und damit die Latenz erhöht, ohne wirklich nützliche Aufgaben zu erledigen.
 - Das monolithische Design verhindert die unabhängige Bereitstellung von Features.
-- Die Verwaltung einer IaaS-Anwendung verursacht mehr Arbeit als eine Anwendung, die nur verwaltete Dienste verwendet. 
+- Die Verwaltung einer IaaS-Anwendung verursacht mehr Arbeit als eine Anwendung, die nur verwaltete Dienste verwendet.
 - Die Verwaltung der Netzwerksicherheit in einem umfangreichen System kann schwierig sein.
 
 ## <a name="best-practices"></a>Bewährte Methoden
@@ -62,20 +64,20 @@ N-schichtige Architekturen sind bei herkömmlichen lokalen Anwendungen sehr häu
 - Speichern Sie halbstatische Daten zwischen. Weitere Informationen finden Sie unter [Caching][caching].
 - Konfigurieren Sie die Datenbankschicht mithilfe einer Lösung wie z.B. [SQL Server-Always On-Verfügbarkeitsgruppen][sql-always-on] für die Hochverfügbarkeit.
 - Platzieren Sie eine Web Application Firewall (WAF) zwischen Front-End und Internet.
-- Platzieren Sie jede Schicht in einem eigenen Subnetz, und verwenden Sie das Subnetz als Sicherheitsgrenze. 
+- Platzieren Sie jede Schicht in einem eigenen Subnetz, und verwenden Sie das Subnetz als Sicherheitsgrenze.
 - Beschränken Sie den Zugriff auf die Datenschicht, indem Sie Anforderungen nur aus den Logikschichten zulassen.
 
 ## <a name="n-tier-architecture-on-virtual-machines"></a>N-schichtige Architektur auf virtuellen Computern
 
-In diesem Abschnitt wird eine empfohlene n-schichtige Architektur beschrieben, die auf virtuellen Computern ausgeführt wird. 
+In diesem Abschnitt wird eine empfohlene n-schichtige Architektur beschrieben, die auf virtuellen Computern ausgeführt wird.
 
-![](./images/n-tier-physical.png)
+![Physisches Diagramm einer n-schichtigen Architektur](./images/n-tier-physical.png)
 
-Jede Schicht besteht aus mindestens zwei virtuellen Computern, die sich in einer Verfügbarkeitsgruppe oder einer VM-Skalierungsgruppe befinden. Mehrere virtuelle Computer sorgen für Resilienz, falls ein virtueller Computer ausfällt. Für die Verteilung von Anforderungen auf die virtuellen Computer in einer Schicht werden Lastenausgleichsmodule verwendet. Eine Schicht kann durch Hinzufügen weiterer virtueller Computer zum Pool horizontal skaliert werden. 
+Jede Schicht besteht aus mindestens zwei virtuellen Computern, die sich in einer Verfügbarkeitsgruppe oder einer VM-Skalierungsgruppe befinden. Mehrere virtuelle Computer sorgen für Resilienz, falls ein virtueller Computer ausfällt. Für die Verteilung von Anforderungen auf die virtuellen Computer in einer Schicht werden Lastenausgleichsmodule verwendet. Eine Schicht kann durch Hinzufügen weiterer virtueller Computer zum Pool horizontal skaliert werden.
 
 Jede Schicht wurde zudem in einem eigenen Subnetz platziert, sodass sich die internen IP-Adressen innerhalb des gleichen Adressbereichs befinden. So lassen sich Regeln und Routingtabellen für Netzwerksicherheitsgruppen problemlos auf einzelne Schichten anwenden.
 
-Die Web- und die Businessschicht sind zustandslos. Jeder virtuelle Computer kann jede Anforderung für diese Schicht verarbeitet. Die Datenschicht sollte aus einer replizierten Datenbank bestehen. Unter Windows empfiehlt sich SQL Server sowie die Verwendung von Always On-Verfügbarkeitsgruppen, um Hochverfügbarkeit zu erzielen. Unter Linux wählen Sie eine Datenbank aus, die Replikation unterstützt, z.B. Apache Cassandra. 
+Die Web- und die Businessschicht sind zustandslos. Jeder virtuelle Computer kann jede Anforderung für diese Schicht verarbeitet. Die Datenschicht sollte aus einer replizierten Datenbank bestehen. Unter Windows empfiehlt sich SQL Server sowie die Verwendung von Always On-Verfügbarkeitsgruppen, um Hochverfügbarkeit zu erzielen. Unter Linux wählen Sie eine Datenbank aus, die Replikation unterstützt, z.B. Apache Cassandra.
 
 Netzwerksicherheitsgruppen beschränken den Zugriff auf jede Schicht. Die Datenbankschicht z.B. gestattet nur den Zugriff aus der Businessschicht.
 
@@ -92,7 +94,7 @@ Weitere Informationen und eine Resource Manager-Vorlage, die sich direkt bereits
 
 - Verwenden Sie VM Scale Sets für die automatische Skalierung.
 
-- Suchen Sie nach Stellen in der Architektur, an denen Sie ohne größere Umgestaltung einen verwalteten Dienst verwenden können. Untersuchen Sie in diesem Zusammenhang insbesondere die Bereiche Caching, Messaging, Speicher und Datenbanken. 
+- Suchen Sie nach Stellen in der Architektur, an denen Sie ohne größere Umgestaltung einen verwalteten Dienst verwenden können. Untersuchen Sie in diesem Zusammenhang insbesondere die Bereiche Caching, Messaging, Speicher und Datenbanken.
 
 - Um die Sicherheit zu erhöhen, platzieren Sie eine Netzwerk-DMU vor der Anwendung. Die DMZ umfasst virtuelle Netzwerkgeräte (Network Virtual Appliances, NVAs), die Sicherheitsfunktionen wie z.B. Firewalls und Paketüberprüfung implementieren. Weitere Informationen finden Sie in der [Referenzarchitektur für Netzwerk-DMZs][dmz].
 

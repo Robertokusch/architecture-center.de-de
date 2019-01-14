@@ -1,17 +1,17 @@
 ---
 title: Autorisierung in mehrmandantenfähigen Anwendungen
-description: Informationen zum Durchführen der Autorisierung in einer mehrmandantenfähigen Anwendung
+description: Hier erfahren Sie, wie Sie die Autorisierung in einer mehrmandantenfähigen Anwendung ausführen.
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 8ff2317eb85197ed93e048b6a2d836405436cc17
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 6e406a7e80b77dea161db194a82ccae043bdc777
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307162"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110338"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>Rollenbasierte und ressourcenbasierte Autorisierung
 
@@ -25,6 +25,7 @@ Unsere [Referenzimplementierung] ist eine ASP.NET Core-Anwendung. In diesem Arti
 In einer Standard-App wird eine Kombination beider Varianten verwendet. Um beispielsweise eine Ressource zu löschen, muss der Benutzer Besitzer *oder* Administrator der Ressource sein.
 
 ## <a name="role-based-authorization"></a>Rollenbasierte Autorisierung
+
 Die [Tailspin Surveys][Tailspin]-Anwendung definiert die folgenden Rollen:
 
 * Administrator. Kann alle Erstellungs-, Lese-, Aktualisierungs- und Löschaktionen auf alle Umfragen anwenden, die zu diesem Mandanten gehören.
@@ -38,6 +39,7 @@ Eine Erläuterung der Definition und Verwaltung von Rollen finden Sie unter [Anw
 Unabhängig davon, wie Sie die Rollen verwalten, ist Ihr Autorisierungscode ähnlich. ASP.NET Core verfügt über eine Abstraktion namens [Autorisierungsrichtlinien][policies]. Mithilfe dieses Features definieren Sie Autorisierungsrichtlinien im Code und wenden anschließend diese Richtlinien auf Controlleraktionen an. Die Richtlinie ist vom Controller entkoppelt.
 
 ### <a name="create-policies"></a>Erstellen von Richtlinien
+
 Um eine Richtlinie zu definieren, erstellen Sie zuerst eine Klasse, die `IAuthorizationRequirement`implementiert. Am einfachsten erfolgt diese über eine Ableitung von `AuthorizationHandler`. Untersuchen Sie in der `Handle` -Methode die relevanten Ansprüche.
 
 Es folgt ein Beispiel aus der Tailspin-Anwendung „Surveys“:
@@ -47,7 +49,7 @@ public class SurveyCreatorRequirement : AuthorizationHandler<SurveyCreatorRequir
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, SurveyCreatorRequirement requirement)
     {
-        if (context.User.HasClaim(ClaimTypes.Role, Roles.SurveyAdmin) || 
+        if (context.User.HasClaim(ClaimTypes.Role, Roles.SurveyAdmin) ||
             context.User.HasClaim(ClaimTypes.Role, Roles.SurveyCreator))
         {
             context.Succeed(requirement);
@@ -68,7 +70,7 @@ services.AddAuthorization(options =>
         policy =>
         {
             policy.AddRequirements(new SurveyCreatorRequirement());
-            policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+            policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
             // By adding the CookieAuthenticationDefaults.AuthenticationScheme, if an authenticated
             // user is not in the appropriate role, they will be redirected to a "forbidden" page.
             policy.AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -87,6 +89,7 @@ services.AddAuthorization(options =>
 Dieser Code legt auch das Authentifizierungsschema fest, das ASP.NET darüber informiert, welche Authentifizierungsmiddleware ausgeführt werden soll, wenn die Authentifizierung nicht erfolgreich ist. In diesem Fall geben wir die Cookieauthentifizierungs-Middleware an, weil diese den Benutzer an eine Seite mit der Meldung „Unzulässig“ umleiten kann. Der Speicherort der Seite mit der Meldung „Unzulässig“ ist in der `AccessDeniedPath`-Option für die Cookiemiddleware festgelegt. Informationen dazu finden Sie unter [Konfigurieren der Authentifizierungsmiddleware].
 
 ### <a name="authorize-controller-actions"></a>Autorisieren von Controlleraktionen
+
 Um eine Aktion in einem MVC-Controller zu autorisieren, legen Sie abschließend die Richtlinie im `Authorize` -Attribut fest:
 
 ```csharp
@@ -112,6 +115,7 @@ Dies wird in ASP.NET Core noch immer unterstützt, doch gibt es verglichen mit A
 * Richtlinien erlauben komplexere Autorisierungsentscheidungen (z.B. Alter >= 21), die durch einfache Rollenmitgliedschaft nicht ausgedrückt werden können.
 
 ## <a name="resource-based-authorization"></a>Ressourcenbasierte Autorisierung
+
 *Ressourcenbasierte Autorisierung* erfolgt, wenn die Autorisierung von einer bestimmten Ressource abhängig ist, die von einem Vorgang betroffen ist. In der Tailspin-Anwendung „Surveys“ hat jede Umfrage einen Besitzer und 0 bis n Teilnehmer.
 
 * Der Besitzer kann die Umfrage lesen, aktualisieren, löschen, veröffentlichen und ihre Veröffentlichung aufheben.
@@ -247,7 +251,8 @@ static readonly Dictionary<OperationAuthorizationRequirement, Func<List<UserPerm
 
 [**Weiter**][web-api]
 
-<!-- Links -->
+<!-- links -->
+
 [Tailspin]: tailspin.md
 
 [Anwendungsrollen]: app-roles.md

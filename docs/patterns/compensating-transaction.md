@@ -1,18 +1,17 @@
 ---
-title: Kompensierende Transaktion
+title: Muster „Kompensierende Transaktion“
+titleSuffix: Cloud Design Patterns
 description: Machen Sie durch eine Reihe von Schritten ausgeführte Arbeit rückgängig, die zusammen einen letztlich konsistenten Vorgang definieren.
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- resiliency
-ms.openlocfilehash: 3d58537d9c77b97332bcabf762b9af7ed2f20421
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: b81151a6db08c2c14c7f26af3b4b79bfd22a18bb
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428141"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011615"
 ---
 # <a name="compensating-transaction-pattern"></a>Muster „Kompensierende Transaktion“
 
@@ -86,7 +85,7 @@ Beachten Sie, dass die Schritte in der kompensierenden Transaktion möglicherwei
 
 ![Generieren einer kompensierenden Transaktion zum Rückgängigmachen von zeitintensiven Transaktionen für die Buchung einer Reiseroute](./_images/compensating-transaction-diagram.png)
 
-
+> [!NOTE]
 > Abhängig vom Entwurf der Kompensationslogik für die einzelnen Schritte können die Schritte der kompensierenden Transaktion parallel ausgeführt werden.
 
 In vielen Unternehmenslösungen ist beim Auftreten eines Fehlers bei einem einzelnen Schritt nicht immer ein Rollback des Systems mit einer kompensierenden Transaktion erforderlich. Wenn der Kunde nicht in der Lage ist, – beispielsweise nach der Buchung der Flüge F1, F2 und F3 im Szenario der Reisewebsite – ein Zimmer im Hotel H1 zu reservieren, ist es besser, dem Kunden ein Zimmer in einem anderen Hotel in derselben Stadt anzubieten, als die Flüge zu stornieren. Der Kunde hat nach wie vor die Möglichkeit, eine Stornierung durchzuführen (in diesem Fall wird die kompensierende Transaktion ausgeführt, und die Buchungen für die Flüge F1, F2 und F3 werden rückgängig gemacht), aber diese Entscheidung sollte vom Kunden und nicht vom System getroffen werden.
@@ -97,6 +96,6 @@ Die folgenden Muster und Anweisungen können für die Implementierung dieses Mus
 
 - [Datenkonsistenzprimer](https://msdn.microsoft.com/library/dn589800.aspx): Das Muster „Kompensierende Transaktion“ wird häufig verwendet, um Vorgänge rückgängig zu machen, die das Modell der letztlichen Konsistenz implementieren. Dieser Primer liefert Informationen über die Vor- und Nachteile von letztlicher Konsistenz.
 
-- [Muster „Scheduler-Agent-Supervisor“](scheduler-agent-supervisor.md): Beschreibt die Implementierung stabiler Systeme, die Geschäftsvorgänge durchführen, bei denen verteilte Dienste und Ressourcen zum Einsatz kommen. In manchen Fällen kann es notwendig sein, die Aufgabe eines Vorgangs mithilfe einer kompensierenden Transaktion rückgängig zu machen.
+- [Muster „Scheduler-Agent-Supervisor“](./scheduler-agent-supervisor.md): Beschreibt die Implementierung stabiler Systeme, die Geschäftsvorgänge durchführen, bei denen verteilte Dienste und Ressourcen zum Einsatz kommen. In manchen Fällen kann es notwendig sein, die Aufgabe eines Vorgangs mithilfe einer kompensierenden Transaktion rückgängig zu machen.
 
-- [Muster „Wiederholung“](./retry.md): Die Ausführung kompensierender Transaktionen kann sich als kostspielig erweisen. Ihre Verwendung kann minimiert werden, indem eine effektive Richtlinie zur Wiederholung fehlerhafter Vorgänge gemäß dem Wiederholungsmuster implementiert wird.
+- [Wiederholungsmuster](./retry.md): Die Ausführung kompensierender Transaktionen kann sich als kostspielig erweisen. Ihre Verwendung kann minimiert werden, indem eine effektive Richtlinie zur Wiederholung fehlerhafter Vorgänge gemäß dem Wiederholungsmuster implementiert wird.
