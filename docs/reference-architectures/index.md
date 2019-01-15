@@ -4,12 +4,12 @@ description: Referenzarchitekturen, Blaupausen und reglementierende Implementier
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 4e0f3b32abc8d2e0da9b139b0e6aae1d48152a37
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.openlocfilehash: e62d2cb8230885fc508076f6a4984c3dc4538119
+ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54160773"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54307704"
 ---
 # <a name="azure-reference-architectures"></a>Azure-Referenzarchitekturen
 
@@ -23,20 +23,20 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
 
 <!-- markdownlint-disable MD033 -->
 <ul  class="panelContent cardsF">
-<!-- Batch scoring of Python models -->
+<!-- Distributed training of deep learning models -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./ai/batch-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./ai/training-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="../_images/icons/python-powered-h.svg" />
+                            <img src="../_images/icons/batch-ai.svg" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Batchbewertung von Python-Modellen</h3>
-                        <p>Bewerten Sie mithilfe von Azure Batch AI mehrere Python-Modelle parallel als Batch nach einem Zeitplan.</p>
+                        <h3>Verteiltes Training der Deep Learning-Modelle</h3>
+                        <p>Führen Sie das verteilte Training der Deep Learning-Modelle zwischen Clustern mit GPU-fähigen virtuellen Computern aus.</p>
                     </div>
                 </div>
             </div>
@@ -63,6 +63,26 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
         </div>
     </a>
 </li>
+<!-- Batch scoring of Python models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Batchbewertung von Python-Modellen</h3>
+                        <p>Bewerten Sie mithilfe von Azure Batch AI mehrere Python-Modelle parallel als Batch nach einem Zeitplan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Real-time scoring of Python models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -75,7 +95,7 @@ Wechseln Sie zu: [KI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Echtzeitbewertung von Python-Modellen</h3>
+                        <h3>Echtzeitbewertung von Python- und Deep Learning-Modellen</h3>
                         <p>Bereitstellen von Python-Modellen als Webdienste für Echtzeitvorhersagen unter Verwendung von regulären Python- oder Deep Learning-Modellen.</p>
                     </div>
                 </div>
