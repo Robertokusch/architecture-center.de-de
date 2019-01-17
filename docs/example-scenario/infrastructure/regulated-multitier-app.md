@@ -5,12 +5,12 @@ description: Erstellen Sie mithilfe von Windows Server eine sichere Webanwendung
 author: iainfoulds
 ms.date: 12/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 2c5f77f265c10388f42138e7d3f6da9e3ead1cd8
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: c5c1d4468df72edd989f2ab8f303781b26d50017
+ms.sourcegitcommit: 71ee0859e19fe58416b4c0056d67f2f34dd9ca0a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643532"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54211987"
 ---
 # <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>Erstellen von sicheren Webanwendungen mit virtuellen Windows-Computern in Azure
 
@@ -97,7 +97,7 @@ Führen Sie die unten angegebenen Schritte aus, um die Kerninfrastruktur für di
 
 <!-- markdownlint-disable MD033 -->
 
-1. Wählen Sie die Schaltfläche **Deploy to Azure** (In Azure bereitstellen):<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Finfrastructure%2Fregulated-multitier-app%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
+1. Wählen Sie die Schaltfläche **Deploy to Azure** (In Azure bereitstellen):<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Finfrastructure%2Fregulated-multitier-app.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. Warten Sie, bis die Vorlagenbereitstellung im Azure-Portal geöffnet wurde, und führen Sie anschließend folgende Schritte aus:
    - Erstellen Sie über **Neu erstellen** eine neue Ressourcengruppe, und geben Sie einen Namen (beispielsweise *myWindowsscenario*) in das Textfeld ein.
    - Wählen Sie im Dropdownfeld **Standort** eine Region aus.
