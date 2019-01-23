@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: Empfohlene Architektur zum Bereitstellen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure
 author: njray
 ms.date: 07/26/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 6cc8255f95cb4944ff3ef138ad5edf2e5bbea4b4
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: cf8d2ad580b559ba813591d34759946642d9b9b9
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120100"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488357"
 ---
 # <a name="run-a-highly-available-sharepoint-server-2016-farm-in-azure"></a>Ausführen einer hoch verfügbaren SharePoint Server 2016-Farm in Azure
 
