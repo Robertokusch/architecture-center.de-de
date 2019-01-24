@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: Bewährte Methoden für das Ausführen eines virtuellen Linux-Computers in Azure
 author: telmosampaio
 ms.date: 12/13/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 2989cd812c7a3ac6c9e7b8fbf23639b2a95d0b41
-ms.sourcegitcommit: 032f402482762f4e674aeebbc122ad18dfba11eb
+ms.openlocfilehash: ec71e35bec0fa9fad604456130f8596fcf127ebb
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53396435"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485654"
 ---
 # <a name="run-a-linux-virtual-machine-on-azure"></a>Ausführen eines virtuellen Linux-Computers in Azure
 
@@ -103,7 +106,7 @@ Verwenden Sie [Azure Security Center][security-center], um sich eine zentrale Ü
 
 **Patchverwaltung:** Falls aktiviert, prüft Security Center, ob kritische und Sicherheitsupdates fehlen. Verwenden Sie [Gruppenrichtlinieneinstellungen][group-policy] auf dem virtuellen Computer, um automatische Systemupdates zu aktivieren.
 
-**Antischadsoftware:** Falls aktiviert, prüft Security Center, ob Antischadsoftware installiert ist. Sie können auch das Security Center nutzen, um Antischadsoftware über das Azure-Portal zu installieren.
+**Antischadsoftware:**  Falls aktiviert, prüft Security Center, ob Antischadsoftware installiert ist. Sie können auch das Security Center nutzen, um Antischadsoftware über das Azure-Portal zu installieren.
 
 **Zugriffssteuerung:** Arbeiten Sie mit der [rollenbasierten Zugriffssteuerung][rbac] (Role-Based Access Control, RBAC), um den Zugriff auf Azure-Ressourcen zu steuern. Mithilfe der RBAC können Sie Mitglieder Ihres DevOps-Teams Autorisierungsrollen zuweisen. Die Rolle „Leser“ kann beispielsweise Azure-Ressourcen anzeigen, diese aber nicht erstellen, verwalten oder löschen. Einige Berechtigungen gelten spezifisch für einen Azure-Ressourcentyp. Die VM-Rolle „Mitwirkender“ kann z. B. eine VM neu starten oder Ihre Zuordnung aufheben, das Administratorkennwort zurücksetzen, eine neue VM erstellen usw. Andere [integrierte RBAC-Rollen][rbac-roles], die für diese Architektur nützlich sein können, sind u. a. [DevTest Labs-Benutzer][rbac-devtest] und [Netzwerkmitwirkender][rbac-network].
 
@@ -130,6 +133,7 @@ Verwenden Sie [Azure Security Center][security-center], um sich eine zentrale Ü
 [disk-encryption]: /azure/security/azure-security-disk-encryption
 [enable-monitoring]: /azure/monitoring-and-diagnostics/insights-how-to-use-diagnostics
 [fqdn]: /azure/virtual-machines/virtual-machines-linux-portal-create-fqdn
+[group-policy]: /windows-server/administration/windows-server-update-services/deploy/4-configure-group-policy-settings-for-automatic-updates
 [iostat]: https://en.wikipedia.org/wiki/Iostat
 [manage-vm-availability]: /azure/virtual-machines/virtual-machines-linux-manage-availability
 [managed-disks]: /azure/storage/storage-managed-disks-overview
