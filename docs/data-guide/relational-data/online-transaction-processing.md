@@ -3,12 +3,15 @@ title: Onlinetransaktionsverarbeitung (OLTP)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 331da288384bf14581eeda35116085d759807245
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: c6cc628977b438578f2d88d1928afcd75ddddbcd
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113959"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481812"
 ---
 # <a name="online-transaction-processing-oltp"></a>Onlinetransaktionsverarbeitung (OLTP)
 
@@ -102,7 +105,7 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 |                              | Azure SQL-Datenbank | SQL Server auf einer Azure-VM | Azure Database for MySQL | Azure Database for PostgreSQL |
 |------------------------------|--------------------|----------------------------------------|--------------------------|-------------------------------|
 |      Verwalteter Dienst      |        JA         |                   Nein                   |           Ja            |              JA              |
-|       Unterstützte Plattformen       |        N/V         |         Windows, Linux, Docker         |           N/V            |              N/V              |
+|       Unterstützte Plattformen       |        –         |         Windows, Linux, Docker         |           –            |              –              |
 | Programmierbarkeit<sup>1</sup> |   T-SQL, .NET, R   |         T-SQL, .NET, R, Python         |  T-SQL, .NET, R, Python  |              SQL              |
 
 <!-- markdownlint-enable MD033 -->

@@ -4,12 +4,15 @@ titleSuffix: Azure Example Scenarios
 description: Erstellen Sie eine DevOps-Pipeline für eine Node.js-Web-App mit Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB und Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 9d2681294b5c332e15259706518e4b02a488002f
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: 7cf05b79b8984ff4bcad62df44058b0989bc124a
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643763"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481963"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>CI/CD-Pipeline für containerbasierte Workloads
 

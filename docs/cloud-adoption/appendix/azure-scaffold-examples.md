@@ -4,12 +4,15 @@ description: Enthält Beispiele für das Implementieren der Azure-Abonnementgove
 author: rdendtler
 ms.date: 01/03/2017
 ms.author: rodend
-ms.openlocfilehash: 51be0e1cdbcb3258102c9e4a4790764cada98d1e
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: cbf3aae20639d26a73aac07e1b66374af09fbb38
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243664"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486201"
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a>Beispiele für das Implementieren eines Azure-Unternehmensgerüsts
 Dieser Artikel enthält Beispiele dafür, wie ein Unternehmen die Empfehlungen für ein [Azure-Unternehmensgerüst](azure-scaffold.md) implementieren kann. Ein fiktives Unternehmen mit dem Namen Contoso wird verwendet, um die bewährten Methoden für allgemeine Szenarien zu veranschaulichen.

@@ -3,12 +3,15 @@ title: Interaktive Datenuntersuchung
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 1b77f3ced551f5d71578a9b09fd50cd8b0d5587c
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: d1912799c79271a585a941c91a2fa21c50787dcf
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113194"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482934"
 ---
 # <a name="interactive-data-exploration"></a>Interaktive Datenuntersuchung
 
@@ -46,7 +49,7 @@ In Frage kommender Azure-Dienst:
 
 - **Einhaltung des Datenschutzes:** Gehen Sie mit Bedacht vor, wenn Sie für Benutzer persönliche Daten für die Self-Service-Analyse und -Berichterstellung bereitstellen. Aufgrund von Organisationsrichtlinien und gesetzlichen Bestimmungen können sich hierbei Compliance-Konflikte ergeben.
 
-- **Datenvolumen:** Es kann zwar nützlich sein, Benutzern den Zugriff auf die gesamte Datenquelle zu gewähren, aber dies kann zu Excel- oder Power BI-Vorgängen mit sehr langer Ausführungsdauer oder zu Spark SQL-Abfragen führen, für die sehr viele Clusterressourcen verwendet werden.
+- **Datenvolumen**. Es kann zwar nützlich sein, Benutzern den Zugriff auf die gesamte Datenquelle zu gewähren, aber dies kann zu Excel- oder Power BI-Vorgängen mit sehr langer Ausführungsdauer oder zu Spark SQL-Abfragen führen, für die sehr viele Clusterressourcen verwendet werden.
 
 - **Benutzerwissen:** Benutzer erstellen ihre eigenen Abfragen und Aggregationen, um fundierte Geschäftsentscheidungen treffen zu können. Sind Sie sicher, dass die Benutzer über die erforderlichen Analyse- und Abfragefähigkeiten verfügen, die Sie zum Erzielen genauer Ergebnisse benötigen?
 

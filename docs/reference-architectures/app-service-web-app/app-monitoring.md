@@ -3,13 +3,16 @@ title: Überwachung von Webanwendungen in Azure
 description: Überwachen Sie eine in Azure App Service gehostete Webanwendung.
 author: adamboeglin
 ms.date: 12/12/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: azcat
-ms.openlocfilehash: 2333ab0884e37354dc00113c8c40b6184fdf6ff1
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: 5219d08fce5cf09b075b6d7adfb73970e007ded4
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329485"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487932"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Überwachung von Webanwendungen in Azure
 
@@ -25,7 +28,7 @@ Zu den weiteren relevanten Anwendungsfällen zählen:
 - Sammeln von Front-End- und Back-End-Telemetriedaten für eine unter Azure bereitgestellte Anwendung
 - Überwachen von Metriken und Kontingenten, die Diensten unter Azure zugeordnet sind
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![„Architekturdiagramm“](./images/architecture-diagram-app-monitoring.svg)
 

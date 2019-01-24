@@ -3,14 +3,18 @@ title: 'Enterprise Cloud-Einführung: Bereitstellen einer grundlegenden Workload
 description: Hier erfahren Sie, wie Sie eine grundlegende Workload in Azure bereitstellen.
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 363e7e6f394389fb6c1577e2cbaeffeddcf2de1a
-ms.sourcegitcommit: b38ba378c9d6110da2dfd50b4233fadd94604bb0
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: Windows, Linux
+ms.openlocfilehash: 031a8f2e1dc0b137fc830733d025997a2657ef3c
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/25/2018
-ms.locfileid: "47167352"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481404"
 ---
-# <a name="enterprise-cloud-adoption-deploy-a-basic-workload"></a>Enterprise Cloud-Einführung: Bereitstellen eines grundlegenden Workloads
+# <a name="enterprise-cloud-adoption-deploy-a-basic-workload"></a>Enterprise Cloud-Einführung: Bereitstellen einer grundlegenden Workload
 
 Der Begriff **Workload** bezeichnet in der Regel eine beliebige Funktionseinheit – etwa eine Anwendung oder einen Dienst. Unter einer Workload verstehen wir die Codeartefakte, die auf einem Server bereitgestellt werden, aber auch jegliche andere erforderlichen Dienste. Diese Definition ist zwar für lokale Anwendungen oder Dienste hilfreich, muss für die Cloud allerdings noch etwas erweitert werden.
 

@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: In diesem Artikel werden die Vorteile, Herausforderungen und bewährten Methoden für Architekturen vom Typ „Web-Warteschlange-Worker“ in Azure beschrieben.
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 0b478344c4b64808d30156bd563917d9d8d7ec30
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: b471d270af09df7ffd58dfdd49e7d03d05bfe582
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113279"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488119"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Architekturstil „Web-Warteschlange-Worker“
 

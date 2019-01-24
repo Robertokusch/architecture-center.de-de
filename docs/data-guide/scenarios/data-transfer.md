@@ -3,12 +3,15 @@ title: Auswählen einer Datenübertragungstechnologie
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 1cb763ade2aa263d07a59cc6bfc29d59bec7af19
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: c58d06813e3a500c6bb1b6c7889e65f401be6c33
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113041"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484532"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>Übertragen von Daten in und aus Azure
 
@@ -134,7 +137,7 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | --- | --- | --- | --- |
 | Für Big Data optimiert | Nein  | Nein  | JA |
 | Kopieren in relationale Datenbank | Nein  | Nein  | JA |
-| Kopieren in relationale Datenbank | Nein  | Nein  | JA |
+| Kopieren aus relationaler Datenbank | Nein  | Nein  | JA |
 | Kopieren in Blob Storage | JA | Nein | JA |
 | Kopieren aus Blob Storage | JA | Nein | JA |
 | Kopieren in Data Lake Store | Nein  | Nein  | JA |

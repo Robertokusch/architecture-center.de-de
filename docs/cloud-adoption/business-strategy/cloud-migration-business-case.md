@@ -4,12 +4,15 @@ titleSuffix: Enterprise Cloud Adoption
 description: Zu berücksichtigende Punkte beim Erstellen einer geschäftlichen Begründung für die Cloudmigration
 author: BrianBlanchard
 ms.date: 12/10/2018
-ms.openlocfilehash: dd712c83fd82e7d9efe40f4e382910e2403088b3
-ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 8c27ce211f500ee2eec4f7775a7f68f214dba433
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53179674"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488323"
 ---
 # <a name="enterprise-cloud-adoption-building-a-cloud-migration-business-case"></a>Enterprise Cloud-Einführung: Erstellen eines Geschäftsszenarios für die Cloudmigration
 

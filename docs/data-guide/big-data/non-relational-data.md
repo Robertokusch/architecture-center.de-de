@@ -3,12 +3,15 @@ title: Nicht relationale Daten und NoSQL
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: e712cf7def9e237257b911c40346027c1529201d
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: f1f8a9ddc0a728f6be4350edb361afd19901de20
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114282"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483589"
 ---
 # <a name="non-relational-data-and-nosql"></a>Nicht relationale Daten und NoSQL
 
@@ -164,13 +167,13 @@ Die folgende Tabelle enthält eine Übersicht über die Anforderungen für die e
 | --- | --- | --- | --- |
 | Normalisierung | Normalisiert | Denormalisiert | Denormalisiert |
 | Schema | Schema beim Lesen | Schema beim Lesen | Schema beim Schreiben |
-| Konsistenz (für gleichzeitige Transaktionen) | N/V | N/V | N/V |
-| Atomarität (Transaktionsbereich) | N/V | Objekt | N/V |
-| Sperrstrategie | N/V | Pessimistisch (Blobsperren) | N/V |
+| Konsistenz (für gleichzeitige Transaktionen) | – | – | – |
+| Atomarität (Transaktionsbereich) | – | Objekt | – |
+| Sperrstrategie | – | Pessimistisch (Blobsperren) | – |
 | Zugriffsmuster | Wahlfreier Zugriff und Aggregation | Sequenzieller Zugriff | Wahlfreier Zugriff |
-| Indizierung | Primäre und sekundäre Indizes | Nur primärer Index | N/V |
+| Indizierung | Primäre und sekundäre Indizes | Nur primärer Index | – |
 | Datenform | Tabellarisch | Blob und Metadaten | Dokument |
-| Platzsparend | Nein  | N/V | Nein  |
+| Platzsparend | Nein  | – | Nein  |
 | Breit (viele Spalten/Attribute) |  Nein  | Ja | JA |  
 | Bezugsgröße | Klein (KB) | Groß (GB) bis sehr groß (TB) | Klein (KB) |
 | Maximale Gesamtskalierung | Hoch (wenige TB)  | Sehr hoch (PB) | Hoch (wenige TB) |

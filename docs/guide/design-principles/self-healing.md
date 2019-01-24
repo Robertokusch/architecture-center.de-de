@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: Resiliente Anwendungen können nach einem Ausfall ohne manuellen Eingriff wiederhergestellt werden.
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: a7aaf50b4cb1d844637c89da8e977b694481f18d
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 5e5af0be41fa892e490d556ef4286d5367144fd9
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113515"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483937"
 ---
 # <a name="design-for-self-healing"></a>Entwurf mit Blick auf Selbstreparatur
 
