@@ -4,15 +4,18 @@ description: In diesem Artikel erfahren Sie, wie Sie Ihr virtuelles Rechenzentru
 author: tracsman
 manager: rossort
 tags: azure-resource-manager
-ms.service: virtual-network
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: f02cc7df1e90ba3de97a1c25777ab6d27bfdf697
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 1f61996d231f3bf0cc2c550f4d3e119116bb7bc0
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011192"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488646"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Virtuelles Azure-Rechenzentrum: Eine Netzwerkperspektive
 
@@ -292,7 +295,7 @@ Es ist wichtig, die Protokolle von Netzwerksicherheitsgruppen und insbesondere d
 
 Alle Protokolle können zur Überwachung und statischen Analyse oder zu Sicherungszwecken in Azure-Speicherkonten gespeichert werden. Wenn Sie die Protokolle in einem Azure-Speicherkonto speichern, können Kunden verschiedene Typen von Frameworks zum Abrufen, Vorbereiten, Analysieren und Visualisieren dieser Daten verwenden, um den Status und die Integrität von Cloudressourcen zu melden. 
 
-Große Unternehmen sollten bereits über ein Standardframework für die Überwachung lokaler Systeme verfügen. Sie können dieses Framework erweitern, um von Cloudbereitstellungen generierte Protokolle einzubinden. Mithilfe von [Azure Log Analytics] [https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-queries] können Organisationen die gesamte Protokollierung in der Cloud ausführen. Log Analytics wird als cloudbasierter Dienst implementiert und ist daher mit minimalen Investitionen in Infrastrukturdienste schnell betriebsbereit. Log Analytics kann auch in System Center-Komponenten wie System Center Operations Manager integriert werden, um Ihre bestehenden Investitionen in die Cloud zu erweitern. 
+Große Unternehmen sollten bereits über ein Standardframework für die Überwachung lokaler Systeme verfügen. Sie können dieses Framework erweitern, um von Cloudbereitstellungen generierte Protokolle einzubinden. Mithilfe von [Azure Log Analytics](/azure/log-analytics/log-analytics-queries) können Organisationen die gesamte Protokollierung in der Cloud ausführen. Log Analytics wird als cloudbasierter Dienst implementiert und ist daher mit minimalen Investitionen in Infrastrukturdienste schnell betriebsbereit. Log Analytics kann auch in System Center-Komponenten wie System Center Operations Manager integriert werden, um Ihre bestehenden Investitionen in die Cloud zu erweitern. 
 
 Log Analytics ist ein Dienst in Azure, mit dem von Betriebssystemen, Anwendungen und Komponenten der Cloud-Infrastruktur generierte Protokoll- und Leistungsdaten erfasst, korreliert, durchsucht und bearbeitet werden können. Diese Komponente liefert Kunden in Echtzeit Erkenntnisse zum Betrieb, da sie mithilfe der integrierten Suche und mit benutzerdefinierten Dashboards die Analyse aller Datensätze in sämtlichen Workloads Ihrer Implementierung des virtuellen Rechenzentrums ermöglicht.
 
@@ -328,7 +331,7 @@ Die Möglichkeiten für Workloads sind endlos. Im Folgenden finden Sie einige de
 
 **Big Data + Analyse**: Wenn Daten zentral auf ein großes Volumen hochskaliert werden müssen, kann es passieren, dass Datenbanken nicht korrekt zentral hochskaliert werden. Die Hadoop-Technologie bietet ein System zum parallelen Ausführen von verteilten Abfragen auf einer großen Anzahl von Knoten. Kunden haben die Möglichkeit, Datenworkloads auf IaaS-VMs oder PaaS auszuführen ([HDInsight][HDI]). HDInsight unterstützt das Bereitstellen in einem lokalen VNET: Die Bereitstellung kann in einem Cluster in einem Spoke des virtuellen Rechenzentrums erfolgen.
 
-**Ereignisse und Messaging**: Azure Event Hubs[EventHubs] ist ein hyperskalierbarer Dienst für die Erfassung von Telemetriedaten, der Millionen von Ereignissen sammelt, transformiert und speichert. Diese verteilte Streamingplattform bietet niedrige Latenz und konfigurierbare Aufbewahrungszeiten, wodurch Sie riesige Mengen an Telemetriedaten in Azure einspeisen und die Daten verschiedener Anwendungen lesen können. In Event Hubs kann ein einziger Datenstrom in Echtzeit und batchbasierte Pipelines unterstützen.
+**Ereignisse und Messaging**: [Azure Event Hubs][EventHubs] ist ein hyperskalierbarer Dienst für die Erfassung von Telemetriedaten, der Millionen von Ereignissen sammelt, transformiert und speichert. Diese verteilte Streamingplattform bietet niedrige Latenz und konfigurierbare Aufbewahrungszeiten, wodurch Sie riesige Mengen an Telemetriedaten in Azure einspeisen und die Daten verschiedener Anwendungen lesen können. In Event Hubs kann ein einziger Datenstrom in Echtzeit und batchbasierte Pipelines unterstützen.
 
 Über [Azure Service Bus][ServiceBus] können Sie einen zuverlässigen Cloudmessagingdienst zwischen Anwendungen und Diensten implementieren. Der Dienst bietet asynchrones Brokermessaging zwischen Client und Server, strukturiertes FIFO-Messaging (First In, First Out) sowie Funktionen zum Veröffentlichen und Abonnieren.
 
@@ -421,7 +424,7 @@ Die folgenden Features wurden in diesem Dokument erläutert. Nutzen Sie die Link
 [AAD]: /azure/active-directory/active-directory-whatis
 [VPN]: /azure/vpn-gateway/vpn-gateway-about-vpngateways 
 [ExR]: /azure/expressroute/expressroute-introduction
-[ExRD]: https://docs.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about
+[ExRD]: /azure/expressroute/expressroute-erdirect-about
 [vWAN]: /azure/virtual-wan/virtual-wan-about
 [NVA]: /azure/architecture/reference-architectures/dmz/nva-ha
 [AzFW]: /azure/firewall/overview
@@ -431,7 +434,7 @@ Die folgenden Features wurden in diesem Dokument erläutert. Nutzen Sie die Link
 [ALB]: /azure/load-balancer/load-balancer-overview
 [DDOS]: /azure/virtual-network/ddos-protection-overview
 [PIP]: /azure/virtual-network/resource-groups-networking#public-ip-address
-[AFD]: https://docs.microsoft.com/en-us/azure/frontdoor/front-door-overview
+[AFD]: /azure/frontdoor/front-door-overview
 [AppGW]: /azure/application-gateway/application-gateway-introduction
 [WAF]: /azure/application-gateway/application-gateway-web-application-firewall-overview
 [Monitor]: /azure/monitoring-and-diagnostics/

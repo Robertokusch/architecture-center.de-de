@@ -3,12 +3,15 @@ title: Umgestalten einer Azure Service Fabric-Anwendung, die von Azure Cloud Ser
 description: Umgestalten einer vorhandenen Azure Service Fabric-Anwendung, die von Azure Cloud Services migriert wurde
 author: petertay
 ms.date: 02/02/2018
-ms.openlocfilehash: 14ecaf81a07c72296e8db300df371e9a0c990434
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: 1fd6bb5df18b46c8df3719fd107dd53a18dfd4ff
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916463"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487286"
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>Umgestalten einer Azure Service Fabric-Anwendung, die von Azure Cloud Services migriert wurde
 
@@ -91,7 +94,7 @@ Beachten Sie, dass Vorgänge zum Speichern von Elementen, die aus „ReliableCon
 
 Jeder Dienst in der Anwendung „Surveys“ kommuniziert über eine RESTful-Web-API. RESTful-APIs bieten folgende Vorteile:
 * Benutzerfreundlichkeit: Jeder Dienst basiert auf ASP.NET Core-MVC und unterstützt somit nativ die Erstellung von Web-APIs.
-* Sicherheit: Zwar ist es nicht erforderlich, für jeden Dienst SSL zu verwenden, Tailspin hat jedoch die Möglichkeit, dies so einzurichten. 
+* Sicherheit: SSL ist zwar nicht für jeden Dienst erforderlich, Tailspin kann dies für die einzelnen Dienste jedoch voraussetzen. 
 * Versionsverwaltung: Clients können für eine bestimmte Version einer Web-API geschrieben und getestet werden.
 
 Dienste in der Anwendung „Surveys“ verwenden den von Service Fabric implementierten [Reverseproxy][reverse-proxy]. Der Reverseproxy ist ein Dienst, der auf den einzelnen Knoten im Service Fabric-Cluster ausgeführt wird. Er bietet Endpunktauflösung und automatische Wiederholung und behandelt andere Arten von Verbindungsfehlern. Zur Verwendung des Reverseproxys erfolgt jeder RESTful-API-Aufruf für einen bestimmten Dienst über einen vordefinierten Reverseproxyport.  Wenn der Reverseproxyport also beispielsweise auf **19081** festgelegt wurde, kann ein Aufruf für *Tailspin.SurveyAnswerService* wie folgt durchgeführt werden:

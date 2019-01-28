@@ -4,17 +4,23 @@ titleSuffix: Azure Reference Architectures
 description: Implementieren Sie eine Hub-Spoke-Netzwerktopologie mit gemeinsamen Diensten in Azure.
 author: telmosampaio
 ms.date: 10/09/2018
-ms.custom: seodec18
-ms.openlocfilehash: 9de1cd22b32614c332f64cf282ddc1be8090bf7a
-ms.sourcegitcommit: 71ee0859e19fe58416b4c0056d67f2f34dd9ca0a
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, networking
+ms.openlocfilehash: dd7632c3a84f6a0cee5d8b35e6a943ab8c52caf8
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54211970"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488306"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementieren einer Hub-Spoke-Netzwerktopologie mit gemeinsamen Diensten in Azure
 
 Diese Referenzarchitektur baut auf der [Hub-Spoke][guidance-hub-spoke]-Referenzarchitektur auf, um gemeinsame Dienste in den Hub einzubinden, die von allen Spokes genutzt werden können. Als ersten Schritt zur Migration eines Rechenzentrums zur Cloud und Erstellung eines [virtuellen Rechenzentrums] müssen Sie zunächst die Dienste für Identität und Sicherheit freigeben. Anhand dieser Referenzarchitektur wird veranschaulicht, wie Sie Ihre Active Directory-Dienste aus Ihrem lokalen Rechenzentrum auf Azure ausdehnen und ein virtuelles Netzwerkgerät (Network Virtual Appliance, NVA) hinzufügen, das in einer Hub-Spoke-Topologie als Firewall fungieren kann.  [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
+
+> [!NOTE]
+> Dieses Szenario kann auch mithilfe von [Azure Firewall](/azure/firewall/), einem cloudbasierten Netzwerksicherheitsdienst, erreicht werden.
 
 ![Topologie mit gemeinsamen Diensten in Azure](./images/shared-services.png)
 

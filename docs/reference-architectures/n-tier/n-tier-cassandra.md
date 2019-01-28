@@ -4,17 +4,20 @@ titleSuffix: Azure Reference Architectures
 description: Führen Sie virtuelle Linux-Computer für eine n-schichtige Architektur mit Apache Cassandra in Microsoft Azure aus.
 author: MikeWasson
 ms.date: 11/12/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: bbd1029fe17b5d88d54246127c5d8983a573b012
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 6c9a2b4fe513c959e537f705beb1c024b54c7b50
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120167"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485447"
 ---
 # <a name="linux-n-tier-application-in-azure-with-apache-cassandra"></a>n-schichtige Linux-Anwendung in Azure mit Apache Cassandra
 
-Diese Referenzarchitektur zeigt, wie Sie für eine n-schichtige Anwendung konfigurierte virtuelle Computer (VMs) und ein entsprechendes virtuelles Netzwerk mit Apache Cassandra unter Linux für die Datenebene bereitstellen. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
+Diese Referenzarchitektur zeigt, wie Sie für eine [n-schichtige](../../guide/architecture-styles/n-tier.md) Anwendung konfigurierte virtuelle Computer (VMs) und ein entsprechendes virtuelles Netzwerk mit Apache Cassandra unter Linux für die Datenebene bereitstellen. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
 ![N-Ebenen-Architektur mit Microsoft Azure](./images/n-tier-cassandra.png)
 
@@ -164,6 +167,10 @@ Um die Linux VMs für eine n-schichtige Anwendungsreferenzarchitektur bereitzust
    ```
 
 Weitere Informationen zum Bereitstellen dieser Beispielreferenzarchitektur mithilfe von Azure-Bausteinen finden Sie im [GitHub-Repository][git].
+
+## <a name="next-steps"></a>Nächste Schritte
+
+- [Microsoft Learn-Modul: Übersicht über die n-schichtige Architektur](/learn/modules/n-tier-architecture/)
 
 <!-- links -->
 

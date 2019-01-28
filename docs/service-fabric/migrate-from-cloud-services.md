@@ -3,12 +3,15 @@ title: Migrieren einer Azure Cloud Services-Anwendung zu Azure Service Fabric
 description: Informationen zum Migrieren einer Anwendung von Azure Cloud Services zu Azure Service Fabric.
 author: MikeWasson
 ms.date: 04/11/2018
-ms.openlocfilehash: a1b4e005b2dab67d8107f4002468e1d7622ae342
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: e2b89fa51abdb7be6124ded6e64889b5b54854a4
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916446"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487898"
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>Migrieren einer Azure Cloud Services-Anwendung zu Azure Service Fabric 
 

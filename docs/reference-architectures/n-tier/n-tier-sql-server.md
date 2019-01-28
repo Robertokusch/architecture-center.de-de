@@ -4,16 +4,19 @@ titleSuffix: Azure Reference Architectures
 description: Implementieren Sie eine mehrschichtige Architektur in Azure für Verfügbarkeit, Sicherheit, Skalierbarkeit und Verwaltbarkeit.
 author: MikeWasson
 ms.date: 11/12/2018
-ms.openlocfilehash: e7dbd8dd2b8e5aff8f18ff9b87fce0b76a850bce
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: cf12d27ccaebb9845ada4d4a437e9889ea3325f2
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011377"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485399"
 ---
 # <a name="windows-n-tier-application-on-azure-with-sql-server"></a>n-schichtige Windows-Anwendung in Azure mit SQL Server
 
-Diese Referenzarchitektur zeigt, wie Sie für eine n-schichtige Anwendung konfigurierte virtuelle Computer und ein entsprechendes virtuelles Netzwerk mit SQL Server unter Windows für die Datenebene bereitstellen. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
+Diese Referenzarchitektur zeigt, wie Sie für eine [n-schichtige](../../guide/architecture-styles/n-tier.md) Anwendung konfigurierte virtuelle Computer und ein entsprechendes virtuelles Netzwerk mit SQL Server unter Windows für die Datenschicht bereitstellen. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
 ![N-Ebenen-Architektur mit Microsoft Azure](./images/n-tier-sql-server.png)
 
@@ -233,6 +236,10 @@ Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folde
     ```
 
 Weitere Informationen zum Bereitstellen dieser Beispielreferenzarchitektur mithilfe von Azure-Bausteinen finden Sie im [GitHub-Repository][git].
+
+## <a name="next-steps"></a>Nächste Schritte
+
+- [Microsoft Learn-Modul: Übersicht über die n-schichtige Architektur](/learn/modules/n-tier-architecture/)
 
 <!-- links -->
 [dmz]: ../dmz/secure-vnet-dmz.md

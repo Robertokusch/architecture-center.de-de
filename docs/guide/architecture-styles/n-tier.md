@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: In diesem Artikel werden die Vorteile, Herausforderungen und bewährten Methoden für n-schichtige Architekturen in Azure beschrieben.
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 4e8aae0032d20df05e1b16a47fda4afa720ed0d9
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: d7b94d56831a6b9172a9091f0e4f7fa63a8881f1
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110304"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481489"
 ---
 # <a name="n-tier-architecture-style"></a>Architekturstil für n-schichtige Anwendungen
 
@@ -81,10 +84,11 @@ Die Web- und die Businessschicht sind zustandslos. Jeder virtuelle Computer kann
 
 Netzwerksicherheitsgruppen beschränken den Zugriff auf jede Schicht. Die Datenbankschicht z.B. gestattet nur den Zugriff aus der Businessschicht.
 
-Weitere Informationen und eine Resource Manager-Vorlage, die sich direkt bereitstellen lässt, finden Sie in den folgenden Referenzarchitekturen:
+Weitere Informationen zur Ausführung n-schichtiger Anwendungen in Azure:
 
 - [Ausführen von Windows-VMs für eine n-schichtige Anwendung][n-tier-windows]
-- [Ausführen von Linux-VMs für eine n-schichtige Anwendung][n-tier-linux]
+- [n-schichtige Windows-Anwendung in Azure mit SQL Server][n-tier-linux]
+- [Microsoft Learn-Modul: Übersicht über die n-schichtige Architektur](/learn/modules/n-tier-architecture/)
 
 ### <a name="additional-considerations"></a>Zusätzliche Überlegungen
 

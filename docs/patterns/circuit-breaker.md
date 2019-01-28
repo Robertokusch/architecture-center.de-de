@@ -5,13 +5,16 @@ description: Behandeln Sie Fehler, deren Behebung beim Herstellen einer Verbindu
 keywords: Entwurfsmuster
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 56c90fcb23fd68b0d1b545db90adeab3272705c2
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 7cc84b3c14ea277aa82643f3141f0693ec702a49
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54009762"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485603"
 ---
 # <a name="circuit-breaker-pattern"></a>Trennschalter-Muster
 
@@ -19,7 +22,7 @@ Behandeln Sie Fehler, deren Behebung beim Herstellen einer Verbindung mit einem 
 
 ## <a name="context-and-problem"></a>Kontext und Problem
 
-In einer verteilten Umgebung können bei Aufrufen von Remoteressourcen und -diensten vorübergehende Störungen auftreten, z. B. langsame Netzwerkverbindungen, Timeouts oder überlastete bzw. vorübergehend nicht verfügbare Ressourcen, die zu Fehlern führen können. Diese Fehler beheben sich in der Regel nach kurzer Zeit von selbst, und eine robuste Cloudanwendung sollte bereit sein, sie mit einer Strategie wie dem [Wiederholungsmuster][retry-pattern] zu behandeln.
+In einer verteilten Umgebung können bei Aufrufen von Remoteressourcen und -diensten vorübergehende Störungen auftreten, z. B. langsame Netzwerkverbindungen, Timeouts oder überlastete bzw. vorübergehend nicht verfügbare Ressourcen, die zu Fehlern führen können. Diese Störungen korrigieren sich typischerweise nach kurzer Zeit selbst, und eine robuste Cloudanwendung sollte bereit sein, sie mit einer Strategie wie dem [Wiederholungsmuster](./retry.md) zu behandeln.
 
 Es kann aber auch Situationen geben, in denen Störungen bzw. Fehler auf unvorhergesehene Ereignisse zurückzuführen sind, deren Behebung viel länger dauern kann. Der Schweregrad dieser Störungen kann von einem teilweisen Verlust der Konnektivität bis hin zum vollständigen Ausfall eines Diensts reichen. In solchen Situationen kann es für eine Anwendung zwecklos sein, einen Vorgang, der unwahrscheinlich ist, ständig zu wiederholen. Stattdessen sollte die Anwendung schnell akzeptieren, dass der Vorgang fehlerhaft ist, und diesen Fehler entsprechend behandeln.
 
@@ -39,7 +42,7 @@ Der Proxy kann als Zustandsautomat mit den folgenden Zuständen implementiert we
 
     > Der Zweck des Timeout-Timers ist es, dem System Zeit zur Behebung des Problems zu geben, das die Störung verursacht hat, bevor es der Anwendung erlaubt wird, den Vorgang erneut auszuführen.
 
-- **Geöffnet:** Bei der Anforderung der Anwendung tritt sofort ein Fehler auf, und an die Anwendung wird eine Ausnahme zurückgegeben.
+- **Offen**: Bei der Anforderung der Anwendung tritt sofort ein Fehler auf, und an die Anwendung wird eine Ausnahme zurückgegeben.
 
 - **Halb geöffnet:** Eine begrenzte Anzahl von Anforderungen aus der Anwendung wird zugelassen und darf den Vorgang aufrufen. Wenn diese Anforderungen erfolgreich sind, wird davon ausgegangen, dass die Störung, die zuvor den Fehler verursacht hat, behoben wurde und der Trennschalter in den Zustand **Geschlossen** wechselt (der Fehlerzähler wird zurückgesetzt). Wenn bei einer Anforderung ein Fehler auftritt, geht der Trennschalter davon aus, dass die Störung noch vorhanden ist, sodass er in den Zustand **Geöffnet** zurückkehrt und den Timeout-Timer neu startet, um dem System eine weitere Frist für die Wiederherstellung nach dem Fehler zu geben.
 

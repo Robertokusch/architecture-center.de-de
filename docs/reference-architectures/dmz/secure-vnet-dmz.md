@@ -4,17 +4,23 @@ titleSuffix: Azure Reference Architectures
 description: Erfahren Sie, wie Sie eine sichere Hybrid-Netzwerkarchitektur mit Internetzugriff in Azure implementieren.
 author: telmosampaio
 ms.date: 10/22/2018
-ms.custom: seodec18
-ms.openlocfilehash: 10c8a23ab09da0555de6a51bc082deceb8c462ff
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, networking
+ms.openlocfilehash: 80125626d0c79888445bc7828577846bcce9fc67
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011530"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488221"
 ---
 # <a name="implement-a-dmz-between-azure-and-the-internet"></a>Implementieren einer DMZ zwischen Azure und dem Internet
 
 Diese Referenzarchitektur zeigt ein sicheres Hybridnetzwerk, das ein lokales Netzwerk in Azure erweitert und auch Internetdatenverkehr zulässt. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
+
+> [!NOTE]
+> Dieses Szenario kann auch mithilfe von [Azure Firewall](/azure/firewall/), einem cloudbasierten Netzwerksicherheitsdienst, erreicht werden.
 
 ![Sichere Hybrid-Netzwerkarchitektur](./images/dmz-public.png)
 
