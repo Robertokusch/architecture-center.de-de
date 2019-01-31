@@ -10,12 +10,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: 1f61996d231f3bf0cc2c550f4d3e119116bb7bc0
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: a997a0f03da63bc1432f61f3299e7c6794278e5e
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488646"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908552"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Virtuelles Azure-Rechenzentrum: Eine Netzwerkperspektive
 
@@ -261,12 +261,6 @@ Der Azure Load Balancer kann die Integrität der verschiedenen Serverinstanzen �
 Der Microsoft-Dienst [**Azure Front Door Service**][AFD] (AFDS) stellt eine hoch verfügbare und hochgradig skalierbare Plattform für die Beschleunigung von Webanwendungen mit globalem HTTP-Lastenausgleich, Anwendungsschutz und Content Delivery Network bereit. AFDS wird an mehr als 100 Standorten im Edgebereich des globalen Netzwerks von Microsoft ausgeführt und ermöglicht Ihnen das Erstellen, Ausführen und horizontale Hochskalieren Ihrer dynamischen Webanwendung und statischen Inhalte. AFDS stellt für Ihre Anwendung erstklassige Endbenutzerleistung, einheitliche Automatisierung der Regions-/Stempelwartung, BCDR-Automatisierung, einheitliche Client-/Benutzerinformationen, Zwischenspeicherung und Erkenntnisse zu Ihren Diensten bereit. Die Plattform bietet Leistung, Zuverlässigkeit, Support-SLAs, Compliancezertifizierungen sowie überwachbare Sicherheitsverfahren, die von Azure entwickelt, betrieben und nativ unterstützt werden.
 
 [**Microsoft Azure Application Gateway**][AppGW]: Microsoft Azure Application Gateway ist ein dediziertes virtuelles Gerät mit einem ADC (Application Delivery Controller) als Dienst und bietet verschiedene Lastenausgleichsfunktionen der Ebene 7 für Ihre Anwendung. Sie können damit die Produktivität von Webfarmen steigern, indem sie die CPU-intensive SSL-Beendigung an das Anwendungsgateway auslagern. Darüber hinaus werden noch weitere Routingfunktionen der Ebene 7 bereitgestellt. Hierzu zählen etwa die Roundrobin-Verteilung des eingehenden Datenverkehrs, cookiebasierte Sitzungsaffinität, Routing auf URL-Pfadbasis und die Möglichkeit zum Hosten mehrerer Websites hinter einer einzelnen Application Gateway-Instanz. Eine Web Application Firewall (WAF) wird auch als Teil des WAF SKU des Anwendungsgateways bereitgestellt. Dieser SKU bietet Schutz für Webanwendungen vor allgemeinen Onlinesicherheitsrisiken und Exploits. Application Gateway kann als Gateway mit Internetanbindung, rein internes Gateway oder als Kombination dieser beiden Optionen konfiguriert werden. 
-
-[**Application Gateway**][AppGW] ist ein dediziertes virtuelles Gerät, das einen ADC (Application Delivery Controller) als Dienst bereitstellt und für Ihre Anwendung verschiedene Layer-7-Lastenausgleichsfunktionen bietet. Sie können die Produktivität von Webfarmen steigern, indem Sie die CPU-intensive SSL-Beendigung an die Application Gateway-Instanz abladen. Außerdem werden beispielsweise die folgenden Layer-7-Routingfunktionen bereitgestellt: 
-* Roundrobin-Verteilung des eingehenden Datenverkehrs. 
-* Cookiebasierte Sitzungsaffinität: 
-* Routing auf URL-Pfadbasis. 
-* Die Möglichkeit, mehrere Websites hinter einer einzelnen Application Gateway-Instanz zu hosten. Eine Web Application Firewall (WAF) wird ebenfalls als Teil der WAF-SKU von Application Gateway bereitgestellt. Dieser SKU bietet Schutz für Webanwendungen vor allgemeinen Onlinesicherheitsrisiken und Exploits. Application Gateway kann als Gateway mit Internetzugriff, rein internes Gateway oder als Kombination dieser beiden Optionen konfiguriert werden. 
 
 [**Öffentliche IP-Adressen**][PIP]. Einige Azure-Features ermöglichen es Ihnen, einer öffentlichen IP-Adresse Dienstendpunkte zuzuordnen, sodass über das Internet auf die Ressource zugegriffen werden kann. Der Endpunkt verwendet die Netzwerkadressenübersetzung, um Datenverkehr zur internen Adresse und zum Port im virtuellen Azure-Netzwerk zu leiten. Dieser Pfad ist der primäre Weg, auf dem externer Datenverkehr in das virtuelle Netzwerk gelangt. Sie können die öffentlichen IP-Adressen konfigurieren, um festzulegen, welcher Datenverkehr zugelassen wird bzw. wie und wo eine Übersetzung in das virtuelle Netzwerk stattfindet.
 
