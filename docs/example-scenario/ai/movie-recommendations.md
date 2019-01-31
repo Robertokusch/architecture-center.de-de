@@ -4,12 +4,13 @@ description: Automatisieren Sie Empfehlungen (beispielsweise für Filme oder Pro
 author: njray
 ms.date: 1/9/2019
 ms.custom: azcat-ai
-ms.openlocfilehash: 38e883bac032596d4c14b230fa3aa102fde45837
-ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
+social_image_url: /azure/architecture/example-scenario/ai/media/architecture-movie-recommender.png
+ms.openlocfilehash: 9e68f38cb61d7a3255b76a662c58907704914052
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54307777"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908255"
 ---
 # <a name="movie-recommendations-on-azure"></a>Filmempfehlungen in Azure
 
@@ -25,7 +26,7 @@ Erwägen Sie dieses Szenario für folgende Anwendungsfälle:
 * Produktempfehlungen für Verbraucher in einer mobilen App
 * Nachrichtenempfehlungen in Streamingmedien
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 ![Architektur eines Machine Learning-Modells zum Trainieren von Filmempfehlungen][architecture]
 

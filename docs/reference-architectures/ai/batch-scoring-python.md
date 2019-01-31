@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai, AI
-ms.openlocfilehash: a291821860a8e503ba4c6173ac6d8fd449d6ebf3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 1ca6cf385ddd3be56e247a3439e737c114a88dcb
+ms.sourcegitcommit: 40f3561cc94f721eca50d33f2d75dc974cb6f92b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485365"
+ms.lasthandoff: 01/29/2019
+ms.locfileid: "55147279"
 ---
 # <a name="batch-scoring-of-python-models-on-azure"></a>Batchbewertung von Python-Modellen in Azure
 
@@ -33,6 +33,9 @@ Diese Architektur umfasst die folgenden Komponenten:
 [Azure Stream Analytics][stream-analytics]: Ein Modul für die Ereignisverarbeitung. Ein Stream Analytics-Auftrag liest die Datenströme aus dem Event Hub und führt die Datenstromverarbeitung durch.
 
 [Azure Batch AI][batch-ai]: Dieses Modul für verteiltes Computing wird verwendet, um Machine Learning- und AI-Modelle in Azure bedarfsabhängig zu trainieren und zu testen. Mit Batch AI werden virtuelle Computer nach Bedarf mit einer Option für die automatische Skalierung erstellt, wobei auf jedem Knoten im Batch AI-Cluster ein Bewertungsauftrag für einen bestimmten Sensor ausgeführt wird. Das [Python-Skript][python-script] für die Bewertung wird in Docker-Containern ausgeführt, die auf jedem Knoten des Clusters erstellt werden. Hiermit werden die relevanten Sensordaten gelesen und Vorhersagen generiert und im Blobspeicher gespeichert.
+
+> [!NOTE]
+> Der Azure Batch AI-Dienst wird im März 2019 eingestellt. Die skalierbaren Trainings- und Bewertungsfunktionen dieses Diensts sind nun in [Azure Machine Learning Service][amls] verfügbar. Diese Referenzarchitektur wird demnächst für die Verwendung von Machine Learning aktualisiert, wodurch ein verwaltetes Computeziel namens [Azure Machine Learning Compute][aml-compute] zum Trainieren, Bereitstellen und Bewerten von Machine Learning-Modellen zur Verfügung steht.
 
 [Azure Blob Storage][storage]: Blobcontainer werden zum Speichern der vorab trainierten Modelle, der Daten und der Ausgabevorhersagen verwendet. Die Modelle werden im Notebook [create\_resources.ipynb][create-resources] in den Blobspeicher hochgeladen. Diese Modelle vom Typ [Einklassige SVM][one-class-svm] werden mit Daten trainiert, die Werte unterschiedlicher Sensoren für unterschiedliche Geräte repräsentieren. Bei dieser Lösung wird davon ausgegangen, dass die Datenwerte während eines festen Zeitintervalls aggregiert werden.
 
@@ -94,6 +97,8 @@ Die Referenzimplementierung dieser Architektur ist auf [GitHub][github] verfügb
 
 [acr]: /azure/container-registry/container-registry-intro
 [ai]: /azure/application-insights/app-insights-overview
+[aml-compute]: /azure/machine-learning/service/how-to-set-up-training-targets#amlcompute
+[amls]: /azure/machine-learning/service/overview-what-is-azure-ml
 [automatic-scaling]: /azure/batch/batch-automatic-scaling
 [azure-files]: /azure/storage/files/storage-files-introduction
 [batch-ai]: /azure/batch-ai/

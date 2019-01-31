@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: f9f33421f3e1030e2477379970082f5c45690390
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 0bbe8177abe708cf41c1b5a8d117c05fd280c948
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486856"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908595"
 ---
 # <a name="throttling-pattern"></a>Muster „Drosselung“
 
@@ -38,7 +38,7 @@ Das System kann mehrere Drosselungsstrategien implementieren, wie etwa Folgende:
 
 - Deaktivieren oder Beschränken der Funktionalität ausgewählter nicht wesentlicher Dienste, sodass wesentliche Dienste ungehindert mit ausreichenden Ressourcen ausgeführt werden können. Wenn die Anwendung beispielsweise Videoausgaben streamt, kann sie zu einer geringeren Auflösung wechseln.
 
-- Abschwächen des Aktivitätsvolumens durch einen Lastenausgleich (diese Vorgehensweise wird unter [Muster „Warteschlangenbasierter Lastenausgleich“](./queue-based-load-leveling.md) näher beschrieben). In einer mehrinstanzenfähigen Umgebung wird die Leistung durch diese Vorgehensweise bei jedem Mandanten beeinträchtigt. Wenn das System eine Kombination von Mandanten mit unterschiedlichen SLAs unterstützen muss, können die Aufgaben für Mandanten mit hoher Priorität sofort durchgeführt werden. Anforderungen für andere Mandanten können zurückgehalten und bearbeitet werden, wenn der Rückstand nachgelassen hat. Bei der Implementierung dieser Vorgehensweise kann zur Unterstützung das [Muster „Prioritätswarteschlange“][] verwendet werden.
+- Abschwächen des Aktivitätsvolumens durch einen Lastenausgleich (diese Vorgehensweise wird unter [Muster „Warteschlangenbasierter Lastenausgleich“](./queue-based-load-leveling.md) näher beschrieben). In einer mehrinstanzenfähigen Umgebung wird die Leistung durch diese Vorgehensweise bei jedem Mandanten beeinträchtigt. Wenn das System eine Kombination von Mandanten mit unterschiedlichen SLAs unterstützen muss, können die Aufgaben für Mandanten mit hoher Priorität sofort durchgeführt werden. Anforderungen für andere Mandanten können zurückgehalten und bearbeitet werden, wenn der Rückstand nachgelassen hat. Zur Implementierung dieser Vorgehensweise kann als Unterstützung das [Muster „Prioritätswarteschlange“](./priority-queue.md) verwendet werden.
 
 - Verschieben von Vorgängen, die für Anwendungen oder Mandanten mit geringerer Priorität durchgeführt werden. Diese Vorgänge können angehalten oder beschränkt werden, wobei eine Ausnahme erzeugt wird, um den Mandanten darüber zu informieren, dass das System ausgelastet ist und der Vorgang später erneut wiederholt werden sollte.
 

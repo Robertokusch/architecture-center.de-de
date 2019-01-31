@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 26a83b3f75b2e7e9ec4a8a99ab8b4d8f1b1ef4d7
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 27975b42179e87f4520186778610159943a93090
+ms.sourcegitcommit: 40f3561cc94f721eca50d33f2d75dc974cb6f92b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488561"
+ms.lasthandoff: 01/29/2019
+ms.locfileid: "55147245"
 ---
 # <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Batchbewertung in Azure für Deep Learning-Modelle
 
@@ -45,6 +45,9 @@ Diese Architektur umfasst die folgenden Komponenten.
 ### <a name="compute"></a>Compute
 
 **[Azure Batch AI][batch-ai]** wird verwendet, um den Algorithmus der neuronalen Stilübertragung auszuführen. Batch AI unterstützt Deep Learning-Workloads durch die Bereitstellung von Containerumgebungen, die für Deep Learning-Frameworks auf GPU-fähigen VMs vorkonfiguriert sind. Der Dienst kann auch den Computecluster mit Blob Storage verbinden.
+
+> [!NOTE]
+> Der Azure Batch AI-Dienst wird im März 2019 eingestellt. Die skalierbaren Trainings- und Bewertungsfunktionen dieses Diensts sind nun in [Azure Machine Learning Service][amls] verfügbar. Diese Referenzarchitektur wird demnächst für die Verwendung von Machine Learning aktualisiert, wodurch ein verwaltetes Computeziel namens [Azure Machine Learning Compute][aml-compute] zum Trainieren, Bereitstellen und Bewerten von Machine Learning-Modellen zur Verfügung steht.
 
 ### <a name="storage"></a>Storage
 
@@ -149,6 +152,8 @@ Befolgen Sie die Schritte im Abschnitt [GitHub-Repository][deployment], um diese
 
 <!-- links -->
 
+[aml-compute]: /azure/machine-learning/service/how-to-set-up-training-targets#amlcompute
+[amls]: /azure/machine-learning/service/overview-what-is-azure-ml
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [batch-ai]: /azure/batch-ai/
 [blobfuse]: https://github.com/Azure/azure-storage-fuse
