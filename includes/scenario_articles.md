@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: dfc4af0a5be29b32d90cc4a05715fd3e2f71427b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488663"
----
 
 ## <a name="ai-scenarios"></a>KI-Szenarien
 
@@ -383,6 +375,25 @@ ms.locfileid: "54488663"
                     <div class="cardText">
                         <h3>Ausführen von CFD-Simulationen</h3>
                         <p>Führen Sie Simulationen numerischer Strömungsmechaniken (Computational Fluid Dynamics, CFD) in Azure aus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./infrastructure/image-modeling.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./infrastructure/media/architecture-image-modeling.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Beschleunigen der digitalen bildbasierten Modellierung in Azure</h3>
+                        <p>Beschleunigen der digitalen bildbasierten Modellierung in Azure mit Avere und Agisoft PhotoScan</p>
                     </div>
                 </div>
             </div>
