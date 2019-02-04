@@ -7,12 +7,12 @@ ms.date: 12/10/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 53beb2ee0f99c107ed390a4309273ad20e405b69
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 06058967e6ffcd9e3554a46c67144f72fb19078f
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484294"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908578"
 ---
 # <a name="enterprise-cloud-adoption-the-5-rs-of-rationalization"></a>Enterprise Cloud-Einführung: Die fünf R der Rationalisierung
 
@@ -95,7 +95,7 @@ Faktoren für die qualitative Analyse:
 
 ## <a name="rebuild"></a>Neu erstellen
 
-In manchen Szenarien ist die Kluft, die für eine Weiterverwendung einer Anwendung überwunden werden muss, zu groß, um weitere Investitionen zu rechtfertigen. Das gilt insbesondere für Anwendungen, die inzwischen nicht mehr unterstützt werden und nicht mehr die Anforderungen der aktuellen Geschäftsprozesse erfüllen. In diesem Fall wird eine neue Codebasis erstellt, die auf einen nativen Cloudansatz ausgerichtet ist.
+In manchen Szenarien ist die Kluft, die für eine Weiterverwendung einer Anwendung überwunden werden muss, zu groß, um weitere Investitionen zu rechtfertigen. Das gilt insbesondere für Anwendungen, die inzwischen nicht mehr unterstützt werden und nicht mehr die Anforderungen der aktuellen Geschäftsprozesse erfüllen. In diesem Fall wird eine neue Codebasis erstellt, die auf einen [cloudnativen](https://azure.microsoft.com/overview/cloudnative/) Ansatz ausgerichtet ist.
 
 Mögliche Gründe:
 
