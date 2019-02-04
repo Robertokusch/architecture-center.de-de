@@ -10,12 +10,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: a997a0f03da63bc1432f61f3299e7c6794278e5e
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: 484f41f64b676b08ae8adb4ba082f9bff75a6a54
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908552"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55483112"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Virtuelles Azure-Rechenzentrum: Eine Netzwerkperspektive
 
@@ -391,7 +391,9 @@ Die folgenden Features wurden in diesem Dokument erläutert. Nutzen Sie die Link
 
  - Lernen Sie das [VNET-Peering][VNetPeering] kennen, die technologische Grundlage für Hub-Spoke-Entwürfe von virtuellen Rechenzentren.
  - Implementieren Sie [Azure AD][AAD], um die Funktionen der [rollenbasierten Zugriffssteuerung][RBAC] zu erkunden.
- - Entwickeln Sie Modelle für die Abonnement- und Ressourcenverwaltung sowie die rollenbasierte Zugriffssteuerung, die der Struktur, den Anforderungen und den Richtlinien Ihrer Organisation entsprechen. Die wichtigste Aktivität ist die Planung. Planen Sie Neuorganisationen, Fusionen, neue Produktlinien usw. so weit wie möglich. <!--Image References-->
+ - Entwickeln Sie Modelle für die Abonnement- und Ressourcenverwaltung sowie die rollenbasierte Zugriffssteuerung, die der Struktur, den Anforderungen und den Richtlinien Ihrer Organisation entsprechen. Die wichtigste Aktivität ist die Planung. Planen Sie Neuorganisationen, Fusionen, neue Produktlinien etc. so weit wie möglich.
+
+<!--Image References-->
 [0]: ./images/networking-redundant-equipment.png "Beispiele für Komponentenüberlappung" 
 [1]: ./images/networking-vdc-high-level.png "Allgemeines Beispiel für ein virtuelles Hub-Spoke-Rechenzentrum"
 [2]: ./images/networking-hub-spokes-cluster.png "Cluster mit Hub und Spokes"
