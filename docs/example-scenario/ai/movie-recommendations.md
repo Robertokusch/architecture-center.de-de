@@ -3,14 +3,17 @@ title: Filmempfehlungen in Azure
 description: Automatisieren Sie Empfehlungen (beispielsweise für Filme oder Produkte) unter Verwendung von maschinellem Lernen und einer Azure DSVM-Instanz (Data Science Virtual Machine), um ein Modell in Azure zu trainieren.
 author: njray
 ms.date: 1/9/2019
-ms.custom: azcat-ai
+ms.custom: azcat-ai, AI
 social_image_url: /azure/architecture/example-scenario/ai/media/architecture-movie-recommender.png
-ms.openlocfilehash: 9e68f38cb61d7a3255b76a662c58907704914052
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: 9387ab7989695df29df53d7aa4a437010cdd9fdf
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908255"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55482993"
 ---
 # <a name="movie-recommendations-on-azure"></a>Filmempfehlungen in Azure
 
