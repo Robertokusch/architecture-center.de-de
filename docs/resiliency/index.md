@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: ba3637ce90b793425b1238ee0d99d36a936da6ca
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 1cca2bd39339ba671ee8a298f2ded73d3e252c32
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488595"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897779"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Entwerfen robuster Anwendungen für Azure
 
@@ -182,7 +182,7 @@ Weitere Informationen zum FMA-Prozess mit spezifischen Empfehlungen für Azure f
 | --- | --- |
 | Dienst nicht verfügbar |HTTP 5xx |
 | Drosselung |HTTP 429 (Zu viele Anforderungen) |
-| Authentifizierung |HTTP 401 (Nicht autorisiert) |
+| Authentication |HTTP 401 (Nicht autorisiert) |
 | Langsame Reaktion |Timeout der Anforderung |
 
 ### <a name="redundancy-and-designing-for-failure"></a>Redundanz und Ausrichten des Entwurfs auf Fehler
