@@ -1,28 +1,35 @@
 ---
 title: Batchbewertung von Python-Modellen in Azure
-description: Erstellen Sie mit Azure Batch AI eine skalierbare Lösung für die parallele Batchbewertung von Modellen nach einem Zeitplan.
+description: Erstellen Sie mit Azure Machine Learning Service eine skalierbare Lösung für die parallele Batchbewertung von Modellen nach einem Zeitplan.
 author: njray
-ms.date: 12/13/2018
+ms.date: 01/30/2019
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai, AI
-ms.openlocfilehash: 1ca6cf385ddd3be56e247a3439e737c114a88dcb
-ms.sourcegitcommit: 40f3561cc94f721eca50d33f2d75dc974cb6f92b
+ms.openlocfilehash: 81dc353735eaa6573c72d9e588c949fe96a329ef
+ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/29/2019
-ms.locfileid: "55147279"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55782012"
 ---
 # <a name="batch-scoring-of-python-models-on-azure"></a>Batchbewertung von Python-Modellen in Azure
 
-Diese Referenzarchitektur veranschaulicht, wie Sie mit Azure Batch AI eine skalierbare Lösung für die parallele Batchbewertung vieler Modelle nach einem Zeitplan erstellen. Die Lösung kann als Vorlage genutzt und für unterschiedliche Probleme generalisiert werden.
+Diese Referenzarchitektur veranschaulicht, wie Sie mit Azure Machine Learning Service eine skalierbare Lösung für die parallele Batchbewertung vieler Modelle nach einem Zeitplan erstellen. Die Lösung kann als Vorlage genutzt und für unterschiedliche Probleme generalisiert werden.
 
-Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] verfügbar.
+Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] verfügbar.
 
 ![Batchbewertung von Python-Modellen in Azure](./_images/batch-scoring-python.png)
 
-**Szenario:** Diese Lösung überwacht den Betrieb einer großen Zahl von Geräten unter einer IoT-Einstellung, wobei jedes Gerät fortlaufend Sensormesswerte sendet. Es wird vorausgesetzt, dass jedes Gerät über vorab trainierte Modelle für die Anomalieerkennung verfügt, mit der Folgendes vorhergesagt werden kann: Entspricht eine Reihe von Messwerten, die für ein vordefiniertes Zeitintervall aggregiert werden, einer Anomalie? In der Praxis kann dies ein Datenstrom mit Sensormesswerten sein, die gefiltert und aggregiert werden müssen, bevor sie für das Training oder für Echtzeitbewertungen verwendet werden. Der Einfachheit halber wird für die Lösung beim Ausführen von Bewertungsaufträgen dieselbe Datendatei verwendet.
+**Szenario:** Diese Lösung überwacht den Betrieb einer großen Zahl von Geräten unter einer IoT-Einstellung, wobei jedes Gerät fortlaufend Sensormesswerte sendet. Es wird vorausgesetzt, dass jedem Gerät vorab trainierte Modelle für die Anomalieerkennung zugeordnet sind, um Folgendes vorherzusagen: Entspricht eine Reihe von Messwerten, die für ein vordefiniertes Zeitintervall aggregiert werden, einer Anomalie? In der Praxis kann dies ein Datenstrom mit Sensormesswerten sein, die gefiltert und aggregiert werden müssen, bevor sie für das Training oder für Echtzeitbewertungen verwendet werden. Der Einfachheit halber wird für diese Lösung beim Ausführen von Bewertungsaufträgen dieselbe Datendatei verwendet.
+
+Diese Referenzarchitektur ist für Workloads ausgelegt, die anhand eines Zeitplans ausgelöst werden. Die Verarbeitung umfasst die folgenden Schritte:
+1.  Senden von Sensormesswerten für die Erfassung in Azure Event Hubs
+2.  Durchführen der Datenstromverarbeitung und Speichern der Rohdaten
+3.  Senden der Daten an einen Machine Learning-Cluster, der für die Durchführung von Aufgaben bereit ist. Auf jedem Knoten im Cluster wird ein Bewertungsauftrag für einen bestimmten Sensor ausgeführt. 
+4.  Ausführen der Bewertungspipeline, über die die Bewertungsaufträge mit Machine Learning-Python-Skripts parallel ausgeführt werden. Die Pipeline wird erstellt und veröffentlicht, und es wird ein Zeitplan für die Ausführung nach einem vordefinierten Zeitintervall erstellt.
+5.  Generieren von Vorhersagen und Speichern im Blobspeicher zur späteren Verwendung
 
 ## <a name="architecture"></a>Architecture
 
@@ -32,16 +39,13 @@ Diese Architektur umfasst die folgenden Komponenten:
 
 [Azure Stream Analytics][stream-analytics]: Ein Modul für die Ereignisverarbeitung. Ein Stream Analytics-Auftrag liest die Datenströme aus dem Event Hub und führt die Datenstromverarbeitung durch.
 
-[Azure Batch AI][batch-ai]: Dieses Modul für verteiltes Computing wird verwendet, um Machine Learning- und AI-Modelle in Azure bedarfsabhängig zu trainieren und zu testen. Mit Batch AI werden virtuelle Computer nach Bedarf mit einer Option für die automatische Skalierung erstellt, wobei auf jedem Knoten im Batch AI-Cluster ein Bewertungsauftrag für einen bestimmten Sensor ausgeführt wird. Das [Python-Skript][python-script] für die Bewertung wird in Docker-Containern ausgeführt, die auf jedem Knoten des Clusters erstellt werden. Hiermit werden die relevanten Sensordaten gelesen und Vorhersagen generiert und im Blobspeicher gespeichert.
+[Azure SQL-Datenbank][sql-database]: Daten der Sensormesswerte werden in SQL-Datenbank geladen. SQL ist eine vertraute Möglichkeit, die verarbeiteten gestreamten Daten (tabellarisch und strukturiert) zu speichern, aber es können auch andere Datenspeicher verwendet werden.
 
-> [!NOTE]
-> Der Azure Batch AI-Dienst wird im März 2019 eingestellt. Die skalierbaren Trainings- und Bewertungsfunktionen dieses Diensts sind nun in [Azure Machine Learning Service][amls] verfügbar. Diese Referenzarchitektur wird demnächst für die Verwendung von Machine Learning aktualisiert, wodurch ein verwaltetes Computeziel namens [Azure Machine Learning Compute][aml-compute] zum Trainieren, Bereitstellen und Bewerten von Machine Learning-Modellen zur Verfügung steht.
+[Azure Machine Learning Service][amls]: Machine Learning ist ein Clouddienst für das bedarfsorientierte Trainieren, Bewerten, Bereitstellen und Verwalten von Machine Learning-Modellen. Im Kontext der Batchbewertung wird bei Machine Learning bedarfsabhängig ein Cluster mit virtuellen Computern erstellt, der über eine Option für die automatische Skalierung verfügt, und jeder Knoten führt einen Bewertungsauftrag für einen bestimmten Sensor aus. Die Bewertungsaufträge werden parallel als Python-Skriptschritte ausgeführt, die von Machine Learning in eine Warteschlange eingereiht und verwaltet werden. Diese Schritte sind Teil einer Machine Learning-Pipeline, die erstellt und veröffentlicht wird und für die die Ausführung nach einem vordefinierten Zeitintervall geplant wird.
 
-[Azure Blob Storage][storage]: Blobcontainer werden zum Speichern der vorab trainierten Modelle, der Daten und der Ausgabevorhersagen verwendet. Die Modelle werden im Notebook [create\_resources.ipynb][create-resources] in den Blobspeicher hochgeladen. Diese Modelle vom Typ [Einklassige SVM][one-class-svm] werden mit Daten trainiert, die Werte unterschiedlicher Sensoren für unterschiedliche Geräte repräsentieren. Bei dieser Lösung wird davon ausgegangen, dass die Datenwerte während eines festen Zeitintervalls aggregiert werden.
+[Azure Blob Storage][storage]: Blobcontainer werden zum Speichern der vorab trainierten Modelle, der Daten und der Ausgabevorhersagen verwendet. Die Modelle werden im Notebook [01_create_resources.ipynb][create-resources] in den Blobspeicher hochgeladen. Diese Modelle vom Typ [Einklassige SVM][one-class-svm] werden mit Daten trainiert, die Werte unterschiedlicher Sensoren für unterschiedliche Geräte repräsentieren. Bei dieser Lösung wird davon ausgegangen, dass die Datenwerte während eines festen Zeitintervalls aggregiert werden.
 
-[Azure Logic Apps][logic-apps]: Mit dieser Lösung wird eine Logik-App erstellt, mit der stündliche Batch AI-Aufträge ausgeführt werden. Logic Apps stellt eine einfache Möglichkeit zum Erstellen des Runtimeworkflows und der Planung für die Lösung dar. Die Batch AI-Aufträge werden mit einem Python-[Skript][script] übermittelt, das ebenfalls in einem Docker-Container ausgeführt wird.
-
-[Azure Container Registry][acr]: Docker-Images werden sowohl in Batch AI als auch in Logic Apps verwendet und im Notebook [create\_resources.ipynb][create-resources] erstellt und dann per Pushvorgang an Container Registry übertragen. Dies ist eine bequeme Möglichkeit zum Hosten von Images und Instanziieren von Containern über andere Azure-Dienste (bei dieser Lösung sind dies Logic Apps und Batch AI).
+[Azure Container Registry][acr]: Das [Python-Skript][pyscript] für die Bewertung wird in Docker-Containern ausgeführt, die auf jedem Knoten des Clusters erstellt werden. Hiermit werden die relevanten Sensordaten gelesen und Vorhersagen generiert und im Blobspeicher gespeichert.
 
 ## <a name="performance-considerations"></a>Überlegungen zur Leistung
 
@@ -57,43 +61,25 @@ Beim Ausführen von Bewertungsprozessen für viele Modelle im Batchmodus müssen
 
 Im Allgemeinen ist das Bewerten von Python-Standardmodellen nicht so anspruchsvoll wie das Bewerten von Deep Learning-Modellen. Mit einem kleinen Cluster sollte es möglich sein, eine große Zahl von in der Warteschlange befindlichen Modellen effizient zu verarbeiten. Sie können die Anzahl von Clusterknoten erhöhen, wenn die Größe der Datasets zunimmt.
 
-Der Einfachheit halber wird in diesem Szenario eine Bewertungsaufgabe innerhalb von nur einem Batch AI-Auftrag übermittelt. Es kann aber auch effizienter sein, mehrere Datenblöcke innerhalb desselben Batch AI-Auftrags zu bewerten. Schreiben Sie in diesen Fällen benutzerdefinierten Code, mit dem mehrere Datasets eingelesen werden und das entsprechende Bewertungsskript während einer Ausführung des Batch AI-Auftrags ausgeführt wird.
-
-### <a name="file-servers"></a>Dateiserver
-
-Wenn Sie Batch AI verwenden, können Sie je nach Durchsatz, der für Ihr Szenario erforderlich ist, mehrere Speicheroptionen auswählen. Für Workloads mit geringem Durchsatz sollte die Verwendung von Blob Storage ausreichen. Alternativ unterstützt Batch AI auch einen [Batch AI-Dateiserver][bai-file-server] – ein verwaltetes NFS mit nur einem Knoten –, der automatisch auf Clusterknoten bereitgestellt werden kann, um für Aufträge einen zentral zugänglichen Speicherort zur Verfügung zu stellen. In der Regel wird in einem Arbeitsbereich nur ein Dateiserver benötigt. Sie können dann Daten für Ihre Trainingsaufträge in verschiedenen Verzeichnissen speichern.
-
-Wenn das NFS mit nur einem Knoten für Ihre Workloads nicht geeignet ist, können Sie auch andere unterstützte Speicheroptionen von Batch AI nutzen, z.B. [Azure Files][azure-files] und benutzerdefinierte Lösungen wie ein Gluster- oder Lustre-Dateisystem.
+Der Einfachheit halber wird in diesem Szenario für einen Machine Learning-Pipelineschritt nur eine Bewertungsaufgabe übermittelt. Es kann aber auch effizienter sein, mehrere Datenblöcke innerhalb desselben Pipelineschritts zu bewerten. Schreiben Sie in diesen Fällen benutzerdefinierten Code, mit dem mehrere Datasets eingelesen werden und das entsprechende Bewertungsskript während eines einzelnen Schritts ausgeführt wird.
 
 ## <a name="management-considerations"></a>Überlegungen zur Verwaltung
 
-### <a name="monitoring-batch-ai-jobs"></a>Überwachen von Batch AI-Aufträgen
-
-Es ist wichtig, den Status von ausgeführten Aufträgen zu überwachen, aber es kann eine ziemliche Herausforderung darstellen, einen gesamten Cluster mit aktiven Knoten zu überwachen. Um einen Eindruck vom Gesamtzustand des Clusters zu bekommen, navigieren Sie im [Azure-Portal][portal] zum Blatt **Batch AI**, um den Zustand der Knoten im Cluster zu überprüfen. Wenn ein Knoten inaktiv oder ein Auftrag fehlgeschlagen ist, werden die Fehlerprotokolle in Blob Storage gespeichert und sind auch im Azure-Portal auf dem Blatt **Aufträge** verfügbar.
-
-Verbinden Sie zum Durchführen einer umfassenderen Überwachung Protokolle mit [Application Insights][ai], oder führen Sie separate Prozesse aus, um den Status des Batch AI-Clusters und der zugehörigen Aufträge abzufragen.
-
-### <a name="logging-in-batch-ai"></a>Protokollierung in Batch AI
-
-Batch AI protokolliert alle stdout/stderr-Vorgänge für das zugeordnete Azure-Speicherkonto. Verwenden Sie ein Speichernavigationstool, z.B. [Azure Storage-Explorer][explorer], um die Navigation durch die Protokolldateien zu vereinfachen.
-
-Beim Bereitstellen dieser Referenzarchitektur haben Sie die Möglichkeit, ein einfacheres Protokollierungssystem einzurichten. Mit dieser Option werden alle Protokolle für die unterschiedlichen Aufträge in demselben Verzeichnis Ihres Blobcontainers gespeichert. Dies ist unten dargestellt. Überwachen Sie anhand dieser Protokolle, wie lange die Verarbeitung der einzelnen Aufträge und Images dauert. So können Sie besser verstehen, wie der Prozess optimiert werden kann.
-
-![Azure Storage-Explorer](./_images/batch-scoring-python-monitor.png)
+- **Überwachen von Aufträgen**: Es ist wichtig, den Status von ausgeführten Aufträgen zu überwachen, aber es kann eine ziemliche Herausforderung darstellen, einen gesamten Cluster mit aktiven Knoten zu überwachen. Verwenden Sie für die Untersuchung des Zustands der Knoten im Cluster das [Azure-Portal][portal], um den [Machine Learning-Arbeitsbereich][ml-workspace] zu verwalten. Wenn ein Knoten inaktiv oder ein Auftrag fehlgeschlagen ist, werden die Fehlerprotokolle im Blobspeicher gespeichert und sind auch über den Abschnitt „Pipelines“ zugänglich. Verbinden Sie zum Durchführen einer umfassenderen Überwachung Protokolle mit [Application Insights][app-insights], oder führen Sie separate Prozesse aus, um den Status des Clusters und der zugehörigen Aufträge abzufragen.
+-   **Protokollierung**: Machine Learning Service protokolliert alle stdout/stderr-Vorgänge für das zugeordnete Azure Storage-Konto. Verwenden Sie ein Speichernavigationstool, z.B. [Azure Storage-Explorer][explorer], um die Protokolldateien leicht anzeigen zu können.
 
 ## <a name="cost-considerations"></a>Kostenbetrachtung
 
-Die teuersten Komponenten, die in dieser Referenzarchitektur genutzt werden, sind die Computeressourcen.
+Die teuersten Komponenten, die in dieser Referenzarchitektur genutzt werden, sind die Computeressourcen. Die Größe des Computeclusters wird je nach den Aufträgen in der Warteschlange zentral hoch- und herunterskaliert. Aktivieren Sie die automatische Skalierung programmgesteuert über das Python SDK, indem Sie die Bereitstellungskonfiguration der Computeumgebung ändern. Sie können auch die [Azure CLI][cli] verwenden, um die Parameter für die automatische Skalierung des Clusters festzulegen.
 
-Die Größe des Batch AI-Clusters wird je nach den Aufträgen in der Warteschlange zentral hoch- und herunterskaliert. Sie haben zwei Möglichkeiten, wie Sie die [automatische Skalierung][automatic-scaling] mit Batch AI aktivieren können. Bei der programmgesteuerten Variante wird sie in der ENV-Datei konfiguriert, die Teil der [Bereitstellungsschritte][github] ist. Alternativ können Sie die Skalierungsformel direkt im Portal ändern, nachdem der Cluster erstellt wurde.
+Konfigurieren Sie für Aufträge, die nicht direkt verarbeitet werden müssen, die Formel für die automatische Skalierung so, dass der Standardzustand (Minimum) ein Cluster von null Knoten ist. Bei dieser Konfiguration hat der Cluster anfangs null Knoten. Er skaliert nur dann zentral hoch, wenn er Aufträge in der Warteschlange erkennt. Wenn die Batchbewertung maximal einige Male am Tag ausgeführt wird, können Sie mithilfe dieser Einstellung eine erhebliche Kosteneinsparung erzielen.
 
-Konfigurieren Sie für Aufträge, die nicht direkt verarbeitet werden müssen, die Formel für die automatische Skalierung so, dass der Standardzustand (Minimum) ein Cluster von null Knoten ist. Bei dieser Konfiguration hat der Cluster anfangs null Knoten. Er skaliert nur dann zentral hoch, wenn er Aufträge in der Warteschlange erkennt. Wenn die Batchbewertung maximal einige Male am Tag ausgeführt wird, können Sie mithilfe dieser Einstellung erheblich Kosten sparen.
+Die automatische Skalierung ist ggf. nicht für Batchaufträge geeignet, die zeitlich zu nahe beieinander liegen. Für die benötigte Zeit zum Erstellen und Entfernen eines Clusters fallen ebenfalls Kosten an. Wenn eine Batchworkload also nur wenige Minuten nach dem Ende des vorherigen Auftrags startet, ist es ggf. kostengünstiger, den Cluster permanent auszuführen – also auch in der Zeit zwischen den Aufträgen. Dies hängt davon ab, ob die Ausführung von Bewertungsprozessen mit hoher Häufigkeit (z.B. jede Stunde) oder geringerer Häufigkeit (z.B. einmal pro Monat) geplant ist.
 
-Die automatische Skalierung ist ggf. nicht für Batchaufträge geeignet, die zeitlich zu nahe beieinander liegen. Für die benötigte Zeit zum Erstellen und Entfernen eines Cluster fallen ebenfalls Kosten an. Das heißt, wenn eine Batchworkload nur wenige Minuten nach dem Ende des vorherigen Auftrags startet, ist es ggf. kostengünstiger den Cluster permanent, also auch zwischen den Aufträgen, auszuführen. Dies hängt davon ab, ob die Ausführung von Bewertungsprozessen mit hoher Häufigkeit (z.B. jede Stunde) oder geringerer Häufigkeit (z.B. einmal pro Monat) geplant ist.
 
-## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
+## <a name="deployment"></a>Bereitstellung
 
-Die Referenzimplementierung dieser Architektur ist auf [GitHub][github] verfügbar. Befolgen Sie die dort angegebenen Installationsschritte zum Erstellen einer skalierbaren Lösung für das parallele Bewerten mit Batch AI.
+Befolgen Sie die Schritte im Abschnitt [GitHub-Repository][github], um diese Referenzarchitektur bereitzustellen.
 
 [acr]: /azure/container-registry/container-registry-intro
 [ai]: /azure/application-insights/app-insights-overview
@@ -101,17 +87,18 @@ Die Referenzimplementierung dieser Architektur ist auf [GitHub][github] verfügb
 [amls]: /azure/machine-learning/service/overview-what-is-azure-ml
 [automatic-scaling]: /azure/batch/batch-automatic-scaling
 [azure-files]: /azure/storage/files/storage-files-introduction
-[batch-ai]: /azure/batch-ai/
-[bai-file-server]: /azure/batch-ai/resource-concepts#file-server
-[create-resources]: https://github.com/Azure/BatchAIAnomalyDetection/blob/master/create_resources.ipynb
+[cli]: https://docs.microsoft.com/en-us/cli/azure
+[create-resources]: https://github.com/Microsoft/AMLBatchScoringPipeline/blob/master/01_create_resources.ipynb
 [deep]: /azure/architecture/reference-architectures/ai/batch-scoring-deep-learning
 [event-hubs]: /azure/event-hubs/event-hubs-geo-dr
 [explorer]: https://azure.microsoft.com/en-us/features/storage-explorer/
-[github]: https://github.com/Azure/BatchAIAnomalyDetection
-[logic-apps]: /azure/logic-apps/logic-apps-overview
+[github]: https://github.com/Microsoft/AMLBatchScoringPipeline
 [one-class-svm]: http://scikit-learn.org/stable/modules/generated/sklearn.svm.OneClassSVM.html
 [portal]: https://portal.azure.com
+[ml-workspace]: https://docs.microsoft.com/en-us/azure/machine-learning/studio/create-workspace
 [python-script]: https://github.com/Azure/BatchAIAnomalyDetection/blob/master/batchai/predict.py
-[script]: https://github.com/Azure/BatchAIAnomalyDetection/blob/master/sched/submit_jobs.py
+[pyscript]: https://github.com/Microsoft/AMLBatchScoringPipeline/blob/master/scripts/predict.py
 [storage]: /azure/storage/blobs/storage-blobs-overview
 [stream-analytics]: /azure/stream-analytics/
+[sql-database]: https://docs.microsoft.com/en-us/azure/sql-database/
+[app-insights]: https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview
