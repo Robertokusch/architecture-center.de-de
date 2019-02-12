@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: cfbe877a4e3a4a1d5aa87c4a77ad2c5f23a6d664
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: a87972a3901ed9499b5b25831131a79ff5db8f87
+ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484481"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55782097"
 ---
 # <a name="data-partitioning-strategies"></a>Strategien für die Datenpartitionierung
 
@@ -105,7 +105,7 @@ Berücksichtigen Sie die folgenden Punkte beim Entwerfen der Entitäten für den
 
 - Wenn Sie Partitionsschlüssel mit einer monotonen Sequenz generieren (etwa „0001“, „0002“, „0003“) und jede Partition nur eine begrenzte Datenmenge enthält, kann der Azure-Tabellenspeicher diese Partitionen physisch auf dem gleichen Server gruppieren. Azure Storage geht davon aus, dass die Anwendung am ehesten Abfragen für einen zusammenhängenden Bereich von Partitionen (Bereichsabfragen) ausführt, und ist für diesen Fall optimiert. Dieser Ansatz kann jedoch zu Hotspots führen, da sich alle neu eingefügten Entitäten wahrscheinlich an einem Ende des zusammenhängenden Bereichs konzentrieren. Er kann auch die Skalierbarkeit verringern. Eine gleichmäßigere Lastenverteilung lässt sich ggf. mittels Hashing des Partitionsschlüssels erreichen.
 
-- Azure-Tabellenspeicher unterstützt Transaktionsvorgänge für Entitäten, die zur selben Partition gehören. Eine Anwendung kann mehrere Einfüge-, Aktualisierungs-, Lösch-, Ersetzungs- oder Zusammenführungsvorgänge als atomische Einheit ausführen, sofern die Transaktion nicht mehr als 100 Entitäten umfasst und die Nutzlast der Anforderung 4 MB nicht übersteigt. Vorgänge, die sich über mehrere Partitionen erstrecken, sind nicht transaktional und erfordern möglicherweise die Implementierung von letztlicher Konsistenz. Weitere Informationen zu Tabellenspeicher und Transaktionen finden Sie unter [Ausführen von Entitätsgruppentransaktionen] (Ausführen von Entitätsgruppentransaktionen).
+- Azure-Tabellenspeicher unterstützt Transaktionsvorgänge für Entitäten, die zur selben Partition gehören. Eine Anwendung kann mehrere Einfüge-, Aktualisierungs-, Lösch-, Ersetzungs- oder Zusammenführungsvorgänge als atomische Einheit ausführen, sofern die Transaktion nicht mehr als 100 Entitäten umfasst und die Nutzlast der Anforderung 4 MB nicht übersteigt. Vorgänge, die sich über mehrere Partitionen erstrecken, sind nicht transaktional und erfordern möglicherweise die Implementierung von letztlicher Konsistenz. Weitere Informationen zu Tabellenspeicher und Transaktionen finden Sie unter [Ausführen von Entitätsgruppentransaktionen].
 
 - Berücksichtigen Sie die Granularität des Partitionsschlüssels:
 
@@ -211,7 +211,7 @@ Um Konflikte zu reduzieren, kann der von Azure Search verwendete Speicher in 1, 
 
 Jede SU, die Ihrem Dienst zugeordnet wird, wird Ihnen berechnet. Wenn die Menge an durchsuchbaren Inhalten oder die Rate der Suchanforderungen wächst, können Sie einer vorhandenen Azure Search-Instanz SUs hinzufügen, um die zusätzliche Last zu verarbeiten. Azure Search selbst verteilt die Dokumente gleichmäßig über die Partitionen. Zurzeit werden keine manuellen Partitionierungsstrategien unterstützt.
 
-Jede Partition kann maximal 15 Millionen Dokumente enthalten oder 300 GB Speicherplatz belegen (je nachdem, welche Menge geringer ist). Sie können bis zu 50 Indizes generieren. Die Leistung des Diensts variiert und ist abhängig von der Komplexität der Dokumente, den verfügbaren Indizes und den Auswirkungen von Netzwerklatenz. Im Durchschnitt sollte ein einzelnes Replikat (1 SU) 15 Abfragen pro Sekunde (Queries Per Second, QPS) verarbeiten können. Es empfiehlt sich allerdings, ein Benchmarking mit Ihren eigenen Daten durchzuführen, um ein genaueres Maß für den Durchsatz zu erhalten. Weitere Informationen finden Sie unter [Grenzwerte für den Azure Search-Dienst].
+Jede Partition kann maximal 15 Millionen Dokumente enthalten oder 300 GB Speicherplatz belegen (je nachdem, welche Menge geringer ist). Sie können bis zu 50 Indizes generieren. Die Leistung des Diensts variiert und ist abhängig von der Komplexität der Dokumente, den verfügbaren Indizes und den Auswirkungen von Netzwerklatenz. Im Durchschnitt sollte ein einzelnes Replikat (1 SU) 15 Abfragen pro Sekunde (Queries Per Second, QPS) verarbeiten können. Es empfiehlt sich allerdings, ein Benchmarking mit Ihren eigenen Daten durchzuführen, um ein genaueres Maß für den Durchsatz zu erhalten. Weitere Informationen finden Sie unter [Grenzwerte für den Azure Search-Dienst].
 
 > [!NOTE]
 > Sie können eine begrenzte Anzahl von Datentypen in durchsuchbaren Dokumenten speichern, z. B. Zeichenfolgen, boolesche Werte, numerische Daten, Datums-/Uhrzeitdaten und einige geografische Daten. Weitere Informationen finden Sie auf der Microsoft-Website im Artikel [Unterstützte Datentypen (Azure Search)].
@@ -242,7 +242,7 @@ Clientanwendungen senden Anforderungen einfach an einen der teilnehmenden Redis-
 Dieses Modell wird mithilfe von Redis-Clustering implementiert und wird ausführlicher im [Redis-Cluster-Lernprogramm] auf der Redis-Website beschrieben. Redis-Clustering ist für Clientanwendungen transparent. Dem Cluster können zusätzliche Redis-Server hinzugefügt (und die Daten neu partitioniert) werden, ohne dass die Clients neu konfiguriert werden müssen.
 
 > [!IMPORTANT]
-> Azure Redis Cache unterstützt derzeit kein Redis-Clustering. Wenn Sie diesen Ansatz mit Azure umsetzen möchten, müssen Sie Ihre eigenen Redis-Server implementieren, indem Sie Redis auf einem Satz virtueller Azure-Computer installieren und diese manuell konfigurieren. Im Blog [Running Redis on a CentOS Linux VM in Azure] (Ausführen von Redis auf einer CentOS-Linux-VM in Azure) finden Sie ein Beispiel für die Erstellung und Konfiguration eines Redis-Knotens, der als virtueller Azure-Computer ausgeführt wird.
+> Azure Redis Cache unterstützt das Redis-Clustering derzeit nur für den Tarif [Premium](/azure/azure-cache-for-redis/cache-how-to-premium-clustering).
 
 Weitere Informationen zur Implementierung der Partitionierung mit Redis finden Sie auf der Redis-Website unter [Partitioning: how to split data among multiple Redis instances] (Partitionierung: Aufteilen von Daten auf mehrere Redis-Instanzen). Im restlichen Abschnitt wird davon ausgegangen, dass Sie clientseitige oder Proxy-unterstützte Partitionierung implementieren.
 
@@ -256,7 +256,7 @@ Berücksichtigen Sie folgende Punkte bei der Entscheidung, wie Daten mit Azure R
   - Sätze (sortiert und nicht sortiert)
   - Hashes (die verwandte Felder gruppieren können, wie z. B. die Elemente, die die Felder in einem Objekt repräsentieren)
 
-- Mithilfe der aggregierten Datentypen können Sie viele ähnliche Werte mit dem gleichen Schlüssel verknüpfen. Ein Redis-Schlüssel identifiziert eine Liste, einen Satz oder einen Hash anstatt der darin enthaltenen Datenelemente. All diese Datentypen sind mit Azure Redis Cache verfügbar und werden auf der Redis-Website unter [Datentypen] (Datentypen) beschrieben. Beispielsweise können in dem Teil eines E-Commerce-Systems, in dem die Bestellungen von Kunden verfolgt werden, die Details der einzelnen Kunden in einem Redis-Hash gespeichert werden, der mithilfe der Kunden-ID verschlüsselt wurde. Jeder Hash kann eine Sammlung von Bestellnummern für den jeweiligen Kunden enthalten. Ein separater Redis-Satz kann die Bestellungen enthalten, die wieder als Hashes strukturiert sind und mithilfe der Bestellnummer verschlüsselt wurden. Abbildung 8 zeigt eine solche Struktur. Beachten Sie, dass Redis keine Form der referenziellen Integrität implementiert, daher ist es die Verantwortung des Entwicklers, die Beziehungen zwischen Kunden und Bestellungen zu verwalten.
+- Mithilfe der aggregierten Datentypen können Sie viele ähnliche Werte mit dem gleichen Schlüssel verknüpfen. Ein Redis-Schlüssel identifiziert eine Liste, einen Satz oder einen Hash anstatt der darin enthaltenen Datenelemente. All diese Datentypen sind mit Azure Redis Cache verfügbar und werden auf der Redis-Website unter [Datentypen] beschrieben. Beispielsweise können in dem Teil eines E-Commerce-Systems, in dem die Bestellungen von Kunden verfolgt werden, die Details der einzelnen Kunden in einem Redis-Hash gespeichert werden, der mithilfe der Kunden-ID verschlüsselt wurde. Jeder Hash kann eine Sammlung von Bestellnummern für den jeweiligen Kunden enthalten. Ein separater Redis-Satz kann die Bestellungen enthalten, die wieder als Hashes strukturiert sind und mithilfe der Bestellnummer verschlüsselt wurden. Abbildung 8 zeigt eine solche Struktur. Beachten Sie, dass Redis keine Form der referenziellen Integrität implementiert, daher ist es die Verantwortung des Entwicklers, die Beziehungen zwischen Kunden und Bestellungen zu verwalten.
 
 ![Vorgeschlagene Struktur im Redis-Speicher für die Aufzeichnung von Bestellungen und Informationen von Kunden](./images/data-partitioning/RedisCustomersandOrders.png)
 
@@ -329,7 +329,7 @@ Informationen zu den Kompromissen, die in Bezug auf die Verfügbarkeit und die K
 [Using Azure Content Delivery Network]: /azure/cdn/cdn-create-new-endpoint
 [Service Bus-Kontingente]: /azure/service-bus-messaging/service-bus-quotas
 [service-fabric-reliable-collections]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections
-[Grenzwerte für den Azure Search-Dienst]:  /azure/search/search-limits-quotas-capacity
+[Grenzwerte für den Azure Search-Dienst]:  /azure/search/search-limits-quotas-capacity
 [Sharding pattern]: ../patterns/sharding.md
 [Unterstützte Datentypen (Azure Search)]:  https://msdn.microsoft.com/library/azure/dn798938.aspx
 [Transaktionen]: https://redis.io/topics/transactions

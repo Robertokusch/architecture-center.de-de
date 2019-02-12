@@ -7,18 +7,20 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: f622041824d65978346bf39abb3de30732bad193
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: 0f5de0eca6fbd35cca1a0e8443f363df09ffc6aa
+ms.sourcegitcommit: 287344b6c220bdbd8076aed7a281eb02253e15be
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908630"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55712149"
 ---
 # <a name="enterprise-grade-conversational-bot"></a>Für Unternehmen konzipierter interaktiver Bot
 
 Diese Referenzarchitektur beschreibt, wie Sie mit [Azure Bot Framework][bot-framework] einen für Unternehmen geeigneten interaktiven Bot (Chatbot) erstellen. Jeder Bot ist anders, es gibt jedoch einige allgemeine Muster, Workflows und Technologien, die Ihnen bekannt sein sollten. Insbesondere bei einem Bot für Unternehmensworkloads müssen neben den Kernfunktionen viele Überlegungen zum Entwurf berücksichtigt werden. In diesem Artikel werden die wichtigsten Entwurfsaspekte erläutert und die erforderlichen Tools zum Erstellen eines stabilen, sicheren Bots, der aktives Lernen unterstützt, vorgestellt.
 
 [![Diagramm der Architektur][0]][0]
+
+Bei den Hilfsprogrammbeispielen, die in dieser Architektur als bewährte Methoden verwendet werden, handelt es sich um reine Open-Source-Beispiele, die auf [GitHub][git-repo-base] verfügbar sind. 
 
 ## <a name="architecture"></a>Architecture
 
@@ -139,23 +141,20 @@ Eine weitere Option ist die Integration eines eigenen benutzerdefinierten KI-Die
 
 ## <a name="quality-assurance-and-enhancement"></a>Qualitätssicherung und Verbesserung
 
-**Protokollierung**: Protokollieren Sie Benutzerkonversationen mit dem Bot sowie die zugrunde liegenden Leistungsmetriken und etwaige Fehler. Diese Protokolle liefern wertvolle Informationen für das Debuggen von Problemen, Verstehen von Benutzerinteraktionen und Verbessern des Systems. Für die unterschiedlichen Protokolltypen können verschiedene Datenspeicher zweckmäßig sein. Erwägen Sie beispielsweise die Verwendung von Application Insights für Webprotokolle, Cosmos DB für Konversationen und Azure Storage für große Nutzlasten. Siehe [Direktes Schreiben in den Speicher][transcript-storage].
+**Protokollierung**: Protokollieren Sie Benutzerkonversationen mit dem Bot sowie die zugrunde liegenden Leistungsmetriken und etwaige Fehler. Diese Protokolle liefern wertvolle Informationen für das Debuggen von Problemen, Verstehen von Benutzerinteraktionen und Verbessern des Systems. Für die unterschiedlichen Protokolltypen können verschiedene Datenspeicher zweckmäßig sein. Erwägen Sie beispielsweise die Verwendung von Application Insights für Webprotokolle, Cosmos DB für Konversationen und Azure Storage für große Nutzlasten. Weitere Informationen finden Sie unter [Direktes Schreiben in Azure Storage][transcript-storage].
 
 **Feedback**. Zu wissen, wie zufrieden Benutzer mit ihren Botinteraktionen sind, ist ebenfalls wichtig. Wenn Sie einen Datensatz mit Benutzerfeedback haben, können Sie Ihre Aktivitäten mithilfe dieser Daten auf die Verbesserung bestimmter Interaktionen ausrichten und die KI-Modelle zum Verbessern der Leistung erneut trainieren. Verwenden Sie das Feedback zum erneuten Trainieren der Modelle (z. B. LUIS) in Ihrem System.
 
 **Testen**. Das Testen eines Bots umfasst Komponententests, Integrationstests, Regressionstests und Funktionstests. Wir empfehlen, zum Testen echte HTTP-Antworten von externen Diensten wie Azure Search oder QnA Maker aufzuzeichnen. Diese Antworten können dann bei Komponententests wiedergegeben werden, ohne tatsächliche Netzwerkaufrufe an externe Dienste durchzuführen.
 
-Sehen Sie sich die [Botbuilder-Hilfsprogramme für JavaScript](https://github.com/Microsoft/botbuilder-utils-js) an, um Ihre Entwicklung in diesen Bereichen voranzubringen. Das Repository enthält Hilfsprogramm-Beispielcode für Bots, die mit [Microsoft Bot Framework v4][bot-framework] erstellt werden und Node.js ausführen. Es enthält die folgenden Pakete:
-
-- [Http Test Recorder](https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-http-test-recorder) (HTTP-Testaufzeichnung). Zeichnet HTTP-Datenverkehr von externen Diensten auf. Das Paket umfasst vordefinierte Unterstützung für LUIS, Azure Search und QnAMaker, es sind jedoch Erweiterungen zur Unterstützung beliebiger Dienste verfügbar.
-
-- [Cosmos DB Transcript Store](https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-cosmosdb) (Cosmos DB-Transkriptspeicher). Zeigt, wie Bottranskripts in Cosmos DB gespeichert und abgefragt werden.
-
-- [Application Insights Transcript Store](https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-app-insights) (Application Insights-Transkriptspeicher). Zeigt, wie Bottranskripts in Application Insights gespeichert und abgefragt werden.
-
-- [Feedback Collection Middleware](https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-feedback) (Middleware zur Feedbackerfassung). Beispielmiddleware, die zum Erstellen eines Mechanismus zum Anfordern von Feedback verwendet werden kann.
-
-> [!NOTE]
+>[!NOTE]
+> Sehen Sie sich die [Botbuilder-Hilfsprogramme für JavaScript][git-repo-base] an, die Ihnen bei der Entwicklung in diesen Bereichen als Einstiegshilfe dienen. Das Repository enthält Hilfsprogramm-Beispielcode für Bots, die mit [Microsoft Bot Framework v4][bot-framework] erstellt werden und Node.js ausführen. Es enthält die folgenden Pakete:
+>
+> - [Cosmos DB-Protokollspeicher][cosmosdb-logger]: Zeigt, wie Botprotokolle in Cosmos DB gespeichert und abgefragt werden.
+> - [Application Insights-Protokollspeicher][appinsights-logger]: Zeigt, wie Botprotokolle in Application Insights gespeichert und abgefragt werden.
+> - [Feedback Collection Middleware][feedback-util] (Middleware zur Feedbackerfassung): Beispielmiddleware mit einem Mechanismus zum Anfordern von Feedback von Botbenutzern.
+> - [Http Test Recorder][testing util] (HTTP-Testaufzeichnung): Zeichnet HTTP-Datenverkehr von Diensten auf, die außerhalb des Bots verwendet werden. Das Paket umfasst vordefinierte Unterstützung für LUIS, Azure Search und QnAMaker, es sind jedoch Erweiterungen zur Unterstützung beliebiger Dienste verfügbar. Dies dient Ihnen als Hilfe beim Automatisieren von Bot-Tests.
+>
 > Diese Pakete werden als Hilfsprogramm-Beispielcode ohne Garantie hinsichtlich Support oder Updates bereitgestellt.
 
 ## <a name="availability-considerations"></a>Überlegungen zur Verfügbarkeit
@@ -200,6 +199,12 @@ Sie können die Botlogik direkt über die IDE oder über eine Befehlszeile wie d
 [devops]: https://azure.microsoft.com/solutions/devops/
 [functions]: /azure/azure-functions/
 [functions-triggers]: /azure/azure-functions/functions-triggers-bindings
+[git-repo-appinsights-logger]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-app-insights
+[git-repo-base]: https://github.com/Microsoft/botbuilder-utils-js
+[git-repo-cosmosdb-logger]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-cosmosdb
+[git-repo-feedback-util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-feedback
+[git-repo-testing-util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-http-test-recorder
+[testing-util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-http-test-recorder
 [key-vault]: /azure/key-vault/
 [lda]: https://wikipedia.org/wiki/Latent_Dirichlet_allocation/
 [logic-apps]: /azure/logic-apps/logic-apps-overview
@@ -214,3 +219,9 @@ Sie können die Botlogik direkt über die IDE oder über eine Befehlszeile wie d
 [vscode]: https://azure.microsoft.com/products/visual-studio-code/
 [webapp]: /azure/app-service/overview
 [webchat]: /azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0/
+
+[cosmosdb-logger]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-cosmosdb
+[appinsights-logger]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-app-insights
+[feedback-util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-feedback
+[testing util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-http-test-recorder
+
