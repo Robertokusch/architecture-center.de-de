@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 384634acb8690c64f75eabbfebc5f1de414f6da2
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 9fce082a0e762e25981929f6fa8685033017f3eb
+ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484617"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "56224180"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>Ausführen einer n-schichtigen Anwendung in mehreren Azure-Regionen für Hochverfügbarkeit
 
@@ -119,7 +119,7 @@ So konfigurieren Sie die Verfügbarkeitsgruppe:
     ```
 
 - Erstellen Sie einen [Windows Server-Failovercluster][wsfc] (WSFC), der die SQL Server-Instanzen in beiden Regionen enthält.
-- Erstellen Sie eine SQL Server Always On-Verfügbarkeitsgruppe, die SQL Server-Instanzen sowohl in der primären als auch der sekundären Region enthält. Die Schritte finden Sie unter [Erweitern der Always On-Verfügbarkeitsgruppe auf ein Azure-Remoterechenzentrum (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/).
+- Erstellen Sie eine SQL Server Always On-Verfügbarkeitsgruppe, die SQL Server-Instanzen sowohl in der primären als auch der sekundären Region enthält. Die Schritte finden Sie unter [Erweitern der Always On-Verfügbarkeitsgruppe auf ein Azure-Remoterechenzentrum (PowerShell)](https://techcommunity.microsoft.com/t5/DataCAT/Extending-AlwaysOn-Availability-Group-to-Remote-Azure-Datacenter/ba-p/305217).
 
   - Legen Sie das primäre Replikat in der primären Region ab.
   - Legen Sie ein oder mehrere sekundäre Replikate in der primären Region ab. Konfigurieren Sie diese für die Verwendung synchroner Commits mit automatischem Failover.

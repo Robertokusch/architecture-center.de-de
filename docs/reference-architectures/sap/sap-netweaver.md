@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, SAP, Windows
-ms.openlocfilehash: 1167a65786c3df946ebaed3e52e4ed4033f50fd5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: e866727a40551b60e74fc26878a15a5a48e69cf6
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486402"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897625"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Bereitstellen von SAP NetWeaver (Windows) für AnyDB auf virtuellen Azure-Computern
 
@@ -91,7 +91,7 @@ In herkömmlichen lokalen SAP-Bereitstellungen sind mehrere Netzwerkschnittstell
 
 In dieser Architektur wird der Adressraum des virtuellen Netzwerks in Subnetze unterteilt. In dieser Referenzarchitektur liegt der Fokus hauptsächlich auf dem Logikschichtsubnetz. Jedes Subnetz kann einer Netzwerksicherheitsgruppe (NSG) zugeordnet werden, in der die Zugriffsrichtlinien für das Subnetz definiert sind. Platzieren Sie Anwendungsserver in einem separaten Subnetz, sodass Sie diese leichter schützen können, indem Sie die Sicherheitsrichtlinien des Subnetzes und nicht die einzelnen Server verwalten.
 
-Wenn eine NSG einem Subnetz zugeordnet ist, gilt sie für alle Server im Subnetz. Weitere Informationen zur Verwendung von Netzwerksicherheitsgruppen für eine differenziertere Kontrolle über die Server in einem Subnetz finden Sie unter [Filtern des Netzwerkdatenverkehrs mit Netzwerksicherheitsgruppen](https://azure.microsoft.com/en-us/blog/multiple-vm-nics-and-network-virtual-appliances-in-azure/).
+Wenn eine NSG einem Subnetz zugeordnet ist, gilt sie für alle Server im Subnetz. Weitere Informationen zur Verwendung von Netzwerksicherheitsgruppen für eine differenziertere Kontrolle über die Server in einem Subnetz finden Sie unter [Filtern des Netzwerkdatenverkehrs mit Netzwerksicherheitsgruppen](https://azure.microsoft.com/blog/multiple-vm-nics-and-network-virtual-appliances-in-azure).
 
 ### <a name="load-balancers"></a>Load Balancer
 

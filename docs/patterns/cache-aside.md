@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: bb2aa5a7ae6d7a33eac33dce4588380ec82a0df7
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: c4b423b2031699210d5917f12a4c14df0f4a694c
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488170"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898271"
 ---
 # <a name="cache-aside-pattern"></a>Cachefremdes Muster
 
@@ -125,7 +125,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 }
 ```
 
-> Die Beispiele verwenden Redis Cache, um auf den Speicher zuzugreifen und Informationen aus dem Cache abzurufen. Weitere Informationen finden Sie unter [Verwenden von Azure Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache) und [Gewusst wie: Erstellen einer Web-App mit Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto)
+> Die Beispiele verwenden Redis Cache, um auf den Speicher zuzugreifen und Informationen aus dem Cache abzurufen. Weitere Informationen finden Sie unter [Verwenden von Azure Redis Cache](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache) und [Gewusst wie: Erstellen einer Web-App mit Redis Cache](/azure/redis-cache/cache-web-app-howto)
 
 Die unten gezeigte `UpdateEntityAsync`-Methode veranschaulicht, wie ein Objekt im Cache für ungültig erklärt wird, wenn der Wert von der Anwendung geändert wird. Der Code aktualisiert den ursprünglichen Datenspeicher und entfernt dann das zwischengespeicherte Element aus dem Cache.
 
@@ -150,6 +150,6 @@ public async Task UpdateEntityAsync(MyEntity entity)
 
 Die folgenden Informationen sind unter Umständen auch relevant, wenn dieses Muster implementiert wird:
 
-- [Caching Guidance (Leitfaden zum Caching)](https://docs.microsoft.com/azure/architecture/best-practices/caching). Enthält weitere Informationen zum Zwischenspeichern von Daten in einer Cloudlösung und die Probleme, die Sie bedenken sollten, wenn Sie einen Cache implementieren.
+- [Caching Guidance (Leitfaden zum Caching)](/azure/architecture/best-practices/caching). Enthält weitere Informationen zum Zwischenspeichern von Daten in einer Cloudlösung und die Probleme, die Sie bedenken sollten, wenn Sie einen Cache implementieren.
 
 - [Data Consistency Primer (Grundlagen der Datenkonsistenz)](https://msdn.microsoft.com/library/dn589800.aspx). Cloudanwendungen verwenden in der Regel Daten, die auf Datenspeicher verteilt sind. Das Verwalten und Erhalten der Datenkonsistenz in dieser Umgebung ist ein wichtiger Aspekt des Systems, insbesondere die Probleme mit Parallelität und Dienstverfügbarkeit, die auftreten können. Dieser Artikel erläutert Probleme im Zusammenhang mit der Konsistenz verteilter Daten und fasst zusammen, wie eine Anwendung letztlich Konsistenz implementieren kann, um die Verfügbarkeit von Daten beizubehalten.
