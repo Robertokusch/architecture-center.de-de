@@ -19,7 +19,7 @@ Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] ver
 
 ![Architektur für verteiltes Deep Learning][0]
 
-**Szenario:** Bildklassifizierung ist eine weit verbreitete Technik in Verbindung mit maschinellem Sehen und wird häufig durch Trainieren eines künstlichen neuronalen Netzes (Convolutional Neural Network, CNN) umgesetzt. Bei besonders umfangreichen Modellen mit großen Datasets kann das Training mit einer einzelnen GPU Wochen oder Monate dauern. Manchmal sind die Modelle sogar so groß, dass gar keine sinnvollen Batchgrößen für die GPU möglich sind. In solchen Fällen lässt sich die Trainingsdauer mithilfe eines verteilten Trainings verkürzen.
+**Szenario:** Bildklassifizierung ist eine weit verbreitete Technik in Verbindung mit maschinellem Sehen und wird häufig durch Trainieren eines auf dem Faltungsprinzip basierenden neuronalen Netzes (Convolutional Neural Network, CNN) umgesetzt. Bei besonders umfangreichen Modellen mit großen Datasets kann das Training mit einer einzelnen GPU Wochen oder Monate dauern. Manchmal sind die Modelle sogar so groß, dass gar keine sinnvollen Batchgrößen für die GPU möglich sind. In solchen Fällen lässt sich die Trainingsdauer mithilfe eines verteilten Trainings verkürzen.
 
 In diesem spezifischen Szenario wird ein [ResNet50-CNN-Modell][resnet] unter Verwendung von [Horovod][horovod] mit dem [Imagenet-Dataset][imagenet] sowie mit synthetischen Daten trainiert. Die Referenzimplementierung veranschaulicht die Bewältigung dieser Aufgabe anhand von drei der beliebtesten Deep Learning-Frameworks: TensorFlow, Keras und PyTorch.
 
@@ -62,7 +62,7 @@ Diese Architektur umfasst die folgenden Komponenten.
 
 **[Batch AI-Dateiserver][batch-ai-files]** ist eine NFS-Freigabe mit einem einzelnen Knoten und wird in dieser Architektur zum Speichern der Trainingsdaten verwendet. Batch AI erstellt eine NFS-Freigabe und bindet sie auf dem Cluster ein. Batch AI-Dateiserver sind die empfohlene Methode, um Daten mit dem nötigen Durchsatz für den Cluster bereitzustellen.
 
-**[Docker-Hub][docker]** wird zum Speichern des Docker-Images verwendet, das Batch AI zum Ausführen des Trainings verwendet. Der Docker-Hub wurde für diese Architektur ausgewählt, weil er benutzerfreundlich und das Standardimagerepository für Docker-Benutzer ist. [Azure Container Registry][acr] kann ebenfalls verwendet werden.
+**[Docker-Hub][docker]** wird zum Speichern des Docker-Images benutzt, das Batch AI zum Ausführen des Trainings verwendet. Der Docker-Hub wurde für diese Architektur ausgewählt, weil er benutzerfreundlich und das Standardimagerepository für Docker-Benutzer ist. [Azure Container Registry][acr] kann ebenfalls verwendet werden.
 
 ## <a name="performance-considerations"></a>Überlegungen zur Leistung
 
