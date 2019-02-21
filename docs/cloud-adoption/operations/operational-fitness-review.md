@@ -1,17 +1,17 @@
 ---
-title: 'Enterprise Cloud-Einführung: Betriebliche Grundlagen'
+title: 'CAF: Betriebliche Grundlagen'
 description: Leitfaden zu betrieblichen Grundlagen
 author: petertaylor9999
 ms.date: 09/20/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 26867e3ecce738f18c5a03ff41754281229851f4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: afecf380b1a75d006f6f2bc0cb0e5058cd3feffc
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481124"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897098"
 ---
 # <a name="establishing-an-operational-fitness-review"></a>Einrichten einer Überprüfung der Einsatztauglichkeit
 
@@ -49,7 +49,7 @@ Der Prozess besteht allgemein aus zwei Phasen. In der Phase der Voraussetzungen 
 
 Die Schritte in dieser Phase sollen die notwendigen Voraussetzungen für eine regelmäßige Überprüfung der wichtigen Dienste schaffen.
 
-- **Identifizieren unternehmenskritischer Geschäftsvorgänge**. Bestimmen Sie Ihre **unternehmenskritischen** Geschäftsvorgänge. Die Geschäftsvorgänge sind unabhängig von allen unterstützenden Dienstfunktionen. Mit anderen Worten, Geschäftsvorgänge stellen die tatsächlichen Aktivitäten dar, die das Unternehmen ausführen muss, und werden durch eine Reihe von IT-Diensten unterstützt. Der Begriff _unternehmenskritisch_, oder alternativ _geschäftskritisch_, gibt an, dass es zu schwerwiegenden Auswirkung für das Unternehmen kommen kann, wenn der Vorgang behindert wird. So kann beispielsweise ein Online-Händler einen Geschäftsvorgang wie „einem Kunden ermöglichen, einen Artikel in einen Warenkorb zu legen“ oder „eine Kreditkartenzahlung abwickeln“ haben. Wenn bei einem dieser beiden Vorgänge ein Fehler auftritt, wäre ein Kunde nicht in der Lage, die Transaktion abzuschließen und das Unternehmen könnte keinen Umsatz erzielen.
+- **Identifizieren unternehmenskritischer Geschäftsvorgänge**. Bestimmen Sie Ihre unternehmenskritischen Geschäftsvorgänge. Die Geschäftsvorgänge sind unabhängig von allen unterstützenden Dienstfunktionen. Mit anderen Worten, Geschäftsvorgänge stellen die tatsächlichen Aktivitäten dar, die das Unternehmen ausführen muss, und werden durch eine Reihe von IT-Diensten unterstützt. Der Begriff **unternehmenskritisch** (oder **geschäftskritisch**) gibt an, dass es zu schwerwiegenden Auswirkung für das Unternehmen kommen kann, wenn der Vorgang behindert wird. So kann beispielsweise ein Online-Händler einen Geschäftsvorgang wie „einem Kunden ermöglichen, einen Artikel in einen Warenkorb zu legen“ oder „eine Kreditkartenzahlung abwickeln“ haben. Wenn bei einem dieser beiden Vorgänge ein Fehler auftritt, wäre ein Kunde nicht in der Lage, die Transaktion abzuschließen und das Unternehmen könnte keinen Umsatz erzielen.
 
 - **Zuordnen der Vorgänge zu Diensten**. Ordnen Sie diese Geschäftsvorgänge den Diensten zu, die sie unterstützen. Im obigen Beispiel des Einkaufswagens können mehrere Dienste beteiligt sein: ein Bestandsverwaltungsdienst, ein Einkaufswagendienst usw. Im obigen Beispiel für Kreditkartenzahlungen kann ein lokaler Zahlungsdienst mit einem externen Zahlungsabwicklungsdienst interagieren.
 
@@ -65,8 +65,7 @@ Es ist wichtig zu betonen, dass diese Metriken die Geschäftsanforderungen direk
 
 Diese Phase ist der Kern des Prozesses der Überprüfung der Einsatztauglichkeit.
 
-- **Messen der Dienstmetriken**. Die Dienste werden anhand der Scorecardmetriken überwacht, um sicherzustellen, dass sie den Geschäftserwartungen entsprechen. Dies bedeutet, dass die Dienstüberwachung eine wesentliche Rolle spielt. Wenn Sie eine Reihe von Diensten in Bezug auf die nicht-funktionalen Anforderungen nicht überwachen können, sollten die entsprechenden Scorecardmetriken als rot betrachtet werden. In diesem Fall ist der erste Schritt zur Korrektur die Implementierung einer entsprechenden Dienstüberwachung.
-Wenn das Unternehmen beispielsweise erwartet, dass ein Dienst mit einer Verfügbarkeit von 99,99 % arbeitet, aber keine Produktionstelemetrie zur Messung der Verfügbarkeit vorhanden ist, sollten Sie davon ausgehen, dass die Anforderung nicht erfüllen werden.
+- **Messen der Dienstmetriken**. Die Dienste werden anhand der Scorecardmetriken überwacht, um sicherzustellen, dass sie den Geschäftserwartungen entsprechen. Dies bedeutet, dass die Dienstüberwachung eine wesentliche Rolle spielt. Wenn Sie eine Reihe von Diensten in Bezug auf die nicht-funktionalen Anforderungen nicht überwachen können, sollten die entsprechenden Scorecardmetriken als rot betrachtet werden. In diesem Fall ist der erste Schritt zur Korrektur die Implementierung einer entsprechenden Dienstüberwachung. Wenn das Unternehmen beispielsweise erwartet, dass ein Dienst mit einer Verfügbarkeit von 99,99 % arbeitet, aber keine Produktionstelemetrie zur Messung der Verfügbarkeit vorhanden ist, sollten Sie davon ausgehen, dass die Anforderung nicht erfüllen werden.
 
 - **Planen der Korrekturmaßnahmen**. Bestimmen Sie für jeden Dienstvorgang mit Metriken, die unter einen akzeptablen Schwellenwert fallen, die Kosten für die Korrektur des Dienstes, um damit eine akzeptable Metrik zu erreichen. Wenn die Kosten für die Korrektur des Dienstes höher sind als die erwarteten Einnahmen aus dem Dienst, sollten Sie die immateriellen Kosten wie z.B. die Kundenzufriedenheit berücksichtigen. Wenn Kunden beispielsweise Schwierigkeiten haben, über den Dienst erfolgreich zu bestellen, könnten sie stattdessen einen Konkurrenten wählen.
 
@@ -107,10 +106,10 @@ Die Details des Prozesses und der Besprechung sollten an Ihre spezifischen Bedü
 ## <a name="recommended-resources"></a>Empfohlene Ressourcen
 
 - [Säulen der Softwarequalität](../../guide/pillars.md).
-Dieser Abschnitt des Architekturleitfadens für Azure-Anwendungen beschreibt die fünf Säulen der Softwarequalität: Skalierbarkeit, Verfügbarkeit, Resilienz, Verwaltung und Sicherheit.
+    Dieser Abschnitt des Architekturleitfadens für Azure-Anwendungen beschreibt die fünf Säulen der Softwarequalität: Skalierbarkeit, Verfügbarkeit, Resilienz, Verwaltung und Sicherheit.
 - [Zehn Entwurfsprinzipien für Azure-Anwendungen](../../guide/design-principles/index.md).
-Dieser Abschnitt des Architekturleitfadens für Azure-Anwendungen beschreibt eine Reihe von Entwurfsprinzipien, um Ihre Anwendung skalierbarer, belastbarer und verwaltbarer zu machen.
+    Dieser Abschnitt des Architekturleitfadens für Azure-Anwendungen beschreibt eine Reihe von Entwurfsprinzipien, um Ihre Anwendung skalierbarer, belastbarer und verwaltbarer zu machen.
 - [Entwerfen robuster Anwendungen für Azure](../../resiliency/index.md).
-In diesem Leitfaden werden der Begriff „Resilienz“ und die dazugehörigen Konzepte definiert. Anschließend wird der Prozess zur Erreichung von Resilienz beschrieben. Hierzu wird ein strukturierter Ansatz für die Lebensdauer einer Anwendung verwendet – vom Entwurf und der Implementierung über die Bereitstellung bis zum Betrieb.
+    In diesem Leitfaden werden der Begriff „Resilienz“ und die dazugehörigen Konzepte definiert. Anschließend wird der Prozess zur Erreichung von Resilienz beschrieben. Hierzu wird ein strukturierter Ansatz für die Lebensdauer einer Anwendung verwendet – vom Entwurf und der Implementierung über die Bereitstellung bis zum Betrieb.
 - [Cloudentwurfsmuster](../../patterns/index.md).
-Diese Entwurfsmuster unterstützen Engineeringteams, wenn sie Anwendungen basierend auf den Säulen der Softwarequalität erstellen.
+    Diese Entwurfsmuster unterstützen Engineeringteams, wenn sie Anwendungen basierend auf den Säulen der Softwarequalität erstellen.

@@ -1,21 +1,21 @@
 ---
-title: 'Enterprise Cloud-Einführung: Übersicht über Vorgänge'
-description: Übersicht über den Vorgangsinhalt zur Enterprise Cloud-Einführung in Azure
+title: 'CAF: Übersicht über Vorgänge'
+description: Übersicht über den Vorgangsinhalt für das Framework für die Einführung der Microsoft Cloud (Microsoft Cloud Adoption Framework)
 author: petertaylor9999
 ms.date: 09/20/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: e1b401c59ec91797029440824e88d4c4bfd83315
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 2667eb54dcea7621f32f6f328c1817be55119a1f
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484454"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897132"
 ---
-# <a name="enterprise-cloud-adoption-operations-overview"></a>Enterprise Cloud-Einführung: Übersicht über Vorgänge
+# <a name="caf-operations-overview"></a>CAF: Übersicht über Vorgänge
 
-In diesem Abschnitt zur Enterprise Cloud-Einführung in Azure wird das Thema **Vorgänge** behandelt. 
+Dieser Abschnitt des CAF im Thema der **Vorgänge**.
 
 Sobald Ihr Unternehmen eine **digitalen Transformation** begonnen hat, dreht sich ein Großteil der Arbeit in den Design- und Implementierungsteams um die Migration bestehender Workloads von lokalen Systemen zu Azure, um die Entwicklung und die Test neuer cloudbasierter Anwendungen in Azure sowie die Integration neuer innovativer Azure-Dienste in bestehende lokale Workloads. Diese sind jedoch nur der erste Schritt im Rahmen der digitalen Transformation. Sobald diese Workloads in Azure gestartet sind und ausgeführt werden, ist der nächste Schritt der **Betrieb** in der Cloud.
 
