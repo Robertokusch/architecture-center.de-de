@@ -1,20 +1,21 @@
 ---
-title: Erstellen eines Finanzmodells für die Cloudtransformation
-titleSuffix: Enterprise Cloud Adoption
-description: 'Gewusst wie: Erstellen eines Finanzmodells für die Cloudtransformation'
+title: 'CAF: Erstellen eines Finanzmodells für die Cloudtransformation'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: Erfahren Sie, wie Sie ein Finanzmodell für die Cloudtransformation erstellen.
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: d1a5cd0cefef4786a0f55592cad58451c3cae9c4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 4fe9b178962bf2cd6a79233278c73085237772f0
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482186"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898203"
 ---
-# <a name="enterprise-cloud-adoption-how-to-create-a-financial-model-for-cloud-transformation"></a>Enterprise Cloud-Einführung: Gewusst wie: Erstellen eines Finanzmodells für die Cloudtransformation
+# <a name="create-a-financial-model-for-cloud-transformation"></a>Erstellen eines Finanzmodells für die Cloudtransformation
 
 Die Erstellung eines Finanzmodells, mit dem der gesamte Geschäftswert einer Cloudtransformation präzise dargestellt wird, kann kompliziert sein. Finanzmodelle und geschäftliche Begründungen unterscheiden sich meist von Organisation zu Organisation. In diesem Artikel sind einige Formeln enthalten, und es wird auf einige Punkte hingewiesen, die beim Erstellen eines Finanzmodells häufig vergessen werden.
 
@@ -97,3 +98,10 @@ Eine Ausnahme dieser Regel ist ein Fall, in dem für den Betrieb erforderliche D
 Investitionskosten (CapEx) unterscheiden sich leicht von den Betriebskosten. In dieser Kategorie geht es normalerweise um Aktualisierungszyklen oder Datencentererweiterungen. Ein Beispiel für die Erweiterung eines Datencenters ist ein neuer Hochleistungscluster zum Hosten einer Big Data-Lösung oder eines Data Warehouse. Dies gehört im Allgemeinen zur Kategorie „Investitionskosten“. Üblicher sind die grundlegenden Aktualisierungszyklen. Einige Unternehmen verfügen über starre Hardwareaktualisierungszyklen, bei denen Ressourcen nach einem regelmäßigen Zyklus ausgesondert und ausgetauscht werden (normalerweise alle 3, 5 oder 8 Jahre). Diese Zyklen stimmen oft mit Leasezyklen für Ressourcen oder der prognostizierten Lebensdauer von Ausrüstung überein. Wenn ein Aktualisierungszyklus ansteht, fallen in der IT-Abteilung Investitionskosten zur Beschaffung neuer Ausrüstung an.
 
 Falls ein Aktualisierungszyklus genehmigt und mit einem Budget versehen wurde, kann eine Cloudtransformation dazu beitragen, diese Kosten zu beseitigen. Wenn ein Aktualisierungszyklus geplant wurde, aber die Genehmigung noch nicht erteilt wurde, kann die Cloudtransformation eine Vermeidung der Investitionskosten bewirken. Beide Szenarien fließen in den Kostendeltawert ein.
+
+## <a name="next-steps"></a>Nächste Schritte
+
+Sehen Sie sich einige Beispiele für Finanzergebnisse im Kontext einer Cloudtransformation an.
+
+> [!div class="nextstepaction"]
+> [Beispiele für Finanzergebnisse](./business-outcomes/fiscal-outcomes.md)

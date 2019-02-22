@@ -1,21 +1,23 @@
 ---
-title: 'Enterprise Cloud-Einführung: Beispiele für Finanzergebnisse'
+title: 'CAF: Beispiele für Finanzergebnisse'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
 description: Beispiele für Finanzergebnisse
 author: BrianBlanchard
 ms.date: 10/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: d502294121d9c11d504068ff622cba26fa76db04
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: c181133aa238bb631d844cd72a21165b85e47936
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484930"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897081"
 ---
-# <a name="enterprise-cloud-adoption-examples-of-fiscal-outcomes"></a>Enterprise Cloud-Einführung: Beispiele für Finanzergebnisse
+# <a name="examples-of-fiscal-outcomes"></a>Beispiele für Finanzergebnisse
 
-Auf dieser höchsten Ebene stehen drei elementare Konzepte im Mittelpunkt von Gesprächen über Finanzergebnisse:
+Auf der obersten Ebene stehen drei grundlegende Konzepte im Mittelpunkt von Gesprächen über Finanzergebnisse:
 
 * Umsatz: Fließt durch den Verkauf von Waren oder Dienstleistungen mehr Geld in das Unternehmen?
 * Kosten: Muss weniger Geld für die Erzeugung bzw. Erstellung, das Marketing, den Vertrieb oder die Bereitstellung von Waren oder Dienstleistungen ausgegeben werden.
@@ -26,27 +28,27 @@ Im weiteren Verlauf dieses Artikels werden die oben genannten Finanzergebnisse i
 > [!NOTE]
 > Die folgenden Beispiele sind hypothetisch und sollten nicht als Garantie für die mit der Einführung einer Cloudstrategie erzielbaren Erträge betrachtet werden.
 
-# <a name="revenue-outcomes"></a>Umsatzergebnisse
+## <a name="revenue-outcomes"></a>Umsatzergebnisse
 
-## <a name="new-revenue-streams"></a>Neue Umsatzquellen
+### <a name="new-revenue-streams"></a>Neue Umsatzquellen
 
 Die Cloud bietet die Möglichkeit, neue Produkte für Kunden anzubieten oder vorhandene Produkte auf neue Weise bereitzustellen. Viele Geschäftsleute sehen neue Umsatzquellen als eine innovative, unternehmerische und spannende Chance. Neue Umsatzquellen sind jedoch auch fehleranfällig und werden in vielen Unternehmen als hohes Risiko betrachtet. Werden sie von der IT vorgeschlagen, ist die Wahrscheinlichkeit hoch, dass sie abgelehnt oder zurückgestellt werden. Um diesen Ergebnissen Glaubwürdigkeit zu verleihen, sollten Sie sich mit einem Geschäftsführer zusammentun, der sich bereits als Innovator positioniert hat. Durch die Überprüfung der Umsatzquelle in einer frühen Phase des Prozesses lassen sich Hindernisse von Seiten des Unternehmens vermeiden.
 
-* Beispiel: Ein Unternehmen verkauft seit mehr als 100 Jahren Bücher. Ein Mitarbeiter des Unternehmens erkennt, dass die Inhalte auf elektronischem Wege bereitgestellt werden können. Er entwickelt ein Gerät, das den direkten Download der gleichen Bücher ermöglicht und in der Buchhandlung verkauft werden kann. Durch das Gerät werden für Bücher neue Verkäufe in Höhe von X US-Dollar erzielt. 
+* Beispiel: Ein Unternehmen verkauft seit mehr als 100 Jahren Bücher. Ein Mitarbeiter des Unternehmens erkennt, dass die Inhalte auf elektronischem Weg bereitgestellt werden können. Er entwickelt ein Gerät, das den direkten Download der gleichen Bücher ermöglicht und in der Buchhandlung verkauft werden kann. Dadurch werden für Bücher neue Verkäufe mit einem Umsatz von X US-Dollar erzielt.
 
-## <a name="revenue-increases"></a>Umsatzsteigerungen
+### <a name="revenue-increases"></a>Umsatzsteigerungen
 
 Dank globaler Skalierbarkeit und digitaler Reichweite bietet die Cloud Unternehmen die Möglichkeit, den mit bestehenden Umsatzquellen erzielten Umsatz zu steigern. Oftmals ist ein solches Ergebnis auf eine Abstimmung mit der Vertriebs- oder Marketingleitung zurückzuführen.
 
 * Beispiel: Ein Unternehmen, das Widgets verkauft, könnte mehr Widgets verkaufen, wenn die Vertriebsmitarbeiter sicheren Zugriff auf den digitalen Katalog und die Lagerbestände des Unternehmens hätten. Leider sind diese Daten nur im ERP-System des Unternehmens verfügbar, auf das nur über ein mit dem Netzwerk verbundenes Gerät zugegriffen werden kann. Durch das Erstellen einer mit dem ERP-System verbundenen Dienstfassade und das Verfügbarmachen der Katalogliste und nicht sensiblen Bestandsmengen in einer Anwendung in der Cloud könnten die Vertriebsmitarbeiter vor Ort beim Kunden auf die von ihnen benötigten Daten zugreifen. Die Erweiterung von Active Directory mit Azure AD und die Integration des rollenbasierten Zugriffs in die Anwendung würde es dem Unternehmen ermöglichen, den Schutz der Daten sicherzustellen. Dieses einfache Projekt könnte den Umsatz für eine vorhandene Produktlinie um X % steigern.
 
-## <a name="profit-increases"></a>Gewinnsteigerungen
+### <a name="profit-increases"></a>Gewinnsteigerungen
 
 Nur selten können mit einem einzigen Projekt gleichzeitig der Umsatz gesteigert und die Kosten gesenkt werden. Wenn dies der Fall ist, sollte die Darstellung eines oder mehrerer Umsatzergebnisse jedoch mit mindestens einem Kostenergebnis abgestimmt werden, um das gewünschte Ergebnis zu kommunizieren.
 
-# <a name="cost-outcomes"></a>Kostenergebnisse
+## <a name="cost-outcomes"></a>Kostenergebnisse
 
-## <a name="cost-reduction"></a>Kostensenkung
+### <a name="cost-reduction"></a>Kostensenkung
 
 Cloud Computing kann die Investitionskosten (CapEx, Capital Expenses) im Zusammenhang mit dem Erwerb von Hardware und Software, der Einrichtung von Rechenzentren, dem Betrieb von lokalen Rechenzentren usw. reduzieren. Die Kosten für Serverracks, Stromversorgung und Kühlung rund um die Uhr sowie IT-Experten für die Verwaltung der Infrastruktur summieren sich schnell. Durch die Stilllegung eines Rechenzentrums kann die Kapitalbindung reduziert werden. Diese Vorgehensweise wird im Allgemeinen als „Ausstieg aus dem Rechenzentrumsbetrieb“ bezeichnet. Die Kostensenkung wird in der Regel an den Mitteln im aktuellen Budget gemessen, das je nach Finanzmanagement des CFO (Chief Financial Officer) ein bis fünf Jahre umfassen kann.
 
@@ -60,13 +62,13 @@ Coverdell modernisiert seine Infrastruktur und erzielt mit Azure rekordverdächt
 „Der Zugang zum Azure-Technologiestapel ebnet den Weg für skalierbare, einfach zu implementierende und hoch verfügbare Lösungen, die kostengünstig sind. Dadurch können unsere Architekten die von ihnen bereitgestellten Lösungen deutlich kreativer gestalten.“
 Ryan Sorensen: Director of Application Development and Enterprise Architecture, Coverdell
 
-## <a name="cost-avoidance"></a>Vermeidung von Kosten
+### <a name="cost-avoidance"></a>Kostenvermeidung
 
 Durch die Stilllegung von Rechenzentren lassen sich auch zukünftige Aktualisierungszyklen und somit Kosten vermeiden. Der Kauf neuer Hardware und Software, um veraltete lokale Systeme zu ersetzen, wird als Aktualisierungszyklus bezeichnet. In Azure werden die Hardware und das Betriebssystem ohne zusätzliche Kosten für den Kunden regelmäßig gewartet, gepatcht und aktualisiert. Dies versetzt einen CFO in die Lage, geplante zukünftige Ausgaben aus langfristigen finanziellen Prognosen zu streichen. Die Kostenvermeidung wird in Euro gemessen. Sie unterscheidet sich von der Kostensenkung, bei der es in der Regel um ein zukünftiges Budget geht, das noch nicht vollständig genehmigt wurde.
 
 * Beispiel: Für das Rechenzentrum eines Unternehmens steht in sechs Monaten eine Verlängerung des Mietvertrags an. Das Rechenzentrum ist seit acht Jahren in Betrieb. Vor vier Jahren hat das Unternehmen mehrere Millionen US-Dollar in die Aktualisierung und Virtualisierung aller Server investiert. Im nächsten Jahr sollen die Hardware und Software erneut aktualisiert werden. Durch die Migration der Ressourcen in diesem Rechenzentrum im Rahmen einer betrieblichen Transformation würden Kosten vermieden, da die geplante Aktualisierung im prognostizierten Budget des nächsten Jahres wegfallen würde. Zudem könnte sie zu einer Kostensenkung führen, da die Mietkosten verringert oder entfallen würden.
 
-## <a name="capex-vs-opex"></a>Investitionskosten im Vergleich zu Betriebskosten
+### <a name="capex-versus-opex"></a>Investitionskosten und Betriebskosten im Vergleich
 
 Bevor wir näher auf die Kostenergebnisse eingehen, ist das Verständnis der zwei primären Kostenoptionen wichtig: Investitionskosten (CapEx, Capital Expenses) und Betriebskosten (Operating Expenses, OpEx).
 
@@ -79,7 +81,7 @@ Die folgenden Begriffsdefinitionen sollen die Unterschiede zwischen Investitions
 * **Abschreibung** definiert, wie der Wert eines Vermögenswerts im Laufe der Zeit abnimmt. Von größerer Bedeutung für das Gespräch über Investitions- und Betriebskosten ist die Zuordnung eines Vermögenswerts im Laufe der Zeiträume, in denen er genutzt wird. Wenn Sie beispielsweise in diesem Jahr eine Anwendung erstellen, deren erwartete durchschnittliche Lebensdauer jedoch fünf Jahre beträgt (wie bei den meisten kommerziellen Apps), werden die Kosten für das Entwicklungsteam und die erforderlichen Tools zum Entwickeln und Bereitstellen der Codebasis gleichmäßig über fünf Jahre abgeschrieben.
 * **Bewertung** ist der Prozess, durch den der Wert eines Unternehmens geschätzt wird. In den meisten Branchen beruht die Bewertung auf der Fähigkeit des Unternehmens, unter Berücksichtigung der erforderlichen Betriebskosten für die Erzeugung der entsprechenden Waren Umsatz und Gewinn zu generieren. In manchen Branchen, beispielsweise im Einzelhandel, oder bei Transaktionstypen wie Private Equity können Vermögenswerte und die Abschreibung eine wichtige Rolle bei der Bewertung des Unternehmens spielen.
 
-Fast immer ist davon auszugehen, dass verschiedene Führungskräfte – einschließlich des CIO (Chief Information Officer) – darüber debattieren, wie das Kapital optimal genutzt werden sollte, um das Unternehmen in der gewünschten Richtung voranzubringen. Dem CIO die Möglichkeit zu geben, nicht die von Konkurrenz geprägten Gespräche über Investitionskosten führen zu müssen, sondern konkrete Aussagen bezüglich der Betriebskostenkontrolle treffen zu können, kann allein schon ein gutes Ergebnis sein. In vielen Branchen suchen CFOs aktiv nach Möglichkeiten zur besseren Zuordnung der finanziellen Verantwortlichkeit zu den Kosten der verkauften Waren.
+Fast immer ist davon auszugehen, dass verschiedene Führungskräfte (einschließlich des CIO) darüber debattieren, wie das Kapital optimal genutzt werden sollte, um das Unternehmen in der gewünschten Richtung voranzubringen. Dem CIO die Möglichkeit zu geben, nicht die von Konkurrenz geprägten Gespräche über Investitionskosten führen zu müssen, sondern konkrete Aussagen bezüglich der Betriebskostenkontrolle treffen zu können, kann allein schon ein gutes Ergebnis sein. In vielen Branchen suchen CFOs aktiv nach Möglichkeiten zur besseren Zuordnung der finanziellen Verantwortlichkeit zu den Kosten der verkauften Waren.
 
 Bevor eine Transformation mit einer solchen Umrechnung der Investitionskosten in Betriebskosten in Verbindung gebracht wird, empfiehlt es sich jedoch, in Treffen mit den CFO- oder CIO-Teams herauszufinden, ob das Unternehmen Investitions- oder Betriebskostenstrukturen bevorzugt. In einigen Organisationen ist die Senkung der Investitionskosten zugunsten der Betriebskosten tatsächlich ein äußerst wünschenswertes Ergebnis. Wie oben erwähnt, ist dies mitunter bei Einzelhandels-, Holding- und Private Equity-Unternehmen der Fall, die viel Wert auf herkömmliche Anlagenrechnungsmodelle, aber wenig Wert auf intellektuelles Eigentum legen. Auch bei Unternehmen, die in der Vergangenheit negative Erfahrungen mit der Auslagerung von IT-Mitarbeitern oder anderen Funktionen gemacht haben, ist dies zu beobachten.
 

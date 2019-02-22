@@ -1,20 +1,21 @@
 ---
-title: Erstellen eines Geschäftsszenarios für die Cloudmigration
-titleSuffix: Enterprise Cloud Adoption
-description: Zu berücksichtigende Punkte beim Erstellen einer geschäftlichen Begründung für die Cloudmigration
+title: 'CAF: Erstellen eines Geschäftsszenarios für die Cloudmigration'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: Überlegungen beim Erstellen einer geschäftlichen Begründung für die Cloudmigration
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 8c27ce211f500ee2eec4f7775a7f68f214dba433
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 21c2b877a0f329711027f020fd0047479e8c7bfb
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488323"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898305"
 ---
-# <a name="enterprise-cloud-adoption-building-a-cloud-migration-business-case"></a>Enterprise Cloud-Einführung: Erstellen eines Geschäftsszenarios für die Cloudmigration
+# <a name="build-a-business-justification-for-cloud-migration"></a>Erstellen einer geschäftlichen Begründung für die Cloudmigration
 
 Bei Cloudmigrationen können mit Maßnahmen zur Cloudtransformation frühzeitig Renditebeträge (Return on Investment, ROI) generiert werden. Die Entwicklung einer eindeutigen geschäftlichen Begründung mit greifbaren, relevanten Kosten und Erträgen kann ein komplexer Prozess sein. In diesem Artikel erhalten Sie Informationen dazu, welche Daten zum Erstellen eines Finanzmodells benötigt werden, das an den Ergebnissen der Cloudmigration ausgerichtet ist. Lassen Sie uns zuerst einige Mythen zur Cloudmigration ausräumen, damit Ihre Organisation einige häufige Fehler vermeiden kann.
 
@@ -26,7 +27,7 @@ Bei Cloudmigrationen können mit Maßnahmen zur Cloudtransformation frühzeitig 
 
 **Mythos: Durch die Spiegelung meiner lokalen Umgebung kann ich in der Cloud Kosten sparen.** Es kommt vor, dass Kunden beim Planen der digitalen Ressourcen ungenutzte Kapazität ermitteln, die mehr als 50% der bereitgestellten Umgebung ausmacht. Wenn Ressourcen in der Cloud bereitgestellt werden, um die derzeitige Bereitstellung widerzuspiegeln, lassen sich Kosteneinsparungen nur schwer realisieren. Erwägen Sie, die Größe der bereitgestellten Ressourcen zu verringern, um eine Anpassung an die Nutzungsmuster zu erzielen (anstelle der Bereitstellungsmuster).
 
-**Mythos: Serverkosten sind die Grundlage der Geschäftsszenarien für die Cloudmigration.** In einigen Fällen stimmt dies. Für einige Unternehmen ist es wichtig, die laufenden Investitionskosten für Server zu reduzieren. Dies ist aber von mehreren Faktoren abhängig. Unternehmen mit einem Hardware-Aktualisierungszyklus von fünf bis acht Jahren können bei der Cloudmigration meist keine schnelle Rendite erzielen. Unternehmen mit standardisierten oder erzwungenen Aktualisierungszyklen können den Break-even-Point dagegen schnell erreichen. In beiden Fällen können auch andere Ausgaben die finanziellen Auslöser sein, die eine Migration rechtfertigen. Hier sind einige Beispiele für Kosten angegeben, die häufig übersehen werden, wenn Kosten nur aus Server- oder VM-Sicht betrachtet werden:
+**Mythos: Serverkosten sind die Grundlage der Geschäftsszenarien für die Cloudmigration.** In einigen Fällen stimmt dies. Für einige Unternehmen ist es wichtig, die laufenden Investitionskosten für Server zu reduzieren. Dies ist aber von mehreren Faktoren abhängig. Unternehmen mit einem Hardwareaktualisierungszyklus von fünf bis acht Jahren können bei der Cloudmigration meistens keine schnelle Rendite erzielen. Unternehmen mit standardisierten oder erzwungenen Aktualisierungszyklen können den Break-even-Point dagegen schnell erreichen. In beiden Fällen können auch andere Ausgaben die finanziellen Auslöser sein, die eine Migration rechtfertigen. Hier sind einige Beispiele für Kosten angegeben, die häufig übersehen werden, wenn Kosten nur aus Server- oder VM-Sicht betrachtet werden:
 
 - Die Softwarekosten für die Virtualisierung, Server und Middleware können sehr hoch sein. Bei der Nutzung von Cloudanbietern werden einige dieser Kosten beseitigt. Zwei Beispiele für die Reduzierung der Virtualisierungskosten bei Nutzung eines Cloudanbieters sind die Programme [Azure-Hybridvorteil](https://azure.microsoft.com/pricing/hybrid-benefit/#services) und [Reservierungen](https://azure.microsoft.com/reservations/).
 - Verluste aufgrund von Ausfällen können die Hardware- oder Softwarekosten schnell übersteigen. Wenn das derzeitige Datencenter nicht stabil ist, können Sie mit dem Unternehmen zusammenarbeiten, um die Auswirkungen von Ausfällen in Bezug auf die Verkaufschancenkosten oder die tatsächlichen Geschäftskosten zu quantifizieren.
@@ -109,4 +110,4 @@ Falls die Rendite immer noch nicht zufriedenstellend ist, können Sie Ihren Micr
 ## <a name="next-steps"></a>Nächste Schritte
 
 > [!div class="nextstepaction"]
-> [Erstellen eines Finanzmodells für die Cloudtransformation](financial-models.md)
+> [Erstellen eines Finanzmodells für die Cloudtransformation](./financial-models.md)
