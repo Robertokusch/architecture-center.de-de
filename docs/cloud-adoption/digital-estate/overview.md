@@ -1,20 +1,22 @@
 ---
-title: Worum handelt es sich bei digitalen Ressourcen?
-titleSuffix: Enterprise Cloud Adoption
-description: Erläuterung des Konzepts einer digitalen Ressource
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Worum handelt es sich bei digitalen Ressourcen?'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+description: Worum handelt es sich bei digitalen Ressourcen?
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: ce21a2d72fcb630f5f197dbd6b87b16ef8f41435
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: d23bdbdd98226e8b9cdb9bbb5fefa5a918a498d8
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481540"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898424"
 ---
-# <a name="enterprise-cloud-adoption-what-is-a-digital-estate"></a>Enterprise Cloud-Einführung: Worum handelt es sich bei digitalen Ressourcen?
+<!-- markdownlint-disable MD026 -->
+
+# <a name="caf-what-is-a-digital-estate"></a>Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Worum handelt es sich bei digitalen Ressourcen?
 
 Digitale Ressourcen finden sich in jedem modernen Unternehmen. Eine digitale Ressource ähnelt einer physischen Ressource und ist ein abstrakter Verweis auf eine Reihe konkreter eigener Ressourcen. Im digitalen Bereich handelt es sich bei diesen Ressourcen unter anderem um virtuelle Computer (VMs), Server, Anwendungen und Daten. Digitale Ressourcen sind also im Grunde alle IT-Ressourcen, die Unternehmensprozessen und unterstützenden Vorgängen zugrunde liegen.
 
@@ -53,4 +55,4 @@ Finanzmodelle und Migrationsbacklogs können geändert werden, um die rationalis
 Bevor Sie mit der Planung für digitale Ressourcen beginnen, müssen Sie sich zunächst für einen Ansatz entscheiden.
 
 > [!div class="nextstepaction"]
-> [Bestimmen des Analyseansatzes](approach.md)
+> [Ansätze für die Planung eines digitalen Umfelds](approach.md)

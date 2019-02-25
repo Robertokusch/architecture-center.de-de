@@ -1,20 +1,21 @@
 ---
-title: Abstimmen von Kostenmodellen mit digitalen Ressourcen
-titleSuffix: Enterprise Cloud Adoption
-description: Abstimmen von Kostenmodellen mit digitalen Ressourcen zur Prognose von Cloudkosten
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Abstimmen von Kostenmodellen mit digitalen Ressourcen'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: Abstimmen von Kostenmodellen mit dem digitalen Umfeld zur Prognose von Cloudkosten.
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 7423b159df7ff4c9d88fe00d7979f9f15e648847
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: b37d833106ad487faadab7c4b7ae397fa237d3d3
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485637"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897788"
 ---
-# <a name="enterprise-cloud-adoption-align-cost-models-with-the-digital-estate-to-forecast-cloud-costs"></a>Enterprise Cloud-Einführung: Abstimmen von Kostenmodellen mit digitalen Ressourcen zur Prognose von Cloudkosten
+# <a name="align-cost-models-with-the-digital-estate-to-forecast-cloud-costs"></a>Abstimmen von Kostenmodellen mit digitalen Ressourcen zur Prognose von Cloudkosten
 
 Nach Abschluss der Rationalisierung können digitale Ressourcen mit entsprechenden Kostenmodellen des gewählten Cloudanbieters abgestimmt werden. Bei der Erläuterung von Kostenmodellen ist es hilfreich, sich auf einen bestimmten Cloudanbieter zu konzentrieren. In diesem Artikel wird Azure als Cloudanbieter verwendet, um konkrete Beispiele zu ermöglichen.
 
@@ -24,6 +25,6 @@ Azure-Preistools ermöglichen eine transparente und exakte Verwaltung von Clouda
 
 - [Gesamtkostenrechner:](https://azure.com/tco) Senken Sie mithilfe der Azure-Cloudplattform die Gesamtkosten Ihrer lokalen Infrastruktur. Verwenden Sie den Azure-Gesamtkostenrechner, um die voraussichtlichen Kosteneinsparungen zu berechnen, die durch eine Migration Ihrer Anwendungsworkloads zu Azure möglich sind. Beschreiben Sie einfach kurz Ihre lokale Umgebung, und Sie erhalten sofort ein Ergebnis.
 
-- [Preisrechner:](https://azure.microsoft.com/en-in/pricing/) Berechnen Sie mit unserem Preisrechner Ihre voraussichtlichen monatlichen Kosten. Über das Abrechnungsportal können Sie jederzeit Ihre tatsächliche Kontonutzung und Rechnung überprüfen. Richten Sie automatische E-Mail-Benachrichtigungen ein, um automatisch informiert zu werden, wenn Ihre Ausgaben einen von Ihnen festgelegten Betrag übersteigen.
+- [Preisrechner](https://azure.microsoft.com/en-in/pricing/). Berechnen Sie mit unserem Preisrechner Ihre voraussichtlichen monatlichen Kosten. Über das Abrechnungsportal können Sie jederzeit Ihre tatsächliche Kontonutzung und Rechnung überprüfen. Richten Sie automatische E-Mail-Benachrichtigungen ein, um automatisch informiert zu werden, wenn Ihre Ausgaben einen von Ihnen festgelegten Betrag übersteigen.
 
-- [Kostenverwaltung:](https://azure.microsoft.com/en-in/services/cost-management/) Azure Cost Management, eine durch das Microsoft-Tochterunternehmen Cloudyn lizenzierte Multicloud-Kostenverwaltungslösung, unterstützt Sie bei der optimalen Verwendung und Verwaltung von Azure und anderen Cloudressourcen. Erfassen Sie Cloudnutzungs- und Abrechnungsdaten von Azure, Amazon Web Services (AWS) und Google Cloud Platform mithilfe von Anwendungsprogrammierschnittstellen (APIs). Diese Daten bieten einen umfassenden Überblick über die Ressourcennutzung sowie über die Kosten auf verschiedenen Cloudplattformen in einer einzelnen einheitlichen Ansicht. Überwachen Sie kontinuierlich die Cloudnutzung sowie Kostentrends. Behalten Sie Ihre tatsächlichen Cloudausgaben im Blick, um Budgetüberschreitungen zu vermeiden. Erkennen Sie ungewöhnliche Ausgaben und Ineffizienzen. Verwenden Sie historische Daten, um die Genauigkeit von Cloudnutzungs- und Ausgabenprognosen zu verbessern.
+- [Azure Cost Management](https://azure.microsoft.com/services/cost-management/). Azure Cost Management, eine durch das Microsoft-Tochterunternehmen Cloudyn lizenzierte Multicloud-Kostenverwaltungslösung, unterstützt Sie bei der optimalen Verwendung und Verwaltung von Azure und anderen Cloudressourcen. Erfassen Sie Cloudnutzungs- und Abrechnungsdaten von Azure, Amazon Web Services und Google Cloud Platform mithilfe von Anwendungsprogrammierschnittstellen (APIs). Diese Daten bieten einen umfassenden Überblick über die Ressourcennutzung sowie über die Kosten auf verschiedenen Cloudplattformen in einer einzelnen einheitlichen Ansicht. Überwachen Sie kontinuierlich die Cloudnutzung sowie Kostentrends. Behalten Sie Ihre tatsächlichen Cloudausgaben im Blick, um Budgetüberschreitungen zu vermeiden. Erkennen Sie ungewöhnliche Ausgaben und Ineffizienzen. Verwenden Sie historische Daten, um die Genauigkeit von Cloudnutzungs- und Ausgabenprognosen zu verbessern.

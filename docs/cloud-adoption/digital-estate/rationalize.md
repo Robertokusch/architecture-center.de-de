@@ -1,26 +1,27 @@
 ---
-title: Rationalisieren der digitalen Ressourcen
-titleSuffix: Enterprise Cloud Adoption
-description: Ein Prozess zum Evaluieren von digitalen Ressourcen, um die beste Vorgehensweise für das Hosten in der Cloud zu ermitteln.
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Rationalisieren des digitalen Umfelds'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: Bewerten Sie Ihre digitalen Ressourcen, um zu ermitteln, wie sich diese am besten in der Cloud hosten lassen.
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 2002b5273aed4aef2d283f23f83aa08d1d6f5c95
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 02189c9edcbfea0a55fe69a53bf610e85470a4d0
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485722"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897200"
 ---
-# <a name="enterprise-cloud-adoption-rationalize-the-digital-estate"></a>Enterprise Cloud-Einführung: Rationalisieren der digitalen Ressourcen
+# <a name="rationalize-the-digital-estate"></a>Rationalisieren des digitalen Umfelds
 
 Bei der Rationalisierung der Cloud werden Ressourcen evaluiert, um die beste Vorgehensweise für das Hosten in der Cloud zu ermitteln. Nachdem eine [Vorgehensweise](approach.md) ermittelt und der [Bestand](inventory.md) zusammengestellt wurde, kann die Rationalisierung beginnen. Unter [5 Rs of rationalization](5-rs-of-rationalization.md) (Die fünf R der Rationalisierung) werden die häufigsten Rationalisierungsoptionen beschrieben.
 
 ## <a name="traditional-view-of-rationalization"></a>Herkömmlicher Rationalisierungsansatz
 
-Die Rationalisierung ist leicht verständlich, wenn Sie sich den herkömmlichen Rationalisierungsansatz wie eine komplexe Entscheidungsstruktur vorstellen. Jedes Element der digitalen Ressourcen durchläuft einen Prozess, an dessen Ende eine von fünf möglichen Antworten („5 R“) steht. Für kleinere Ressourcenumgebungen funktioniert dieser Prozess gut. Bei größeren Ressourcenumgebungen ist er aber nicht sehr effizient und kann zu erheblichen Verzögerungen führen. Wir sehen uns den Prozess nun an, um den Grund dafür zu verdeutlichen. Anschließend stellen wir ein effizienteres Modell vor.
+Die Rationalisierung ist leicht verständlich, wenn Sie sich den herkömmlichen Rationalisierungsansatz wie eine komplexe Entscheidungsstruktur vorstellen. Jedes Element des digitalen Umfelds durchläuft einen Prozess, an dessen Ende eine von fünf möglichen Antworten („5 R“) steht. Für kleinere Ressourcenumgebungen funktioniert dieser Prozess gut. Bei größeren Ressourcenumgebungen ist er aber nicht sehr effizient und kann zu erheblichen Verzögerungen führen. Wir sehen uns den Prozess nun an, um den Grund dafür zu verdeutlichen. Anschließend stellen wir ein effizienteres Modell vor.
 
 **Bestand**: Ein umfassender Ressourcenbestand, z.B. mit Anwendungen, Software, Hardware, Betriebssystemen und Systemleistungsmetriken, ist erforderlich, um mithilfe von herkömmlichen Modellen eine vollständige Rationalisierung zu erzielen.
 
@@ -154,7 +155,7 @@ In einigen Fällen ist das Finanzmodell ggf. zu eng gefasst, um ohne weitere Rat
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Das Ergebnis eines Rationalisierungsprozesses ist ein priorisiertes Backlog mit allen Ressourcen, die von der jeweiligen Transformation betroffen sind. Dieses Backlog kann dann als Grundlage für Kostenmodelle von Clouddiensten dienen.
+Das Ergebnis eines Rationalisierungsprozesses ist ein priorisiertes Backlog mit allen Ressourcen, die von der jeweiligen Transformation betroffen sein werden. Dieses Backlog kann dann als Grundlage für Kostenmodelle von Clouddiensten dienen.
 
 > [!div class="nextstepaction"]
 > [Align cost models with the digital estate](calculate.md) (Ausrichten von Kostenmodellen auf die digitalen Ressourcen)

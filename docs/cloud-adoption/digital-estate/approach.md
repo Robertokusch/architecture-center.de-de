@@ -1,20 +1,21 @@
 ---
-title: Ansätze für die Planung digitaler Ressourcen
-titleSuffix: Enterprise Cloud Adoption
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Ansätze für die Planung digitaler Ressourcen'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
 description: Beschreibt einige Ansätze für die Planung digitaler Ressourcen
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 59c9e208254eaa0e8beb365718ef59d0694094f3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 8b6c680cf477ea188cbd263ecc04389d6daaed89
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482220"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898016"
 ---
-# <a name="enterprise-cloud-adoption-approaches-to-digital-estate-planning"></a>Enterprise Cloud-Einführung: Ansätze für die Planung digitaler Ressourcen
+# <a name="approaches-to-digital-estate-planning"></a>Ansätze für die Planung digitaler Ressourcen
 
 Die Planung digitaler Ressourcen kann je nach gewünschten Ergebnissen und Größe der vorhandenen Ressourcen auf unterschiedlichste Weise erfolgen. Zudem ist in Bezug auf den verwendeten Ansatz eine ganze Reihe von Optionen verfügbar. Es ist wichtig, die Erwartungen in Bezug auf den Ansatz in den frühen Planungszyklen festzulegen. Unklare Erwartungen führen häufig zu Verzögerungen bei weiteren Bestandserfassungen. In diesem Artikel werden drei Ansätze für die Analyse beschrieben.
 
@@ -36,7 +37,7 @@ Der ressourcenorientierte Ansatz liefert einen Plan, der auf den Ressourcen beru
 
 ## <a name="incremental-approach"></a>Inkrementeller Ansatz
 
-Wie beim Framework für die Enterprise Cloud-Einführung wird ausdrücklich ein inkrementeller Ansatz empfohlen. Im Fall der Planung digitaler Ressourcen ergibt sich daraus der folgende aus mehreren Phasen bestehende Prozess:
+Wie beim Framework für die Cloudeinführung wird ausdrücklich ein inkrementeller Ansatz empfohlen. Im Fall der Planung digitaler Ressourcen ergibt sich daraus der folgende aus mehreren Phasen bestehende Prozess:
 
 - Anfängliche Kostenanalyse: Falls eine finanzielle Validierung erforderlich ist, beginnen Sie mit dem oben beschriebenen ressourcenorientierten Ansatz, um eine erste Kostenberechnung ohne Erklärung für sämtliche digitalen Ressourcen durchzuführen. Dadurch erhalten Sie eine Benchmark für das Worst-Case-Szenario.
 

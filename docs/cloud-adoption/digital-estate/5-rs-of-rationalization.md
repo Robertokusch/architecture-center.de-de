@@ -1,20 +1,21 @@
 ---
-title: Die fünf R der Rationalisierung
-titleSuffix: Enterprise Cloud Adoption
-description: Beschreibt die Optionen, bei der Rationalisierung digitaler Ressourcen zur Verfügung stehen.
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Die fünf R der Rationalisierung'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: Beschreibt die Optionen, bei der Rationalisierung eines digitales Umfelds zur Verfügung stehen.
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 06058967e6ffcd9e3554a46c67144f72fb19078f
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: ee196487e6f59b1e1b3c63bab9496cbbf805affd
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908578"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897472"
 ---
-# <a name="enterprise-cloud-adoption-the-5-rs-of-rationalization"></a>Enterprise Cloud-Einführung: Die fünf R der Rationalisierung
+# <a name="the-5-rs-of-rationalization"></a>Die fünf R der Rationalisierung
 
 Cloudrationalisierung bezeichnet die Untersuchung von Ressourcen, um die bestmögliche Migrations- oder Modernisierungsmethode für die jeweilige Ressource in der Cloud zu ermitteln. Weitere Informationen zum Rationalisierungsprozess finden Sie unter [Worum handelt es sich bei digitalen Ressourcen?](overview.md).
 
