@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: aa69746b59ddfff02381dd811caa9a7aa62d8b7b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 9b6bef0fd803db5b488e93d246642d4e3681a94c
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484804"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897761"
 ---
 # <a name="api-implementation"></a>API-Implementierung
 
@@ -614,7 +614,7 @@ Eine Clientanwendung kann eine Anforderung senden, um 30 Bestellungen ab Offset 
 
 ## <a name="maintaining-responsiveness-scalability-and-availability"></a>Aufrechterhaltung der Reaktionsfähigkeit, Skalierbarkeit und Verfügbarkeit
 
-Eine Web-API kann von vielen Clientanwendungen, die weltweit an den unterschiedlichsten Orten ausgeführt werden, gemeinsam verwendet werden. Es ist wichtig sicherzustellen, dass für die Implementierung der Web-API Folgendes gilt: Auch bei einer hohen Auslastung bleibt die Reaktionsfähigkeit erhalten, sie kann zur Unterstützung stark variierender Workloads skaliert werden, und für Clients, auf denen unternehmenskritische Vorgänge ausgeführt werden, wird die Verfügbarkeit garantiert. Beachten Sie die folgenden Punkte, wenn Sie ermitteln möchten, wie diese Anforderungen erfüllt werden können:
+Eine Web-API kann von vielen Clientanwendungen gemeinsam verwendet werden, die weltweit an den unterschiedlichsten Orten ausgeführt werden. Es ist wichtig sicherzustellen, dass für die Implementierung der Web-API Folgendes gilt: Auch bei einer hohen Auslastung bleibt die Reaktionsfähigkeit erhalten, sie kann zur Unterstützung stark variierender Workloads skaliert werden, und für Clients, auf denen unternehmenskritische Vorgänge ausgeführt werden, wird die Verfügbarkeit garantiert. Beachten Sie die folgenden Punkte, wenn Sie ermitteln möchten, wie diese Anforderungen erfüllt werden können:
 
 ### <a name="provide-asynchronous-support-for-long-running-requests"></a>Bereitstellen von asynchroner Unterstützung für Anforderungen mit langer Ausführungsdauer
 
