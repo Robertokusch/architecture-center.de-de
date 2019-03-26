@@ -4,13 +4,8 @@ ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.date: 08/30/2018
-ms.openlocfilehash: 651f59344e7785a8a23e7b56dd67b4c4a3044741
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484379"
 ---
+
 # <a name="azure-application-architecture-guide"></a>Azure-Anwendungsarchitekturleitfaden
 
 Dieser Leitfaden stellt eine strukturierte Vorgehensweise zum Entwerfen von Anwendungen in Azure vor, die skalierbar, resilient und hochverfügbar sind. Er basiert auf bewährten Methoden, die wir im Rahmen von Kundeninteraktionen erarbeitet haben.
