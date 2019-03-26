@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 7d3fe47407eff7168dfd227a1dd1bd5917c7d431
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487031"
 ---
+
 # <a name="busy-database-antipattern"></a>Antimuster „Ausgelastete Datenbank“
 
 Das Auslagern der Verarbeitung an einen Datenbankserver kann dazu führen, dass dieser Server mehr mit der Ausführung von Code beschäftigt ist, anstatt auf Anforderungen zum Speichern und Abrufen von Daten zu reagieren.

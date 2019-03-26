@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 5c3062c0a17de708ada83ba81dcb111e6b1f8440
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488051"
 ---
+
 # <a name="no-caching-antipattern"></a>Antimuster „Kein Caching“
 
 In einer Cloudanwendung, die viele gleichzeitige Anforderungen verarbeitet, können durch wiederholtes Abrufen der gleichen Daten Leistung und Skalierbarkeit sinken.

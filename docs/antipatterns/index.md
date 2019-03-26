@@ -1,20 +1,15 @@
 ---
 title: Leistungsbezogene Antimuster für Cloudanwendungen
 titleSuffix: Azure Architecture Center
-description: Häufige Vorgehensweisen, die wahrscheinlich zu Skalierbarkeitsproblemen führen.
+description: 'Häufige Vorgehensweisen, die wahrscheinlich zu Skalierbarkeitsproblemen führen.'
 author: dragon119
 ms.date: 06/05/2017
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 212930368942728fc0be0c9b2af1a90293906b39
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483053"
 ---
+
 # <a name="performance-antipatterns-for-cloud-applications"></a>Leistungsbezogene Antimuster für Cloudanwendungen
 
 Ein *leistungsbezogenes Antimuster* ist eine häufige Vorgehensweise, die wahrscheinlich zu Skalierbarkeitsproblemen führt, wenn eine Anwendung überlastet ist.

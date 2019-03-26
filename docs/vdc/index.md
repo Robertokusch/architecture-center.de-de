@@ -6,13 +6,8 @@ layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 57f28808d3c49c74bc010133c670a186206a4466
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486955"
 ---
+
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Virtuelles Azure-Rechenzentrum und die Steuerungsebene für Unternehmen
 
 Mit Azure Virtual Datacenter können Sie die Funktionen der Azure-Cloudplattform optimal nutzen und gleichzeitig Ihren bereits vorhandenen Sicherheits- und Netzwerkrichtlinien gerecht werden. Bei der Bereitstellung von Unternehmensworkloads in der Cloud müssen IT-Organisationen und Unternehmenseinheiten die richtige Balance zwischen Governance und Entwickleragilität finden. Mit den Modellen des virtuellen Azure-Rechenzentrums können Sie diese Balance erreichen, wobei die Governance im Vordergrund steht.

@@ -8,13 +8,8 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: cf8d2ad580b559ba813591d34759946642d9b9b9
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488357"
 ---
+
 # <a name="run-a-highly-available-sharepoint-server-2016-farm-in-azure"></a>Ausführen einer hoch verfügbaren SharePoint Server 2016-Farm in Azure
 
 In dieser Referenzarchitektur werden bewährte Methoden zum Bereitstellen einer SharePoint Server 2016-Hochverfügbarkeitsfarm in Azure mit der MinRole-Topologie und SQL Server AlwaysOn-Verfügbarkeitsgruppen veranschaulicht. Die SharePoint-Farm wird in einem geschützten virtuellen Netzwerk ohne Internetendpunkt bzw. -präsenz bereitgestellt. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
@@ -289,7 +284,7 @@ Bei dieser Anmeldung wird ein Tunnel von der Domäne „Fabrikam.com“, die vom
 [azure-ps]: /powershell/azure/overview
 [azure-pricing]: https://azure.microsoft.com/pricing/calculator/
 [bastion-host]: https://en.wikipedia.org/wiki/Bastion_host
-[create-availability-group]: https://technet.microsoft.com/library/mt793548(v=office.16).aspx
+[create-availability-group]: /SharePoint/administration/sharepoint-intranet-farm-in-azure-phase-5-create-the-availability-group-and-add
 [connect-to-vm]: /azure/virtual-machines/windows/quick-create-portal#connect-to-virtual-machine
 [github]: https://github.com/mspnp/reference-architectures
 [hybrid-ra]: ../hybrid-networking/index.md

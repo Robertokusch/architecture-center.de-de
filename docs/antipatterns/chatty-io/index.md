@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: b21ef5f772eb4e2572833ab15085651ac3766a5e
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480605"
 ---
+
 # <a name="chatty-io-antipattern"></a>Antimuster „Zu viele E/A-Vorgänge“
 
 Der kumulative Effekt einer hohen Anzahl von E/A-Anforderungen kann sich massiv auf die Leistung und die Reaktionsfähigkeit auswirken.
