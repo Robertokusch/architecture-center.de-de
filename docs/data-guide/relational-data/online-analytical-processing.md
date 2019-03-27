@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 70c18e1a5294b09bb156d2af06af7a32d33858da
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485473"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246181"
 ---
 # <a name="online-analytical-processing-olap"></a>Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)
 
@@ -133,13 +133,13 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Azure Analysis Services | SQL Server Analysis Services | SQL Server mit Columnstore-Indizes | Azure SQL-Datenbank mit Columnstore-Indizes |
 | --- | --- | --- | --- | --- |
-| Verwalteter Dienst | JA | Nein  | Nein  | JA |
+| Verwalteter Dienst | Ja | Nein  | Nein  | Ja |
 | Unterstützung mehrdimensionaler Cubes | Nein  | Ja | Nein  | Nein  |
-| Unterstützung tabellarischer Semantikmodelle | JA | JA | Nein  | Nein  |
-| Einfache Integration mehrerer Datenquellen | JA | JA | Nein <sup>1</sup> | Nein <sup>1</sup> |
-| Unterstützung von Echtzeitanalysen | Nein  | Nein  | Ja | JA |
-| Prozess zum Kopieren von Daten aus Quellen erforderlich | JA | JA | Nein  | Nein  |
-| Azure AD-Integration | JA | Nein  | Nein<sup>2</sup> | JA |
+| Unterstützung tabellarischer Semantikmodelle | Ja | Ja | Nein  | Nein  |
+| Einfache Integration mehrerer Datenquellen | Ja | Ja | Nein <sup>1</sup> | Nein <sup>1</sup> |
+| Unterstützung von Echtzeitanalysen | Nein  | Nein  | Ja | Ja |
+| Prozess zum Kopieren von Daten aus Quellen erforderlich | Ja | Ja | Nein  | Nein  |
+| Azure AD-Integration | Ja | Nein  | Nein<sup>2</sup> | Ja |
 
 <!-- markdownlint-enable MD033 -->
 
@@ -151,6 +151,6 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 |                                                  | Azure Analysis Services | SQL Server Analysis Services | SQL Server mit Columnstore-Indizes | Azure SQL-Datenbank mit Columnstore-Indizes |
 |--------------------------------------------------|-------------------------|------------------------------|-------------------------------------|---------------------------------------------|
-| Redundante regionale Server für Hochverfügbarkeit |           JA           |              Nein              |                 Ja                 |                     JA                     |
-|             Unterstützung des horizontalen Hochskalierens von Abfragen             |           JA           |              Nein              |                 Ja                 |                     Nein                       |
-|          Dynamische Skalierbarkeit (zentrales Hochskalieren)          |           JA           |              Nein              |                 Ja                 |                     Nein                       |
+| Redundante regionale Server für Hochverfügbarkeit |           Ja           |              Nein              |                 Ja                 |                     Ja                     |
+|             Unterstützung des horizontalen Hochskalierens von Abfragen             |           Ja           |              Nein              |                 Ja                 |                     Nein                       |
+|          Dynamische Skalierbarkeit (zentrales Hochskalieren)          |           Ja           |              Nein              |                 Ja                 |                     Nein                       |

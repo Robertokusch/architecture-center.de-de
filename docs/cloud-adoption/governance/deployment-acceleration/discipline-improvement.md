@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Verbesserung der Disziplin „Beschleunigung der Bereitstellung“
 author: alexbuckgit
 ms.openlocfilehash: 98192c777d8866efb01544737e8cabea6354c4d7
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902194"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243721"
 ---
 # <a name="deployment-acceleration-discipline-improvement"></a>Verbesserung der Disziplin „Beschleunigung der Bereitstellung“
 
@@ -24,7 +24,7 @@ Dieser Artikel beschreibt einige potenzielle Aufgaben, die Ihr Unternehmen ausf�
 
 *Abbildung 1: Einführungsphasen des inkrementellen Ansatzes für die Cloudgovernance.*
 
-Es ist unmöglich, die Anforderungen aller Unternehmen in einem einzigen Dokument zu berücksichtigen. Daher werden im vorliegenden Artikel die empfohlenen mindestens auszuführenden Aktivitäten sowie Beispiele für potenzielle Aktivitäten für jede Phase des Weiterentwicklungsprozesses für die Governance beschrieben. Ziel dieser Aktivitäten ist es, Sie beim Aufbau eines [Richtlinien-MVP](../journeys/overview.md#an-incremental-approach-to-cloud-governance) und bei der Einrichtung eines Frameworks für die inkrementelle Weiterentwicklung der Richtlinie zu unterstützen. Ihr Cloudgovernance-Team muss entscheiden, wie viel in diese Aktivitäten investiert werden soll, um Ihre Funktionen für die Governance der Identitätsbaseline zu verbessern.
+Es ist unmöglich, die Anforderungen aller Unternehmen in einem einzigen Dokument zu berücksichtigen. Daher werden in diesem Artikel die empfohlenen mindestens auszuführenden Aktivitäten sowie Beispiele für potenzielle Aktivitäten für jede Phase des Weiterentwicklungsprozesses für die Governance beschrieben. Ziel dieser Aktivitäten ist es, Sie beim Aufbau eines [Richtlinien-MVP](../journeys/overview.md#an-incremental-approach-to-cloud-governance) und bei der Einrichtung eines Frameworks für die inkrementelle Weiterentwicklung der Richtlinie zu unterstützen. Ihr Cloudgovernance-Team muss entscheiden, wie viel in diese Aktivitäten investiert werden soll, um Ihre Funktionen für die Governance der Identitätsbaseline zu verbessern.
 
 > [!CAUTION]
 > Weder die in diesem Artikel beschriebenen mindestens erforderlichen noch die potenziellen Aktivitäten sind auf bestimmte Unternehmensrichtlinien oder Complianceanforderungen von Drittanbietern ausgerichtet. Dieser Leitfaden soll bei Gesprächen über die Ausrichtung beider Anforderungen auf ein Cloudgovernancemodell helfen.
@@ -76,7 +76,7 @@ Migration ist ein inkrementeller Prozess, bei dem der Schwerpunkt auf der Verlag
 
 ## <a name="operate-and-post-implementation"></a>Betrieb und Aufgaben nach der Implementierung
 
-Sobald die Transformation abgeschlossen ist, müssen Governance und Betrieb während des natürlichen Lebenszyklus einer Anwendung oder Workload bestehen bleiben. In dieser Phase der Ausgereiftheit der Governance geht es um die Aktivitäten, die üblicherweise ausgeführt werden, nachdem die Lösung implementiert wurde und der Transformationszyklus beginnt, sich zu stabilisieren.
+Nachdem die Transformation abgeschlossen ist, müssen Governance und Betrieb während des natürlichen Lebenszyklus einer Anwendung oder Workload bestehen bleiben. In dieser Entwicklungsphase der Governance geht es um die Aktivitäten, die üblicherweise ausgeführt werden, nachdem die Lösung implementiert wurde und der Transformationszyklus sich zu stabilisieren beginnt.
 
 **Mindestens empfohlene Aktivitäten**:
 

@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: f1f8a9ddc0a728f6be4350edb361afd19901de20
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483589"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245961"
 ---
 # <a name="non-relational-data-and-nosql"></a>Nicht relationale Daten und NoSQL
 
@@ -158,8 +158,8 @@ Die folgende Tabelle enthält eine Übersicht über die Anforderungen für die e
 | Zugriffsmuster | Wahlfreier Zugriff | Aggregation für Daten (hoch/breit) | Wahlfreier Zugriff | Wahlfreier Zugriff |
 | Indizierung | Primäre und sekundäre Indizes | Primäre und sekundäre Indizes | Nur primärer Index | Primäre und sekundäre Indizes |
 | Datenform | Dokument | Tabellarisch mit in Spaltenfamilien enthaltenen Spalten | Schlüssel und Wert | Diagramm mit Edges und Scheitelpunkten |
-| Platzsparend | JA | Ja | JA | Nein  |
-| Breit (viele Spalten/Attribute) | JA | JA | Nein  | Nein  |  
+| Platzsparend | Ja | Ja | Ja | Nein  |
+| Breit (viele Spalten/Attribute) | Ja | Ja | Nein  | Nein  |  
 | Bezugsgröße | Klein (KB) bis mittel (wenige MB) | Mittel (MB) bis groß (wenige GB) | Klein (KB) | Klein (KB) |
 | Maximale Gesamtskalierung | Sehr hoch (PB) | Sehr hoch (PB) | Sehr hoch (PB) | Hoch (TB) |
 
@@ -174,6 +174,6 @@ Die folgende Tabelle enthält eine Übersicht über die Anforderungen für die e
 | Indizierung | Primäre und sekundäre Indizes | Nur primärer Index | – |
 | Datenform | Tabellarisch | Blob und Metadaten | Dokument |
 | Platzsparend | Nein  | – | Nein  |
-| Breit (viele Spalten/Attribute) |  Nein  | Ja | JA |  
+| Breit (viele Spalten/Attribute) |  Nein  | Ja | Ja |  
 | Bezugsgröße | Klein (KB) | Groß (GB) bis sehr groß (TB) | Klein (KB) |
 | Maximale Gesamtskalierung | Hoch (wenige TB)  | Sehr hoch (PB) | Hoch (wenige TB) |

@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: c6cc628977b438578f2d88d1928afcd75ddddbcd
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481812"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244951"
 ---
 # <a name="online-transaction-processing-oltp"></a>Onlinetransaktionsverarbeitung (OLTP)
 
@@ -37,10 +37,10 @@ Transaktionsdaten weisen tendenziell die folgenden Merkmale auf:
 | Schema | Schema beim Schreiben, strikte Erzwingung|
 | Konsistenz | Hohe Konsistenz, ACID-Garantien |
 | Integrität | Hohe Integrität |
-| Verwendung von Transaktionen | JA |
+| Verwendung von Transaktionen | Ja |
 | Sperrstrategie | Pessimistisch oder optimistisch|
-| Aktualisierbar | JA |
-| Erweiterbar | JA |
+| Aktualisierbar | Ja |
+| Erweiterbar | Ja |
 | Workload | Intensive Schreibvorgänge, moderate Lesevorgänge |
 | Indizierung | Primäre und sekundäre Indizes |
 | Bezugsgröße | Kleine bis mittlere Größe |
@@ -104,7 +104,7 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 |                              | Azure SQL-Datenbank | SQL Server auf einer Azure-VM | Azure Database for MySQL | Azure Database for PostgreSQL |
 |------------------------------|--------------------|----------------------------------------|--------------------------|-------------------------------|
-|      Verwalteter Dienst      |        JA         |                   Nein                   |           Ja            |              JA              |
+|      Verwalteter Dienst      |        Ja         |                   Nein                   |           Ja            |              Ja              |
 |       Unterstützte Plattformen       |        –         |         Windows, Linux, Docker         |           –            |              –              |
 | Programmierbarkeit<sup>1</sup> |   T-SQL, .NET, R   |         T-SQL, .NET, R, Python         |  T-SQL, .NET, R, Python  |              SQL              |
 
@@ -117,39 +117,39 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 | | Azure SQL-Datenbank | SQL Server auf einer Azure-VM| Azure Database for MySQL | Azure Database for PostgreSQL|
 | --- | --- | --- | --- | --- | --- |
 | Maximale Größe der Datenbankinstanz | [4 TB](/azure/sql-database/sql-database-resource-limits) | 256 TB | [1 TB](/azure/mysql/concepts-limits) | [1 TB](/azure/postgresql/concepts-limits) |
-| Unterstützung von Kapazitätspools  | JA | JA | Nein  | Nein  |
+| Unterstützung von Kapazitätspools  | Ja | Ja | Nein  | Nein  |
 | Unterstützung des horizontalen Hochskalierens von Clustern  | Nein  | Ja | Nein  | Nein  |
-| Dynamische Skalierbarkeit (zentrales Hochskalieren)  | JA | Nein | Ja | JA |
+| Dynamische Skalierbarkeit (zentrales Hochskalieren)  | Ja | Nein | Ja | Ja |
 
 ### <a name="analytic-workload-capabilities"></a>Funktionen für Analyseworkloads
 
 | | Azure SQL-Datenbank | SQL Server auf einer Azure-VM| Azure Database for MySQL | Azure Database for PostgreSQL|
 | --- | --- | --- | --- | --- | --- |
-| Temporäre Tabellen | JA | JA | Nein  | Nein  |
-| In-Memory-Tabellen (speicheroptimiert) | JA | JA | Nein  | Nein  |
-| Columnstore-Unterstützung | JA | JA | Nein  | Nein  |
-| Adaptive Abfrageverarbeitung | JA | JA | Nein  | Nein  |
+| Temporäre Tabellen | Ja | Ja | Nein  | Nein  |
+| In-Memory-Tabellen (speicheroptimiert) | Ja | Ja | Nein  | Nein  |
+| Columnstore-Unterstützung | Ja | Ja | Nein  | Nein  |
+| Adaptive Abfrageverarbeitung | Ja | Ja | Nein  | Nein  |
 
 ### <a name="availability-capabilities"></a>Verfügbarkeitsfunktionen
 
 | | Azure SQL-Datenbank | SQL Server auf einer Azure-VM| Azure Database for MySQL | Azure Database for PostgreSQL|
 | --- | --- | --- | --- | --- | --- |
-| Lesbare sekundäre Replikate | JA | JA | Nein  | Nein  |
-| Geografische Replikation | JA | JA | Nein  | Nein  |
-| Automatisches Failover zum sekundären Replikat | JA | Nein  | Nein  | Nein |
-| Point-in-Time-Wiederherstellung | JA | Ja | Ja | JA |
+| Lesbare sekundäre Replikate | Ja | Ja | Nein  | Nein  |
+| Geografische Replikation | Ja | Ja | Nein  | Nein  |
+| Automatisches Failover zum sekundären Replikat | Ja | Nein  | Nein  | Nein |
+| Point-in-Time-Wiederherstellung | Ja | Ja | Ja | Ja |
 
 ### <a name="security-capabilities"></a>Sicherheitsfunktionen
 
 |                                                                                                             | Azure SQL-Datenbank | SQL Server auf einer Azure-VM | Azure Database for MySQL | Azure Database for PostgreSQL |
 |-------------------------------------------------------------------------------------------------------------|--------------------|----------------------------------------|--------------------------|-------------------------------|
-|                                             Sicherheit auf Zeilenebene                                              |        JA         |                  Ja                   |           Ja            |              JA              |
-|                                                Datenmaskierung                                                 |        JA         |                  JA                   |            Nein             |              Nein                |
-|                                         Transparent Data Encryption                                         |        JA         |                  Ja                   |           Ja            |              JA              |
-|                                  Beschränken des Zugriffs auf bestimmte IP-Adressen                                   |        JA         |                  Ja                   |           Ja            |              JA              |
-|                                  Beschränken des Zugriffs, um nur VNET-Zugriff zuzulassen                                  |        JA         |                  JA                   |            Nein             |              Nein                |
-|                                    Authentifizierung über Azure Active Directory                                    |        JA         |                  JA                   |            Nein             |              Nein                |
+|                                             Sicherheit auf Zeilenebene                                              |        Ja         |                  Ja                   |           Ja            |              Ja              |
+|                                                Datenmaskierung                                                 |        Ja         |                  Ja                   |            Nein             |              Nein                |
+|                                         Transparent Data Encryption                                         |        Ja         |                  Ja                   |           Ja            |              Ja              |
+|                                  Beschränken des Zugriffs auf bestimmte IP-Adressen                                   |        Ja         |                  Ja                   |           Ja            |              Ja              |
+|                                  Beschränken des Zugriffs, um nur VNET-Zugriff zuzulassen                                  |        Ja         |                  Ja                   |            Nein             |              Nein                |
+|                                    Authentifizierung über Azure Active Directory                                    |        Ja         |                  Ja                   |            Nein             |              Nein                |
 |                                       Authentifizierung über Active Directory                                       |         Nein          |                  Ja                   |            Nein             |              Nein                |
-|                                         Multi-Factor Authentication                                         |        JA         |                  JA                   |            Nein             |              Nein                |
-| Unterstützung von [Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine) |        JA         |                  Ja                   |           JA            |              Nein                |
-|                                                 Private IP-Adresse                                                  |         Nein          |                  Ja                   |           JA            |              Nein                |
+|                                         Multi-Factor Authentication                                         |        Ja         |                  Ja                   |            Nein             |              Nein                |
+| Unterstützung von [Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine) |        Ja         |                  Ja                   |           Ja            |              Nein                |
+|                                                 Private IP-Adresse                                                  |         Nein          |                  Ja                   |           Ja            |              Nein                |

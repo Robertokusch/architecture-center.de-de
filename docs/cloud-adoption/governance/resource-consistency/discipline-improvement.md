@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Verbesserung der Disziplin „Ressourcenkonsistenz“
 author: BrianBlanchard
 ms.openlocfilehash: bc81b894d46266c52291c53dba5532ab2ab6b860
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900767"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241571"
 ---
 # <a name="resource-consistency-discipline-improvement"></a>Verbesserung der Disziplin „Ressourcenkonsistenz“
 
@@ -27,11 +27,11 @@ Dieser Artikel beschreibt einige potenzielle Aufgaben, die Ihr Unternehmen ausf�
 Es ist unmöglich, die Anforderungen aller Unternehmen in einem einzigen Dokument zu berücksichtigen. Daher werden in diesem Artikel die empfohlenen mindestens auszuführenden Aktivitäten sowie Beispiele für potenzielle Aktivitäten für jede Phase des Weiterentwicklungsprozesses für die Governance beschrieben. Ziel dieser Aktivitäten ist, Sie beim Aufbau eines [Richtlinien-MVP](../journeys/overview.md#an-incremental-approach-to-cloud-governance) und bei der Einrichtung eines Frameworks für die inkrementelle Weiterentwicklung der Richtlinie zu unterstützen. Ihr Cloudgovernanceteam muss entscheiden, wie viel in diese Aktivitäten investiert werden soll, um Ihre Funktionen für die Governance der Ressourcenkonsistenz zu verbessern.
 
 > [!CAUTION]
-> Weder die in diesem Artikel beschriebenen mindestens erforderlichen noch die potenziellen Aktivitäten sind auf bestimmte Unternehmensrichtlinien oder Complianceanforderungen von Drittanbietern ausgerichtet. Diese Anleitung soll die Diskussionen erleichtern, die zur Ausrichtung beider Anforderungen mit einem Cloudgovernancemodell beitragen.
+> Weder die in diesem Artikel beschriebenen mindestens erforderlichen noch die potenziellen Aktivitäten sind auf bestimmte Unternehmensrichtlinien oder Complianceanforderungen von Drittanbietern ausgerichtet. Dieser Leitfaden soll bei Gesprächen über die Ausrichtung beider Anforderungen auf ein Cloudgovernancemodell helfen.
 
 ## <a name="planning-and-readiness"></a>Planung und Bereitschaft
 
-Diese Reifephase der Governance überbrückt die Lücke zwischen Geschäftsergebnissen und umsetzbaren Strategien. Während dieses Prozesses definiert das Führungsteam bestimmte Metriken, ordnet diese Metriken dem digitalen Bestand zu und beginnt mit der Planung der gesamten Migration.
+Diese Entwicklungsphase der Governance überbrückt die Lücke zwischen Geschäftsergebnissen und umsetzbaren Strategien. Während dieses Prozesses definiert das Führungsteam bestimmte Metriken, ordnet diese Metriken dem digitalen Bestand zu und beginnt mit der Planung der gesamten Migration.
 
 **Mindestens empfohlene Aktivitäten**:
 
@@ -52,7 +52,7 @@ Diese Reifephase der Governance überbrückt die Lücke zwischen Geschäftsergeb
 
 ## <a name="build-and-pre-deployment"></a>Aufbau und Aufgaben vor der Bereitstellung
 
-Für die erfolgreiche Migration einer Umgebung muss eine Reihe von technischen und nichttechnischen Voraussetzungen erfüllt werden. Bei diesem Prozess geht es primär um die Entscheidungen, die Bereitschaft und die grundlegende Infrastruktur, die eine Migration vorantreiben.
+Für die erfolgreiche Migration einer Umgebung muss eine Reihe von technischen und nicht technischen Voraussetzungen erfüllt sein. Bei diesem Prozess geht es primär um die Entscheidungen, die Bereitschaft und die grundlegende Infrastruktur, die eine Migration vorantreiben.
 
 **Mindestens empfohlene Aktivitäten**:
 
@@ -103,7 +103,7 @@ Migration ist ein inkrementeller Prozess, bei dem der Schwerpunkt auf der Verlag
 
 ## <a name="operate-and-post-implementation"></a>Betrieb und Aufgaben nach der Implementierung
 
-Sobald die Transformation abgeschlossen ist, müssen Governance und Betrieb während des natürlichen Lebenszyklus einer Anwendung oder Workload bestehen bleiben. In dieser Phase der Ausgereiftheit der Governance geht es um die Aktivitäten, die üblicherweise ausgeführt werden, nachdem die Lösung implementiert wurde und der Transformationszyklus sich zu stabilisieren beginnt.
+Nachdem die Transformation abgeschlossen ist, müssen Governance und Betrieb während des natürlichen Lebenszyklus einer Anwendung oder Workload bestehen bleiben. In dieser Entwicklungsphase der Governance geht es um die Aktivitäten, die üblicherweise ausgeführt werden, nachdem die Lösung implementiert wurde und der Transformationszyklus sich zu stabilisieren beginnt.
 
 **Mindestens empfohlene Aktivitäten**:
 

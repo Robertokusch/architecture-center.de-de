@@ -8,17 +8,17 @@ ms.date: 02/11/2019
 description: Governancelösung für kleine bis mittlere Unternehmen
 author: BrianBlanchard
 ms.openlocfilehash: a3e078845038a12977e7be5affbf22708411069f
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901709"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245161"
 ---
 # <a name="small-to-medium-enterprise-governance-journey"></a>Governancelösung für kleine bis mittlere Unternehmen
 
 ## <a name="best-practice-overview"></a>Übersicht über bewährte Methoden
 
-Diese Governancelösung folgt den Erfahrungen eines fiktiven Unternehmens in verschiedenen Phasen der Governancereife. Sie basiert auf echten Kundenlösungen. Die empfohlenen bewährten Methoden basieren auf den Einschränkungen und Anforderungen des fiktiven Unternehmens.
+Diese Governance Journey folgt den Erfahrungen eines fiktiven Unternehmens in verschiedenen Phasen der Governancereife. Sie basiert auf echten Kundenlösungen. Die empfohlenen bewährten Methoden basieren auf den Einschränkungen und Anforderungen des fiktiven Unternehmens.
 
 Als Schnellstartpunkt definiert diese Übersicht ein auf bewährten Methoden basierendes Minimum Viable Product (MVP) für die Governance. Sie enthält außerdem Links zu einigen Governanceentwicklungen, die weitere bewährte Methoden hinzufügen, wenn neue Geschäfts- oder technische Risiken entstehen.
 

@@ -8,18 +8,22 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 020c401e9db85b76fd48c6df9be9c80d2ba5c7e4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: d52d2a323727760463c0b5694b9116e0ed469c93
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481472"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243851"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Automatisierte Enterprise BI-Instanz mit SQL Data Warehouse und Azure Data Factory
 
 Diese Referenzarchitektur veranschaulicht die Vorgehensweise für inkrementelles Laden in einer [ELT-Pipeline](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (Extrahieren, Laden und Transformieren). Sie verwendet Azure Data Factory, um die ELT-Pipeline zu automatisieren. Die Pipeline verschiebt die neuesten OLTP-Daten inkrementell aus einer lokalen SQL Server-Datenbank in SQL Data Warehouse. Transaktionsdaten werden in ein tabellarisches Modell für die Analyse transformiert.
 
+<!-- markdownlint-disable MD034 -->
+
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
+
+<!-- markdownlint-enable MD034 -->
 
 Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] verfügbar.
 
@@ -56,7 +60,7 @@ Die Architektur umfasst die folgenden Komponenten.
 
 **Power BI**: Power BI ist eine Suite aus Business Analytics-Tools zum Analysieren von Daten für Einblicke in Geschäftsvorgänge. In dieser Architektur dient sie zum Abfragen des in Analysis Services gespeicherten semantischen Modells.
 
-### <a name="authentication"></a>Authentifizierung
+### <a name="authentication"></a>Authentication
 
 **Azure Active Directory** (Azure AD) authentifiziert Benutzer, die über Power BI eine Verbindung mit dem Analysis Services-Server herstellen.
 

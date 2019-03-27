@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Erläuterung des Konzepts „Sicherheitsbaseline“ in Bezug auf Cloud Governance
 author: BrianBlanchard
 ms.openlocfilehash: 93622fee899824fffe604d7b3f588f5ed179b371
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901600"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241691"
 ---
 # <a name="security-baseline-template"></a>Vorlage für Sicherheitsbaseline
 
@@ -31,7 +31,7 @@ Obwohl die Vorlage Beispielinhalte für die Disziplin zur Kostenverwaltung enth�
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Solide Governancemethoden basieren auf Kenntnissen der Geschäftsrisiken. Lesen Sie den Artikel zu Geschäftsrisiken, und dokumentieren Sie die Risiken, die auf Ihren aktuellen Cloudeinführungsplan abgestimmt sind.
+Solide Governancemethoden basieren auf Kenntnissen der Geschäftsrisiken. Lesen Sie den Artikel zu Geschäftsrisiken, und dokumentieren Sie die Risiken, auf die Ihr aktueller Cloudeinführungsplan abgestimmt ist.
 
 > [!div class="nextstepaction"]
 > [Grundlegendes zu Geschäftsrisiken](./business-risks.md)

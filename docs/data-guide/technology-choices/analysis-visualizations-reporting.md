@@ -8,11 +8,11 @@ ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: data-analytics
 ms.openlocfilehash: 72b889e2fe0d862ab1ff280cea76c2880b0fadc4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481915"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245951"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>Auswählen einer Technologie für die Datenanalyse in Azure
 
@@ -89,16 +89,16 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Power BI | Jupyter-Notebooks | Zeppelin-Notebooks | Microsoft Azure Notebooks |
 | --- | --- | --- | --- | --- |
-| Verbindungsherstellung mit einem Big Data-Cluster zur erweiterten Verarbeitung | JA | Ja | JA | Nein  |
-| Verwalteter Dienst | JA | Ja<sup>1</sup> | Ja<sup>1</sup> | JA |
-| Verbindungsherstellung mit Hunderten von Datenquellen | JA | Nein  | Nein  | Nein  |
+| Verbindungsherstellung mit einem Big Data-Cluster zur erweiterten Verarbeitung | Ja | Ja | Ja | Nein  |
+| Verwalteter Dienst | Ja | Ja<sup>1</sup> | Ja<sup>1</sup> | Ja |
+| Verbindungsherstellung mit Hunderten von Datenquellen | Ja | Nein  | Nein  | Nein  |
 | Offlinefunktionen | Ja<sup>2</sup> | Nein  | Nein  | Nein  |
-| Einbettung von Funktionen | JA | Nein  | Nein  | Nein  |
-| Automatische Datenaktualisierung | JA | Nein  | Nein  | Nein  |
+| Einbettung von Funktionen | Ja | Nein  | Nein  | Nein  |
+| Automatische Datenaktualisierung | Ja | Nein  | Nein  | Nein  |
 | Zugriff auf eine große Zahl von Open-Source-Paketen | Nein  | Ja<sup>3</sup> | Ja <sup>3</sup> | Ja <sup>4</sup> |
 | Optionen für Datentransformation/-bereinigung | [Power Query](https://powerbi.microsoft.com/blog/getting-started-with-power-query-part-i/), R | 40 Sprachen, z.B. Python, R, Julia und Scala | 20+ Interpreter, z.B. Python, JDBC und R | Python, F#, R |
 | Preise | Kostenlos für Power BI Desktop (Erstellung), siehe Hostingoptionen unter [Preise](https://powerbi.microsoft.com/pricing/) | Kostenlos | Kostenlos | Kostenlos |
-| Kollaboration mehrerer Benutzer | [Ja](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | Ja (per Freigabe oder über einen Mehrbenutzer-Server wie [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | JA | Ja (per Freigabe) |
+| Kollaboration mehrerer Benutzer | [Ja](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | Ja (per Freigabe oder über einen Mehrbenutzer-Server wie [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | Ja | Ja (per Freigabe) |
 
 <!-- markdownlint-enable MD033 -->
 

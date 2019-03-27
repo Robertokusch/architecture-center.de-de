@@ -1,14 +1,17 @@
 ---
 title: 'CAF: Was ist die Cloudressourcenkontrolle?'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.date: 02/11/2019
 description: Erläuterung zur Cloudressourcenkontrolle in Azure
 author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: ec8b0b04ac8a4782c215359cf907c3c092ae2f4d
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 5d022e83a1c97a5e5af8208ec00339575bb88be1
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897948"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242121"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -20,7 +23,11 @@ Wenn Entwickler uneingeschränkten Zugriff auf Ressourcen haben, können sie zwa
 
 Die Lösung dieses Problems ist die Kontrolle (**Governance**) des Ressourcenzugriffs. „Governance“ bezieht sich auf das fortlaufende Verwalten, Überwachen und Überprüfen der Nutzung von Azure-Ressourcen, um die Ziele und Anforderungen Ihrer Organisation zu erfüllen.
 
+<!-- markdownlint-disable MD034 -->
+
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94]
+
+<!-- markdownlint-enable MD034 -->
 
 Da diese Ziele und Anforderungen für jede Organisation einzigartig sind, gibt es keinen allgemeingültigen Governance-Ansatz. Stattdessen werden von Azure zwei primäre Governance-Tools implementiert: die **rollenbasierte Zugriffssteuerung** (Role Based Access Control, RBAC) und eine **Ressourcenrichtlinie**. Es liegt dann jeweils im Ermessen der Organisation, wie das Governance-Modell für die Nutzung dieser Komponenten entworfen wird.
 

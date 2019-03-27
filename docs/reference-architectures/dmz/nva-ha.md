@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: a0973fad14bd9b4e81ec9940c83b8ebb31e9599b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 18a8620d835488be7a3639e8fbde86f9f10f946c
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486786"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244991"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>Bereitstellen hochverfügbarer virtueller Netzwerkgeräte
 
@@ -54,7 +54,7 @@ Die folgende Abbildung zeigt eine Hochverfügbarkeitsarchitektur, die eine DMZ f
 Der Vorteil dieser Architektur ist, dass alle NVAs aktiv sind, und bei Ausfall eines NVA wird der Netzwerkdatenverkehr durch den Lastenausgleich an das andere NVA weitergeleitet. Beide NVAs leiten den Datenverkehr an den internen Lastenausgleich, sodass der Datenverkehr weiter fließt, solange ein NVA aktiv ist. Die NVAs sind erforderlich, um den für virtuelle Computer der Webebene vorgesehenen SSL-Datenverkehr zu beenden. Diese NVAs können nicht auf die Handhabung des lokalen Datenverkehrs ausgeweitet werden, da für den lokalen Datenverkehr eine andere dedizierte Gruppe von NVAs mit eigenen Netzwerkrouten erforderlich ist.
 
 > [!NOTE]
-> Diese Architektur wird in der Referenzarchitektur für die [DMZ zwischen Azure und Ihrem lokalen Rechenzentrum][dmz-on-prem] und der Referenzarchitektur für die [DMZ zwischen Azure und dem Internet][dmz-internet] verwendet. Jede dieser Referenzarchitekturen umfasst eine Bereitstellungslösung, die Sie verwenden können. Weitere Informationen stehen über die Links bereit.
+> Diese Architektur wird in der Referenzarchitektur für die [DMZ zwischen Azure und Ihrem lokalen Rechenzentrum][dmz-on-premises] und der Referenzarchitektur für die [DMZ zwischen Azure und dem Internet][dmz-internet] verwendet. Jede dieser Referenzarchitekturen umfasst eine Bereitstellungslösung, die Sie verwenden können. Weitere Informationen stehen über die Links bereit.
 
 ## <a name="egress-with-layer-7-nvas"></a>Ausgehender Datenverkehr mit Layer-7-NVAs
 
@@ -65,7 +65,7 @@ Die vorherige Architektur kann so erweitert werden, dass sie eine ausgehende DMZ
 In dieser Architektur wird der gesamte aus Azure stammende Datenverkehr an einen internen Lastenausgleich weitergeleitet. Der Lastenausgleich verteilt ausgehende Anforderungen auf eine Gruppe von NVAs. Diese NVAs leiten den Datenverkehr über ihre jeweiligen öffentlichen IP-Adressen an das Internet weiter.
 
 > [!NOTE]
-> Diese Architektur wird in der Referenzarchitektur für die [DMZ zwischen Azure und Ihrem lokalen Rechenzentrum][dmz-on-prem] und der Referenzarchitektur für die [DMZ zwischen Azure und dem Internet][dmz-internet] verwendet. Jede dieser Referenzarchitekturen umfasst eine Bereitstellungslösung, die Sie verwenden können. Weitere Informationen stehen über die Links bereit.
+> Diese Architektur wird in der Referenzarchitektur für die [DMZ zwischen Azure und Ihrem lokalen Rechenzentrum][dmz-on-premises] und der Referenzarchitektur für die [DMZ zwischen Azure und dem Internet][dmz-internet] verwendet. Jede dieser Referenzarchitekturen umfasst eine Bereitstellungslösung, die Sie verwenden können. Weitere Informationen stehen über die Links bereit.
 
 ## <a name="ingress-egress-with-layer-7-nvas"></a>Eingehender/ausgehender Datenverkehr mit Layer-7-NVAs
 
@@ -118,14 +118,14 @@ Der gewünschte Test wird beim Konfigurieren der Funktions-App ausgewählt. Die 
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-- Erfahren Sie, wie Sie mithilfe von Layer-7-NVAs [eine DMZ zwischen Azure und Ihrem lokalen Rechenzentrum implementieren][dmz-on-prem].
+- Erfahren Sie, wie Sie mithilfe von Layer-7-NVAs [eine DMZ zwischen Azure und Ihrem lokalen Rechenzentrum implementieren][dmz-on-premises].
 - Erfahren Sie, wie Sie mithilfe von Layer-7-NVAs [eine DMZ zwischen Azure und dem Internet implementieren][dmz-internet].
 - [Behandeln von Problemen mit virtuellen Netzwerkappliances in Azure](/azure/virtual-network/virtual-network-troubleshoot-nva)
 
 <!-- links -->
 
 [cloud-security]: /azure/best-practices-network-security
-[dmz-on-prem]: ./secure-vnet-hybrid.md
+[dmz-on-premises]: ./secure-vnet-hybrid.md
 [dmz-internet]: ./secure-vnet-dmz.md
 [egress-with-layer-7]: #egress-with-layer-7-nvas
 [ingress-with-layer-7]: #ingress-with-layer-7-nvas

@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Verbesserung der Disziplin „Sicherheitsbaseline“
 author: BrianBlanchard
 ms.openlocfilehash: 28a971f56c9f8ada1d184bdc1cb3dbb9a17c3507
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901901"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246451"
 ---
 # <a name="security-baseline-discipline-improvement"></a>Verbesserung der Disziplin „Sicherheitsbaseline“
 
@@ -20,18 +20,18 @@ Die Disziplin „Sicherheitsbaseline“ konzentriert sich auf Möglichkeiten zum
 
 Dieser Artikel beschreibt einige potenzielle Aufgaben, die Ihr Unternehmen ausführen kann, um die Disziplin „Sicherheitsbaseline“ besser erstellen und weiterentwickeln zu können. Diese Aufgaben lassen sich in verschiedene Phasen der Implementierung einer Cloudlösung unterteilen: Planung, Erstellung, Übernahme und Betrieb. Diese Phasen werden dann durchlaufen und ermöglichen die Entwicklung eines [inkrementellen Ansatzes für Cloud Governance](../journeys/overview.md#an-incremental-approach-to-cloud-governance).
 
-![Vier Phasen der Übernahme](../../_images/adoption-phases.png)
+![Vier Phasen der Einführung](../../_images/adoption-phases.png)
 
-*Abbildung 1: Übernahmephasen des inkrementellen Ansatzes für Cloud Governance.*
+*Abbildung 1: Einführungsphasen des inkrementellen Ansatzes für die Cloudgovernance.*
 
 Es ist unmöglich, die Anforderungen aller Unternehmen in einem einzigen Dokument zu berücksichtigen. Daher werden in diesem Artikel die empfohlenen mindestens auszuführenden Aktivitäten sowie Beispiele für potenzielle Aktivitäten für jede Phase des Weiterentwicklungsprozesses für die Governance beschrieben. Ziel dieser Aktivitäten ist, Sie beim Aufbau eines [Richtlinien-MVP](../journeys/overview.md#an-incremental-approach-to-cloud-governance) und bei der Einrichtung eines Frameworks für die inkrementelle Weiterentwicklung der Richtlinie zu unterstützen. Ihr Cloud Governance-Team muss entscheiden, wie viel in diese Aktivitäten investiert werden soll, um Ihre Funktionen für die Governance der Sicherheitsbaseline zu verbessern.
 
 > [!CAUTION]
-> Weder die in diesem Artikel beschriebenen mindestens erforderlichen noch die potenziellen Aktivitäten sind auf bestimmte Unternehmensrichtlinien oder Complianceanforderungen von Drittanbietern ausgerichtet. Diese Anleitung soll die Diskussionen erleichtern, die zur Anpassung beider Anforderungen an ein Cloud Governance-Modell beitragen.
+> Weder die in diesem Artikel beschriebenen mindestens erforderlichen noch die potenziellen Aktivitäten sind auf bestimmte Unternehmensrichtlinien oder Complianceanforderungen von Drittanbietern ausgerichtet. Dieser Leitfaden soll bei Gesprächen über die Ausrichtung beider Anforderungen auf ein Cloudgovernancemodell helfen.
 
 ## <a name="planning-and-readiness"></a>Planung und Bereitschaft
 
-Diese Reifephase der Governance überbrückt die Lücke zwischen Geschäftsergebnissen und umsetzbaren Strategien. Während dieses Prozesses definiert das Führungsteam bestimmte Metriken, ordnet diese Metriken dem digitalen Bestand zu und beginnt mit der Planung der gesamten Migration.
+Diese Entwicklungsphase der Governance überbrückt die Lücke zwischen Geschäftsergebnissen und umsetzbaren Strategien. Während dieses Prozesses definiert das Führungsteam bestimmte Metriken, ordnet diese Metriken dem digitalen Bestand zu und beginnt mit der Planung der gesamten Migration.
 
 **Mindestens empfohlene Aktivitäten**:
 
@@ -96,7 +96,7 @@ Migration ist ein inkrementeller Prozess, bei dem der Schwerpunkt auf der Verlag
 
 ## <a name="operate-and-post-implementation"></a>Betrieb und Aufgaben nach der Implementierung
 
-Sobald die Transformation abgeschlossen ist, müssen Governance und Betrieb während des natürlichen Lebenszyklus einer Anwendung oder Workload bestehen bleiben. In dieser Phase der Ausgereiftheit der Governance geht es um die Aktivitäten, die üblicherweise ausgeführt werden, nachdem die Lösung implementiert wurde und der Transformationszyklus sich zu stabilisieren beginnt.
+Nachdem die Transformation abgeschlossen ist, müssen Governance und Betrieb während des natürlichen Lebenszyklus einer Anwendung oder Workload bestehen bleiben. In dieser Entwicklungsphase der Governance geht es um die Aktivitäten, die üblicherweise ausgeführt werden, nachdem die Lösung implementiert wurde und der Transformationszyklus sich zu stabilisieren beginnt.
 
 **Mindestens empfohlene Aktivitäten**:
 

@@ -1,5 +1,5 @@
 ---
-title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Erfassen von Bestandsdaten für ein digitales Umfeld'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Erfassen von Bestandsdaten für digitale Ressourcen'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 description: Informationen zum Erfassen von Bestandsdaten für ein digitales Umfeld.
 author: BrianBlanchard
@@ -8,13 +8,13 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.openlocfilehash: 0c68ff1e5ff51395698d37fb9b59c7a76c9479b7
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897251"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242551"
 ---
-# <a name="gather-inventory-data-for-a-digital-estate"></a>Erfassen von Bestandsdaten für ein digitales Umfeld
+# <a name="gather-inventory-data-for-a-digital-estate"></a>Erfassen von Bestandsdaten für digitale Ressourcen
 
 Die Erstellung eines Bestandsverzeichnisses ist der erste Schritt bei der [Planung für digitale Ressourcen](overview.md). Hierzu wird eine Liste mit IT-Ressourcen, die bestimmte Geschäftsfunktionen unterstützen, zur späteren Analyse und Rationalisierung erfasst. In diesem Artikel wird davon ausgegangen, dass für die Anforderungsplanung ein Bottom-up-Analyseansatz am besten geeignet ist. Weitere Informationen finden Sie unter [Enterprise Cloud Adoption: Approaches to digital estate planning](./approach.md) (Enterprise Cloud-Einführung: Ansätze für die Planung digitaler Ressourcen).
 

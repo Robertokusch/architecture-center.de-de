@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 8d37bc2aed17bfef4d54f29f269b23ce4a5c52c0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: edd73fd68ca4708faed92c6b1bcf5cfa3e6b2f07
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897659"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242341"
 ---
 # <a name="retry-pattern"></a>Wiederholungsmuster
 
@@ -52,7 +52,7 @@ Die Anwendung sollte alle Zugriffsversuche auf einen Remotedienst in Code einsch
 
 Eine Anwendung sollte die Details der Fehler und fehlgeschlagenen Vorgänge protokollieren. Diese Informationen sind für Betreiber nützlich. Wenn ein Dienst häufig nicht verfügbar oder ausgelastet ist, liegt dies oft daran, dass die Ressourcen des Diensts ausgeschöpft sind. Sie können die Häufigkeit dieser Fehler reduzieren, indem Sie den Dienst horizontal skalieren. Wenn beispielsweise ein Datenbankdienst ständig überlastet ist, kann es nützlich sein, die Datenbank zu partitionieren und die Last auf mehrere Server zu verteilen.
 
-> [Microsoft Entity Framework](https://docs.microsoft.com/ef/) bietet Funktionen für das Wiederholen von Datenbankvorgängen. Auch die meisten Azure-Dienste und Client-SDKs enthalten einen Wiederholungsmechanismus. Weitere Informationen finden Sie unter [Wiederholungsanleitung für bestimmte Dienste](/azure/architecture/best-practices/retry-service-specific).
+> [Microsoft Entity Framework](/ef) bietet Funktionen für das Wiederholen von Datenbankvorgängen. Auch die meisten Azure-Dienste und Client-SDKs enthalten einen Wiederholungsmechanismus. Weitere Informationen finden Sie unter [Wiederholungsanleitung für bestimmte Dienste](/azure/architecture/best-practices/retry-service-specific).
 
 ## <a name="issues-and-considerations"></a>Probleme und Überlegungen
 
@@ -177,4 +177,4 @@ private bool IsTransient(Exception ex)
 
 - [Muster „Trennschalter“](./circuit-breaker.md). Das Wiederholungsmuster eignet sich zum Behandeln vorübergehender Fehler. Wenn bei einem Fehler davon ausgegangen wird, dass er länger andauert, ist es möglicherweise besser, das Trennschalter-Muster zu implementieren. Das Wiederholungsmuster kann auch in Verbindung mit einem Trennschalter verwendet werden, um einen umfassenden Ansatz zur Behandlung von Fehlern bereitzustellen.
 - [Wiederholungsanleitung für bestimmte Dienste](/azure/architecture/best-practices/retry-service-specific)
-- [Verbindungsstabilität](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)
+- [Verbindungsstabilität](/ef/core/miscellaneous/connection-resiliency)

@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: c58d06813e3a500c6bb1b6c7889e65f401be6c33
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484532"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244891"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>Übertragen von Daten in und aus Azure
 
@@ -92,9 +92,9 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | | Azure Import/Export-Dienst | Azure Data Box |
 | --- | --- | --- |
 | Formfaktor | Interne SATA-HDDs oder -SDDs | Einzelne sichere und manipulationsgeschützte Hardwareappliance |
-| Von Microsoft verwaltete Versandlogistik | Nein  | JA |
-| Integration in Partnerprodukte | Nein  | JA |
-| Angepasste Appliance | Nein  | JA |
+| Von Microsoft verwaltete Versandlogistik | Nein  | Ja |
+| Integration in Partnerprodukte | Nein  | Ja |
+| Angepasste Appliance | Nein  | Ja |
 
 ### <a name="command-line-tools"></a>Befehlszeilentools
 
@@ -102,13 +102,13 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | Distcp | Sqoop | Hadoop-Befehlszeilenschnittstelle |
 | --- | --- | --- | --- |
-| Für Big Data optimiert | JA | Ja |  JA |
+| Für Big Data optimiert | Ja | Ja |  Ja |
 | Kopieren in relationale Datenbank |  Nein  | Ja | Nein  |
 | Kopieren aus relationaler Datenbank |  Nein  | Ja | Nein  |
-| Kopieren in Blob Storage |  JA | Ja | JA |
-| Kopieren aus Blob Storage | JA |  JA | Nein  |
-| Kopieren in Data Lake Store | JA | Ja | JA |
-| Kopieren aus Data Lake Store | JA | JA | Nein  |
+| Kopieren in Blob Storage |  Ja | Ja | Ja |
+| Kopieren aus Blob Storage | Ja |  Ja | Nein  |
+| Kopieren in Data Lake Store | Ja | Ja | Ja |
+| Kopieren aus Data Lake Store | Ja | Ja | Nein  |
 
 **Sonstige:**
 
@@ -118,12 +118,12 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Kompatible Plattformen | Linux, OS X, Windows | Linux, Windows | Windows | Linux, OS X, Windows | SQL Server, Azure SQL Data Warehouse |
 | Für Big Data optimiert | Nein  | Nein  | Nein  | Ja<sup>1</sup> | Ja<sup>2</sup> |
-| Kopieren in relationale Datenbank | Nein  | Nein  | Nein  | Nein  | JA |
-| Kopieren aus relationaler Datenbank | Nein  | Nein  | Nein  | Nein  | JA |
-| Kopieren in Blob Storage | JA | Ja | JA | Nein | JA |
-| Kopieren aus Blob Storage | JA | Ja | Ja | Ja | JA |
-| Kopieren in Data Lake Store | Nein  | Nein  | Ja | Ja |  JA |
-| Kopieren aus Data Lake Store | Nein  | Nein  | Ja | Ja | JA |
+| Kopieren in relationale Datenbank | Nein  | Nein  | Nein  | Nein  | Ja |
+| Kopieren aus relationaler Datenbank | Nein  | Nein  | Nein  | Nein  | Ja |
+| Kopieren in Blob Storage | Ja | Ja | Ja | Nein | Ja |
+| Kopieren aus Blob Storage | Ja | Ja | Ja | Ja | Ja |
+| Kopieren in Data Lake Store | Nein  | Nein  | Ja | Ja |  Ja |
+| Kopieren aus Data Lake Store | Nein  | Nein  | Ja | Ja | Ja |
 
 <!-- markdownlint-enable MD033 -->
 
@@ -135,17 +135,17 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | Azure Storage-Explorer | Azure-Portal* | Azure Data Factory |
 | --- | --- | --- | --- |
-| Für Big Data optimiert | Nein  | Nein  | JA |
-| Kopieren in relationale Datenbank | Nein  | Nein  | JA |
-| Kopieren aus relationaler Datenbank | Nein  | Nein  | JA |
-| Kopieren in Blob Storage | JA | Nein | JA |
-| Kopieren aus Blob Storage | JA | Nein | JA |
-| Kopieren in Data Lake Store | Nein  | Nein  | JA |
-| Kopieren aus Data Lake Store | Nein  | Nein  | JA |
-| Hochladen in Blob Storage | JA | Ja | JA |
-| Hochladen in Data Lake Store | JA | Ja | JA |
-| Orchestrieren von Datenübertragungen | Nein  | Nein  | JA |
-| Benutzerdefinierte Datentransformationen | Nein  | Nein  | JA |
+| Für Big Data optimiert | Nein  | Nein  | Ja |
+| Kopieren in relationale Datenbank | Nein  | Nein  | Ja |
+| Kopieren aus relationaler Datenbank | Nein  | Nein  | Ja |
+| Kopieren in Blob Storage | Ja | Nein | Ja |
+| Kopieren aus Blob Storage | Ja | Nein | Ja |
+| Kopieren in Data Lake Store | Nein  | Nein  | Ja |
+| Kopieren aus Data Lake Store | Nein  | Nein  | Ja |
+| Hochladen in Blob Storage | Ja | Ja | Ja |
+| Hochladen in Data Lake Store | Ja | Ja | Ja |
+| Orchestrieren von Datenübertragungen | Nein  | Nein  | Ja |
+| Benutzerdefinierte Datentransformationen | Nein  | Nein  | Ja |
 | Preismodell | Kostenlos | Kostenlos | Nutzungsbasierte Bezahlung |
 
 \* Azure-Portal bedeutet in diesem Fall die Verwendung der webbasierten Erkundungstools für Blob Storage und Data Lake Store.

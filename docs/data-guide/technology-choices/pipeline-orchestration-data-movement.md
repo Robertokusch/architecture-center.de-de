@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 76a101b76497ae2b2aacff973175bb0fe4703d9e
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482441"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245871"
 ---
 # <a name="choosing-a-data-pipeline-orchestration-technology-in-azure"></a>Auswählen einer Technologie für die Datenpipelineorchestrierung in Azure
 
@@ -47,8 +47,8 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | Oozie in HDInsight
 | --- | --- | --- | --- |
-| Verwaltet | JA | Nein | JA |
-| Cloudbasiert | JA | Nein (lokal) | JA |
+| Verwaltet | Ja | Nein | Ja |
+| Cloudbasiert | Ja | Nein (lokal) | Ja |
 | Voraussetzung | Azure-Abonnement | SQL Server  | Azure-Abonnement, HDInsight-Cluster |
 | Verwaltungstools | Azure-Portal, PowerShell, CLI, .NET SDK | SSMS, PowerShell | Bash-Shell, Oozie-REST-API, Oozie-Webbenutzeroberfläche |
 | Preise | Nutzungsbasierte Bezahlung | Lizenzierung/Bezahlung für Funktionen | Keine Zusatzgebühren (nur Gebühren für die Ausführung des HDInsight-Clusters) |
@@ -57,22 +57,22 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | Oozie in HDInsight
 | --- | --- | --- | --- |
-| Kopieren von Daten | JA | Ja | JA |
-| Benutzerdefinierte Transformationen | JA | JA | Ja (MapReduce-, Pig- und Hive-Aufträge) |
-| Azure Machine Learning-Bewertung | JA | Ja (mit Skripts) | Nein  |
-| HDInsight (bedarfsgesteuert) | JA | Nein  | Nein  |
-| Azure Batch | JA | Nein  | Nein  |
-| Pig, Hive, MapReduce | JA | Nein | JA |
-| Spark | JA | Nein  | Nein  |
-| Ausführen des SSIS-Pakets | JA | JA | Nein  |
-| Ablaufsteuerung | JA | Ja | JA |
-| Zugriff auf lokale Daten | JA | JA | Nein  |
+| Kopieren von Daten | Ja | Ja | Ja |
+| Benutzerdefinierte Transformationen | Ja | Ja | Ja (MapReduce-, Pig- und Hive-Aufträge) |
+| Azure Machine Learning-Bewertung | Ja | Ja (mit Skripts) | Nein  |
+| HDInsight (bedarfsgesteuert) | Ja | Nein  | Nein  |
+| Azure Batch | Ja | Nein  | Nein  |
+| Pig, Hive, MapReduce | Ja | Nein | Ja |
+| Spark | Ja | Nein  | Nein  |
+| Ausführen des SSIS-Pakets | Ja | Ja | Nein  |
+| Ablaufsteuerung | Ja | Ja | Ja |
+| Zugriff auf lokale Daten | Ja | Ja | Nein  |
 
 ### <a name="scalability-capabilities"></a>Skalierbarkeitsfunktionen
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | Oozie in HDInsight
 | --- | --- | --- | --- |
-| Zentrales Hochskalieren | JA | Nein  | Nein  |
-| Horizontales Skalieren | JA | Nein  | Ja (durch Hinzufügen von Workerknoten zum Cluster) |
-| Für Big Data optimiert | JA | Nein | JA |
+| Zentrales Hochskalieren | Ja | Nein  | Nein  |
+| Horizontales Skalieren | Ja | Nein  | Ja (durch Hinzufügen von Workerknoten zum Cluster) |
+| Für Big Data optimiert | Ja | Nein | Ja |
 

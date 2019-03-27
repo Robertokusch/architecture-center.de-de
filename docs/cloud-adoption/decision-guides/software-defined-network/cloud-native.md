@@ -8,13 +8,13 @@ ms.date: 02/11/2019
 description: Erläuterung cloudnativer virtueller Netzwerkdienste
 author: rotycenh
 ms.openlocfilehash: c6200491bc9ba35a9f00e0003e51716b58628980
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900705"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242151"
 ---
-# <a name="software-defined-networks-cloud-native"></a>Softwaredefinierte Netzwerke: Cloudnativ
+# <a name="software-defined-networks-cloud-native"></a>Softwaredefinierte Netzwerke: Cloudbasiert
 
 Ein cloudnatives virtuelles Netzwerk ist erforderlich, wenn IaaS-Ressourcen wie virtuelle Computer auf einer Cloudplattform bereitgestellt werden. Der Zugriff auf virtuelle Netzwerke aus mit dem Web vergleichbaren externen Quellen muss explizit bereitgestellt werden. Diese Arten virtueller Netzwerke unterstützen die Erstellung von Subnetzen, Routingregeln sowie von virtuellen Geräten für Firewallfunktionen und Datenverkehrsverwaltung.
 
@@ -40,4 +40,4 @@ Zusätzliche Aspekte, die Ihr für den Umstieg auf die Cloud zuständiges Team b
 Nachstehend finden Sie weitere Informationen zu cloudnativen virtuellen Netzwerken auf der Azure-Plattform.
 
 - [Azure Virtual Network: Anleitungen](/azure/virtual-network/virtual-network-vnet-plan-design-arm). Neu erstellte Azure Virtual Networks sind standardmäßig cloudnativ. Befolgen Sie diese Anleitungen bei der Planung des Entwurfs und der Bereitstellung Ihrer virtuellen Netzwerke.
-- [Grenzwerte für Abonnements: Netzwerk](/azure/azure-subscription-service-limits?toc=%2fazure%2fvirtual-network%2ftoc.json#networking-limits). Alle zu einem einzelnen virtuellen Netzwerk gehörenden Ressourcen können nur innerhalb eines Einzelabonnements vorhanden sein und unterliegen Abonnementgrenzen.
+- [Grenzwerte für Abonnements: Netzwerk](/azure/azure-subscription-service-limits?toc=%2fazure%2fvirtual-network%2ftoc.json#networking-limits) aus. Alle zu einem einzelnen virtuellen Netzwerk gehörenden Ressourcen können nur innerhalb eines Einzelabonnements vorhanden sein und unterliegen Abonnementgrenzen.

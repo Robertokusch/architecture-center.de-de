@@ -3,12 +3,12 @@ title: 'Mainframemigration: Migration von Mainframeanwendungen'
 description: Migrieren von Anwendungen aus Mainframe-Umgebungen zu Azure, einer bewährten, hoch verfügbaren und skalierbaren Infrastruktur für Systeme, die derzeit auf Mainframes ausgeführt werden
 author: njray
 ms.date: 12/26/2018
-ms.openlocfilehash: dcae5077e26ab8ba9b08e0da71a5e69d0d9f62e3
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 2a22eb038da693671ce309c76afcfc41946034f3
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901430"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246391"
 ---
 # <a name="mainframe-application-migration"></a>Migration von Mainframeanwendungen
 
@@ -24,7 +24,7 @@ Die Anwendungsmigration umfasst üblicherweise eine oder mehrere der folgenden S
 
 - Neuerstellung: Einige Organisationen entscheiden sich dazu, Programme mithilfe moderner Techniken vollständig umzuschreiben. Angesichts der zusätzlichen Kosten und Komplexität dieses Ansatzes ist dies nicht so üblich wie eine Migration per Lift & Shift. Nach dieser Art der Migration ist es häufig sinnvoll, Module und Code mithilfe von Codetransformations-Engines zu ersetzen.
 
-- Ersetzen: Bei diesem Ansatz wird die Mainframefunktionalität durch entsprechende Features in der Cloud ersetzt. Software-as-a-Service (SaaS) ist eine Möglichkeit, bei der eine speziell für Unternehmensbelange erstellte Lösung verwendet wird, darunter Finanzen, Personalwesen, Fertigung oder Unternehmensressourcenplanung. Darüber hinaus stehen jetzt viele branchenspezifische Apps zur Verfügung, um Probleme zu lösen, die zuvor durch benutzerdefinierte Mainframelösungen gelöst wurden.
+- Ersetzen Sie: Bei diesem Ansatz wird die Mainframefunktionalität durch entsprechende Features in der Cloud ersetzt. Software-as-a-Service (SaaS) ist eine Möglichkeit, bei der eine speziell für Unternehmensbelange erstellte Lösung verwendet wird, darunter Finanzen, Personalwesen, Fertigung oder Unternehmensressourcenplanung. Darüber hinaus stehen jetzt viele branchenspezifische Apps zur Verfügung, um Probleme zu lösen, die zuvor durch benutzerdefinierte Mainframelösungen gelöst wurden.
 
 Sie sollten als Erstes die Workloads planen, die Sie zuerst migrieren möchten, und dann die Anforderungen für das Verschieben der zugehörigen Anwendungen, älteren Codebases und Datenbanken ermitteln.
 
@@ -168,7 +168,7 @@ Das Verschieben von Lösungen aus einem Mainframe nach Azure kann eine *mehrstuf
 
 In einem häufigen Szenario wird eine Anwendung nach Azure verschoben, während die von der Anwendung verwendeten Daten auf dem Mainframe bleiben. Eine spezielle Software wird verwendet, um den Anwendungen in Azure den Zugriff auf Daten auf dem Mainframe zu ermöglichen. Glücklicherweise stellen zahlreiche Lösungen die Integration zwischen Azure und vorhandenen Mainframe-Umgebungen, die Unterstützung für Hybridszenarien und die Migration über einen längeren Zeitraum bereit. Microsoft-Partner, unabhängige Softwarehersteller und Systemintegratoren können Sie bei diesem Prozess unterstützen.
 
-Eine Möglichkeit ist beispielsweise [Microsoft Host Integration Server](https://docs.microsoft.com/host-integration-server/) (HIS). Diese Lösung stellt die verteilte Architektur relationaler Datenbanken (DRDA) bereit, die erforderlich ist, damit Anwendungen in Azure auf Daten in DB2 auf dem Mainframe zugreifen können. Zu weiteren Optionen für die Integration von Mainframes in Azure zählen Lösungen von IBM, Attunity, Codit und anderen Anbietern sowie Open Source-Optionen.
+Eine Möglichkeit ist beispielsweise [Microsoft Host Integration Server](/host-integration-server) (HIS). Diese Lösung stellt die verteilte Architektur relationaler Datenbanken (DRDA) bereit, die erforderlich ist, damit Anwendungen in Azure auf Daten in DB2 auf dem Mainframe zugreifen können. Zu weiteren Optionen für die Integration von Mainframes in Azure zählen Lösungen von IBM, Attunity, Codit und anderen Anbietern sowie Open Source-Optionen.
 
 ## <a name="partner-solutions"></a>Partnerlösungen
 
@@ -188,4 +188,4 @@ Weitere Informationen finden Sie in den folgenden Ressourcen:
 
 - [Bereitstellen von IBM DB2 pureScale in Azure](https://azure.microsoft.com/resources/deploy-ibm-db2-purescale-on-azure)
 
-- [Dokumentation zu Host Integration Server (HIS)](https://docs.microsoft.com/host-integration-server/)
+- [Dokumentation zu Host Integration Server (HIS)](/host-integration-server)

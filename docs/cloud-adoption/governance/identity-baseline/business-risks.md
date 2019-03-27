@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 'Identitätsbaseline: Motivationen und Geschäftsrisiken'
 author: BrianBlanchard
 ms.openlocfilehash: ef831d1b3b01251b27f1f7b18e551c49996a2468
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900725"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246521"
 ---
 # <a name="identity-baseline-motivations-and-business-risks"></a>Identitätsbaseline: Motivationen und Geschäftsrisiken
 
@@ -41,7 +41,7 @@ Die Risiken werden je nach Organisation unterschiedlich sein, aber die folgenden
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Dokumentieren Sie mit der [Cloudverwaltungsvorlage](./template.md) Geschäftsrisiken, die durch den aktuellen Cloudeinführungsplan wahrscheinlich entstehen.
+Dokumentieren Sie mit der [Cloudverwaltungsvorlage](./template.md) die Geschäftsrisiken, die wahrscheinlich durch den aktuellen Cloudeinführungsplan entstehen.
 
 Sobald ein Verständnis für realistische Geschäftsrisiken hergestellt ist, besteht der nächste Schritt darin, die Risikotoleranz des Unternehmens zu dokumentieren sowie die Indikatoren und Schlüsselmetrik zur Überwachung dieser Toleranz zu erfassen.
 

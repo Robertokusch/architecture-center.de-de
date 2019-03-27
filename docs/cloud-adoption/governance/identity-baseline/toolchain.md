@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Tools für Identitätsbaseline in Azure
 author: BrianBlanchard
 ms.openlocfilehash: 81b0fa9cfee597da98d8b983fb155eac82d97bf8
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901922"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243671"
 ---
 # <a name="identity-baseline-tools-in-azure"></a>Tools für Identitätsbaseline in Azure
 

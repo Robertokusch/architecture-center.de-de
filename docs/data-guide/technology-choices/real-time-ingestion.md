@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 9f787a0de5db97f5c0a5651b510e49762fbc44b9
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482993"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244881"
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>Auswählen einer Technologie für die Echtzeiterfassung von Nachrichten in Azure
 
@@ -72,8 +72,8 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | IoT Hub | Event Hubs | Kafka in HDInsight |
 | --- | --- | --- | --- |
-| Cloud-zu-Gerät-Kommunikation | JA | Nein  | Nein  |
-| Vom Gerät initiierter Dateiupload | JA | Nein  | Nein  |
+| Cloud-zu-Gerät-Kommunikation | Ja | Nein  | Nein  |
+| Vom Gerät initiierter Dateiupload | Ja | Nein  | Nein  |
 | Gerätestatusinformationen | [Gerätezwillinge](/azure/iot-hub/iot-hub-devguide-device-twins) | Nein  | Nein  |
 | Protokollunterstützung | MQTT, AMQP, HTTPS<sup>1</sup> | AMQP, HTTPS | [Kafka-Protokoll](https://cwiki.apache.org/confluence/display/KAFKA/A+Guide+To+The+Kafka+Protocol) |
 | Sicherheit | Geräteabhängige Identität, widerrufbare Zugriffssteuerung | Freigegebene Zugriffsrichtlinien, begrenzte Sperrung über Herausgeberrichtlinien | Authentifizierung mit SASL, austauschbare Autorisierung, Unterstützung der Integration in externe Authentifizierungsdienste |

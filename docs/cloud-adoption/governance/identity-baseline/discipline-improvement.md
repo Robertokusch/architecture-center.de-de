@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Verbesserung der Disziplin „Identitätsbaseline“
 author: BrianBlanchard
 ms.openlocfilehash: c96a638af549782fec22b2068c9b4943df4b943a
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900749"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243251"
 ---
 # <a name="identity-baseline-discipline-improvement"></a>Verbesserung der Disziplin „Identitätsbaseline“
 
@@ -24,10 +24,10 @@ Dieser Artikel beschreibt einige potenzielle Aufgaben, die Ihr Unternehmen ausf�
 
 *Abbildung 1: Einführungsphasen des inkrementellen Ansatzes für die Cloudgovernance.*
 
-Es ist unmöglich, die Anforderungen aller Unternehmen in einem einzigen Dokument zu berücksichtigen. Daher werden in diesem Artikel die empfohlenen mindestens auszuführenden Aktivitäten sowie Beispiele für potenzielle Aktivitäten für jede Phase des Weiterentwicklungsprozesses für die Governance beschrieben. Ziel dieser Aktivitäten ist es, Sie beim Aufbau eines [Richtlinien-MVP](../journeys/overview.md#an-incremental-approach-to-cloud-governance) und bei der Einrichtung eines Frameworks für die inkrementelle Weiterentwicklung der Richtlinie zu unterstützen. Ihr Cloudgovernanceteam muss entscheiden, wie viel in diese Aktivitäten investiert werden soll, um Ihre Funktionen für die Governance der Identitätsbaseline zu verbessern.
+Es ist unmöglich, die Anforderungen aller Unternehmen in einem einzigen Dokument zu berücksichtigen. Daher werden in diesem Artikel die empfohlenen mindestens auszuführenden Aktivitäten sowie Beispiele für potenzielle Aktivitäten für jede Phase des Weiterentwicklungsprozesses für die Governance beschrieben. Ziel dieser Aktivitäten ist es, Sie beim Aufbau eines [Richtlinien-MVP](../journeys/overview.md#an-incremental-approach-to-cloud-governance) und bei der Einrichtung eines Frameworks für die inkrementelle Weiterentwicklung der Richtlinie zu unterstützen. Ihr Cloudgovernance-Team muss entscheiden, wie viel in diese Aktivitäten investiert werden soll, um Ihre Funktionen für die Governance der Identitätsbaseline zu verbessern.
 
 > [!CAUTION]
-> Weder die in diesem Artikel beschriebenen mindestens erforderlichen noch die potenziellen Aktivitäten sind auf bestimmte Unternehmensrichtlinien oder Complianceanforderungen von Drittanbietern ausgerichtet. Diese Anleitung soll die Diskussionen erleichtern, die zur Ausrichtung beider Anforderungen mit einem Cloudgovernancemodell beitragen.
+> Weder die in diesem Artikel beschriebenen mindestens erforderlichen noch die potenziellen Aktivitäten sind auf bestimmte Unternehmensrichtlinien oder Complianceanforderungen von Drittanbietern ausgerichtet. Dieser Leitfaden soll bei Gesprächen über die Ausrichtung beider Anforderungen auf ein Cloudgovernancemodell helfen.
 
 ## <a name="planning-and-readiness"></a>Planung und Bereitschaft
 
@@ -82,13 +82,13 @@ Für die erfolgreiche Migration einer Umgebung muss eine Reihe von technischen u
 
 ## <a name="adopt-and-migrate"></a>Übernehmen und Migrieren
 
-Die Migration ist ein inkrementeller Prozess, bei dem der Schwerpunkt auf der Verlagerung, dem Testen und der Übernahme von Anwendungen oder Workloads in einem vorhandenen digitalen Bestand liegt.
+Migration ist ein inkrementeller Prozess, bei dem der Schwerpunkt auf der Verlagerung, dem Testen und der Übernahme von Anwendungen oder Workloads in einem vorhandenen digitalen Bestand liegt.
 
 **Mindestens empfohlene Aktivitäten:**
 
 * Migrieren Sie Ihre [Toolkette für die Identitätsbaseline](toolchain.md) aus der Entwicklung in die Produktion.
 * Aktualisieren Sie das Dokument mit Architekturrichtlinien, und geben Sie dieses an die wichtigsten Beteiligten weiter.
-* Entwickeln Sie Schulungsmaterialien und Dokumentation, Materialien zum Bekanntmachen der Migration, Incentives und weitere Programme, um die Akzeptanz durch Benutzer zu unterstützen.
+* Entwickeln Sie Schulungsmaterialien und Dokumentation, Materialien zum Bekanntmachen der Migration, Incentives und weitere Programme, um die Akzeptanz durch die Benutzer zu unterstützen.
 
 **Potenzielle Aktivitäten:**
 

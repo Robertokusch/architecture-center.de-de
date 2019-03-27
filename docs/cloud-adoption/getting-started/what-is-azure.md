@@ -3,16 +3,15 @@ title: 'CAF: Wie funktioniert Azure?'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.custom: governance
 description: Enthält eine Beschreibung der internen Funktionsweise von Azure.
 author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: 5ce9f0535584cbc45d757be5aa6f2fd64c7cc39f
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.date: 02/11/2019
+ms.openlocfilehash: 724d16a810865dd947a7ade34766818c8ea525a1
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898067"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245271"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -20,7 +19,11 @@ ms.locfileid: "55898067"
 
 Azure ist die öffentliche Cloudplattform von Microsoft. Azure umfasst eine große Sammlung von Diensten, z.B. Platform-as-a-Service (PaaS), Infrastructure-as-a-Service (IaaS), Database-as-a-Service (DBaaS) und viele andere. Aber was ist Azure genau, und wie funktioniert es?
 
+<!-- markdownlint-disable MD034 -->
+
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ixGo]
+
+<!-- markdownlint-enable MD034 -->
 
 Wie andere Cloudplattformen auch, basiert Azure auf einer Technologie, die als **Virtualisierung** bezeichnet wird. Ein Großteil der Computerhardware kann per Software emuliert werden, da es sich bei Computerhardware in den meisten Fällen lediglich um einen Satz mit Anweisungen handelt, die permanent oder semipermanent in Silizium codiert sind. Indem eine Emulationsebene verwendet wird, mit der Softwareanweisungen Hardwareanweisungen zugeordnet werden, kann virtualisierte Hardware so per Software ausgeführt werden, als ob es sich wirklich um Hardware handeln würde.
 

@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Lernen Sie als Bestandteil einer Cloud Governance-Strategie die Disziplin „Beschleunigung der Bereitstellung“ kennen.
 author: alexbuckgit
 ms.openlocfilehash: 854b1fd420de605a665922e9b207e6aecbfab2f0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900722"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242141"
 ---
 # <a name="deployment-acceleration-motivations-and-business-risks"></a>Beschleunigung der Bereitstellung – Motivation und Geschäftsrisiken
 

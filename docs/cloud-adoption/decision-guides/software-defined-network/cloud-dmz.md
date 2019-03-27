@@ -8,17 +8,17 @@ ms.date: 02/11/2019
 description: Diese Netzwerkarchitektur ermöglicht einen eingeschränkten Zugriff zwischen Ihren lokalen und cloudbasierten Netzwerken.
 author: rotycenh
 ms.openlocfilehash: a192541dcfb0f3d713f4139a2ab0541d0c7202db
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901669"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242811"
 ---
 # <a name="software-defined-networks-cloud-dmz"></a>Softwaredefinierte Netzwerke: Cloud-DMZ
 
 Die Netzwerkarchitektur von Cloud-DMZ ermöglicht einen eingeschränkten Zugriff zwischen Ihren lokalen und cloudbasierten Netzwerken, indem ein virtuelles privates Netzwerk (VPN) zur Verbindung der Netzwerke verwendet wird. Eine DMZ wird in der Cloud bereitgestellt, um den Zugriff auf das lokale Netzwerk aus cloudbasierten Ressourcen zu schützen.
 
-![Sichere hybride Netzwerkarchitektur](../../../reference-architectures/dmz/images/dmz-private.png)
+![Sichere Hybrid-Netzwerkarchitektur](../../../reference-architectures/dmz/images/dmz-private.png)
 
 Diese Architektur ist so ausgelegt, dass Szenarien unterstützt werden, in denen Ihr Unternehmen mit der Integration von cloudbasierten Workloads in lokale Workloads beginnen möchte, aber möglicherweise noch keine vollständig ausgereiften Sicherheitsrichtlinien für die Cloud hat oder keine sichere dedizierte WAN-Verbindung zwischen den beiden Umgebungen hergestellt wurde. Daher sollten Cloudnetzwerke wie eine DMZ behandelt werden, um zu gewährleisten, dass lokale Dienste sicher sind.
 

@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 53f8b233b0e0c1ff83a72a04b2707caa528d6f6b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486453"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248515"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>Auswählen einer Batchverarbeitungstechnologie in Azure
 
@@ -86,8 +86,8 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Azure Data Lake Analytics | Azure SQL Data Warehouse | HDInsight | Azure Databricks |
 | --- | --- | --- | --- | --- | --- |
-| Verwalteter Dienst | JA | JA | Ja<sup>1</sup> | JA |
-| Relationaler Datenspeicher | JA | JA | Nein  | Nein  |
+| Verwalteter Dienst | Ja | Ja | Ja<sup>1</sup> | Ja |
+| Relationaler Datenspeicher | Ja | Ja | Nein  | Nein  |
 | Preismodell | Pro Batchauftrag | Nach Clusterstunde | Nach Clusterstunde | Databricks-Einheit<sup>2</sup> + Clusterstunde |
 
 [1] Mit manueller Konfiguration und Skalierung
@@ -98,14 +98,14 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Azure Data Lake Analytics | SQL Data Warehouse | HDInsight mit Spark | HDInsight mit Hive | HDInsight mit Hive LLAP | Azure Databricks |
 | --- | --- | --- | --- | --- | --- | --- |
-| Automatische Skalierung | Nein  | Nein  | Nein  | Nein  | Nein  | JA |
+| Automatische Skalierung | Nein  | Nein  | Nein  | Nein  | Nein  | Ja |
 | Granularität bei der horizontalen Skalierung  | Pro Auftrag | Pro Cluster | Pro Cluster | Pro Cluster | Pro Cluster | Pro Cluster |
-| Speicherinternes Zwischenspeichern | Nein  | Ja | JA | Nein | Ja | JA |
-| Abfragen über externe relationale Speicher | JA | Nein | Ja | Nein  | Nein  | JA |
-| Authentifizierung  | Azure AD | SQL/Azure AD | Nein  | Azure AD<sup>1</sup> | Azure AD<sup>1</sup> | Azure AD |
-| Überwachung  | JA | JA | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> | JA |
+| Speicherinternes Zwischenspeichern | Nein  | Ja | Ja | Nein | Ja | Ja |
+| Abfragen über externe relationale Speicher | Ja | Nein | Ja | Nein  | Nein  | Ja |
+| Authentication  | Azure AD | SQL/Azure AD | Nein  | Azure AD<sup>1</sup> | Azure AD<sup>1</sup> | Azure AD |
+| Überwachung  | Ja | Ja | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> | Ja |
 | Sicherheit auf Zeilenebene | Nein  | Nein  | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> | Nein  |
-| Unterstützung von Firewalls | JA | Ja | JA | Ja<sup>2</sup> | Ja<sup>2</sup> | Nein  |
+| Unterstützung von Firewalls | Ja | Ja | Ja | Ja<sup>2</sup> | Ja<sup>2</sup> | Nein  |
 | Dynamische Datenmaskierung | Nein  | Nein  | Nein  | Ja<sup>1</sup> | Ja<sup>1</sup> | Nein  |
 
 <!-- markdownlint-enable MD033 -->

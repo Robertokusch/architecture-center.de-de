@@ -52,6 +52,6 @@ Die folgenden Entscheidungen stellen die Muster dar, die durch die oben dargeste
 
 **Identitätsbaseline**. RBAC-Anforderungen werden von Azure Blueprints auf Abonnementebene festgelegt, um sicherzustellen, dass für alle Abonnements eine konsistente Identität konfiguriert wird.
 
-**Sicherheitsbaseline: Netzwerk**. Das Cloudgovernanceteam verwaltet eine Resource Manager-Vorlage für die Einrichtung eines VPN-Gateways zwischen Azure und dem lokalen VPN-Gerät. Wenn ein Anwendungsteam eine VPN-Verbindung benötigt, wendet das Cloudgovernanceteam die Resource Manager-Vorlage für das Gateway über Azure Blueprints an.
+**Sicherheitsbaseline: Netzwerk** aus. Das Cloudgovernanceteam verwaltet eine Resource Manager-Vorlage für die Einrichtung eines VPN-Gateways zwischen Azure und dem lokalen VPN-Gerät. Wenn ein Anwendungsteam eine VPN-Verbindung benötigt, wendet das Cloudgovernanceteam die Resource Manager-Vorlage für das Gateway über Azure Blueprints an.
 
 **Sicherheitsbaseline: Verschlüsselung**. An diesem Punkt des Vorgangs müssen in diesem Bereich keine Richtlinien erzwungen werden. In der späteren Weiterentwicklung wird dieser Vorgang noch einmal aufgerufen.

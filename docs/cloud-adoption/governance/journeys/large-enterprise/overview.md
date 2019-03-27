@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: Governance Journey für große Unternehmen
 author: BrianBlanchard
 ms.openlocfilehash: 689b600524c3be6c505ade8c5aaa447d772c6e35
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900761"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245241"
 ---
 # <a name="caf-large-enterprise-governance-journey"></a>CAF: Governance Journey für große Unternehmen
 
@@ -31,7 +31,7 @@ Diese bewährte Methode dient als Grundlage, auf der eine Organisation schnell u
 
 ### <a name="resource-organization"></a>Ressourcenorganisation
 
-Das folgende Diagramm zeigt die Governance-MVP-Hierarchie zum Organisieren von Ressourcen.
+Die folgende Abbildung zeigt die Governance-MVP-Hierarchie zum Organisieren von Ressourcen.
 
 ![Ressourcenorganisationsdiagramm](../../../_images/governance/resource-organization.png)
 
@@ -67,7 +67,7 @@ Im MVP sind Methoden und Tools für die Disziplin der [Beschleunigung der Bereit
 
 ## <a name="evolving-the-best-practice"></a>Weiterentwicklung der bewährten Methode
 
-Im Laufe der Zeit wird dieses Governance-MVP verwendet, um die Governance-Methoden weiterzuentwickeln. Mit fortschreitender Einführung wächst das geschäftliche Risiko. Verschiedene Disziplinen im CAF-Governancemodell werden zur Verringerung dieser Risiken weiterentwickelt. Spätere Artikel dieser Reihe erläutern die Weiterentwicklung der Unternehmensrichtlinie, die sich auf das fiktive Unternehmen auswirkt. Diese Weiterentwicklung erfolgt drei Disziplinen übergreifend:
+Im Lauf der Zeit wird dieses Governance-MVP verwendet, um die Governancemethoden weiterzuentwickeln. Mit fortschreitender Einführung wächst das geschäftliche Risiko. Verschiedene Disziplinen im CAF-Governancemodell werden zur Verringerung dieser Risiken weiterentwickelt. Spätere Artikel dieser Reihe erläutern die Weiterentwicklung der Unternehmensrichtlinie, die sich auf das fiktive Unternehmen auswirkt. Diese Weiterentwicklung erfolgt drei Disziplinen übergreifend:
 
 - Identitätsbaseline, indem Migrationsabhängigkeiten in der Schilderung weiterentwickelt werden.
 - Kostenmanagement, wenn die Einführung skaliert wird.
@@ -78,7 +78,7 @@ Im Laufe der Zeit wird dieses Governance-MVP verwendet, um die Governance-Method
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Da Sie jetzt mit dem Governance-MVP vertraut sind und eine Vorstellung von zukünftigen Weiterentwicklungen der Governance haben, lesen Sie die unterstützende Schilderung, um zusätzliche Kontextinformationen zu erhalten.
+Da Sie jetzt mit dem Governance-MVP vertraut sind und eine Vorstellung von zukünftigen Weiterentwicklungen der Governance haben, lesen Sie die unterstützende Lösung, um zusätzliche Kontextinformationen zu erhalten.
 
 > [!div class="nextstepaction"]
-> [Lesen Sie die unterstützende Schilderung](./narrative.md)
+> [Lesen Sie die unterstützende Lösung](./narrative.md)
