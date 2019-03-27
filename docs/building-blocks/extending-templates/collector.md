@@ -7,40 +7,40 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.openlocfilehash: 5dc910b8577e27059761db417e6350cd38cdf2b8
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484719"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243751"
 ---
-# <a name="implement-a-property-transformer-and-collector-in-an-azure-resource-manager-template"></a><span data-ttu-id="89e61-103">Implementieren eines Transformers und Collectors für Eigenschaften in eine Azure Resource Manager-Vorlage</span><span class="sxs-lookup"><span data-stu-id="89e61-103">Implement a property transformer and collector in an Azure Resource Manager template</span></span>
+# <a name="implement-a-property-transformer-and-collector-in-an-azure-resource-manager-template"></a><span data-ttu-id="e5a94-103">Implementieren eines Transformers und Collectors für Eigenschaften in eine Azure Resource Manager-Vorlage</span><span class="sxs-lookup"><span data-stu-id="e5a94-103">Implement a property transformer and collector in an Azure Resource Manager template</span></span>
 
-<span data-ttu-id="89e61-104">Unter [Verwenden eines Objekts als Parameter in einer Azure Resource Manager-Vorlage][objects-as-parameters] wurde beschrieben, wie Sie Werte von Ressourceneigenschaften in einem Objekt speichern und während der Bereitstellung auf eine Ressource anwenden.</span><span class="sxs-lookup"><span data-stu-id="89e61-104">In [use an object as a parameter in an Azure Resource Manager template][objects-as-parameters], you learned how to store resource property values in an object and apply them to a resource during deployment.</span></span> <span data-ttu-id="89e61-105">Dies ist eine sehr gute Möglichkeit, um Ihre Parameter zu verwalten. Bei jeder Verwendung in Ihrer Vorlage müssen Sie aber trotzdem weiterhin die Eigenschaften des Objekts den Ressourceneigenschaften zuordnen.</span><span class="sxs-lookup"><span data-stu-id="89e61-105">While this is a very useful way to manage your parameters, it still requires you to map the object's properties to resource properties each time you use it in your template.</span></span>
+<span data-ttu-id="e5a94-104">Unter [Verwenden eines Objekts als Parameter in einer Azure Resource Manager-Vorlage][objects-as-parameters] wurde beschrieben, wie Sie Werte von Ressourceneigenschaften in einem Objekt speichern und während der Bereitstellung auf eine Ressource anwenden.</span><span class="sxs-lookup"><span data-stu-id="e5a94-104">In [use an object as a parameter in an Azure Resource Manager template][objects-as-parameters], you learned how to store resource property values in an object and apply them to a resource during deployment.</span></span> <span data-ttu-id="e5a94-105">Dies ist eine sehr gute Möglichkeit, um Ihre Parameter zu verwalten. Bei jeder Verwendung in Ihrer Vorlage müssen Sie aber trotzdem weiterhin die Eigenschaften des Objekts den Ressourceneigenschaften zuordnen.</span><span class="sxs-lookup"><span data-stu-id="e5a94-105">While this is a very useful way to manage your parameters, it still requires you to map the object's properties to resource properties each time you use it in your template.</span></span>
 
-<span data-ttu-id="89e61-106">Zur Umgehung dieses Problems können Sie eine Vorlage für die Transformation und Sammlung von Eigenschaften (Transformer und Collector) implementieren, mit der Ihr Objektarray durchlaufen und in das JSON-Schema transformiert wird, das von der Ressource erwartet wird.</span><span class="sxs-lookup"><span data-stu-id="89e61-106">To work around this, you can implement a property transform and collector template that iterates your object array and transforms it into the JSON schema expected by the resource.</span></span>
+<span data-ttu-id="e5a94-106">Zur Umgehung dieses Problems können Sie eine Vorlage für die Transformation und Sammlung von Eigenschaften (Transformer und Collector) implementieren, mit der Ihr Objektarray durchlaufen und in das JSON-Schema transformiert wird, das von der Ressource erwartet wird.</span><span class="sxs-lookup"><span data-stu-id="e5a94-106">To work around this, you can implement a property transform and collector template that iterates your object array and transforms it into the JSON schema expected by the resource.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="89e61-107">Für diesen Ansatz ist es erforderlich, dass Sie eingehend mit Resource Manager-Vorlagen und -Funktionen vertraut sind.</span><span class="sxs-lookup"><span data-stu-id="89e61-107">This approach requires that you have a deep understanding of Resource Manager templates and functions.</span></span>
+> <span data-ttu-id="e5a94-107">Für diesen Ansatz ist es erforderlich, dass Sie eingehend mit Resource Manager-Vorlagen und -Funktionen vertraut sind.</span><span class="sxs-lookup"><span data-stu-id="e5a94-107">This approach requires that you have a deep understanding of Resource Manager templates and functions.</span></span>
 
-<span data-ttu-id="89e61-108">Wir sehen uns nun an, wie wir einen Collector und Transformer für Eigenschaften implementieren können. Hierzu verwenden wir ein Beispiel, in dem eine [Netzwerksicherheitsgruppe (NSG)][nsg] bereitgestellt wird.</span><span class="sxs-lookup"><span data-stu-id="89e61-108">Let's take a look at how we can implement a property collector and transformer with an example that deploys a [network security group (NSG)][nsg].</span></span> <span data-ttu-id="89e61-109">Im Diagramm unten ist die Beziehung zwischen unseren Vorlagen und Ressourcen in diesen Vorlagen dargestellt:</span><span class="sxs-lookup"><span data-stu-id="89e61-109">The diagram below shows the relationship between our templates and our resources within those templates:</span></span>
+<span data-ttu-id="e5a94-108">Wir sehen uns nun an, wie wir einen Collector und Transformer für Eigenschaften implementieren können. Hierzu verwenden wir ein Beispiel, in dem eine [Netzwerksicherheitsgruppe (NSG)][nsg] bereitgestellt wird.</span><span class="sxs-lookup"><span data-stu-id="e5a94-108">Let's take a look at how we can implement a property collector and transformer with an example that deploys a [network security group (NSG)][nsg].</span></span> <span data-ttu-id="e5a94-109">Im Diagramm unten ist die Beziehung zwischen unseren Vorlagen und Ressourcen in diesen Vorlagen dargestellt:</span><span class="sxs-lookup"><span data-stu-id="e5a94-109">The diagram below shows the relationship between our templates and our resources within those templates:</span></span>
 
 ![Architektur für Collectors und Transformers für Eigenschaften](../_images/collector-transformer.png)
 
-<span data-ttu-id="89e61-111">Unsere **aufrufende Vorlage** enthält zwei Ressourcen:</span><span class="sxs-lookup"><span data-stu-id="89e61-111">Our **calling template** includes two resources:</span></span>
+<span data-ttu-id="e5a94-111">Unsere **aufrufende Vorlage** enthält zwei Ressourcen:</span><span class="sxs-lookup"><span data-stu-id="e5a94-111">Our **calling template** includes two resources:</span></span>
 
-- <span data-ttu-id="89e61-112">Einen Vorlagenlink, über den die **Collector-Vorlage** aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="89e61-112">A template link that invokes our **collector template**.</span></span>
-- <span data-ttu-id="89e61-113">Die bereitzustellende NSG-Ressource.</span><span class="sxs-lookup"><span data-stu-id="89e61-113">The NSG resource to deploy.</span></span>
+- <span data-ttu-id="e5a94-112">Einen Vorlagenlink, über den die **Collector-Vorlage** aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="e5a94-112">A template link that invokes our **collector template**.</span></span>
+- <span data-ttu-id="e5a94-113">Die bereitzustellende NSG-Ressource.</span><span class="sxs-lookup"><span data-stu-id="e5a94-113">The NSG resource to deploy.</span></span>
 
-<span data-ttu-id="89e61-114">Unsere **Collector-Vorlage** enthält zwei Ressourcen:</span><span class="sxs-lookup"><span data-stu-id="89e61-114">Our **collector template** includes two resources:</span></span>
+<span data-ttu-id="e5a94-114">Unsere **Collector-Vorlage** enthält zwei Ressourcen:</span><span class="sxs-lookup"><span data-stu-id="e5a94-114">Our **collector template** includes two resources:</span></span>
 
-- <span data-ttu-id="89e61-115">Eine **anchor**-Ressource.</span><span class="sxs-lookup"><span data-stu-id="89e61-115">An **anchor** resource.</span></span>
-- <span data-ttu-id="89e61-116">Einen Vorlagenlink, über den die Transformer-Vorlage in einer Kopierschleife aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="89e61-116">A template link that invokes the transform template in a copy loop.</span></span>
+- <span data-ttu-id="e5a94-115">Eine **anchor**-Ressource.</span><span class="sxs-lookup"><span data-stu-id="e5a94-115">An **anchor** resource.</span></span>
+- <span data-ttu-id="e5a94-116">Einen Vorlagenlink, über den die Transformer-Vorlage in einer Kopierschleife aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="e5a94-116">A template link that invokes the transform template in a copy loop.</span></span>
 
-<span data-ttu-id="89e61-117">Unsere **Transformer-Vorlage** enthält eine einzelne Ressource: eine leere Vorlage mit einer Variablen, die den `source`-JSON-Code in das JSON-Schema transformiert, der von der NSG-Ressource in der **Hauptvorlage** erwartet wird.</span><span class="sxs-lookup"><span data-stu-id="89e61-117">Our **transform template** includes a single resource: an empty template with a variable that transforms our `source` JSON to the JSON schema expected by our NSG resource in the **main template**.</span></span>
+<span data-ttu-id="e5a94-117">Unsere **Transformer-Vorlage** enthält eine einzelne Ressource: eine leere Vorlage mit einer Variablen, die den `source`-JSON-Code in das JSON-Schema transformiert, der von der NSG-Ressource in der **Hauptvorlage** erwartet wird.</span><span class="sxs-lookup"><span data-stu-id="e5a94-117">Our **transform template** includes a single resource: an empty template with a variable that transforms our `source` JSON to the JSON schema expected by our NSG resource in the **main template**.</span></span>
 
-## <a name="parameter-object"></a><span data-ttu-id="89e61-118">Parameterobjekt</span><span class="sxs-lookup"><span data-stu-id="89e61-118">Parameter object</span></span>
+## <a name="parameter-object"></a><span data-ttu-id="e5a94-118">Parameterobjekt</span><span class="sxs-lookup"><span data-stu-id="e5a94-118">Parameter object</span></span>
 
-<span data-ttu-id="89e61-119">Wir verwenden das Parameterobjekt `securityRules` aus [Objekte als Parameter][objects-as-parameters].</span><span class="sxs-lookup"><span data-stu-id="89e61-119">We'll be using our `securityRules` parameter object from [objects as parameters][objects-as-parameters].</span></span> <span data-ttu-id="89e61-120">Mit der **Transformer-Vorlage** wird jedes Objekt im Array `securityRules` in das JSON-Schema transformiert, das von der NSG-Ressource in unserer **aufrufenden Vorlage** erwartet wird.</span><span class="sxs-lookup"><span data-stu-id="89e61-120">Our **transform template** will transform each object in the `securityRules` array into the JSON schema expected by the NSG resource in our **calling template**.</span></span>
+<span data-ttu-id="e5a94-119">Wir verwenden das Parameterobjekt `securityRules` aus [Objekte als Parameter][objects-as-parameters].</span><span class="sxs-lookup"><span data-stu-id="e5a94-119">We'll be using our `securityRules` parameter object from [objects as parameters][objects-as-parameters].</span></span> <span data-ttu-id="e5a94-120">Mit der **Transformer-Vorlage** wird jedes Objekt im Array `securityRules` in das JSON-Schema transformiert, das von der NSG-Ressource in unserer **aufrufenden Vorlage** erwartet wird.</span><span class="sxs-lookup"><span data-stu-id="e5a94-120">Our **transform template** will transform each object in the `securityRules` array into the JSON schema expected by the NSG resource in our **calling template**.</span></span>
 
 ```json
 {
@@ -81,16 +81,16 @@ ms.locfileid: "54484719"
   }
 ```
 
-<span data-ttu-id="89e61-121">Wir sehen uns zuerst die **Transformer-Vorlage** an.</span><span class="sxs-lookup"><span data-stu-id="89e61-121">Let's look at our **transform template** first.</span></span>
+<span data-ttu-id="e5a94-121">Wir sehen uns zuerst die **Transformer-Vorlage** an.</span><span class="sxs-lookup"><span data-stu-id="e5a94-121">Let's look at our **transform template** first.</span></span>
 
-## <a name="transform-template"></a><span data-ttu-id="89e61-122">Transformer-Vorlage</span><span class="sxs-lookup"><span data-stu-id="89e61-122">Transform template</span></span>
+## <a name="transform-template"></a><span data-ttu-id="e5a94-122">Transformer-Vorlage</span><span class="sxs-lookup"><span data-stu-id="e5a94-122">Transform template</span></span>
 
-<span data-ttu-id="89e61-123">Die **Transformer-Vorlage** enthält zwei Parameter, die von der **Collector-Vorlage** übergeben werden:</span><span class="sxs-lookup"><span data-stu-id="89e61-123">Our **transform template** includes two parameters that are passed from the **collector template**:</span></span>
+<span data-ttu-id="e5a94-123">Die **Transformer-Vorlage** enthält zwei Parameter, die von der **Collector-Vorlage** übergeben werden:</span><span class="sxs-lookup"><span data-stu-id="e5a94-123">Our **transform template** includes two parameters that are passed from the **collector template**:</span></span>
 
-- <span data-ttu-id="89e61-124">`source` ist ein Objekt, das eines der Eigenschaftswertobjekte aus dem Eigenschaftenarray empfängt.</span><span class="sxs-lookup"><span data-stu-id="89e61-124">`source` is an object that receives one of the property value objects from the property array.</span></span> <span data-ttu-id="89e61-125">In unserem Beispiel wird jedes Objekt aus dem Array `"securityRules"` einzeln übergeben.</span><span class="sxs-lookup"><span data-stu-id="89e61-125">In our example, each object from the `"securityRules"` array will be passed in one at a time.</span></span>
-- <span data-ttu-id="89e61-126">`state` ist ein Array, das die verketteten Ergebnisse aller vorherigen Transformationen empfängt.</span><span class="sxs-lookup"><span data-stu-id="89e61-126">`state` is an array that receives the concatenated results of all the previous transforms.</span></span> <span data-ttu-id="89e61-127">Dies ist die Sammlung mit dem transformierten JSON-Code.</span><span class="sxs-lookup"><span data-stu-id="89e61-127">This is the collection of transformed JSON.</span></span>
+- <span data-ttu-id="e5a94-124">`source` ist ein Objekt, das eines der Eigenschaftswertobjekte aus dem Eigenschaftenarray empfängt.</span><span class="sxs-lookup"><span data-stu-id="e5a94-124">`source` is an object that receives one of the property value objects from the property array.</span></span> <span data-ttu-id="e5a94-125">In unserem Beispiel wird jedes Objekt aus dem Array `"securityRules"` einzeln übergeben.</span><span class="sxs-lookup"><span data-stu-id="e5a94-125">In our example, each object from the `"securityRules"` array will be passed in one at a time.</span></span>
+- <span data-ttu-id="e5a94-126">`state` ist ein Array, das die verketteten Ergebnisse aller vorherigen Transformationen empfängt.</span><span class="sxs-lookup"><span data-stu-id="e5a94-126">`state` is an array that receives the concatenated results of all the previous transforms.</span></span> <span data-ttu-id="e5a94-127">Dies ist die Sammlung mit dem transformierten JSON-Code.</span><span class="sxs-lookup"><span data-stu-id="e5a94-127">This is the collection of transformed JSON.</span></span>
 
-<span data-ttu-id="89e61-128">Unsere Parameter sehen wie folgt aus:</span><span class="sxs-lookup"><span data-stu-id="89e61-128">Our parameters look like this:</span></span>
+<span data-ttu-id="e5a94-128">Unsere Parameter sehen wie folgt aus:</span><span class="sxs-lookup"><span data-stu-id="e5a94-128">Our parameters look like this:</span></span>
 
 ```json
 {
@@ -105,7 +105,7 @@ ms.locfileid: "54484719"
   },
 ```
 
-<span data-ttu-id="89e61-129">In unserer Vorlage wird auch eine Variable mit dem Namen `instance` definiert.</span><span class="sxs-lookup"><span data-stu-id="89e61-129">Our template also defines a variable named `instance`.</span></span> <span data-ttu-id="89e61-130">Hiermit wird die eigentliche Transformation unseres `source`-Objekts in das erforderliche JSON-Schema durchgeführt:</span><span class="sxs-lookup"><span data-stu-id="89e61-130">It performs the actual transform of our `source` object into the required JSON schema:</span></span>
+<span data-ttu-id="e5a94-129">In unserer Vorlage wird auch eine Variable mit dem Namen `instance` definiert.</span><span class="sxs-lookup"><span data-stu-id="e5a94-129">Our template also defines a variable named `instance`.</span></span> <span data-ttu-id="e5a94-130">Hiermit wird die eigentliche Transformation unseres `source`-Objekts in das erforderliche JSON-Schema durchgeführt:</span><span class="sxs-lookup"><span data-stu-id="e5a94-130">It performs the actual transform of our `source` object into the required JSON schema:</span></span>
 
 ```json
   "variables": {
@@ -129,7 +129,7 @@ ms.locfileid: "54484719"
   },
 ```
 
-<span data-ttu-id="89e61-131">Abschließend werden in der Ausgabe (`output`) unserer Vorlage die gesammelten Transformationen des Parameters `state` mit der aktuellen Transformation verkettet, die von der Variablen `instance` durchgeführt wird:</span><span class="sxs-lookup"><span data-stu-id="89e61-131">Finally, the `output` of our template concatenates the collected transforms of our `state` parameter with the current transform performed by our `instance` variable:</span></span>
+<span data-ttu-id="e5a94-131">Abschließend werden in der Ausgabe (`output`) unserer Vorlage die gesammelten Transformationen des Parameters `state` mit der aktuellen Transformation verkettet, die von der Variablen `instance` durchgeführt wird:</span><span class="sxs-lookup"><span data-stu-id="e5a94-131">Finally, the `output` of our template concatenates the collected transforms of our `state` parameter with the current transform performed by our `instance` variable:</span></span>
 
 ```json
     "resources": [],
@@ -140,17 +140,17 @@ ms.locfileid: "54484719"
     }
 ```
 
-<span data-ttu-id="89e61-132">Als Nächstes sehen wir uns unsere **Collector-Vorlage** an, um zu verfolgen, wie die Parameterwerte übergeben werden.</span><span class="sxs-lookup"><span data-stu-id="89e61-132">Next, let's take a look at our **collector template** to see how it passes in our parameter values.</span></span>
+<span data-ttu-id="e5a94-132">Als Nächstes sehen wir uns unsere **Collector-Vorlage** an, um zu verfolgen, wie die Parameterwerte übergeben werden.</span><span class="sxs-lookup"><span data-stu-id="e5a94-132">Next, let's take a look at our **collector template** to see how it passes in our parameter values.</span></span>
 
-## <a name="collector-template"></a><span data-ttu-id="89e61-133">Collector-Vorlage</span><span class="sxs-lookup"><span data-stu-id="89e61-133">Collector template</span></span>
+## <a name="collector-template"></a><span data-ttu-id="e5a94-133">Collector-Vorlage</span><span class="sxs-lookup"><span data-stu-id="e5a94-133">Collector template</span></span>
 
-<span data-ttu-id="89e61-134">Die **Collector-Vorlage** enthält drei Parameter:</span><span class="sxs-lookup"><span data-stu-id="89e61-134">Our **collector template** includes three parameters:</span></span>
+<span data-ttu-id="e5a94-134">Die **Collector-Vorlage** enthält drei Parameter:</span><span class="sxs-lookup"><span data-stu-id="e5a94-134">Our **collector template** includes three parameters:</span></span>
 
-- <span data-ttu-id="89e61-135">`source` ist unser vollständiges Parameterobjektarray.</span><span class="sxs-lookup"><span data-stu-id="89e61-135">`source` is our complete parameter object array.</span></span> <span data-ttu-id="89e61-136">Es wird von der **aufrufenden Vorlage** übergeben.</span><span class="sxs-lookup"><span data-stu-id="89e61-136">It's passed in by the **calling template**.</span></span> <span data-ttu-id="89e61-137">Dieses Array hat den gleichen Namen wie der Parameter `source` in der **Transformer-Vorlage**, aber es gibt einen wichtigen Unterschied, den Sie vielleicht schon bemerkt haben: Dies ist das vollständige Array, aber es wird jeweils nur ein Element dieses Arrays an die **Transformer-Vorlage** übergeben.</span><span class="sxs-lookup"><span data-stu-id="89e61-137">This has the same name as the `source` parameter in our **transform template** but there is one key difference that you may have already noticed: this is the complete array, but we only pass one element of this array to the **transform template** at a time.</span></span>
-- <span data-ttu-id="89e61-138">`transformTemplateUri` ist der URI der **Transformer-Vorlage**.</span><span class="sxs-lookup"><span data-stu-id="89e61-138">`transformTemplateUri` is the URI of our **transform template**.</span></span> <span data-ttu-id="89e61-139">Wir definieren ihn hier als Parameter, um die Vorlage wiederverwenden zu können.</span><span class="sxs-lookup"><span data-stu-id="89e61-139">We're defining it as a parameter here for template reusability.</span></span>
-- <span data-ttu-id="89e61-140">`state` ist ein ursprünglich leeres Array, das wir an die **Transformer-Vorlage** übergeben.</span><span class="sxs-lookup"><span data-stu-id="89e61-140">`state` is an initially empty array that we pass to our **transform template**.</span></span> <span data-ttu-id="89e61-141">Darin wird die Sammlung mit den transformierten Parameterobjekten gespeichert, wenn die Kopierschleife abgeschlossen ist.</span><span class="sxs-lookup"><span data-stu-id="89e61-141">It stores the collection of transformed parameter objects when the copy loop is complete.</span></span>
+- <span data-ttu-id="e5a94-135">`source` ist unser vollständiges Parameterobjektarray.</span><span class="sxs-lookup"><span data-stu-id="e5a94-135">`source` is our complete parameter object array.</span></span> <span data-ttu-id="e5a94-136">Es wird von der **aufrufenden Vorlage** übergeben.</span><span class="sxs-lookup"><span data-stu-id="e5a94-136">It's passed in by the **calling template**.</span></span> <span data-ttu-id="e5a94-137">Dieses Array hat den gleichen Namen wie der Parameter `source` in der **Transformer-Vorlage**, aber es gibt einen wichtigen Unterschied, den Sie vielleicht schon bemerkt haben: Dies ist das vollständige Array, aber es wird jeweils nur ein Element dieses Arrays an die **Transformer-Vorlage** übergeben.</span><span class="sxs-lookup"><span data-stu-id="e5a94-137">This has the same name as the `source` parameter in our **transform template** but there is one key difference that you may have already noticed: this is the complete array, but we only pass one element of this array to the **transform template** at a time.</span></span>
+- <span data-ttu-id="e5a94-138">`transformTemplateUri` ist der URI der **Transformer-Vorlage**.</span><span class="sxs-lookup"><span data-stu-id="e5a94-138">`transformTemplateUri` is the URI of our **transform template**.</span></span> <span data-ttu-id="e5a94-139">Wir definieren ihn hier als Parameter, um die Vorlage wiederverwenden zu können.</span><span class="sxs-lookup"><span data-stu-id="e5a94-139">We're defining it as a parameter here for template reusability.</span></span>
+- <span data-ttu-id="e5a94-140">`state` ist ein ursprünglich leeres Array, das wir an die **Transformer-Vorlage** übergeben.</span><span class="sxs-lookup"><span data-stu-id="e5a94-140">`state` is an initially empty array that we pass to our **transform template**.</span></span> <span data-ttu-id="e5a94-141">Darin wird die Sammlung mit den transformierten Parameterobjekten gespeichert, wenn die Kopierschleife abgeschlossen ist.</span><span class="sxs-lookup"><span data-stu-id="e5a94-141">It stores the collection of transformed parameter objects when the copy loop is complete.</span></span>
 
-<span data-ttu-id="89e61-142">Unsere Parameter sehen wie folgt aus:</span><span class="sxs-lookup"><span data-stu-id="89e61-142">Our parameters look like this:</span></span>
+<span data-ttu-id="e5a94-142">Unsere Parameter sehen wie folgt aus:</span><span class="sxs-lookup"><span data-stu-id="e5a94-142">Our parameters look like this:</span></span>
 
 ```json
   "parameters": {
@@ -162,7 +162,7 @@ ms.locfileid: "54484719"
     }
 ```
 
-<span data-ttu-id="89e61-143">Als Nächstes definieren wir eine Variable mit dem Namen `count`.</span><span class="sxs-lookup"><span data-stu-id="89e61-143">Next, we define a variable named `count`.</span></span> <span data-ttu-id="89e61-144">Ihr Wert ist die Länge des Parameterobjektarrays `source`:</span><span class="sxs-lookup"><span data-stu-id="89e61-144">Its value is the length of the `source` parameter object array:</span></span>
+<span data-ttu-id="e5a94-143">Als Nächstes definieren wir eine Variable mit dem Namen `count`.</span><span class="sxs-lookup"><span data-stu-id="e5a94-143">Next, we define a variable named `count`.</span></span> <span data-ttu-id="e5a94-144">Ihr Wert ist die Länge des Parameterobjektarrays `source`:</span><span class="sxs-lookup"><span data-stu-id="e5a94-144">Its value is the length of the `source` parameter object array:</span></span>
 
 ```json
   "variables": {
@@ -170,14 +170,14 @@ ms.locfileid: "54484719"
   },
 ```
 
-<span data-ttu-id="89e61-145">Wie Sie vielleicht schon erwartet haben, verwenden wir sie für die Anzahl von Durchläufen (Iterationen) unserer Kopierschleife.</span><span class="sxs-lookup"><span data-stu-id="89e61-145">As you might suspect, we use it for the number of iterations in our copy loop.</span></span>
+<span data-ttu-id="e5a94-145">Wie Sie vielleicht schon erwartet haben, verwenden wir sie für die Anzahl von Durchläufen (Iterationen) unserer Kopierschleife.</span><span class="sxs-lookup"><span data-stu-id="e5a94-145">As you might suspect, we use it for the number of iterations in our copy loop.</span></span>
 
-<span data-ttu-id="89e61-146">Wir sehen uns nun die Ressourcen an.</span><span class="sxs-lookup"><span data-stu-id="89e61-146">Now let's take a look at our resources.</span></span> <span data-ttu-id="89e61-147">Es werden zwei Ressourcen definiert:</span><span class="sxs-lookup"><span data-stu-id="89e61-147">We define two resources:</span></span>
+<span data-ttu-id="e5a94-146">Wir sehen uns nun die Ressourcen an.</span><span class="sxs-lookup"><span data-stu-id="e5a94-146">Now let's take a look at our resources.</span></span> <span data-ttu-id="e5a94-147">Es werden zwei Ressourcen definiert:</span><span class="sxs-lookup"><span data-stu-id="e5a94-147">We define two resources:</span></span>
 
-- <span data-ttu-id="89e61-148">`loop-0` ist die nullbasierte Ressource für unsere Kopierschleife.</span><span class="sxs-lookup"><span data-stu-id="89e61-148">`loop-0` is the zero-based resource for our copy loop.</span></span>
-- <span data-ttu-id="89e61-149">`loop-` wird mit dem Ergebnis der Funktion `copyIndex(1)` verkettet, um einen eindeutigen iterationsbasierten Namen für die Ressource zu generieren, der mit `1` beginnt.</span><span class="sxs-lookup"><span data-stu-id="89e61-149">`loop-` is concatenated with the result of the `copyIndex(1)` function to generate a unique iteration-based name for our resource, starting with `1`.</span></span>
+- <span data-ttu-id="e5a94-148">`loop-0` ist die nullbasierte Ressource für unsere Kopierschleife.</span><span class="sxs-lookup"><span data-stu-id="e5a94-148">`loop-0` is the zero-based resource for our copy loop.</span></span>
+- <span data-ttu-id="e5a94-149">`loop-` wird mit dem Ergebnis der Funktion `copyIndex(1)` verkettet, um einen eindeutigen iterationsbasierten Namen für die Ressource zu generieren, der mit `1` beginnt.</span><span class="sxs-lookup"><span data-stu-id="e5a94-149">`loop-` is concatenated with the result of the `copyIndex(1)` function to generate a unique iteration-based name for our resource, starting with `1`.</span></span>
 
-<span data-ttu-id="89e61-150">Unsere Ressourcen sehen wie folgt aus:</span><span class="sxs-lookup"><span data-stu-id="89e61-150">Our resources look like this:</span></span>
+<span data-ttu-id="e5a94-150">Unsere Ressourcen sehen wie folgt aus:</span><span class="sxs-lookup"><span data-stu-id="e5a94-150">Our resources look like this:</span></span>
 
 ```json
   "resources": [
@@ -227,9 +227,9 @@ ms.locfileid: "54484719"
   ],
 ```
 
-<span data-ttu-id="89e61-151">Wir werfen einen genaueren Blick auf die Parameter, die wir an die **Transformer-Vorlage** in der geschachtelten Vorlage übergeben.</span><span class="sxs-lookup"><span data-stu-id="89e61-151">Let's take a closer look at the parameters we're passing to our **transform template** in the nested template.</span></span> <span data-ttu-id="89e61-152">Sie erinnern sich, dass mit dem Parameter `source` das aktuelle Objekt im Parameterobjektarray `source` übergeben wird.</span><span class="sxs-lookup"><span data-stu-id="89e61-152">Recall from earlier that our `source` parameter passes the current object in the `source` parameter object array.</span></span> <span data-ttu-id="89e61-153">Die Sammlung wird im Parameter `state` durchgeführt. Es wird die Ausgabe des vorherigen Durchlaufs durch die Kopierschleife verwendet (die Funktion `reference()` verwendet die Funktion `copyIndex()` ohne Parameter, um auf das `name`-Element des vorherigen verknüpften Vorlagenobjekts zu verweisen) und an den aktuellen Durchlauf übergeben.</span><span class="sxs-lookup"><span data-stu-id="89e61-153">The `state` parameter is where the collection happens, because it takes the output of the previous iteration of our copy loop&mdash;notice that the `reference()` function uses the `copyIndex()` function with no parameter to reference the `name` of our previous linked template object&mdash;and passes it to the current iteration.</span></span>
+<span data-ttu-id="e5a94-151">Wir werfen einen genaueren Blick auf die Parameter, die wir an die **Transformer-Vorlage** in der geschachtelten Vorlage übergeben.</span><span class="sxs-lookup"><span data-stu-id="e5a94-151">Let's take a closer look at the parameters we're passing to our **transform template** in the nested template.</span></span> <span data-ttu-id="e5a94-152">Sie erinnern sich, dass mit dem Parameter `source` das aktuelle Objekt im Parameterobjektarray `source` übergeben wird.</span><span class="sxs-lookup"><span data-stu-id="e5a94-152">Recall from earlier that our `source` parameter passes the current object in the `source` parameter object array.</span></span> <span data-ttu-id="e5a94-153">Die Sammlung wird im Parameter `state` durchgeführt. Es wird die Ausgabe des vorherigen Durchlaufs durch die Kopierschleife verwendet (die Funktion `reference()` verwendet die Funktion `copyIndex()` ohne Parameter, um auf das `name`-Element des vorherigen verknüpften Vorlagenobjekts zu verweisen) und an den aktuellen Durchlauf übergeben.</span><span class="sxs-lookup"><span data-stu-id="e5a94-153">The `state` parameter is where the collection happens, because it takes the output of the previous iteration of our copy loop&mdash;notice that the `reference()` function uses the `copyIndex()` function with no parameter to reference the `name` of our previous linked template object&mdash;and passes it to the current iteration.</span></span>
 
-<span data-ttu-id="89e61-154">Abschließend gibt die Ausgabe (`output`) unserer Vorlage die Ausgabe (`output`) des letzten Durchlaufs unserer **Transformer-Vorlage** zurück:</span><span class="sxs-lookup"><span data-stu-id="89e61-154">Finally, the `output` of our template returns the `output` of the last iteration of our **transform template**:</span></span>
+<span data-ttu-id="e5a94-154">Abschließend gibt die Ausgabe (`output`) unserer Vorlage die Ausgabe (`output`) des letzten Durchlaufs unserer **Transformer-Vorlage** zurück:</span><span class="sxs-lookup"><span data-stu-id="e5a94-154">Finally, the `output` of our template returns the `output` of the last iteration of our **transform template**:</span></span>
 
 ```json
   "outputs": {
@@ -240,13 +240,13 @@ ms.locfileid: "54484719"
   }
 ```
 
-<span data-ttu-id="89e61-155">Es kann ungewöhnlich erscheinen, dass die Ausgabe (`output`) des letzten Durchlaufs der **Transformer-Vorlage** an die **aufrufende Vorlage** übergeben wird, da sie anscheinend im Parameter `source` gespeichert wurde.</span><span class="sxs-lookup"><span data-stu-id="89e61-155">It may seem counterintuitive to return the `output` of the last iteration of our **transform template** to our **calling template** because it appeared we were storing it in our `source` parameter.</span></span> <span data-ttu-id="89e61-156">Bedenken Sie aber, dass dies der letzte Durchlauf der **Transformer-Vorlage** ist, die das gesamte Array mit den Eigenschaftsobjekten enthält, und dass dies die Daten sind, die wir zurückgeben möchten.</span><span class="sxs-lookup"><span data-stu-id="89e61-156">However, remember that it's the last iteration of our **transform template** that holds the complete array of transformed property objects, and that's what we want to return.</span></span>
+<span data-ttu-id="e5a94-155">Es kann ungewöhnlich erscheinen, dass die Ausgabe (`output`) des letzten Durchlaufs der **Transformer-Vorlage** an die **aufrufende Vorlage** übergeben wird, da sie anscheinend im Parameter `source` gespeichert wurde.</span><span class="sxs-lookup"><span data-stu-id="e5a94-155">It may seem counterintuitive to return the `output` of the last iteration of our **transform template** to our **calling template** because it appeared we were storing it in our `source` parameter.</span></span> <span data-ttu-id="e5a94-156">Bedenken Sie aber, dass dies der letzte Durchlauf der **Transformer-Vorlage** ist, die das gesamte Array mit den Eigenschaftsobjekten enthält, und dass dies die Daten sind, die wir zurückgeben möchten.</span><span class="sxs-lookup"><span data-stu-id="e5a94-156">However, remember that it's the last iteration of our **transform template** that holds the complete array of transformed property objects, and that's what we want to return.</span></span>
 
-<span data-ttu-id="89e61-157">Zum Schluss sehen wir uns noch an, wie die **Collector-Vorlage** aus der **aufrufenden Vorlage** aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="89e61-157">Finally, let's take a look at how to call the **collector template** from our **calling template**.</span></span>
+<span data-ttu-id="e5a94-157">Zum Schluss sehen wir uns noch an, wie die **Collector-Vorlage** aus der **aufrufenden Vorlage** aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="e5a94-157">Finally, let's take a look at how to call the **collector template** from our **calling template**.</span></span>
 
-## <a name="calling-template"></a><span data-ttu-id="89e61-158">Aufrufende Vorlage</span><span class="sxs-lookup"><span data-stu-id="89e61-158">Calling template</span></span>
+## <a name="calling-template"></a><span data-ttu-id="e5a94-158">Aufrufende Vorlage</span><span class="sxs-lookup"><span data-stu-id="e5a94-158">Calling template</span></span>
 
-<span data-ttu-id="89e61-159">Mit der **aufrufenden Vorlage** wird ein einzelner Parameter mit dem Namen `networkSecurityGroupsSettings` definiert:</span><span class="sxs-lookup"><span data-stu-id="89e61-159">Our **calling template** defines a single parameter named `networkSecurityGroupsSettings`:</span></span>
+<span data-ttu-id="e5a94-159">Mit der **aufrufenden Vorlage** wird ein einzelner Parameter mit dem Namen `networkSecurityGroupsSettings` definiert:</span><span class="sxs-lookup"><span data-stu-id="e5a94-159">Our **calling template** defines a single parameter named `networkSecurityGroupsSettings`:</span></span>
 
 ```json
 ...
@@ -256,7 +256,7 @@ ms.locfileid: "54484719"
     }
 ```
 
-<span data-ttu-id="89e61-160">Als Nächstes definiert unsere Vorlage eine einzelne Variable mit dem Namen `collectorTemplateUri`:</span><span class="sxs-lookup"><span data-stu-id="89e61-160">Next, our template defines a single variable named `collectorTemplateUri`:</span></span>
+<span data-ttu-id="e5a94-160">Als Nächstes definiert unsere Vorlage eine einzelne Variable mit dem Namen `collectorTemplateUri`:</span><span class="sxs-lookup"><span data-stu-id="e5a94-160">Next, our template defines a single variable named `collectorTemplateUri`:</span></span>
 
 ```json
 "variables": {
@@ -264,7 +264,7 @@ ms.locfileid: "54484719"
   }
 ```
 
-<span data-ttu-id="89e61-161">Wie zu erwarten ist, ist dies der URI für die **Collector-Vorlage**, die von der verknüpften Vorlagenressource verwendet wird:</span><span class="sxs-lookup"><span data-stu-id="89e61-161">As you would expect, this is the URI for the **collector template** that will be used by our linked template resource:</span></span>
+<span data-ttu-id="e5a94-161">Wie zu erwarten ist, ist dies der URI für die **Collector-Vorlage**, die von der verknüpften Vorlagenressource verwendet wird:</span><span class="sxs-lookup"><span data-stu-id="e5a94-161">As you would expect, this is the URI for the **collector template** that will be used by our linked template resource:</span></span>
 
 ```json
 {
@@ -285,12 +285,12 @@ ms.locfileid: "54484719"
 }
 ```
 
-<span data-ttu-id="89e61-162">Wir übergeben zwei Parameter an die **Collector-Vorlage**:</span><span class="sxs-lookup"><span data-stu-id="89e61-162">We pass two parameters to the **collector template**:</span></span>
+<span data-ttu-id="e5a94-162">Wir übergeben zwei Parameter an die **Collector-Vorlage**:</span><span class="sxs-lookup"><span data-stu-id="e5a94-162">We pass two parameters to the **collector template**:</span></span>
 
-- <span data-ttu-id="89e61-163">`source` ist unser Eigenschaftsobjektarray.</span><span class="sxs-lookup"><span data-stu-id="89e61-163">`source` is our property object array.</span></span> <span data-ttu-id="89e61-164">In unserem Beispiel ist dies der Parameter `networkSecurityGroupsSettings`.</span><span class="sxs-lookup"><span data-stu-id="89e61-164">In our example, it's our `networkSecurityGroupsSettings` parameter.</span></span>
-- <span data-ttu-id="89e61-165">`transformTemplateUri` ist die Variable, die wir gerade mit dem URI der **Collector-Vorlage** definiert haben.</span><span class="sxs-lookup"><span data-stu-id="89e61-165">`transformTemplateUri` is the variable we just defined with the URI of our **collector template**.</span></span>
+- <span data-ttu-id="e5a94-163">`source` ist unser Eigenschaftsobjektarray.</span><span class="sxs-lookup"><span data-stu-id="e5a94-163">`source` is our property object array.</span></span> <span data-ttu-id="e5a94-164">In unserem Beispiel ist dies der Parameter `networkSecurityGroupsSettings`.</span><span class="sxs-lookup"><span data-stu-id="e5a94-164">In our example, it's our `networkSecurityGroupsSettings` parameter.</span></span>
+- <span data-ttu-id="e5a94-165">`transformTemplateUri` ist die Variable, die wir gerade mit dem URI der **Collector-Vorlage** definiert haben.</span><span class="sxs-lookup"><span data-stu-id="e5a94-165">`transformTemplateUri` is the variable we just defined with the URI of our **collector template**.</span></span>
 
-<span data-ttu-id="89e61-166">Zuletzt weist die Ressource `Microsoft.Network/networkSecurityGroups` die Ausgabe (`output`) der verknüpften Vorlagenressource `collector` direkt der dazugehörigen `securityRules`-Eigenschaft zu:</span><span class="sxs-lookup"><span data-stu-id="89e61-166">Finally, our `Microsoft.Network/networkSecurityGroups` resource directly assigns the `output` of the `collector` linked template resource to its `securityRules` property:</span></span>
+<span data-ttu-id="e5a94-166">Zuletzt weist die Ressource `Microsoft.Network/networkSecurityGroups` die Ausgabe (`output`) der verknüpften Vorlagenressource `collector` direkt der dazugehörigen `securityRules`-Eigenschaft zu:</span><span class="sxs-lookup"><span data-stu-id="e5a94-166">Finally, our `Microsoft.Network/networkSecurityGroups` resource directly assigns the `output` of the `collector` linked template resource to its `securityRules` property:</span></span>
 
 ```json
     {
@@ -312,9 +312,9 @@ ms.locfileid: "54484719"
   }
 ```
 
-## <a name="try-the-template"></a><span data-ttu-id="89e61-167">Testen der Vorlage</span><span class="sxs-lookup"><span data-stu-id="89e61-167">Try the template</span></span>
+## <a name="try-the-template"></a><span data-ttu-id="e5a94-167">Testen der Vorlage</span><span class="sxs-lookup"><span data-stu-id="e5a94-167">Try the template</span></span>
 
-<span data-ttu-id="89e61-168">Eine Beispielvorlage finden Sie [auf GitHub][github].</span><span class="sxs-lookup"><span data-stu-id="89e61-168">An example template is available on [GitHub][github].</span></span> <span data-ttu-id="89e61-169">Klonen Sie zum Bereitstellen der Vorlage das Repository, und führen Sie die folgenden Befehle der [Azure-Befehlszeilenschnittstelle][cli] aus:</span><span class="sxs-lookup"><span data-stu-id="89e61-169">To deploy the template, clone the repo and run the following [Azure CLI][cli] commands:</span></span>
+<span data-ttu-id="e5a94-168">Eine Beispielvorlage finden Sie [auf GitHub][github].</span><span class="sxs-lookup"><span data-stu-id="e5a94-168">An example template is available on [GitHub][github].</span></span> <span data-ttu-id="e5a94-169">Klonen Sie zum Bereitstellen der Vorlage das Repository, und führen Sie die folgenden Befehle der [Azure-Befehlszeilenschnittstelle][cli] aus:</span><span class="sxs-lookup"><span data-stu-id="e5a94-169">To deploy the template, clone the repo and run the following [Azure CLI][cli] commands:</span></span>
 
 ```bash
 git clone https://github.com/mspnp/template-examples.git
