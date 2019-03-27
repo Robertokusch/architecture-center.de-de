@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 6679ff620ca9e64036c02fce38608de38c57df93
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482169"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246361"
 ---
 # <a name="data-warehousing-and-data-marts"></a>Data Warehousing und Data Marts
 
@@ -130,13 +130,13 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | Azure SQL-Datenbank | SQL Server (VM) | SQL Data Warehouse | Apache Hive in HDInsight | Hive LLAP in HDInsight |
 | --- | --- | --- | --- | --- | --- | -- |
-| Verwalteter Dienst | JA | Nein | JA | Ja<sup>1</sup> | Ja<sup>1</sup> |
-| Erfordert Datenorchestrierung (Speicherung von Datenkopie/historischen Daten) | Nein  | Nein  | Ja | Ja | JA |
-| Einfache Integration mehrerer Datenquellen | Nein  | Nein  | Ja | Ja | JA |
-| Unterstützung des Anhaltens von Computevorgängen | Nein  | Nein  | JA | Nein<sup>2</sup> | Nein<sup>2</sup> |
-| Relationaler Datenspeicher | JA | Ja |  JA | Nein  | Nein  |
-| Echtzeitberichte | JA | JA | Nein  | Nein  | JA |
-| Flexible Sicherungswiederherstellungspunkte | JA | JA | Nein<sup>3</sup> | Ja<sup>4</sup> | Ja<sup>4</sup> |
+| Verwalteter Dienst | Ja | Nein | Ja | Ja<sup>1</sup> | Ja<sup>1</sup> |
+| Erfordert Datenorchestrierung (Speicherung von Datenkopie/historischen Daten) | Nein  | Nein  | Ja | Ja | Ja |
+| Einfache Integration mehrerer Datenquellen | Nein  | Nein  | Ja | Ja | Ja |
+| Unterstützung des Anhaltens von Computevorgängen | Nein  | Nein  | Ja | Nein<sup>2</sup> | Nein<sup>2</sup> |
+| Relationaler Datenspeicher | Ja | Ja |  Ja | Nein  | Nein  |
+| Echtzeitberichte | Ja | Ja | Nein  | Nein  | Ja |
+| Flexible Sicherungswiederherstellungspunkte | Ja | Ja | Nein<sup>3</sup> | Ja<sup>4</sup> | Ja<sup>4</sup> |
 | SMP/MPP | SMP | SMP | MPP | MPP | MPP |
 
 <!-- markdownlint-enable MD033 -->
@@ -155,10 +155,10 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 | | Azure SQL-Datenbank | SQL Server (VM) |  SQL Data Warehouse | Apache Hive in HDInsight | Hive LLAP in HDInsight |
 | --- | --- | --- | --- | --- | --- | -- |
-| Redundante regionale Server für Hochverfügbarkeit  | JA | Ja | JA | Nein  | Nein  |
-| Unterstützung des horizontalen Hochskalierens für Abfragen (verteilte Abfragen)  | Nein  | Nein  | Ja | Ja | JA |
-| Dynamische Skalierbarkeit | JA | Nein  | Ja<sup>1</sup> | Nein  | Nein  |
-| Unterstützung der speicherinternen Zwischenspeicherung von Daten | JA |  JA | Nein | Ja | JA |
+| Redundante regionale Server für Hochverfügbarkeit  | Ja | Ja | Ja | Nein  | Nein  |
+| Unterstützung des horizontalen Hochskalierens für Abfragen (verteilte Abfragen)  | Nein  | Nein  | Ja | Ja | Ja |
+| Dynamische Skalierbarkeit | Ja | Nein  | Ja<sup>1</sup> | Nein  | Nein  |
+| Unterstützung der speicherinternen Zwischenspeicherung von Daten | Ja |  Ja | Nein | Ja | Ja |
 
 [1] SQL Data Warehouse ermöglicht zentrales Hoch- und Herunterskalieren durch Anpassung der Anzahl von Data Warehouse-Einheiten (Data Warehouse Units, DWUs). Weitere Informationen finden Sie unter [Verwalten von Computeleistung in Azure SQL Data Warehouse (Übersicht)](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview).
 
@@ -170,13 +170,13 @@ In den folgenden Tabellen sind die Hauptunterschiede der Funktionen zusammengefa
 
 |                         |           Azure SQL-Datenbank            |  SQL Server auf einem virtuellen Computer  | SQL Data Warehouse |   Apache Hive in HDInsight    |    Hive LLAP in HDInsight     |
 |-------------------------|-----------------------------------------|-----------------------------------|--------------------|-------------------------------|-------------------------------|
-|     Authentifizierung      | SQL/Azure Active Directory (Azure AD) | SQL/Azure AD/Active Directory |   SQL/Azure AD   | Lokal/Azure AD <sup>1</sup> | Lokal/Azure AD <sup>1</sup> |
-|      Autorisierung      |                   JA                   |                Ja                |        Ja         |              JA              |       Ja<sup>1</sup>        |
-|        Überwachung         |                   JA                   |                Ja                |        Ja         |              JA              |       Ja<sup>1</sup>        |
+|     Authentication      | SQL/Azure Active Directory (Azure AD) | SQL/Azure AD/Active Directory |   SQL/Azure AD   | Lokal/Azure AD <sup>1</sup> | Lokal/Azure AD <sup>1</sup> |
+|      Autorisierung      |                   Ja                   |                Ja                |        Ja         |              Ja              |       Ja<sup>1</sup>        |
+|        Überwachung         |                   Ja                   |                Ja                |        Ja         |              Ja              |       Ja<sup>1</sup>        |
 | Datenverschlüsselung ruhender Daten |            Ja<sup>2</sup>             |         Ja<sup>2</sup>          |  Ja<sup>2</sup>  |       Ja<sup>2</sup>        |       Ja<sup>1</sup>        |
-|   Sicherheit auf Zeilenebene    |                   JA                   |                Ja                |        JA         |              Nein                |       Ja<sup>1</sup>        |
-|   Unterstützung von Firewalls    |                   JA                   |                Ja                |        Ja         |              JA              |       Ja<sup>3</sup>        |
-|  Dynamische Datenmaskierung   |                   JA                   |                Ja                |        JA         |              Nein                |       Ja<sup>1</sup>        |
+|   Sicherheit auf Zeilenebene    |                   Ja                   |                Ja                |        Ja         |              Nein                |       Ja<sup>1</sup>        |
+|   Unterstützung von Firewalls    |                   Ja                   |                Ja                |        Ja         |              Ja              |       Ja<sup>3</sup>        |
+|  Dynamische Datenmaskierung   |                   Ja                   |                Ja                |        Ja         |              Nein                |       Ja<sup>1</sup>        |
 
 <!-- markdownlint-enable MD033 -->
 
