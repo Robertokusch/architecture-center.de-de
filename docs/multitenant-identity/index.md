@@ -1,18 +1,13 @@
 ---
 title: Identitätsverwaltung für mehrinstanzenfähige Anwendungen
-description: Bewährte Methoden für die Authentifizierung, Autorisierung und Identitätsverwaltung mehrmandantenfähiger Apps.
+description: 'Bewährte Methoden für die Authentifizierung, Autorisierung und Identitätsverwaltung mehrmandantenfähiger Apps.'
 author: MikeWasson
 ms.date: 07/21/2017
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: f8875612ad6b1a71fdb6f7a768078ae599eb70b5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480546"
 ---
+
 # <a name="manage-identity-in-multitenant-applications"></a>Verwalten der Identität in mehrinstanzenfähigen Anwendungen
 
 In dieser Artikelreihe werden bewährte Methoden für Mehrmandantenfähigkeit bei Verwendung von Azure AD für die Authentifizierung und Identitätsverwaltung beschrieben.
@@ -74,7 +69,7 @@ Jede Anforderung kann an eine beliebige Instanz weitergeleitet werden. Zusammen 
 
 In einer mehrmandantenfähigen App müssen Sie Benutzer im Kontext von Mandanten berücksichtigen.
 
-### <a name="authentication"></a>Authentifizierung
+### <a name="authentication"></a>Authentication
 
 - Benutzer melden Sie sich bei der App mit den Anmeldeinformationen für Ihre Organisation an. Sie müssen keine neuen Benutzerprofile für die App erstellen.
 - Benutzer innerhalb derselben Organisation gehören zum selben Mandanten.
@@ -90,9 +85,7 @@ In einer mehrmandantenfähigen App müssen Sie Benutzer im Kontext von Mandanten
 In dieser Anleitung untersuchen wir insbesondere den Einsatz von Azure AD für die Identitätsverwaltung.
 
 - Wir setzen voraus, dass der Kunde Benutzerprofile (einschließlich Office 365- und Dynamics CRM-Mandanten) in Azure AD speichert.
-- Kunden mit einem lokalen Active Directory-Verzeichnis (AD) können [Azure AD Connect](/azure/active-directory/hybrid/whatis-hybrid-identity) verwenden, um ihr lokales AD-Verzeichnis mit Azure AD zu synchronisieren.
-
-Wenn AD Connect von einem Kunden mit lokalem AD Azure (aufgrund von IT-Unternehmensrichtlinien oder aus anderen Gründen) nicht verwendet werden darf, kann der SaaS-Anbieter über Active Directory-Verbunddienste (AD FS) einen Verbund mit dem AD des Kunden einrichten. Diese Option wird unter [Federating with a customer's AD FS](adfs.md)(Herstellen eines Verbunds mit den AD FS eines Kunden) beschrieben.
+- Kunden mit einer lokalen Active Directory-Instanz können [Azure AD Connect](/azure/active-directory/hybrid/whatis-hybrid-identity) verwenden, um ihre lokale Active Directory-Instanz mit Azure AD zu synchronisieren. Falls ein Kunde mit lokaler Active Directory-Instanz Azure AD Connect aufgrund von IT-Unternehmensrichtlinien oder aus einem anderen Grund nicht verwenden kann, kann der SaaS-Anbieter über Active Directory-Verbunddienste (AD FS) einen Verbund mit dem Verzeichnis des Kunden einrichten. Diese Option wird unter [Federating with a customer's AD FS](adfs.md)(Herstellen eines Verbunds mit den AD FS eines Kunden) beschrieben.
 
 Andere Aspekte der Mehrmandantenfähigkeit (z. B. Datenpartitionierung, Einzelmandantenkonfiguration usw.) werden in dieser Anleitung nicht behandelt.
 

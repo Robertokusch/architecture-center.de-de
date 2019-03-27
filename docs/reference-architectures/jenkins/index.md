@@ -1,20 +1,15 @@
 ---
 title: Ausführen eines Jenkins-Servers in Azure
 titleSuffix: Azure Reference Architectures
-description: Empfohlene Architektur, die veranschaulicht, wie Sie einen für Unternehmen konzipierten skalierbaren Jenkins-Server in Azure bereitstellen und betreiben, der durch einmaliges Anmelden (Single Sign-On, SSO) geschützt ist.
+description: 'Empfohlene Architektur, die veranschaulicht, wie Sie einen für Unternehmen konzipierten skalierbaren Jenkins-Server in Azure bereitstellen und betreiben, der durch einmaliges Anmelden (Single Sign-On, SSO) geschützt ist.'
 author: njray
 ms.date: 04/30/2018
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 2717b3b11f0315b698d43d067b30472481ffa527
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483427"
 ---
+
 # <a name="run-a-jenkins-server-on-azure"></a>Ausführen eines Jenkins-Servers in Azure
 
 Diese Referenzarchitektur veranschaulicht, wie Sie einen für Unternehmen konzipierten skalierbaren Jenkins-Server in Azure bereitstellen und betreiben, der durch einmaliges Anmelden (Single Sign-On, SSO) geschützt ist. Die Architektur verwendet zudem Azure Monitor zum Überwachen des Zustands des Jenkins-Servers. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
@@ -41,7 +36,7 @@ Die Architektur umfasst die folgenden Komponenten:
 
 - **Virtuelles Netzwerk**. Ein [virtuelles Netzwerk][vnet] verknüpft Azure-Ressourcen und bietet eine logische Isolierung. In dieser Architektur wird der Jenkins-Server in einem virtuellen Netzwerk ausgeführt.
 
-- **Subnetze:** Der Jenkins-Server ist in einem [Subnetz][subnet] isoliert, um die Verwaltung und Aufteilung des Netzwerkdatenverkehrs ohne Auswirkungen auf die Leistung zu vereinfachen.
+- **Subnetze:** Der Jenkins-Server ist in einem [Subnetz][subnet] isoliert, um die Verwaltung und Aufteilung des Netzwerkdatenverkehrs zu vereinfachen, ohne die Leistung zu beeinträchtigen.
 
 - **NSGs**. Verwenden Sie [Netzwerksicherheitsgruppen][nsg] (NSGs), um Netzwerkdatenverkehr vom Internet auf ein Subnetz eines virtuellen Netzwerks zu beschränken.
 
@@ -65,7 +60,7 @@ Mit dem [Azure AD][azure-ad]-Mandanten für Ihr Azure-Abonnement wird SSO für J
 
 SSO-Authentifizierung und -Autorisierung werden von dem auf dem Jenkins-Server installierten Azure AD-Plug-In implementiert. SSO ermöglicht bei der Anmeldung beim Jenkins-Server die Authentifizierung mit Ihren Organisationsanmeldeinformationen aus Azure AD. Beim Konfigurieren des Azure AD-Plug-Ins können Sie die Ebene des autorisierten Zugriffs eines Benutzers auf den Jenkins-Server angeben.
 
-Um Jenkins-Aufträgen den Zugriff auf Azure-Ressourcen zu gewähren, erstellt ein Azure AD-Administrator Dienstprinzipale. Diese gewähren Anwendungen – in diesem Fall den Jenkins-Aufträgen – [authentifizierten, autorisierten Zugriff][ad-sp] auf Azure-Ressourcen.
+Um Jenkins-Aufträgen den Zugriff auf Azure-Ressourcen zu gewähren, erstellt ein Azure AD-Administrator Dienstprinzipale. Diese gewähren Anwendungen – in diesem Fall den Jenkins-Aufträgen – [authentifizierten, autorisierten Zugriff][ad-sp] auf Azure-Ressourcen.
 
 Mit der [rollenbasierten Zugriffssteuerung][rbac] wird der Zugriff auf Azure-Ressourcen für Benutzer oder Dienstprinzipale über die zugewiesene Rolle genauer definiert und gesteuert. Sowohl integrierte als auch benutzerdefinierte Rollen werden unterstützt. Rollen tragen darüber hinaus zum Schützen der Pipeline bei und stellen sicher, dass die Zuständigkeiten eines Benutzers oder Agents richtig zugewiesen und autorisiert werden. Darüber hinaus kann die RBAC eingerichtet werden, um den Zugriff auf Azure-Ressourcen zu beschränken. Beispielsweise kann für einen Benutzer die Nutzung auf die Ressourcen in einer bestimmten Ressourcengruppe beschränkt werden.
 
@@ -123,7 +118,7 @@ Verfügbarkeit im Kontext eines Jenkins-Servers bedeutet Folgendes: Sie können 
 
 - RPO (Recovery Point Objective) gibt an, wie viele Daten verloren gehen dürfen, wenn sich eine Dienstunterbrechung auf Jenkins auswirkt.
 
-In der Praxis geben RTO und RPO Redundanz und Sicherung an. Bei der Verfügbarkeit geht es nicht um Hardwarewiederherstellung (diese ist Teil von Azure), sondern darum sicherzustellen, dass der Zustand des Jenkins-Servers gespeichert wird. Microsoft bietet eine [Vereinbarung zum Servicelevel][sla] (Service Level Agreement, SLA) für einzelne VM-Instanzen an. Falls diese SLA Ihre Verfügbarkeitsanforderungen nicht erfüllt, stellen Sie sicher, dass Sie einen Tarif für die Notfallwiederherstellung besitzen, oder ziehen Sie die Bereitstellung eines [Jenkins-Servers mit mehreren Mastern ][multi-master] (nicht in diesem Dokument behandelt) in Betracht.
+In der Praxis geben RTO und RPO Redundanz und Sicherung an. Verfügbarkeit ist keine Frage der Hardwarewiederherstellung (diese ist Teil von Azure), sondern eine Frage der Aufrechterhaltung des Zustands des Jenkins-Servers. Microsoft bietet eine [Vereinbarung zum Servicelevel][sla] (Service Level Agreement, SLA) für einzelne VM-Instanzen an. Falls diese SLA Ihre Verfügbarkeitsanforderungen nicht erfüllt, stellen Sie sicher, dass Sie einen Tarif für die Notfallwiederherstellung besitzen, oder ziehen Sie die Bereitstellung eines [Jenkins-Servers mit mehreren Mastern ][multi-master] (nicht in diesem Dokument behandelt) in Betracht.
 
 Erwägen Sie die Verwendung der [Skripts][disaster] für die Notfallwiederherstellung in Schritt 7 der Bereitstellung, um ein Azure Storage-Konto mit verwalteten Datenträgern zum Speichern des Jenkins-Serverzustands zu erstellen. Wenn Jenkins ausfällt, kann der Systemzustand wiederhergestellt werden, der in diesem separaten Speicherkonto gespeichert ist.
 

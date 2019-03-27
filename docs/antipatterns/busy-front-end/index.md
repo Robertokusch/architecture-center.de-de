@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 61470b630f735c1d49ad9b4bfbec853b308630cf
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481523"
 ---
+
 # <a name="busy-front-end-antipattern"></a>Antimuster für ausgelastete Front-Ends
 
 Die Ausführung asynchroner Arbeiten in einer großen Anzahl von Hintergrundthreads kann andere gleichzeitig ausgeführte Vordergrundaufgaben von Ressourcen blockieren und die Antwortzeiten dadurch auf ein inakzeptables Niveau reduzieren.
@@ -146,7 +141,7 @@ In den folgenden Abschnitten werden diese Schritte auf die zuvor beschriebene Be
 
 ### <a name="identify-points-of-slowdown"></a>Identifizieren der Punkte, an denen eine Verlangsamung auftritt
 
-Instrumentieren Sie jede Methode, um die Dauer der einzelnen Anforderungen und die von ihnen verbrauchten Ressourcen nachzuverfolgen. Überwachen Sie die Anwendung anschließend in der Produktionsumgebung. Dies kann Ihnen einen allgemeinen Überblick darüber bieten, wie Anforderungen miteinander um Ressourcen konkurrieren. In Zeiten hoher Belastung beeinträchtigen ressourcenintensive Anforderungen mit langer Ausführungszeit wahrscheinlich andere Vorgänge. Dieses Verhalten kann durch eine Überwachung des Systems und der Leistungsabnahme beobachtet werden.
+Instrumentieren Sie jede Methode, um die Dauer der einzelnen Anforderungen und die von ihnen verbrauchten Ressourcen nachzuverfolgen. Überwachen Sie die Anwendung anschließend in der Produktionsumgebung. Dies kann Ihnen einen allgemeinen Überblick darüber bieten, wie Anforderungen miteinander um Ressourcen konkurrieren. Bei hoher Auslastung werden andere Vorgänge unter Umständen durch ressourcenintensive Anforderungen mit langer Ausführungszeit beeinträchtigt. Zur Erkennung dieses Verhaltens kann das System auf Leistungsbeeinträchtigungen überwacht werden.
 
 Der folgende Screenshot zeigt ein Überwachungsdashboard. (Wir haben [AppDynamics] für unsere Tests verwendet.) Zu Beginn ist die Auslastung des Systems gering. Dann beginnen Benutzer, die `UserProfile`-GET-Methode anzufordern. Die Leistung ist einigermaßen gut, bis andere Benutzer Anforderungen an die `WorkInFrontEnd`-POST-Methode ausgeben. An diesem Punkt nehmen die Antwortzeiten drastisch zu (erster Pfeil). Die Antwortzeiten verbessern sich erst, nachdem die Anzahl von Anforderungen an den `WorkInFrontEnd`-Controller abgenommen hat (zweiter Pfeil).
 

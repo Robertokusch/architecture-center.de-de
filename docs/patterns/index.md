@@ -1,21 +1,16 @@
 ---
 title: Cloudentwurfsmuster
 titleSuffix: Azure Architecture Center
-description: Entwurfsmuster für das Erstellen von zuverlässigen, skalierbaren, sicheren Anwendungen in der Cloud
+description: 'Entwurfsmuster für das Erstellen von zuverlässigen, skalierbaren, sicheren Anwendungen in der Cloud'
 keywords: Azure
 author: dragon119
-ms.date: 12/10/2018
+ms.date: 03/01/2018
 ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 1f3a76a104f0157526db3cff338c2b8b08dd573c
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488255"
 ---
+
 # <a name="cloud-design-patterns"></a>Cloudentwurfsmuster
 
 Diese Entwurfsmuster können Ihnen dabei helfen, zuverlässige, skalierbare und sichere Anwendungen in der Cloud zu erstellen.
@@ -94,11 +89,12 @@ Für jedes Muster werden das durch das Muster gelöste Problem, Überlegungen zu
 |         [Back-Ends für Front-Ends](./backends-for-frontends.md)         |                                                            Erstellen Sie separate Back-End-Dienste zur Nutzung durch bestimmte Front-End-Anwendungen oder -Schnittstellen.                                                             |
 |                       [Bulkhead](./bulkhead.md)                       |                                                        Elemente einer Anwendung in Pools isolieren, sodass die anderen Elemente beim Ausfall eines Elements weiterhin ausgeführt werden                                                        |
 |                    [Cache-Aside](./cache-aside.md)                    |                                                                                   Daten bei Bedarf in einen Cache aus einem Datenspeicher laden                                                                                    |
-|                [Trennschalter](./circuit-breaker.md)                |                                                     Fehler behandeln, deren Behebung beim Herstellen einer Verbindung mit einem Remotedienst oder einer Remoteressource unterschiedlich lange dauern kann                                                     |
-|                           [Befehlsabfrage-Zuständigkeitstrennung (Command Query Responsibility Segregation, CQRS)](./cqrs.md)                           |                                                           Trennen Sie mithilfe separater Schnittstellen Datenlesevorgänge von Vorgängen zur Aktualisierung von Daten.                                                            |
+|                [Trennschalter](./circuit-breaker.md)                |                                                     Behandeln Sie Fehler, deren Behebung beim Herstellen einer Verbindung mit einem Remotedienst oder einer Remoteressource unterschiedlich lange dauern kann.                                                     |
+| [Anspruchsprüfung](./claim-check.md) | Teilen Sie eine große Nachricht in eine Anspruchsprüfung und eine Nutzlast auf, um die Überlastung eines Nachrichtenbusses zu vermeiden. |
 |       [Ausgleichende Transaktion](./compensating-transaction.md)       |                                                         Durch eine Reihe von Schritten, die zusammen letztlich einen konsistenten Vorgang definieren, ausgeführte Arbeit rückgängig machen                                                         |
 |            [Konkurrierende Consumer](./competing-consumers.md)            |                                                            Mehreren gleichzeitigen Consumern die Verarbeitung von Nachrichten ermöglichen, die auf dem gleichen Messagingkanal empfangen werden                                                             |
-| [Computeressourcenkonsolidierung](./compute-resource-consolidation.md) |                                                                        Mehrere Aufgaben oder Vorgänge in einer einzelnen Berechnungseinheit konsolidieren                                                                        |
+| [Computeressourcenkonsolidierung](./compute-resource-consolidation.md) |                                                                        Konsolidieren mehrerer Tasks oder Vorgänge in einer einzelnen Compute-Einheit                                                                        |
+|                           [CQRS](./cqrs.md)                           |                                                           Mithilfe separater Schnittstellen Vorgänge trennen, die Daten von Vorgängen zur Aktualisierung von Daten lesen                                                            |
 |                 [Ereignisherkunftsermittlung](./event-sourcing.md)                 |                                                      Verwenden Sie einen nur zum Anfügen vorgesehenen Speicher, um die vollständige Serie von Ereignissen aufzuzeichnen, die die mit Daten in einer Domäne ausgeführten Aktionen beschreiben.                                                      |
 |   [Externer Konfigurationsspeicher](./external-configuration-store.md)   |                                                           Konfigurationsinformationen aus dem Anwendungsbereitstellungspaket an einen zentralen Speicherort verschieben                                                           |
 |             [Verbundidentität](./federated-identity.md)             |                                                                                Authentifizierung an einen externen Identitätsanbieter delegieren                                                                                |

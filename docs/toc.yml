@@ -65,82 +65,6 @@ items:
         href: guide/design-principles/build-for-business.md
     - name: Säulen der Softwarequalität
       href: guide/pillars.md
-  - name: Datenarchitekturleitfaden
-    items:
-    - name: Einführung
-      href: data-guide/index.md
-    - name: Herkömmliche RDMBS-Workloads
-      items:
-      - name: Übersicht
-        href: data-guide/relational-data/index.md
-      - name: Onlinetransaktionsverarbeitung (OLTP)
-        href: data-guide/relational-data/online-transaction-processing.md
-      - name: Data Warehousing
-        href: data-guide/relational-data/data-warehousing.md
-      - name: Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)
-        href: data-guide/relational-data/online-analytical-processing.md
-      - name: Extrahieren, Transformieren und Laden (ETL)
-        href: data-guide/relational-data/etl.md
-    - name: Big Data-Architekturen
-      items:
-      - name: Übersicht
-        href: data-guide/big-data/index.md
-      - name: Batchverarbeitung
-        href: data-guide/big-data/batch-processing.md
-      - name: Verarbeitung in Echtzeit
-        href: data-guide/big-data/real-time-processing.md
-      - name: Bedarfsorientiertes Machine Learning
-        href: data-guide/big-data/machine-learning-at-scale.md
-      - name: Nicht relationale Datenspeicher
-        href: data-guide/big-data/non-relational-data.md
-      - name: Szenarien
-        items:
-        - name: Erweiterte Analyse
-          href: data-guide/scenarios/advanced-analytics.md
-        - name: Data Lakes
-          href: data-guide/scenarios/data-lake.md
-        - name: Freiform-Textsuche
-          href: data-guide/scenarios/search.md
-        - name: Interaktive Datenuntersuchung
-          href: data-guide/scenarios/interactive-data-exploration.md
-        - name: Verarbeitung natürlicher Sprache
-          href: data-guide/scenarios/natural-language-processing.md
-        - name: Zeitreihenlösungen
-          href: data-guide/scenarios/time-series.md
-        - name: Arbeiten mit CSV- und JSON-Dateien
-          href: data-guide/scenarios/csv-and-json.md
-      - name: Auswahl der Technologie
-        items:
-        - name: Analysedatenspeicher
-          href: data-guide/technology-choices/analytical-data-stores.md
-        - name: Analysen und Berichte
-          href: data-guide/technology-choices/analysis-visualizations-reporting.md
-        - name: Batchverarbeitung
-          href: data-guide/technology-choices/batch-processing.md
-        - name: Cognitive Services
-          href: data-guide/technology-choices/cognitive-services.md
-        - name: Datenspeicher
-          href: data-guide/technology-choices/data-storage.md
-        - name: Machine Learning
-          href: data-guide/technology-choices/data-science-and-machine-learning.md
-        - name: Verarbeitung natürlicher Sprache
-          href: data-guide/technology-choices/natural-language-processing.md
-        - name: Pipelineorchestrierung
-          href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
-        - name: Echtzeiterfassung von Nachrichten
-          href: data-guide/technology-choices/real-time-ingestion.md
-        - name: Durchsuchen von Datenspeichern
-          href: data-guide/technology-choices/search-options.md
-        - name: Streamverarbeitung
-          href: data-guide/technology-choices/stream-processing.md
-    - name: Querschnittsthemen
-      items:
-      - name: Datenübertragung
-        href: data-guide/scenarios/data-transfer.md
-      - name: Erweitern lokaler Datenlösungen auf die Cloud
-        href: data-guide/scenarios/hybrid-on-premises-and-cloud.md
-      - name: Schützen von Datenlösungen
-        href: data-guide/scenarios/securing-data-solutions.md
   - name: Cloudentwurfsmuster
     items:
     - name: Übersicht
@@ -173,8 +97,10 @@ items:
       href: patterns/bulkhead.md
     - name: Cachefremd
       href: patterns/cache-aside.md
-    - name: Sicherung
+    - name: Trennschalter
       href: patterns/circuit-breaker.md
+    - name: Anspruchsprüfung
+      href: patterns/claim-check.md
     - name: Command and Query Responsibility Segregation (CQRS)
       href: patterns/cqrs.md
     - name: Ausgleichende Transaktion
@@ -353,6 +279,8 @@ items:
     items:
     - name: Verteiltes Training der Deep Learning-Modelle
       href: reference-architectures/ai/training-deep-learning.md
+    - name: Trainieren von Python-Modellen vom Typ „scikit-learn“
+      href: reference-architectures/ai/training-python-models.md
     - name: Batchbewertung der Deep Learning-Modelle
       href: reference-architectures/ai/batch-scoring-deep-learning.md
     - name: Batchbewertung von Python-Modellen
@@ -417,6 +345,8 @@ items:
     items:
     - name: Azure Kubernetes Service (AKS)
       href: reference-architectures/microservices/aks.md
+    - name: Azure Service Fabric
+      href: reference-architectures/microservices/service-fabric.md
   - name: Netzwerk-DMZ
     items:
     - name: DMZ zwischen Azure und einem lokalen Netzwerk
@@ -465,30 +395,132 @@ items:
       href: reference-architectures/app-service-web-app/multi-region.md
     - name: Webanwendungsüberwachung
       href: reference-architectures/app-service-web-app/app-monitoring.md
-- name: Entwurfshandbücher
+- name: Erstellen von Microservices in Azure
   items:
-  - name: Erstellen von Microservices in Azure
+  - name: Übersicht
+    href: microservices/index.md
+  - name: Einführung in Microservices
+    href: microservices/introduction.md
+  - name: Modellieren von Microservices
+    items:
+    - name: Domänenanalyse
+      href: microservices/model/domain-analysis.md
+    - name: Taktische DDD-Phase
+      href: microservices/model/tactical-ddd.md
+    - name: Identifizieren von Microservice-Grenzen
+      href: microservices/model/microservice-boundaries.md
+  - name: Entwerfen einer Microservices-Architektur
     items:
     - name: Einführung
-      href: microservices/index.md
-    - name: Domänenanalyse
-      href: microservices/domain-analysis.md
-    - name: Identifizieren von Microservice-Grenzen
-      href: microservices/microservice-boundaries.md
-    - name: Überlegungen zu Daten
-      href: microservices/data-considerations.md
+      href: microservices/design/index.md
+    - name: Auswählen einer Computeoption
+      href: microservices/design/compute-options.md
     - name: Kommunikation zwischen Diensten
-      href: microservices/interservice-communication.md
+      href: microservices/design/interservice-communication.md
     - name: API-Design
-      href: microservices/api-design.md
-    - name: Erfassung und Workflow
-      href: microservices/ingestion-workflow.md
+      href: microservices/design/api-design.md
     - name: API-Gateways
-      href: microservices/gateway.md
+      href: microservices/design/gateway.md
+    - name: Überlegungen zu Daten
+      href: microservices/design/data-considerations.md
+    - name: Entwurfsmuster für Microservices
+      href: microservices/design/patterns.md
+  - name: Betreiben von Microservices in der Produktionsumgebung
+    items:
     - name: Protokollierung und Überwachung
       href: microservices/logging-monitoring.md
     - name: CI/CD
       href: microservices/ci-cd.md
+- name: Entwurfshandbücher
+  items:
+  - name: Datenarchitekturleitfaden
+    items:
+    - name: Einführung
+      href: data-guide/index.md
+    - name: Herkömmliche RDMBS-Workloads
+      items:
+      - name: Übersicht
+        href: data-guide/relational-data/index.md
+      - name: Onlinetransaktionsverarbeitung (OLTP)
+        href: data-guide/relational-data/online-transaction-processing.md
+      - name: Data Warehousing
+        href: data-guide/relational-data/data-warehousing.md
+      - name: Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)
+        href: data-guide/relational-data/online-analytical-processing.md
+      - name: Extrahieren, Transformieren und Laden (ETL)
+        href: data-guide/relational-data/etl.md
+    - name: Big Data-Architekturen
+      items:
+      - name: Übersicht
+        href: data-guide/big-data/index.md
+      - name: Batchverarbeitung
+        href: data-guide/big-data/batch-processing.md
+      - name: Verarbeitung in Echtzeit
+        href: data-guide/big-data/real-time-processing.md
+      - name: Bedarfsorientiertes Machine Learning
+        href: data-guide/big-data/machine-learning-at-scale.md
+      - name: Nicht relationale Datenspeicher
+        href: data-guide/big-data/non-relational-data.md
+      - name: Szenarien
+        items:
+        - name: Erweiterte Analyse
+          href: data-guide/scenarios/advanced-analytics.md
+        - name: Data Lakes
+          href: data-guide/scenarios/data-lake.md
+        - name: Freiform-Textsuche
+          href: data-guide/scenarios/search.md
+        - name: Interaktive Datenuntersuchung
+          href: data-guide/scenarios/interactive-data-exploration.md
+        - name: Verarbeitung natürlicher Sprache
+          href: data-guide/scenarios/natural-language-processing.md
+        - name: Zeitreihenlösungen
+          href: data-guide/scenarios/time-series.md
+        - name: Arbeiten mit CSV- und JSON-Dateien
+          href: data-guide/scenarios/csv-and-json.md
+      - name: Auswahl der Technologie
+        items:
+        - name: Analysedatenspeicher
+          href: data-guide/technology-choices/analytical-data-stores.md
+        - name: Analysen und Berichte
+          href: data-guide/technology-choices/analysis-visualizations-reporting.md
+        - name: Batchverarbeitung
+          href: data-guide/technology-choices/batch-processing.md
+        - name: Cognitive Services
+          href: data-guide/technology-choices/cognitive-services.md
+        - name: Datenspeicher
+          href: data-guide/technology-choices/data-storage.md
+        - name: Machine Learning
+          href: data-guide/technology-choices/data-science-and-machine-learning.md
+        - name: Verarbeitung natürlicher Sprache
+          href: data-guide/technology-choices/natural-language-processing.md
+        - name: Pipelineorchestrierung
+          href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
+        - name: Echtzeiterfassung von Nachrichten
+          href: data-guide/technology-choices/real-time-ingestion.md
+        - name: Durchsuchen von Datenspeichern
+          href: data-guide/technology-choices/search-options.md
+        - name: Streamverarbeitung
+          href: data-guide/technology-choices/stream-processing.md
+    - name: Querschnittsthemen
+      items:
+      - name: Datenübertragung
+        href: data-guide/scenarios/data-transfer.md
+      - name: Erweitern lokaler Datenlösungen auf die Cloud
+        href: data-guide/scenarios/hybrid-on-premises-and-cloud.md
+      - name: Schützen von Datenlösungen
+        href: data-guide/scenarios/securing-data-solutions.md
+  - name: Erweitern von Azure Resource Manager-Vorlagen
+    items:
+    - name: Einführung
+      href: building-blocks/extending-templates/index.md
+    - name: Aktualisieren einer Ressource
+      href: building-blocks/extending-templates/update-resource.md
+    - name: Bedingtes Bereitstellen einer Ressource
+      href: building-blocks/extending-templates/conditional-deploy.md
+    - name: Verwenden eines Objekts als Parameter
+      href: building-blocks/extending-templates/objects-as-parameters.md
+    - name: Feature für die Transformation und Erfassung von Eigenschaften
+      href: building-blocks/extending-templates/collector.md
   - name: Verwalten von mehrinstanzenfähigen Identitäten
     items:
     - name: Einführung
@@ -817,9 +849,9 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: Protokolle und Berichterstellung
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: 2ba7e4b0b9eb049c0492557a0543778d2fbb2518
-ms.sourcegitcommit: a68f248402c598f9d25bc1dc62f27a6a934ff001
+ms.openlocfilehash: 179f4bc613b29f4090e5713c9abebdf1af8d54a7
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55903247"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346177"

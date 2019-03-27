@@ -3,13 +3,7 @@ title: Azure-Referenzarchitekturen
 description: Referenzarchitekturen und Implementierungsanweisungen für gängige Workloads in Azure
 layout: LandingPage
 ms.topic: landing-page
-ms.date: 02/07/2019
-ms.openlocfilehash: 44111f5f10997c7aba38414b518245c5791d1cd0
-ms.sourcegitcommit: a68f248402c598f9d25bc1dc62f27a6a934ff001
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55903230"
+ms.date: 03/07/2019
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -40,6 +34,26 @@ Wechseln Sie zu: [AI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                     <div class="cardText">
                         <h3>Verteiltes Training der Deep Learning-Modelle</h3>
                         <p>Führen Sie das verteilte Training der Deep Learning-Modelle zwischen Clustern mit GPU-fähigen virtuellen Computern aus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Training of Python scikit-learn models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/training-python-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Trainieren von Python-Modellen vom Typ „scikit-learn“</h3>
+                        <p>Empfohlene Vorgehensweisen zum Optimieren der Hyperparameter eines Python-Modells vom Typ „scikit-learn“.</p>
                     </div>
                 </div>
             </div>
@@ -79,7 +93,7 @@ Wechseln Sie zu: [AI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                     </div>
                     <div class="cardText">
                         <h3>Batchbewertung von Python-Modellen</h3>
-                        <p>Bewerten Sie mithilfe von Azure Batch AI mehrere Python-Modelle parallel als Batch nach einem Zeitplan.</p>
+                        <p>Bewerten Sie mithilfe von Azure Machine Learning mehrere Python-Modelle parallel als Batch auf der Grundlage eines Zeitplan.</p>
                     </div>
                 </div>
             </div>
@@ -314,7 +328,27 @@ Wechseln Sie zu: [AI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                     </div>
                     <div class="cardText">
                         <h3>Microservices in Azure Kubernetes Service (AKS)</h3>
-                        <p>Empfohlene Architektur für die Bereitstellung einer Microservicearchitektur in AKS</p>
+                        <p>Empfohlene Architektur für die Bereitstellung von Microservices in AKS.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Microservices architecture on Azure Service Fabric -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./microservices/service-fabric.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/sf.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Microservices-Architektur in Azure Service Fabric</h3>
+                        <p>Empfohlene Architektur für Microservices in Service Fabric.</p>
                     </div>
                 </div>
             </div>
