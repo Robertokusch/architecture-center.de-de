@@ -165,8 +165,8 @@ Ein von Grund auf neu erstelltes HPC-System in Azure bietet zwar ein hohes Maß 
 
 1. Richten Sie auf virtuellen Azure-Computern oder in [VM-Skalierungsgruppen](/azure/virtual-machine-scale-sets/overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context) Ihre eigene Clusterumgebung ein.
 2. Verwenden Sie Azure Resource Manager-Vorlagen, um führende [Workload-Manager](#workload-managers), Infrastruktur und [Anwendungen](#hpc-applications) bereitzustellen.
-3. Wählen Sie [HPC- und GPU-VM-Größen](#hpc-and-gpu-sizes) aus, die spezielle Hardware und Netzwerkverbindungen für MPI- oder GPU-Workloads enthalten.
-4. Fügen Sie [Hochleistungsspeicher](#hpc-storage) für Workloads mit hoher E/A-Intensität hinzu.
+3. Wählen Sie [HPC- und GPU-VM-Größen](#compute) aus, die spezielle Hardware und Netzwerkverbindungen für MPI- oder GPU-Workloads enthalten.
+4. Fügen Sie [Hochleistungsspeicher](#storage) für Workloads mit hoher E/A-Intensität hinzu.
 
 ### <a name="hybrid-and-cloud-bursting"></a>Hybridlösung und Cloudbursting
 
@@ -231,7 +231,7 @@ Lesen Sie zunächst den Artikel [Auswählen einer Lösung zum Herstellen einer V
     </li>
 </ul>
 
-Nachdem Sie eine zuverlässige Netzwerkverbindung hergestellt haben, können Sie mit den Burstfunktionen Ihres bereits vorhandenen [Workload-Managers](#workload-manager) mit der bedarfsabhängigen Nutzung von Cloud Computing-Ressourcen beginnen.
+Nachdem Sie eine zuverlässige Netzwerkverbindung hergestellt haben, können Sie mit den Burstfunktionen Ihres bereits vorhandenen [Workload-Managers](#workload-managers) mit der bedarfsabhängigen Nutzung von Cloud Computing-Ressourcen beginnen.
 
 ### <a name="marketplace-solutions"></a>Marketplace-Lösungen
 
