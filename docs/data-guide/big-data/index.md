@@ -1,13 +1,18 @@
 ---
 title: Big Data-Architekturen
-description: null
+description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 269a4c2b8fd0c186e1b44b6c0cfdcbfa4d37b57c
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346160"
 ---
-
 # <a name="big-data-architectures"></a><span data-ttu-id="23e28-102">Big Data-Architekturen</span><span class="sxs-lookup"><span data-stu-id="23e28-102">Big data architectures</span></span>
 
 <span data-ttu-id="23e28-103">Eine Big Data-Architektur ist für die Erfassung, Verarbeitung und Analyse von Daten konzipiert, die für herkömmliche Datenbanksysteme zu groß oder zu komplex sind.</span><span class="sxs-lookup"><span data-stu-id="23e28-103">A big data architecture is designed to handle the ingestion, processing, and analysis of data that is too large or complex for traditional database systems.</span></span> <span data-ttu-id="23e28-104">An welchem Punkt eine Organisation in den Big Data-Bereich übergeht, ist von den Kompetenzen der Benutzer sowie von deren Tools abhängig.</span><span class="sxs-lookup"><span data-stu-id="23e28-104">The threshold at which organizations enter into the big data realm differs, depending on the capabilities of the users and their tools.</span></span> <span data-ttu-id="23e28-105">Bei einigen ist es vielleicht bereits ab einer Datenmenge von mehreren hundert Gigabytes der Fall, bei anderen womöglich erst ab mehreren hundert Terabytes.</span><span class="sxs-lookup"><span data-stu-id="23e28-105">For some, it can mean hundreds of gigabytes of data, while for others it means hundreds of terabytes.</span></span> <span data-ttu-id="23e28-106">Mit der Weiterentwicklung der Tools umfangreicher Datasets entwickelt sich auch die Bedeutung von Big Data weiter.</span><span class="sxs-lookup"><span data-stu-id="23e28-106">As tools for working with big data sets advance, so does the meaning of big data.</span></span> <span data-ttu-id="23e28-107">Der Begriff bezieht sich zunehmend den Nutzen, den Sie durch erweiterte Analysen aus Ihren Daten ziehen können, und weniger auf die Größe der Daten, obwohl sie in diesen Fällen üblicherweise ziemlich groß ausfallen.</span><span class="sxs-lookup"><span data-stu-id="23e28-107">More and more, this term relates to the value you can extract from your data sets through advanced analytics, rather than strictly the size of the data, although in these cases they tend to be quite large.</span></span>

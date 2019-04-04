@@ -1,15 +1,20 @@
 ---
 title: Antimuster „Extraneous Fetching“ (Irrelevante Abrufe)
 titleSuffix: Performance antipatterns for cloud apps
-description: 'Das Abrufen von mehr Daten, als für einen Geschäftsvorgang erforderlich sind, kann zu unnötigem E/A-Mehraufwand und einer Reduzierung der Reaktionsfähigkeit führen.'
+description: Das Abrufen von mehr Daten, als für einen Geschäftsvorgang erforderlich sind, kann zu unnötigem E/A-Mehraufwand und einer Reduzierung der Reaktionsfähigkeit führen.
 author: dragon119
 ms.date: 06/05/2017
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: c1172531b332854a6d4940c072b61cb3f6bcd7ba
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58345106"
 ---
-
 # <a name="extraneous-fetching-antipattern"></a><span data-ttu-id="2a28c-103">Antimuster „Extraneous Fetching“ (Irrelevante Abrufe)</span><span class="sxs-lookup"><span data-stu-id="2a28c-103">Extraneous Fetching antipattern</span></span>
 
 <span data-ttu-id="2a28c-104">Das Abrufen von mehr Daten, als für einen Geschäftsvorgang erforderlich sind, kann zu unnötigem E/A-Mehraufwand und einer Reduzierung der Reaktionsfähigkeit führen.</span><span class="sxs-lookup"><span data-stu-id="2a28c-104">Retrieving more data than needed for a business operation can result in unnecessary I/O overhead and reduce responsiveness.</span></span>

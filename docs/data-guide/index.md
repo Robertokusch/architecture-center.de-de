@@ -1,14 +1,19 @@
 ---
 title: Azure-Datenarchitekturleitfaden
-description: null
+description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
 layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 5fb74c6323f8dc571d827eb9a4c65a6c87d0ae36
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344426"
 ---
-
 # <a name="azure-data-architecture-guide"></a>Azure-Datenarchitekturleitfaden
 
 In diesem Leitfaden wird ein strukturierter Ansatz für den Entwurf von datenorientierten Lösungen in Microsoft Azure vorgestellt. Er basiert auf bewährten Methoden, die aus Kundeninteraktionen abgeleitet wurden.

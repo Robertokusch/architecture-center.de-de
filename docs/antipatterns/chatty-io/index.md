@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: b21ef5f772eb4e2572833ab15085651ac3766a5e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344324"
 ---
-
 # <a name="chatty-io-antipattern"></a><span data-ttu-id="a7aaa-103">Antimuster „Zu viele E/A-Vorgänge“</span><span class="sxs-lookup"><span data-stu-id="a7aaa-103">Chatty I/O antipattern</span></span>
 
 <span data-ttu-id="a7aaa-104">Der kumulative Effekt einer hohen Anzahl von E/A-Anforderungen kann sich massiv auf die Leistung und die Reaktionsfähigkeit auswirken.</span><span class="sxs-lookup"><span data-stu-id="a7aaa-104">The cumulative effect of a large number of I/O requests can have a significant impact on performance and responsiveness.</span></span>

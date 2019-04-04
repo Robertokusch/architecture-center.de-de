@@ -1,13 +1,18 @@
 ---
 title: Relationale Daten
-description: null
+description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
+ms.openlocfilehash: d68bddcb75e5c8f786a7739e85de2645a2c3d641
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58345412"
 ---
-
 # <a name="traditional-relational-database-solutions"></a><span data-ttu-id="ce75c-102">Herkömmliche relationale Datenbanklösungen</span><span class="sxs-lookup"><span data-stu-id="ce75c-102">Traditional relational database solutions</span></span>
 
 <span data-ttu-id="ce75c-103">Bei relationalen Daten handelt es sich um Daten, die mit dem relationalen Modell modelliert werden.</span><span class="sxs-lookup"><span data-stu-id="ce75c-103">Relational data is data modeled using the relational model.</span></span> <span data-ttu-id="ce75c-104">Bei diesem Modell werden Daten als Tupel ausgedrückt.</span><span class="sxs-lookup"><span data-stu-id="ce75c-104">In this model, data is expressed as tuples.</span></span> <span data-ttu-id="ce75c-105">Ein *Tupel* ist ein Satz mit Attribut-Wert-Paaren.</span><span class="sxs-lookup"><span data-stu-id="ce75c-105">A *tuple* is a set of attribute/value pairs.</span></span> <span data-ttu-id="ce75c-106">Beispiel für ein Tupel: (itemid = 5, orderid = 1, item = "Chair", amount = 200.00).</span><span class="sxs-lookup"><span data-stu-id="ce75c-106">For example, a tuple might be (itemid = 5, orderid = 1, item = "Chair", amount = 200.00).</span></span> <span data-ttu-id="ce75c-107">Eine Tupelmenge, bei der die Tupel die Attribute gemeinsam nutzen, wird als *Relation* bezeichnet.</span><span class="sxs-lookup"><span data-stu-id="ce75c-107">A set of tuples that all share the same attributes is called a *relation*.</span></span>
