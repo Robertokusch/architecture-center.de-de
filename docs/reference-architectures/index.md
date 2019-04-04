@@ -3,7 +3,13 @@ title: Azure-Referenzarchitekturen
 description: Referenzarchitekturen und Implementierungsanweisungen für gängige Workloads in Azure
 layout: LandingPage
 ms.topic: landing-page
-ms.date: 03/07/2019
+ms.date: 04/02/2019
+ms.openlocfilehash: 7c307c40a710fff7ff07e24570052411b7edd8bf
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887759"
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -40,26 +46,6 @@ Wechseln Sie zu: [AI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
         </div>
     </a>
 </li>
-<!-- Training of Python scikit-learn models -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./ai/training-python-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/python-powered-h.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Trainieren von Python-Modellen vom Typ „scikit-learn“</h3>
-                        <p>Empfohlene Vorgehensweisen zum Optimieren der Hyperparameter eines Python-Modells vom Typ „scikit-learn“.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
 <!-- Batch scoring for deep learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/batch-scoring-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -74,6 +60,26 @@ Wechseln Sie zu: [AI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                     <div class="cardText">
                         <h3>Batchbewertung für Deep Learning-Modelle</h3>
                         <p>Automatisieren Sie die Ausführung von Batchaufträgen, die die neuronale Stilübertragung auf ein Video anwenden.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Training of Python scikit-learn models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/training-python-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Trainieren von Python-Modellen vom Typ „scikit-learn“</h3>
+                        <p>Empfohlene Vorgehensweisen zum Optimieren der Hyperparameter eines Python-Modells vom Typ „scikit-learn“.</p>
                     </div>
                 </div>
             </div>
@@ -100,26 +106,6 @@ Wechseln Sie zu: [AI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
         </div>
     </a>
 </li>
-<!-- Batch scoring of Spark models on Azure Databricks -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./ai/batch-scoring-databricks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/databricks.png" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Batchbewertung von Spark-Modellen in Azure Databricks</h3>
-                        <p>Erstellen Sie eine skalierbare Lösung für die Batchbewertung eines Apache Spark-Klassifizierungsmodell mithilfe von Azure Databricks.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
 <!-- Real-time scoring of Python and deep learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -140,6 +126,26 @@ Wechseln Sie zu: [AI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
         </div>
     </a>
 </li>
+<!-- Batch scoring of R machine learning models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-R-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/logo-r.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Batchbewertung von R-Machine Learning-Modellen</h3>
+                        <p>Führen Sie mithilfe von Azure Batch eine Batchbewertung von R-Modellen aus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Real-time scoring of R machine learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-r.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -154,6 +160,26 @@ Wechseln Sie zu: [AI](#ai-and-machine-learning) | [Big Data](#big-data-solutions
                     <div class="cardText">
                         <h3>Echtzeitbewertung von R-Machine Learning-Modellen</h3>
                         <p>Implementieren Sie einen Echtzeit-Vorhersagedienst in R mithilfe von Microsoft Machine Learning Server unter Azure Kubernetes Service (AKS).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Batch scoring of Spark models on Azure Databricks -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-databricks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/databricks.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Batchbewertung von Spark-Modellen in Azure Databricks</h3>
+                        <p>Erstellen Sie eine skalierbare Lösung für die Batchbewertung eines Apache Spark-Klassifizierungsmodell mithilfe von Azure Databricks.</p>
                     </div>
                 </div>
             </div>

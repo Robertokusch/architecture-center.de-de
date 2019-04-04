@@ -279,20 +279,26 @@ items:
     href: reference-architectures/index.md
   - name: AI
     items:
-    - name: Verteiltes Training der Deep Learning-Modelle
-      href: reference-architectures/ai/training-deep-learning.md
-    - name: Trainieren von Python-Modellen vom Typ „scikit-learn“
-      href: reference-architectures/ai/training-python-models.md
-    - name: Batchbewertung der Deep Learning-Modelle
-      href: reference-architectures/ai/batch-scoring-deep-learning.md
-    - name: Batchbewertung von Python-Modellen
-      href: reference-architectures/ai/batch-scoring-python.md
+    - name: Trainieren und Bewerten von Deep Learning-Modellen und Python-Modellen
+      items:
+      - name: Verteiltes Training der Deep Learning-Modelle
+        href: reference-architectures/ai/training-deep-learning.md
+      - name: Batchbewertung der Deep Learning-Modelle
+        href: reference-architectures/ai/batch-scoring-deep-learning.md
+      - name: Trainieren von Python-Modellen vom Typ „scikit-learn“
+        href: reference-architectures/ai/training-python-models.md
+      - name: Batchbewertung von Python-Modellen
+        href: reference-architectures/ai/batch-scoring-python.md
+      - name: Echtzeitbewertung von Python- und Deep Learning-Modellen
+        href: reference-architectures/ai/realtime-scoring-python.md
+    - name: Bewerten von R-Modellen
+      items:
+      - name: Batchbewertung von R-Modellen
+        href: reference-architectures/ai/batch-scoring-R-models.md
+      - name: Echtzeitbewertung von R-Modellen
+        href: reference-architectures/ai/realtime-scoring-r.md
     - name: Batchbewertung von Spark-Modellen in Azure Databricks
       href: reference-architectures/ai/batch-scoring-databricks.md
-    - name: Echtzeitbewertung von Python- und Deep Learning-Modellen
-      href: reference-architectures/ai/realtime-scoring-python.md
-    - name: Echtzeitbewertung von R-Machine Learning-Modellen
-      href: reference-architectures/ai/realtime-scoring-r.md
     - name: Interaktiver Bot
       href: reference-architectures/ai/conversational-bot.md
     - name: Echtzeitempfehlungs-API
@@ -497,6 +503,8 @@ items:
           href: data-guide/technology-choices/natural-language-processing.md
         - name: Pipelineorchestrierung
           href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
+        - name: R-Entwicklerleitfaden für Azure
+          href: data-guide/technology-choices/r-developers-guide.md
         - name: Echtzeiterfassung von Nachrichten
           href: data-guide/technology-choices/real-time-ingestion.md
         - name: Durchsuchen von Datenspeichern
@@ -567,6 +575,8 @@ items:
       href: databricks-monitoring/application-logs.md
     - name: Visualisieren von Databricks-Metriken mithilfe von Dashboards
       href: databricks-monitoring/dashboards.md
+    - name: Behandeln von Leistungsengpässen
+      href: databricks-monitoring/performance-troubleshooting.md
 - name: Entwurf eines Überprüfungsframeworks
   items:
   - name: Entwurf mit Blick auf Resilienz
@@ -861,9 +871,9 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: Protokolle und Berichterstellung
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: 861170224f9575dc5e45d993678bda482b0ed944
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: 953c7cbdee185a88d8470199fb4ba92244adaa84
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503246"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887776"
