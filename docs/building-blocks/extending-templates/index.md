@@ -6,8 +6,13 @@ ms.date: 06/09/2017
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: reference-architecture
+ms.openlocfilehash: 108d82066d9867682c246c4de802849e2e561cbc
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343831"
 ---
-
 # <a name="extend-azure-resource-manager-template-functionality"></a>Erweitern der Azure Resource Manager-Vorlagenfunktionen
 
 2016 erstellte das Microsoft-Team für Muster und Vorgehensweisen eine Reihe von [Vorlagenbausteinen](https://github.com/mspnp/template-building-blocks/wiki) für Azure Resource Manager mit dem Ziel, die Ressourcenbereitstellung zu vereinfachen. Jeder Baustein enthält eine Reihe vorgefertigter Vorlagen, mit denen Ressourcen bereitgestellt werden können, die durch separate Parameterdateien angegeben werden.

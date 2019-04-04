@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: e3d6fbb789e422af22ce54b0defd6bb73099f15a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346330"
 ---
-
 # <a name="monolithic-persistence-antipattern"></a>Antimuster der monolithischen Persistenz
 
 Das Speichern sämtlicher Daten einer Anwendung in einem einzigen Datenspeicher kann die Leistung beeinträchtigen, weil es entweder zu Ressourcenkonflikten führt oder weil der Datenspeicher sich für einige Daten nicht gut eignet.

@@ -1,15 +1,20 @@
 ---
 title: Antimuster „Synchrone E/A-Vorgänge“
 titleSuffix: Performance antipatterns for cloud apps
-description: 'Ein Blockieren des aufrufenden Threads, während ein E/A-Vorgang abgeschlossen wird, kann die Leistung senken und sich auf die vertikale Skalierbarkeit auswirken.'
+description: Ein Blockieren des aufrufenden Threads, während ein E/A-Vorgang abgeschlossen wird, kann die Leistung senken und sich auf die vertikale Skalierbarkeit auswirken.
 author: dragon119
 ms.date: 06/05/2017
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: 1b53806b2939a7c44a8b48c9146d5e86c84d9e2e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343559"
 ---
-
 # <a name="synchronous-io-antipattern"></a>Antimuster „Synchrone E/A-Vorgänge“
 
 Ein Blockieren des aufrufenden Threads, während ein E/A-Vorgang abgeschlossen wird, kann die Leistung senken und sich auf die vertikale Skalierbarkeit auswirken.

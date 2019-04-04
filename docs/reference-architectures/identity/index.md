@@ -6,9 +6,14 @@ ms.date: 07/02/2018
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.custom: 'seodec18, identity'
+ms.custom: seodec18, identity
+ms.openlocfilehash: 706cb63a65ce521e72ebc41a997dc900afacaab9
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343967"
 ---
-
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a>Auswählen einer Lösung für die Integration einer lokalen Active Directory-Instanz in Azure
 
 In diesem Artikel werden Optionen für die Integration Ihrer lokalen Active Directory-Umgebung (AD) in ein Azure-Netzwerk verglichen. Für jede Option ist eine detailliertere Referenzarchitektur verfügbar.

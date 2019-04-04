@@ -5,12 +5,12 @@ layout: LandingPage
 ms.topic: landing-page
 ms.date: 09/28/2018
 google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
-ms.openlocfilehash: 3c48ba77b7f97c6047f5d1441a22f2bd79ee0a3e
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: e247985aa92e1c2bf3cb4d43514f4d06250f1141
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898288"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419970"
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
@@ -104,6 +104,26 @@ ms.locfileid: "55898288"
                         <div class="cardText">
                             <h3>Azure-Datenarchitekturleitfaden</h3>
                             <p>Strukturierter Ansatz zum Entwerfen datenorientierter Lösungen in Microsoft Azure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!-- HPC Topic Page -->
+    <li>
+        <a href="./topics/high-performance-computing/index.md">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/hpc-blue-multi.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>High Performance Computing (HPC) in Azure</h3>
+                            <p>Entwurfsleitfaden und Komponenteninformationen für die Erstellung von HPC-Anwendungen (High Performance Computing) in Azure.</p>
                         </div>
                     </div>
                 </div>
@@ -210,26 +230,6 @@ ms.locfileid: "55898288"
             </div>
         </a>
     </li>
-    <!-- Azure Virtual Datacenter -->
-    <li>
-        <a href="./vdc/index.md">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/virtual-datacenter.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Virtuelles Azure-Rechenzentrum</h3>
-                            <p>Bei der Bereitstellung von Unternehmensworkloads in der Cloud müssen Organisationen die richtige Balance zwischen Governance und Entwickleragilität finden. Mit den Modellen des virtuellen Azure-Rechenzentrums können Sie diese Balance erreichen, wobei die Governance im Vordergrund steht.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
         <!-- Azure for AWS Professionals -->
     <li>
         <a href="/azure/architecture/aws-professional">
@@ -264,6 +264,26 @@ ms.locfileid: "55898288"
                         <div class="cardText">
                             <h3>Leistungsbezogene Antimuster</h3>
                             <p>Informationen zur Erkennung und Behebung häufiger Ursachen für Leistungs- und Skalierbarkeitsprobleme in Cloudanwendungen</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!-- Azure Virtual Datacenter -->
+    <li>
+        <a href="./vdc/index.md">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/virtual-datacenter.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Virtuelles Azure-Rechenzentrum</h3>
+                            <p>Bei der Bereitstellung von Unternehmensworkloads in der Cloud müssen Organisationen die richtige Balance zwischen Governance und Entwickleragilität finden. Mit den Modellen des virtuellen Azure-Rechenzentrums können Sie diese Balance erreichen, wobei die Governance im Vordergrund steht.</p>
                         </div>
                     </div>
                 </div>

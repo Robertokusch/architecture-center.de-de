@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c61758494435f61814953ab5ba48d8fed1e709ab
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 89434c0ce72b9f061e4b092354b1dcbaf683b7c6
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897591"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346313"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure für AWS-Spezialisten
 
@@ -147,7 +147,7 @@ Eine [Verfügbarkeitszone](/azure/availability-zones/az-overview) ist eine physi
 
 Um eine Anwendung vor einem regionalen Ausfall zu schützen, können Sie sie in mehreren Regionen bereitstellen, indem Sie [Azure Traffic Manager][traffic-manager] zum Verteilen von Internetdatenverkehr auf die verschiedenen Regionen verwenden. Jede Azure-Region ist mit einer anderen Region gekoppelt. Zusammen bilden sie ein [Regionspaar][paired-regions]. Mit Ausnahme von „Brasilien, Süden“ befinden sich die Regionen der Regionspaare immer innerhalb des gleichen geografischen Gebiets, um steuerliche und rechtliche Anforderungen an den Speicherort von Daten zu erfüllen.
 
-Im Gegensatz zu Verfügbarkeitszonen, bei denen es sich um physisch getrennte Rechenzentren handelt, die sich jedoch in relativ nahe gelegenen geografischen Gebieten befinden können, liegen Regionspaare in der Regel mindestens 480 km voneinander entfernt. Denn damit soll sichergestellt werden, dass sich größere Katastrophen nur auf eine der Regionen eines Paars auswirken. Bei benachbarten Paaren können Datenbank- und Speicherdienstdaten synchronisiert werden, und sie sind so konfiguriert, dass Plattformupdates jeweils nur in einer Region eines Paares ausgeführt werden.
+Im Gegensatz zu Verfügbarkeitszonen, bei denen es sich um physisch getrennte Rechenzentren handelt, die sich jedoch in relativ nahe gelegenen geografischen Gebieten befinden können, liegen Regionspaare in der Regel mindestens 480 km voneinander entfernt. Dadurch wird sichergestellt, dass sich größere Katastrophen nur auf eine der Regionen eines Paars auswirken. Bei benachbarten Paaren können Datenbank- und Speicherdienstdaten synchronisiert werden, und sie sind so konfiguriert, dass Plattformupdates jeweils nur in einer Region eines Paares ausgeführt werden.
 
 [Georedundanter Azure-Speicher](/azure/storage/common/storage-redundancy-grs) wird automatisch im entsprechenden Regionspaar gesichert. Bei allen anderen Ressourcen heißt die Erstellung einer vollständig redundanten Lösung mit Regionspaaren, dass in beiden Regionen eine vollständige Kopie Ihrer Lösung erstellt wird.
 
@@ -300,9 +300,9 @@ Azure bietet über seinen [ExpressRoute](https://azure.microsoft.com/documentati
 
 In Azure stehen verschiedene Dienste für relationale Datenbanken zur Verfügung, die dem Dienst für relationale Datenbanken (Relational Database Service, RDS) von AWS entsprechen.
 
-- [SQL-Datenbank](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)
-- [Azure Database for MySQL](https://docs.microsoft.com/azure/mysql/overview)
-- [Azure-Datenbank für PostgreSQL](https://docs.microsoft.com/azure/postgresql/overview)
+- [SQL-Datenbank](/azure/sql-database/sql-database-technical-overview)
+- [Azure Database for MySQL](/azure/mysql/overview)
+- [Azure-Datenbank für PostgreSQL](/azure/postgresql/overview)
 
 Andere Datenbank-Engines wie [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/), [Oracle](https://azure.microsoft.com/campaigns/oracle/) und [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/) können über Azure-VM-Instanzen bereitgestellt werden.
 

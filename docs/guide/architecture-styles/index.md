@@ -7,8 +7,13 @@ ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.date: 08/30/2018
+ms.openlocfilehash: 6895ffc9c73dac29c27e7d8df68550c94f68b10a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346534"
 ---
-
 # <a name="architecture-styles"></a>Architekturstile
 
 Ein *Architekturstil* ist eine Familie von Architekturen, die bestimmte gemeinsame Eigenschaften aufweisen. Ein gängiger Architekturstil ist beispielsweise eine [Architektur mit n-Schichten][n-tier]. In jüngerer Zeit gewinnen [Microservicearchitekturen][microservices] zunehmend an Popularität. Architekturstile sind nicht auf spezielle Technologien beschränkt, doch einige Technologien eignen sich für bestimmte Architekturen besonders gut. So sind Container beispielsweise ideal für Microservices geeignet.

@@ -1,13 +1,18 @@
 ---
 title: Identitätsverwaltung für mehrinstanzenfähige Anwendungen
-description: 'Bewährte Methoden für die Authentifizierung, Autorisierung und Identitätsverwaltung mehrmandantenfähiger Apps.'
+description: Bewährte Methoden für die Authentifizierung, Autorisierung und Identitätsverwaltung mehrmandantenfähiger Apps.
 author: MikeWasson
 ms.date: 07/21/2017
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
+ms.openlocfilehash: be906106fb12c381d57ad40ae22e748dcff9722f
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346075"
 ---
-
 # <a name="manage-identity-in-multitenant-applications"></a>Verwalten der Identität in mehrinstanzenfähigen Anwendungen
 
 In dieser Artikelreihe werden bewährte Methoden für Mehrmandantenfähigkeit bei Verwendung von Azure AD für die Authentifizierung und Identitätsverwaltung beschrieben.

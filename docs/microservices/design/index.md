@@ -7,8 +7,13 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
+ms.openlocfilehash: 15e9aa16c0e2cfccecbfb84d217c275cc99a66fd
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344409"
 ---
-
 # <a name="designing-a-microservices-architecture"></a>Entwerfen einer Microservices-Architektur
 
 Microservices haben sich zu einem beliebten Architekturstil für die Erstellung robuster, hochgradig skalierbarer, unabhängig bereitstellbarer Cloudanwendungen entwickelt, die sich schnell weiterentwickeln lassen. Damit Microservices nicht nur ein Schlagwort bleiben, erfordern sie allerdings eine andere Herangehensweise an die Gestaltung und Erstellung von Anwendungen.
