@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Erfahren Sie mehr über die Identitätsverwaltung als wichtigen Aspekt bei Azure-Migrationen.
 author: rotycenh
-ms.openlocfilehash: addc11928a0bc72917a28b468a04880720a1fdf4
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 511e27c7d63968417a7eb47764d2e7768496d34f
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901640"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242771"
 ---
 # <a name="identity-decision-guide"></a>Leitfaden zur Entscheidungsfindung für die Identitätsverwaltung
 
@@ -24,54 +24,54 @@ Wechseln Sie zu: [Ermitteln der Anforderung an die Identitätsintegration](#dete
 
 Es gibt in einer Cloudumgebung mehrere Möglichkeiten der Identitätsverwaltung, die sich hinsichtlich Kosten und Komplexität unterscheiden. Ein wesentlicher Faktor bei der Strukturierung Ihrer cloudbasierten Identitätsverwaltungsdienste ist der Grad der Integration in Ihre bestehende lokale Identitätsverwaltungsinfrastruktur.
 
-Cloudbasierte SaaS-Identitätslösungen (Software as a Service) bieten für Cloudressourcen eine grundlegende Ebene der Zugriffssteuerung und Identitätsverwaltung. Wenn die Active Directory-Infrastruktur (AD) Ihrer Organisation jedoch eine komplexe Gesamtstruktur oder angepasste Organisationseinheiten aufweist, können Ihre cloudbasierten Workloads eine Verzeichnisreplikation in die Cloud erfordern, um einen einheitlichen Satz von Identitäten, Gruppen und Rollen zwischen der lokalen und der Cloudumgebung zu gewährleisten. Falls für eine globale Lösung eine Verzeichnisreplikation erforderlich ist, kann die Komplexität deutlich zunehmen. Darüber hinaus kann die Unterstützung von Anwendungen, die von veralteten Authentifizierungsmechanismen abhängen, die Bereitstellung von Domänendiensten in der Cloud erfordern.
+In Azure bietet Azure Active Directory (Azure AD) eine grundlegende Ebene der Zugriffssteuerung und Identitätsverwaltung für Cloudressourcen. Wenn die Active Directory-Infrastruktur (AD) Ihrer Organisation jedoch eine komplexe Gesamtstruktur oder angepasste Organisationseinheiten aufweist, können Ihre cloudbasierten Workloads eine Verzeichnissynchronisierung mit Azure AD erfordern, um einen einheitlichen Satz von Identitäten, Gruppen und Rollen zwischen der lokalen und der Cloudumgebung zu gewährleisten. Darüber hinaus kann die Unterstützung von Anwendungen, die von veralteten Authentifizierungsmechanismen abhängen, die Bereitstellung von Active Directory Domain Services (AD DS) in der Cloud erfordern.
 
 ## <a name="determine-identity-integration-requirements"></a>Bestimmen der Anforderungen an die Identitätsintegration
 
 | Frage | Reine Cloudlösung | Verzeichnissynchronisierung | In der Cloud gehostete Domänendienste | Active Directory-Verbunddienste (AD FS) |
 |------|------|------|------|------|
 | Fehlt Ihnen derzeit ein lokaler Verzeichnisdienst? | Ja | Nein  | Nein  | Nein  |
-| Müssen sich Ihre Workloads bei lokalen Identitätsdiensten authentifizieren? | Nein  | Ja | Nein  | Nein  |
-| Sind Ihre Workloads von veralteten Authentifizierungsmechanismen wie Kerberos oder NTLM abhängig? | Nein  | Nein  | Ja | Nein  |
-| Ist eine Integration zwischen Cloud- und lokalen Identitätsdiensten unmöglich? | Nein  | Nein  | Ja | Nein  |
+| Benötigen Ihre Workloads einen gemeinsamen Satz von Benutzern und Gruppen zwischen der Cloud und der lokalen Umgebung? | Nein  | Ja | Nein  | Nein  |
+| Sind Ihre Workloads von veralteten Authentifizierungsmechanismen wie Kerberos oder NTLM abhängig? | Nein  | Nein  | Ja | Ja |
 | Wird einmaliges Anmelden über mehrere Identitätsanbieter benötigt? | Nein  | Nein  | Nein  | Ja |
 
 Im Rahmen der Planung Ihrer Migration zu Azure müssen Sie entscheiden, wie Sie Ihre bestehenden Identitätsverwaltungs- und Cloudidentitätsdienste am besten integrieren. Es folgen gängige Integrationsszenarien.
 
 ### <a name="cloud-baseline"></a>Reine Cloudlösung
 
-Öffentliche Cloudplattformen bieten ein natives System zur Identitäts- und Zugriffsverwaltung (IAM), über das Benutzer und Gruppen Zugriff auf Verwaltungsfunktionen erhalten. Wenn es in Ihrem Unternehmen keine nennenswerte lokale Identitätsverwaltungslösung gibt und Sie planen, Workloads so zu migrieren, dass sie mit cloudbasierten Authentifizierungsmechanismen kompatibel sind, sollten Sie Ihre Identitätsinfrastruktur mit einem cloudnativen Identitätsdienst erstellen.
+Azure AD ist das ein natives System zur Identitäts- und Zugriffsverwaltung (IAM), über das Benutzer und Gruppen auf der Azure-Plattform Zugriff auf Verwaltungsfunktionen erhalten. Wenn es in Ihrem Unternehmen keine nennenswerte lokale Identitätsverwaltungslösung gibt und Sie planen, Workloads so zu migrieren, dass sie mit cloudbasierten Authentifizierungsmechanismen kompatibel sind, sollten Sie mit der Entwicklung Ihrer Identitätsinfrastruktur mit Azure AD als Basis beginnen.
 
 **Annahmen für eine reine Cloudlösung**. Für den Einsatz einer rein cloudbasierten Identitätsinfrastruktur wird Folgendes angenommen:
 
 - Ihre cloudbasierten Ressourcen weisen keine Abhängigkeiten von lokalen Verzeichnisdiensten oder Active Directory-Servern auf, oder Workloads können so geändert werden, dass diese Abhängigkeiten entfallen.
-- Die zu migrierenden Anwendungs- oder Dienstworkloads unterstützen entweder Authentifizierungsmechanismen, die mit Cloudidentitätsanbietern kompatibel sind, oder können problemlos so geändert werden, dass diese unterstützt werden. Cloudnative Identitätsanbieter greifen auf internetfähige Authentifizierungsmechanismen wie SAML, OAuth und OpenID Connect zurück. Bestehende Workloads, die von veralteten Authentifizierungsmethoden mit Protokollen wie Kerberos oder NTLM abhängen, müssen möglicherweise vor der Migration in die Cloud angepasst werden.
+- Die zu migrierenden Anwendungs- oder Dienstworkloads unterstützen entweder Authentifizierungsmechanismen, die mit Azure AD kompatibel sind, oder können problemlos so geändert werden, dass diese unterstützt werden. Azure AD greift auf internetfähige Authentifizierungsmechanismen wie SAML, OAuth und OpenID Connect zurück. Bestehende Workloads, die von veralteten Authentifizierungsmethoden mit Protokollen wie Kerberos oder NTLM abhängen, müssen möglicherweise vor der Migration in die Cloud gemäß dem Cloudbasismuster angepasst werden.
 
 > [!TIP]
-> Die meisten cloudnativen Identitätsdienste sind kein vollständiger Ersatz für herkömmliche lokale Verzeichnisse. Verzeichnisfunktionen wie Computerverwaltung oder Gruppenrichtlinien sind möglicherweise nicht ohne zusätzliche Tools oder Dienste verfügbar.
-
-Durch die vollständige Migration Ihrer Identitätsdienste zu einem cloudbasierten Anbieter entfällt die Notwendigkeit, Ihre eigene Identitätsinfrastruktur zu pflegen, wodurch Ihre IT-Verwaltung erheblich vereinfacht wird.
+> Durch die vollständige Migration Ihrer Identitätsdienste zu Azure AD entfällt die Notwendigkeit, Ihre eigene Identitätsinfrastruktur zu pflegen, wodurch Ihre IT-Verwaltung erheblich vereinfacht wird.
+>
+> Azure AD ist jedoch kein vollständiger Ersatz für eine herkömmliche lokale Active Directory-Infrastruktur. Verzeichnisfunktionen wie veraltete Authentifizierungsmethoden, Computerverwaltung oder Gruppenrichtlinien sind möglicherweise nicht ohne Bereitstellen zusätzlicher Tools oder Dienste in der Cloud verfügbar.
+>
+> Wenn Sie Ihre lokalen Identitäten oder Domänendienste in Ihre Cloudbereitstellungen integrieren müssen, finden Sie weitere Informationen in den Mustern zur Verzeichnissynchronisierung und zu den von der Cloud gehosteten Domänendiensten, die im Folgenden erläutert werden.
 
 ### <a name="directory-synchronization"></a>Verzeichnissynchronisierung
 
-Für Organisationen mit einer bestehenden Identitätsinfrastruktur ist die Verzeichnissynchronisierung oft die beste Lösung, um die bestehende Benutzer- und Zugriffsverwaltung aufrechtzuerhalten und gleichzeitig die erforderlichen IAM-Funktionen für die Verwaltung von Cloudressourcen bereitzustellen. Bei diesem Prozess werden Verzeichnisinformationen kontinuierlich zwischen der Cloud- und der lokalen Umgebung repliziert, wodurch einmaliges Anmelden (SSO) für Benutzer und ein einheitliches Identitäts-, Rollen- und Berechtigungssystem in der gesamten Organisation ermöglicht wird.
+Für Organisationen mit einer bestehenden lokalen Active Directory-Infrastruktur ist die Verzeichnissynchronisierung oft die beste Lösung, um die bestehende Benutzer- und Zugriffsverwaltung aufrechtzuerhalten und gleichzeitig die erforderlichen IAM-Funktionen für die Verwaltung von Cloudressourcen bereitzustellen. Bei diesem Prozess werden Verzeichnisinformationen kontinuierlich zwischen Azure AD und lokalen Verzeichnisdiensten repliziert, wodurch gemeinsame Anmeldeinformationen für Benutzer und ein einheitliches Identitäts-, Rollen- und Berechtigungssystem in der gesamten Organisation ermöglicht werden.
 
 Hinweis: Organisationen, die Office 365 eingeführt haben, haben möglicherweise bereits die [Verzeichnissynchronisierung](/office365/enterprise/set-up-directory-synchronization) zwischen ihrer lokalen Active Directory-Infrastruktur und Azure Active Directory eingerichtet.
 
 **Annahmen zur Verzeichnissynchronisierung**. Für den Einsatz einer synchronisierten Identitätslösung wird Folgendes angenommen:
 
 - Sie benötigen in Ihrer Cloud- und lokalen IT-Infrastruktur einen gemeinsamen Satz von Benutzerkonten und -gruppen.
-- Ihre lokalen Identitätsdienste unterstützen die Replikation mit Ihrem Cloudidentitätsanbieter.
-- Sie benötigen Mechanismen für einmaliges Anmelden für Benutzer, die auf Cloud- und lokale Identitätsanbieter zugreifen.
+- Ihre lokalen Identitätsdienste unterstützen die Replikation mit Azure AD.
 
 > [!TIP]
-> Alle cloudbasierten Workloads, die von veralteten Authentifizierungsmechanismen abhängen, welche nicht von cloudbasierten Identitätsdiensten wie Azure AD unterstützt werden, erfordern weiterhin entweder eine Verbindung mit lokalen Domänendiensten oder virtuellen Servern in der Cloudumgebung, die diese Dienste bereitstellen. Bei Nutzung lokaler Identitätsdienste entstehen auch Abhängigkeiten von der Konnektivität zwischen der Cloud und lokalen Netzwerken.
+> Alle cloudbasierten Workloads, die von veralteten Authentifizierungsmechanismen abhängen, welche von lokalen Servern mit Active Directory und nicht von Azure AD unterstützt werden, erfordern weiterhin entweder eine Verbindung mit lokalen Domänendiensten oder virtuellen Servern in der Cloudumgebung, die diese Dienste bereitstellen. Bei Nutzung lokaler Identitätsdienste entstehen auch Abhängigkeiten von der Konnektivität zwischen der Cloud und lokalen Netzwerken.
 
 ### <a name="cloud-hosted-domain-services"></a>In der Cloud gehostete Domänendienste
 
 Angenommen, Sie haben Workloads, die von einer anspruchsbasierten Authentifizierung mit älteren Protokollen wie Kerberos oder NTLM abhängen, und diese Workloads nicht so angepasst werden können, dass sie moderne Authentifizierungsprotokolle wie SAML oder OAuth und OpenID Connect unterstützen. Dann müssen Sie möglicherweise einige Ihrer Domänendienste als Teil Ihrer Cloudbereitstellung in die Cloud migrieren.
 
-Diese Art der Bereitstellung erfordert die Bereitstellung virtueller Computer mit ausgeführtem Active Directory in Ihren cloudbasierten virtuellen Netzwerken, um Domänendienste für Ressourcen in der Cloud bereitzustellen. Alle bestehenden Anwendungen und Dienste, die in Ihr Cloudnetzwerk migrieren, sollten in der Lage sein, nach geringfügigen Änderungen diese von der Cloud gehosteten Verzeichnisserver zu nutzen.
+Dieses Muster erfordert die Bereitstellung virtueller Computer mit ausgeführtem Active Directory in Ihren cloudbasierten virtuellen Netzwerken, um Active Directory Domain Services (AD DS) für Ressourcen in der Cloud bereitzustellen. Alle bestehenden Anwendungen und Dienste, die in Ihr Cloudnetzwerk migrieren, sollten in der Lage sein, nach geringfügigen Änderungen diese von der Cloud gehosteten Verzeichnisserver zu nutzen.
 
 Es ist wahrscheinlich, dass Ihre bestehenden Verzeichnisse und Domänendienste weiterhin in Ihrer lokalen Umgebung verwendet werden. In diesem Szenario wird empfohlen, dass Sie auch die Verzeichnissynchronisierung verwenden, um einen gemeinsamen Satz von Benutzern und Rollen sowohl in der Cloud- als auch in der lokalen Umgebung bereitzustellen.
 

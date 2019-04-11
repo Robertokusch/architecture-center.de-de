@@ -3,20 +3,20 @@ title: Bewährte Methoden für Unternehmen, die auf Azure umstellen
 description: Beschreibt ein Gerüst, mit dem Unternehmen eine sichere und verwaltbare Umgebung sicherstellen können.
 author: rdendtler
 ms.author: rodend
-ms.date: 9/22/2018
+ms.date: 09/22/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 86ac3a1c696479279962a17b01c2df73fb5a9849
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: f92f448c97d8adc8d2f88b6288f354dcc21909f9
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898322"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243371"
 ---
 # <a name="azure-enterprise-scaffold-prescriptive-subscription-governance"></a>Azure-Unternehmensgerüst: Präskriptive Abonnementgovernance
 
-Immer mehr Unternehmen führen für Mobilität und Flexibilität eine öffentliche Cloud ein. Sie nutzen die Stärken der Cloud, um Umsatz zu generieren und die Ressourcennutzung im Unternehmen zu optimieren. Microsoft Azure bietet eine Vielzahl von Diensten und Funktionen, die Unternehmen wie Bausteine zusammenstellen können, um ein umfangreiches Spektrum an Workloads und Anwendungen zu berücksichtigen.
+Immer mehr Unternehmen führen für Mobilität und Flexibilität eine öffentliche Cloud ein. Sie setzen auf die Stärken der Cloud, um Umsatz zu generieren und die Ressourcennutzung im Unternehmen zu optimieren. Microsoft Azure bietet eine Vielzahl von Diensten und Funktionen, die Unternehmen wie Bausteine zusammenstellen können, um ein umfangreiches Spektrum an Workloads und Anwendungen zu berücksichtigen.
 
 Die Entscheidung für Microsoft Azure ist nur der erste Schritt auf dem Weg zur Cloud und ihren Vorteilen. Der zweite Schritt besteht darin, zu erkennen, wie das Unternehmen Azure effektiv einsetzen kann, und die grundlegenden Funktionen zu ermitteln, mit denen folgende Fragen beantwortet werden können:
 
@@ -24,7 +24,7 @@ Die Entscheidung für Microsoft Azure ist nur der erste Schritt auf dem Weg zur 
 * „Wie erfahre ich, was die einzelnen Ressourcen unterstützen, damit ich sie genau zuordnen und abrechnen kann?“
 * Ich möchte sicherstellen, dass bei allem, was wir in der Cloud tun oder bereitstellen, die Sicherheit immer an oberster Stelle steht. Wie erreiche ich das?
 
-Die Vorstellung eines leeren Abonnements ohne Schutzmaßnahmen wirkt abschreckend und kann Ihre Umstellung auf Azure behindern.
+Die Vorstellung eines leeren Abonnements ohne Schutzmaßnahmen wirkt abschreckend. und kann Ihre Umstellung auf Azure behindern.
 
 Dieser Artikel bietet einen Ausgangspunkt für technische Experten, die die Notwendigkeit der Governance berücksichtigen und mit der Notwendigkeit der Agilität in Einklang bringen müssen. Es wird das Konzept eines Unternehmensgerüsts vorgestellt, das Organisationen beim sicheren Implementieren und Verwalten ihrer Azure-Umgebungen hilft. Der Artikel stellt das Framework bereit, mit dem sich effektive und effiziente Steuerungsmaßnahmen entwickeln lassen.
 
@@ -82,7 +82,7 @@ Sorgfältig konzipierte Verwaltungsgruppen sind neben Azure Policy und Azure-Ini
 
 ### <a name="subscriptions"></a>Abonnements
 
-Wenn Sie Ihre Abteilungen und Konten (bzw. Verwaltungsgruppen) festlegen, liegt Ihr Hauptaugenmerk darauf, wie Sie Ihre Azure-Umgebung Ihrer Organisation entsprechend aufteilen. In den Abonnements dagegen findet die eigentliche Arbeit statt – daher wirken sich Ihre Entscheidungen hier auf Sicherheit, Skalierbarkeit und Abrechnung aus.  Viele Organisationen nutzen die folgenden Muster als Leitlinien:
+Wenn Sie Ihre Abteilungen und Konten (bzw. Verwaltungsgruppen) festlegen, liegt Ihr Hauptaugenmerk darauf, wie Sie Ihre Azure-Umgebung Ihrer Organisation entsprechend aufteilen. In den Abonnements dagegen findet die eigentliche Arbeit statt. Daher wirken sich Ihre Entscheidungen hier auf Sicherheit, Skalierbarkeit und Abrechnung aus.  Viele Organisationen nutzen die folgenden Muster als Leitlinien:
 
 * **Anwendung/Dienst:** Abonnements stellen eine Anwendung oder einen Dienst dar (Anwendungsportfolio).
 * **Lebenszyklus:** Abonnements stellen einen Lebenszyklus eines Diensts dar (beispielsweise Produktion oder Entwicklung).
@@ -108,6 +108,7 @@ Die erste Säule des Gerüsts ist ein konsistenter Benennungsstandard. Mit sorgf
 
 > [!TIP]
 > Informationen zu Benennungskonventionen:
+>
 > * Lesen Sie den [Leitfaden mit Mustern und Verfahren](/azure/architecture/best-practices/naming-conventions), und übernehmen Sie ihn wo möglich. Dieser Leitfaden hilft Ihnen bei der Entscheidung für einen sinnvollen Benennungsstandard und bietet viele Beispiele.
 > * Verwenden von Resource Manager-Richtlinien zum Durchsetzen von Benennungsstandards
 >
@@ -187,7 +188,7 @@ Eines der größten Hindernisse bei der Einführung der Cloud sind seit jeher Be
 Das [Azure Security Center](/azure/security-center/security-center-intro) bietet eine einheitliche Ansicht des Sicherheitsstatus aller Ressourcen in Ihrer Umgebung sowie Funktionen für einen erweiterten Schutz vor Bedrohungen. Das Azure Security Center ist eine offene Plattform, über die Microsoft-Partner Softwareanwendungen erstellen können, die eingebunden werden und die Funktionalität erweitern. Die grundlegenden Funktionen von Azure Security Center (kostenloser Tarif) bieten Bewertungen und Empfehlungen, die Ihren Sicherheitsstatus verbessern. Die zahlungspflichtigen Tarife bieten zusätzliche wertvolle Funktionen wie z.B. Just-in-Time-Zugriff und adaptive Anwendungssteuerung (per Whitelists).
 
 > [!TIP]
->Das Azure Security Center ist ein sehr leistungsfähiges Tool, das fortlaufend erweitert wird und immer neue Funktionen bietet, mit denen Sie Bedrohungen erkennen und Ihr Unternehmen schützen können. Es wird dringend empfohlen, das ASC immer zu aktivieren.
+>Azure Security Center ist ein sehr leistungsfähiges Tool, das fortlaufend mit neuen Funktionen verbessert wird, mit denen Sie Bedrohungen erkennen und Ihr Unternehmen schützen können. Es wird dringend empfohlen, Azure Security Center stets zu aktivieren.
 
 ### <a name="azure-resource-locks"></a>Azure-Ressourcensperren
 
@@ -260,7 +261,7 @@ Sie können diese Daten auf verschiedenen Ebenen betrachten und Aktionen daraus 
 
 ## <a name="cost-management"></a>Kostenverwaltung
 
-Eine der wichtigsten Veränderungen, die ein Umstieg von der lokalen in die öffentliche Cloud mit sich bringt, ist die Art der Finanzierung: Diese verlagert sich vom Kapitalaufwand (Hardwarekauf) hin zum Betriebsaufwand (Zahlung nur für tatsächlich genutzte Dienste). Dieser Wechsel führt auch zu der Notwendigkeit, die Kosten noch sorgfältiger zu kontrollieren. Der große Vorteil der Cloud besteht darin, dass Sie die Kosten eines von Ihnen genutzten Diensts grundlegend und positiv beeinflussen können, indem Sie den Dienst einfach deaktivieren (oder herunterskalieren), wenn Sie ihn nicht benötigen. Die Verwaltung der Kosten in der Cloud ist eine empfohlene Vorgehensweise, die erfahrene Kunden bereits täglich befolgen.
+Eine der wichtigsten Veränderungen, die ein Umstieg von der lokalen in die öffentliche Cloud mit sich bringt, ist die Art der Finanzierung: Diese verlagert sich vom Kapitalaufwand (Hardwarekauf) hin zum Betriebsaufwand (Zahlung nur für tatsächlich genutzte Dienste). Dieser Wechsel führt auch zu der Notwendigkeit, die Kosten noch sorgfältiger zu kontrollieren. Der große Vorteil der Cloud besteht darin, dass Sie die Kosten eines von Ihnen genutzten Diensts grundlegend senken können, indem Sie den Dienst einfach deaktivieren (oder herunterskalieren), wenn Sie ihn nicht benötigen. Die Verwaltung der Kosten in der Cloud ist eine empfohlene Vorgehensweise, die erfahrene Kunden bereits täglich befolgen.
 
 Microsoft stellt Ihnen verschiedene Tools zur Verfügung, mit denen Sie Ihre Kosten visualisieren, nachverfolgen und verwalten können. Wir bieten Ihnen auch einen vollständigen Satz APIs, mit denen Sie das Kostenmanagement anpassen und in Ihre eigenen Tools und Dashboards integrieren können. Diese Tools sind grob in zwei Gruppen zusammengefasst: Azure-Portal-Funktionen und externe Funktionen.
 
@@ -283,7 +284,7 @@ Wenn wir die Kunden betrachten, die die Cloud bereits seit Langem verwenden und 
 
 * **Aktive Überwachung der Kosten**. Organisationen, die bereits über viel Erfahrung mit Azure verfügen, überwachen die Kosten fortlaufend und ergreifen bei Bedarf Maßnahmen. Einige Organisationen setzen sogar dediziertes Personal ein, das Analysen durchführt und Änderungen an der Nutzung vorschlägt. Dies macht sich in dem Moment mehr als bezahlt, wenn ein HDInsight-Cluster ermittelt wird, der bereits seit mehreren Monaten ungenutzt ausgeführt wird.
 * **Verwenden von reservierten Instanzen**. Ein weiterer wichtiger Faktor für das Kostenmanagement in der Cloud ist die Verwendung des am besten geeigneten Tools für jeden Auftrag. Wenn Sie über eine IaaS-VM verfügen, die rund um die Uhr aktiv bleiben muss, können Sie mit einer reservierten Instanz viel Geld sparen. Um das richtige Gleichgewicht zwischen dem automatischen Herunterfahren von virtuellen Computern und der Verwendung von reservierten Instanzen zu finden, sind viel Erfahrung und sorgfältige Analysen erforderlich.
-* **Effektive Verwendung der Automatisierung**: Viele Workloads müssen nicht jeden Tag ausgeführt werden. Selbst wenn Sie einen virtuellen Computer nur 4 Stunden pro Tag abschalten, können Sie 15 % Kosten sparen. Die Automatisierung amortisiert sich sehr schnell.
+* **Effektive Verwendung der Automatisierung**: Viele Workloads müssen nicht jeden Tag ausgeführt werden. Selbst wenn Sie einen virtuellen Computer nur vier Stunden pro Tag abschalten, können Sie 15 % Kosten sparen. Die Automatisierung amortisiert sich sehr schnell.
 * **Verwenden von Ressourcentags für mehr Transparenz**: Wie in diesem Artikel bereits ausgeführt, ermöglicht die Verwendung von Ressourcentags eine bessere Kostenanalyse.
 
 Das Kostenmanagement ist eine Fachrichtung, die für die effektive und effiziente Ausführung einer öffentlichen Cloud von entscheidender Bedeutung ist. Erfolgreiche Unternehmen sind in der Lage, ihre Kosten zu kontrollieren und auf den tatsächlichen Bedarf abzustimmen, statt im Übermaß Ressourcen zu erwerben und zu hoffen, dass sich der Bedarf schon einstellen wird.
@@ -309,12 +310,12 @@ Wie im Abschnitt zur Automatisierung beschrieben, sollte es das Ziel Ihrer Organ
 
 In Artikeln wie [diesem](https://blogs.msdn.microsoft.com/mvpawardprogram/2018/05/01/azure-resource-manager/) finden Sie eine hervorragende Erörterung von bewährten Methoden und Erfahrungswerten bei der Anwendung von DevOps-Verfahren auf Azure Resource Manager-Vorlagen mit der [Azure DevOps](/azure/devops/user-guide/?view=vsts)-Toolkette. Investieren Sie in den Zeit- und Arbeitsaufwand, der notwendig ist, um einen grundlegenden Satz an Vorlagen zu entwickeln, die genau auf die Anforderungen Ihrer Organisation zugeschnitten sind. Entwickeln Sie außerdem Continuous Delivery-Pipelines mit DevOps-Toolketten (z.B. Azure DevOps, Jenkins, Bamboo, Teamcity, Concourse) speziell für Ihre Produktions- und QA-Umgebungen. Auf GitHub finden Sie eine umfangreiche Bibliothek mit [Azure-Schnellstartvorlagen](https://github.com/Azure/azure-quickstart-templates), die Sie als Startpunkt für Ihre eigenen Vorlagen verwenden können – so können Sie mit Azure DevOps im Handumdrehen cloudbasierte Bereitstellungspipelines erstellen.
 
-Beherzigen Sie diese Best Practices: Für Produktionsabonnements oder Ressourcengruppen sollte Ihr Ziel immer sein, RBAC-basierte Sicherheitsfunktionen zu verwenden, um interaktive Benutzer standardmäßig zu deaktivieren. Nutzen Sie zudem auf Dienstprinzipalen basierende automatisierte Continuous Delivery-Pipelines, um sämtliche Ressourcen und den gesamten Anwendungscode bereitzustellen. Administratoren oder Entwickler sollten niemals das Azure-Portal verwenden, um Ressourcen interaktiv zu konfigurieren. DevOps auf diesem Level erfordert gemeinsame Anstrengungen und nutzt alle Konzepte des Azure-Gerüsts – so können Sie für eine konsistente und geschützte Umgebung sorgen, in der Ihre Organisation sicher wachsen kann.
+Beherzigen Sie diese Best Practices: Für Produktionsabonnements oder Ressourcengruppen sollte Ihr Ziel immer sein, RBAC-basierte Sicherheitsfunktionen zu verwenden, um interaktive Benutzer standardmäßig zu deaktivieren. Nutzen Sie zudem auf Dienstprinzipalen basierende automatisierte Continuous Delivery-Pipelines, um sämtliche Ressourcen und den gesamten Anwendungscode bereitzustellen. Administratoren oder Entwickler sollten niemals das Azure-Portal verwenden, um Ressourcen interaktiv zu konfigurieren. DevOps auf diesem Level erfordert gemeinsame Anstrengungen und nutzt alle Konzepte des Azure-Gerüsts. So können Sie für eine konsistente und geschützte Umgebung sorgen, die die Skalierungsanforderungen Ihrer Organisation erfüllt.
 
 > [!TIP]
 > Verwenden Sie [verknüpfte Vorlagen](/azure/azure-resource-manager/resource-group-linked-templates), wenn Sie komplexe Azure Resource Manager-Vorlagen entwerfen und entwickeln, um komplexe Ressourcenbeziehungen anhand von monolithischen JSON-Dateien zu organisieren und neu zu gestalten. So können Sie Ressourcen einzeln verwalten, und Ihre Vorlagen lassen sich besser lesen, testen und wiederverwenden.
 
-Azure ist ein Hyperscale-Cloudanbieter. Wenn Sie beim Umzug Ihrer Organisation aus der Welt der lokalen Server in die Cloud die gleichen Konzepte nutzen wie Cloudanbieter und Anbieter von SaaS-Anwendungen, ermöglicht Azure es Ihnen, auf wesentlich effizientere Weise auf die Anforderungen des Business zu reagieren.
+Azure ist ein Hyperscale-Cloudanbieter. Wenn Sie bei der Umstellung Ihrer Organisation von der Welt der lokalen Server auf die Cloud die gleichen Konzepte befolgen wie Cloudanbieter und Anbieter von SaaS-Anwendungen, ermöglicht Azure es Ihnen, auf wesentlich effizientere Weise auf geschäftliche Anforderungen zu reagieren.
 
 ## <a name="core-network"></a>Kernnetzwerk
 
@@ -329,9 +330,9 @@ Die letzte Komponente des Azure-Gerüsts ist von entscheidender Bedeutung, wenn 
 > [!TIP]
 > Mit Diensttags und Anwendungsgruppen in Ihren Netzwerksicherheitsgruppen erweitern Sie nicht nur die Lesbarkeit Ihrer Regeln – dies ist sehr wichtig, um die Auswirkungen genau zu verstehen –, sondern ermöglichen auch eine effektive Mikrosegmentierung in einem größeren Subnetz. So verringern Sie übermäßige Bereitstellungen und erhöhen die Flexibilität.
 
-### <a name="virtual-data-center"></a>Virtuelles Rechenzentrum
+### <a name="virtual-datacenter"></a>Virtuelles Rechenzentrum
 
-Azure bietet Ihnen sowohl interne Funktionen als auch Drittanbieterfunktionen aus unserem umfangreichen Partnernetzwerk, mit denen Sie Ihre Sicherheitsposition effektiv verstärken können. Wichtiger noch: Microsoft stellt Ihnen über das [virtuelle Azure-Rechenzentrum](/azure/architecture/vdc/networking-virtual-datacenter) Best Practices und Leitfäden zur Verfügung. Wenn Sie nicht mehr nur eine einzelne Workload, sondern mehrere Workloads verwalten, für die Hybridfunktionen erforderlich sind, erhalten Sie mit den Leitfäden aus diesem Rechenzentrum sozusagen das Rezept, mit dem Sie ein flexibles Netzwerk aufbauen können, das mit Ihren Workloads in Azure wächst.
+Azure bietet Ihnen sowohl interne Funktionen als auch Drittanbieterfunktionen aus unserem umfangreichen Partnernetzwerk, mit denen Sie Ihre Sicherheitsposition effektiv verstärken können. Wichtiger noch: Microsoft stellt Ihnen über das [virtuelle Azure-Rechenzentrum](/azure/architecture/vdc/networking-virtual-datacenter) Best Practices und Leitfäden zur Verfügung. Wenn Sie nicht mehr nur eine einzelne Workload, sondern mehrere Workloads verwalten, die Hybridfunktionen nutzen, erhalten Sie mit den Leitfäden aus diesem Rechenzentrum sozusagen das Rezept, mit dem Sie ein flexibles Netzwerk aufbauen können, das mit Ihren Workloads in Azure wächst.
 
 ## <a name="next-steps"></a>Nächste Schritte
 
