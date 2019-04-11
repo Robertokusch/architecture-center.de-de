@@ -7,12 +7,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: 219c50fb002a97874310b76de6f3bdbc34eaac6d
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 1a927beb23a2e45b509b2648a6bccce4c2ad242d
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242361"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068972"
 ---
 # <a name="designing-microservices-continuous-integration"></a>Entwerfen von Microservices: Continuous Integration
 
@@ -123,4 +123,4 @@ Im Verbraucherbereich kann eine höhere Benutzerfreundlichkeit einen messbaren g
 
 Microservices sind eine Reaktion auf diese Veränderungen. Durch die Aufspaltung einer monolithischen Anwendung in eine Reihe lose gekoppelter Dienste können wir den Releasezyklus der einzelnen Dienste steuern und häufige Updates ohne Ausfallzeiten oder beeinträchtigende Änderungen ermöglichen. Microservices tragen auch zur besseren Skalierbarkeit, Fehlerisolation und Resilienz bei. Inzwischen vereinfachen Cloudplattformen die Erstellung und Ausführung von Microservices mit automatisierter Bereitstellung von Computeressourcen, Containerorchestratoren als Dienst und ereignisgesteuerten serverlosen Umgebungen.
 
-Andererseits sind Microservices-Architekturen auch mit zahlreichen Herausforderungen verbunden. Entscheidend ist ein solides Design. Gehen Sie bei der Analyse der Domäne, bei der Wahl der Technologien, bei der Modellierung der Daten, bei der Gestaltung der APIs sowie beim Aufbau einer ausgereiften DevOps-Kultur mit der nötigen Sorgfalt vor. Wir hoffen, wir konnten Ihnen mit diesem Leitfaden und der dazugehörigen [Referenzimplementierung](https://github.com/mspnp/microservices-reference-implementation) weiterhelfen.
+Andererseits sind Microservices-Architekturen auch mit zahlreichen Herausforderungen verbunden. Entscheidend ist ein solides Design. Gehen Sie bei der Analyse der Domäne, bei der Wahl der Technologien, bei der Modellierung der Daten, bei der Gestaltung der APIs sowie beim Aufbau einer ausgereiften DevOps-Kultur mit der nötigen Sorgfalt vor. Wir hoffen, wir konnten Ihnen mit diesem Leitfaden und der dazugehörigen [Referenzimplementierung](https://github.com/mspnp/microservices-reference-implementation/tree/v0.1.0-orig) weiterhelfen.

@@ -8,12 +8,12 @@ description: Erfahren Sie, wie Sie ein Finanzmodell für die Cloudtransformation
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.openlocfilehash: e74a4782db5733271a575ce47cd79829f9114508
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 1f3ed8a84b84ba577ad5e5db8b1becd318dc04a3
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58247981"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068870"
 ---
 # <a name="create-a-financial-model-for-cloud-transformation"></a>Erstellen eines Finanzmodells für die Cloudtransformation
 
@@ -26,7 +26,7 @@ Die Rendite (Return on Investment, ROI) ist für die Führungs- bzw. Vorstandseb
 ![Return on Investment (ROI) = (Investitionsertrag - Investitionskosten) / Investitionskosten](../_images/formula-roi.png)
 
 <!-- markdownlint-disable MD036 -->
-*ROI = (Investitionsertrag &minus; Erstinvestition) / Erstinvestition*
+<!--*ROI = (Gain from Investment &minus; Initial Investment) / Initial Investment*-->
 <!-- markdownlint-enable MD036 -->
 
 In den nächsten Abschnitten werden die Daten beschrieben, die zum Berechnen der Erstinvestition und des Investitionsertrags (Einnahmen) benötigt werden.
@@ -46,7 +46,7 @@ Für die Berechnung der Einnahmen sind zwei Variablen erforderlich:
 ![Investitionsertrag = Umsatzdeltawerte + Kostendeltawerte](../_images/formula-gain-from-investment.png)
 
 <!-- markdownlint-disable MD036 -->
-*Investitionsertrag = Umsatzdeltawerte + Kostendeltawerte*
+<!--*Gain from Investment = Revenue Deltas + Cost Deltas*-->
 <!-- markdownlint-enable MD036 -->
 
 Die einzelnen Elemente sind unten beschrieben.
