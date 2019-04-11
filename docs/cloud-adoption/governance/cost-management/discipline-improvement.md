@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Verbesserung der Disziplin „Kostenmanagement“
 author: BrianBlanchard
-ms.openlocfilehash: 34975d195a95b1a85ada96efe8c76a6138385ec1
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 07b6bdd6344be374142fff0d783a1d57855bbbd8
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902162"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247451"
 ---
 # <a name="cost-management-discipline-improvement"></a>Verbesserung der Disziplin „Kostenmanagement“
 
@@ -85,7 +85,7 @@ Migration ist ein inkrementeller Prozess, bei dem der Schwerpunkt auf der Verlag
 
 ## <a name="operate-and-post-implementation"></a>Betrieb und Aufgaben nach der Implementierung
 
-Sobald die Transformation abgeschlossen ist, müssen Governance und Betrieb während des natürlichen Lebenszyklus einer Anwendung oder Workload bestehen bleiben. In dieser Phase der Ausgereiftheit der Governance geht es um die Aktivitäten, die üblicherweise ausgeführt werden, nachdem die Lösung implementiert wurde und der Transformationszyklus beginnt, sich zu stabilisieren.
+Nachdem die Transformation abgeschlossen ist, müssen Governance und Betrieb während des natürlichen Lebenszyklus einer Anwendung oder Workload bestehen bleiben. In dieser Entwicklungsphase der Governance geht es um die Aktivitäten, die üblicherweise ausgeführt werden, nachdem die Lösung implementiert wurde und der Transformationszyklus sich zu stabilisieren beginnt.
 
 **Mindestens empfohlene Aktivitäten**:
 

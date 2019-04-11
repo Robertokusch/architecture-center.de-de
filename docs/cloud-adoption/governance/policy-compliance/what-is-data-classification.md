@@ -1,14 +1,18 @@
 ---
-title: 'CAF: Was ist die Datenklassifizierung?'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Was ist die Datenklassifizierung?'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+ms.date: 02/11/2019
 description: Was ist die Datenklassifizierung?
 author: BrianBlanchard
-ms.date: 2/11/2019
-ms.openlocfilehash: 07268e7242d92ac2581bf28b378a3c43d166620c
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: bb40745b02e4ad6d7faa7054bf62443964f6784b
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901630"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245141"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -24,7 +28,7 @@ In den meisten Organisationen können die Hauptgründe für eine Investition in 
 * Geschäftsunterbrechung infolge von Ausfällen
 * Nicht geplante bzw. unerwartete Ausgaben
 
-Es gibt viele Varianten dieser drei Geschäftsrisiken. Die hier aufgeführten Risiken sind jedoch die häufigsten.
+Es gibt viele Varianten dieser drei Geschäftsrisiken. Die hier aufgeführten Risiken sind jedoch die gängigsten.
 
 ## <a name="understand-then-mitigate"></a>Verstehen, dann mindern
 
@@ -51,4 +55,4 @@ Jeder Cloud-Dienstanbieter sollte einen Mechanismus zum Aufzeichnen von Metadate
 Wenden Sie Datenklassifizierungen während einer der handlungsrelevanten Governance Journeys an.
 
 > [!div class="nextstepaction"]
-> [Beginnen einer handlungsrelevanten Governance Journey](../journeys/overview.md)
+> [Nützliche Governance-Vorgehensweisen](../journeys/overview.md)

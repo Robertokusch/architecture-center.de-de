@@ -3,12 +3,12 @@ title: 'CAF: Definieren der Anweisungen von Unternehmensrichtlinien'
 description: Wie richten Sie eine Richtlinie ein, um Risiken wiederzugeben und zu verringern?
 author: BrianBlanchard
 ms.date: 01/02/2019
-ms.openlocfilehash: 97a2c25fea621e5418e505375eb0e80007ddb0de
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 94645d55cb30aea55dceeb96a2cb9a4af6098b5a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902050"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241221"
 ---
 <!---
 I understand risk and tolerance, now what do I do?
@@ -31,11 +31,11 @@ Bei traditioneller Governance und inkrementeller Governance wird die Arbeitsdefi
 
 In der Abbildung werden die Interaktionen zwischen Geschäftsrisiken, Richtlinien und Compliance veranschaulicht, und es wird gezeigt, wie durch Überwachung und Erzwingung eine Governancestrategie erstellt wird. Darüber hinaus sehen Sie die fünf Disziplinen der Cloudgovernance zum Umsetzen Ihrer Strategie.
 
-Cloudgovernance ist das Produkt von fortlaufenden Bemühungen zur Einführung, da eine nachhaltige Transformation nicht über Nacht geschieht. Der Versuch, vollständige Cloudgovernance mithilfe einer schnellen, aggressiven Vorgehensweise bereitzustellen, bevor zentrale Änderungen der Unternehmensrichtlinien durchdacht wurden, führt nur selten zu den gewünschten Ergebnissen. Stattdessen empfiehlt sich ein inkrementeller Ansatz.
+Cloudgovernance ist das Produkt von fortlaufenden Bemühungen zur Einführung, da eine nachhaltige Transformation nicht über Nacht geschieht. Der Versuch, mit einer schnellen, aggressiven Methode vollständige Cloudgovernance herzustellen, bevor zentrale Änderungen der Unternehmensrichtlinien durchdacht und umgesetzt wurden, führt nur selten zu den gewünschten Ergebnissen. Stattdessen empfiehlt sich ein inkrementeller Ansatz.
 
-Der Unterschied im Cloudeinführungsframework besteht im Kaufzyklus und den Auswirkungen dieses Zyklus auf die Umsetzung einer authentischen Transformation. Da keine großen Kapitalausgaben für Übernahmen erforderlich sind, können Techniker bereits früher mit Experimenten und der Einführung beginnen. In den meisten Unternehmenskulturen kann die Beseitigung von Kapitalausgaben zu kürzeren Feedbackschleifen, einem organischen Wachstum und inkrementeller Ausführung führen.
+Ein Framework für die Einführung der Cloud hebt sich durch seinen Kaufzyklus sowie durch die Ermöglichung einer authentischen Transformation ab. Da keine umfangreichen Kapitalinvestitionen für Anschaffungen erforderlich sind, können Techniker bereits früher mit dem Test- und Einführungsprozess beginnen. In den meisten Unternehmenskulturen kann die Tatsache, dass Kapitalausgaben kein Hindernis für die Einführung mehr sind, zu kürzeren Feedbackschleifen, einem organischen Wachstum und inkrementeller Ausführung führen.
 
-Der Wechsel zur Cloudeinführung erfordert einen Wechsel in der Governance. In vielen Organisationen sorgt die Transformation der Unternehmensrichtlinien für verbesserte Governance und eine umfassendere Einhaltung durch inkrementelle Richtlinienänderungen sowie automatisierte Erzwingung dieser Änderungen, gestützt durch die neu definierten Funktionen, die Sie mit Ihrem Clouddienstanbieter konfigurieren.
+Die Einführung der Cloud erfordert ein Umdenken bei der Governance. In vielen Organisationen sorgt die Transformation der Unternehmensrichtlinien für verbesserte Governance und eine umfassendere Einhaltung durch inkrementelle Richtlinienänderungen sowie automatisierte Erzwingung dieser Änderungen, gestützt durch die neu definierten Funktionen, die Sie mit Ihrem Clouddienstanbieter konfigurieren.
 
 <!-- markdownlint-enable MD026 -->
 
@@ -44,7 +44,7 @@ Der Wechsel zur Cloudeinführung erfordert einen Wechsel in der Governance. In v
 Während Ihre Cloudbereitstellung ausgereifter wird und ein wachsender Anteil Ihrer IT-Umgebung in die Cloud verschoben wird, ändern sich auch Ihre Risiken und die damit verbundenen Richtlinienanforderungen. Governance ist ein fortlaufender Prozess, und Richtlinien sollten regelmäßig gemeinsam mit den IT-Mitarbeitern und Projektbeteiligten überprüft werden, um sicherzustellen, dass in der Cloud gehostete Ressourcen die allgemeinen Unternehmensziele und -anforderungen weiterhin einhalten. Ihr Verständnis neuer Risiken und akzeptabler Risiken kann zu einer [Überprüfung der vorhandenen Richtlinien](what-is-a-cloud-policy-review.md) führen, bei der ermittelt werden soll, welcher Grad an Governance für Ihre Organisation geeignet ist.
 
 > [!TIP]
-> Wenn Ihre Organisation Drittanbietercompliance unterliegt, besteht eines der wichtigsten Geschäftsrisiken darin, die [Einhaltung gesetzlicher Bestimmungen](what-is-regulatory-compliance.md) durchzusetzen. Oft kann dieses Risiko nicht vermindert werden, sodass stattdessen eine strikte Einhaltung erforderlich ist. Sie sollten Ihre Anforderungen durch Drittanbietercompliance unbedingt verstehen, bevor Sie mit einer Richtlinienüberprüfung beginnen.
+> Wenn Ihre Organisation Complianceanforderungen von Drittanbietern erfüllen muss, entsteht eines der größten Geschäftsrisiken möglicherweise dadurch, dass [gesetzliche Bestimmungen eingehalten werden müssen](what-is-regulatory-compliance.md). Dieses Risiko kann häufig nicht minimiert werden, sodass eine strikte Einhaltung erforderlich ist. Sie sollten Ihre Anforderungen durch Drittanbietercompliance unbedingt verstehen, bevor Sie mit einer Richtlinienüberprüfung beginnen.
 
 ## <a name="create-cloud-policy-statements"></a>Erstellen von Cloudrichtlinienanweisungen
 

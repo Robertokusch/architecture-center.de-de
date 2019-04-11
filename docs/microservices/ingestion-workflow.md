@@ -7,18 +7,21 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: aa5c2b4357ed53da9bebf4795fcbefb89afe0c78
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 75aef5aec7f4663abff45ebdba5dbea245d3ac17
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482569"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248455"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>Entwerfen von Microservices: Erfassung und Workflow
 
 Microservices verfügen häufig über einen Workflow, der für eine einzelne Transaktion über mehrere Dienste reicht. Der Workflow muss zuverlässig sein, und es darf nicht zu einem Verlust oder zu einem Teilabschluss von Transaktionen kommen. Außerdem ist es sehr wichtig, die Erfassungsrate für eingehende Anforderungen zu steuern. Wenn viele kleinere Dienste miteinander kommunizieren, kann eine Welle von eingehenden Anforderungen zu einer Überlastung der Kommunikation zwischen den Diensten führen.
 
 ![Diagramm des Erfassungsworkflows](./images/ingestion-workflow.png)
+
+> [!NOTE]
+> Dieser Artikel basiert auf einer Microservices-Referenzimplementierung für eine [Drohnenlieferungsanwendung](./design/index.md).
 
 ## <a name="the-drone-delivery-workflow"></a>Workflow für Drohnenlieferung
 
@@ -176,7 +179,7 @@ Wenn die Logik für die kompensierenden Transaktionen komplex ist, können Sie d
 
 ![Diagramm des Supervisor-Microservice](./images/supervisor.png)
 
-## <a name="idempotent-vs-non-idempotent-operations"></a>Idempotente und nicht idempotente Vorgänge
+## <a name="idempotent-versus-non-idempotent-operations"></a>Idempotente und nicht idempotente Vorgänge
 
 Um den Verlust von Anforderungen zu verhindern, muss vom Scheduler-Dienst garantiert werden, dass alle Nachrichten mindestens einmal verarbeitet werden. Event Hubs können eine mindestens einmalige Zustellung garantieren, wenn die Prüfpunkte vom Client richtig gesetzt werden.
 
@@ -239,9 +242,6 @@ public async Task<IActionResult> Put([FromBody]Delivery delivery, string id)
 ```
 
 Es wird erwartet, dass die meisten Anforderungen eine neue Entität erstellen. Die Methode ruft also optimistischerweise `CreateAsync` für das Repositoryobjekt auf und verarbeitet dann alle Ausnahmen aufgrund doppelter Ressourcen, indem stattdessen die Ressource aktualisiert wird.
-
-> [!div class="nextstepaction"]
-> [API-Gateways](./gateway.md)
 
 <!-- links -->
 

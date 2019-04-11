@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: In dieser Geschichte wird ein Anwendungsfall für einen Governancevorgang in einem großen Unternehmen eingerichtet.
 author: BrianBlanchard
-ms.openlocfilehash: 2f8e18a7a845d39fd5aa1632a9d025a502518a94
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: b6570b7518f129e5ac14f1639a4bf57e1b4ade69
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902133"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242671"
 ---
 # <a name="large-enterprise-the-narrative-behind-the-governance-strategy"></a>Große Unternehmen: Die Geschichte hinter der Governancestrategie
 
@@ -54,12 +54,12 @@ Die folgenden Änderungen werden in den nächsten Jahren erwartet:
 - Die CIO ist bestrebt, die Richtlinie zu personenbezogenen Informationen und Finanzdaten zu modernisieren, um zukünftige Ziele zu unterstützen. Zwei Mitgliedern des IT-Governanceteams sind in diese Bemühungen involviert.
 - Wenn die frühen Experimente in den Bereichen App-Entwicklung und BI erfolgsversprechend sind, sollen in den nächsten 24 Monaten jeweils kleine Produktionslösungen in der Cloud freigegeben werden.
 - Die CIO und der CFO haben einen Architekten und den Vice President of Infrastructure beauftragt, eine Kostenanalyse und eine Machbarkeitsstudie anzufertigen. Diese Bemühungen werden entscheiden, ob das Unternehmen in den nächsten 36 Monaten 5.000 Ressourcen in die Cloud verschieben kann und soll. Durch eine erfolgreiche Migration kann die CIO zwei Rechenzentren aufgeben und damit die Kosten im Laufe des Fünf-Jahres-Plans um mehr als 100 Millionen US-Dollar senken. Wenn drei bis vier Rechenzentren ähnliche Ergebnisse erzielen können, ist das Budget wieder in den schwarzen Zahlen und ermöglicht der CIO die Unterstützung weiterer innovativer Initiativen.
-    ![Lokale Kosten im Vergleich zu Azure-Kosten zeigen eine Rendite von 100 Millionen US-Dollar in den nächsten fünf Jahren.](../../../_images/governance/calculator-enterprise.png)
+    ![Lokale Kosten im Vergleich zu Azure-Kosten zeigen eine Rendite von 100 Millionen USD in den nächsten fünf Jahren.](../../../_images/governance/calculator-enterprise.png)
 - Neben diesen Kosteneinsparungen plant das Unternehmen, die Verwaltung einiger IT-Investitionen zu ändern, indem die gebundenen Kapitalkosten (CapEx) als Betriebskosten (OpEx) innerhalb der IT umdefiniert werden. Diese Änderung ermöglicht mehr Kostenkontrolle, sodass die IT weitere geplante Aufwendungen beschleunigen kann.
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Das Unternehmen hat eine Unternehmensrichtlinie zur Gestaltung der Governanceimplementierung entwickelt. Die Unternehmensrichtlinie steuert zahlreiche technische Entscheidungen.
+Das Unternehmen hat eine Unternehmensrichtlinie zur Gestaltung der Governance-Implementierung entwickelt. Die Unternehmensrichtlinie steuert zahlreiche technische Entscheidungen.
 
 > [!div class="nextstepaction"]
 > [Anfängliche Unternehmensrichtlinie ansehen](./initial-corporate-policy.md)

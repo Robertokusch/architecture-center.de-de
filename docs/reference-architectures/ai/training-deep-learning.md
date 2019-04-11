@@ -4,12 +4,12 @@ description: Diese Referenzarchitektur zeigt, wie Sie unter Verwendung von Azure
 author: njray
 ms.date: 01/14/19
 ms.custom: azcat-ai
-ms.openlocfilehash: 800defeb851f5a31dc730038c3699e1a3d54b923
-ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
+ms.openlocfilehash: 0e63ed24c1e19333e7c9d48d531a7ddc778f3d86
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54307785"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242391"
 ---
 # <a name="distributed-training-of-deep-learning-models-on-azure"></a>Verteiltes Trainieren von Deep Learning-Modellen in Azure
 
@@ -47,7 +47,7 @@ Das Training umfasst folgende Schritte:
 
 1. Nach Abschluss des Auftrags: Schreiben aller Ergebnisse in den Dateispeicher
 
-## <a name="architecture"></a>Architektur
+## <a name="architecture"></a>Architecture
 
 Diese Architektur umfasst die folgenden Komponenten.
 
@@ -93,7 +93,7 @@ Verteilte Trainings sollten nicht für Hyperparameter-Suchvorgänge verwendet we
 
 Eine Möglichkeit zur Steigerung der Skalierungseffizienz ist die Erhöhung der Batchgröße. Dabei ist jedoch Vorsicht geboten, da die Erhöhung der Batchgröße ohne Anpassung der anderen Parameter letztendlich die Leistung des Modells beeinträchtigen kann.
 
-## <a name="storage-considerations"></a>Speicheraspekte
+## <a name="storage-considerations"></a>Speicheraspekt
 
 Beim Trainieren von Deep Learning-Modellen wird oftmals der Speicherort der Daten außer Acht gelassen. Ist der Speicher den Anforderungen der GPUs nicht gewachsen, geht dies unter Umständen zulasten der Trainingsleistung.
 
@@ -137,7 +137,7 @@ Die Referenzimplementierung dieser Architektur ist auf [GitHub][github] verfügb
 
 Diese Architektur gibt ein trainiertes, in Blob Storage gespeichertes Modell aus. Dieses Modell kann für Echtzeitbewertungen oder für Batchbewertungen operationalisiert werden. Weitere Informationen finden Sie in den folgenden Referenzarchitekturen:
 
-- [Echtzeitbewertung von Python-Modellen (Scikit-learn) und Deep Learning-Modellen in Azure][real-time-scoring]
+- [Echtzeitbewertung von Python-Modellen (scikit-learn) und Deep Learning-Modellen in Azure][real-time-scoring]
 - [Batchbewertung in Azure für Deep Learning-Modelle][batch-scoring]
 
 [0]: ./_images/distributed_dl_architecture.png

@@ -3,12 +3,12 @@ title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Wel
 description: Erläuterung der geschäftlichen Risiken bei einer Cloudtransformation
 author: BrianBlanchard
 ms.date: 10/10/2018
-ms.openlocfilehash: bfd91da42d20a85004debc6b767a1482ba3e158d
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: c8c3172d76fe3e7559f3f25f96880e6e0bbbdb92
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902082"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245151"
 ---
 # <a name="evaluating-risk-tolerance"></a>Evaluieren der Risikotoleranz
 
@@ -26,9 +26,9 @@ Leider basieren die wahren geschäftlichen Risiken auf den Hintergründen und de
 
 * Datenschutzrisiko: Das Risiko Nummer 1 im Zusammenhang mit jeder Transformation ist der Schutz von Daten. Im heutigen digitalen Geschäftszeitalter sind Daten das neue Öl. Sie treiben die Wirtschaft an, wärmen das Büro und stellen die Kunden zufrieden. Gibt es jedoch ein Leck, ist das Ergebnis gleichermaßen katastrophal. Alle Änderungen an der Speicherung, Verarbeitung oder Verwendung der Daten stellen ein Risiko dar. Cloudtransformationen sorgen für umfangreiche Änderungen im Bereich der Datenverwaltung, daher sollte das Risiko nicht auf die leichte Schulter genommen werden. [Sicherheitbaseline](../security-baseline/overview.md), [Datenklassifizierung](./what-is-data-classification.md) und [inkrementelle Rationalisierung](../../digital-estate/rationalize.md#incremental-rationalization) können jeweils bei der Minderung dieses Risikos hilfreich sein.
 
-* Risiko in Bezug auf Vorgänge und Kundenerlebnis: Geschäftsvorgänge und Kundenerlebnis hängen stark von technischen Vorgängen ab. Cloudtransformationen führen zu Änderungen in technischen Vorgängen (Technical Operations, TechOps). In einigen Organisationen ist die Veränderung gering und leicht anzupassen. In anderen Organisationen sind für TechOps-Änderungen möglicherweise neue Tools, neue Fachkräfte oder neue Supportansätze erforderlich. Je umfangreicher die Änderung, desto größer die potenziellen Auswirkungen auf Geschäftsvorgänge und Kundenerlebnis. Eine Minderung dieses Risikos kann durch Einbeziehung des Unternehmens in die Transformationsplanung erzielt werden. Die Abschnitte „Releaseplanung“ und „Auswählen der ersten Workload“ im Artikel [Inkrementelle Rationalisierung](../../digital-estate/rationalize.md#incremental-rationalization) erörtern Möglichkeiten zur Auswahl von Workloads für Transformationsprojekte. Die Rolle des Unternehmens bei dieser Aktivität besteht darin, das Risiko für Geschäftsvorgänge von den Änderungen bis hin zu priorisierten Workloads zu kommunizieren. Wird die IT bei der Auswahl von Workloads unterstützt, die geringere Auswirkungen auf Vorgänge haben, verringert sich das Gesamtrisiko.
+* Risiko in Bezug auf Vorgänge und Kundenerlebnis: Geschäftsvorgänge und Kundenerlebnis hängen stark von technischen Vorgängen ab. Cloudtransformationen führen zu Änderungen in technischen Vorgängen (Technical Operations, TechOps). In einigen Organisationen ist die Veränderung gering und leicht anzupassen. In anderen Organisationen sind für TechOps-Änderungen möglicherweise neue Tools, neue Fachkräfte oder neue Supportansätze erforderlich. Je umfangreicher die Änderung, desto größer die potenziellen Auswirkungen auf Geschäftsvorgänge und Kundenerlebnis. Eine Minderung dieses Risikos kann durch Einbeziehung des Unternehmens in die Transformationsplanung erzielt werden. Die Abschnitte „Releaseplanung“ und „Auswählen der ersten Workload“ im Artikel [Inkrementelle Rationalisierung](../../digital-estate/rationalize.md#incremental-rationalization) erörtern Möglichkeiten zur Auswahl von Workloads für Transformationsprojekte. Das Unternehmen muss bei dieser Aktivität das Risiko für Geschäftsvorgänge kommunizieren, das von der Änderung priorisierter Workloads ausgeht. Wird die IT bei der Auswahl von Workloads unterstützt, die geringere Auswirkungen auf Vorgänge haben, verringert sich das Gesamtrisiko.
 
-* Kostenrisiko: In der Cloud verändern sich die Kostenmodelle. Diese Änderung kann zu Risiken im Zusammenhang mit Kostenüberschreitungen oder erhöhten Kosten für verkaufte Waren führen, insbesondere bei direkt damit verbundenen Betriebsausgaben. Wenn das Unternehmen eng mit der IT zusammenarbeitet, ist es möglich, in Bezug auf die Kosten und die von verschiedenen Geschäftseinheiten, Programmen, Projekten usw. genutzten Dienste für Transparenz zu sorgen. Unter [Cost Management] finden Sie Beispiele, wie Unternehmen und IT sich zu diesem Thema zusammenschließen können.
+* Kostenrisiko: In der Cloud verändern sich die Kostenmodelle. Diese Änderung kann zu Risiken im Zusammenhang mit Kostenüberschreitungen oder erhöhten Kosten für verkaufte Waren führen, insbesondere bei direkt damit verbundenen Betriebsausgaben. Wenn das Unternehmen eng mit der IT zusammenarbeitet, ist es möglich, in Bezug auf die Kosten und die von verschiedenen Geschäftseinheiten, Programmen und Projekten genutzten Dienste für Transparenz zu sorgen. Unter [Cost Management](../cost-management/overview.md) finden Sie Beispiele für eine mögliche Zusammenarbeit zwischen Unternehmen und IT in diesem Bereich.
 
 Oben sind einige der gängigsten von Kunden genannten Risiken aufgeführt. Das Cloudgovernanceteam und die Cloudeinführungsteams können mit der Entwicklung eines Risikoprofils beginnen, während Workloads migriert und für den Einsatz in der Produktion vorbereitet werden. Richten Sie sich auf Gespräche ein, um Risiken basierend auf dem gewünschten Geschäftsergebnis und Transformationsaufwand zu definieren, zu präzisieren und zu verringern.
 
@@ -41,8 +41,8 @@ Die Identifikation von Risiken ist ein relativ direkter Prozess. Risiken gehöre
 Um die Risikotoleranz zu verstehen, untersuchen wir die Kundendaten. Wenn ein Unternehmen in einer beliebigen Branche Kundendaten auf einem ungesicherten Server ablegt, bleibt das Risiko, ob diese Daten kompromittiert oder gestohlen werden, mehr oder weniger das gleiche. Die Art der Daten und die Toleranz von Unternehmen für dieses Risiko variieren jedoch gewaltig.
 
 * Unternehmen im Gesundheits- und Finanzwesen in den Vereinigten Staaten unterliegen strikten Konformitätsanforderungen von Drittanbietern. Es wird vorausgesetzt, dass personenbezogene Informationen (PII) oder gesundheitsbezogene Daten extrem vertraulich behandelt werden. Für diese Arten von Unternehmen gibt es schwerwiegende Konsequenzen, wenn sie an dem oben beschriebenen Risikoszenario beteiligt sind. Ihre Toleranz wird dementsprechend extrem gering sein. Alle innerhalb oder außerhalb des Netzwerks veröffentlichten Kundendaten müssen durch diese Drittanbieter-Konformitätsrichtlinien verwaltet werden.
-* Ein Gamingunternehmen, dessen Kundendaten sich auf einen Benutzernamen, die Spielzeiten und die Bestenlisten beschränken, wird wahrscheinlich keine erheblichen Konsequenzen erwarten, wenn es das oben beschriebene riskante Verhalten zeigt. Wenn ungeschützte Daten gefährdet sind, bleiben die Auswirkungen dieses Risikos gering. Daher ist die Risikotoleranz in diesem Fall hoch.
-* Ein mittelständisches Unternehmen, das Tausenden von Kunden einen Teppichreinigungsdienst anbietet, fällt zwischen diese beiden Toleranzextreme. Die Kundendaten sind möglicherweise ausführlicher und enthalten Details wie Adresse oder Telefonnummer. Beides kann als personenbezogene Informationen betrachtet und sollte geschützt werden. Allerdings gibt es möglicherweise keine spezifische Governanceanforderung, die vorschreibt, dass die Daten abgesichert werden müssen. Aus der IT-Perspektive ist die Antwort einfach: Die Daten müssen geschützt werden. Aus geschäftlicher Sicht ist die Sache möglicherweise nicht so einfach. Das Unternehmen benötigt weitere Details, bevor es ein Maß an Toleranz für dieses Risiko ermitteln kann.
+* Ein Spieleunternehmen, dessen Kundendaten sich auf Benutzernamen, Spielzeiten und Bestenlisten beschränken, muss wahrscheinlich keine schwerwiegenden Folgen befürchten, wenn es das oben beschriebene riskante Verhalten zeigt. Ungeschützte Daten sind zwar gefährdet, die Auswirkungen sind jedoch gering. Daher ist die Risikotoleranz in diesem Fall hoch.
+* Ein mittelständisches Unternehmen, das Tausenden von Kunden einen Teppichreinigungsdienst anbietet, fällt zwischen diese beiden Toleranzextreme. Die Kundendaten sind möglicherweise ausführlicher und enthalten Details wie Adresse oder Telefonnummer. Beides kann als personenbezogene Informationen betrachtet und muss geschützt werden. Allerdings gibt es möglicherweise keine spezifische Governanceanforderung, die vorschreibt, dass die Daten abgesichert werden müssen. Aus der IT-Perspektive ist die Antwort einfach: Die Daten müssen geschützt werden. Aus geschäftlicher Sicht ist die Sache möglicherweise nicht so einfach. Das Unternehmen benötigt weitere Details, bevor es ein Maß an Toleranz für dieses Risiko ermitteln kann.
 
 Der nächste Abschnitt enthält einige Beispielfragen, anhand derer das Unternehmen ein Maß an Risikotoleranz für den obigen und für andere Anwendungsfälle festlegen kann.
 
@@ -54,8 +54,8 @@ In diesem Abschnitt werden Fragen zum Gesprächseinstieg in drei Kategorien aufg
 
 * Werden Drittanbieter-Konformitätsanforderungen durch dieses Risiko verletzt?
 * Verletzt dieses Risiko interne Unternehmensrichtlinien?
-* Kann dieses Risiko Kunden oder Marktanteile kosten? Falls ja, lassen sich diese Auswirkungen quantifizieren?
-* Kann dieses Risiko zu negativen Kundenerlebnissen führen? Beeinträchtigen diese Erlebnisse wahrscheinlich den Umsatz oder die Ertragsrealisierung?
+* Kann dieses Risiko Kunden oder Marktanteile kosten? Falls ja, sind diese Kosten quantifizierbar?
+* Kann dieses Risiko zu negativen Kundenerlebnissen führen? Beeinträchtigen diese Erlebnisse ggf. den Umsatz oder die Ertragsrealisierung?
 * Kann dieses Risiko eine gesetzliche Haftung herbeiführen? Falls ja, gibt es hierfür einen Präzendenzfall für zu leistenden Schadenersatz?
 * Können die Geschäftsvorgänge durch dieses Risiko zum Erliegen kommen? Falls ja, wie lang wäre der Betriebsausfall?
 * Kann dieses Risiko die Geschäftsvorgänge verlangsamen? Falls ja, inwieweit und für wie lange?
@@ -84,13 +84,13 @@ Die technischen Lösungen, die zur Risikominderung erforderlich sind, werden dur
 * Gibt es allgemein andere Unternehmen, die von diesem Risiko betroffen waren?
 * Ist dieses Risiko einzigartig und bezieht sich nur auf etwas, das in diesem Unternehmen mangelhaft gehandhabt wurde?
 
-Nach Beantwortung dieser und weiterer Fragen nach Ermessen des Cloudgovernanceteams werden sich voraussichtlich Wahrscheinlichkeitsgruppen herauskristallisieren. Im Folgenden werden einige Gruppierungsbeispiele für den Einstieg aufgeführt:
+Nach Beantwortung dieser und weiterer Fragen nach Ermessen des Cloud Governance-Teams werden sich voraussichtlich Wahrscheinlichkeitsgruppen herauskristallisieren. Im Folgenden werden einige Gruppierungsbeispiele für den Einstieg aufgeführt:
 
 * Keine Anhaltspunkte: Es gab noch nicht genügend Untersuchungen, um die Wahrscheinlichkeit zu ermitteln.
 * Geringes Risiko: Gemäß dem aktuellen Stand der Forschung wird das Risiko wahrscheinlich nicht eintreten.
 * Zukünftiges Risiko: Die aktuelle Wahrscheinlichkeit lautet „Geringes Risiko“. Bei fortgesetzter Einführung wird jedoch eine neue Analyse ausgelöst.
 * Mittleres Risiko: Es ist wahrscheinlich, dass sich das Risiko auf das Unternehmen auswirkt.
-* Hohes Risiko: Im Lauf der Zeit wird es immer weniger wahrscheinlich, dass das Unternehmen die Auswirkungen dieses Risikos vermeiden kann.
+* Hohes Risiko: Im Laufe der Zeit wird es immer unwahrscheinlicher, dass das Unternehmen die Auswirkungen dieses Risikos vermeiden kann.
 * Abnehmendes Risiko: Das Risiko ist mittel bis hoch. Die Wahrscheinlichkeit von Auswirkungen lässt sich jedoch durch Maßnahmen in IT oder Unternehmen reduzieren.
 
 **Ermitteln der Toleranz:**

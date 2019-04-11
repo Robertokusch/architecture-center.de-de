@@ -3,12 +3,12 @@ title: 'CAF: Schaffen von Hybrid Cloud-Konsistenz'
 description: Festlegen der Vorgehensweise zum Schaffen von Hybrid Cloud-Konsistenz
 author: BrianBlanchard
 ms.date: 12/27/2018
-ms.openlocfilehash: 726ea56f52d68f6c9b0d1478d19a91c2b7f12fdd
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 22637a0496dc1e776d00570c3ef9844cc185a35d
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902165"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243091"
 ---
 # <a name="create-hybrid-cloud-consistency"></a>Schaffen von Hybrid Cloud-Konsistenz
 
@@ -18,7 +18,7 @@ Hybridbereitstellungsmodelle können während der Migration das Risiko minimiere
 
 ## <a name="integrate-hybrid-cloud-consistency"></a>Integrieren von Hybrid Cloud-Konsistenz
 
-Durch die Verwendung einer Hybrid Cloud-Lösung können Unternehmen Rechenressourcen skalieren. Außerdem ist damit weniger Kapitalaufwand erforderlich, um kurzfristige Spitzen im Bedarf zu kompensieren. Wenn veränderte Geschäftsbedingungen die Freigabe lokaler Ressourcen für vertraulichere Daten oder Anwendungen erfordern, ist es einfacher, schneller und günstiger, die Bereitstellung von Cloudressourcen aufzuheben. Sie bezahlen nur für die Ressourcen, die Ihre Organisation vorübergehend nutzt, und müssen keine zusätzlichen Ressourcen erwerben und verwalten. Dies reduziert die Menge der Geräte, die über einen längeren Zeitraum ungenutzt bleiben könnten. Hybrid Cloud-Computing ist eine Plattform, die das Beste der verschiedenen Typen in sich vereint: Sie bietet die Vorzüge des Cloud Computings – Flexibilität, Skalierbarkeit und Kosteneffizienz – mit dem niedrigsten Risiko an Datenenthüllung.
+Durch die Verwendung einer Hybrid Cloud-Lösung können Unternehmen Rechenressourcen skalieren. Außerdem ist damit weniger Kapitalaufwand erforderlich, um kurzfristige Spitzen im Bedarf zu kompensieren. Wenn veränderte Geschäftsbedingungen die Freigabe lokaler Ressourcen für vertraulichere Daten oder Anwendungen erfordern, ist es einfacher, schneller und günstiger, die Bereitstellung von Cloudressourcen aufzuheben. Sie bezahlen nur für die Ressourcen, die Ihre Organisation vorübergehend nutzt, und müssen keine zusätzlichen Ressourcen erwerben und verwalten. Dies reduziert die Menge der Geräte, die über einen längeren Zeitraum ungenutzt bleiben könnten. Hybrid Cloud-Computing ist eine Plattform, die das Beste der verschiedenen Typen in sich vereint: Sie verbindet die Vorzüge des Cloud Computings (Flexibilität, Skalierbarkeit und Kosteneffizienz) mit dem geringstmöglichen Offenlegungsrisiko für die Daten.
 
 ![Schaffen von Hybrid Cloud-Konsistenz für Identitäten, Verwaltung, Sicherheit, Daten, Entwicklung und DevOps](../../_images/hybrid-consistency.png)
 *Abbildung 1. Schaffen von Hybrid Cloud-Konsistenz für Identitäten, Verwaltung, Sicherheit, Daten, Entwicklung und DevOps*
@@ -56,7 +56,7 @@ Azure Stack wird in zwei Bereitstellungsoptionen angeboten:
 
 ## <a name="azure-stack-one-cloud-ecosystem"></a>Azure Stack-Ökosystem mit einer Cloud
 
-Sie können Azure Stack-Initiativen beschleunigen, indem Sie das vollständige Azure-Ökosystem nutzen:
+Sie können Azure Stack-Initiativen beschleunigen, indem Sie das vollständige Azure-Ökosystem nutzen:
 
 - Azure stellt sicher, dass die meisten Anwendungen und Dienste, die für Azure zertifiziert sind, auch in Azure Stack funktionieren. Mehrere unabhängige Softwarehersteller (ISVs) – einschließlich Bitnami, Docker, Kemp Technologies, Pivotal Cloud Foundry, Red Hat Enterprise Linux und SUSE Linux – erweitern ihre Lösungen auf Azure Stack.
 - Sie können Azure Stack wahlweise als einen vollständig verwalteten Dienst bereitstellen und betreiben. Mehrere Partner – z.B. Tieto, Yourhosting, Revera, Pulsant und NTT – werden in Kürze Angebote für verwaltete Dienste in Azure und Azure Stack anbieten. Diese Partner haben bereits über das Cloud Solution Provider-Programm (Cloudanbieter) verwaltete Dienste für Azure angeboten und erweitern ihre Angebote jetzt auf Hybridlösungen.

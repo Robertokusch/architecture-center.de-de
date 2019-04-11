@@ -1,5 +1,5 @@
 ---
-title: 'Framework für die Cloudeinführung (CAF): Kleine bis mittlere Unternehmen – Anfang der Geschichte der Governancestrategie'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Kleine bis mittlere Unternehmen: Die Geschichte hinter der Governancestrategie'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Diese Geschichte stellt einen Anwendungsfall für die Governance Journey in einem kleinen bis mittleren Unternehmen dar.
 author: BrianBlanchard
-ms.openlocfilehash: 6173b01f310169017761110d6641acfa51d45df8
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 563e909ffc2a39b0b52bd26d3a88715fa969a9c2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902210"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247401"
 ---
 # <a name="small-to-medium-enterprise-the-narrative-behind-the-governance-strategy"></a>Kleines bis mittleres Unternehmen: Die Geschichte hinter der Governancestrategie
 
@@ -50,7 +50,7 @@ Die folgenden Änderungen werden in den nächsten Jahren erwartet:
 - Der CIO überprüft die Richtlinie zu PII und Finanzdaten, damit diese den zukünftigen Status unterstützt.
 - Die Teams für Anwendungsentwicklung und Business Intelligence möchten in den nächsten 24 Monaten cloudbasierte Lösungen in die Produktion bringen – basierend auf der Vision in Bezug auf Kundenbindung und neue Produkte.
 - In diesem Jahr schließt das IT-Team die Außerbetriebnahme der Workloads für die Notfallwiederherstellung im Rechenzentrum „DR“ ab, in dem 2.000 VMs in die Cloud migriert werden. Durch diese Maßnahme wird in den nächsten fünf Jahren mit einer Kostenersparnis von 25 Mio. USD gerechnet.
-    ![Lokale Kosten im Vergleich zu Azure-Kosten zeigen eine Rendite von 25 Millionen USD in den nächsten fünf Jahren](../../../_images/governance/calculator-small-to-medium-enterprise.png)
+    ![Lokale Kosten im Vergleich zu Azure-Kosten zeigen eine Rendite von 25 Millionen USD in den nächsten fünf Jahren.](../../../_images/governance/calculator-small-to-medium-enterprise.png)
 - Das Unternehmen plant, die einige IT-Investitionen zu ändern, indem die gebundenen Kapitalkosten (CapEx) als Betriebskosten (OpEx) innerhalb der IT umdefiniert werden. Diese Änderung ermöglicht mehr Kostenkontrolle, sodass die IT weitere geplante Aufwendungen beschleunigen kann.
 
 ## <a name="next-steps"></a>Nächste Schritte

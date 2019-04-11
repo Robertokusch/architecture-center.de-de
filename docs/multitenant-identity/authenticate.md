@@ -9,12 +9,12 @@ ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: b4a833a18b44e40f544449a222fb082d71e4268d
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 38e173a6bffd6772c769f56c91b1ef24315094fc
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481642"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245541"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>Authentifizieren mithilfe von Azure AD und OpenID Connect
 
@@ -157,7 +157,7 @@ Während des Authentifizierungsvorgangs löst die OpenID Connect-Middleware eine
 
 Um Rückrufe für diese Ereignisse zu erhalten, richten Sie die Option **Ereignisse** auf der Middleware ein. Die Ereignishandler können auf zwei Arten deklariert werden: entweder inline mithilfe von Lambda-Ausdrücken oder in einer von **OpenIdConnectEvents** abgeleiteten Klasse. Der zweite Ansatz empfiehlt sich, wenn Ihre Ereignisrückrufe wesentliche Logik enthalten, und diese damit Ihre Startklasse nicht überlasten. Unsere Referenzimplementierung verwendet diesen Ansatz.
 
-### <a name="openid-connect-endpoints"></a>OpenID Connect-Endpunkte
+### <a name="openid-connect-endpoints"></a>OpenID Connect-Endpunkte
 
 Azure AD unterstützt [OpenID Connect Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html) – hierbei gibt der Identitätsanbieter (IDP) ein JSON-Metadatendokument von einem [bekannten Endpunkt](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig) („.well-known“) zurück. Das Metadatendokument enthält Informationen wie die folgenden:
 
@@ -167,7 +167,7 @@ Azure AD unterstützt [OpenID Connect Discovery](https://openid.net/specs/openid
 
 Die OIDC-Middleware weiß automatisch, wie diese Metadaten abzurufen sind. Richten Sie die Option **Authority** in der Middleware ein, und die Middleware erstellt die URL für die Metadaten. (Sie können die Metadaten-URL überschreiben, indem Sie die Option **MetadataAddress** einrichten.)
 
-### <a name="openid-connect-flows"></a>OpenID Connect-Abläufe
+### <a name="openid-connect-flows"></a>OpenID Connect-Abläufe
 
 Standardmäßig verwendet die OIDC-Middleware Hybrid flow mit POST-Formular-Antwortmodus.
 

@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: a567b138580999c7b7a6ae8dedb244f4e37970e7
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 1a7c892168a0730b0e13169c391069a6c522f220
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486045"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243481"
 ---
 [!INCLUDE [header](../_includes/header.md)]
 
@@ -69,7 +69,7 @@ Virtuelle Azure-Computer unterscheiden sich von PaaS-Computerollen (Platform as 
 
 Im Gegensatz zu PaaS-Rolleninstanzen sind auf virtuellen Computern gespeicherte Daten persistent, auch wenn der virtuelle Computer verschoben wird. Virtuelle Azure-Computer verwenden VM-Datenträger, die in Azure Storage als Blobs vorhanden sind. Aufgrund der Verfügbarkeitsmerkmale von Azure Storage sind die Daten, die auf Laufwerken virtueller Computer gespeichert werden, ebenfalls hoch verfügbar.
 
-Beachten Sie, dass das Laufwerk D (auf Windows-VMs) eine Ausnahme von dieser Regel darstellt. Das Laufwerk D ist eigentlich ein physischer Speicher auf dem Rackserver, der den virtuellen Computer hostet, und die Daten dieses Laufwerks gehen verloren, wenn der virtuelle Computer recycelt wird. Das Laufwerk D ist nur für die temporäre Speicherung vorgesehen. Unter Linux macht Azure den lokalen temporären Datenträger „normalerweise“ (aber nicht immer) als /dev/sdb-Blockgerät verfügbar. Häufig wird er vom Azure Linux-Agent als „/mnt/resource“- oder „/mnt“-Bereitstellungspunkt bereitgestellt (konfigurierbar über „/etc/waagent.conf“).
+Beachten Sie, dass das Laufwerk D (auf Windows-VMs) eine Ausnahme von dieser Regel darstellt. Das Laufwerk D ist eigentlich ein physischer Speicher auf dem Rackserver, der den virtuellen Computer hostet, und die Daten dieses Laufwerks gehen verloren, wenn der virtuelle Computer recycelt wird. Das Laufwerk D ist nur für die temporäre Speicherung vorgesehen. Unter Linux macht Azure den lokalen temporären Datenträger _normalerweise_ (aber nicht immer) als /dev/sdb-Blockgerät verfügbar. Häufig wird er vom Azure Linux-Agent als „/mnt/resource“- oder „/mnt“-Bereitstellungspunkt bereitgestellt (konfigurierbar über „/etc/waagent.conf“).
 
 <!-- markdownlint-disable MD024 -->
 

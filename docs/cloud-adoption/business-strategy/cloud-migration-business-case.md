@@ -8,12 +8,12 @@ description: Überlegungen beim Erstellen einer geschäftlichen Begründung für
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.openlocfilehash: 21c2b877a0f329711027f020fd0047479e8c7bfb
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 04c1944498387e2b42c96a600cc69e50cf53d024
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898305"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247971"
 ---
 # <a name="build-a-business-justification-for-cloud-migration"></a>Erstellen einer geschäftlichen Begründung für die Cloudmigration
 
@@ -30,8 +30,8 @@ Bei Cloudmigrationen können mit Maßnahmen zur Cloudtransformation frühzeitig 
 **Mythos: Serverkosten sind die Grundlage der Geschäftsszenarien für die Cloudmigration.** In einigen Fällen stimmt dies. Für einige Unternehmen ist es wichtig, die laufenden Investitionskosten für Server zu reduzieren. Dies ist aber von mehreren Faktoren abhängig. Unternehmen mit einem Hardwareaktualisierungszyklus von fünf bis acht Jahren können bei der Cloudmigration meistens keine schnelle Rendite erzielen. Unternehmen mit standardisierten oder erzwungenen Aktualisierungszyklen können den Break-even-Point dagegen schnell erreichen. In beiden Fällen können auch andere Ausgaben die finanziellen Auslöser sein, die eine Migration rechtfertigen. Hier sind einige Beispiele für Kosten angegeben, die häufig übersehen werden, wenn Kosten nur aus Server- oder VM-Sicht betrachtet werden:
 
 - Die Softwarekosten für die Virtualisierung, Server und Middleware können sehr hoch sein. Bei der Nutzung von Cloudanbietern werden einige dieser Kosten beseitigt. Zwei Beispiele für die Reduzierung der Virtualisierungskosten bei Nutzung eines Cloudanbieters sind die Programme [Azure-Hybridvorteil](https://azure.microsoft.com/pricing/hybrid-benefit/#services) und [Reservierungen](https://azure.microsoft.com/reservations/).
-- Verluste aufgrund von Ausfällen können die Hardware- oder Softwarekosten schnell übersteigen. Wenn das derzeitige Datencenter nicht stabil ist, können Sie mit dem Unternehmen zusammenarbeiten, um die Auswirkungen von Ausfällen in Bezug auf die Verkaufschancenkosten oder die tatsächlichen Geschäftskosten zu quantifizieren.
-- Auch umgebungsbezogene Kosten können größere Auswirkungen haben. Für amerikanische Familien stellt das Wohnhaus im Durchschnitt die größte Investition und den größten Kostenpunkt des Budgets dar. Dasselbe gilt häufig auch für Rechenzentren. Kosten für Gebäude, Einrichtungen und Versorgungsleistungen machen einen großen Teil der lokalen Kosten aus. Wenn Rechenzentren außer Betrieb genommen werden, können diese Einrichtungen vom Unternehmen anderweitig genutzt werden, oder sie fallen ggf. auch ganz aus den Kosten heraus.
+- Verluste aufgrund von Ausfällen können die Hardware- oder Softwarekosten schnell übersteigen. Wenn das derzeitige Datencenter nicht stabil ist, können Sie mit dem Unternehmen zusammenarbeiten, um die Auswirkungen von Ausfällen auf Verkaufschancen oder auf die tatsächlichen Geschäftskosten zu quantifizieren.
+- Umgebungskosten können ebenfalls relevant sein. Für amerikanische Familien stellt das Wohnhaus im Durchschnitt die größte Investition und den größten Kostenpunkt des Budgets dar. Gleiches gilt häufig auch für Datencenter. Kosten für Gebäude, Einrichtungen und Versorgungsleistungen machen einen großen Teil der lokalen Kosten aus. Wenn Datencenter ausgemustert werden, können die entsprechenden Einrichtungen vom Unternehmen anderweitig genutzt werden oder fallen ggf. auch ganz aus den Kosten heraus.
 
 **Mythos: Betriebskosten (OpEx) sind besser als Investitionskosten (CapEx).** Im Artikel mit den [Beispielen für Finanzergebnisse](business-outcomes/fiscal-outcomes.md) ist beschrieben, dass Betriebskosten eine gute Sache sind. Es gibt aber auch einige Branchen, in denen Betriebskosten als negativ angesehen werden. Hier sind einige Beispiele angegeben, die in Bezug auf die Betriebskosten zu einer stärkeren Integration der Buchhaltung und der Geschäftseinheiten führen:
 
@@ -70,11 +70,11 @@ Wenn wir diese Formel in ihre Bestandteile zerlegen, ergibt sich ein migrationss
 
 ## <a name="migration-specific-initial-investment"></a>Migrationsspezifische Erstinvestition
 
-- Cloudanbieter wie Azure bieten Rechner an, mit denen Prognosen in Bezug auf Cloudinvestitionen erstellt werden können. Ein Beispiel hierfür ist der [Azure-Preisrechner](https://azure.microsoft.com/en-in/pricing/).
+- Cloudanbieter wie Azure bieten Rechner an, mit denen Prognosen in Bezug auf Cloudinvestitionen erstellt werden können. Ein Beispiel hierfür ist der [Azure-Preisrechner](https://azure.microsoft.com/pricing).
 - Einige Cloudanbieter unterstützen auch Rechner zur Ermittlung von Kostendeltawerten. Ein Beispiel für einen Kostendeltarechner ist der [Gesamtkostenrechner von Azure](https://azure.com/tco).
 - Bei anspruchsvolleren Kostenstrukturen können Sie erwägen, eine Übung zur [Planung von digitalen Ressourcen](../digital-estate/overview.md) durchzuführen.
 - Erstellen Sie eine Schätzung der Kosten für die Migration.
-- Schätzen Sie die Kosten für die zu erwartenden Schulungsmaßnahmen. [Microsoft Learn](https://docs.microsoft.com/learn/) kann beim Verringern dieser Kosten eine Hilfe darstellen.
+- Schätzen Sie die Kosten für die zu erwartenden Schulungsmaßnahmen. [Microsoft Learn](/learn) kann beim Verringern dieser Kosten eine Hilfe darstellen.
 - In einigen Unternehmen muss die Zeit, die von vorhandenen Mitarbeitern investiert wird, unter Umständen in die Anfangskosten eingerechnet werden. Hilfe hierzu erhalten Sie von Ihrer Finanzabteilung.
 - Besprechen Sie alle weiteren Kosten oder Gemeinkosten mit der Finanzabteilung, um diese zu bewerten.
 
@@ -88,24 +88,24 @@ Nachdem Sie sich mit den Chancen vertraut gemacht haben, die sich durch die Clou
 
 Berechnen Sie alle Änderungen in Bezug auf die Kosten, die sich aus der vorgeschlagenen Migration ergeben. Ausführliche Informationen zu den unterschiedlichen Arten von Kostendeltawerten finden Sie unter [Finanzmodelle](financial-models.md). Cloudanbieter stellen häufig Tools zum Berechnen von Kostendeltawerten bereit. Ein Beispiel für einen Kostendeltarechner ist der [Gesamtkostenrechner von Azure](https://azure.com/tco).
 
-Weitere Beispiele für Kosten, die durch eine Cloudmigration reduziert werden können, sind:
+Weitere Beispiele für Kosten, die durch eine Cloudmigration gesenkt werden können:
 
-- Auflösung oder Reduzierung von Datencentern (Umgebungsbezogene Kosten)
-- Reduzierung des Energieverbrauchs (Umgebungsbezogene Kosten)
+- Auflösung oder Reduzierung von Datencentern (Umgebungskosten)
+- Reduzierung des Energieverbrauchs (Umgebungskosten)
 - Aussonderung von Racks (Kostendeckung für physische Ressourcen)
 - Verhinderung einer Hardwareaktualisierung (Kostenvermeidung)
-- Vermeidung der Erneuerung von Software (Betriebskostenreduzierung oder Kostenvermeidung)
+- Vermeidung der Verlängerung von Software (Betriebskostenreduzierung oder Kostenvermeidung)
 - Anbieterkonsolidierung (Betriebskostenreduzierung und potenzielle Reduzierung von weichen Kosten)
 
 ## <a name="when-roi-results-are-surprising"></a>Überraschung bei den Renditeergebnissen
 
-Wenn die Rendite einer Cloudmigration nicht den Erwartungen entspricht, kann es hilfreich sein, sich noch einmal die Informationen zu häufigen Mythen am Anfang dieses Artikels anzusehen.
+Wenn der ROI einer Cloudmigration nicht den Erwartungen entspricht, kann es hilfreich sein, sich noch einmal die Informationen zu häufigen Mythen am Anfang dieses Artikels anzusehen.
 
 Es ist aber wichtig zu verstehen, dass sich Kosteneinsparungen nicht in allen Fällen realisieren lassen. Es gibt Anwendungen, deren Betrieb in der Cloud teurer als am lokalen Standort ist. Diese Anwendungen können die Ergebnisse einer Analyse erheblich verzerren.
 
 Wenn die Rendite unter 20% liegt, sollten Sie die Durchführung einer Übung zur [Planung der digitalen Ressourcen](../digital-estate/overview.md) durchführen und besonders auf die [Rationalisierung](../digital-estate/rationalize.md) achten. Überprüfen Sie während der quantitativen Analyse jede Anwendung, um Workloads zu ermitteln, die zur Verzerrung der Ergebnisse beitragen. Es kann ratsam sein, diese Workloads aus dem Plan herauszunehmen. Wenn Nutzungsdaten verfügbar sind, können Sie ggf. auch die Größe der VMs reduzieren, um sie an die tatsächliche Nutzung anzupassen.
 
-Falls die Rendite immer noch nicht zufriedenstellend ist, können Sie Ihren Microsoft-Vertriebsmitarbeiter um Hilfe bitten oder [einen erfahrenen Partner engagieren](https://azure.microsoft.com/en-us/migration/partners/).
+Falls die Rendite immer noch nicht zufriedenstellend ist, können Sie Ihren Microsoft-Vertriebsmitarbeiter um Hilfe bitten oder [einen erfahrenen Partner engagieren](https://azure.microsoft.com/migration/support).
 
 ## <a name="next-steps"></a>Nächste Schritte
 

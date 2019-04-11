@@ -7,12 +7,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
 author: alexbuckgit
-ms.openlocfilehash: 08046a4ae199a8714393d2aba3841dd84008d836
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: d469c3ba6fb53c5412c615886d449d9b59c2378e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901543"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246621"
 ---
 # <a name="deployment-acceleration-policy-compliance-processes"></a>Beschleunigung der Bereitstellung – Prozesse für die Richtlinienkonformität
 
@@ -24,7 +24,7 @@ Die besten Tools für die Beschleunigung der Bereitstellung in der Cloud sind nu
 
 **Erste Risikobewertung und Planung**: Identifizieren Sie im Rahmen der Ersteinführung der Disziplin „Beschleunigung der Bereitstellung“ die zentralen geschäftlichen Risiken und Toleranzen im Zusammenhang mit der Bereitstellung Ihrer Geschäftsanwendungen. Besprechen Sie anhand dieser Informationen mit Mitgliedern des IT Operations-Teams und des Sicherheitsteams die speziellen technischen Risiken, und entwickeln Sie allgemeine Bereitstellungs- und Konfigurationsrichtlinien, um diese Risiken zu minimieren und Ihre anfängliche Governancestrategie zu formulieren.
 
-**Bereitstellungsplanung**: Führen Sie vor der Bereitstellung von Ressourcen eine Sicherheitsüberprüfung aus, um mögliche neue Risiken zu identifizieren und sicherzustellen, dass alle Anforderungen von Zugriffs- und Datensicherheitsrichtlinien erfüllt werden.
+**Bereitstellungsplanung**: Führen Sie vor der Bereitstellung einer Ressource eine Sicherheitsüberprüfung aus, um mögliche neue Risiken zu identifizieren und sicherzustellen, dass alle Anforderungen von Zugriffs- und Datensicherheitsrichtlinien erfüllt werden.
 
 **Bereitstellungstests**: Im Rahmen des Ressourcenbereitstellungsprozesses ist das Cloud Governance-Team zusammen mit den Teams für die Unternehmenssicherheit für die Überprüfung der Bereitstellung verantwortlich, um die Einhaltung der Sicherheitsrichtlinie zu gewährleisten.
 

@@ -3,18 +3,18 @@ title: Beschleunigen der digitalen bildbasierten Modellierung in Azure
 titleSuffix: Azure Example Scenarios
 description: Beschleunigen der digitalen bildbasierten Modellierung in Azure mit Avere und Agisoft PhotoScan
 author: adamboeglin
-ms.date: 1/11/2019
+ms.date: 01/11/2019
 ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: cat-team, Linux, HPC
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/architecture-image-modeling.png
-ms.openlocfilehash: 87b43347fb5f4baec0081a67c8b003dccd2fdf0d
-ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
+ms.openlocfilehash: 0acfebf0ecdd81becdc939bfd5c4d55184fbae83
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/31/2019
-ms.locfileid: "55483010"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245761"
 ---
 # <a name="accelerate-digital-image-based-modeling-on-azure"></a>Beschleunigen der digitalen bildbasierten Modellierung in Azure
 
@@ -47,10 +47,10 @@ Zum Steuern des Zugriffs auf Azure-Ressourcen und Bereitstellen der internen Nam
 ### <a name="components"></a>Komponenten
 
 - [Agisoft PhotoScan](http://www.agisoft.com/): Der PhotoScan-Planer wird auf einer Windows Server 2016-VM ausgeführt, und die Verarbeitungsknoten nutzen fünf VMs mit GPUs unter CentOS Linux 7.5.
-- [Avere vFXT](/azure/avere-vfxt/avere-vfxt-overview) ist eine Lösung zur Dateizwischenspeicherung, die Objektspeicher und herkömmlichen Network Attached Storage (NAS) verwendet, um die Speicherung großer Datasets zu optimieren.  Sie hat folgenden Inhalt:
+- [Avere vFXT](/azure/avere-vfxt/avere-vfxt-overview) ist eine Lösung zur Dateizwischenspeicherung, die Objektspeicher und herkömmlichen Network Attached Storage (NAS) verwendet, um die Speicherung großer Datasets zu optimieren. Sie hat folgenden Inhalt:
   - Avere-Controller. Diese VM führt das Skript aus, durch das der Avere vFXT-Cluster installiert wird, und führt Ubuntu 18.04 LTS aus. Die VM kann später zum Hinzufügen oder Entfernen von Clusterknoten und auch zum Zerstören des Clusters verwendet werden.
   - vFXT-Cluster. Es werden mindestens drei VMs verwendet, eine für jeden der auf Avere OS 5.0.2.1 basierenden Avere vFXT-Knoten. Diese VMs bilden den vFXT-Cluster, der an Azure Blob Storage angefügt wird.
-- [Microsoft Active Directory-Domänencontroller](/windows/desktop/ad/active-directory-domain-services) ermöglichen den Hostzugriff auf Domänenressourcen und stellen die DNS-Namensauflösung bereit. Avere vFXT fügt eine Reihe von A-Einträgen hinzu. Beispielsweise verweist jeder A-Eintrag in einem vFXT-Cluster auf die IP-Adresse der einzelnen Avere vFXT-Knoten. In dieser Konfiguration greifen alle VMs mit dem Roundrobin-Muster auf vFXT-Exporte zu.
+- [Microsoft Active Directory-Domänencontroller](/windows/desktop/ad/active-directory-domain-services) ermöglichen den Hostzugriff auf Domänenressourcen und stellen die DNS-Namensauflösung bereit. Avere vFXT fügt eine Reihe von A-Einträgen hinzu. Beispielsweise verweist jeder A-Eintrag in einem vFXT-Cluster auf die IP-Adresse der einzelnen Avere vFXT-Knoten. In dieser Konfiguration greifen alle VMs mit dem Roundrobin-Muster auf vFXT-Exporte zu.
 - [Andere VMs](/azure/virtual-machines/) dienen als Jumpboxes, über die der Administrator auf die Planer- und Verarbeitungsknoten zugreift. Die Windows-Jumpbox ist erforderlich, damit der Administrator über das Remotedesktopprotokoll auf den Hauptknoten zugreifen kann. Die zweite Jumpbox ist optional und führt zur Verwaltung der Workerknoten Linux aus.
 - [Netzwerksicherheitsgruppen](/azure/virtual-network/manage-network-security-group) (NSGs) beschränken den Zugriff auf die öffentliche IP-Adresse (PIP) und lassen die Ports 3389 und 22 für den Zugriff auf die VMs zu, die an das Subnetz der Jumpbox angefügt sind.
 - Per [Peering in virtuellen Netzwerken](/azure/virtual-network/virtual-network-peering-overview) wird ein virtuelles PhotoScan-Netzwerk mit einem virtuellen Avere-Netzwerk verbunden.

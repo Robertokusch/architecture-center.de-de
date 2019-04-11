@@ -1,14 +1,18 @@
 ---
 title: 'CAF: Wie kann für die IT-Unternehmensrichtlinie die Bereitschaft für die Cloud erzielt werden?'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+ms.date: 02/11/2019
 description: Erläuterung des Konzepts der Unternehmensrichtlinie in Bezug auf die Cloudgovernance
 author: BrianBlanchard
-ms.date: 2/8/2019
-ms.openlocfilehash: e15f4ef4e6fa9a64ea2bb78cd1df6c5867528383
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 8912e116232f8e5aa2e658ea45a5451479ba9094
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902186"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242131"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -16,7 +20,7 @@ ms.locfileid: "55902186"
 
 Cloudgovernance ist das Resultat kontinuierlicher Bemühungen zur Einführung, da eine nachhaltige Transformation nicht über Nacht geschieht. Der Versuch, mit einer schnellen, aggressiven Methode vollständige Cloudgovernance herzustellen, bevor zentrale Änderungen der Unternehmensrichtlinien durchdacht und umgesetzt wurden, führt nur selten zu den gewünschten Ergebnissen. Stattdessen empfiehlt sich ein inkrementeller Ansatz.
 
-Unser Framework für die Einführung der Cloud unterscheidet sich im Kaufzyklus und darin, wie dieser Zyklus eine authentische Transformation ermöglichen und unterstützen kann. Da keine umfangreichen Kapitalinvestitionen für Anschaffungen erforderlich sind, können Techniker bereits früher mit dem Test- und Einführungsprozess beginnen. In den meisten Unternehmenskulturen kann die Tatsache, dass Kapitalausgaben kein Hindernis für die Einführung mehr sind, zu kürzeren Feedbackschleifen, einem organischen Wachstum und inkrementeller Ausführung führen.
+Unser Framework für die Einführung der Cloud hebt sich durch seinen Kaufzyklus sowie durch die Ermöglichung einer authentischen Transformation ab. Da keine umfangreichen Kapitalinvestitionen für Anschaffungen erforderlich sind, können Techniker bereits früher mit dem Test- und Einführungsprozess beginnen. In den meisten Unternehmenskulturen kann die Tatsache, dass Kapitalausgaben kein Hindernis für die Einführung mehr sind, zu kürzeren Feedbackschleifen, einem organischen Wachstum und inkrementeller Ausführung führen.
 
 Die Einführung der Cloud erfordert ein Umdenken bei der Governance. In vielen Organisationen verbessert und verstärkt die Transformation der Unternehmensrichtlinien die Governance, da Richtlinien inkrementell geändert und diese Änderungen automatisch durchgesetzt werden. Gestützt wird dieser Ansatz durch neu definierte Funktionen, die Sie mit Ihrem Clouddienstanbieter konfigurieren.
 

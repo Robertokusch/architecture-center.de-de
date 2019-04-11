@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: b93041d87ec1edde91724f6cf6374cb00b8a4941
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 20f1e5c155aff445e2b2f15e07a5adf1dcc4c338
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488493"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241871"
 ---
 # <a name="caching"></a>Caching
 
@@ -133,8 +133,8 @@ Caches sind häufig für mehrere Instanzen einer Anwendung freigegeben. Dabei ka
 
 Je nach Art der Daten und der Wahrscheinlichkeit von Konflikten sollten Sie eine der beiden folgenden Parallelitätsstrategien verfolgen:
 
-- **Optimistisch (vollständig):**  Die Anwendung prüft unmittelbar vor der Aktualisierung, ob sich die Daten im Cache seit deren Abruf geändert haben. Haben sich die Daten nicht geändert, kann die Aktualisierung vorgenommen werden. Andernfalls muss die Anwendung entscheiden, ob die sie die Aktualisierung vornimmt. (Die Geschäftslogik, die dieser Entscheidung zu Grunde liegt, ist die anwendungsspezifische.) Diese Strategie eignet sich für Situationen, in denen nur selten Änderungen vorgenommen werden bzw. in denen kaum mit Konflikten zu rechnen ist.
-- **Pessimistisch (eingeschränkt):**  Beim Abrufen von Daten sperrt die Anwendung die Daten im Cache, um zu verhindern, dass diese durch eine andere Anwendungsinstanz geändert werden. So werden Konflikte umgangen, allerdings werden andere Anwendungsinstanzen, die die gleichen Daten verarbeiten müssen, dabei unter Umständen blockiert. Die pessimistische Parallelität kann die Skalierbarkeit der Lösung beeinträchtigen und sollte nur für kurzlebige Prozesse verwendet werden. Diese Strategie ist eher geeignet für Situationen, in denen Konflikte wahrscheinlich sind, insbesondere dann, wenn eine Anwendung mehrere Elemente im Cache aktualisiert und sicherstellen muss, dass diese Änderungen konsistent angewendet werden.
+- **Optimistisch (vollständig):** Die Anwendung prüft unmittelbar vor der Aktualisierung, ob sich die Daten im Cache seit deren Abruf geändert haben. Haben sich die Daten nicht geändert, kann die Aktualisierung vorgenommen werden. Andernfalls muss die Anwendung entscheiden, ob die sie die Aktualisierung vornimmt. (Die Geschäftslogik, die dieser Entscheidung zu Grunde liegt, ist die anwendungsspezifische.) Diese Strategie eignet sich für Situationen, in denen nur selten Änderungen vorgenommen werden bzw. in denen kaum mit Konflikten zu rechnen ist.
+- **Pessimistisch (eingeschränkt):** Beim Abrufen von Daten sperrt die Anwendung die Daten im Cache, um zu verhindern, dass diese durch eine andere Anwendungsinstanz geändert werden. So werden Konflikte umgangen, allerdings werden andere Anwendungsinstanzen, die die gleichen Daten verarbeiten müssen, dabei unter Umständen blockiert. Die pessimistische Parallelität kann die Skalierbarkeit der Lösung beeinträchtigen und sollte nur für kurzlebige Prozesse verwendet werden. Diese Strategie ist eher geeignet für Situationen, in denen Konflikte wahrscheinlich sind, insbesondere dann, wenn eine Anwendung mehrere Elemente im Cache aktualisiert und sicherstellen muss, dass diese Änderungen konsistent angewendet werden.
 
 ### <a name="implement-high-availability-and-scalability-and-improve-performance"></a>Implementieren von Hochverfügbarkeit und Skalierbarkeit mit Verbesserung der Leistung
 
@@ -144,7 +144,7 @@ Achten Sie darauf, Ihre Lösungen nicht abhängig von der Verfügbarkeit eines g
 
 Die Anwendung muss also in der Lage sein, die Verfügbarkeit des Cachediensts zu erkennen, und bei Bedarf auf den ursprünglichen Datenspeicher zurückgreifen können, wenn der Cache nicht verfügbar ist. Diesem Szenario kommt besonders das [Circuit-Breaker-Muster](../patterns/circuit-breaker.md) entgegen. Der Dienst, der den Cache bereitstellt, kann wiederhergestellt werden, und sobald er verfügbar ist, kann der Cache wieder nach einer Strategie wie dem [cachefremden Muster](../patterns/cache-aside.md) aus dem ursprünglichen Datenspeicher gefüllt werden.
 
-Allerdings könnte die Skalierbarkeit auf dem System beeinträchtigt werden, wenn die Anwendung auf den ursprünglichen Datenspeicher zurückgreift, falls der Cache vorübergehend nicht verfügbar ist. Während der Wiederherstellung des Datenspeichers könnte der ursprüngliche Datenspeicher mit Datenanforderungen überschwemmt werden, sodass Zeitüberschreitungen und fehlgeschlagene Verbindungen die Folge wären.
+Allerdings wird möglicherweise die Skalierbarkeit des Systems beeinträchtigt, wenn die Anwendung auf den ursprünglichen Datenspeicher zurückgreift, falls der Cache vorübergehend nicht verfügbar ist. Während der Wiederherstellung des Datenspeichers könnte der ursprüngliche Datenspeicher mit Datenanforderungen überschwemmt werden, sodass Zeitüberschreitungen und fehlgeschlagene Verbindungen die Folge wären.
 
 Erwägen Sie, zusätzlich zum freigegebenen Cache, auf den alle Anwendungsinstanzen zugreifen, einen lokalen privaten Cache in jeder Anwendungsinstanz zu implementieren. Beim Abrufen eines Elements kann die Anwendung zunächst in ihrem lokalen Cache, dann im freigegebenen Cache und schließlich im ursprünglichen Datenspeicher nachsehen. Der lokale Cache kann mit den Daten des freigegebenen Caches bzw., sollte dieser nicht verfügbar sein, mit den Daten aus der ursprünglichen Datenbank gefüllt werden.
 
@@ -297,7 +297,7 @@ Weitere Informationen finden Sie unter [ASP.NET-Sitzungszustandsanbieter für Az
 > [!NOTE]
 > Für ASP.NET-Anwendungen, die außerhalb der Azure-Umgebung ausgeführt werden, sollte der Sitzungszustandsanbieter für Azure Redis Cache nicht verwendet werden. Die Latenzzeiten für den Zugriff auf den Cache außerhalb von Azure können die Leistungsvorteile des Caching zunichte machen.
 
-Auf ähnliche Weise ermöglicht Ihnen der Ausgabecacheanbieter für Azure Redis Cache das Speichern der von einer ASP.NET-Webanwendung generierten HTTP-Antworten. Azure Redis Cache mit dem Ausgabecacheanbieter kann die Reaktionszeiten von Anwendungen verbessern, die komplexe HTML-Ausgaben rendern. Anwendungsinstanzen, die ähnliche Antworten generieren, können die freigegebenen Ausgabefragmente im Cache nutzen, anstatt HTML-Ausgabe neu zu generieren. Weitere Informationen finden Sie unter [ASP.NET-Ausgabecacheanbieter für Azure Redis Cache](/azure/redis-cache/cache-aspnet-output-cache-provider/).
+Auf ähnliche Weise ermöglicht Ihnen der Ausgabecacheanbieter für Azure Redis Cache das Speichern der von einer ASP.NET-Webanwendung generierten HTTP-Antworten. Azure Redis Cache mit dem Ausgabecacheanbieter kann die Reaktionszeiten von Anwendungen verbessern, die komplexe HTML-Ausgaben rendern. Anwendungsinstanzen, die ähnliche Antworten generieren, können die freigegebenen Ausgabefragmente im Cache nutzen, anstatt die HTML-Ausgabe völlig neu generieren zu müssen. Weitere Informationen finden Sie unter [ASP.NET-Ausgabecacheanbieter für Azure Redis Cache](/azure/redis-cache/cache-aspnet-output-cache-provider/).
 
 ## <a name="building-a-custom-redis-cache"></a>Erstellen eines benutzerdefinierten Redis-Cache
 
@@ -651,7 +651,7 @@ Mit den Befehlen SDIFF (set difference = Unterschiedsmenge), SINTER (set interse
 
 Die folgenden Codeausschnitte veranschaulichen, wie praktisch Sätze zum schnellen Speichern und Abrufen ähnlicher Elemente sind. Dieser Code nutzt den `BlogPost` -Typ, der im Abschnitt „Implementieren von Clientanwendungen für den Redis-Cache“ weiter oben in diesem Artikel beschrieben wurde.
 
-Ein `BlogPost` -Objekt enthält vier Felder – eine ID, einen Titel, eine Bewertung für die Rangfolge und eine Sammlung von Tags. Der erste der folgenden Codeausschnitte zeigt Beispieldaten zum Füllen einer C#-Liste mit `BlogPost` -Objekten:
+Ein `BlogPost`-Objekt enthält vier Felder: eine ID, einen Titel, eine Bewertung für die Rangfolge und eine Sammlung von Tags. Der erste der folgenden Codeausschnitte zeigt Beispieldaten zum Füllen einer C#-Liste mit `BlogPost` -Objekten:
 
 ```csharp
 List<string[]> tags = new List<string[]>
@@ -700,7 +700,7 @@ foreach (BlogPost post in posts)
     await cache.SetAddAsync(
         redisKey, post.Tags.Select(s => (RedisValue)s).ToArray());
 
-    // Now do the inverse so we can figure how which blog posts have a given tag
+    // Now do the inverse so we can figure out which blog posts have a given tag
     foreach (var tag in post.Tags)
     {
         await cache.SetAddAsync(string.Format(CultureInfo.InvariantCulture,
@@ -887,7 +887,7 @@ Einige zu berücksichtigende Optionen sind:
 
 - [MessagePack](https://msgpack.org/) ist ein binäres Serialisierungsformat mit einem kompakten Design für die Übertragung. Es werden keine Nachrichtenschemas oder Überprüfungen des Nachrichtentyps verwendet.
 
-- [Bond](https://microsoft.github.io/bond/) ist ein plattformübergreifendes Framework zur Verwendung von schematisierten Daten. Die sprachübergreifende Serialisierung und Deserialisierung wird unterstützt. Relevante Unterschiede zu anderen hier aufgeführten Systemen sind die Unterstützung von Vererbung, Typaliase und Generika.
+- [Bond](https://microsoft.github.io/bond/) ist ein plattformübergreifendes Framework zur Verwendung von schematisierten Daten. Die sprachübergreifende Serialisierung und Deserialisierung wird unterstützt. Relevante Unterschiede zu anderen hier aufgeführten Systemen sind die Unterstützung von Vererbung, Typaliase und generics.
 
 - [gRPC](https://www.grpc.io/) ist ein Open Source-RPC-System, das von Google entwickelt wurde. Standardmäßig werden Protokollpuffer als Definitionssprache und zugrunde liegendes Format für den Nachrichtenaustausch genutzt.
 

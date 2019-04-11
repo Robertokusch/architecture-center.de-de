@@ -7,29 +7,25 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Erfahren Sie mehr zur Ressourcenkonsistenz bei der Planung von Azure-Migrationen.
 author: rotycenh
-ms.openlocfilehash: 8170bfd09218a451e086a57e0631b7e567eb2b82
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: c2ff9a274692421e50775048586088134ff4c225
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901540"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241100"
 ---
 # <a name="caf-resource-consistency-decision-guide"></a>Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Leitfaden zur Entscheidungsfindung bei der Ressourcenkonsistenz
 
-Das [Azure-Abonnementmodell](../subscriptions/overview.md) bestimmt, wie Sie Ihre Cloudressourcen in Bezug auf die allgemeine Struktur Ihrer Organisation organisieren. Darüber hinaus hängt die Integration Ihrer bestehenden IT-Verwaltungsstandards und Ihrer Organisationsrichtlinien davon ab, wie Sie Cloudressourcen innerhalb eines Abonnements bereitstellen und organisieren.
-
-Die verfügbaren Tools zur Umsetzung Ihrer Modells für die Bereitstellung, Gruppierung und Verwaltung von Ressourcen sind je nach Cloudplattform unterschiedlich. Allgemein bietet jede Lösung die folgenden Features:
-
-- Einen logischen Gruppierungsmechanismus unterhalb der Abonnement- oder Kontoebene.
-- Die Fähigkeit, Ressourcen mit APIs programmgesteuert bereitzustellen.
-- Vorlagen für die Erstellung standardisierter Bereitstellungen.
-- Die Möglichkeit zum Bereitstellen von Richtlinienregeln auf Abonnement-, Konto- und Ressourcengruppenebene.
+Das [Abonnementdesign](../subscriptions/overview.md) von Azure bestimmt, wie Sie Ihre Cloudressourcen in Bezug auf die Struktur, die Buchhaltungsmethoden und die Workloadanforderungen Ihrer Organisation strukturieren. Zusätzlich zu dieser Strukturebene müssen Sie Ressourcen innerhalb eines Abonnements konsistent strukturieren, bereitstellen und verwalten können, um den organisatorischen Governance-Richtlinienanforderungen für Ihre gesamten Cloudumgebung gerecht zu werden.
 
 ![Abbildung der Konsistenzoptionen mit zunehmender Komplexität entsprechend den nachstehenden weiterführenden Links](../../_images/discovery-guides/discovery-guide-resource-consistency.png)
 
 Wechseln Sie zu: [Grundlegende Gruppierung](#basic-grouping) | [Bereitstellungskonsistenz](#deployment-consistency) | [Richtlinienkonsistenz](#policy-consistency) | [Hierarchische Konsistenz](#hierarchical-consistency) | [Automatisierte Konsistenz](#automated-consistency)
 
-Entscheidungen zur Bereitstellung und Gruppierung von Ressourcen werden in erster Linie von folgenden Faktoren beeinflusst: Größe des digitalen Umfelds nach der Migration, geschäftliche oder umgebungsbedingte Komplexität, die nicht genau in Ihr bestehendes Abonnementmodell passt, oder die Notwendigkeit, Governance im Laufe der Zeit nach der Bereitstellung von Ressourcen zu erzwingen. Komplexere Modelle für die Gruppierung von Ressourcen erfordern einen erhöhten Aufwand, um eine präzise Gruppierung zu gewährleisten, was zu einer Erhöhung des Zeitaufwands für Change Management und Nachverfolgung führt.
+Entscheidungen hinsichtlich der Konsistenzanforderungen für die Ressourcen Ihrer Cloudumgebung werden in erster Linie von folgenden Faktoren beeinflusst: Größe der digitalen Umgebung nach der Migration, geschäftliche oder umgebungsbezogene Anforderungen, die nicht exakt in Ihr bestehendes Abonnementdesign passen, sowie die Notwendigkeit einer kontinuierlichen Erzwingung von Governance, nachdem Ressourcen bereitgestellt wurden. 
+
+Mit zunehmender Bedeutung dieser Faktoren wird es auch immer wichtiger, eine konsistente Bereitstellung, Gruppierung und Verwaltung cloudbasierter Ressourcen zu gewährleisten. Um eine höhere Ressourcenkonsistenz zu erreichen und die wachsenden Anforderungen zu erfüllen, sind erhöhte Anstrengungen in den Bereichen Automatisierung, Tools und Konsistenzerzwingung erforderlich, was zu einem erhöhten Zeitaufwand für Change Management und Nachverfolgung führt.
+
 
 ## <a name="basic-grouping"></a>Einfache Gruppierung
 
@@ -42,11 +38,11 @@ Ressourcengruppen fungieren als Container für Ressourcen mit einem gemeinsamen 
 
 ## <a name="deployment-consistency"></a>Bereitstellungskonsistenz
 
-Aufbauend auf dem grundlegenden Mechanismus zur Gruppierung von Ressourcen bieten die meisten Cloudplattformen ein System zur Verwendung von Vorlagen für die Bereitstellung Ihrer Ressourcen in der Cloudumgebung. Sie können Vorlagen verwenden, um konsistente Organisations- und Benennungskonventionen bei der Bereitstellung von Workloads zu erstellen und diese Aspekte der Ressourcenbereitstellung und des Verwaltungskonzepts zu erzwingen.
+Aufbauend auf dem grundlegenden Mechanismus zur Gruppierung von Ressourcen bietet die Azure-Plattform ein System zur Verwendung von Vorlagen für die Bereitstellung Ihrer Ressourcen in der Cloudumgebung. Sie können Vorlagen verwenden, um konsistente Organisations- und Benennungskonventionen bei der Bereitstellung von Workloads zu erstellen und diese Aspekte der Ressourcenbereitstellung und des Verwaltungskonzepts zu erzwingen.
 
 [Azure Resource Manager-Vorlagen](/azure/azure-resource-manager/resource-group-overview#template-deployment) ermöglichen Ihnen, Ihre Ressourcen unter Verwendung einer vorgegebenen Konfigurations- und Ressourcengruppenstruktur wiederholt in konsistentem Zustand bereitzustellen. Resource Manager-Vorlagen helfen Ihnen, eine Reihe von Standards als Grundlage für Ihre Bereitstellungen zu definieren.
 
-Beispielsweise können Sie eine Standardvorlage für die Bereitstellung einer Webserver-Workload nutzen, die zwei virtuelle Computer als Webserver enthält, kombiniert mit einem Lastenausgleich zur Verarbeitung des Datenverkehrs zwischen den Servern. Sie können diese Vorlage anschließend wiederverwenden, um strukturell identische Bereitstellungen immer dann zu erstellen, wenn eine neue Webserver-Workload erforderlich ist, wobei nur der Bereitstellungsname und die zugehörigen IP-Adressen geändert werden.
+Beispielsweise können Sie eine Standardvorlage für die Bereitstellung einer Webserver-Workload nutzen, die zwei virtuelle Computer als Webserver sowie einen Lastenausgleich enthält, der den Datenverkehr auf die Server verteilt. Auf der Grundlage dieser Vorlage können Sie dann jedes Mal, wenn eine solche Art von Workload benötigt wird, eine strukturell identische Gruppe mit virtuellen Computern und Lastenausgleich erstellen und müssen lediglich den Bereitstellungsnamen und die verwendeten IP-Adressen ändern.
 
 Beachten Sie, dass Sie diese Vorlagen auch programmgesteuert bereitstellen und in Ihre CI-/CD-Systeme integrieren können.
 
@@ -62,9 +58,9 @@ Eine ausführlichere Erläuterung der Erzwingung Ihrer Richtlinienentscheidungen
 
 ## <a name="hierarchical-consistency"></a>Hierarchische Konsistenz
 
-Wenn die Größe Ihres Cloudumfelds wächst, müssen Sie möglicherweise komplexere Governance-Anforderungen unterstützen, als dies mit der Unternehmens-, Abteilungs-, Konten- und Abonnementhierarchie des Azure Enterprise Agreement möglich ist. Ressourcengruppen ermöglichen Ihnen, zusätzliche Hierarchieebenen innerhalb Ihrer Organisation zu unterstützen, indem Sie Azure Policy-Regeln und Zugriffssteuerungen auf Ressourcengruppenebene anwenden.
+Ressourcengruppen ermöglichen die Unterstützung zusätzlicher Hierarchieebenen Ihrer Organisation innerhalb des Abonnements. Dies wird mithilfe von Azure Policy-Regeln und Zugriffssteuerungen auf der Ressourcengruppenebene erreicht. Mit zunehmender Größe Ihrer Cloudumgebung müssen jedoch möglicherweise komplexere abonnementübergreifende Governanceanforderungen unterstützt werden als mit der Unternehmens-, Abteilungs-, Konten- und Abonnementhierarchie des Azure Enterprise Agreements möglich ist. 
 
-[Azure-Verwaltungsgruppen](../subscriptions/overview.md#management-groups) können komplexere Organisationsstrukturen unterstützen, indem Ihre Enterprise Agreement-Struktur mit einer alternativen Hierarchie überlagert wird. Dadurch können Abonnements und die darin enthaltenen Ressourcen Zugriffssteuerungs- und Richtlinienerzwingungsmechanismen unterstützen, die so organisiert sind, dass sie den Anforderungen Ihrer Organisation entsprechen.
+[Azure-Verwaltungsgruppen](../subscriptions/overview.md#management-groups) ermöglichen die Einrichtung komplexerer Organisationsstrukturen für Abonnements. Hierzu werden Abonnements in einer Hierarchie gruppiert, die eine Alternative zu der Struktur darstellt, die durch Ihr Enterprise Agreement gebildet wird. Diese alternative Hierarchie ermöglicht die Anwendung von Zugriffssteuerungs- und Richtlinienerzwingungsmechanismen für mehrere Abonnements und die darin enthaltenen Ressourcen. Verwaltungsgruppenhierarchien können verwendet werden, um die Abonnements Ihrer Cloudumgebung auf Vorgänge oder geschäftliche Governanceanforderungen abzustimmen. 
 
 ## <a name="automated-consistency"></a>Automatisierte Konsistenz
 

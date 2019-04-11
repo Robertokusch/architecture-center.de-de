@@ -5,14 +5,13 @@ ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 description: Bietet eine Übersicht über die erste Phase der digitalen Transformation eines Unternehmens, das Azure-Cloudtechnologien einführt.
-author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: bfa325ded8c39915ad4d495b4309b700abd71cc2
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.date: 02/11/2019
+ms.openlocfilehash: 7af68cd04be1bb3c9a6acdccbdf1a09e3cad55be
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898356"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241701"
 ---
 # <a name="getting-started-with-the-cloud-adoption-framework"></a>Erste Schritte mit dem Framework für die Cloudeinführung (Cloud Adoption Framework)
 
@@ -59,7 +58,7 @@ Darüber hinaus sollte sich das Governance-Team mit den Konzepten und Entwurfsha
 
 ## <a name="step-3-identify-gaps-in-business-strategy"></a>Schritt 3: Ermitteln von Lücken in der Unternehmensstrategie
 
-In diesem Schritt erstellt das Cloudstrategieteam eine Liste mit den geschäftlichen Problemen, die einer Lösung für die digitale Transformation bedürfen. Ein Unternehmen kann beispielweise über ein lokales Rechenzentrum mit älterer Hardware verfügen, die ausgetauscht werden muss. Ein weiteres Beispiel wäre ein Unternehmen, das möglicherweise Probleme mit der Markteinführung neuer Features und Dienste hat und deshalb nicht mehr mit den Mitbewerbern Schritt halten kann. Diese Lücken stellen die *Ziele* der digitalen Transformation Ihres Unternehmens dar.
+In diesem Schritt erstellt das Cloudstrategieteam eine Liste mit den geschäftlichen Problemen, die einer Lösung für die digitale Transformation bedürfen. Ein Unternehmen kann beispielweise über ein lokales Datencenter mit älterer Hardware verfügen, die ausgetauscht werden muss. Ein weiteres Beispiel wäre ein Unternehmen, das möglicherweise Probleme mit der Markteinführung neuer Features und Dienste hat und deshalb nicht mehr mit den Mitbewerbern Schritt halten kann. Diese Lücken stellen die *Ziele* der digitalen Transformation Ihres Unternehmens dar.
 
 Lücken in der Unternehmensstrategie können wie folgt kategorisiert werden:
 
@@ -108,7 +107,7 @@ IT-Mitarbeiter machen sich möglicherweise Sorgen um ihre Rollen und Positionen,
 Während der digitalen Transformation sollte jedes Team mögliche Probleme der Mitarbeiter dokumentieren, sobald diese auftreten. Dabei muss Folgendes dokumentiert werden:
 
 * Die Art des Problems. Mitarbeiter können sich beispielsweise gegen die veränderten Aufgaben sperren, die mit der digitalen Transformation einhergehen.
-* Die Folgen des Problems, wenn es nicht behoben wird. Der Widerstand gegen die digitale Transformation kann beispielsweise dazu führen, dass nötige Änderungen nur schleppend umgesetzt werden.
+* Die Auswirkungen, wenn das Problem nicht behandelt wird. Der Widerstand gegen die digitale Transformation kann beispielsweise dazu führen, dass nötige Änderungen nur schleppend umgesetzt werden.
 * Der Bereich, der zur Behebung des Problems geeignet ist. Wenn beispielsweise IT-Mitarbeiter nicht bereit sind, sich neue Fähigkeiten anzueignen, ist der IT-Bereich am besten geeignet, dieses Problem zu beheben. Bei manchen Problemen ist der Bereich eindeutig identifizierbar. In diesem Fall ist ggf. eine Eskalation an die Unternehmensleitung erforderlich.
 
 ### <a name="identify-gaps"></a>Ermitteln von Lücken

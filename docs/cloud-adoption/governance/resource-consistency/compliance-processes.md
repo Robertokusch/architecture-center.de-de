@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Prozesse für die Compliance der Ressourcenkonsistenzrichtlinie
 author: BrianBlanchard
-ms.openlocfilehash: 26c2d60635a98a3ce061352979ddf01426947e08
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: bfe241dd7aa723dc5a8c0109a07c86de98418690
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901762"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245131"
 ---
 # <a name="resource-consistency-policy-compliance-processes"></a>Prozesse für die Compliance der Ressourcenkonsistenzrichtlinie
 
@@ -26,7 +26,7 @@ Nachstehend sind eine Reihe von Beispielprozessen ausgeführt, die häufig im Ra
 
 **Anfängliche Risikobewertung und Planung**: Im Rahmen Ihrer erstmaligen Einführung der Disziplin „Ressourcenkonsistenz“ identifizieren Sie Ihre Kerngeschäftsrisiken und -toleranzen im Zusammenhang mit dem Betrieb und der IT-Verwaltung. Verwenden Sie diese Informationen, um spezifische technische Risiken mit Mitgliedern Ihrer IT-Teams und Workloadbesitzer zu besprechen, um einen grundlegenden Satz von Ressourcenkonsistenzrichtlinien zur Verringerung dieser Risiken zu entwickeln, um Ihre anfängliche Governance-Strategie zu formulieren.
 
-**Bereitstellungsplanung**: Führen Sie vor der Bereitstellung jeglicher Ressourcen eine Überprüfung durch, um alle neuen operationalen Risiken zu identifizieren. Stellen Sie Ressourcenanforderungen und erwartete Bedarfsmuster auf, und identifizieren Sie Anforderungen an die Skalierbarkeit und potenzielle Möglichkeiten zur Optimierung der Verwendung. Stellen Sie außerdem sicher, dass Sicherungs- und Wiederherstellungspläne vorhanden sind.
+**Bereitstellungsplanung**: Führen Sie vor der Bereitstellung von Ressourcen eine Überprüfung durch, um alle neuen Betriebsrisiken zu identifizieren. Stellen Sie Ressourcenanforderungen und erwartete Bedarfsmuster auf, und identifizieren Sie Anforderungen an die Skalierbarkeit und potenzielle Möglichkeiten zur Optimierung der Verwendung. Stellen Sie außerdem sicher, dass Sicherungs- und Wiederherstellungspläne vorhanden sind.
 
 **Bereitstellungstests**: Im Rahmen der Bereitstellung ist das Cloud Gvernance-Team in Zusammenarbeit mit Ihren Cloudbetriebsteams für die Überprüfung der Bereitstellung verantwortlich, um die Compliance der Ressourcenkonsistenzrichtlinie zu überprüfen.
 

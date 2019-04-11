@@ -1,14 +1,18 @@
 ---
 title: 'CAF: Überwachen und Erzwingen der Einhaltung von Richtlinien'
 description: Wie stellen Sie sicher, dass eingerichtete Richtlinien eingehalten werden?
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+ms.date: 02/11/2019
 author: BrianBlanchard
-ms.date: 1/4/2019
-ms.openlocfilehash: 9066f33c8baa183476a9632e82d6eb960d03752c
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 66df08b5ed66625c49907ac944f83d7af3ed1b53
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900755"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242471"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -20,7 +24,7 @@ I've defined policies, I've provided an architecture guide. Now how do I monitor
 
 Nachdem Sie Ihre Cloudrichtlinienanweisungen eingerichtet und ein erstes Entwurfshandbuch geschrieben haben, müssen Sie eine Strategie entwickeln, die sicherstellt, dass die Cloudbereitstellung konform zu Ihren Richtlinienanforderungen bleibt. Diese Strategie muss die fortlaufenden Überprüfungs- und Kommunikationsprozesse Ihres Cloudgovernanceteams einschließen, Kriterien für Handlungen bei Richtlinienverstößen festlegen und die Anforderungen für automatisierte Überwachungs- und Compliancesysteme definieren, die Verstöße erkennen und Aktionen zur Problembehebung auslösen.
 
-Beispiele für die Einpassung eines Prozesses zur Einhaltung von Richtlinien in die Cloudgovernanceplanung finden Sie in den Abschnitten zu Unternehmensrichtlinien unter [Nützliche Governance-Vorgehensweisen](../journeys/overview.md).
+Beispiele für die Abstimmung eines Prozesses zur Einhaltung von Richtlinien auf die Cloudgovernanceplanung finden Sie in den Abschnitten zu Unternehmensrichtlinien unter [Nützliche Governance-Vorgehensweisen](../journeys/overview.md).
 
 ## <a name="prioritize-policy-adherence-processes"></a>Priorisieren von Prozessen zur Einhaltung von Richtlinien
 

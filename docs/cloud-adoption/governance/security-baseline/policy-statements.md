@@ -7,18 +7,18 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Beispiele für Richtlinienanweisungen der Sicherheitsbaseline
 author: BrianBlanchard
-ms.openlocfilehash: ac40e022f8dff0c3021c04cd9d6ae42d28afaf1f
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 00a1ac274b3ab095ac1b915852f6c950ed19eeed
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900797"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247291"
 ---
 # <a name="security-baseline-sample-policy-statements"></a>Beispiele für Richtlinienanweisungen der Sicherheitsbaseline
 
 Einzelne Cloudrichtlinienanweisungen sind Anleitungen für den Umgang mit bestimmten Risiken, die während Ihres Risikobewertungsprozesses identifiziert wurden. Diese Anweisungen sollten eine präzise Zusammenfassung der Risiken sowie der Pläne für den Umgang mit diesen bereitstellen. Jede Anweisungsdefinition sollte diese Informationen enthalten:
 
-- Technisches Risiko: Eine Zusammenfassung des Risikos, das diese Richtlinie behandelt.
+- Technisches Risiko: eine Zusammenfassung des Risikos, das diese Richtlinie behandelt.
 - Richtlinienanweisung: Eine klare, zusammenfassende Erläuterung der Anforderungen der Richtlinie.
 - Technische Optionen: Direkt umsetzbare Empfehlungen, Spezifikationen oder anderen Anleitungen, die IT-Teams und Entwickler bei der Implementierung der Richtlinie verwenden können.
 
@@ -94,7 +94,7 @@ Verwenden Sie die in diesem Artikel erwähnten Beispiele als Ausgangspunkt für 
 
 Um mit der Entwicklung Ihrer eigenen, benutzerdefinierten Richtlinienanweisungen mit Bezug auf die Sicherheitsbaseline zu beginnen, laden Sie die [Sicherheitsbaselinevorlage](template.md) herunter.
 
-Um die Einführung dieser Disziplin zu beschleunigen, wählen Sie die [umsetzbare Governance Journey](../journeys/overview.md) aus, die Ihrer Umgebung am besten entspricht. Ändern Sie dann das Design, um Ihre spezifischen Entscheidungen für Unternehmensrichtlinien zu integrieren.
+Um die Einführung dieser Disziplin zu beschleunigen, wählen Sie die [nützliche Governance-Vorgehensweise](../journeys/overview.md) aus, die am besten zu Ihrer Umgebung passt. Ändern Sie dann den Entwurf, um Ihre speziellen Entscheidungen für Unternehmensrichtlinien zu integrieren.
 
 > [!div class="nextstepaction"]
-> [Umsetzbare Governance Journeys](../journeys/overview.md)
+> [Nützliche Governancevorgehensweisen](../journeys/overview.md)

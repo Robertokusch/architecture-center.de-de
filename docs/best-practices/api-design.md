@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: b15b97de2042a0e213192dd586ffdcc4c51b1f11
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 4b5842c3aac4cea34929ed72ad86071494b1fc1e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897982"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241741"
 ---
 # <a name="api-design"></a>API-Design
 

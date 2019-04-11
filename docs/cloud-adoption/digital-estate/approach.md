@@ -8,12 +8,12 @@ description: Beschreibt einige Ansätze für die Planung digitaler Ressourcen
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.openlocfilehash: 8b6c680cf477ea188cbd263ecc04389d6daaed89
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: fc30c9034e14b451b7e9ec9dfc023d72f248b37c
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898016"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246651"
 ---
 # <a name="approaches-to-digital-estate-planning"></a>Ansätze für die Planung digitaler Ressourcen
 
@@ -45,7 +45,7 @@ Wie beim Framework für die Cloudeinführung wird ausdrücklich ein inkrementell
 
 - Releaseplanung: Bei jedem neuen Release wird das Migrationsbacklog gelöscht, und die Prioritäten werden erneut auf die wichtigsten geschäftlichen Auswirkungen ausgerichtet. Während dieses Prozesses werden die nächsten fünf bis zehn Workloads als priorisierte Releases ausgewählt. An diesem Punkt würde das für die Cloudstrategie zuständige Team Zeit in die Durchführung eines umfassenden workloadorientierten Ansatzes investieren. Wird diese Bewertung bis zur Abstimmung eines Releases verzögert, kommt dies den Projektbeteiligten im Hinblick auf ihren Zeitaufwand entgegen. Außerdem werden die vollständige Analyse und der damit einhergehende Aufwand hinausgezögert, bis die Ergebnisse der ersten Aktivitäten für das Unternehmen erkennbar sind.
 
-- Ausführungsanalyse: Vor der Migration, Modernisierung oder Replikation sollte jede Ressource einzeln und als Teil eines gemeinsamen Releases bewertet werden. Zu diesem Zeitpunkt können die Daten aus dem ursprünglichen ressourcenorientierten Ansatz untersucht werden, um genaue Angaben zur Dimensionierung und zu den betrieblichen Einschränkungen sicherzustellen.
+- Ausführungsanalyse: Bevor Sie eine Ressource migrieren, modernisieren oder replizieren, sollten Sie sie jeweils einzeln und als Teil eines kollektiven Release bewerten. Zu diesem Zeitpunkt können die Daten aus dem ursprünglichen ressourcenorientierten Ansatz untersucht werden, um genaue Angaben zur Dimensionierung und zu den betrieblichen Einschränkungen sicherzustellen.
 
 > [!TIP]
 > Dieser inkrementelle Ansatz ermöglicht eine optimierte Planung und führt schneller zu Ergebnissen. Es ist sehr wichtig, dass alle Beteiligten den Ansatz der verzögerten Entscheidungsfindung verstehen. Ebenso wichtig ist es, dass die in den einzelnen Phasen getroffenen Annahmen dokumentiert werden, damit keine Informationen verloren gehen.

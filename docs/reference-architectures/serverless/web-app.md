@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, serverless
-ms.openlocfilehash: 60af3df5bbb75d97d6ba797874c8b37319b2fad5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 0307ff6045e4e4b55c9d4530d9888db9209ba631
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487388"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246051"
 ---
 # <a name="serverless-web-application-on-azure"></a>Serverlose Webanwendung in Azure
 
@@ -135,9 +135,9 @@ Die hier dargestellte Bereitstellung befindet sich in nur einer Azure-Region. Nu
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
-### <a name="authentication"></a>Authentifizierung
+### <a name="authentication"></a>Authentication
 
-Für die `GetStatus`-API in der Referenzimplementierung wird Azure AD zum Authentifizieren von Anforderungen verwendet. Azure AD unterstützt das Open ID Connect-Protokoll, bei dem es sich um ein Authentifizierungsprotokoll handelt, das auf dem OAuth 2-Protokoll basiert.
+Für die `GetStatus`-API in der Referenzimplementierung wird Azure AD zum Authentifizieren von Anforderungen verwendet. Azure AD unterstützt das OpenID Connect-Protokoll, bei dem es sich um ein Authentifizierungsprotokoll handelt, das auf dem OAuth 2-Protokoll basiert.
 
 In dieser Architektur ist die Clientanwendung eine Single-Page-Anwendung (SPA), die im Browser ausgeführt wird. Da bei dieser Art von Clientanwendung der geheime Clientschlüssel oder der Autorisierungscode nicht ausgeblendet werden können, ist die implizite Genehmigung hierfür der geeignete Ablauf. (Siehe [Which OAuth 2.0 flow should I use?][oauth-flow] (Welchen OAuth 2.0-Ablauf soll ich verwenden?).) Hier ist der allgemeine Ablauf angegeben:
 
@@ -329,7 +329,7 @@ Zeigen Sie zum Bereitstellen dieser Referenzarchitektur die [GitHub-Infodatei][r
 [functions-zip-deploy]: /azure/azure-functions/deployment-zip-push
 [graph]: https://developer.microsoft.com/graph/docs/concepts/overview
 [key-vault-web-app]: /azure/key-vault/tutorial-web-application-keyvault
-[microservices-domain-analysis]: ../../microservices/domain-analysis.md
+[microservices-domain-analysis]: ../../microservices/model/domain-analysis.md
 [monitor]: /azure/azure-monitor/overview
 [oauth-flow]: https://auth0.com/docs/api-auth/which-oauth-flow-to-use
 [partition-key]: /azure/cosmos-db/partition-data

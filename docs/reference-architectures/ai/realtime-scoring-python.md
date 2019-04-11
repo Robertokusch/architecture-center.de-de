@@ -8,14 +8,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: ba2d9a295e5a231f0ffca9e3cf2d53ace4deddfe
-ms.sourcegitcommit: 1ee873aaf40010eb2a38314ac56974bc9e227736
+ms.openlocfilehash: e6ef96f89d93f2b15055e812f10bdf92c6c77fe8
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/28/2019
-ms.locfileid: "55141027"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243881"
 ---
-# <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Echtzeitbewertung von Python-Modellen (Scikit-learn) und Deep Learning-Modellen in Azure
+# <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Echtzeitbewertung von Python-Modellen (scikit-learn) und Deep Learning-Modellen in Azure
 
 Diese Referenzarchitektur zeigt, wie Sie Python-Modelle als Webdienste bereitstellen, um mithilfe von Azure Machine Learning Service in Echtzeit Vorhersagen zu treffen. In diesem Artikel werden zwei Szenarien behandelt: die Bereitstellung von regulären Python-Modellen und die spezifischen Anforderungen der Bereitstellung von Deep Learning-Modellen. Für beide Szenarien wird die hier dargestellte Architektur verwendet.
 

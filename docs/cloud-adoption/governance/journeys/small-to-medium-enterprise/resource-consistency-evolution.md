@@ -1,18 +1,18 @@
 ---
-title: 'CAF: Kleines bis mittleres Unternehmen – Ressourcenkonsistenzentwicklung '
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Kleine bis mittlere Unternehmen: Entwicklung der Ressourcenkonsistenz'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 'Erläuterung: Kleines bis mittleres Unternehmen – Ressourcenkonsistenzentwicklung'
+description: 'Kleine bis mittlere Unternehmen: Entwicklung der Ressourcenkonsistenz'
 author: BrianBlanchard
-ms.openlocfilehash: 402bb3ff4182123cdc8825522f965f7cf8637980
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: caacd62da9da526ec01ab935896598065f64d9d1
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901733"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246501"
 ---
 # <a name="small-to-medium-enterprise-resource-consistency-evolution"></a>Kleines bis mittleres Unternehmen: Entwicklung der Ressourcenkonsistenz
 
@@ -40,7 +40,7 @@ Die Änderungen des aktuellen und zukünftigen Status bergen neue Risiken, die n
 
 ## <a name="evolution-of-tangible-risks"></a>Entwicklung materieller Risiken
 
-**Unterbrechung des Geschäftsbetriebs**: Jede neue Plattform bringt ein inhärentes Risiko für Unterbrechungen in unternehmenskritischen Geschäftsabläufen mit sich. Das IT Operations-Team und die Teams, die auf verschiedenen Cloudeinsatztypen agieren, sind relativ unerfahren in Cloud Operations. Dadurch steigt die Gefahr von Unterbrechungen, die entsprechend gemildert und kontrolliert werden muss.
+**Unterbrechung des Geschäftsbetriebs**: Jede neue Plattform bringt ein inhärentes Risiko für Unterbrechungen in unternehmenskritischen Geschäftsabläufen mit sich. Das IT Operations-Team und die Teams, die in verschiedenen Cloud-Einsatztypen agieren, sind relativ unerfahren in Cloud Operations. Dadurch steigt die Gefahr von Unterbrechungen, die entsprechend gemildert und kontrolliert werden muss.
 
 Dieses Unternehmensrisiko lässt sich auf einige technische Risiken erweitern:
 

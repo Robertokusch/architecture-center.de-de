@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 3dc70c7eaea18f010d67befa5969d1be0423239c
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 81053a4eda5e30ca614b2c18b92ddf411a05eac9
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484396"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244351"
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>Integrieren von lokalen Active Directory-Domänen in Azure Active Directory
 
@@ -45,7 +45,7 @@ Diese Architektur besteht aus den folgenden Komponenten.
 
 - **Azure AD-Mandant**. Eine Instanz von [Azure AD][azure-active-directory], die von Ihrer Organisation erstellt wurde. Sie fungiert als ein Verzeichnisdienst für Cloudanwendungen, indem sie Objekte speichert, die aus dem lokalen Active Directory kopiert wurden, und stellt Identitätsdienste bereit.
 - **Webschicht-Subnetz**. Dieses Subnetz enthält virtuelle Computer, die eine Webanwendung ausführen. Azure AD kann als Identitätsbroker für diese Anwendung fungieren.
-- **Lokaler AD DS-Server**. Eine lokaler Verzeichnis- und Identitätsdienst. Das AD DS-Verzeichnis kann mit Azure AD synchronisiert werden, sodass Azure AD lokale Benutzer authentifizieren kann.
+- **Lokaler AD DS-Server**. Eine lokaler Verzeichnis- und Identitätsdienst. Das AD DS-Verzeichnis kann mit Azure AD synchronisiert werden, um die Authentifizierung lokaler Benutzer zu ermöglichen.
 - **Azure AD Connect-Synchronisierungsserver**. Ein lokaler Computer, auf dem der [Azure AD Connect][azure-ad-connect]-Synchronisierungsdienst ausgeführt wird. Dieser Dienst synchronisiert Informationen, die sich im lokalen Active Directory befinden, mit Azure AD. Wenn Sie beispielsweise die Bereitstellung oder das Aufheben der Bereitstellung von Gruppen und Benutzern lokal ausführen, werden diese Änderungen an Azure AD weitergegeben.
 
   > [!NOTE]

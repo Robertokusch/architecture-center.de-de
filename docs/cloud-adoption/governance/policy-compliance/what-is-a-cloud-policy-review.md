@@ -1,14 +1,18 @@
 ---
 title: 'CAF: Was ist eine Überprüfung von Cloudrichtlinien?'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+ms.date: 02/11/2019
 description: Was ist eine Überprüfung von Cloudrichtlinien?
 author: BrianBlanchard
-ms.date: 2/8/2019
-ms.openlocfilehash: b879f261e16ffc72180417e2e0f533e2eaa435ba
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 2e50c6bac0118db1b6a223244cf8efc43a4ab438
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901818"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242081"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -22,10 +26,10 @@ In den meisten Unternehmen wird die IT über die Ausführung von Prozessen verwa
 
 Während Unternehmen für ausgereiftere IT-Unternehmensrichtlinien sorgen, gibt es bei Abhängigkeiten von den letzten technischen Entscheidungen die Tendenz, in leitende Richtlinien einzudringen. So kommt es beispielsweise häufig vor, dass Notfallwiederherstellungsprozesse Richtlinien enthalten, die Offsite-Bandsicherungen erfordern. Diese Bedingung setzt eine Abhängigkeit von einem einzigen Technologietyp (Bandsicherungen) voraus, der vielleicht nicht mehr die relevanteste Lösung ist.
 
-Cloudtransformationen schaffen einen natürlichen Wendepunkt, um die Entscheidungen zu Legacyrichtlinien aus der Vergangenheit zu überdenken. Technische Funktionen und Standardprozesse ändern sich in der Cloud erheblich, genauso wie die Vererbungsrisiken. Unter Nutzung des vorstehenden Beispiels stammte die Bandsicherungsrichtlinie aus dem Risiko eines Single Point of Failure, bei dem die Daten an einem einzigen Ort gespeichert sind. Dann muss das Unternehmen das Risikoprofil durch Minderung dieses Risikos minimieren. In einer Cloudbereitstellung gibt es mehrere Optionen, die dieselbe Risikominderung mit viel geringeren RTOs (Recovery Time Objectives) bieten. Beispiel:
+Cloudtransformationen schaffen einen natürlichen Wendepunkt, um die Entscheidungen zu Legacyrichtlinien aus der Vergangenheit zu überdenken. Technische Funktionen und Standardprozesse ändern sich in der Cloud erheblich, genauso wie die Vererbungsrisiken. Im vorherigen Beispiel ist die Bandsicherungsrichtlinie auf das Risiko eines Single Point of Failure zurückzuführen, der sich durch die Speicherung der Daten an einem einzelnen Ort ergab und das Unternehmen dazu veranlasste, das Risikoprofil durch die Minderung dieses Risikos zu verbessern. In einer Cloudbereitstellung gibt es mehrere Optionen, die dieselbe Risikominderung mit viel geringeren RTOs (Recovery Time Objectives) bieten. Beispiel:
 
 - Eine cloudnative Lösung könnte die geografische Replikation der SQL Azure-Datenbank aktivieren.
-- Eine Hybridlösung könnte Azure Site Recovery (ASR) nutzen, um eine IaaS-Workload in mehrere Datencenter zu replizieren.
+- Eine Hybridlösung kann beispielsweise Azure Site Recovery nutzen, um eine IaaS-Workload in mehreren Datencentern zu replizieren.
 
 Bei Ausführung einer Cloudtransformation steuern Richtlinien oft viele der Tools, Dienste und Prozesse, die für die Cloudeinführungsteams zur Verfügung stehen. Wenn diese Richtlinien auf älteren Technologien basieren, können sie die Bemühungen des Teams behindern, für Änderungen zu sorgen. Im schlimmsten Fall werden wichtige Richtlinien vom Migrationsteam vollständig ignoriert, um Problemumgehungen zu ermöglichen. Keines davon ist ein akzeptables Ergebnis.
 

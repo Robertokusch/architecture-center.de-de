@@ -1,5 +1,5 @@
 ---
-title: 'CAF: Große Unternehmen: mehrere Governance-Ebenen in großen Unternehmen'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Große Unternehmen: mehrere Governance-Ebenen in großen Unternehmen'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: 'Große Unternehmen: mehrere Governance-Ebenen in großen Unternehmen'
 author: BrianBlanchard
-ms.openlocfilehash: 42f4159ca0701c6a798f239359509a3e3b246c38
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 5d79d54f94a39aa1e16018b9c3c9f02c6862fff2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901861"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241122"
 ---
 # <a name="multiple-layers-of-governance-in-large-enterprises"></a>Große Unternehmen: mehrere Governance-Ebenen in großen Unternehmen
 
@@ -30,7 +30,7 @@ Dieser Artikel untersucht einige Möglichkeiten, in dieser Komplexität die Orie
 
 Große, etablierte Unternehmen verfügen oft über Teams oder Mitarbeiter, die sich auf die auf diesem Weg erwähnten Fachrichtungen spezialisiert haben. Der beschriebene Weg veranschaulicht einen Ansatz, um Governance zu einem Mannschaftssport zu machen.
 
-In vielen großen Unternehmen können sich die Fachrichtungen der Cloud Governance als Einführungshindernisse erweisen. Die Entwicklung von Cloudexpertise in den Bereichen Identität, Sicherheit, Betrieb, Bereitstellung und Konfiguration in einem gesamten Unternehmen erfordert Zeit. Eine ganzheitliche Implementierung von IT-Governance-Richtlinien und IT-Sicherheit kann Innovationen um Monate oder sogar Jahre verzögern. Das Gleichgewicht zwischen dem Innovationsbedarf des Unternehmens und dem Governance-Bedarf zum Schutz der vorhandenen Ressourcen ist schwierig.
+In vielen großen Unternehmen können sich die fünf Disziplinen der Cloud-Governance als Einführungshindernisse erweisen. Die Entwicklung von Cloudexpertise in den Bereichen Identität, Sicherheit, Betrieb, Bereitstellung und Konfiguration in einem gesamten Unternehmen erfordert Zeit. Eine ganzheitliche Implementierung von IT-Governance-Richtlinien und IT-Sicherheit kann Innovationen um Monate oder sogar Jahre verzögern. Das Gleichgewicht zwischen dem Innovationsbedarf des Unternehmens und dem Governance-Bedarf zum Schutz der vorhandenen Ressourcen ist schwierig.
 
 Die inhärenten Fähigkeiten der Cloud können Innovationshemmnisse beseitigen, aber die Risiken erhöhen. Auf unserem Weg durch das Feld der Governance haben wir gezeigt, wie unser Beispielunternehmen Leitplanken errichtet hat, um die Risiken zu minimieren. Anstatt sich mit jeder der Disziplinen zu befassen, die zum Schutz der Umgebung benötigt werden, verfolgt das Cloud Governance-Team einen risikobasierten Ansatz, um zu steuern, was sich einsetzen lässt, während die anderen Teams die erforderliche Cloudreife aufbauen. Besonders wichtig ist dabei, dass Governance die Lösungen der einzelnen Teams ganzheitlich übernimmt, sobald sie die Cloudreife erreicht haben. Mit zunehmender Reife der Teams und ihrem wachsendem Anteil an der Gesamtlösung kann das Cloud Governance-Team Stage Gates öffnen, wodurch Innovation und Akzeptanz zusätzlichen Schub erhalten.
 

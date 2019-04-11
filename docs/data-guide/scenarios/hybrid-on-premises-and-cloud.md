@@ -6,12 +6,12 @@ ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: b54f56fbc6aab526f37d537c201f4e4955a112fd
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: dcffe32883e379dd17c1f54a7eeebda3dab8d808
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486947"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244101"
 ---
 # <a name="extending-on-premises-data-solutions-to-the-cloud"></a>Erweitern lokaler Datenlösungen auf die Cloud
 
@@ -72,7 +72,7 @@ Im Anschluss folgen einige Anwendungsfälle für Azure und Azure Stack:
 
 ## <a name="sql-server-data-stores"></a>SQL Server-Datenspeicher
 
-Wenn Sie SQL Server lokal ausführen, können Sie den Microsoft Azure Blob Storage-Dienst zum Sichern und Wiederherstellen verwenden. Weitere Informationen finden Sie unter [SQL Server-Sicherung und -Wiederherstellung mit dem Microsoft Azure Blob Storage Service](/sql/relational-databases/backup-restore/sql-server-backup-and-restore-with-microsoft-azure-blob-storage-service). Dadurch erhalten Sie unbegrenzten externen Speicherplatz und können die gleichen Sicherungen sowohl für die lokal ausgeführte SQL Server-Instanz als auch für eine auf einem virtuellen Computer in Azure ausgeführte SQL Server-Instanz verwenden.
+Wenn Sie SQL Server lokal ausführen, können Sie den Microsoft Azure Blob Storage-Dienst zum Sichern und Wiederherstellen verwenden. Weitere Informationen finden Sie unter [SQL Server-Sicherung und -Wiederherstellung mit dem Microsoft Azure Blob Storage Service](/sql/relational-databases/backup-restore/sql-server-backup-and-restore-with-microsoft-azure-blob-storage-service). Dadurch erhalten Sie unbegrenzten externen Speicherplatz und können die gleichen Sicherungen sowohl für die lokal ausgeführte SQL Server-Instanz als auch für eine auf einem virtuellen Computer in Azure ausgeführte SQL Server-Instanz verwenden.
 
 [Azure SQL-Datenbank](/azure/sql-database/) ist eine verwaltete relationale Datenbank als Dienst (Database-as-a-Service, DaaS). Da Azure SQL-Datenbank das Microsoft SQL Server-Modul verwendet, können Anwendungen mit beiden Technologien auf die gleiche Weise auf Daten zugreifen. Azure SQL-Datenbank kann praktischerweise auch mit SQL Server kombiniert werden. So kann eine Anwendung beispielsweise mit dem Feature [SQL Server Stretch Database](/sql/sql-server/stretch-database/stretch-database) auf ein Element zugreifen, das wie eine einzelne Tabelle in einer SQL Server-Datenbank aussieht, während einige oder alle Zeilen dieser Tabelle unter Umständen in Azure SQL-Datenbank gespeichert sind. Daten, die für einen bestimmten Zeitraum nicht genutzt wurden, werden von dieser Technologie automatisch in die Cloud verschoben. Für Anwendungen, die diese Daten lesen, ist nicht feststellbar, dass Daten in die Cloud verschoben wurden.
 

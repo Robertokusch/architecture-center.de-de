@@ -1,18 +1,19 @@
 <!-- TEMPLATE FILE - DO NOT ADD METADATA -->
+<!-- markdownlint-disable MD002 MD041 -->
 
 ### <a name="governance-of-resources"></a>Governance von Ressourcen
 
 Die abonnementübergreifende Erzwingung von Governance erfolgt über Azure Blueprints und die zugehörigen Ressourcen innerhalb der Blaupause.
 
-1. Erstellen Sie eine Azure-Blaupause namens „Governance-MVP“.
+1. Erstellen Sie eine Blaupause mit dem Namen `governance-baseline`.
     1. Erzwingen Sie die Verwendung von Azure-Standardrollen.
     2. Erzwingen Sie, dass Benutzer sich nur bei einer vorhandenen RBAC-Implementierung authentifizieren können.
     3. Wenden Sie diese Blaupause auf alle Abonnements in der Verwaltungsgruppe an.
-2. Erstellen Sie eine Azure Policy-Instanz, um Folgendes anzuwenden oder zu erzwingen:
+2. Erstellen Sie eine Azure-Richtlinie, um Folgendes anzuwenden oder zu erzwingen:
     1. Für die Ressourcenmarkierungen müssen Werte für die Geschäftsfunktion, die Datenklassifizierung, die Wichtigkeit, die SLA, die Umgebung und die Anwendung angefordert werden.
     2. Der Wert der Anwendungsmarkierung muss dem Namen der Ressourcengruppe entsprechen.
     3. Überprüfen Sie die Rollenzuweisungen für jede Ressourcengruppe und Ressource.
-3. Veröffentlichen Sie die Azure-Blaupause „Governance-MVP“, und wenden Sie sie auf die einzelnen Verwaltungsgruppen an.
+3. Veröffentlichen Sie die Blaupause `governance-baseline`, und wenden Sie sie auf die einzelnen Verwaltungsgruppen an.
 
 Anhand dieser Muster können die Ressourcen ermittelt und nachverfolgt werden. Zudem wird dadurch eine grundlegende Rollenverwaltung erzwungen.
 
@@ -24,8 +25,8 @@ Für bestimmte Abonnements ist es üblich, eine bestimmte Zugriffsebene für lok
     1. Die [Cloud-DMZ-Referenzarchitektur](/azure/architecture/reference-architectures/dmz/secure-vnet-hybrid) richtet ein Muster und ein Bereitstellungsmodell zur Erstellung einer VPN Gateway-Instanz in Azure ein.
     2. Stellen Sie sicher, dass die richtige DMZ-Konnektivität und Sicherheitsanforderungen für ein lokales Edgegerät im lokalen Rechenzentrum eingerichtet sind.
     3. Stellen Sie sicher, dass das lokale Edgegerät mit den Azure VPN Gateway-Anforderungen kompatibel ist.
-    4. Sobald die Verbindung mit dem lokalen VPN überprüft wurde, erfassen Sie die Resource Manager-Vorlage, die von dieser Referenzarchitektur erstellt wurde.
-2. Erstellen Sie eine zweite Blaupause namens „DMZ“.
+    <!-- 4. Once connection to the on-premisess VPN has been verified, capture the Resource Manager template created by that reference architecture. -->
+2. Erstellen Sie eine zweite Blaupause namens `dmz`.
     1. Fügen Sie der Blaupause die Resource Manager-Vorlage für die VPN Gateway-Instanz hinzu.
 3. Wenden Sie die DMZ-Blaupause auf alle Abonnements an, die lokale Konnektivität benötigen. Diese Blaupause muss zusätzlich zu der Governance-MVP-Blaupause angewendet werden.
 

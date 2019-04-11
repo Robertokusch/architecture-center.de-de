@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 475b9572cb5b34850944fdf03061dc56ea6d0bf9
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 09e2b55aa009d55037e7a0feb0ba3c4f65d9de16
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485144"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248775"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>Muster für Überwachung der Integrität von Endpunkten
 
@@ -109,7 +109,7 @@ Dieses Muster ist hilfreich:
 
 Die folgenden Codebeispiele, die der `HealthCheckController`-Klasse entnommen wurden (ein Beispiel, das dieses Muster veranschaulicht, ist auf [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/health-endpoint-monitoring) verfügbar), demonstrieren das Verfügbarmachen eines Endpunkts für die Durchführung einer Reihe von Integritätsprüfungen.
 
-Die `CoreServices`-Methode, die unten in C# gezeigt wird, wendet eine Reihe von Prüfungen auf Dienste an, die in der Anwendung verwendet werden. Wenn alle Tests fehlerfrei verlaufen, gibt die Methode den Statuscode 200 (OK) zurück. Wenn einer der Tests eine Ausnahme auslöst, gibt die Methode den Statuscode 500 (Interner Fehler) zurück. Die Methode kann optional zusätzliche Informationen zurückgeben, sobald ein Fehler auftritt, wenn das Überwachungstool oder -framework diese nutzen kann.
+Die `CoreServices`-Methode, die unten in C# gezeigt wird, wendet eine Reihe von Prüfungen auf Dienste an, die in der Anwendung verwendet werden. Wenn alle Tests fehlerfrei verlaufen, gibt die Methode den Statuscode 200 (OK) zurück. Wenn einer der Tests eine Ausnahme auslöst, gibt die Methode den Statuscode 500 (Interner Fehler) zurück. Die Methode kann im Falle eines Fehlers optional zusätzliche Informationen zurückgeben, sofern das Überwachungstool oder -framework diese nutzen kann.
 
 ```csharp
 public ActionResult CoreServices()

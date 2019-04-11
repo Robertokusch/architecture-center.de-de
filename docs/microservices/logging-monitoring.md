@@ -7,12 +7,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: d8263306db4f4c93157ac1d120094338570b4b86
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 68d0c8255744ebae0243759bc522d58fae4c81a6
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482203"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246141"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>Entwerfen von Microservices: Protokollierung und Überwachung
 
@@ -114,7 +114,7 @@ Eine andere Möglichkeit ist das Senden von Protokollen an Operations Management
 
 ## <a name="example-logging-with-correlation-ids"></a>Beispiel: Protokollierung mit Korrelations-IDs
 
-Hier ist ein erweitertes Beispiel dafür angegeben, wie die Protokollierung vom Paketdienst implementiert wird, um einige in diesem Kapitel beschriebene Punkte zu verdeutlichen. Der Paketdienst wurde in TypeScript geschrieben und nutzt das [Koa](https://koajs.com/)-Webframework für Node.js. Sie können zwischen mehreren Node.js-Protokollierungsbibliotheken wählen. Wir haben uns für [Winston](https://github.com/winstonjs/winston) entschieden. Dies ist eine beliebte Protokollierungsbibliothek, die beim Testen unsere Leistungsanforderungen erfüllt hat.
+Zur Veranschaulichung einiger der Punkte aus diesem Artikel finden Sie hier ein erweitertes Beispiel für die Implementierung der Protokollierung durch den Paketdienst. Der Paketdienst wurde in TypeScript geschrieben und nutzt das [Koa](https://koajs.com/)-Webframework für Node.js. Sie können zwischen mehreren Node.js-Protokollierungsbibliotheken wählen. Wir haben uns für [Winston](https://github.com/winstonjs/winston) entschieden. Dies ist eine beliebte Protokollierungsbibliothek, die beim Testen unsere Leistungsanforderungen erfüllt hat.
 
 Zum Kapseln der Implementierungsdetails haben wir eine abstrakte `ILogger`-Schnittstelle definiert:
 

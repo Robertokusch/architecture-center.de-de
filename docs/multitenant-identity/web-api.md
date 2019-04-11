@@ -9,12 +9,12 @@ ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: a895276a77c111e660f29397d250373bee53f29e
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 7d99aca8865ccb29c54c3819dc82de503de7e4fc
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480767"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241531"
 ---
 # <a name="secure-a-backend-web-api"></a>Schützen einer Back-End-Web-API
 
@@ -47,7 +47,7 @@ Die Web-API lässt keine anonymen Anforderungen zu, sodass sich die Web-App mith
 Sie können zwischen zwei Ansätzen wählen:
 
 * Delegierte Benutzeridentität. Die Webanwendung authentifiziert sich mit der Identität des Benutzers.
-* Anwendungsidentität. Die Webanwendung authentifiziert sich mit Ihrer Client-ID bei Befolgen des OAuth2-Ablaufs für Clientanmeldeinformationen.
+* Anwendungsidentität. Die Webanwendung authentifiziert sich mit ihrer Client-ID unter Verwendung des OAuth2-Ablaufs für Clientanmeldeinformationen.
 
 Die Tailspin-Anwendung implementiert die delegierte Benutzeridentität. Im Folgenden werden die Hauptunterschiede erläutert:
 

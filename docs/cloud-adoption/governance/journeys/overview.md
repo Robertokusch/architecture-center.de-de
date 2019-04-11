@@ -1,16 +1,20 @@
 ---
-title: 'CAF: Kundenlösungen für Governance – Übersicht'
-description: 'Erklärung: Kundenlösungen für Governance – Übersicht'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Nützliche Governance-Vorgehensweisen'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+ms.date: 02/11/2019
+description: Nützliche Governance-Vorgehensweisen
 author: BrianBlanchard
-ms.date: 2/11/2019
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: c8afd87513d1239b09b703473078788fb6823d77
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 0e3b1b6211ebb4faaa1aac3c13887a4a35ed3c63
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901480"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242511"
 ---
 # <a name="actionable-governance-journeys"></a>Nützliche Governance-Vorgehensweisen
 
@@ -75,7 +79,7 @@ Das CAF-Governancemodell identifiziert wichtige Bereiche von Bedeutung während 
 - Richtlinie und Compliance: Konvertieren von Risiken in Richtlinienanweisungen, die beliebige Compliancevorgaben unterstützen.
 - Prozesse: Sicherstellen der Befolgung der angegebenen Richtlinien.
 
-**Fünf Disziplinen von Cloud Governance**. Diese Disziplinen unterstützen die Unternehmensrichtlinien. Jede Disziplin schützt das Unternehmen vor potenziellen Fallstricken:
+**Fünf Disziplinen der Cloud Governance**. Diese Disziplinen unterstützen die Unternehmensrichtlinien. Jede Disziplin schützt das Unternehmen vor potenziellen Fallstricken:
 
 - Cost Management
 - Sicherheitsbaseline
@@ -116,7 +120,7 @@ Um mit einer Governancelösung zu beginnen, wählen Sie eine der beiden folgende
 | Geografie (Land oder geopolitische Region) | Kunden oder Mitarbeiter befinden sich hauptsächlich an einem geografischen Standort                                                      | Kunden oder Mitarbeiter befinden sich an mehreren geografischen Standorten                                                              |
 | Betroffene Geschäftseinheiten                    | Einzelne Geschäftseinheit                                                                                    | Mehrere Geschäftseinheiten                                                                                        |
 | IT-Budget                                  | Einzelnes IT-Budget                                                                                        | Budget verteilt auf Geschäftseinheiten                                                                         |
-| IT-Investitionen                             | Kapitalkostengesteuerte (CapEx) Investitionen werden jährlich geplant und decken in der Regel nur die Grundwartung ab. | CapEx-gesteuerte Investitionen werden jährlich geplant und beinhalten oft Wartung und einen Aktualisierungszyklus von 3 bis 5 Jahren. |
+| IT-Investitionen                             | Kapitalkostengesteuerte (CapEx) Investitionen werden jährlich geplant und decken in der Regel nur die Grundwartung ab. | CapEx-gesteuerte Investitionen werden jährlich geplant und beinhalten oft Wartung und einen Aktualisierungszyklus von drei bis fünf Jahren. |
 
 ### <a name="current-state-before-adopting-cloud-governance"></a>Aktueller Status vor der Einführung von Cloud Governance
 

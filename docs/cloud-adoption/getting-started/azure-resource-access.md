@@ -1,14 +1,17 @@
 ---
-title: 'CAF: Ressourcenzugriffsverwaltung in Azure'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Ressourcenzugriffsverwaltung in Azure'
 description: 'Erklärung der Konstrukte für die Verwaltung des Ressourcenzugriffs in Azure: Azure Resource Manager, Abonnements, Ressourcengruppen und Ressourcen.'
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.date: 02/11/2019
 author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: f23540a03c82fbc46872645ac0fd82d574db353a
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: a72e9fbd6f5f320440d63d55d4e0f2aa2009a2d1
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898118"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241671"
 ---
 # <a name="resource-access-management-in-azure"></a>Ressourcenzugriffsverwaltung in Azure
 
@@ -55,7 +58,7 @@ In der folgenden Abbildung sind drei Clients dargestellt: [PowerShell](/powershe
 
 Diese Clients stellen zwar über die RESTful-API eine Verbindung mit Resource Manager her, aber Resource Manager umfasst keine Funktionen zum direkten Verwalten von Ressourcen. Stattdessen verfügen die meisten Ressourcentypen in Azure über ihren eigenen [**Ressourcenanbieter**](/azure/azure-resource-manager/resource-group-overview#terminology).
 
-*
+![](../_images/governance-1-14.png)
 *Abbildung 6: Azure-Ressourcenanbieter*
 
 Wenn ein Client eine Anforderung zur Verwaltung einer bestimmten Ressource sendet, stellt Resource Manager eine Verbindung mit dem Ressourcenanbieter für diesen Ressourcentyp her, damit die Anforderung abgeschlossen werden kann. Wenn ein Client beispielsweise eine Anforderung zur Verwaltung einer VM-Ressource sendet, stellt Resource Manager eine Verbindung mit dem Ressourcenanbieter **Microsoft.Compute** her.
@@ -65,7 +68,7 @@ Wenn ein Client eine Anforderung zur Verwaltung einer bestimmten Ressource sende
 
 Resource Manager setzt voraus, dass der Client einen Bezeichner für das Abonnement sowie für die Ressourcengruppe angibt, damit die VM-Ressource verwaltet werden kann.
 
-Nachdem Sie sich mit der Funktionsweise von Resource Manager vertraut gemacht haben, kehren wir zu der Beschreibung zurück, wie ein Azure-Abonnement den von Azure Resource Manager verwendeten Kontrollen zugeordnet ist. Bevor eine Anforderung zur Durchführung der Ressourcenverwaltung von Resource Manager ausgeführt werden kann, werden einige Kontrollmechanismen überprüft.
+Nachdem Sie nun mit der Funktionsweise von Resource Manager vertraut sind, widmen wir uns wieder der Zuordnung eines Azure-Abonnements zu den von Azure Resource Manager verwendeten Kontrollen. Bevor eine Anforderung zur Durchführung der Ressourcenverwaltung von Resource Manager ausgeführt werden kann, werden einige Kontrollmechanismen überprüft.
 
 Die erste Kontrolle besteht darin, dass eine Anforderung von einem geprüften Benutzer durchgeführt werden muss und Resource Manager über eine vertrauenswürdige Beziehung mit [Azure Active Directory (Azure AD)](/azure/active-directory/) verfügt, um die Funktionen für die Benutzeridentität bereitstellen zu können.
 

@@ -4,15 +4,15 @@ titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
-ms.date: 1/4/2019
+ms.date: 01/04/2019
 description: Beispiele für Cost Management-Richtlinienanweisungen
 author: BrianBlanchard
-ms.openlocfilehash: 1c8b94ae5285fa26cdf9760892beaced2487af8b
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 0a81ab8472a97c57f449f2ab2903a69fd35cb45a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902058"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243281"
 ---
 # <a name="cost-management-sample-policy-statements"></a>Beispiele für Cost Management-Richtlinienanweisungen
 
@@ -79,7 +79,7 @@ Verwenden Sie die in diesem Artikel erwähnten Beispiele als Ausgangspunkt für 
 
 Laden Sie die Vorlage [Cost Management](template.md) herunter, um mit der Entwicklung eigener, benutzerdefinierter Richtlinienanweisungen im Zusammenhang mit Cost Management zu beginnen.
 
-Um die Einführung dieser Disziplin zu beschleunigen, wählen Sie [Nützliche Governancevorgehensweisen](../journeys/overview.md) aus, die die höchste Übereinstimmung mit Ihrer Umgebung haben. Ändern Sie dann den Entwurf, um Ihre speziellen Entscheidungen für Unternehmensrichtlinien zu integrieren.
+Um die Einführung dieser Disziplin zu beschleunigen, wählen Sie die [nützliche Governance-Vorgehensweise](../journeys/overview.md) aus, die am besten zu Ihrer Umgebung passt. Ändern Sie dann den Entwurf, um Ihre speziellen Entscheidungen für Unternehmensrichtlinien zu integrieren.
 
 > [!div class="nextstepaction"]
 > [Nützliche Governancevorgehensweisen](../journeys/overview.md)

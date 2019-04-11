@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: 'Große Unternehmen: Entwicklung der Ressourcenkonsistenz'
 author: BrianBlanchard
-ms.openlocfilehash: 9fc6ca015310c02338463d3c8aa53ddfc74699df
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 06d9b8c0007a40fdf0c16d6d5c6e045cab56f0c6
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901633"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242041"
 ---
 # <a name="large-enterprise-resource-consistency-evolution"></a>Große Unternehmen: Entwicklung der Ressourcenkonsistenz
 
@@ -46,8 +46,8 @@ Dieses Geschäftsrisiko lässt sich auf eine Reihe von technischen Risiken auswe
 - Nicht identifizierte oder falsch bezeichnete Ressourcen werden möglicherweise durch die vorhandenen Prozesse des Betriebsmanagements nicht unterstützt.
 - Die Konfiguration der bereitgestellten Ressourcen erfüllt möglicherweise nicht die Leistungserwartungen.
 - Die Protokollierung wird eventuell nicht ordnungsgemäß aufgezeichnet und ist nicht korrekt zentralisiert, um die Behebung der Leistungsprobleme zu ermöglichen.
-- Bei Wiederherstellungsrichtlinien treten möglicherweise Fehler auf, oder ihre Ausführung braucht länger als erwartet.
-- Inkonsistente Bereitstellungsprozesse können Sicherheitslücken herbeiführen, die zu Datenverlusten oder Unterbrechungen führen können.
+- Bei Wiederherstellungsrichtlinien treten möglicherweise Fehler auf, oder ihre Ausführung dauert länger als erwartet.
+- Inkonsistente Bereitstellungsprozesse können Sicherheitslücken verursachen, die zu Datenverlusten oder Unterbrechungen führen können.
 - Konfigurationsabweichungen oder fehlende Patches können unbeabsichtigte Sicherheitslücken zur Folge haben, die zu Datenverlusten oder Unterbrechungen führen können.
 - Die Konfiguration setzt möglicherweise die Anforderungen der definierten SLAs oder der festgeschriebenen Wiederherstellungsanforderungen nicht durch.
 - Die bereitgestellten Betriebssysteme oder Anwendungen genügen eventuell nicht den Härtungsanforderungen an Betriebssysteme und Anwendungen.

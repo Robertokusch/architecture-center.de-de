@@ -1,18 +1,18 @@
 ---
-title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Große Unternehmen – Entwicklung der Sicherheitsbaseline '
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Große Unternehmen: Entwicklung der Sicherheitsbaseline '
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: Große Unternehmen – Entwicklung der Sicherheitsbaseline
+description: 'Große Unternehmen: Entwicklung der Sicherheitsbaseline'
 author: BrianBlanchard
-ms.openlocfilehash: 59fb3655f1ff2a5f0a30abc760c27c77b8f802af
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: e9e8b7dc1eaeb3a8555326a51b2548ad668e0171
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902085"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241611"
 ---
 # <a name="large-enterprise-security-baseline-evolution"></a>Große Unternehmen: Entwicklung der Sicherheitsbaseline
 
@@ -28,7 +28,7 @@ In den letzten zwölf Monaten haben die Cloudeinführungsteams die meisten der 5
 
 Das Cloudgovernanceteam entwickelt sich im Laufe der Geschichte weiter. Die beiden Gründungsmitglieder des Teams gehören jetzt zu den angesehensten Cloudarchitekten im Unternehmen. Die Sammlung von Konfigurationsskripts wächst, während neue Teams innovative neue Bereitstellungen in Angriff nehmen. Auch das Cloudgovernanceteam ist gewachsen. Bis vor kurzem haben Mitglieder des IT-Betriebsteams sich den Aktivitäten des Cloudgovernanceteams angeschlossen, um sich auf Cloudvorgänge vorzubereiten. Die Cloudarchitekten, die diese Community gefördert haben, werden sowohl als Cloudwächter als auch als Cloudbeschleuniger betrachtet.
 
-Der Unterschied ist zwar subtil, aber beim Erstellen einer governancebezogenen IT-Kultur von entscheidender Bedeutung. Ein Cloudverwaltungsberechtigter räumt das Chaos auf, das von innovativen Cloudarchitekten hinterlassen wird, und zwischen den beiden Rollen gibt es natürliche Reibung und gegensätzliche Ziele. Ein Cloudwächter hält die Cloud sicher, damit andere Cloudarchitekten mit weniger Chaos schneller vorankommen. Ein Cloudbeschleuniger führt beide Funktionen durch, ist jedoch auch an der Erstellung von Vorlagen zur Beschleunigung von Bereitstellung und Einführung beteiligt. Damit ist er sowohl Innovationsbeschleuniger als auch Verteidiger der fünf Clouddisziplinen.
+Der Unterschied ist zwar subtil, aber beim Erstellen einer governancebezogenen IT-Kultur von entscheidender Bedeutung. Ein Cloudverwaltungsberechtigter räumt das Chaos auf, das von innovativen Cloudarchitekten hinterlassen wird, und zwischen den beiden Rollen gibt es natürliche Reibung und gegensätzliche Ziele. Ein Cloudwächter hält die Cloud sicher, damit andere Cloudarchitekten mit weniger Chaos schneller vorankommen. Ein Cloudbeschleuniger erfüllt beide Funktionen, ist jedoch auch an der Erstellung von Vorlagen zur Beschleunigung von Bereitstellung und Einführung beteiligt. Damit ist er sowohl Innovationsbeschleuniger als auch Verteidiger der fünf Disziplinen der Cloud-Governance.
 
 ### <a name="evolution-of-the-current-state"></a>Weiterentwicklung des aktuellen Status
 
@@ -75,7 +75,7 @@ Die folgenden Änderungen an der Richtlinie verringern die neuen Risiken und ver
 1. Alle bereitgestellten Ressourcen müssen nach Wichtigkeit und Datenklassifizierung kategorisiert werden. Vor der Bereitstellung in der Cloud müssen die Klassifizierungen durch das Cloudgovernanceteam und die Anwendung überprüft werden.
 2. Anwendungen, die geschützte Daten speichern oder darauf zugreifen, sind anders zu verwalten als Anwendungen, die nicht mit geschützten Daten arbeiten. Zumindest müssen sie segmentiert werden, um einen unbeabsichtigten Zugriff auf geschützte Daten zu vermeiden.
 3. Alle geschützten Daten müssen im Ruhezustand verschlüsselt sein.
-4. Erhöhte Berechtigungen in einem Segment mit geschützten Daten müssen eine Ausnahme bleiben. Solche Ausnahmen werden vom Cloudgovernanceteam erfasst und regelmäßig überwacht.
+4. Erhöhte Berechtigungen in einem Segment mit geschützten Daten müssen eine Ausnahme bleiben. Solche Ausnahmen werden vom Cloud Governance-Team erfasst und regelmäßig überwacht.
 5. Netzwerksubnetze mit geschützten Daten müssen von allen anderen Subnetzen isoliert werden. Der Netzwerkdatenverkehr zwischen Subnetzen mit geschützten Daten wird regelmäßig überwacht.
 6. Kein Subnetz mit geschützten Daten ist direkt über das öffentliche Internet oder rechenzentrumsübergreifend zugänglich. Der Zugriff auf diese Subnetze muss über zwischengeschaltete Subnetzwerke geroutet werden. Der gesamte Zugriff auf diese Subnetze muss über eine Firewalllösung erfolgen, die Funktionen zur Paketüberprüfung und Sperrfunktionen durchführen kann.
 7. Die Anforderungen an die Netzwerkkonfiguration, die vom Sicherheitsmanagementteam definiert wurden, müssen mit Governancetools überwacht und durchgesetzt werden.
@@ -89,14 +89,14 @@ Die folgenden Änderungen an der Richtlinie verringern die neuen Risiken und ver
 15. Der Cloudanbieter muss eine freigegebene Verbindung mit dem globalen WAN unterstützen können, bei der die Datenübertragung über die vorhandene Edge-Gerätelösung geroutet wird.
 16. Trends und Exploits, die mögliche Auswirkungen auf Cloudbereitstellungen haben, müssen vom Sicherheitsteam regelmäßig überprüft werden, damit Updates für in der Cloud verwendete Sicherheitsbaselinetools bereitgestellt werden.
 17. Bereitstellungstools müssen vom Cloudgovernanceteam genehmigt werden, um eine kontinuierliche Governance für bereitgestellte Ressourcen sicherzustellen.
-18. Bereitstellungsskripts müssen in einem zentralen Repository aufbewahrt werden, das für das Cloudgovernanceteam zur regelmäßigen Überprüfung und Überwachung zugänglich ist.
+18. Bereitstellungsskripts müssen in einem zentralen Repository aufbewahrt werden, das für das Cloud Governance-Team zur regelmäßigen Überprüfung und Überwachung zugänglich ist.
 19. Governanceprozesse müssen Überwachungen zum Bereitstellungszeitpunkt und in regelmäßigen Zyklen umfassen, um für alle Ressourcen Konsistenz zu gewährleisten.
 20. Die Bereitstellung von Anwendungen, für die eine Kundenauthentifizierung erforderlich ist, erfordert einen genehmigten Identitätsanbieter, der mit dem primären Identitätsanbieter für interne Benutzer kompatibel ist.
 21. Cloudgovernanceprozesse müssen vierteljährliche Überprüfungen durch Identitätsbasisteams umfassen, um böswillige Akteure oder Nutzungsmuster zu identifizieren, die durch die Cloudressourcenkonfiguration verhindert werden sollten.
 
 ## <a name="evolution-of-the-best-practices"></a>Weiterentwicklung bewährter Methoden
 
-In diesem Abschnitt des Artikels wird der Governance-MVP-Entwurf so weiterentwickelt, dass er neue Azure-Richtlinien und eine Azure Cost Management-Implementierung umfasst. Zusammen erfüllen diese beiden Entwurfsänderungen die neuen Richtlinienanweisungen des Unternehmens.
+In diesem Abschnitt des Artikels wird der Governance-MVP-Entwurf so weiterentwickelt, dass er neue Azure-Richtlinien und eine Implementierung von Azure Cost Management umfasst. Zusammen erfüllen diese beiden Entwurfsänderungen die neuen Richtlinienanweisungen des Unternehmens.
 
 Die neuen bewährten Methoden lassen sich in zwei Kategorien unterteilen: Unternehmens-IT (Hub) und Cloudeinführung (Spoke).
 

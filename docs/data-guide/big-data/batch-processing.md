@@ -6,12 +6,12 @@ ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 6483b600e657cf0325fc63a645621ccf6c404bb4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: ea8eb7ca5e4c06c03729f54428931d28a4f3fa5b
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481982"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243641"
 ---
 # <a name="batch-processing"></a>Batchverarbeitung
 
@@ -53,7 +53,7 @@ Für Batchverarbeitungslösungen in Azure werden folgende Technologien empfohlen
 
 ### <a name="data-storage"></a>Datenspeicher
 
-- **Azure Storage Blob-Container**: Da Azure Blob Storage bereits von vielen Azure-Geschäftsprozessen genutzt wird, ist diese Option eine gute Wahl für einen Big Data-Speicher.
+- **Azure Storage Blob-Container**: Da Azure Blob Storage bereits von vielen Azure-Geschäftsprozessen genutzt wird, ist diese Option eine gute Wahl für einen Big Data-Speicher.
 - **Azure Data Lake Store**. Der nahezu unbegrenzte Speicher für jegliche Dateigröße sowie umfassende Sicherheitsoptionen machen Azure Data Lake Store zu einer guten Wahl für besonders umfangreiche Big Data-Lösungen, die einen zentralen Speicher für Daten in heterogenen Formaten benötigen.
 
 Weitere Informationen finden Sie im Artikel zur [Datenspeicherung](../technology-choices/data-storage.md).

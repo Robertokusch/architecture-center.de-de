@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Beschleunigung der Bereitstellung – Beispiele für Richtlinienanweisungen
 author: alexbuckgit
-ms.openlocfilehash: 4f7d59e6653c29db03f966d1c7105524b72586fc
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 2bd134a0bff0bd159279cd463d99b2adb41a8791
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901826"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242501"
 ---
 # <a name="deployment-acceleration-sample-policy-statements"></a>Beschleunigung der Bereitstellung – Beispiele für Richtlinienanweisungen
 
@@ -57,7 +57,7 @@ Verwenden Sie die in diesem Artikel erwähnten Beispiele als Ausgangspunkt für 
 
 Laden Sie die Vorlage [Identitätsbaseline](template.md) herunter, um mit der Entwicklung eigener, benutzerdefinierter Richtlinienanweisungen im Zusammenhang mit der Identitätsverwaltung zu beginnen.
 
-Um die Einführung dieser Disziplin zu beschleunigen, wählen Sie [Nützliche Governance-Vorgehensweisen](../journeys/overview.md) aus, die die höchste Übereinstimmung mit Ihrer Umgebung haben. Ändern Sie dann den Entwurf, um Ihre speziellen Entscheidungen für Unternehmensrichtlinien zu integrieren.
+Um die Einführung dieser Disziplin zu beschleunigen, wählen Sie die [nützliche Governance-Vorgehensweise](../journeys/overview.md) aus, die am besten zu Ihrer Umgebung passt. Ändern Sie dann den Entwurf, um Ihre speziellen Entscheidungen für Unternehmensrichtlinien zu integrieren.
 
 > [!div class="nextstepaction"]
-> [Nützliche Governance-Vorgehensweisen](../journeys/overview.md)
+> [Nützliche Governancevorgehensweisen](../journeys/overview.md)

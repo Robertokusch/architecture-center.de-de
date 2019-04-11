@@ -1,25 +1,25 @@
 ---
-title: 'CAF: Kleine bis mittlere Unternehmen – anfängliche Unternehmensrichtlinie hinter der Governancestrategie'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Kleine bis mittlere Unternehmen: anfängliche Unternehmensrichtlinie hinter der Governancestrategie'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
-ms.date: 2/11/2019
-description: Kleine bis mittlere Unternehmen – anfängliche Unternehmensrichtlinie hinter der Governancestrategie
+ms.date: 02/11/2019
+description: 'Kleine bis mittlere Unternehmen: anfängliche Unternehmensrichtlinie hinter der Governancestrategie'
 author: BrianBlanchard
-ms.openlocfilehash: 4f49d0aae2c6ab5a5c8feba669cbbb904af2773b
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 35c9398684416b5f4df1d5ea69ac3634b2f73ff3
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900784"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241601"
 ---
-# <a name="small-to-medium-enterprise-initial-corporate-policy-behind-the-governance-strategy"></a>Kleine bis mittlere Unternehmen: Anfängliche Unternehmensrichtlinie hinter der Governancestrategie
+# <a name="small-to-medium-enterprise-initial-corporate-policy-behind-the-governance-strategy"></a>Kleines bis mittleres Unternehmen: Anfängliche Unternehmensrichtlinie hinter der Governancestrategie
 
 Die folgende Unternehmensrichtlinie definiert eine anfängliche Governanceposition, die der Ausgangspunkt für diese Governance Journey ist. In diesem Artikel werden Risiken in einem frühen Stadium, anfängliche Richtlinienanweisungen und frühe Prozesse zum Durchsetzen von Richtlinienanweisungen definiert.
 
 > [!NOTE]
->Die Unternehmensrichtlinie ist kein technisches Dokument, gibt aber den Anstoß zu vielen technischen Entscheidungen. Die in der [Übersicht](./overview.md) beschriebene Governance-MVP ist letztlich von dieser Richtlinie abgeleitet. Vor der Implementierung eines Governance-MVP sollte Ihre Organisation eine Unternehmensrichtlinie entwickeln, die auf Ihren eigenen Zielen und geschäftlichen Risiken basiert.
+>Die Unternehmensrichtlinie ist kein technisches Dokument, gibt aber den Anstoß zu vielen technischen Entscheidungen. Das in der [Übersicht](./overview.md) beschriebene Governance-MVP ist letztlich von dieser Richtlinie abgeleitet. Vor der Implementierung eines Governance-MVP sollte Ihre Organisation eine Unternehmensrichtlinie entwickeln, die auf Ihren eigenen Zielen und geschäftlichen Risiken basiert.
 
 ## <a name="cloud-governance-team"></a>Cloudgovernanceteam
 

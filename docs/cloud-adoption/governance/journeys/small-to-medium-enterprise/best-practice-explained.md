@@ -1,20 +1,20 @@
 ---
-title: 'CAF: Kleine bis mittlere Unternehmen – zusätzliche technische Details in Bezug auf das Governance-MVP'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Kleine bis mittlere Unternehmen: Beschreibung der bewährten Methode'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 'Erläuterung: Kleine bis mittlere Unternehmen – zusätzliche technische Details in Bezug auf das Governance-MVP'
+description: 'Kleine bis mittlere Unternehmen: Beschreibung der bewährten Methode'
 author: BrianBlanchard
-ms.openlocfilehash: e726213459c8bee63e3cc77ab54868fe7196b3ac
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: c3b4ab69e3cf5f664a5297d7bc3c2460d8d5d182
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901560"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243691"
 ---
-# <a name="small-to-medium-enterprise-best-practice-explained"></a>Kleine bis mittlere Unternehmen: Beschreibung der bewährten Methode
+# <a name="small-to-medium-enterprise-best-practice-explained"></a>Kleines bis mittleres Unternehmen: Beschreibung der bewährten Methode
 
 Der Governanceprozess beginnt mit einer Sammlung von anfänglichen [Unternehmensrichtlinien](./initial-corporate-policy.md). Diese Richtlinien werden verwendet, um ein Governance-MVP einzurichten, das [bewährte Methoden](./overview.md) berücksichtigt.
 
@@ -22,7 +22,7 @@ In diesem Artikel werden die allgemeinen Strategien behandelt, die zum Erstellen
 
 ## <a name="governance-mvp-cloud-adoption-foundation"></a>Governance-MVP (Cloud Adoption Foundation)
 
-Die schnelle Einführung von Governance und Unternehmensrichtlinien ist dank einiger einfacher Prinzipien und cloudbasierter Governancetools möglich. Dies sind die ersten der drei Cloud Governance-Verfahren, die in jedem Governanceprozess zur Anwendung kommen. Jedes dieser Verfahren wird in diesem Artikel behandelt.
+Die schnelle Einführung von Governance und Unternehmensrichtlinien ist dank einiger einfacher Prinzipien und cloudbasierter Governancetools möglich. Dies sind die ersten drei Disziplinen, die in jedem Governanceprozess enthalten sind. Jedes dieser Verfahren wird in diesem Artikel behandelt.
 
 Als Ausgangspunkt werden in diesem Artikel die High-Level-Strategien hinter Identitätsbaseline, Sicherheitsbaseline und Beschleunigung der Bereitstellung behandelt, die für die Erstellung eines Governance-MVP erforderlich sind, das als Grundlage für jede Umsetzung dient.
 
@@ -105,7 +105,7 @@ Wenn eines der in dieser Governancelösung ausgewählten Muster nicht mit den An
 - [Protokollierungs- und Berichterstellungsmuster](../../../decision-guides/log-and-report/overview.md)
 - [Richtliniendurchsetzungsmuster](../../../decision-guides/policy-enforcement/overview.md)
 - [Ressourcenkonsistenzmuster](../../../decision-guides/resource-consistency/overview.md)
-- [Ressourcentaggingmuster](../../../decision-guides/resource-tagging/overview.md)
+- [Ressourcenkennzeichnungsmuster](../../../decision-guides/resource-tagging/overview.md)
 - [Softwaredefinierte Netzwerkmuster](../../../decision-guides/software-defined-network/overview.md)
 - [Abonnemententwurfsmuster](../../../decision-guides/subscriptions/overview.md)
 

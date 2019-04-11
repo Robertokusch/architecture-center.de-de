@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: 'Sicherheitsbaseline: Prozesse für Richtlinienkonformität'
 author: BrianBlanchard
-ms.openlocfilehash: 8f115436d7021fe725118dcc0dfd64167c4cbfa1
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 4002791808a0e02fed9bf8564e5851b3b6360221
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901989"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243651"
 ---
 # <a name="security-baseline-policy-compliance-processes"></a>Sicherheitsbaseline: Prozesse für Richtlinienkonformität
 

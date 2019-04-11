@@ -1,18 +1,18 @@
 ---
-title: 'CAF: Große Unternehmen: zusätzliche technische Details in Bezug auf Governance-MVP'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Große Unternehmen: Beschreibung der bewährten Methode'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 'Große Unternehmen: zusätzliche technische Details in Bezug auf Governance-MVP'
+description: 'Große Unternehmen: Beschreibung der bewährten Methode'
 author: BrianBlanchard
-ms.openlocfilehash: 50b0ae1ebb386d2f0b693a347d599ff29680a9cb
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: db630b93cd9d5118a8fc29b424ef78e0c1d8848a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901741"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241631"
 ---
 # <a name="large-enterprise-best-practice-explained"></a>Große Unternehmen: Beschreibung der bewährten Methode
 
@@ -90,7 +90,7 @@ Einige der Richtlinienanweisungen können oder sollten nicht durch automatisiert
 
 **Schulung der Techniker**: Das Cloud Governance-Team bietet alle zwei Monate Schulungen an und hat zwei Videos für Techniker erstellt. Beide Ressourcen helfen Technikern, schnell mit der Governance-Kultur und der Durchführung von Bereitstellungen vertraut zu werden. Das Team fügt Schulungsressourcen hinzu, die den Unterschied zwischen Produktions- und Nicht-Produktionsbereitstellungen zeigen, was Technikern das Verständnis erleichtert, wie sich die neuen Richtlinien auf die Einführung auswirken. Dadurch sind konsistente Bereitstellungen sichergestellt, ohne dass die Einhaltung streng durchgesetzt werden müsste.
 
-**Bereitstellungsplanung**: Vor der Bereitstellung von Ressourcen, die geschützte Daten enthalten, ist das Cloud Governance-Team für die Überprüfung der Bereitstellungsskripts verantwortlich, um die Ausrichtung von Governance zu überprüfen. Vorhandene Teams mit bereits genehmigten Bereitstellungen werden mithilfe von programmgesteuerten Tools überprüft.
+**Bereitstellungsplanung**: Vor der Bereitstellung von Ressourcen, die geschützte Daten enthalten, muss das Cloud Governance-Team anhand der Bereitstellungsskripts die Governanceausrichtung überprüfen. Vorhandene Teams mit bereits genehmigten Bereitstellungen werden mithilfe von programmgesteuerten Tools überprüft.
 
 **Monatliche Überprüfung und Berichterstellung**: Jeden Monat führt das Cloud Governance-Team eine Überprüfung aller Cloudbereitstellungen durch, um die kontinuierliche Einhaltung der Richtlinien zu überprüfen. Wenn Abweichungen festgestellt werden, werden sie dokumentiert und an die Cloudeinführungsteams weitergegeben. Wenn die Durchsetzung keine Betriebsunterbrechung oder Datenlecks zur Folge hat, werden die Richtlinien automatisch durchgesetzt. Am Ende der Überprüfung erstellt das Cloud Governance-Team einen Bericht für das Cloud Strategy-Team und jedes Cloudeinführungsteam, um die allgemeine Einhaltung der Richtlinien zu kommunizieren. Der Bericht wird auch für prüfungsbezogene und rechtliche Zwecke gespeichert.
 

@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 6c9a2b4fe513c959e537f705beb1c024b54c7b50
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: df7c638f5ebeedcd4e04574afb655b1ac5ea65c8
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485447"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58249265"
 ---
 # <a name="linux-n-tier-application-in-azure-with-apache-cassandra"></a>n-schichtige Linux-Anwendung in Azure mit Apache Cassandra
 
@@ -57,7 +57,7 @@ Ihre Anforderungen können von der hier beschriebenen Architektur abweichen. Ver
 
 Legen Sie bei der Erstellung des VNET fest, wie viele IP-Adressen Ihre Ressourcen in jedem Subnetz benötigen. Geben Sie mithilfe der [CIDR] eine Subnetzmaske und einen VNET-Adressbereich an, der für die erforderlichen IP-Adressen groß genug ist. Verwenden Sie einen Adressraum, der in die standardmäßigen [privaten IP-Adressblöcke][private-ip-space] 10.0.0.0/8, 172.16.0.0/12 und 192.168.0.0/16 fällt.
 
-Wählen Sie einen Adressbereich aus, der sich nicht mit Ihrem lokalen Netzwerk überschneidet, für den Fall, dass Sie später ein Gateway zwischen dem VNET und dem lokalen Netzwerk einrichten müssen. Sobald Sie das VNET erstellt haben, können Sie den Adressbereich nicht mehr ändern.
+Wählen Sie für den Fall, dass Sie später ein Gateway zwischen dem VNET und Ihrem lokalen Netzwerk einrichten müssen, einen Adressbereich aus, der sich nicht mit Ihrem lokalen Netzwerk überschneidet. Sobald Sie das VNET erstellt haben, können Sie den Adressbereich nicht mehr ändern.
 
 Entwerfen Sie Subnetze unter Berücksichtigung der Funktionalität und Sicherheitsanforderungen. Alle VMs innerhalb derselben Schicht oder Rolle sollten im selben Subnetz platziert werden, was eine Sicherheitsbegrenzung darstellen kann. Weitere Informationen zum Entwerfen von VNETs und Subnetzen finden Sie unter [Planen und Entwerfen von Azure Virtual Networks][plan-network].
 
@@ -156,7 +156,7 @@ Eine Bereitstellung für diese Referenzarchitektur ist auf [GitHub][github-folde
 
 Um die Linux VMs für eine n-schichtige Anwendungsreferenzarchitektur bereitzustellen, führen Sie die folgenden Schritte aus:
 
-1. Navigieren Sie zum `virtual-machines\n-tier-linux`-Ordner für das Repository, das Sie oben in Schritt 1 der Voraussetzungen als Klon erstellt haben.
+1. Navigieren Sie zum Ordner `virtual-machines\n-tier-linux` für das Repository, das Sie weiter oben in Schritt 1 der Voraussetzungen geklont haben.
 
 2. Die Parameterdatei gibt einen Standard-Administratorbenutzernamen und ein Standardkennwort für jeden virtuellen Computer in der Bereitstellung an. Ändern Sie diese Informationen, bevor Sie die Referenzarchitektur bereitstellen. Öffnen Sie die `n-tier-linux.json`-Datei, und ersetzen Sie jedes Feld **adminUsername** und **adminPassword** durch neue Einstellungen.   Speichern Sie die Datei .
 

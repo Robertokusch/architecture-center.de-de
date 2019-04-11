@@ -1,20 +1,20 @@
 ---
-title: 'CAF: Kleine bis mittlere Unternehmen – Multi-Cloud-Entwicklung'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Kleine bis mittlere Unternehmen: Multi-Cloud-Entwicklung'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: Erläuterung für kleine bis mittlere Unternehmen – Multi-Cloud-Entwicklung
+description: 'Kleine bis mittlere Unternehmen: Multi-Cloud-Entwicklung'
 author: BrianBlanchard
-ms.openlocfilehash: a5b09c92acc4e165590b5a35827b88b0ca099bed
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 8bfe56f999ddef9d954fad9a157277301d81a98e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902053"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243661"
 ---
-# <a name="small-to-medium-enterprise-multi-cloud-evolution"></a>Kleine bis mittlere Unternehmen: Multi-Cloud-Entwicklung
+# <a name="small-to-medium-enterprise-multi-cloud-evolution"></a>Kleines bis mittleres Unternehmen: Multi-Cloud-Entwicklung
 
 Dieser Artikel trägt durch neue Steuerungen für die Multi-Cloud-Entwicklung zum Thema bei.
 
@@ -22,7 +22,7 @@ Dieser Artikel trägt durch neue Steuerungen für die Multi-Cloud-Entwicklung zu
 
 Microsoft ist sich bewusst, dass Kunden mehrere Clouds für bestimmte Zwecke nutzen. Der fiktive Kunde in diesem Beitrag ist dazu keine Ausnahme. Parallel zur Einführung von Azure hat der geschäftliche Erfolg zur Übernahme eines kleinen, aber ergänzenden Unternehmens geführt. Das Unternehmen führt sämtliche IT-Vorgänge bei einem anderen Cloudanbieter aus.
 
-In diesem Artikel wird beschrieben, wie sich die Dinge ändern, wenn die neue Organisation integriert wird. Im Rahmen der Geschichte wird davon ausgegangen, dass dieses Unternehmen alle Entwicklungsschritte zur Governance abgeschlossen hat, die in dieser Kundenjourney beschrieben wurden.
+In diesem Artikel wird beschrieben, wie sich die Dinge ändern, wenn die neue Organisation integriert wird. Im Rahmen der Lösung wird davon ausgegangen, dass dieses Unternehmen alle Entwicklungsschritte zur Governance abgeschlossen hat, die in dieser Customer Journey beschrieben wurden.
 
 ### <a name="evolution-of-the-current-state"></a>Weiterentwicklung des aktuellen Status
 
@@ -32,18 +32,18 @@ Seit diesem Zeitpunkt haben sich einige Dinge geändert, die sich auf die Govern
 
 - Die Identitäten werden von einer lokalen Instanz von Active Directory gesteuert. Hybrididentitäten werden über die Replikation in Azure Active Directory umgesetzt.
 - IT- oder Cloudvorgänge werden hauptsächlich über Azure Monitor und ähnliche Automatisierungen verwaltetet.
-- Notfallwiederherstellung und Geschäftskontinuität werden über Instanzen von Azure Key Vault gesteuert.
+- Notfallwiederherstellung und Geschäftskontinuität werden von Azure Vault-Instanzen kontrolliert.
 - Für die Überwachung von Sicherheitsverletzungen und Angriffen wird Azure Security Center genutzt.
 - Azure Security Center und Azure Monitor werden zusammen für die Überwachung der Governance in der Cloud verwendet.
 - Azure Blueprints, Azure Policy und Azure-Verwaltungsgruppen werden verwendet, um die Richtlinienkonformität zu automatisieren.
 
 ### <a name="evolution-of-the-future-state"></a>Weiterentwicklung des zukünftigen Status
 
-Ziel des Unternehmens ist die Integration des übernommenen Unternehmens in bestehende Vorgänge – wo immer dies möglich ist.
+Das Ziel ist die Integration des übernommenen Unternehmens in den bestehenden Betrieb, wo immer dies möglich ist.
 
 ## <a name="evolution-of-tangible-risks"></a>Weiterentwicklung materieller Risiken
 
-**Kosten der Geschäftsübernahme:** Die Übernahme des neuen Unternehmens soll sich in ungefähr fünf Jahren amortisieren. Aufgrund der langsamen Rendite möchte die Leitung die Anschaffungskosten so weit wie möglich steuern. Es besteht das Risiko, dass es zu Konflikten zwischen Kostenkontrolle und technischer Integration kommt.
+**Kosten der Geschäftsübernahme:** Die Übernahme des neuen Unternehmens soll sich in ungefähr fünf Jahren amortisieren. Aufgrund der langsamen Rendite will der Vorstand die Anschaffungskosten so weit wie möglich kontrollieren. Es besteht das Risiko, dass es zu Konflikten zwischen Kostenkontrolle und technischer Integration kommt.
 
 Dieses Unternehmensrisiko lässt sich auf einige technische Risiken erweitern:
 
@@ -60,7 +60,7 @@ Die folgenden Änderungen an der Richtlinie verringern die neuen Risiken und ver
 
 ## <a name="evolution-of-the-best-practices"></a>Weiterentwicklung bewährter Methoden
 
-In diesem Abschnitt des Artikels wird der Governance-MVP-Entwurf so weiterentwickelt, dass er neue Azure-Richtlinien und eine Azure Cost Management-Implementierung umfasst. Zusammen erfüllen diese beiden Entwurfsänderungen die neuen Richtlinienanweisungen des Unternehmens.
+In diesem Abschnitt des Artikels wird der Governance-MVP-Entwurf so weiterentwickelt, dass er neue Azure-Richtlinien und eine Implementierung von Azure Cost Management umfasst. Zusammen erfüllen diese beiden Entwurfsänderungen die neuen Richtlinienanweisungen des Unternehmens.
 
 1. Verbinden der Netzwerke: Dieser Schritt wird von den Netzwerk- und IT-Sicherheitsteams ausgeführt, die dabei vom Cloudgovernanceteam unterstützt werden. Das Hinzufügen einer Verbindung vom MPLS-/Standleitungsanbieters in die neue Cloud schließt Netzwerke ein. Über das Hinzufügen von Routingtabellen und Firewallkonfigurationen werden der Zugriff und der Datenverkehr zwischen den Umgebungen gesteuert.
 2. Konsolidieren der Identitätsanbieter: Abhängig von den Workloads, die in der sekundären Cloud gehostet werden, gibt es mehrere Optionen für das Zusammenführen der Identitätsanbieter. Im Folgenden finden Sie einige Beispiele:

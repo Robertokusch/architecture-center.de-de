@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, SAP
-ms.openlocfilehash: 711e233de534597f9cd06ccaa95481a51acc4468
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 6b7c14076e7a86d570dec72bd408a7bc526e8886
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485340"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248107"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>Ausführen von SAP HANA in Azure (große Instanzen)
 
@@ -56,7 +56,7 @@ Die Anforderungen können unterschiedlich sein, daher sollten Sie diese Empfehlu
 
 ### <a name="hana-large-instances-compute"></a>Compute mit großen HANA-Instanzen
 
-[Große Instanzen][physical] sind physische Server, die auf der EX E7-CPU-Architektur von Intel basieren und in einem großen Instanzstempel konfiguriert sind, d.h. in einem bestimmten Satz von Servern oder Blades. Eine Compute-Einheit entspricht einem Server oder Blade, und ein Stempel setzt sich aus mehreren Servern oder Blades zusammen. In einem großen Instanzstempel werden Server nicht gemeinsam verwendet und sind für die Ausführung der SAP HANA-Bereitstellung eines Kunden reserviert.
+[Große Instanzen][physical] sind physische Server, die auf der EX E7-CPU-Architektur von Intel basieren und in einem Umfeld für große Instanzen (also in einer bestimmten Gruppe von Servern oder Blades) konfiguriert sind. Eine Compute-Einheit entspricht einem Server oder Blade, und ein Stempel setzt sich aus mehreren Servern oder Blades zusammen. In einem großen Instanzstempel werden Server nicht gemeinsam verwendet und sind für die Ausführung der SAP HANA-Bereitstellung eines Kunden reserviert.
 
 Eine Vielzahl von SKUs sind für große HANA-Instanzen verfügbar und unterstützen bei einer Einzelinstanz bis zu 20 TB (60 TB horizontale Skalierung) Speicher für S/4HANA- oder andere SAP HANA-Workloads. [Zwei Klassen][classes] von Servern werden angeboten:
 
@@ -78,7 +78,7 @@ Um hohe Verfügbarkeit am primären Standort zu unterstützen, verwenden Sie unt
 
 ### <a name="networking"></a>Netzwerk
 
-Diese Architektur verwendet virtuelle und physische Netzwerke. Das virtuelle Netzwerk ist Bestandteil von Azure IaaS und stellt eine Verbindung mit einem diskreten physischen Netzwerk mit großen HANA-Instanzen über [ExpressRoute][expressroute]-Verbindungen her. Ein standortübergreifendes Gateway verbindet Ihre Workloads im virtuellen Azure-Netzwerk mit Ihren lokalen Standorten.
+Diese Architektur verwendet virtuelle und physische Netzwerke. Das virtuelle Netzwerk ist Bestandteil von Azure IaaS und stellt eine Verbindung mit einem diskreten physischen Netzwerk mit großen HANA-Instanzen über [ExpressRoute][expressroute]-Verbindungen her. Ein standortübergreifendes Gateway verbindet Ihre Workloads im virtuellen Azure-Netzwerk mit Ihren lokalen Standorten.
 
 Netzwerke mit großen HANA-Instanzen werden aus Sicherheitsgründen voneinander isoliert. Instanzen, die sich in unterschiedlichen Regionen befinden, kommunizieren mit Ausnahme der dedizierten Speicherreplikation nicht miteinander. Um HSR verwenden zu können, ist jedoch Kommunikation zwischen den Regionen erforderlich. [IP-Routingtabellen][ip] oder Proxys können verwendet werden, um regionsübergreifende HSR zu aktivieren.
 

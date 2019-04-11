@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Beispiele für Richtlinienanweisungen der Identitätsbaseline
 author: BrianBlanchard
-ms.openlocfilehash: 5fad9265b9c048ee502c7e084ddd03faa0ad3e23
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 5a106dc73cfc1fc97084853507372610b3f1c69c
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902034"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246481"
 ---
 # <a name="identity-baseline-sample-policy-statements"></a>Beispiele für Richtlinienanweisungen der Identitätsbaseline
 
@@ -81,7 +81,7 @@ Verwenden Sie die in diesem Artikel erwähnten Beispiele als Ausgangspunkt für 
 
 Um mit der Entwicklung Ihrer eigenen, benutzerdefinierten Richtlinienanweisungen mit Bezug auf die Identitätsbaseline zu beginnen, laden Sie die [Vorlage für die Identitätsbaseline](template.md) herunter.
 
-Um die Einführung dieser Disziplin zu beschleunigen, wählen Sie [Nützliche Governance-Vorgehensweisen](../journeys/overview.md) aus, die die höchste Übereinstimmung mit Ihrer Umgebung haben. Ändern Sie dann den Entwurf, um Ihre speziellen Entscheidungen für Unternehmensrichtlinien zu integrieren.
+Um die Einführung dieser Disziplin zu beschleunigen, wählen Sie die [nützliche Governance-Vorgehensweise](../journeys/overview.md) aus, die am besten zu Ihrer Umgebung passt. Ändern Sie dann den Entwurf, um Ihre speziellen Entscheidungen für Unternehmensrichtlinien zu integrieren.
 
 > [!div class="nextstepaction"]
-> [Nützliche Governance-Vorgehensweisen](../journeys/overview.md)
+> [Nützliche Governancevorgehensweisen](../journeys/overview.md)

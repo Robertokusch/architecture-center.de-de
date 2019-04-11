@@ -1,20 +1,20 @@
 ---
-title: 'CAF: Kleine bis mittlere Unternehmen – Entwicklung der Sicherheitsbaseline'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Kleine bis mittlere Unternehmen: Entwicklung der Sicherheitsbaseline'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 'Erläuterung: Kleine bis mittlere Unternehmen – Entwicklung der Sicherheitsbaseline'
+description: 'Erläuterung für kleine bis mittlere Unternehmen: Entwicklung der Sicherheitsbaseline'
 author: BrianBlanchard
-ms.openlocfilehash: 5714b886ef63cc2392905250d97ea905839f6011
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 05bb2f7023c999cdf7154b8189a104ba06950720
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901463"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58238814"
 ---
-# <a name="caf-small-to-medium-enterprise-security-baseline-evolution"></a>CAF: Kleine bis mittlere Unternehmen: Entwicklung der Sicherheitsbaseline
+# <a name="caf-small-to-medium-enterprise-security-baseline-evolution"></a>Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Kleine bis mittlere Unternehmen: Entwicklung der Sicherheitsbaseline
 
 In diesem Artikel wird die Geschichte weiterentwickelt. Es werden Sicherheitskontrollen hinzugefügt, die das Verschieben geschützter Daten in die Cloud unterstützen.
 
@@ -24,9 +24,9 @@ IT- und Unternehmensführung waren mit den Ergebnissen der frühen Experimente d
 
 ### <a name="evolution-of-the-cloud-governance-team"></a>Entwicklung des Cloud Governance-Teams
 
-Angesichts der Auswirkungen der sich ändernden Geschichte und der bisher geleisteten Unterstützung wird das Cloud Governance-Team nun anders beurteilt. Die beiden Systemadministratoren, die das Team gegründet haben, gelten heute als erfahrene Cloudarchitekten. Während sich dieser Geschichte entwickelt, wird sich die Wahrnehmung von ihnen verschieben: aus einer Cloudverwalter- zu einer Cloudwächterrolle.
+Angesichts der Auswirkungen der sich verändernden Darstellung und der bisher geleisteten Unterstützung wird das Cloud Governance-Team nun anders beurteilt. Die beiden Systemadministratoren, die das Team gegründet haben, gelten heute als erfahrene Cloudarchitekten. Während sich dieser Geschichte entwickelt, wird sich die Wahrnehmung von ihnen verschieben: aus einer Cloudverwalter- zu einer Cloudwächterrolle.
 
-Obwohl der Unterschied subtil ist, ist dies eine wichtige Unterscheidung beim Erstellen einer governanceorientierten IT-Kultur. Ein Cloudverwalter bereinigt die Unordnung, die innovative Cloudarchitekten hinterlassen haben. Die beiden Rollen besitzen eine natürliche Reibung und gegensätzliche Ziele. Auf der anderen Seite trägt ein Cloudwächter zur Sicherheit der Cloud bei, sodass andere Cloudarchitekten schneller und mit weniger Unordnung arbeiten können. Darüber hinaus ist ein Cloudwächter an der Erstellung von Vorlagen beteiligt, die die Bereitstellung und Einführung beschleunigen. Er wird daher zu einem Innovationsbeschleuniger sowie einem Verteidiger der fünf Clouddisziplinen.
+Obwohl der Unterschied subtil ist, ist dies eine wichtige Unterscheidung beim Erstellen einer governanceorientierten IT-Kultur. Ein Cloudverwalter bereinigt die Unordnung, die innovative Cloudarchitekten hinterlassen haben. Die beiden Rollen besitzen eine natürliche Reibung und gegensätzliche Ziele. Auf der anderen Seite trägt ein Cloudwächter zur Sicherheit der Cloud bei, sodass andere Cloudarchitekten schneller und mit weniger Unordnung arbeiten können. Darüber hinaus ist ein Cloudwächter an der Erstellung von Vorlagen beteiligt, die die Bereitstellung und Einführung beschleunigen. Er wird daher zu einem Innovationsbeschleuniger sowie zu einem Verteidiger der fünf Disziplinen der Cloud-Governance.
 
 ### <a name="evolution-of-the-current-state"></a>Weiterentwicklung des aktuellen Status
 
@@ -127,7 +127,7 @@ Das Hinzufügen der oben genannten Prozesse und Änderungen am Governance-MVP wi
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Mit der Weiterentwicklung der Cloudeinführung und der damit verbundenen Steigerung des Geschäftswerts entwickeln sich auch die Risiken und Anforderungen an Cloud Governance. Für das fiktive Unternehmen in dieser Lösung ist der nächste Schritt die Unterstützung unternehmenskritischer Workloads. Dies ist der Punkt, an dem Kontrollen der Ressourcenkonsistenz erforderlich sind.
+Mit der Weiterentwicklung der Cloudeinführung und der damit verbundenen Steigerung des Geschäftswerts entwickeln sich auch die Risiken und Anforderungen an Cloud Governance. Für das fiktive Unternehmen in diesem Beispiel besteht der nächste Schritt darin, unternehmenskritische Workloads zu unterstützen. An diesem Punkt werden Steuerelemente zur Ressourcenkonsistenz benötigt.
 
 > [!div class="nextstepaction"]
 > [Entwicklung der Ressourcenkonsistenz](./resource-consistency-evolution.md)

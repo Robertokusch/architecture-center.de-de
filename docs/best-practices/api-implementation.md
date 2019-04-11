@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 9b6bef0fd803db5b488e93d246642d4e3681a94c
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 7a484aa9e4fde8fd5056608ca5dd98aefbc077b7
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897761"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244231"
 ---
 # <a name="api-implementation"></a>API-Implementierung
 
@@ -582,7 +582,7 @@ ServicePoint sp = ServicePointManager.FindServicePoint(uri);
 sp.Expect100Continue = false;
 ```
 
-Sie können auch die statische `Expect100Continue`-Eigenschaft der `ServicePointManager`-Klasse festlegen, um den Standardwert dieser Eigenschaft für alle nachfolgend erstellten [ServicePoint]](/dotnet/api/system.net.servicepoint)-Objekte anzugeben.
+Sie können die statische Eigenschaft `Expect100Continue` der Klasse `ServicePointManager` auch so festlegen, dass der Standardwert dieser Eigenschaft für alle nachfolgend erstellten Objekte vom Typ [ServicePoint](/dotnet/api/system.net.servicepoint) angegeben wird.
 
 ### <a name="support-pagination-for-requests-that-may-return-large-numbers-of-objects"></a>Unterstützen der Paginierung für Anforderungen, bei denen ggf. eine große Zahl von Objekten zurückgegeben wird
 

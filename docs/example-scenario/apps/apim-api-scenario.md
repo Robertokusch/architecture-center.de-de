@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-apim-api-scenario.png
-ms.openlocfilehash: cf3d4b7ed7fce04e6688f68e382caeec78abd100
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: d0ced674048c3819369555f044b1e452ff79e923
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54907961"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243581"
 ---
 # <a name="migrating-a-legacy-web-application-to-an-api-based-architecture-on-azure"></a>Migrieren einer älteren Webanwendung zu einer API-basierten Architektur in Azure
 
@@ -49,7 +49,7 @@ Die neue Benutzeroberfläche wird als PaaS-Anwendung (Platform-as-a-Service) in 
     - Die neue API wird als eine [Azure-PaaS-Web-API-App][azure-api-apps] entwickelt und veröffentlicht.
     - Die neue API wird auf die Whitelist gesetzt (über [Web-App-Einstellungen][azure-appservice-ip-restrict]), um nur die [virtuelle IP (VIP) der APIM-Instanz][apim-faq-vip] zu akzeptieren.
     - Die neue API wird mit aktiviertem sicheren Transport/SSL-Protokoll in Azure-Web-Apps gehostet.
-    - Für die neue API ist die Autorisierung aktiviert. Diese wird von [Azure App Service][azure-appservice-auth] mithilfe von Azure Active Directory und OAuth2 bereitgestellt.
+    - Für die neue API ist die Autorisierung aktiviert. Diese wird von [Azure App Service][azure-appservice-auth] mithilfe von Azure Active Directory und OAuth 2 bereitgestellt.
 5. Die neue browserbasierte Webanwendung ist für die vorhandene HTTP-API **und** die neue API von der Azure API Management-Instanz abhängig.
 
 Die APIM-Instanz wird so konfiguriert, dass sie die älteren HTTP-Dienste einem neuen API-Vertrag zuordnet. Der neuen Webbenutzeroberfläche ist die Integration einer Gruppe von älteren Diensten/APIs und neuen APIs daher nicht bekannt. Das Projektteam wird in der Zukunft schrittweise Funktionen zu den neuen APIs portieren und die ursprünglichen Dienste außer Betrieb setzen. Diese Änderungen werden in der APIM-Konfiguration vorgenommen, sodass die Front-End-Benutzeroberfläche davon nicht betroffen ist und Neuentwicklungen vermieden werden.

@@ -7,19 +7,19 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Beispiele für Richtlinienanweisungen der Ressourcenkonsistenz
 author: BrianBlanchard
-ms.openlocfilehash: 9217ae73b0edf5b40bedac1cdc961b7a34da87d1
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 1336d349825b2b87d072f70b99d94dca57249bda
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901470"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241961"
 ---
 # <a name="resource-consistency-sample-policy-statements"></a>Beispiele für Richtlinienanweisungen der Ressourcenkonsistenz
 
 Einzelne Cloudrichtlinienanweisungen sind Anleitungen für den Umgang mit bestimmten Risiken, die während Ihres Risikobewertungsprozesses identifiziert wurden. Diese Anweisungen sollten eine präzise Zusammenfassung der Risiken sowie der Pläne für den Umgang mit diesen bereitstellen. Jede Anweisungsdefinition sollte diese Informationen enthalten:
 
-- Technisches Risiko: Eine Zusammenfassung des Risikos, das diese Richtlinie behandelt.
-- Richtlinienanweisung: Eine klare, zusammenfassende Erläuterung der Anforderungen der Richtlinie.
+- Technisches Risiko: eine Zusammenfassung des Risikos, das diese Richtlinie behandelt.
+- Richtlinienanweisung: eine klare, zusammenfassende Erläuterung der Anforderungen der Richtlinie.
 - Entwurfsoptionen: Direkt umsetzbare Empfehlungen, Spezifikationen oder anderen Anleitungen, die IT-Teams und Entwickler bei der Implementierung der Richtlinie verwenden können.
 
 Die folgenden Beispielrichtlinienanweisungen behandeln eine Reihe von allgemeinen Geschäftsrisiken im Zusammenhang mit der Ressourcenkonsistenz und sollen Ihnen als Beispiele dienen, auf die Sie sich beim Entwerfen von Richtlinienanweisungen beziehen können, um die Anforderungen Ihrer eigenen Organisation zu erfüllen. Beachten Sie, dass diese Beispiele nicht restriktiv gemeint sind, und dass es immer potenziell mehrere Richtlinienoptionen für den Umgang mit einem spezifischen Risiko gibt. Arbeiten Sie eng mit den Geschäfts- und IT-Teams zusammen, um die besten Richtlinienlösungen für Ihre einzigartige Gruppe von Risiken zu identifizieren.
@@ -87,7 +87,7 @@ Verwenden Sie die in diesem Artikel erwähnten Beispiele als Ausgangspunkt für 
 
 Um mit der Entwicklung Ihrer eigenen, benutzerdefinierten Richtlinienanweisungen mit Bezug auf die Ressourcenkonsistenz zu beginnen, laden Sie die [Ressourcenkonsistenzvorlage](template.md) herunter.
 
-Um die Einführung dieser Disziplin zu beschleunigen, wählen Sie [Nützliche Governance-Vorgehensweisen](../journeys/overview.md) aus, die die höchste Übereinstimmung mit Ihrer Umgebung haben. Ändern Sie dann das Design, um Ihre spezifischen Entscheidungen für Unternehmensrichtlinien zu integrieren.
+Um die Einführung dieser Disziplin zu beschleunigen, wählen Sie die [nützliche Governance-Vorgehensweise](../journeys/overview.md) aus, die am besten zu Ihrer Umgebung passt. Ändern Sie dann den Entwurf, um Ihre speziellen Entscheidungen für Unternehmensrichtlinien zu integrieren.
 
 > [!div class="nextstepaction"]
-> [Nützliche Governance-Vorgehensweisen](../journeys/overview.md)
+> [Nützliche Governancevorgehensweisen](../journeys/overview.md)

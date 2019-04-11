@@ -1,5 +1,5 @@
 ---
-title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Rationalisieren des digitalen Umfelds'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Rationalisieren der digitalen Ressourcen'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
@@ -8,20 +8,20 @@ description: Bewerten Sie Ihre digitalen Ressourcen, um zu ermitteln, wie sich d
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.openlocfilehash: 02189c9edcbfea0a55fe69a53bf610e85470a4d0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: d10e990192f2b52a2a9560c430d4bd34fb361a01
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897200"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242531"
 ---
-# <a name="rationalize-the-digital-estate"></a>Rationalisieren des digitalen Umfelds
+# <a name="rationalize-the-digital-estate"></a>Rationalisieren der digitalen Ressourcen
 
 Bei der Rationalisierung der Cloud werden Ressourcen evaluiert, um die beste Vorgehensweise für das Hosten in der Cloud zu ermitteln. Nachdem eine [Vorgehensweise](approach.md) ermittelt und der [Bestand](inventory.md) zusammengestellt wurde, kann die Rationalisierung beginnen. Unter [5 Rs of rationalization](5-rs-of-rationalization.md) (Die fünf R der Rationalisierung) werden die häufigsten Rationalisierungsoptionen beschrieben.
 
 ## <a name="traditional-view-of-rationalization"></a>Herkömmlicher Rationalisierungsansatz
 
-Die Rationalisierung ist leicht verständlich, wenn Sie sich den herkömmlichen Rationalisierungsansatz wie eine komplexe Entscheidungsstruktur vorstellen. Jedes Element des digitalen Umfelds durchläuft einen Prozess, an dessen Ende eine von fünf möglichen Antworten („5 R“) steht. Für kleinere Ressourcenumgebungen funktioniert dieser Prozess gut. Bei größeren Ressourcenumgebungen ist er aber nicht sehr effizient und kann zu erheblichen Verzögerungen führen. Wir sehen uns den Prozess nun an, um den Grund dafür zu verdeutlichen. Anschließend stellen wir ein effizienteres Modell vor.
+Die Rationalisierung ist leicht verständlich, wenn Sie sich den herkömmlichen Rationalisierungsansatz wie eine komplexe Entscheidungsstruktur vorstellen. Jedes Element der digitalen Ressourcen durchläuft einen Prozess, an dessen Ende eine von fünf möglichen Antworten („5 R“) steht. Für kleinere Ressourcenumgebungen funktioniert dieser Prozess gut. Bei größeren Ressourcenumgebungen ist er aber nicht sehr effizient und kann zu erheblichen Verzögerungen führen. Wir sehen uns den Prozess nun an, um den Grund dafür zu verdeutlichen. Anschließend stellen wir ein effizienteres Modell vor.
 
 **Bestand**: Ein umfassender Ressourcenbestand, z.B. mit Anwendungen, Software, Hardware, Betriebssystemen und Systemleistungsmetriken, ist erforderlich, um mithilfe von herkömmlichen Modellen eine vollständige Rationalisierung zu erzielen.
 
@@ -33,7 +33,7 @@ Die Rationalisierung ist leicht verständlich, wenn Sie sich den herkömmlichen 
 
 ## <a name="rationalization-at-enterprise-scale"></a>Rationalisierung auf Unternehmensebene
 
-Dieser Prozess ist schon für eine digitale Ressourcenumgebung mit 50 virtuellen Computern zeitaufwändig und anspruchsvoll. Sie können sich sicherlich vorstellen, wie hoch dann der Aufwand für die Unternehmenstransformation in einer Umgebung mit Tausenden von virtuellen Computern und Hunderten von Anwendungen ist. Der erforderliche Mitarbeiteraufwand kann sich leicht auf mehr als 1.500 Vollzeitmitarbeiter-Stunden und 9 Monate Planung belaufen.
+Dieser Prozess ist schon für eine digitale Ressourcenumgebung mit 50 virtuellen Computern zeitaufwändig und anspruchsvoll. Sie können sich sicherlich vorstellen, wie hoch dann der Aufwand für die Unternehmenstransformation in einer Umgebung mit Tausenden von virtuellen Computern und Hunderten von Anwendungen ist. Der erforderliche Mitarbeiteraufwand kann sich leicht auf mehr als 1.500 Vollzeitmitarbeiter-Stunden und neun Monate Planung belaufen.
 
 Die vollständige Rationalisierung ist der gewünschte Endzustand und sicherlich ein anzustrebendes Ziel, aber bezogen auf die erforderliche Zeit und Energie ergibt sich nur selten eine gute Rendite.
 
@@ -67,7 +67,7 @@ Indem die Anzahl von potenziellen Ergebnissen reduziert wird, ist es einfacher, 
 
 Wenn im obigen Beispiel die Optionen in Bezug auf das erneute Hosten oder Zurückziehen begrenzt sind, muss sich das Unternehmen während der Rationalisierung nur eine Frage stellen, nämlich ob das Zurückziehen durchgeführt werden soll.
 
-„Die Analyse hat ergeben, dass diese Ressource derzeit von keinem Benutzer aktiv genutzt wird. Stimmt dies, oder haben wir etwas übersehen?“ Eine Ja/Nein-Frage dieser Art kann mit einer qualitativen Analyse normalerweise deutlich einfacher beantwortet werden.
+„Die Analyse hat ergeben, dass diese Ressource derzeit von keinem Benutzer aktiv verwendet wird. Stimmt dies, oder haben wir etwas übersehen?“ Eine Ja/Nein-Frage dieser Art kann mit einer qualitativen Analyse normalerweise deutlich einfacher beantwortet werden.
 
 Mit diesem optimierten Ansatz werden Baselines, Finanzpläne, eine Strategie und eine Richtung festgelegt. Bei späteren Aktivitäten durchläuft jede Ressource dann eine weitere Rationalisierung und qualitative Analyse, um weitere Optionen zu evaluieren. Alle Annahmen, die bei dieser ersten Rationalisierung getroffen werden, werden vor der Implementierung auf ihre Richtigkeit überprüft.
 
@@ -77,7 +77,7 @@ Das Ergebnis des vorherigen Abschnitts ist eine grobe Rationalisierung mit viele
 
 ### <a name="retiring-assets"></a>Außerbetriebnehmen Ressourcen
 
-In einer herkömmlichen lokalen Umgebung hat das Hosten von kleinen, ungenutzten Ressourcen selten erhebliche Auswirkungen auf die jährlichen Kosten. Mit einigen Ausnahmen werden die Kosteneinsparungen, die sich aus dem Beschneiden und Außerbetriebnehmen dieser Ressourcen ergeben, durch den Vollzeitmitarbeiter-Aufwand für das Analysieren und Außerbetriebnehmen der jeweiligen Ressource wieder zunichtegemacht.
+In einer herkömmlichen lokalen Umgebung führt das Hosten kleiner, ungenutzter Ressourcen nur selten zu höheren jährlichen Kosten. Mit einigen Ausnahmen werden die Kosteneinsparungen, die sich aus dem Beschneiden und Außerbetriebnehmen dieser Ressourcen ergeben, durch den Vollzeitmitarbeiter-Aufwand für das Analysieren und Außerbetriebnehmen der jeweiligen Ressource wieder zunichtegemacht.
 
 Bei der Umstellung auf ein Cloudabrechnungsmodell können durch das Außerbetriebnehmen von Ressourcen erhebliche Einsparungen bei den jährlichen Betriebskosten und beim Anschubaufwand für die Migration erzielt werden.
 

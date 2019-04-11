@@ -7,16 +7,16 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: 026d22bb9cfdcb69b1a12294410af748e7af5c39
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 219c50fb002a97874310b76de6f3bdbc34eaac6d
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480792"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242361"
 ---
 # <a name="designing-microservices-continuous-integration"></a>Entwerfen von Microservices: Continuous Integration
 
-Continuous Integration und Continuous Delivery (CI/CD) sind eine wichtige Voraussetzung für die erfolgreiche Verwendung von Microservices. Die Agilität, die von Microservices erwartet wird, lässt sich nur mit einem zuverlässigen CI/CD-Prozess erreichen. Einige der CI/CD-bedingten Herausforderungen für Microservices sind auf die Verwendung mehrerer Codebasen und heterogener Buildumgebungen für die verschiedenen Dienste zurückzuführen. In diesem Kapitel werden die Herausforderungen und einige Lösungsansätze für das Problem beschrieben.
+Continuous Integration und Continuous Delivery (CI/CD) sind eine wichtige Voraussetzung für die erfolgreiche Verwendung von Microservices. Die Agilität, die von Microservices erwartet wird, lässt sich nur mit einem zuverlässigen CI/CD-Prozess erreichen. Einige der CI/CD-bedingten Herausforderungen für Microservices sind auf die Verwendung mehrerer Codebasen und heterogener Buildumgebungen für die verschiedenen Dienste zurückzuführen. In diesem Artikel werden die Herausforderungen und einige Lösungsansätze für das Problem beschrieben.
 
 ![Diagramm von CI/CD für Microservices](./images/ci-cd.png)
 

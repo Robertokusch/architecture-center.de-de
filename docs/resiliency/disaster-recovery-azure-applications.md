@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: bb9045e5656f86fe6b164b5ba831c1069cef6183
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: e8fbef2bcee9d9ba24937483e3437efd8339027b
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486830"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248645"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Notfallwiederherstellung für Azure-Anwendungen
 
@@ -82,7 +82,7 @@ Azure bietet viele Dienste, bei denen regelmäßig Ausfallzeiten auftreten könn
 
 Azure Redis Cache ermöglicht das Zwischenspeichern für Ihre Anwendung in der Clouddienstbereitstellung und bietet Vorteile für die Notfallwiederherstellung. Zunächst wird der Dienst jetzt mit Rollen ausgeführt, die für die Bereitstellung lokal sind. Aus diesem Grund können Sie den Status des Caches als Teil der globalen Verwaltungsprozesse für den Clouddienst besser überwachen und verwalten. Diese Art des Zwischenspeicherns bietet auch neue Funktionen wie Hochverfügbarkeit für zwischengespeicherte Daten, durch die zwischengespeicherte Daten erhalten bleiben, wenn ein einzelner Knoten ausfällt, indem duplizierte Kopien auf anderen Knoten aufbewahrt werden.
 
-Beachten Sie, dass durch Hochverfügbarkeit der Durchsatz verringert und die Latenz erhöht wird, da sekundäre Kopien auch mittels Schreibvorgängen aktualisiert werden müssen. Der Speicherplatzbedarf für die zwischengespeicherten Daten verdoppelt sich effektiv, was bei der Kapazitätsplanung berücksichtigt werden muss.  Dieses Beispiel veranschaulicht, dass jeder abhängige Dienst Funktionen aufweisen kann, die die allgemeine Verfügbarkeit sowie die Absicherung gegen schwerwiegende Ausfälle verbessern.
+Beachten Sie, dass sich durch Hochverfügbarkeit der Durchsatz verringert und die Wartezeit erhöht, da bei Schreibvorgängen auch sekundäre Kopien aktualisiert werden müssen. Der Speicherplatzbedarf für die zwischengespeicherten Daten verdoppelt sich effektiv, was bei der Kapazitätsplanung berücksichtigt werden muss.  Dieses Beispiel veranschaulicht, dass jeder abhängige Dienst Funktionen aufweisen kann, die die allgemeine Verfügbarkeit sowie die Absicherung gegen schwerwiegende Ausfälle verbessern.
 
 Für jeden abhängigen Dienst sollten Sie die Auswirkungen einer Dienstunterbrechung kennen. Im Beispiel mit der Zwischenspeicherung können Sie möglicherweise auf die Daten direkt in einer Datenbank zugreifen, bis Sie Ihren Cache wiederherstellen. Dies würde zu Leistungseinbußen bei vollem Zugriff auf Anwendungsdaten führen.
 
@@ -303,7 +303,7 @@ Wenn Ihre Strategie für die Notfallwiederherstellung auf mehreren Cloudplattfor
 
 ## <a name="automation"></a>Automatisierung
 
-Einige der soeben erläuterten Muster erfordern die unverzügliche Aktivierung von Offlinebereitstellungen sowie die Wiederherstellung bestimmter Teile eines Systems. Automatisierungsskripts können Ressourcen bei Bedarf aktivieren und Lösungen schnell bereitstellen. Die folgenden auf die Notfallwiederherstellung bezogenen Automatisierungsbeispiele verwenden [Azure PowerShell](https://msdn.microsoft.com/library/azure/jj156055.aspx). Sie können aber auch mit der [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) oder der [Service Management REST API](https://msdn.microsoft.com/library/azure/ee460799.aspx) arbeiten.
+Einige der soeben erläuterten Muster erfordern die unverzügliche Aktivierung von Offlinebereitstellungen sowie die Wiederherstellung bestimmter Teile eines Systems. Automatisierungsskripts können Ressourcen bei Bedarf aktivieren und Lösungen schnell bereitstellen. Die folgenden auf die Notfallwiederherstellung bezogenen Automatisierungsbeispiele verwenden [Azure PowerShell](https://msdn.microsoft.com/library/azure/jj156055.aspx). Sie können aber auch mit der [Azure CLI](/cli/azure/get-started-with-azure-cli) oder der [Service Management REST API](https://msdn.microsoft.com/library/azure/ee460799.aspx) arbeiten.
 
 Automatisierungsskripts verwalten Aspekte der Notfallwiederherstellung, die von Azure nicht transparent behandelt werden. Dies führt zu konsistenten und wiederholbaren Ergebnissen bei gleichzeitiger Minimierung menschlicher Fehler. Mit vordefinierten Skripts für die Notfallwiederherstellung wird auch die Zeit reduziert, die die Wiederherstellung eines Systems und seiner Bestandteile bei einem Notfall dauert. Sie sollten nicht versuchen, manuell herauszufinden, wie Sie Ihren Standort nach einem Ausfall wiederherstellen können, während Sie minütlich Geld verlieren.
 

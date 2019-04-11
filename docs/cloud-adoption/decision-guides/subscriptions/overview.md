@@ -7,14 +7,16 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Erfahren Sie mehr über Cloudplattformabonnements als Basisdienst in Azure-Migrationen.
 author: rotycenh
-ms.openlocfilehash: c0781f6af25150d359395b1b80506dd0cfee8e3c
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: c586e348feca8f632af4e6419df3def6a09f40a2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900803"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247511"
 ---
 # <a name="subscription-decision-guide"></a>Leitfaden zur Entscheidungsfindung für Abonnements
+
+Der Abonnemententwurf ist eine der gängigsten Strategien, die Unternehmen bei der Cloudeinführung zum Einrichten einer Struktur oder zum Organisieren von Ressourcen in Azure verwenden.
 
 Alle Cloudplattformen beruhen im Wesentlichen auf einem Besitzmodell, das Organisationen zahlreiche Optionen zur Abrechnungs- und Ressourcenverwaltung bereitstellt. Die von Azure verwendete Struktur unterscheidet sich von der anderer Cloudanbieter, weil sie verschiedene Supportoptionen für die Organisationshierarchie und Abonnementbesitzgruppen enthält. Unabhängig davon gibt es in der Regel eine Person, die für die Abrechnung verantwortlich ist, und eine andere, die als Besitzer oberster Ebene für die Verwaltung von Ressourcen festgelegt wird.
 
@@ -22,11 +24,9 @@ Alle Cloudplattformen beruhen im Wesentlichen auf einem Besitzmodell, das Organi
 
 Wechseln Sie zu: [Abonnemententwurf und Azure Enterprise Agreements](#subscriptions-design-and-azure-enterprise-agreements) | [Abonnemententwurfsmuster](#subscription-design-patterns) | [Verwaltungsgruppen](#management-groups) | [Organisation auf Abonnementebene](#organization-at-the-subscription-level)
 
-Der Abonnemententwurf ist eine der gängigsten Strategien, die Unternehmen bei der Cloudeinführung zum Einrichten einer Struktur oder zum Organisieren von Ressourcen verwenden.
+**Abonnementhierarchie**: Ein *Abonnement* ist eine logische Sammlung von Azure-Ressourcen. Hierzu zählen beispielsweise virtuelle Computer, SQL-Datenbanken, App Services und Container. Jede Ressource in Azure wird in einem einzigen Abonnement bereitgestellt. Jedes Abonnement gehört einem *Konto*. Dieses Konto ist ein Benutzerkonto (oder vorzugsweise ein Dienstkonto), das im gesamten Abonnement Zugriff auf Abrechnungs- und Administratoraufgaben bereitstellt. Für Kunden, die sich dazu verpflichtet haben, im Rahmen eines Enterprise Agreement (EA) eine bestimmte Menge in Azure zu nutzen, wird eine weitere Steuerungsebene hinzugefügt: eine *Abteilung*. Im EA-Portal können Abonnements, Konten und Abteilungen zum Erstellen einer Hierarchie zu Abrechnungs- und Verwaltungszwecken eingesetzt werden.
 
-**Abonnementhierarchie**: Ein *Abonnement* ist eine logische Sammlung von Azure-Diensten (z.B. virtuelle Computer, SQL-Datenbank, App Services oder Container). Jede Ressource in Azure wird in einem einzigen Abonnement bereitgestellt. Jedes Abonnement gehört einem *Konto*. Dieses Konto ist ein Benutzerkonto (oder vorzugsweise ein Dienstkonto), das im gesamten Abonnement Zugriff auf Abrechnungs- und Administratoraufgaben bereitstellt. Für Kunden, die sich dazu verpflichtet haben, im Rahmen eines Enterprise Agreement (EA) eine bestimmte Menge in Azure zu nutzen, wird eine weitere Steuerungsebene hinzugefügt: eine *Abteilung*. Im EA-Portal können Abonnements, Konten und Abteilungen zum Erstellen einer Hierarchie zu Abrechnungs- und Verwaltungszwecken eingesetzt werden.
-
-Die Komplexität des Abonnements kann variieren. Entscheidungen in Bezug auf eine Entwurfsstrategie beinhalten individuelle Wendepunkte, weil sie in der Regel sowohl geschäftliche als auch IT-bezogene Einschränkungen berücksichtigen. Bevor sie technische Entscheidungen treffen, müssen IT-Architekten und Entscheidungsträger mit den Projektbeteiligten des Unternehmens und dem Team für Cloudstrategien zusammenarbeiten, um den gewünschten Ansatz für die Cloudabrechnung, die Kostenrechnungsmethoden in Ihren Unternehmenseinheiten sowie die globalen Marktanforderungen für Ihre Organisation zu verstehen.
+Entscheidungen in Bezug auf eine Abonnemententwurfsstrategie beinhalten individuelle Wendepunkte, weil sie in der Regel sowohl geschäftliche als auch IT-bezogene Einschränkungen berücksichtigen. Bevor sie technische Entscheidungen treffen, müssen IT-Architekten und Entscheidungsträger mit den Projektbeteiligten des Unternehmens und dem Team für Cloudstrategien zusammenarbeiten, um den gewünschten Ansatz für die Cloudabrechnung, die Kostenrechnungsmethoden in Ihren Unternehmenseinheiten sowie die globalen Marktanforderungen für Ihre Organisation zu verstehen.
 
 **Wendepunkt**: Die gestrichelte Linie in der obigen Abbildung zeigt einen Wendepunkt zwischen einfachen und komplexeren Mustern für den Abonnemententwurf. Weitere technische Entscheidungspunkte, die auf der Größe der digitalen Umgebung in Relation zu Azure-Abonnementeinschränkungen, auf Isolations- und Trennungsrichtlinien und auf operativen IT-Abteilungen beruhen, haben in der Regel erhebliche Auswirkungen auf den Abonnemententwurf.
 
@@ -54,15 +54,15 @@ Die folgenden Abonnementmuster zeigen eine allgemeine erhöhte Komplexität beim
 
 Ein einzelnes Abonnement pro Konto kann für Organisationen ausreichen, die eine kleine Anzahl von in der Cloud gehosteten Ressourcen bereitstellen müssen. Dies ist häufig das erste Abonnementmuster, das Sie zu Beginn Ihres Cloudeinführungsprozesses implementieren. So können kleine experimentelle oder Proof of Concept-Bereitstellungen die Funktionen einer Cloudplattform erkunden.
 
-Es kann jedoch technische Einschränkungen bei der Anzahl von Ressourcen geben, die von einem einzigen Abonnement unterstützt werden. Wächst die Größe Ihrer Cloudumgebung, möchten Sie wahrscheinlich auch die Strukturierung Ihrer Ressourcen unterstützen, um Richtlinien und Zugriffssteuerung besser zu organisieren, als es mit einem einzigen Abonnement möglich ist.
+Es gibt jedoch technische Einschränkungen in Verbindung mit der Anzahl von Ressourcen, die von einem einzelnen Abonnement unterstützt werden. Wächst die Größe Ihrer Cloudumgebung, möchten Sie wahrscheinlich auch die Strukturierung Ihrer Ressourcen unterstützen, um Richtlinien und Zugriffssteuerung besser zu organisieren, als es mit einem einzigen Abonnement möglich ist.
 
 ### <a name="application-category-pattern"></a>Anwendungskategoriemuster
 
 Wenn der Cloudspeicherbedarf einer Organisation steigt, wird die Verwendung mehrerer Abonnements zunehmend wahrscheinlich. In diesem Szenario werden Abonnements im Allgemeinen zur Unterstützung von Anwendungen erstellt, die grundlegende Unterschiede in der Bedeutung für das Unternehmen, in Konformitätsanforderungen, in der Zugriffssteuerung oder in den Datenschutzanforderungen aufweisen. Die Abonnements und Konten, die diese Anwendungskategorien unterstützen, sind alle unter einer einzigen Abteilung organisiert, die den Mitarbeitern der zentralen IT-Abteilung gehört und von diesen verwaltet wird.
 
-Jede Organisation wählt eine andere Kategorisierung für ihre Anwendungen. Oft werden Abonnements basierend auf bestimmten Anwendungen oder Diensten oder nach den Anwendungsarchetypen getrennt. Hier sind einige Workloads aufgeführt, die ein separates Abonnement im Rahmen dieses Musters rechtfertigen:
+Jede Organisation wählt eine andere Kategorisierung für ihre Anwendungen. Oft werden Abonnements basierend auf bestimmten Anwendungen oder Diensten oder nach den Anwendungsarchetypen getrennt. Diese Kategorisierung dient häufig zur Unterstützung von Workloads, die voraussichtlich einen Großteil der Ressourcengrenzwerte eines Abonnements für sich beanspruchen, oder zur Trennung unternehmenskritischer Workloads, um sicherzustellen, dass sie nicht mit anderen Workloads unter diesen Grenzwerten konkurrieren. Im Anschluss finden Sie einige Beispiele für Workloads, die ein separates Abonnement im Rahmen dieses Musters rechtfertigen:
 
-- Experimentelle Anwendungen oder Anwendungen mit niedrigem Risiko
+- Experimentelle Anwendungen
 - Anwendungen mit geschützten Daten
 - Unternehmenskritische Workloads
 - Anwendungen, die behördlichen Anforderungen unterliegen (z.B. HIPAA oder FedRAMP)
@@ -71,9 +71,7 @@ Jede Organisation wählt eine andere Kategorisierung für ihre Anwendungen. Oft 
 - Containerworkloads mit Bereitstellungsorchestratoren wie Kubernetes
 - Analyseworkloads
 
-Dieses Muster unterstützt mehrere Kontobesitzer, die für bestimmte Workloads zuständig sind. Da auf der Abteilungsebene der Enterprise Agreement-Hierarchie eine komplexere Struktur fehlt, ist für die Implementierung dieses Musters kein Azure Enterprise Agreement erforderlich.
-
-![Auf Anwendungskategorien basierendes Muster](../../_images/infra-subscriptions/application.png)
+Dieses Muster unterstützt mehrere Kontobesitzer, die für bestimmte Workloads zuständig sind, und kann ohne Azure Enterprise Agreement implementiert werden.
 
 ### <a name="functional-pattern"></a>Auf Funktionen basierendes Muster
 
@@ -95,7 +93,7 @@ Für global agierende Organisationen gruppiert dieses Muster Abonnements und Kon
 
 ### <a name="mixed-patterns"></a>Gemischte Muster
 
-Hierarchie aus Unternehmen, Abteilungen, Konten und Abonnements. Sie können jedoch Muster wie geografische Regionen und Geschäftseinheiten kombinieren, um komplexere Abrechnungs- und Organisationsstrukturen innerhalb Ihres Unternehmens abzubilden. Darüber hinaus kann die Governance- und Organisationsstruktur des Abonnemententwurfs durch den [Ressourcenkonsistenzentwurf](../resource-consistency/overview.md) erweitert werden.
+Azure Enterprise Agreements sind auf eine Hierarchie mit vier Ebenen (Unternehmen, Abteilung, Konto, Abonnement) beschränkt. Sie können jedoch Muster wie geografische Regionen und Geschäftseinheiten kombinieren, um komplexere Abrechnungs- und Organisationsstrukturen innerhalb Ihres Unternehmens abzubilden. Darüber hinaus kann die Governance- und Organisationsstruktur des Abonnemententwurfs durch den [Ressourcenkonsistenzentwurf](../resource-consistency/overview.md) erweitert werden.
 
 Verwaltungsgruppen, die im folgenden Abschnitt erläutert werden, können kompliziertere Organisationsstrukturen unterstützen.
 
@@ -114,13 +112,13 @@ Beispiele:
 
 ## <a name="organization-at-the-subscription-level"></a>Organisation auf Abonnementebene
 
-Wenn Sie Ihre Abteilungen und Konten (bzw. Verwaltungsgruppen) festlegen, müssen Sie hauptsächlich entscheiden, wie Sie Ihre Azure-Umgebung Ihrer Organisation entsprechend aufteilen. In den Abonnements dagegen findet die eigentliche Arbeit statt – daher wirken sich diese Entscheidungen auf Sicherheit, Skalierbarkeit und Abrechnung aus.
+Wenn Sie Ihre Abteilungen und Konten (bzw. Verwaltungsgruppen) festlegen, müssen Sie hauptsächlich entscheiden, wie Sie Ihre Azure-Umgebung Ihrer Organisation entsprechend aufteilen. Die eigentliche Arbeit findet allerdings in den Abonnements statt. Daher wirken sich diese Entscheidungen auf Sicherheit, Skalierbarkeit und Abrechnung aus.
 
 Beachten Sie die folgenden Muster als Richtlinien:
 
 - **Anwendung/Dienst**: Abonnements stellen eine Anwendung oder einen Dienst dar (Anwendungsportfolio).
 
-- **Lebenszyklus:** Abonnements stellen einen Lebenszyklus eines Diensts dar (beispielsweise Produktion oder Entwicklung).
+- **Bereitstellungsumgebung**: Abonnements stellen die Lebenszyklusphase eines Diensts dar (beispielsweise Produktion oder Entwicklung).
 
 - **Abteilung:** Abonnements stellen Abteilungen in der Organisation dar.
 

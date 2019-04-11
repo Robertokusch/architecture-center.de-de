@@ -8,12 +8,12 @@ description: Erfahren Sie, wie Sie ein Finanzmodell für die Cloudtransformation
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.openlocfilehash: 4fe9b178962bf2cd6a79233278c73085237772f0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: e74a4782db5733271a575ce47cd79829f9114508
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898203"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247981"
 ---
 # <a name="create-a-financial-model-for-cloud-transformation"></a>Erstellen eines Finanzmodells für die Cloudtransformation
 
@@ -95,7 +95,7 @@ Eine Ausnahme dieser Regel ist ein Fall, in dem für den Betrieb erforderliche D
 
 ### <a name="capital-expense-reductions-or-avoidance"></a>Investitionskostenreduzierung oder -vermeidung
 
-Investitionskosten (CapEx) unterscheiden sich leicht von den Betriebskosten. In dieser Kategorie geht es normalerweise um Aktualisierungszyklen oder Datencentererweiterungen. Ein Beispiel für die Erweiterung eines Datencenters ist ein neuer Hochleistungscluster zum Hosten einer Big Data-Lösung oder eines Data Warehouse. Dies gehört im Allgemeinen zur Kategorie „Investitionskosten“. Üblicher sind die grundlegenden Aktualisierungszyklen. Einige Unternehmen verfügen über starre Hardwareaktualisierungszyklen, bei denen Ressourcen nach einem regelmäßigen Zyklus ausgesondert und ausgetauscht werden (normalerweise alle 3, 5 oder 8 Jahre). Diese Zyklen stimmen oft mit Leasezyklen für Ressourcen oder der prognostizierten Lebensdauer von Ausrüstung überein. Wenn ein Aktualisierungszyklus ansteht, fallen in der IT-Abteilung Investitionskosten zur Beschaffung neuer Ausrüstung an.
+Investitionskosten (CapEx) unterscheiden sich leicht von den Betriebskosten. In dieser Kategorie geht es normalerweise um Aktualisierungszyklen oder Datencentererweiterungen. Ein Beispiel für die Erweiterung eines Datencenters ist ein neuer Hochleistungscluster zum Hosten einer Big Data-Lösung oder eines Data Warehouse. Dies gehört im Allgemeinen zur Kategorie „Investitionskosten“. Üblicher sind die grundlegenden Aktualisierungszyklen. Einige Unternehmen verfügen über starre Hardwareaktualisierungszyklen, bei denen Ressourcen nach einem regelmäßigen Zyklus ausgesondert und ausgetauscht werden (normalerweise alle drei, fünf oder acht Jahre). Diese Zyklen stimmen oft mit Leasezyklen für Ressourcen oder der prognostizierten Lebensdauer von Ausrüstung überein. Wenn ein Aktualisierungszyklus ansteht, fallen in der IT-Abteilung Investitionskosten zur Beschaffung neuer Ausrüstung an.
 
 Falls ein Aktualisierungszyklus genehmigt und mit einem Budget versehen wurde, kann eine Cloudtransformation dazu beitragen, diese Kosten zu beseitigen. Wenn ein Aktualisierungszyklus geplant wurde, aber die Genehmigung noch nicht erteilt wurde, kann die Cloudtransformation eine Vermeidung der Investitionskosten bewirken. Beide Szenarien fließen in den Kostendeltawert ein.
 

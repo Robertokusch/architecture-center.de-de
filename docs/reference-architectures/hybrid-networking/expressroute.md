@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: eff7d3e88cc9578b6d5ff83628f7d03b00717b5f
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 5c010df534bc43bd4c954c7f008b28cbb6a5641a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487855"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242281"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>Verbinden eines lokalen Netzwerks mit Azure über ExpressRoute
 
@@ -75,6 +75,7 @@ Gehen Sie folgendermaßen vor, um eine ExpressRoute-Verbindung zu erstellen:
     ```powershell
     New-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>> -Location <<location>> -SkuTier <<sku-tier>> -SkuFamily <<sku-family>> -ServiceProviderName <<service-provider-name>> -PeeringLocation <<peering-location>> -BandwidthInMbps <<bandwidth-in-mbps>>
     ```
+
 2. Senden Sie den `ServiceKey` für die neue Verbindung an den Dienstanbieter.
 
 3. Warten Sie die Bereitstellung der Verbindung durch den Anbieter ab. Überprüfen Sie mit dem folgenden PowerShell-Befehl den Bereitstellungszustand einer Verbindung:
@@ -163,7 +164,7 @@ ExpressRoute-Verbindungen sind so konzipiert, dass Sie das erworbene Bandbreiten
 
 Wenngleich einige Anbieter eine Änderung der Bandbreite zulassen, sollten Sie eine anfängliche Bandbreite auswählen, die Ihre Anforderungen übersteigt und einen Puffer für künftiges Wachstum bietet. Wenn Sie zu einem späteren Zeitpunkt mehr Bandbreite benötigen, haben Sie zwei Optionen:
 
-- Erhöhen Sie die Bandbreite. Diese Option sollte nach Möglichkeit vermieden werden, weil nicht alle Anbieter eine dynamische Erhöhung der Bandbreite unterstützen. Wenn jedoch eine Bandbreitenerhöhung benötigt wird, fragen Sie bei Ihrem Anbieter an, ob das Ändern der ExpressRoute-Bandbreiteneigenschaften über PowerShell-Befehle unterstützt wird. Falls dem so ist, führen Sie die nachstehenden Befehle aus.
+- Erhöhen Sie die Bandbreite. Diese Option sollte nach Möglichkeit vermieden werden, weil nicht alle Anbieter eine dynamische Erhöhung der Bandbreite unterstützen. Falls jedoch eine Bandbreitenerhöhung benötigt wird, erkundigen Sie sich bei Ihrem Anbieter, ob das Ändern der ExpressRoute-Bandbreiteneigenschaften über PowerShell-Befehle unterstützt wird. Falls dem so ist, führen Sie die nachstehenden Befehle aus.
 
     ```powershell
     $ckt = Get-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>>

@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack, seodec18
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-devops-dotnet-webapp.svg
-ms.openlocfilehash: 0d6ac13fb357657a2ec5e6284abadb46d6926907
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: 22a714a49c3e722fc11f2498e9a3abd1bec46d22
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908493"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245841"
 ---
 # <a name="design-a-cicd-pipeline-using-azure-devops"></a>Entwerfen einer CI/CD-Pipeline mithilfe von Azure DevOps
 

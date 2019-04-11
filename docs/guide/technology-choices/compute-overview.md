@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: a887be4fc643822b97f898fa405f68e797a41484
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 63754ce84f001226b6cddf1f30a152bcfce3e7ac
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485671"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245581"
 ---
 # <a name="overview-of-azure-compute-options"></a>Übersicht über Azure-Computeoptionen
 
@@ -27,7 +27,7 @@ An einem Ende des Spektrums befindet sich IaaS (**Infrastructure-as-a-Service**)
 
 Es wird ein Spektrum von IaaS bis zu PaaS in Reinform abgedeckt. Für Azure-VMs kann beispielsweise mithilfe von VM Scale Sets die automatische Skalierung durchgeführt werden. Diese Funktion für die automatische Skalierung entspricht nicht genau PaaS, aber es handelt sich um die Art von Verwaltungsfeature, das Teil eines PaaS-Diensts sein kann.
 
-Bei FaaS (**Functions-as-a-Service**) geht dies noch weiter, da es auch nicht mehr erforderlich ist, sich um die Hostingumgebung zu kümmern. Anstatt Computeinstanzen zu erstellen und Code auf diesen Instanzen bereitzustellen, stellen Sie einfach Ihren Code bereit, der vom Dienst dann automatisch ausgeführt wird. Es ist nicht erforderlich, dass Sie die Computeressourcen verwalten. Für diese Dienste wird die serverlose Architektur genutzt, und das nahtlose zentrale Hoch- und Herunterskalieren auf die jeweilige Ebene, die zum Verarbeiten des Datenverkehrs erforderlich ist, kann durchgeführt werden. Bei Azure Functions handelt es sich um einen Dienst vom Typ „FaaS“.
+Bei FaaS (**Functions-as-a-Service**) geht dies noch weiter, da es auch nicht mehr erforderlich ist, sich um die Hostingumgebung zu kümmern. Anstatt Computeinstanzen zu erstellen und Code auf diesen Instanzen bereitzustellen, stellen Sie einfach Ihren Code bereit, der vom Dienst dann automatisch ausgeführt wird. Es ist nicht erforderlich, dass Sie die Computeressourcen verwalten. Diese Dienste verwenden eine serverlose Architektur und können nahtlos und zentral auf die Ebene hoch- oder herunterskaliert werden, die zum Verarbeiten des Datenverkehrs erforderlich ist. Bei Azure Functions handelt es sich um einen Dienst vom Typ „FaaS“.
 
 IaaS bietet das höchste Maß an Steuerung, Flexibilität und Portabilität. FaaS bietet Einfachheit, elastische Skalierung und potenzielle Kosteneinsparungen, da Sie nur für die Zeiten zahlen, in denen Ihr Code ausgeführt wird. PaaS liegt zwischen IaaS und FaaS. Im Allgemeinen gilt Folgendes: Je mehr Flexibilität ein Dienst ermöglicht, desto größer ist Ihre Verantwortung für die Konfiguration und Verwaltung der Ressourcen. Mit FaaS-Diensten werden automatisch fast alle Aspekte der Anwendungsausführung verwaltet, während es bei IaaS-Lösungen erforderlich ist, dass Sie die von Ihnen erstellten VMs und Netzwerkkomponenten bereitstellen, konfigurieren und verwalten.
 
@@ -38,7 +38,7 @@ Hier sind die wichtigsten Compute-Optionen aufgeführt, die in Azure derzeit ver
 - [Virtual Machines](/azure/virtual-machines/) ist ein IaaS-Dienst, mit dem Sie VMs in einem virtuellen Netzwerk (VNet) bereitstellen und verwalten können.
 - [App Service](/azure/app-service/app-service-value-prop-what-is) ist ein verwaltetes PaaS-Angebot zum Hosten von Web-Apps, mobilen App-Back-Ends, RESTful-APIs oder automatisierten Geschäftsprozessen.
 - [Service Fabric](/azure/service-fabric/service-fabric-overview) ist eine Plattform für verteilte Systeme, die in vielen Umgebungen ausgeführt werden kann, z.B. Azure oder lokal. Service Fabric ist ein Orchestrator von Microservices in einem Cluster mit Computern.
-- Mit [Azure Container Service](/azure/container-service/container-service-intro) können Sie einen Cluster mit VMs, die für die Ausführung von Anwendungen in Containern vorkonfiguriert sind, erstellen, konfigurieren und verwalten.
+- [Azure Kubernetes Service](/azure/aks/) verwaltet einen gehosteten Kubernetes-Dienst für die Ausführung von Containeranwendungen.
 - Mit [Azure Container Instances](/azure/container-instances/container-instances-overview) lassen sich Container in Azure besonders schnell und einfach ausführen, ohne dass Sie dazu virtuelle Computer bereitstellen oder einen übergeordneten Dienst einführen müssen.
 - [Azure Functions](/azure/azure-functions/functions-overview) ist ein verwalteter FaaS-Dienst.
 - [Azure Batch](/azure/batch/batch-technical-overview) ist ein verwalteter Dienst zum Ausführen von umfassenden parallelen HPC-Anwendungen (High-Performance Computing).

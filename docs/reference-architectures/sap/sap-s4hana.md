@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, SAP, Linux
-ms.openlocfilehash: 519dac655065d53df5c918b55bda06ce8751c012
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 4e15fcc17ac5363a84c42903339a0e76333acc83
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485739"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242921"
 ---
 # <a name="sap-s4hana-for-linux-virtual-machines-on-azure"></a>SAP S/4HANA für virtuelle Linux-Computer in Azure
 
@@ -183,7 +183,7 @@ Um SAP-basierte Überwachung von Ressourcen sowie der Leistung von Diensten der 
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
-SAP verfügt über ein eigenes Modul für die Benutzerverwaltung (Users Management Engine, UME), um den rollenbasierten Zugriff und die Autorisierung in der SAP-Anwendung zu steuern. Ausführliche Informationen hierzu finden Sie unter [SAP HANA Security – An Overview](https://archive.sap.com/documents/docs/DOC-62943) (für den Zugriff ist ein Konto für SAP Service Marketplace erforderlich).
+SAP verfügt über ein eigenes Modul für die Benutzerverwaltung (Users Management Engine, UME), um den rollenbasierten Zugriff und die Autorisierung in der SAP-Anwendung zu steuern. Ausführliche Informationen hierzu finden Sie unter [SAP HANA Security – An Overview](https://archive.sap.com/documents/docs/DOC-62943) (Übersicht über die Sicherheit von SAP HANA). (Für den Zugriff ist ein Konto für SAP Service Marketplace erforderlich).
 
 Um zusätzliche Netzwerksicherheit zu erreichen, können Sie eine [Netzwerk-DMZ](/azure/architecture/reference-architectures/dmz/secure-vnet-hybrid) implementieren, für die ein virtuelles Netzwerkgerät verwendet wird, um eine Firewall vor dem Subnetz für Web Dispatcher und Fiori Front-End-Server-Pools zu erstellen.
 

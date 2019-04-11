@@ -7,19 +7,19 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Erfahren Sie mehr über Ressourcenorganisation und -markierung als Hauptdienst in Azure-Migrationen.
 author: rotycenh
-ms.openlocfilehash: 0da9f698fc7ac2db876409ad451adf7b12cf6e6b
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: e7f39fe31dc809286cdb45b857f1d7370e3bf9d4
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901393"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241661"
 ---
 # <a name="resource-organization-and-tagging-decision-guide"></a>Leitfaden zur Endscheidungsfindung für Ressourcenorganisation und -markierung
 
 Die Organisation cloudbasierter Ressourcen ist eine der wichtigsten Aufgaben für die IT-Abteilung, wenn Ihre Bereitstellungen nicht extrem einfach aufgebaut sind. Die Organisation Ihrer Ressourcen erfüllt drei Hauptaufgaben:
 
 - **Ressourcenverwaltung**. Ihre IT-Teams müssen Ressourcen, die bestimmten Workloads, Umgebungen, Besitzergruppen oder anderen wichtigen Informationen zugeordnet sind, schnell finden. Die Organisation von Ressourcen ist wichtig für die Zuweisung organisatorischer Rollen und Zugriffsberechtigungen für die Ressourcenverwaltung.
-- **Vorgänge**. Neben einer Vereinfachung der Ressourcenverwaltung für die IT-Abteilung ermöglicht Ihnen ein angemessenes Organisationsschema die Nutzung der Automatisierung im Rahmen der Ressourcenerstellung, der Betriebsüberwachung und der Erstellung von DevOps-Prozessen.
+- **Automatisierung**. Neben einer Vereinfachung der Ressourcenverwaltung für die IT-Abteilung ermöglicht Ihnen ein angemessenes Organisationsschema die Nutzung der Automatisierung im Rahmen der Ressourcenerstellung, der Betriebsüberwachung und der Erstellung von DevOps-Prozessen.
 - **Rechnungsstellung**. Um Unternehmensgruppen auf den Verbrauch von Cloudressourcen aufmerksam zu machen, muss die IT-Abteilung verstehen, welche Workloads und Teams welche Ressourcen verwenden. Um Ansätze wie z.B. die verbrauchsbasierte Kostenzuteilung zu unterstützen, müssen Cloudressourcen dem Besitz und der Nutzung entsprechend organisiert werden.
 
 ## <a name="tagging-decision-guide"></a>Leitfaden zur Entscheidungsfindung für Markierungen
@@ -30,13 +30,13 @@ Wechseln Sie zu: [Baselinenamenskonventionen](#baseline-naming-conventions) | [R
 
 Ihr Markierungsansatz kann einfach oder komplex sein, wobei der Schwerpunkt von der Unterstützung der IT-Teams, die die Cloudworkloads verwalten, bis zur Integration von Informationen zu sämtlichen Aspekten des gesamten Unternehmen reichen kann.
 
-Ein auf die IT ausgerichteter Markierungsschwerpunkt vereinfacht die Überwachung von Ressourcen und erleichtert Verwaltungsentscheidungen basierend auf Funktionalität und Klassifizierung.
+Ein IT-orientierter Markierungsfokus (etwa Markierungen auf der Grundlage von Workload, Funktion oder Umgebung) macht die Überwachung von Ressourcen weniger komplex und vereinfacht Entscheidungen auf der Grundlage operativer Anforderungen erheblich.
 
-Markierungsschemas, die auch Nicht-IT-Richtlinien enthalten, sind unter Umständen mit einem größeren Zeitaufwand für die Erstellung von Markierungsstandards verbunden, die die Geschäftsinteressen widerspiegeln und diese Standards langfristig bewahren. Allerdings ist das Ergebnis dieses Prozesses ein Markierungssystem, das eine verbesserte Möglichkeit zur Rechtfertigung von Kosten und Wert von IT-Ressourcen bietet. Diese Zuordnung des Werts einer Ressource zu den Betriebskosten ist einer der ersten Schritte zum Verändern der Wahrnehmung der IT in Ihrer Organisation im Hinblick auf Kostenstellen.
+Bei Markierungsschemas mit geschäftlichem Fokus (beispielsweise Buchhaltung, Unternehmensbesitz oder geschäftliche Bedeutung) muss unter Umständen mehr Zeit in die Erstellung von Markierungsstandards investiert werden, die die Geschäftsinteressen widerspiegeln und diese Standards langfristig bewahren. Allerdings ist das Ergebnis dieses Prozesses ein Markierungssystem, das eine verbesserte Erfassung der Kosten und des Werts von IT-Ressourcen für das gesamte Unternehmen bietet. Diese Verknüpfung des geschäftlichen Werts einer Ressource mit den Betriebskosten ist einer der ersten Schritte, um die Wahrnehmung der IT als Kostenfaktor in Ihrer Organisation zu verändern.
 
 ## <a name="baseline-naming-conventions"></a>Baselinenamenskonventionen
 
-Eine standardisierte Namenskonvention ist der Ausgangspunkt für die Organisation Ihrer in der Cloud gehosteten Ressourcen. Mit einem ordnungsgemäß strukturierten Benennungssystem können Sie Ressourcen sowohl zu Verwaltungs- als auch zu Abrechnungszwecken schnell identifizieren. Wenn in anderen Teilen Ihrer Organisation bereits IT-Namenskonventionen vorhanden sind, wägen Sie ab, ob Sie die Namenskonventionen für Cloudressourcen daran anpassen oder separate cloudbasierte Standards einrichten möchten.
+Eine standardisierte Namenskonvention ist der Ausgangspunkt für die Organisation Ihrer in der Cloud gehosteten Ressourcen. Mit einem ordnungsgemäß strukturierten Benennungssystem können Sie Ressourcen sowohl zu Verwaltungs- als auch zu Abrechnungszwecken schnell identifizieren. Wenn in anderen Teilen Ihrer Organisation bereits IT-Namenskonventionen vorhanden sind, wägen Sie ab, ob Sie Ihre Namenskonventionen für die Cloud darauf abstimmen oder separate cloudbasierte Standards einrichten möchten.
 
 Beachten Sie auch, dass unterschiedliche Azure-Ressourcentypen unterschiedliche [Benennungsanforderungen](../../../best-practices/naming-conventions.md#naming-rules-and-restrictions) aufweisen. Ihre Namenskonventionen müssen mit diesen Benennungsanforderungen kompatibel sein.
 
@@ -65,7 +65,7 @@ Im Folgenden sind einige Beispiele für allgemeine Markierungsmuster aufgeführt
 Ihre Benennungs- und Markierungsrichtlinie wird sich im Laufe der Zeit weiterentwickeln. Es ist jedoch entscheidend, dass Sie Ihre wesentlichen organisatorischen Prioritäten zu Beginn einer Cloudmigration festlegen. Erwägen Sie im Rahmen Ihres Planungsprozesses sorgfältig die folgenden Fragen:
 
 - Wie können Ihre Benennungs- und Markierungsrichtlinien am besten in vorhandene Benennungs- und Organisationsrichtlinien innerhalb Ihrer Organisation integriert werden?
-- Werden Sie ein Abrechnungssystem mit verbrauchsbasierter Kostenzuteilung implementieren? Wie werden Ihre Abteilungen, Unternehmensgruppen und Teams in dieser Organisationsstruktur dargestellt?
+- Werden Sie ein Abrechnungssystem mit verbrauchsbasierter Kostenzuteilung implementieren? Müssen Sie Buchhaltungsinformationen für Abteilungen, Geschäftsbereiche und Teams bereitstellen, die über eine einfache Aufschlüsselung auf der Abonnementebene hinausgehen?
 - Welche Markierungsinformationen werden für alle Ressourcen benötigt? Die Implementierung welcher Markierungsinformationen wird den einzelnen Teams überlassen?
 - Muss die Markierung Details wie Anforderungen zur Einhaltung gesetzlicher Bestimmungen für eine Ressource darstellen? Wie sieht es mit betriebsbezogenen Details wie Anforderungen an die Betriebszeiten, Zeitpläne für Patches oder Sicherheitsanforderungen aus?
 

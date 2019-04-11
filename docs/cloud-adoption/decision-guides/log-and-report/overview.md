@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Erfahren Sie mehr über die wichtigen Bereiche der Protokollierung, Berichterstellung und Überwachung bei Azure-Migrationen.
 author: rotycenh
-ms.openlocfilehash: 36552488872622ec59e2fcf4816da4184c3d4fbf
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 8ab9a159b438a4ac95289d5eb5c0c0a2f4b399ae
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901717"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247951"
 ---
 # <a name="logging-and-reporting-decision-guide"></a>Leitfaden zur Entscheidungsfindung für Protokollierung und Berichterstellung
 
@@ -22,7 +22,7 @@ Alle Organisationen benötigen Mechanismen, um IT-Teams über Leistungs-, Verfü
 
 Wechseln Sie zu: [Planen der Überwachungsinfrastruktur](#planning-your-monitoring-infrastructure) | [Cloudnativ](#cloud-native) | [Lokale Erweiterung](#on-premises-extension) | [Gatewayaggregation ](#gateway-aggregation) | [Hybridüberwachung (lokal)](#hybrid-monitoring-on-premises) | [Hybridüberwachung (cloudbasiert)](#hybrid-monitoring-cloud-based) | [Mehrere Clouds ](#multi-cloud) | [Weitere Informationen](#learn-more)
 
-Der Kernpunkt bei der Bestimmung einer Cloudstrategie basiert in erster Linie auf bereits getätigten Investitionen Ihres Unternehmens in betriebliche Prozesse und zu einem gewissen Grad auf den Anforderungen, die Sie an die Unterstützung einer Strategie mit mehreren Clouds haben.
+Der Wendepunkt bei der Bestimmung einer cloudbasierten Protokollierungs- und Berichterstellungsstrategie basiert in erster Linie auf bereits getätigten Investitionen Ihres Unternehmens in betriebliche Prozesse und zu einem gewissen Grad auf den Anforderungen, die Sie an die Unterstützung einer Strategie mit mehreren Clouds haben.
 
 Es gibt mehrere Möglichkeiten, Aktivitäten in der Cloud zu protokollieren und zu dokumentieren. „Cloudnativ“ und „Zentrale Protokollierung“ sind zwei übliche SaaS-Optionen (Software-as-a-Service), die dem Abonnementmodell und der Anzahl der Abonnements unterliegen.
 
@@ -30,7 +30,7 @@ Es gibt mehrere Möglichkeiten, Aktivitäten in der Cloud zu protokollieren und 
 
 Bei der Planung Ihrer Bereitstellung müssen Sie berücksichtigen, wo Protokolldaten gespeichert werden und wie Sie cloudbasierte Berichts- und Überwachungsdienste in Ihre bestehenden Prozesse und Tools integrieren.
 
-| Frage | Cloudnativ | Lokale Erweiterung | Hybridüberwachung | Gatewayaggregation |
+| Frage | Cloudbasiert | Lokale Erweiterung | Hybridüberwachung | Gatewayaggregation |
 |-----|-----|-----|-----|-----|
 | Haben Sie eine vorhandene lokale Überwachungsinfrastruktur? | Nein  | Ja | Ja |  Nein  |
 | Bestehen Anforderungen, die die Speicherung von Protokolldaten an externen Speicherorten verhindern? | Nein  | Ja | Nein  | Nein  |

@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack, IoT
 social_image_url: /azure/architecture/example-scenario/data/media/architecture-realtime-analytics-vehicle-data1.png
-ms.openlocfilehash: 95a59ed84870c9ce9d3c6637d9ba56fcd6935b53
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: 846106106d5bd9f6b51f952734bfe23cd06cdc71
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908400"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244741"
 ---
 # <a name="ingestion-and-processing-of-real-time-automotive-iot-data"></a>Erfassung und Verarbeitung von IoT-Daten für die Automobilindustrie in Echtzeit
 
@@ -55,7 +55,7 @@ Von IoT-Geräten generierte Ereignisse (Daten oder Nachrichten) werden erfasst, 
 - [Azure Databricks](/services/databricks) befindet sich auf der Transformations- und Analyseebene. Databricks-Notebooks implementieren eine Kafka-Consumer-API, um die Daten aus dem Kafka-Thema zu lesen.
 - [Azure Cosmos DB](/services/cosmos-db), [Azure SQL-Datenbank](/azure/sql-database/sql-database-technical-overview), und Azure SQL Data Warehouse befinden sich auf der Bereitstellungsspeicherebene. Hier kann Azure Databricks die Daten über Datenconnectors schreiben.
 - [Azure SQL Data Warehouse](/azure/sql-data-warehouse/sql-data-warehouse-overview-what-is) ist ein verteiltes System zum Speichern und Analysieren umfangreicher Datasets. Dank MPP (Massive Parallel Processing) eignet sich diese Komponente für Hochleistungsanalysen.
-- [Power BI](https://docs.microsoft.com/power-bi) ist eine Suite aus Business Analytics-Tools zum Analysieren von Daten und Teilen von Einblicken. Power BI kann ein in Analysis Services gespeichertes Semantikmodell oder direkt SQL Data Warehouse abfragen.
+- [Power BI](/power-bi) ist eine Suite aus Business Analytics-Tools zum Analysieren von Daten und Teilen von Einblicken. Power BI kann ein in Analysis Services gespeichertes Semantikmodell oder direkt SQL Data Warehouse abfragen.
 - [Azure Active Directory (Azure AD)](/azure/active-directory) authentifiziert Benutzer bei der Verbindungsherstellung mit [Azure Databricks](https://azure.microsoft.com/services/databricks). Wenn wir in [Analysis Services](/azure/analysis-services) auf der Grundlage des Modells, das wiederum auf Azure SQL Data Warehouse-Daten basiert, einen Cube erstellen möchten, können wir AAD verwenden, um über Power BI eine Verbindung mit dem Analysis Services-Server herzustellen. Auch Data Factory kann Azure AD für die Authentifizierung bei SQL Data Warehouse nutzen – entweder über einen Dienstprinzipal oder über eine verwaltete Dienstidentität (Managed Service Identity, MSI).
 - [Azure App Services](/azure/app-service/app-service-web-overview) (insbesondere die [API-App](/services/app-service/api)) kann verwendet werden, um Daten auf der Grundlage der auf der Bereitstellungsebene gespeicherten Daten für Dritte verfügbar zu machen.
 
@@ -92,8 +92,8 @@ Die Technologien dieser Architektur wurden basierend auf dem erforderlichen Umfa
 Informationen zu Preisen erhalten Sie unter [Azure Databricks – Preise](https://azure.microsoft.com/pricing/details/databricks), [Azure HDInsight: Preise](https://azure.microsoft.com/pricing/details/hdinsight) und im [Preisbeispiel für ein Data Warehouse-Szenario](https://azure.com/e/b798fb70c53e4dd19fdeacea4db78276) über den Azure-Preisrechner. Passen Sie die Werte an, um zu ermitteln, wie sich Ihre Anforderungen auf die Kosten auswirken.
 
 - [Azure HDInsight](/azure/hdinsight) ist ein vollständig verwalteter Clouddienst, mit dem Sie einfach, schnell und kosteneffizient große Datenmengen verarbeiten können.
-- [Azure Databricks](https://azure.microsoft.com/services/databricks) bietet zwei verschiedene Workloads auf mehreren [VM-Instanzen](https://azure.microsoft.com/pricing/details/databricks/#instances), die genau auf Ihren Datenanalyseworkflow zugeschnitten sind: Mit der Workload „Datentechnik“ können Data Engineers ganz einfach Aufträge erstellen und ausführen, und die Workload „Datenanalyse“ erleichtert Data Scientists die Aufgabe, Daten und Informationen interaktiv zu erkunden, zu visualisieren, zu verändern und gemeinsam zu nutzen.
-- [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db) garantiert Wartezeiten im einstelligen Millisekundenbereich im 99. Perzentil an jedem Ort der Welt, bietet [mehrere gut definierte Konsistenzmodelle](/azure/cosmos-db/consistency-levels) zur Optimierung der Leistung und garantiert Hochverfügbarkeit mit Multihostingfunktionen – jeweils untermauert durch branchenführende, umfassende [Vereinbarungen zum Servicelevel](https://azure.microsoft.com/support/legal/sla/cosmos-db) (Service Level Agreements, SLAs).
+- [Azure Databricks](https://azure.microsoft.com/services/databricks) bietet zwei verschiedene Workloads auf mehreren [VM-Instanzen](https://azure.microsoft.com/pricing/details/databricks/#instances), die genau auf Ihren Datenanalyseworkflow zugeschnitten sind: Mit der Workload „Datentechnik“ können Data Engineers ganz einfach Aufträge erstellen und ausführen, und mit der Workload „Datenanalyse“ können Data Scientists problemlos Daten und Erkenntnisse interaktiv erkunden, visualisieren, ändern und gemeinsam nutzen.
+- [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db) garantiert Wartezeiten im einstelligen Millisekundenbereich im 99. Perzentil an jedem Ort der Welt, bietet [mehrere gut definierte Konsistenzmodelle](/azure/cosmos-db/consistency-levels) zur Optimierung der Leistung und garantiert Hochverfügbarkeit mit Multihostingfunktionen – jeweils untermauert durch branchenführende, umfassende [Vereinbarungen zum Servicelevel](https://azure.microsoft.com/support/legal/sla/cosmos-db) (Service Level Agreements, SLAs).
 - Mit [Azure SQL Data Warehouse](https://azure.microsoft.com/pricing/details/sql-data-warehouse/gen2) können Sie Ihre Compute- und Ihre Speicherebene unabhängig voneinander skalieren. Computeressourcen werden auf Stundenbasis abgerechnet und können nach Bedarf skaliert oder angehalten werden. Speicherressourcen werden nach Terabyte abgerechnet. Ihre Kosten steigen also, wenn Sie mehr Daten erfassen.
 - [Analysis Services](https://azure.microsoft.com/pricing/details/analysis-services) ist in den Tarifen „Developer“, „Basic“ und „Standard“ erhältlich. Die Preise der Instanzen basieren auf QPUs (Query Processing Units) und auf dem verfügbaren Arbeitsspeicher. Minimieren Sie die Anzahl ausgeführter Abfragen, den Umfang der durch die Abfragen verarbeiteten Daten sowie die Ausführungshäufigkeit dieser Abfragen, um die Kosten gering zu halten.
 - [Power BI](https://powerbi.microsoft.com/pricing) bietet verschiedene Produktoptionen für unterschiedliche Anforderungen. [Power BI Embedded](https://azure.microsoft.com/pricing/details/power-bi-embedded) bietet eine Azure-basierte Option zum Einbetten von Power BI-Funktionen in Ihre Anwendungen. Eine Power BI Embedded-Instanz ist im obigen Preisbeispiel enthalten.

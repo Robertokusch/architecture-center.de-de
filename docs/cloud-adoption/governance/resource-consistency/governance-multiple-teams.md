@@ -6,13 +6,13 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 description: Enthält eine Anleitung zum Konfigurieren von Azure-Governance-Kontrollen für mehrere Teams, mehrere Workloads und mehrere Umgebungen.
 author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: d0f3256e1d7b752789efd709f917e4eb2e996175
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.date: 02/11/2019
+ms.openlocfilehash: a235c73ebef0fe1b6067ed25f1948446486c3ca8
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901869"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247331"
 ---
 # <a name="governance-design-for-multiple-teams"></a>Governance-Entwurf für mehrere Teams
 
@@ -192,7 +192,7 @@ Dies bedeutet, dass der **App2-Workloadbesitzer** dazu berechtigt war, sein eige
 
 Als Nächstes sehen wir uns ein einzelnes Abonnement mit mehreren Ressourcengruppen für unterschiedliche Umgebungen und Workloads an. Beachten Sie, dass die Ressourcen für die einzelnen Umgebungen im vorherigen Beispiel leicht identifizierbar waren, da sie sich in derselben Ressourcengruppe befunden haben. Nachdem diese Gruppierung nun nicht mehr vorhanden ist, müssen Sie eine Namenskonvention für Ressourcengruppen nutzen, um diese Funktionalität bereitzustellen.
 
-1. Die Ressourcen für die **freigegebene Infrastruktur** verfügen bei diesem Modell weiterhin über eine separate Ressourcengruppe. Hier ändert sich also nichts. Für jede Workload sind zwei Ressourcengruppen erforderlich: jeweils eine für die Umgebung für die **Entwicklung** und die **Produktion**. Für die erste Workload erstellt der **Abonnementbesitzer** zwei Ressourcengruppen. Die erste hat den Namen **app1-prod-rg**, und die zweite hat den Namen **app1-dev-rg**. Wie bereits beschrieben, wird für die Ressourcen mit dieser Namenskonvention angegeben, dass sie der ersten Workload **app1** und entweder der Umgebung **dev** (Entwicklung) oder **prod** (Produktion) zugeordnet sind. Der *Abonnementbesitzer* fügt den **App1-Workloadbesitzer** der Ressourcengruppe mit der Rolle **Mitwirkender** hinzu.
+1. Die Ressourcen für die **freigegebene Infrastruktur** verfügen bei diesem Modell weiterhin über eine separate Ressourcengruppe. Hier ändert sich also nichts. Für jede Workload sind zwei Ressourcengruppen erforderlich: jeweils eine für die Umgebung für die **Entwicklung** und die **Produktion**. Für die erste Workload erstellt der **Abonnementbesitzer** zwei Ressourcengruppen. Sie heißen `app1-prod-rg` und `app1-dev-rg`. Wie bereits beschrieben, wird für die Ressourcen mit dieser Namenskonvention angegeben, dass sie der ersten Workload **app1** und entweder der Umgebung **dev** (Entwicklung) oder **prod** (Produktion) zugeordnet sind. Der *Abonnementbesitzer* fügt den *App1-Workloadbesitzer* der Ressourcengruppe mit der Rolle **Mitwirkender** hinzu.
     ![](../../_images/governance-3-12.png)
 2. Ähnlich wie im ersten Beispiel stellt der **App1-Workloadbesitzer** ein virtuelles Netzwerk mit dem Namen **app1-prod-vnet** in der Umgebung für die **Produktion** und ein weiteres mit dem Namen **app1-dev-vnet** in der Umgebung für die **Entwicklung** bereit. Der **App1-Workloadbesitzer** sendet eine Anforderung an den Benutzer für den **Netzwerkbetrieb**, um eine Peeringverbindung zu erstellen. Beachten Sie Folgendes: Der **App1-Workloadbesitzer** fügt die gleichen Tags wie im ersten Beispiel hinzu, und der Grenzwertzähler wurde auf 997 virtuelle Netzwerke verringert, die für das Abonnement verbleiben.
     ![](../../_images/governance-3-13.png)
@@ -205,10 +205,10 @@ Als Nächstes sehen wir uns ein einzelnes Abonnement mit mehreren Ressourcengrup
 
 Das sich ergebende Verwaltungsmodell ähnelt dem Modell aus dem ersten Beispiel, aber es gibt auch einige wichtige Unterschiede:
 
-* Jede der beiden Workloads ist nach Workload und Umgebung isoliert.
-* Bei diesem Modell sind zwei virtuelle Netzwerke mehr als beim ersten Beispielmodell erforderlich. Wenn nur zwei Workloads verwendet werden, ist dies kein wichtiger Unterschied, aber der theoretische Grenzwert für die Anzahl von Workloads für dieses Modell ist 24.
-* Ressourcen werden nicht mehr für jede Umgebung in einer einzelnen Ressourcengruppe gruppiert. Zum Gruppieren von Ressourcen müssen Sie mit den Namenskonventionen vertraut sein, die für die einzelnen Umgebungen verwendet werden.
-* Jede VNet-Peeringverbindung wurde überprüft und vom Benutzer für den *Netzwerkbetrieb* genehmigt.
+- Jede der beiden Workloads ist nach Workload und Umgebung isoliert.
+- Bei diesem Modell sind zwei virtuelle Netzwerke mehr als beim ersten Beispielmodell erforderlich. Wenn nur zwei Workloads verwendet werden, ist dies kein wichtiger Unterschied, aber der theoretische Grenzwert für die Anzahl von Workloads für dieses Modell ist 24.
+- Ressourcen werden nicht mehr für jede Umgebung in einer einzelnen Ressourcengruppe gruppiert. Zum Gruppieren von Ressourcen müssen Sie mit den Namenskonventionen vertraut sein, die für die einzelnen Umgebungen verwendet werden.
+- Jede VNet-Peeringverbindung wurde überprüft und vom Benutzer für den *Netzwerkbetrieb* genehmigt.
 
 Wir sehen uns jetzt ein Modell für die Ressourcenverwaltung an, bei dem mehrere Abonnements verwendet werden. Bei diesem Modell richten Sie die drei Umgebungen jeweils auf ein separates Abonnement aus: ein Abonnement vom Typ **Gemeinsame Dienste**, ein Abonnement für die **Produktion** und ein Abonnement für die **Entwicklung**. Für dieses Modell müssen ähnliche Aspekte wie für ein Modell mit nur einem Abonnement berücksichtigt werden, und Sie müssen die Entscheidung treffen, wie Ressourcengruppen auf Workloads ausgerichtet werden. Ermittelt ist bereits, dass die Anforderung zur Isolation von Workloads durch die Erstellung einer Ressourcengruppe für jede Workload erfüllt wird. Daher verwenden Sie dieses Modell auch in diesem Beispiel.
 

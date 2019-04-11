@@ -7,12 +7,12 @@ ms.author: rodend
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 681944e082238f82cdea4dec2831bb507f4073ae
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 5ecdf1782fc274205e2750b9dc36fd2de3010e1f
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898390"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244181"
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a>Beispiele für das Implementieren eines Azure-Unternehmensgerüsts
 
@@ -24,7 +24,7 @@ Contoso ist ein globales Unternehmen, das Supply Chain-Lösungen für Kunden ber
 
 Der ISV-Bereich des Unternehmens ist in mehrere unabhängige Unternehmenseinheiten unterteilt, die Produkte in einem erheblichen Umfang verwalten. Jede Unternehmenseinheit verfügt über eigene Entwickler, Produktmanager und Architekten.
 
-Die Unternehmenseinheit Enterprise Technologie Services (ETS) bietet zentrale IT-Funktionen und verwaltet mehrere Rechenzentren, in denen Unternehmenseinheiten ihre Anwendungen hosten. Neben der Verwaltung der Rechenzentren bietet und verwaltet die ETS-Organisation zentralisierte Dienste für Zusammenarbeit (z.B. E-Mail und Websites) sowie für Netzwerk/Telefonie. Sie verwalten zudem kundenorientierte Workloads für kleinere Unternehmenseinheiten, die kein Betriebspersonal haben.
+Die Unternehmenseinheit Enterprise Technology Services (ETS) bietet zentrale IT-Funktionen und verwaltet mehrere Datencenter, in denen Unternehmenseinheiten ihre Anwendungen hosten. Neben der Verwaltung der Datencenter bietet und verwaltet die ETS-Organisation zentralisierte Dienste für die Zusammenarbeit (beispielsweise E-Mails und Websites) sowie Netzwerk-/Telefoniedienste. Sie verwalten zudem kundenorientierte Workloads für kleinere Unternehmenseinheiten, die kein Betriebspersonal haben.
 
 In diesem Artikel werden die folgenden Personas verwendet:
 
@@ -35,7 +35,7 @@ Contoso muss eine branchenspezifische App und eine kundenorientierte App erstell
 
 ## <a name="scenario-1-line-of-business-application"></a>Szenario 1: Branchenanwendung
 
-Contoso baut ein Quellcodeverwaltungssystem (BitBucket) auf, das von Entwicklern auf der ganzen Welt verwendet werden soll.  Die Anwendung nutzt Infrastructure-as-a-Service zum Hosten und besteht aus Webservern und einem Datenbankserver. Entwickler greifen auf Server in ihren Entwicklungsumgebungen zu, aber sie benötigen keinen Zugriff auf die Server in Azure. Contoso ETS möchte dem Anwendungsbesitzer und dem Team das Verwalten der Anwendung ermöglichen. Die Anwendung ist nur über das Unternehmensnetzwerk von Contoso verfügbar. Dave muss das Abonnement für diese Anwendung einrichten. Das Abonnement soll in der Zukunft auch andere Software für Entwickler hosten.
+Contoso baut ein Quellcodeverwaltungssystem (BitBucket) auf, das von Entwicklern auf der ganzen Welt verwendet werden soll. Die Anwendung nutzt Infrastructure-as-a-Service (IaaS) zum Hosten und besteht aus Webservern und einem Datenbankserver. Entwickler greifen auf Server in ihren Entwicklungsumgebungen zu, aber sie benötigen keinen Zugriff auf die Server in Azure. Contoso ETS möchte dem Anwendungsbesitzer und dem Team das Verwalten der Anwendung ermöglichen. Die Anwendung ist nur über das Unternehmensnetzwerk von Contoso verfügbar. Dave muss das Abonnement für diese Anwendung einrichten. Das Abonnement soll in der Zukunft auch andere Software für Entwickler hosten.
 
 ### <a name="naming-standards-and-resource-groups"></a>Benennungsstandards und Ressourcengruppen
 
@@ -49,7 +49,7 @@ Dave erstellt ein Abonnement, um Entwicklertools zu unterstützen, die in allen 
 
 ### <a name="role-based-access-control"></a>Rollenbasierte Zugriffssteuerung
 
-Nach dem Erstellen seines Abonnement möchte Dave sicherstellen, dass die entsprechenden Teams und Anwendungsbesitzer ihre Ressourcen zugreifen können. Dave erkennt, dass jedes Team andere Anforderungen hat. Er nutzt die Gruppen, die aus der lokalen Active Directory-Instanz (AD) von Contoso in Azure Active Directory synchronisiert wurden, und bietet den Teams die richtige Zugriffsebene.
+Nach dem Erstellen seines Abonnement möchte Dave sicherstellen, dass die entsprechenden Teams und Anwendungsbesitzer ihre Ressourcen zugreifen können. Dave erkennt, dass jedes Team andere Anforderungen hat. Er nutzt die Gruppen, die aus der lokalen Active Directory-Instanz (AD) von Contoso mit Azure Active Directory synchronisiert wurden, und bietet den Teams die passende Zugriffsebene.
 
 Dave weist die folgenden Rollen für das Abonnement zu:
 
@@ -151,7 +151,7 @@ Für das **Produktionsabonnement** erstellen sie die folgenden Richtlinien:
 
 | Feld | Wirkung | BESCHREIBUNG |
 | --- | --- | --- |
-| location |deny |Verweigern der Erstellung von Ressourcen außerhalb der US-amerikanischen Rechenzentren |
+| location |deny |Verweigern der Erstellung von Ressourcen außerhalb der US-amerikanischen Datencentern |
 | tags |deny |Erfordern des Tags für Anwendungsbesitzer |
 | tags |deny |Anfordern eines Abteilungstags |
 | tags |append |Anfügen von Tags an jede Ressourcengruppe in der Produktionsumgebung |

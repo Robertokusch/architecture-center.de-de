@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: bf432444587216d7f635b0a5f26fed9223e85c44
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: ebfd949e28443a7554426d51eccdcadfed4179ac
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482050"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248291"
 ---
 # <a name="scheduler-agent-supervisor-pattern"></a>Muster „Scheduler-Agent-Supervisor“
 
@@ -113,7 +113,7 @@ Der Übermittlungsprozess erstellt die folgenden Zustandsinformationen zum Auftr
 In diesen Zustandsinformation wird das Feld `OrderID` aus der Auftrags-ID des neuen Auftrags übernommen. Die Felder `LockedBy` und `CompleteBy` werden auf `null` festgelegt, das Feld `ProcessState` ist auf `Pending`, das Feld `FailureCount` ist auf 0 festgelegt.
 
 > [!NOTE]
-> In diesem Beispiel ist die Logik der Auftragsabwicklung relativ einfach und besteht nur aus einem einzigen Schritt, der einen Remotedienst aufruft. In einem komplexeren mehrstufigen Szenario würde der Übermittlungsprozess wahrscheinlich mehrere Schritte umfassen, sodass mehrere Datensätze im Zustandsspeicher erstellt werden – jeder dieser Datensätze beschreibt den Zustand eines einzelnen Schritts.
+> In diesem Beispiel ist die Logik der Auftragsabwicklung relativ einfach und besteht nur aus einem einzigen Schritt, der einen Remotedienst aufruft. In einem komplexeren mehrstufigen Szenario würde der Übermittlungsprozess wahrscheinlich mehrere Schritte umfassen, sodass mehrere Datensätze im Zustandsspeicher erstellt werden, die jeweils den Zustand eines einzelnen Schritts beschreiben.
 
 Der Scheduler wird ebenfalls als Bestandteil der Workerrolle ausgeführt und implementiert die Geschäftslogik zur Verarbeitung des Auftrags. Eine Instanz des Schedulers zum Abrufen neuer Aufträge untersucht den Zustandsspeicher auf Datensätze, bei denen das Feld `LockedBy` NULL ist und das Feld `ProcessState` den Wert „Pending“ aufweist. Wenn der Scheduler einen neuen Auftrag ermittelt, füllt er das Feld `LockedBy` sofort mit seiner eigenen Instanz-ID auf, legt das Feld `CompleteBy` auf eine angemessene Zeit und das Feld `ProcessState` auf „Processing“ fest. Der Code ist als exklusiv und unteilbar konzipiert, um sicherzustellen, dass zwei parallel ausgeführte Instanzen des Schedulers nicht denselben Auftrag verarbeiten können.
 

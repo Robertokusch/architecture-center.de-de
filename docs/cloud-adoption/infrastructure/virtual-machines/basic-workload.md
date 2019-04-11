@@ -3,12 +3,12 @@ title: 'CAF: Bereitstellen einer grundlegenden Workload'
 description: Hier erfahren Sie, wie Sie eine grundlegende Workload in Azure bereitstellen.
 author: petertaylor9999
 ms.date: 12/31/2018
-ms.openlocfilehash: bd3d006100e68f2fa1d71deeb0c72180ad4c19ea
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 15495f4306d816df5e54bb8a35819718791f6820
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902061"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242371"
 ---
 # <a name="deploy-a-basic-workload-in-azure"></a>Bereitstellen einer grundlegenden Workload in Azure
 
@@ -31,7 +31,7 @@ Jede dieser Bereitstellungen erfordert eine *Ressourcengruppe* – ganz gleich, 
 
 ## <a name="basic-web-application-paas"></a>Einfache Webanwendung (PaaS)
 
-Wählen Sie für eine einfache Webanwendung eine der 5-Minuten-Schnellstartanleitungen der [Dokumentation zu Web-Apps](/azure/app-service?toc=/azure/architecture/cloud-adoption-guide/toc.json) aus, und führen Sie die jeweiligen Schritte aus.
+Wählen Sie für eine einfache Webanwendung eine der Fünf-Minuten-Schnellstarts der [Dokumentation zu Web-Apps](/azure/app-service?toc=/azure/architecture/cloud-adoption-guide/toc.json) aus, und führen Sie die jeweiligen Schritte aus.
 
 > [!NOTE]
 > In einigen Schnellstartanleitungen wird standardmäßig eine Ressourcengruppe bereitgestellt. In diesem Fall muss nicht explizit eine Ressourcengruppe erstellt werden. Stellen Sie die Webanwendung andernfalls in der oben erstellten Ressourcengruppe bereit.

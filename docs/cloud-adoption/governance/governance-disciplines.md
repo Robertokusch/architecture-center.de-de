@@ -9,12 +9,12 @@ description: Übersicht über die Governanceinhalte in CAF
 author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 1721e2ff7b4e7879637a7c09a40a5571b73c9ace
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 80bdfc6f55b76fc3ae57d8fc25ce68c385eaa009
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901909"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241681"
 ---
 # <a name="the-five-disciplines-of-cloud-governance"></a>Die fünf Disziplinen der Cloud-Governance
 
@@ -40,7 +40,7 @@ Jede Änderung von Geschäftsprozessen oder Technologieplattformen birgt Risiken
                     <div class="cardText" style="padding-left:0px;">
 <img src="../_images/operational-transformation-govern-highres.png" alt="Diagram of the CAF governance model: Corporate policy and governance disciplines">
 <br>
-<i>Abbildung 1: Visuelle Darstellung der Unternehmensrichtlinie und fünf Cloud Governance-Disziplinen</i>
+<i>Abbildung 1: Diagramm der Unternehmensrichtlinie und der fünf Disziplinen von Cloud Governance</i>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@ Jede Änderung von Geschäftsprozessen oder Technologieplattformen birgt Risiken
 
 ## <a name="disciplines-of-cloud-governance"></a>Disziplinen von Cloud Governance
 
-Für jeden Cloudanbieter gibt es allgemeine Cloud Governance-Disziplinen, die als Leitfaden dienen können, um Richtlinien zu formulieren und Toolketten anzupassen. Diese Disziplinen sind ausschlaggebend für Entscheidungen über den richtigen Automatisierungsgrad und die Durchsetzung von Unternehmensrichtlinien bei Cloudanbietern.
+Für jeden Cloudanbieter gibt es allgemeine Governance-Disziplinen, die als Leitfaden dienen können, um Richtlinien zu formulieren und Toolketten anzupassen. Diese Disziplinen sind ausschlaggebend für Entscheidungen über den richtigen Automatisierungsgrad und die Durchsetzung von Unternehmensrichtlinien bei Cloudanbietern.
 
 <!-- markdownlint-disable MD033 -->
 

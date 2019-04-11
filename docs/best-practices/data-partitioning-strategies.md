@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 4f973a6173e882d6ae839833bd3c5bf86f8d7fb6
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 43838592ef4176c28e11b90180727a63b1e1f8f6
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898135"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241821"
 ---
 # <a name="data-partitioning-strategies"></a>Strategien für die Datenpartitionierung
 
@@ -135,7 +135,7 @@ Azure-Speicherwarteschlangen ermöglichen Ihnen asynchrones Messaging zwischen P
 
 Jede Speicherwarteschlange verfügt über einen eindeutigen Namen innerhalb des Speicherkontos, in dem sie enthalten ist. Azure partitioniert Warteschlangen basierend auf dem Namen. Alle Nachrichten für dieselbe Warteschlange werden in derselben Partition gespeichert, die von einem einzigen Server kontrolliert wird. Verschiedene Warteschlangen können von verschiedenen Servern verwaltet werden, um beim Lastausgleich zu helfen. Die Zuordnung der Warteschlangen zu Servern ist für Anwendungen und Benutzer transparent.
 
-Verwenden Sie in einer umfangreichen Anwendung nicht die gleiche Speicherwarteschlange für alle Instanzen der Anwendung, da bei diesen Ansatz der Server, der die Warteschlange hostet, zum Hotspot werden kann. Verwenden Sie stattdessen verschiedene Warteschlangen für verschiedene Funktionsbereiche der Anwendung. Azure-Speicherwarteschlangen unterstützen keine Transaktionen, d.h. das Weiterleiten von Nachrichten an verschiedene Warteschlangen sollte nur eine geringe Auswirkung auf die Messaging-Konsistenz haben.
+Verwenden Sie in einer umfangreichen Anwendung nicht die gleiche Speicherwarteschlange für alle Instanzen der Anwendung, da bei diesen Ansatz der Server, der die Warteschlange hostet, zum Hotspot werden kann. Verwenden Sie stattdessen verschiedene Warteschlangen für verschiedene Funktionsbereiche der Anwendung. Azure-Speicherwarteschlangen unterstützen keine Transaktionen. Das Weiterleiten von Nachrichten an verschiedene Warteschlangen sollte daher nur geringe Auswirkungen auf die Messagingkonsistenz haben.
 
 Eine Azure-Speicherwarteschlange kann bis zu 2.000 Nachrichten pro Sekunde verarbeiten. Wenn Sie Nachrichten schneller verarbeiten müssen, sollten Sie das Erstellen mehrerer Warteschlangen in Betracht ziehen. Erstellen Sie z. B. in einer globalen Anwendung separate Speicherwarteschlangen in separaten Speicherkonten, um Anwendungsinstanzen zu verarbeiten, die in jeder Region ausgeführt werden.
 

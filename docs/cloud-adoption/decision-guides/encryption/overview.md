@@ -7,26 +7,26 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Erfahren Sie mehr über die Verschlüsselung als Kerndienst bei Azure-Migrationen.
 author: rotycenh
-ms.openlocfilehash: 660206d57ded9a93d73c57ba9cb8058020d87525
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 8735800fe481a0e0292a6a0c7555e883e29f8ee2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901453"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241761"
 ---
 # <a name="encryption-decision-guide"></a>Leitfaden zur Entscheidungsfindung für die Verschlüsselung
 
 Das Verschlüsseln von Daten schützt vor nicht autorisiertem Zugriff. Eine ordnungsgemäß implementierte Verschlüsselung bietet zusätzliche Ebenen der Sicherheit für Ihre cloudbasierten Workloads und dient als Schutz vor Angreifern und anderen nicht autorisierten Benutzern – innerhalb und außerhalb Ihrer Organisation und Ihrer Netzwerke.
 
-Auch wenn die Verschlüsselung von Ressourcen in der Regel wünschenswert ist, stellt sie einen Zusatzaufwand dar, der zu einer höheren Latenz und einer allgemein höheren Ressourcennutzung führen kann. Daher ist bei anspruchsvollen Workloads die richtige Balance zwischen Verschlüsselung und Leistung wichtig.
-
 ![Abbildung der Verschlüsselungsoptionen mit zunehmender Komplexität entsprechend den nachstehenden weiterführenden Links](../../_images/discovery-guides/discovery-guide-encryption.png)
 
 Wechseln Sie zu: [Schlüsselverwaltung](#key-management) | [Datenverschlüsselung](#data-encryption) | [Weitere Informationen](#learn-more)
 
-Der Wendepunkt bei der Bestimmung einer Strategie für die Verschlüsselung richtet sich nach den Richtlinien des Unternehmens und Compliancevorgaben.
+Bei einer cloudbasierten Verschlüsselungsstrategie stehen die Richtlinien- und Compliancevorgaben des Unternehmens im Mittelpunkt. Die Verschlüsselung von Ressourcen ist generell wünschenswert und in vielen Azure-Diensten (etwa in Azure Storage und in Azure SQL-Datenbank) standardmäßig aktiviert. Die Verschlüsselung stellt jedoch einen Zusatzaufwand dar, der zu einer höheren Wartezeit sowie zu einer allgemein höheren Ressourcennutzung führen kann.
 
-Es gibt mehrere Möglichkeiten zum Implementieren von Verschlüsselung in einer Cloudumgebung, die Unterschiede bei den Kosten und der Komplexität aufweisen. Unternehmensrichtlinien und Konformität mit Drittanbietern sind die wichtigsten Aspekte bei der Planung einer Verschlüsselungsstrategie. Die meisten cloudbasierten Lösungen bieten Standardmechanismen für die Verschlüsselung von ruhenden und übertragenen Daten. Allerdings müssen Sie für Richtlinien und Complianceanforderungen, die eine strengere Kontrolle erfordern, etwa standardisierte Verwaltung von Geheimnissen und Schlüsseln, Verschlüsselung während der Verwendung oder datenspezifische Verschlüsselung, wahrscheinlich eine komplexe Lösung implementieren.
+Bei anspruchsvollen Workloads muss daher die richtige Balance zwischen Verschlüsselung und Leistung gefunden werden. Ein weiterer entscheidender Faktor ist die Art der Verschlüsselung von Daten und Datenverkehr. Verschlüsselungsmechanismen können sich in Sachen Kosten und Komplexität unterscheiden, und sowohl technische als auch richtlinienbedingte Anforderungen können Ihre Entscheidungen im Zusammenhang mit der Anwendung der Verschlüsselung sowie mit der Speicherung und Verwaltung kritischer Geheimnisse und Schlüssel beeinflussen.
+
+Unternehmensrichtlinien und Konformität mit Drittanbietern sind die wichtigsten Aspekte bei der Planung einer Verschlüsselungsstrategie. Azure bietet mehrere Standardmechanismen zur Erfüllung allgemeiner Datenverschlüsselungsanforderungen für ruhende und übertragene Daten. Für Richtlinien und Complianceanforderungen, die eine strengere Kontrolle erfordern (etwa eine standardisierte Geheimnis- und Schlüsselverwaltung, eine Verschlüsselung während der Verwendung oder eine datenspezifische Verschlüsselung), ist dagegen eine komplexere Verschlüsselungsstrategie erforderlich.
 
 ## <a name="key-management"></a>Schlüsselverwaltung
 
@@ -38,24 +38,25 @@ Die folgende Tabelle für die Planung einer Cloudmigration zeigt, wie Sie Versch
 |---------------------------------------------------------------------------------------------------------------------------------------|--------------|--------|-------------|
 | Fehlt in Ihrer Organisation eine zentralisierte Schlüssel- und Geheimnisverwaltung?                                                                    | Ja          | Nein      | Nein           |
 | Muss die Erstellung von Schlüsseln und Geheimnissen für Geräte auf lokale Hardware beschränkt werden, wenn diese Schlüssel in der Cloud verwendet werden? | Nein            | Ja    | Nein           |
-| Verfügt Ihre Organisation über Regeln oder Richtlinien, die das Speichern der Schlüssel und Geheimnisse außerhalb der eigenen Standorte verhindern würde?                | Nein            | Nein      | Ja         |
+| Verfügt Ihre Organisation über Regeln oder Richtlinien, die eine externe Speicherung von Schlüsseln verhindern?                | Nein            | Nein      | Ja         |
 
 ### <a name="cloud-native"></a>Cloudbasiert
 
-Bei der cloudnativen Schlüsselverwaltung werden alle Schlüssel und Geheimnisse in einem cloudbasierten Tresor generiert, verwaltet und gespeichert. Dieser Ansatz vereinfacht viele IT-Aufgaben im Zusammenhang mit der Schlüsselverwaltung.
+Bei der cloudbasierten Schlüsselverwaltung werden alle Schlüssel und Geheimnisse in einem cloudbasierten Tresor (beispielsweise in Azure Key Vault) generiert, verwaltet und gespeichert. Dieser Ansatz vereinfacht viele IT-Aufgaben im Zusammenhang mit der Schlüsselverwaltung – etwa das Sichern, Speichern und Verlängern von Schlüsseln.
 
-Annahmen für die cloudnative Schlüsselverwaltung: Für die Verwendung eines cloudnativen Schlüsselverwaltungssystems wird Folgendes angenommen:
+Für die Verwendung eines cloudnativen Schlüsselverwaltungssystems wird Folgendes angenommen:
 
 - Sie vertrauen der Cloudlösung für die Schlüsselverwaltung beim Erstellen, Verwalten und Hosten der Geheimnisse und Schlüssel Ihres Unternehmens.
 - Sie ermöglichen allen lokalen Anwendungen und Diensten, die auf den Zugriff auf Verschlüsselungsdienste oder Geheimnisse angewiesen sind, den Zugriff auf das Schlüsselverwaltungssystem in der Cloud.
 
 ### <a name="hybrid-bring-your-own-key"></a>Hybrid (Bring Your Own Key)
 
-Bei einem Bring-Your-Own-Key-Ansatz generieren Sie die Schlüssel auf dedizierter HSM-Hardware in Ihrer lokalen Umgebung und übertragen die Schlüssel dann in ein sicheres Schlüsselverwaltungssystem in der Cloud, damit sie für Cloudressourcen verwendet werden können.
+Bei diesem Ansatz generieren Sie die Schlüssel auf dedizierter HSM-Hardware in Ihrer lokalen Umgebung und übertragen die Schlüssel dann in einen sicheren Schlüsseltresor in der Cloud, damit sie für Cloudressourcen verwendet werden können.
 
 Annahmen für die hybride Schlüsselverwaltung: Für die Verwendung eines hybriden Schlüsselverwaltungssystems wird Folgendes angenommen:
 
 - Sie vertrauen der zugrunde liegenden Sicherheits- und Zugriffssteuerungsinfrastruktur der Cloudplattform beim Hosting und der Verwendung Ihrer Schlüssel und Geheimnisse.
+- Ihre in der Cloud gehosteten Anwendungen und Dienste können sicher und zuverlässig auf Schlüssel und Geheimnisse zugreifen und sie entsprechend verwenden.
 - Sie sind durch gesetzliche Vorgaben oder Organisationsrichtlinien gezwungen, die Erstellung und Verwaltung der Geheimnisse und Schlüssel Ihrer Organisation lokal durchzuführen.
 
 ### <a name="on-premises-hold-your-own-key"></a>Lokal (Hold-Your-Own-Key)

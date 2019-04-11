@@ -10,12 +10,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: 484f41f64b676b08ae8adb4ba082f9bff75a6a54
-ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
+ms.openlocfilehash: 8941195c5342036521d5176bfd5420b538dfa4a7
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/31/2019
-ms.locfileid: "55483112"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245351"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Virtuelles Azure-Rechenzentrum: Eine Netzwerkperspektive
 
@@ -76,7 +76,7 @@ Beim Entwerfen der Implementierung eines virtuellen Rechenzentrums sind mehrere 
 
 ### <a name="identity-and-directory-service"></a>Identitäts- und Verzeichnisdienst
 
-Identitäts- und Verzeichnisdienste sind ein wichtiger Aspekt jedes Rechenzentrums, ganz gleich, ob lokal oder in der Cloud gehostet. Identität bezieht sich auf alle Aspekte des Zugriffs und der Autorisierung für Dienste innerhalb der Implementierung eines virtuellen Rechenzentrums. Um sicherzustellen, dass nur autorisierte Benutzer und Prozesse auf Ihr Azure-Konto und die entsprechenden Ressourcen zugreifen, verwendet Azure mehrere Typen von Anmeldeinformationen für die Authentifizierung. Dazu gehören Kennwörter (um auf das Azure-Konto zuzugreifen), kryptografische Schlüssel, digitale Signaturen und Zertifikate. [Microsoft Azure Multi-Factor Authentication (MFA)][MFA] ist eine zusätzliche Sicherheitsebene für den Zugriff auf Azure-Dienste. Azure MFA stellt anhand eine Reihe von einfachen Überprüfungsoptionen – Telefonanruf, SMS oder Benachrichtigung in einer mobilen App – eine sichere Authentifizierung bereit und ermöglicht es Kunden, die von ihnen bevorzugte Methode zu wählen.
+Identitäts- und Verzeichnisdienste sind ein wichtiger Aspekt jedes Rechenzentrums, ganz gleich, ob lokal oder in der Cloud gehostet. Identität bezieht sich auf alle Aspekte des Zugriffs und der Autorisierung für Dienste innerhalb der Implementierung eines virtuellen Rechenzentrums. Um sicherzustellen, dass nur autorisierte Benutzer und Prozesse auf Ihr Azure-Konto und die entsprechenden Ressourcen zugreifen, verwendet Azure mehrere Typen von Anmeldeinformationen für die Authentifizierung. Dazu gehören Kennwörter (um auf das Azure-Konto zuzugreifen), kryptografische Schlüssel, digitale Signaturen und Zertifikate. [Microsoft Azure Multi-Factor Authentication (MFA)][MFA] ist eine zusätzliche Sicherheitsebene für den Zugriff auf Azure-Dienste. Azure MFA stellt anhand eine Reihe von einfachen Überprüfungsoptionen – Telefonanruf, SMS oder Benachrichtigung in einer mobilen App – eine sichere Authentifizierung bereit und ermöglicht es Kunden, die von ihnen bevorzugte Methode zu wählen.
 
 Alle großen Unternehmen müssen einen Identitätsverwaltungsprozess definieren, der die Verwaltung der einzelnen Identitäten, deren Authentifizierung, Autorisierung, Rollen und Berechtigungen in der Implementierung des virtuellen Rechenzentrums beschreibt (einzeln oder übergreifend). Mit diesem Prozess sollte Sicherheit und Produktivität gesteigert und gleichzeitig Kosten, Ausfallzeiten und sich wiederholende manuelle Aufgaben verringert werden.
 

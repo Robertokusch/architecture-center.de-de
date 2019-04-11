@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: fba07823d49aa43fdb67652f99a26bd7df3a57c3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 503320c2ed429c97c6581cd7b48ce328996df6c6
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488289"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241361"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute-with-vpn-failover"></a>Verbinden eines lokalen Netzwerks mit Azure unter Verwendung von ExpressRoute mit VPN-Failover
 
@@ -62,7 +62,7 @@ $vnet = Get-AzureRmVirtualNetworkGateway -Name <yourvnetname> -ResourceGroupName
 Remove-AzureRmVirtualNetworkSubnetConfig -Name GatewaySubnet -VirtualNetwork $vnet
 ```
 
-Wenn das VNet kein Subnetz mit dem Namen **GatewaySubnet** enthält, erstellen Sie mit dem folgenden Powershell-Befehl ein neues Subnetz:
+Wenn das VNET kein Subnetz mit dem Namen **GatewaySubnet** enthält, erstellen Sie mit dem folgenden PowerShell-Befehl ein neues Subnetz:
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetworkGateway -Name <yourvnetname> -ResourceGroupName <yourresourcegroup>

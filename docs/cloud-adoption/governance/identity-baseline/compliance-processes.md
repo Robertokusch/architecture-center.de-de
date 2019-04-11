@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: 'Identitätsbaseline: Prozesse für Richtlinienkonformität'
 author: BrianBlanchard
-ms.openlocfilehash: e00427662c811fccb7e0a7261a4bb3dd3437103e
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: ef973a788b49d6818e9647601a16a772106b53eb
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900721"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242571"
 ---
 # <a name="identity-baseline-policy-compliance-processes"></a>Identitätsbaseline: Prozesse für Richtlinienkonformität
 
@@ -24,7 +24,7 @@ Identitätsverwaltungstools bieten Funktionen und Features, die Benutzerverwaltu
 
 **Anfängliche Risikobewertung und Planung**: Als Teil Ihrer erstmaligen Einführung der Disziplin „Identitätsbaseline“ identifizieren Sie Ihre Kerngeschäftsrisiken und Toleranzen im Zusammenhang mit der Identitätsverwaltung in der Cloud. Verwenden Sie diese Informationen, um spezifische technische Risiken mit Mitgliedern Ihrer IT-Teams zu besprechen, die für die Verwaltung von Identitätsdiensten verantwortlich sind, und entwickeln Sie einen grundlegenden Satz von Sicherheitsrichtlinien zur Minimierung dieser Risiken, um Ihre erste Governancestrategie zu formulieren.
 
-**Bereitstellungsplanung**: Überprüfen Sie vor jeder Bereitstellung den Zugriffsbedarf für alle Workloads, und entwickeln Sie eine Zugriffssteuerungsstrategie, die auf die etablierte Corporate Identity-Richtlinie abgestimmt ist. Dokumentieren Sie alle Lücken zwischen dem Bedarf und der aktuellen Richtlinie, um festzustellen, ob Aktualisierungen der Richtlinie erforderlich sind, und ändern Sie die Richtlinie bei Bedarf.
+**Bereitstellungsplanung**: Überprüfen Sie vor jeder Bereitstellung den Zugriffsbedarf für alle Workloads, und entwickeln Sie eine Zugriffssteuerungsstrategie, die auf die etablierte Corporate Identity-Richtlinie abgestimmt ist. Dokumentieren Sie alle Lücken zwischen dem Bedarf und der aktuellen Richtlinie, um festzustellen, ob Aktualisierungen der Richtlinie erforderlich sind, und ändern Sie die Richtlinie bei Bedarf.
 
 **Bereitstellungstests**: Im Rahmen der Bereitstellung ist das Cloud Governance-Team in Zusammenarbeit mit den für Identitätsdienste zuständigen IT-Teams für die Überprüfung der Bereitstellung zur Überprüfung der Einhaltung der Identitätsrichtlinien verantwortlich.
 

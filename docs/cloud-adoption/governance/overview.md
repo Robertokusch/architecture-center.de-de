@@ -1,16 +1,19 @@
 ---
-title: 'CAF: Cloud Governance'
-description: Einführung in Cloud Governance-Inhalte
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Governance in Microsoft CAF für Azure'
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+ms.date: 02/11/2019
+description: Governance in Microsoft CAF für Azure
 author: BrianBlanchard
-ms.date: 2/11/2019
-ms.openlocfilehash: 8a9701677eec913788ca72f86444a3600e170d07
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: b7a0739a42a27def34955577acffc7ab7292ac50
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897370"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247371"
 ---
-# <a name="cloud-governance-in-the-microsoft-caf-for-azure"></a>Cloud Governance in Microsoft CAF for Azure
+# <a name="governance-in-the-microsoft-caf-for-azure"></a>Governance in Microsoft CAF für Azure
 
 Die Cloud schafft neue Paradigmen in Bezug auf die Technologien, die das Unternehmen unterstützen. Diese neuen Paradigmen bewirken auch Veränderungen in der Art und Weise, wie diese Technologien eingeführt, verwaltet und gesteuert werden. Wenn ganze Datencenter mit einer Codezeile aus einem unbeaufsichtigten Prozess zerstört und neu erstellt werden können, müssen wir die traditionellen Ansätze überdenken. Dies gilt gleichermaßen für die Governance.
 
@@ -35,11 +38,11 @@ Der Cloudarchitekt dient als innovative Führungsperson und Vermittler, um diese
 
 Für Leser, die diesem Leitfaden von Anfang bis Ende folgen, werden diese Inhalte dazu beitragen, eine robuste Cloud Governance-Strategie parallel zur Cloudimplementierung zu entwickeln. Der Leitfaden führt den Leser durch die Theorie und Implementierung einer solchen Strategie.
 
-Einen Crashkurs zur Theorie und zum schnellen Zugang zur Azure-Implementierung finden Sie unter [Übersicht über umsetzbare Governancelösungen](./journeys/overview.md). Durch diese Anleitung kann der Leser klein anfangen und seine Governanceanforderungen parallel zu den Bemühungen zur Cloudeinführung weiterentwickeln.
+Einen Crashkurs zur Theorie und zum schnellen Zugang zur Azure-Implementierung finden Sie in der [Übersicht über nützliche Governance-Vorgehensweisen](./journeys/overview.md). Durch diese Anleitung kann der Leser klein anfangen und seine Governanceanforderungen parallel zu den Bemühungen zur Cloudeinführung weiterentwickeln.
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Überprüfen der umsetzbaren Governancelösungen
+Machen Sie sich mit den nützlichen Governance-Vorgehensweisen vertraut.
 
 > [!div class="nextstepaction"]
-> [Umsetzbare Governancelösungen](./journeys/overview.md)
+> [Nützliche Governancevorgehensweisen](./journeys/overview.md)

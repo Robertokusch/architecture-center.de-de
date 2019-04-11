@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 43356f4e94c3f35fcb419338a41eb53025ce63b6
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: b7728a9cd06fc7788e83db3973f797ae6d696916
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482594"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241751"
 ---
 # <a name="transient-fault-handling"></a>Behandeln vorübergehender Fehler
 
@@ -41,7 +41,7 @@ Cloud-Hosting, einschließlich privater Cloud-Systeme, kann eine höhere allgeme
 
 ## <a name="challenges"></a>Herausforderungen
 
-Vorübergehende Fehler können eine enorme Auswirkung auf die empfundene Verfügbarkeit einer Anwendung haben, selbst wenn diese unter allen vorhersehbaren Umständen gründlich getestet wurde. Um sicherzustellen, dass Cloud-gehostete Anwendungen zuverlässig ausgeführt werden, müssen sie auf die folgenden Herausforderungen reagieren können:
+Vorübergehende Fehler können enorme Auswirkungen auf die empfundene Verfügbarkeit einer Anwendung haben, selbst wenn diese unter allen vorhersehbaren Umständen gründlich getestet wurde. Um sicherzustellen, dass Cloud-gehostete Anwendungen zuverlässig ausgeführt werden, müssen sie auf die folgenden Herausforderungen reagieren können:
 
 - Die Anwendung muss in der Lage sein, Fehler zu entdecken, sobald diese auftreten, und bestimmen können, ob diese Fehler eher vorübergehende, lang andauernde oder terminale Fehler sind. Verschiedene Ressourcen senden wahrscheinlich unterschiedliche Antworten zurück, wenn ein Fehler auftritt, und diese Antworten können je nach Kontext des Vorgangs auch variieren. Beispielsweise kann sich die Antwort für einen Fehler beim Lesen aus dem Speicher von einer Antwort für einen Fehler beim Schreiben in den Speicher unterscheiden. Viele Ressourcen und Dienste verfügen über gut dokumentierte vorübergehende Fehlerverträge. Wenn derartige Informationen jedoch nicht verfügbar sind, ist es möglicherweise schwierig, die Art des Fehlers zu ermitteln, und ob er wahrscheinlich vorübergehend ist.
 
@@ -133,7 +133,7 @@ Die folgenden Richtlinien werden Ihnen helfen, für Ihre Anwendungen einen geeig
 
 - **Melden Sie sich an und verfolgen Sie vorübergehende und dauerhafte Fehler:**
 
-  - Schließen Sie als Teil Ihrer Wiederholungsstrategie die Ausnahmebehandlung und eine andere Instrumentation ein, die protokolliert, wenn Wiederholungsversuche erfolgen. Während ein gelegentlicher vorübergehender Fehler und Wiederholungsversuch zu erwarten sind und auf kein Problem verweisen, sind regelmäßige und zunehmende Wiederholungen häufig ein Hinweis auf ein Problem, das zu einem Fehler führen kann, oder wirken sich aktuell auf die Leistung und Verfügbarkeit aus.
+  - Schließen Sie als Teil Ihrer Wiederholungsstrategie die Ausnahmebehandlung und eine andere Instrumentation ein, die protokolliert, wenn Wiederholungsversuche erfolgen. Während gelegentliche vorübergehende Fehler und Wiederholungsversuche zu erwarten sind und nicht unbedingt auf ein Problem hindeuten, sind regelmäßige und zunehmende Wiederholungen häufig ein Anzeichen für ein Problem, das zu einem Fehler führen kann oder aktuell die Anwendungsleistung und -verfügbarkeit beeinträchtigt.
 
   - Protokollieren Sie vorübergehende Fehler als Warnungs- statt Fehlereinträge, damit Überwachungssysteme diese nicht als Anwendungsfehler erkennen, die womöglich falsche Warnungen auslösen.
 

@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, SAP, Windows
-ms.openlocfilehash: e866727a40551b60e74fc26878a15a5a48e69cf6
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: a93ceead8d160e8c0d0915abeb5e78782190efd6
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897625"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248097"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Bereitstellen von SAP NetWeaver (Windows) für AnyDB auf virtuellen Azure-Computern
 
@@ -69,7 +69,7 @@ Um Anmeldegruppen für ABAP-Anwendungsserver zu verwalten, wird die SMLG-Transak
 
 ### <a name="sap-central-services-cluster"></a>SAP Central Services-Cluster
 
-In dieser Referenzarchitektur wird Central Services auf virtuellen Computern auf der Logikschicht ausgeführt. Die Central Services-Komponente ist ein möglicher Single Point of Failure (SPOF), wenn sie auf einem einzelnen virtuellen Computer bereitgestellt wird – dies ist die typische Bereitstellung, wenn Hochverfügbarkeitnicht erforderlich ist. Soll eine Hochverfügbarkeitslösung implementiert werden, kann ein Cluster mit freigegebenen Datenträgern oder ein Dateifreigabecluster verwendet werden.
+In dieser Referenzarchitektur wird Central Services auf virtuellen Computern auf der Logikschicht ausgeführt. Die Central Services-Komponente ist ein möglicher Single Point of Failure (SPOF), wenn sie auf einem einzelnen virtuellen Computer bereitgestellt wird. Dies ist die typische Bereitstellung, wenn keine Hochverfügbarkeit erforderlich ist. Für eine Hochverfügbarkeitslösung muss entweder ein Cluster mit freigegebenen Datenträgern oder ein Dateifreigabecluster verwendet werden.
 
 Um virtuelle Computer für einen Cluster mit freigegebenen Datenträgern zu konfigurieren, verwenden Sie [Windows Server-Failovercluster](https://blogs.sap.com/2018/01/25/how-to-create-sap-resources-in-windows-failover-cluster/). [Cloudzeuge](/windows-server/failover-clustering/deploy-cloud-witness) wird als ein Quorumzeuge empfohlen. Zur Unterstützung der Failoverclusterumgebung führt [SIOS DataKeeper Cluster Edition](https://azuremarketplace.microsoft.com/marketplace/apps/sios_datakeeper.sios-datakeeper-8) die Funktion zur Clustererstellung der freigegebenen Volumes aus, indem unabhängige Datenträger repliziert werden, die sich im Besitz der Clusterknoten befinden. Azure selbst unterstützt keine freigegebenen Datenträger und erfordert daher Lösungen, die von SIOS bereitgestellt werden.
 
@@ -142,7 +142,7 @@ Weitere Informationen finden Sie unter [SAP-Zertifizierungen und -Konfiguratione
 
 ### <a name="database-tier"></a>Datenbankschicht
 
-Für diese Referenzarchitektur wird angenommen, dass die Quelldatenbank in AnyDB ausgeführt wird – also ein DBMS wie SQL Server, SAP ASE, IBM DB2 oder Oracle. Die native Replikationsfunktion der Datenbankschicht bietet entweder manuelles oder automatisches Failover zwischen replizierten Knoten.
+Bei dieser Referenzarchitektur wird davon ausgegangen, dass die Quelldatenbank auf AnyDB basiert (also ein DBMS wie SQL Server, SAP ASE, IBM DB2 oder Oracle verwendet wird). Die native Replikationsfunktion der Datenbankschicht bietet entweder manuelles oder automatisches Failover zwischen replizierten Knoten.
 
 Implementierungsdetails zu bestimmten Datenbanksystemen finden Sie unter [Azure Virtual Machines – DBMS-Bereitstellung für SAP NetWeaver](/azure/virtual-machines/workloads/sap/dbms-guide).
 

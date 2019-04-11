@@ -1,14 +1,18 @@
 ---
 title: 'CAF: Einführung in die Einhaltung gesetzlicher Bestimmungen'
-description: Was ist die Einhaltung gesetzlicher Bestimmungen?
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+ms.date: 02/11/2019
+description: Einführung in die Einhaltung gesetzlicher Bestimmungen
 author: BrianBlanchard
-ms.date: 2/8/2019
-ms.openlocfilehash: 5ff7b591d7cab647a99cee223e6271928e185a2f
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 3703367dd03b63e5ecf86408ab29dafc7a6e494d
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55902045"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242421"
 ---
 # <a name="introduction-to-regulatory-compliance"></a>Einführung in die Einhaltung gesetzlicher Bestimmungen
 
@@ -36,7 +40,7 @@ Personenbezogene Informationen (Personally Identifiable Information, PII) sind a
 
 ## <a name="gdpr"></a>GDPR
 
-Eine der wichtigsten Entwicklungen in diesem Bereich ist das kürzliche Inkrafttreten der allgemeinen Datenschutzgrundverordnung (DSGVO) der Europäischen Kommission, die speziell entwickelt wurde, um den Schutz von Daten für Einzelpersonen innerhalb der Europäischen Union zu stärken. Die DSGVO erfordert, dass Daten über Einzelpersonen, z.B. Namen, Privatadressen, Fotos, E-Mail-Adressen, Bankdaten, Beiträge in sozialen Netzwerken, medizinische Informationen oder IP-Adressen eines Computers, auf Servern innerhalb der EU verwaltet werden und nicht aus ihr heraus übertragen werden. Sie erfordert auch, dass Unternehmen Personen über Datenschutzverletzungen benachrichtigen, und fordert, dass Unternehmen einen Datenschutzbeauftragten haben müssen. Andere Länder haben ähnliche Arten von Vorschriften oder entwickeln diese derzeit.
+Eine der wichtigsten Entwicklungen in diesem Bereich ist das kürzliche Inkrafttreten der allgemeinen Datenschutzgrundverordnung (DSGVO) der Europäischen Kommission, die speziell entwickelt wurde, um den Schutz von Daten für Einzelpersonen innerhalb der Europäischen Union zu stärken. Die DSGVO erfordert, dass Daten über Einzelpersonen, (wie Namen, Privatadressen, Fotos, E-Mail-Adressen, Bankdaten, Beiträge in sozialen Netzwerken, medizinische Informationen oder IP-Adressen eines Computers) auf Servern innerhalb der EU verwaltet und nicht an einen Ort außerhalb der EU übertragen werden. Sie erfordert auch, dass Unternehmen Personen über Datenschutzverletzungen benachrichtigen, und fordert, dass Unternehmen einen Datenschutzbeauftragten haben müssen. Andere Länder haben ähnliche Arten von Vorschriften oder entwickeln diese derzeit.
 
 ## <a name="compliant-foundation-in-azure"></a>Konformitätsbasis in Azure
 

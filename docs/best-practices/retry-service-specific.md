@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: d99c63b9cb5f2ed7ffcd869b5b8ac7910b9dabe3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 1d55d859937785ce8803438d9ed62c9afe8ad133
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487136"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241841"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Wiederholungsanleitung für bestimmte Dienste
 
@@ -169,7 +169,7 @@ Azure Redis Cache ist ein schneller Datenzugriff und ein Cache Service mit niedr
 
 Die Anleitung in diesem Abschnitt beruht auf der Verwendung des StackExchange.Redis-Clients für den Zugriff auf den Cache. Eine Liste der anderer geeigneter Clients finden Sie auf der [Redis-Website](https://redis.io/clients), diese haben möglicherweise unterschiedliche Wiederholungsmechanismen.
 
-Beachten Sie, dass der StackExchange.Redis Client Multiplex über eine einzige Verbindung verwendet. Die empfohlene Verwendung ist das Erstellen einer Instanz des Clients beim Starten der Anwendung und die Verwendung dieser Instanz für alle Vorgänge im Cache. Aus diesem Grund wird die Verbindung mit dem Cache nur einmal hergestellt und die Anleitungen in diesem Abschnitt beziehen sich auf die Wiederholungsrichtlinie für die anfängliche Verbindung - und nicht für jeden Vorgang, der auf den Cache zugreift.
+Beachten Sie, dass der StackExchange.Redis Client Multiplex über eine einzige Verbindung verwendet. Die empfohlene Verwendung ist das Erstellen einer Instanz des Clients beim Starten der Anwendung und die Verwendung dieser Instanz für alle Vorgänge im Cache. Aus diesem Grund wird die Verbindung mit dem Cache nur einmal hergestellt, und die Anleitungen in diesem Abschnitt beziehen sich auf die Wiederholungsrichtlinie für die anfängliche Verbindung – und nicht für jeden Vorgang, der auf den Cache zugreift.
 
 ### <a name="retry-mechanism"></a>Wiederholungsmechanismus
 
@@ -955,7 +955,7 @@ Beachten Sie die folgenden Richtlinien beim Zugriff auf Azure-Speicherdienste mi
 
 - Verwenden der integrierten Wiederholungsrichtlinien aus dem Microsoft.WindowsAzure.Storage.RetryPolicies-Namespace, wo sie für Ihre Anforderungen geeignet sind. In den meisten Fällen sind diese Richtlinien ausreichend.
 
-- Verwenden der **ExponentialRetry** Richtlinie in Batchvorgängen, Hintergrundaufgaben oder nicht interaktiven Szenarios. In diesen Szenarien können Sie in der Regel dem Dienst mehr Zeit für die Wiederherstellung  zur Verfügung stellen - dadurch erhöht sich die Wahrscheinlichkeit, dass der Vorgang schließlich erfolgreich ist.
+- Verwenden der **ExponentialRetry** Richtlinie in Batchvorgängen, Hintergrundaufgaben oder nicht interaktiven Szenarios. In diesen Szenarien können Sie in der Regel dem Dienst mehr Zeit für die Wiederherstellung zur Verfügung stellen – dadurch erhöht sich die Wahrscheinlichkeit, dass der Vorgang schließlich erfolgreich ist.
 
 - Geben Sie die Eigenschaft **MaximumExecutionTime** des **RequestOptions**-Parameters an, um die Gesamtausführungszeit zu beschränken. Berücksichtigen Sie bei der Auswahl eines Timeoutwerts aber den Typ und die Größe des Vorgangs.
 

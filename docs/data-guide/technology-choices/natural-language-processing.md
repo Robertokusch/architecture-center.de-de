@@ -6,12 +6,12 @@ ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 20dc51e661befcc09dd1751b031d445ff2b9fa1a
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 918ac19aeba36ce695c30896113a4c00e2f7c488
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486487"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245901"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>Auswählen einer Technologie zur Verarbeitung von natürlicher Sprache in Azure
 
@@ -49,10 +49,10 @@ In den folgenden Tabellen sind die Hauptunterschiede in Bezug auf die Funktionen
 
 | | Azure HDInsight | Microsoft Cognitive Services |
 | --- | --- | --- |
-| Bereitstellung von vortrainierten Modellen als Dienst | Nein  | JA |
-| REST-API | JA | JA |
+| Bereitstellung von vortrainierten Modellen als Dienst | Nein  | Ja |
+| REST-API | Ja | Ja |
 | Programmierbarkeit | Python, Scala, Java | C#, Java, Node.js, Python, PHP, Ruby |
-| Unterstützung der Verarbeitung von umfangreichen Datasets und großen Dokumenten | JA | Nein  |
+| Unterstützung der Verarbeitung von umfangreichen Datasets und großen Dokumenten | Ja | Nein  |
 
 ### <a name="low-level-natural-language-processing-capabilities"></a>Funktionen zur speziellen Verarbeitung von natürlicher Sprache
 

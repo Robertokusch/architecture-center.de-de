@@ -1,5 +1,5 @@
 ---
-title: 'CAF: Große Unternehmen: Multi-Cloud-Entwicklung'
+title: 'Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Große Unternehmen: Multi-Cloud-Entwicklung'
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: 'Große Unternehmen: Multi-Cloud-Entwicklung'
 author: BrianBlanchard
-ms.openlocfilehash: 5ef29aa523c04ff93b2d4f983482f94654a4a039
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: c72040912a99ad232e367ae750e9bb2caa77cbf2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901810"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241093"
 ---
 # <a name="large-enterprise-multi-cloud-evolution"></a>Große Unternehmen: Multi-Cloud-Entwicklung
 
@@ -82,7 +82,7 @@ Mit zunehmender Einführung der Multi-Cloud-Umgebung schreitet auch die oben bes
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-In vielen großen Unternehmen können sich die Fachrichtungen der Cloud Governance als Einführungshindernisse erweisen. Der nächste Artikel enthält einige abschließende Gedanken darüber, wie Governance zu einem Mannschaftssport gemacht werden kann, um den langfristigen Erfolg in der Cloud zu sichern.
+In vielen großen Unternehmen können sich die fünf Disziplinen der Cloud-Governance als Einführungshindernisse erweisen. Der nächste Artikel enthält einige zusätzliche Überlegungen dazu, wie Governance zu einer Gemeinschaftsaufgabe gemacht werden kann, um den langfristigen Erfolg in der Cloud zu sichern.
 
 > [!div class="nextstepaction"]
 > [Mehrere Governance-Ebenen](./multiple-layers-of-governance.md)
