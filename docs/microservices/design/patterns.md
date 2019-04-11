@@ -1,0 +1,41 @@
+---
+title: Entwurfsmuster für Microservices
+description: Entwurfsmuster zum Implementieren einer stabilen Microservices-Architektur.
+author: MikeWasson
+ms.date: 02/25/2019
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: microservices
+ms.openlocfilehash: 8cdbf95c753770910fa4a94384c9809db9fda746
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243571"
+---
+# <a name="design-patterns-for-microservices"></a><span data-ttu-id="aafa0-103">Entwurfsmuster für Microservices</span><span class="sxs-lookup"><span data-stu-id="aafa0-103">Design patterns for microservices</span></span>
+
+<span data-ttu-id="aafa0-104">Microservices dienen zur Beschleunigung von Anwendungsreleases. Hierzu wird die Anwendung in kleine autonome Dienste zerlegt, die unabhängig voneinander bereitgestellt werden können.</span><span class="sxs-lookup"><span data-stu-id="aafa0-104">The goal of microservices is to increase the velocity of application releases, by decomposing the application into small autonomous services that can be deployed independently.</span></span> <span data-ttu-id="aafa0-105">Eine Microservices-Architektur ist jedoch auch mit gewissen Herausforderungen verbunden.</span><span class="sxs-lookup"><span data-stu-id="aafa0-105">A microservices architecture also brings some challenges.</span></span> <span data-ttu-id="aafa0-106">Die hier gezeigten Entwurfsmuster können zur Bewältigung dieser Herausforderungen beitragen.</span><span class="sxs-lookup"><span data-stu-id="aafa0-106">The design patterns shown here can help mitigate these challenges.</span></span>
+
+![Entwurfsmuster für Microservices](../images/microservices-patterns.png)
+
+<span data-ttu-id="aafa0-108">[**Ambassador**](../../patterns/ambassador.md) kann verwendet werden, um allgemeine Clientkonnektivitätsaufgaben – etwa Überwachung, Protokollierung, Weiterleitung und Sicherheit (beispielsweise TLS) – sprachunabhängig auszulagern.</span><span class="sxs-lookup"><span data-stu-id="aafa0-108">[**Ambassador**](../../patterns/ambassador.md) can be used to offload common client connectivity tasks such as monitoring, logging, routing, and security (such as TLS) in a language agnostic way.</span></span> <span data-ttu-id="aafa0-109">Ambassador-Dienste werden häufig als Sidecar bereitgestellt (wie weiter unten erläutert).</span><span class="sxs-lookup"><span data-stu-id="aafa0-109">Ambassador services are often deployed as a sidecar (see below).</span></span>
+
+<span data-ttu-id="aafa0-110">[**Antibeschädigungsebene**](../../patterns/anti-corruption-layer.md) implementiert eine Fassade zwischen neuen und älteren Anwendungen, um zu gewährleisten, dass das Design einer neuen Anwendung nicht durch Abhängigkeiten von Legacysystemen eingeschränkt wird.</span><span class="sxs-lookup"><span data-stu-id="aafa0-110">[**Anti-corruption layer**](../../patterns/anti-corruption-layer.md) implements a façade between new and legacy applications, to ensure that the design of a new application is not limited by dependencies on legacy systems.</span></span>
+
+<span data-ttu-id="aafa0-111">[**Back-Ends für Front-Ends**](../../patterns/backends-for-frontends.md) erstellt separate Back-End-Dienste für verschiedene Arten von Clients (etwa für Desktopclients und mobile Clients).</span><span class="sxs-lookup"><span data-stu-id="aafa0-111">[**Backends for Frontends**](../../patterns/backends-for-frontends.md) creates separate backend services for different types of clients, such as desktop and mobile.</span></span> <span data-ttu-id="aafa0-112">Dadurch müssen die gegensätzlichen Anforderungen verschiedener Clienttypen nicht von einem einzelnen Back-End-Dienst verarbeitet werden.</span><span class="sxs-lookup"><span data-stu-id="aafa0-112">That way, a single backend service doesn’t need to handle the conflicting requirements of various client types.</span></span> <span data-ttu-id="aafa0-113">Dieses Muster ermöglicht die Trennung clientspezifischer Aspekte und trägt so zur Vereinfachung der einzelnen Microservices bei.</span><span class="sxs-lookup"><span data-stu-id="aafa0-113">This pattern can help keep each microservice simple, by separating client-specific concerns.</span></span>
+
+<span data-ttu-id="aafa0-114">[**Bulkhead**](../../patterns/bulkhead.md) isoliert kritische Ressourcen wie Verbindungspool, Arbeitsspeicher und CPU für die einzelnen Workloads oder Dienste.</span><span class="sxs-lookup"><span data-stu-id="aafa0-114">[**Bulkhead**](../../patterns/bulkhead.md) isolates critical resources, such as connection pool, memory, and CPU, for each workload or service.</span></span> <span data-ttu-id="aafa0-115">Bei Verwendung von Bulkheads kann eine einzelne Workload (oder ein einzelner Dienst) nicht sämtliche Ressourcen für sich beanspruchen und sie anderen Workloads oder Diensten entziehen.</span><span class="sxs-lookup"><span data-stu-id="aafa0-115">By using bulkheads, a single workload (or service) can’t consume all of the resources, starving others.</span></span> <span data-ttu-id="aafa0-116">Dieses Muster verhindert kaskadierende Fehler durch einen einzelnen Dienst und erhöht so die Resilienz des Systems.</span><span class="sxs-lookup"><span data-stu-id="aafa0-116">This pattern increases the resiliency of the system by preventing cascading failures caused by one service.</span></span>
+
+<span data-ttu-id="aafa0-117">[**Gatewayaggregation**](../../patterns/gateway-aggregation.md) fasst Anforderungen für mehrere einzelne Microservices in einer einzelnen Anforderung zusammen und verringert so die Kommunikation zwischen Consumern und Diensten.</span><span class="sxs-lookup"><span data-stu-id="aafa0-117">[**Gateway Aggregation**](../../patterns/gateway-aggregation.md) aggregates requests to multiple individual microservices into a single request, reducing chattiness between consumers and services.</span></span>
+
+<span data-ttu-id="aafa0-118">[**Gatewayabladung**](../../patterns/gateway-offloading.md) ermöglicht es den einzelnen Microservices, gemeinsam genutzte Dienstfunktionen (etwa die Verwendung von SSL-Zertifikaten) an ein API-Gateway auszulagern.</span><span class="sxs-lookup"><span data-stu-id="aafa0-118">[**Gateway Offloading**](../../patterns/gateway-offloading.md) enables each microservice to offload shared service functionality, such as the use of SSL certificates, to an API gateway.</span></span>
+
+<span data-ttu-id="aafa0-119">[**Gatewayrouting**](../../patterns/gateway-routing.md) leitet Anforderungen für mehrere Microservices unter Verwendung eines einzelnen Endpunkts weiter, sodass Consumer nicht mehrere separate Endpunkte verwalten müssen.</span><span class="sxs-lookup"><span data-stu-id="aafa0-119">[**Gateway Routing**](../../patterns/gateway-routing.md) routes requests to multiple microservices using a single endpoint, so that consumers don't need to manage many separate endpoints.</span></span>
+
+<span data-ttu-id="aafa0-120">[**Sidecar**](../../patterns/sidecar.md) stellt Hilfskomponenten einer Anwendung zwecks Isolation und Kapselung als separaten Container oder Prozess bereit.</span><span class="sxs-lookup"><span data-stu-id="aafa0-120">[**Sidecar**](../../patterns/sidecar.md) deploys helper components of an application as a separate container or process to provide isolation and encapsulation.</span></span>
+
+<span data-ttu-id="aafa0-121">[**Einschnürung**](../../patterns/strangler.md) unterstützt die schrittweise Umgestaltung einer Anwendung, indem nach und nach bestimmte Funktionsbestandteile durch neue Dienste ersetzt werden.</span><span class="sxs-lookup"><span data-stu-id="aafa0-121">[**Strangler**](../../patterns/strangler.md) supports incremental refactoring of an application, by gradually replacing specific pieces of functionality with new services.</span></span>
+
+<span data-ttu-id="aafa0-122">Den vollständigen Katalog mit Cloudentwurfsmustern im Azure Architecture Center finden Sie unter [Cloudentwurfsmuster](../../patterns/index.md).</span><span class="sxs-lookup"><span data-stu-id="aafa0-122">For the complete catalog of cloud design patterns on the Azure Architecture Center, see [Cloud Design Patterns](../../patterns/index.md).</span></span>
