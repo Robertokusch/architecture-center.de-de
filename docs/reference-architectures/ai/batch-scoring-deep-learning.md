@@ -8,14 +8,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 85d04f179b988fd5b00b361149f2170d13608e6d
-ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
+ms.openlocfilehash: a1c0701185c85f8e7bcbc183b32c4834529fc524
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55887385"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887861"
 ---
-# <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Batchbewertung in Azure für Deep Learning-Modelle
+# <a name="batch-scoring-of-deep-learning-models-on-azure"></a>Batchbewertung von Deep Learning-Modellen in Azure
 
 Diese Referenzarchitektur zeigt, wie Sie mit Azure Machine Learning die neuronale Stilübertragung auf ein Video anwenden. *Stilübertragung* ist eine Deep Learning-Technik, bei der ein vorhandenes Bild im Stil eines anderen Bildes erstellt wird. Diese Architektur kann generell für jedes Szenario für Batchbewertung mit Deep Learning verwendet werden. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
@@ -23,9 +23,13 @@ Diese Referenzarchitektur zeigt, wie Sie mit Azure Machine Learning die neuronal
 
 **Szenario:** Ein Medienunternehmen möchte den Stil eines Videos so ändern, dass er dem eines bestimmten Gemäldes entspricht. Das Unternehmen möchte diesen Stil schnell und automatisiert auf alle Videoframes anwenden. Weitere Informationen zu Algorithmen für die neuronale Stilübertragung finden Sie unter [Image Style Transfer Using Convolutional Neural Networks][image-style-transfer] („Bildstilübertragung mit Convolutional Neural Networks“, PDF).
 
+<!-- markdownlint-disable MD033 -->
+
 | Stilbild: | Eingabe-/Inhaltsvideo: | Ausgabevideo: |
 |--------|--------|---------|
 | <img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/style_image.jpg" width="300"> | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video.mp4 "Eingabevideo") *Zum Wiedergeben klicken* | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video.mp4 "Ausgabevideo") *Zur Wiedergeben klicken* |
+
+<!-- markdownlint-enable MD033 -->
 
 Diese Referenzarchitektur ist für Workloads konzipiert, die durch das Vorhandensein neuer Medien im Azure-Speicher ausgelöst werden.
 
@@ -42,7 +46,7 @@ Diese Architektur umfasst die folgenden Komponenten.
 
 ### <a name="compute"></a>Compute
 
-Für **[Azure Machine Learning Service][amls]** werden Azure Machine Learning-Pipelines verwendet, um reproduzierbare und einfach zu verwaltende Berechnungssequenzen zu erstellen. Darüber hinaus ist ein verwaltetes Computeziel mit dem Namen [Azure Machine Learning Compute][aml-compute] (auf dem eine Pipelineberechnung durchgeführt werden kann) verfügbar, mit dem Machine Learning-Modelle trainiert, bereitgestellt und bewertet werden können. 
+Für **[Azure Machine Learning Service][amls]** werden Azure Machine Learning-Pipelines verwendet, um reproduzierbare und einfach zu verwaltende Berechnungssequenzen zu erstellen. Darüber hinaus ist ein verwaltetes Computeziel mit dem Namen [Azure Machine Learning Compute][aml-compute] (auf dem eine Pipelineberechnung durchgeführt werden kann) verfügbar, mit dem Machine Learning-Modelle trainiert, bereitgestellt und bewertet werden können.
 
 ### <a name="storage"></a>Storage
 
@@ -64,21 +68,21 @@ Diese Referenzarchitektur verwendet Videomaterial von einem Orang-Utan auf einem
 
 ## <a name="performance-considerations"></a>Überlegungen zur Leistung
 
-### <a name="gpu-vs-cpu"></a>Vergleich zwischen GPU und CPU
+### <a name="gpu-versus-cpu"></a>Vergleich von GPU und CPU
 
 Bei Deep Learning-Workloads bieten GPUs eine deutlich bessere Leistung als CPUs, sodass in der Regel ein großer Cluster von CPUs benötigt wird, um eine vergleichbare Leistung zu erzielen. Obwohl die Option besteht, in dieser Architektur nur CPUs zu verwenden, bieten GPUs ein viel besseres Preis-Leistungs-Verhältnis. Es wird empfohlen, die neueste GPU-optimierte VM-Größe (NCv3-Serie) zu verwenden.
 
 GPUs sind nicht in allen Regionen standardmäßig aktiviert. Wählen Sie deshalb eine Region aus, in der GPUs aktiviert sind. Darüber hinaus haben Abonnements ein Standardkontingent von null Kernen für GPU-optimierte VMs. Sie können dieses Kontingent erhöhen, indem Sie eine Supportanfrage stellen. Stellen Sie sicher, dass Ihr Abonnement über ausreichend Kontingent verfügt, um Ihre Workload auszuführen.
 
-### <a name="parallelizing-across-vms-vs-cores"></a>Vergleich zwischen Parallelisieren auf VMs und Kernen
+### <a name="parallelizing-across-vms-versus-cores"></a>Vergleich des Parallelisierens auf VMs und Kernen
 
 Wenn eine Stilübertragung als Batchauftrag ausgeführt wird, müssen die Aufträge, die hauptsächlich auf GPUs ausgeführt werden, über VMs hinweg parallelisiert werden. Zwei Ansätze sind möglich: Sie können einen größeren Cluster aus virtuellen Computern mit einer einzelnen GPU oder einen kleineren Cluster aus virtuellen Computern mit vielen GPUs erstellen.
 
 Die beiden Optionen bieten für diese Workload eine vergleichbare Leistung. Die Verwendung von weniger VMs mit mehr GPUs pro VM kann dazu beitragen, die Datenverschiebung zu reduzieren. Das Datenvolumen pro Auftrag für diese Workload ist jedoch nicht sehr groß, sodass Blob Storage keine umfangreiche Drosselung vornehmen wird.
 
-### <a name="mpi-step"></a>MPI-Schritt 
+### <a name="mpi-step"></a>MPI-Schritt
 
-Beim Erstellen der Pipeline in Azure Machine Learning ist einer der Schritte zum Durchführen der parallelen Berechnung der MPI-Schritt. Im MPI-Schritt werden die Daten gleichmäßig auf die verfügbaren Knoten aufgeteilt. Der MPI-Schritt wird erst ausgeführt, wenn alle angeforderten Knoten bereit sind. Falls ein Knoten ausfällt oder vorzeitig entfernt wird (bei einem virtuellen Computer mit niedriger Priorität), muss der MPI-Schritt erneut ausgeführt werden. 
+Beim Erstellen der Pipeline in Azure Machine Learning ist einer der Schritte zum Durchführen der parallelen Berechnung der MPI-Schritt. Im MPI-Schritt werden die Daten gleichmäßig auf die verfügbaren Knoten aufgeteilt. Der MPI-Schritt wird erst ausgeführt, wenn alle angeforderten Knoten bereit sind. Falls ein Knoten ausfällt oder vorzeitig entfernt wird (bei einem virtuellen Computer mit niedriger Priorität), muss der MPI-Schritt erneut ausgeführt werden.
 
 ## <a name="security-considerations"></a>Sicherheitshinweise
 
@@ -94,7 +98,7 @@ Diese Referenzarchitektur verwendet Stilübertragung als Beispiel für einen Bat
 
 ### <a name="securing-your-computation-in-a-virtual-network"></a>Schützen Ihrer Berechnung in einem virtuellen Netzwerk
 
-Beim Bereitstellen Ihres Machine Learning Compute-Clusters können Sie diesen so konfigurieren, dass er im Subnetz eines [virtuellen Netzwerks][virtual-network] bereitgestellt wird. Auf diese Weise können die Computeknoten im Cluster sicher mit anderen virtuellen Computern kommunizieren. 
+Beim Bereitstellen Ihres Machine Learning Compute-Clusters können Sie diesen so konfigurieren, dass er im Subnetz eines [virtuellen Netzwerks][virtual-network] bereitgestellt wird. Auf diese Weise können die Computeknoten im Cluster sicher mit anderen virtuellen Computern kommunizieren.
 
 ### <a name="protecting-against-malicious-activity"></a>Schützen vor schädlichen Aktivitäten
 
@@ -136,7 +140,6 @@ Befolgen Sie die Schritte im Abschnitt [GitHub-Repository][deployment], um diese
 
 > [!NOTE]
 > Sie können auch eine Batchbewertungsarchitektur für Deep Learning-Modelle bereitstellen, indem Sie den Azure Kubernetes Service verwenden. Führen Sie die Schritte aus, die in diesem [GitHub-Repository][deployment2] beschrieben sind.
-
 
 <!-- links -->
 

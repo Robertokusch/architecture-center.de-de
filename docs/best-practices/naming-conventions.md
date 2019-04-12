@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 9f14b47a9659ad0b7451d106168f4d7b5a6ab0c7
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
+ms.openlocfilehash: 87869d1b38d2b4a71cd5b604436e04deab993131
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55782080"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58420021"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Namenskonventionen für Azure-Ressourcen
 
@@ -84,6 +84,7 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 |Ressourcengruppe |Abonnement |1-90 |Groß-/Kleinschreibung nicht beachten |Alphanumerische Zeichen, Unterstrich, Klammern, Bindestrich, Punkt (außer am Ende) und Unicode-Zeichen, die dem [hier](/rest/api/resources/resourcegroups/createorupdate) dokumentierten regulären Ausdruck entsprechen. |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |Verfügbarkeitsgruppe |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Unterstrich und Bindestrich |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Tag |Zugeordnete Entität |512 (Name), 256 (Wert) |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Sonderzeichen mit Ausnahme von `<`, `>`, `%`, `&`, `\`, `?`, `/`. Informationen zu den Einschränkungen finden Sie [hier](/azure/azure-resource-manager/resource-group-using-tags). |`"key" : "value"` |`"department" : "Central IT"` |
+|Web App |Global |1 - 60 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch und Bindestrich |`<app_name>-<source-slot-name>` |`contoso-staging` |
 
 ### <a name="compute"></a>Compute
 
@@ -128,6 +129,12 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 | Entität | Bereich | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
 | --- | --- | --- | --- | --- | --- | --- |
 |Containerregistrierung | Global |5 - 50 |Groß-/Kleinschreibung nicht beachten | Alphanumerisch |`<service short name>registry` |`app1registry` |
+
+### <a name="service-bus"></a>Service Bus
+
+| Entität | Bereich | Länge | Schreibweise | Gültige Zeichen | Vorgeschlagenes Muster | Beispiel |
+| --- | --- | --- | --- | --- | --- | --- |
+|Service Bus- Namespace | Global |6-50 |Groß-/Kleinschreibung nicht beachten | Alphanumerisch, Bindestrich, muss mit Buchstabe beginnen. Details finden Sie [hier](/rest/api/servicebus/create-namespace). |`<service short name>-bus` |`app1-bus` |
 
 ## <a name="organize-resources-with-tags"></a>Organisieren von Ressourcen mit Tags
 

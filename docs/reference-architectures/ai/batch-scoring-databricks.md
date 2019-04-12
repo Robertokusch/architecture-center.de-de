@@ -7,14 +7,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 1b6f10edf098ed8d9fa14c16de113fc765372835
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: cba8d272ddbdbf2c2da94f68b288e9fb79be7de2
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58231420"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887810"
 ---
-# <a name="batch-scoring-of-spark-models-on-azure-databricks"></a>Batchbewertung von Spark-Modellen in Azure Databricks
+# <a name="batch-scoring-of-spark-machine-learning-models-on-azure-databricks"></a>Batchbewertung von Spark-Modellen für Machine Learning in Azure Databricks
 
 Diese Referenzarchitektur veranschaulicht, wie mit Azure Databricks, einer für Azure optimierten Apache Spark-basierten Analyseplattform, eine skalierbare Lösung für die Batchbewertung eines Apache Spark-Klassifizierungsmodells nach einem Zeitplan erstellt wird. Die Lösung kann als Vorlage verwendet werden, die für andere Szenarien generalisiert werden kann.
 
