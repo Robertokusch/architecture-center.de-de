@@ -131,7 +131,7 @@ AD FS unterstützt Tokentransformation und -ergänzung. Azure Active Directory b
 
 ### <a name="ad-fs-monitoring"></a>AD FS-Überwachung
 
-Das [System Center Management Pack for Active Directory Federation Services 2012 R2 ][oms-adfs-pack] bietet sowohl proaktive als auch reaktive Überwachung Ihrer AD FS-Bereitstellung für den Verbundserver. Dieses Management Pack überwacht Folgendes:
+Das [System Center-Management Pack für Active Directory Federation Services 2012 R2 ][oms-adfs-pack] bietet sowohl proaktive als auch reaktive Überwachung Ihrer AD FS-Bereitstellung für den Verbundserver. Dieses Management Pack überwacht Folgendes:
 
 - Ereignisse, die der AD FS-Dienst in seinen Ereignisprotokollen speichert
 - Die Leistungsdaten, die von den AD FS-Leistungsindikatoren gesammelt werden
