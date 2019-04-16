@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 87869d1b38d2b4a71cd5b604436e04deab993131
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: ed1811495e81965fa514ab66dcfa49d00d2a59f2
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58420021"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480098"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Namenskonventionen für Azure-Ressourcen
 
@@ -85,6 +85,7 @@ Vermeiden Sie es, Sonderzeichen (`-` oder `_`) als erstes oder letztes Zeichen e
 |Verfügbarkeitsgruppe |Ressourcengruppe |1-80 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Unterstrich und Bindestrich |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Tag |Zugeordnete Entität |512 (Name), 256 (Wert) |Groß-/Kleinschreibung nicht beachten |Alphanumerisch, Sonderzeichen mit Ausnahme von `<`, `>`, `%`, `&`, `\`, `?`, `/`. Informationen zu den Einschränkungen finden Sie [hier](/azure/azure-resource-manager/resource-group-using-tags). |`"key" : "value"` |`"department" : "Central IT"` |
 |Web App |Global |1 - 60 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch und Bindestrich |`<app_name>-<source-slot-name>` |`contoso-staging` |
+|API Management |Global |1-50 |Groß-/Kleinschreibung nicht beachten |Alphanumerisch und Bindestrich |`<apim-service-name>` |`contoso` |
 
 ### <a name="compute"></a>Compute
 
@@ -191,7 +192,7 @@ Weitere Informationen zum Konfigurieren dieser Funktion finden Sie unter [Konfig
 
 Weitere Informationen zur Benennung von Blobs, Containern und Tabellen finden Sie in der folgenden Liste:
 
-- [Benennen von Containern, BLOBs und Metadaten und Verweisen auf diese](https://msdn.microsoft.com/library/dd135715.aspx)
+- [Benennen von und Verweisen auf Container, Blobs und Metadaten](https://msdn.microsoft.com/library/dd135715.aspx)
 - [Benennen von Warteschlangen und Metadaten](https://msdn.microsoft.com/library/dd179349.aspx)
 - [Benennen von Tabellen](https://msdn.microsoft.com/library/azure/dd179338.aspx)
 

@@ -7,18 +7,20 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: c8ce4c77666ab7b9c55e6f144d514fadc6b6ad73
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 535c53faa810f74299e715a204e427c8919ce360
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246081"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59069023"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Microservicearchitektur in Azure Kubernetes Service (AKS)
 
-In dieser Referenzarchitektur wird veranschaulicht, wie eine Microserviceanwendung für Azure Kubernetes Service (AKS) bereitgestellt wird. Es wird eine einfache AKS-Konfiguration beschrieben, die als Ausgangspunkt für die meisten Bereitstellungen dienen kann. Anspruchsvollere Optionen, z.B. erweiterte Netzwerkoptionen, werden in einer separaten Referenzarchitektur beschrieben.
+In dieser Referenzarchitektur wird veranschaulicht, wie eine Microserviceanwendung für Azure Kubernetes Service (AKS) bereitgestellt wird. Es wird eine einfache AKS-Konfiguration beschrieben, die als Ausgangspunkt für die meisten Bereitstellungen dienen kann. In diesem Artikel werden Kubernetes-Grundkenntnisse vorausgesetzt. Es geht hauptsächlich um die Infrastruktur- und DevOps-Aspekte bei der Ausführung einer Microservicearchitektur für AKS. Eine Anleitung zum Entwerfen von Microservices finden Sie unter [Erstellen von Microservices in Azure](../../microservices/index.md).
 
-In diesem Artikel werden Kubernetes-Grundkenntnisse vorausgesetzt. Es geht hauptsächlich um die Infrastruktur- und DevOps-Aspekte bei der Ausführung einer Microservicearchitektur für AKS. Eine Anleitung zum Entwerfen von Microservices aus Sicht eines domänengesteuerten Entwurfs (Domain-Driven Design, DDD) finden Sie unter [Entwerfen, Erstellen und Betreiben von Microservices in Azure](/azure/architecture/microservices).
+![GitHub-Logo](../../_images/github.png) Eine Referenzimplementierung dieser Architektur ist auf [GitHub](https://github.com/mspnp/microservices-reference-implementation) verfügbar.
+
+
 
 ![AKS-Referenzarchitektur](./_images/aks.png)
 

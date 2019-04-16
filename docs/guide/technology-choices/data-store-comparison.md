@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: f7c19501b9f28db3892285b5f35a33f02edd87ab
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 3fd3badd66edbe561bea88576bb80d9fc3e0bb79
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242331"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068921"
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>Kriterien für die Auswahl eines Datenspeichers
 
@@ -61,7 +61,7 @@ Sammeln Sie für den Vergleich zunächst möglichst viele der folgenden Informat
 
 - **Regionale Verfügbarkeit:** Ist der Dienst im Fall von verwalteten Diensten in allen Azure-Regionen verfügbar? Muss Ihre Lösung in bestimmten Azure-Regionen gehostet werden?
 
-- **Übertragbarkeit:** Müssen Ihre Daten zu lokalen oder externen Rechenzentren oder zu anderen Cloudhostingumgebungen migriert werden?
+- **Übertragbarkeit:** Müssen Ihre Daten in lokale oder externe Rechenzentren oder andere Cloudhostingumgebungen migriert werden?
 
 - **Lizenzierung:** Bevorzugen Sie einen proprietären gegenüber einem OSS-Lizenztyp? Gibt es andere externe Einschränkungen im Hinblick auf den zu verwendenden Lizenztyp?
 

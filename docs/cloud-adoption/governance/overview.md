@@ -6,12 +6,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Governance in Microsoft CAF für Azure
 author: BrianBlanchard
-ms.openlocfilehash: b7a0739a42a27def34955577acffc7ab7292ac50
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: ce407de0daa590e767382346692c80e0a113bb3c
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58247371"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068836"
 ---
 # <a name="governance-in-the-microsoft-caf-for-azure"></a>Governance in Microsoft CAF für Azure
 
@@ -32,7 +32,7 @@ Die Inhalte im CAF beeinflussen das Geschäft, die Technologie und die Kultur vo
 
 Der Cloudarchitekt dient als innovative Führungsperson und Vermittler, um diese Zielgruppen zusammenzubringen. Der Inhalt dieser Sammlung von Anleitungen ist darauf ausgelegt, dem Cloudarchitekten die richtige Kommunikation mit der richtigen Zielgruppe zu erleichtern und die erforderlichen Entscheidungen anzustoßen. Von der Cloud unterstützte Unternehmenstransformationen hängen von der Rolle des Cloudarchitekten ab, Entscheidungen im gesamten Geschäfts- und IT-Bereich anzuleiten.
 
-**Spezialisierungen des Cloudarchitekten in diesem Abschnitt:** Jeder Abschnitt des CAF für die Einführung der Cloud stellt eine andere Spezialisierung oder Variante der Cloudarchitektenrolle dar. Dieser Abschnitt des CAF richtet sich an Cloudarchitekten mit einer Leidenschaft für die Verringerung oder Bereinigung technischer Risiken. Viele Cloudanbieter bezeichnen diese Spezialisten als Cloudverwalter, wir bevorzugen allerdings die Begriffe „Cloudwächter“ oder kollektiv „Cloud Governance-Team“. In jeder umsetzbaren Kundenlösung zeigen die Artikel, wie sich die Zusammensetzung und Rolle des Cloud Governance-Teams im Lauf der Zeit ändern kann.
+**Spezialisierungen des Cloudarchitekten in diesem Abschnitt:** Jeder Abschnitt des CAF für die Einführung der Cloud stellt eine andere Spezialisierung oder Variante der Cloudarchitektenrolle dar. Dieser Abschnitt des Frameworks für die Einführung der Cloud richtet sich beispielsweise an Cloudarchitekten mit Schwerpunkt auf Verringerung technischer Risiken. Viele Cloudanbieter bezeichnen diese Spezialisten als Cloudverwalter, wir bevorzugen allerdings die Begriffe „Cloudwächter“ oder kollektiv „Cloud Governance-Team“. In jeder umsetzbaren Kundenlösung zeigen die Artikel, wie sich die Zusammensetzung und Rolle des Cloud Governance-Teams im Lauf der Zeit ändern kann.
 
 ## <a name="using-this-guide"></a>Verwenden dieses Leitfadens
 

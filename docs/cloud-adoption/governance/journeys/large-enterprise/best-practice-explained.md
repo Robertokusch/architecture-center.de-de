@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: 'Große Unternehmen: Beschreibung der bewährten Methode'
 author: BrianBlanchard
-ms.openlocfilehash: db630b93cd9d5118a8fc29b424ef78e0c1d8848a
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 2d52797f1c3541fab1c97d97d0438210d2e66f79
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241631"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068989"
 ---
 # <a name="large-enterprise-best-practice-explained"></a>Große Unternehmen: Beschreibung der bewährten Methode
 
@@ -105,7 +105,7 @@ Wenn eines der in dieser Governancelösung ausgewählten Muster nicht mit den An
 - [Protokollierungs- und Berichterstellungsmuster](../../../decision-guides/log-and-report/overview.md)
 - [Richtliniendurchsetzungsmuster](../../../decision-guides/policy-enforcement/overview.md)
 - [Ressourcenkonsistenzmuster](../../../decision-guides/resource-consistency/overview.md)
-- [Ressourcenkennzeichnungsmuster](../../../decision-guides/resource-tagging/overview.md)
+- [Ressourcenmarkierungsmuster](../../../decision-guides/resource-tagging/overview.md)
 - [Softwaredefinierte Netzwerkmuster](../../../decision-guides/software-defined-network/overview.md)
 - [Abonnemententwurfsmuster](../../../decision-guides/subscriptions/overview.md)
 

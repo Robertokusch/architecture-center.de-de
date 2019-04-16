@@ -3,17 +3,17 @@ title: Architekturstil „Web-Warteschlange-Worker“
 titleSuffix: Azure Application Architecture Guide
 description: In diesem Artikel werden die Vorteile, Herausforderungen und bewährten Methoden für Architekturen vom Typ „Web-Warteschlange-Worker“ in Azure beschrieben.
 author: MikeWasson
-ms.date: 08/30/2018
+ms.date: 04/10/2019
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: b471d270af09df7ffd58dfdd49e7d03d05bfe582
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 974b8b8595d6d9333552c41dfe1f3f2af848d264
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244591"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480081"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Architekturstil „Web-Warteschlange-Worker“
 
@@ -71,15 +71,15 @@ In diesem Abschnitt wird eine empfohlene Architektur vom Typ „Web-Warteschlang
 
 ![Physisches Diagramm der Architektur „Web-Warteschlange-Worker“](./images/web-queue-worker-physical.png)
 
-Das Front-End wird als Azure App Service-Web-App implementiert, und der Worker wird als WebJob implementiert. Die Web-App und der WebJob werden beide einem App Service-Plan zugeordnet, über den die VM-Instanzen bereitgestellt werden.
+- Das Front-End wird als Azure App Service-Web-App, der Worker wird als Azure Functions-App implementiert. Die Web-App und Funktions-App werden beide einem App Service-Plan zugeordnet, über den die VM-Instanzen bereitgestellt werden.
 
-Sie können entweder Azure Service Bus- oder Azure Storage-Warteschlangen als Nachrichtenwarteschlange verwenden. (Im Diagramm ist eine Azure Storage-Warteschlange dargestellt.)
+- Sie können entweder Azure Service Bus- oder Azure Storage-Warteschlangen als Nachrichtenwarteschlange verwenden. (Im Diagramm ist eine Azure Storage-Warteschlange dargestellt.)
 
-Bei Azure Redis Cache werden der Sitzungszustand und andere Daten gespeichert, für die der Zugriff mit geringer Wartezeit erforderlich ist.
+- Bei Azure Redis Cache werden der Sitzungszustand und andere Daten gespeichert, für die der Zugriff mit geringer Wartezeit erforderlich ist.
 
-Azure CDN wird verwendet, um statischen Inhalt zwischenzuspeichern, z.B. Images, CSS oder HTML.
+- Azure CDN wird verwendet, um statischen Inhalt zwischenzuspeichern, z.B. Images, CSS oder HTML.
 
-Wählen Sie für die Speicherung die Speichertechnologie aus, mit der die Anforderungen der Anwendung am besten erfüllt werden. Sie können auch mehrere Speichertechnologien („Polyglot Persistence“) verwenden. Zur Verdeutlichung sind im Diagramm die Komponenten Azure SQL-Datenbank und Azure Cosmos DB dargestellt.
+- Wählen Sie für die Speicherung die Speichertechnologie aus, mit der die Anforderungen der Anwendung am besten erfüllt werden. Sie können auch mehrere Speichertechnologien („Polyglot Persistence“) verwenden. Zur Verdeutlichung sind im Diagramm die Komponenten Azure SQL-Datenbank und Azure Cosmos DB dargestellt.
 
 Weitere Informationen finden Sie unter [Improve scalability in a web application][scalable-web-app] (Verbessern der Skalierbarkeit in einer Webanwendung).
 
@@ -89,7 +89,7 @@ Weitere Informationen finden Sie unter [Improve scalability in a web application
 
 - Verwenden Sie die integrierte App Service-Funktion für die automatische Skalierung, um für die Anzahl von VM-Instanzen das horizontale Hochskalieren durchzuführen. Verwenden Sie die automatische Skalierung nach Zeitplan, wenn die Last der Anwendung vorhersagbaren Mustern folgt. Falls die Last nicht vorhersagbar ist, sollten Sie auf Metriken basierende Regeln für die automatische Skalierung nutzen.
 
-- Erwägen Sie, die Web-App und den WebJob in separaten App Service-Plänen anzuordnen. Auf diese Weise werden sie auf separaten VM-Instanzen gehostet und können unabhängig voneinander skaliert werden.
+- Erwägen Sie, die Web-App und Funktions-App in getrennten App Service-Plänen anzuordnen. Auf diese Weise können sie unabhängig voneinander skaliert werden.
 
 - Verwenden Sie separate App Service-Pläne für die Produktion und für das Testen. Wenn Sie denselben Plan verwenden, bedeutet dies sonst, dass Ihre Tests auf den VMs für die Produktion durchgeführt werden.
 

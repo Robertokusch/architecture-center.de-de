@@ -6,12 +6,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 description: Bietet eine Übersicht über die erste Phase der digitalen Transformation eines Unternehmens, das Azure-Cloudtechnologien einführt.
 ms.date: 02/11/2019
-ms.openlocfilehash: 7af68cd04be1bb3c9a6acdccbdf1a09e3cad55be
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 29b02964b5f1cd09857a51c17cf94d6c64e05e88
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241701"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068955"
 ---
 # <a name="getting-started-with-the-cloud-adoption-framework"></a>Erste Schritte mit dem Framework für die Cloudeinführung (Cloud Adoption Framework)
 

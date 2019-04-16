@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack, seodec18
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-devops-dotnet-webapp.svg
-ms.openlocfilehash: 22a714a49c3e722fc11f2498e9a3abd1bec46d22
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: f999b2ffdf234161f668887d5b2327ecf50f0e55
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245841"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480132"
 ---
 # <a name="design-a-cicd-pipeline-using-azure-devops"></a>Entwerfen einer CI/CD-Pipeline mithilfe von Azure DevOps
 
@@ -93,11 +93,11 @@ Diese [Entscheidungsstruktur für Azure-Computedienste](/azure/architecture/guid
 
 ### <a name="walk-through"></a>Exemplarische Vorgehensweise
 
-Über das [Azure DevOps-Projekt](/azure/devops-project/azure-devops-project-github) werden ein App Service-Plan, eine App Service-Instanz und eine App Insights-Ressource bereitgestellt, und das Azure DevOps-Projekt wird für Sie konfiguriert.
+Über [Azure DevOps Projects](/azure/devops-project/azure-devops-project-github) werden Ihnen ein App Service-Plan, eine App Service-Instanz und eine App Insights-Ressource bereitgestellt. Außerdem wird eine Azure Pipelines-Pipeline für Sie konfiguriert.
 
-Nachdem Sie das Azure DevOps-Projekt bereitgestellt haben und der Buildvorgang abgeschlossen ist, können Sie sich die entsprechenden Codeänderungen, Arbeitselemente und Testergebnisse ansehen. Sie werden bemerken, dass keine Testergebnisse angezeigt werden, da der Code keine auszuführenden Tests enthält.
+Nachdem Sie mit Azure DevOps Projects eine Pipeline konfiguriert haben und der Buildvorgang abgeschlossen ist, können Sie sich die entsprechenden Codeänderungen, Arbeitselemente und Testergebnisse ansehen. Sie werden bemerken, dass keine Testergebnisse angezeigt werden, da der Code keine auszuführenden Tests enthält.
 
-Das Projekt erstellt eine Releasepipeline und einen Continuous Deployment-Trigger für die Bereitstellung der Anwendung in der Entwicklungsumgebung. Im Rahmen eines Continuous Deployment-Prozesses können Releases für mehrere Umgebungen gelten. Ein Release kann sowohl die Infrastruktur (mit Verfahren wie „Infrastructure-as-Code“) als auch die Bereitstellung der erforderlichen Anwendungspakete mit Aufgaben nach der Konfiguration umfassen.
+Die Pipeline erstellt eine Releasedefinition und einen Continuous Deployment-Trigger für die Bereitstellung der Anwendung in der Entwicklungsumgebung. Im Rahmen eines Continuous Deployment-Prozesses können Releases für mehrere Umgebungen gelten. Ein Release kann sowohl die Infrastruktur (mit Verfahren wie „Infrastructure-as-Code“) als auch die Bereitstellung der erforderlichen Anwendungspakete mit Aufgaben nach der Konfiguration umfassen.
 
 ## <a name="pricing"></a>Preise
 
@@ -115,7 +115,7 @@ Die folgenden Ressourcen enthalten weitere Informationen zu CI/CD und Azure DevO
 - [DevOps at Microsoft – How we work with Azure DevOps][devops-microsoft] (DevOps bei Microsoft – Arbeiten mit Azure DevOps)
 - [Schritt-für-Schritt-Tutorials: DevOps mit Azure DevOps][devops-with-vsts]
 - [Checkliste für DevOps][devops-checklist]
-- [Erstellen einer CI/CD-Pipeline für .NET mit dem Azure DevOps-Projekt][devops-project-create]
+- [Erstellen einer CI/CD-Pipeline für .NET mit Azure DevOps Projects][devops-project-create]
 
 <!-- links -->
 
