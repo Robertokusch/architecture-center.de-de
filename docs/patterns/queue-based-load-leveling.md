@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c736afced1b0478e8eb1a2694acc4d6a6f0c62fc
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 267d630d97a998c76a75a70191a77f9b74e801ef
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248725"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641058"
 ---
 # <a name="queue-based-load-leveling-pattern"></a>Warteschlangenbasiertes Lastenausgleichsmuster
 
@@ -67,8 +67,6 @@ Eine Web-App schreibt Daten in einen externen Datenspeicher. Bei gleichzeitiger 
 Zur Behebung dieses Problems können Sie eine Warteschlange für den Lastenausgleich zwischen den Anwendungsinstanzen und dem Datenspeicher verwenden. Eine Azure Functions-App liest die Nachrichten aus der Warteschlange und führt die an den Datenspeicher gerichteten Lese-/Schreibanforderungen aus. Die Anwendungslogik in der Funktions-App kann die Rate steuern, mit der Anforderungen an den Datenspeicher übergeben werden, um eine Überlastung des Datenspeichers zu verhindern. (Andernfalls verursacht die Funktions-App das gleiche Problem am Back-End.)
 
 ![Abbildung 3: Verwenden einer Warteschlange und einer Funktions-App für den Lastenausgleich](./_images/queue-based-load-leveling-function.png)
-
-
 
 ## <a name="related-patterns-and-guidance"></a>Zugehörige Muster und Anleitungen
 

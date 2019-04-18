@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat
-ms.openlocfilehash: 5219d08fce5cf09b075b6d7adfb73970e007ded4
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 34c21f4b5356dc0acbd5c2c85124300a6ed13c99
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248675"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640497"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Überwachung von Webanwendungen in Azure
 
@@ -78,7 +78,7 @@ In diesem Szenario liegt der Schwerpunkt vor allem auf PaaS-Lösungen für die �
 
 Für Application Insights gelten [Grenzwerte][app-insights-limits] für die Anzahl von Anforderungen, die pro Sekunde verarbeitet werden können. Wenn der Grenzwert für die Anforderungen überschritten wird, kommt es ggf. zu einer Drosselung der Nachrichten. Um eine Drosselung zu verhindern, können Sie eine [Filterung][message-filtering] oder [Sampling][message-sampling] zum Reduzieren der Datenrate implementieren.
 
-Für die Aspekte der Hochverfügbarkeit für die von Ihnen ausgeführte App ist aber der Entwickler verantwortlich. Informationen zur Skalierung finden Sie beispielsweise im Abschnitt [Überlegungen zur Skalierbarkeit](#scalability-considerations) in der Referenzarchitektur für einfache Webanwendungen. Nachdem eine App bereitgestellt wurde, können Sie Tests zum [Überwachen der Verfügbarkeit][monitor its availability] einrichten, indem Sie Application Insights verwenden.
+Für die Aspekte der Hochverfügbarkeit für die von Ihnen ausgeführte App ist aber der Entwickler verantwortlich. Informationen zur Skalierung finden Sie beispielsweise im Abschnitt [Überlegungen zur Skalierbarkeit](./basic-web-app.md#scalability-considerations) in der Referenzarchitektur für einfache Webanwendungen. Nachdem eine App bereitgestellt wurde, können Sie Tests zum [Überwachen der Verfügbarkeit][monitor its availability] einrichten, indem Sie Application Insights verwenden.
 
 ### <a name="security"></a>Sicherheit
 

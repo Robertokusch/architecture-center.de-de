@@ -4,10 +4,10 @@ description: Erläuterung der geschäftlichen Risiken bei einer Cloudtransformat
 author: BrianBlanchard
 ms.date: 10/10/2018
 ms.openlocfilehash: 774a6703b353a3c670b3764505185aecb794784f
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068938"
 ---
 # <a name="evaluating-risk-tolerance"></a>Evaluieren der Risikotoleranz
@@ -102,4 +102,4 @@ Die drei oben aufgeführten Fragengruppen sollten genügend Stoff zum Ermitteln 
 Diese Art des Gesprächs kann Unternehmen und IT dabei unterstützen, die Toleranz effektiver auszuwerten. Dialoge dieser Art können während der Erstellung von MVP-Richtlinien und bei inkrementellen Richtlinienüberprüfungen geführt werden.
 
 > [!div class="nextstepaction"]
-> [Definieren der Unternehmensrichtlinie](./define-policy.md)
+> [Unternehmensrichtlinie definieren](./define-policy.md)

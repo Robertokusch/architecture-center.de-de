@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 7f10c422c65967701084859e41f9656c818ed818
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: c7e7423da11667c90d53247c2c5303a8fbd1a76a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241391"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640157"
 ---
 # <a name="build-a-real-time-recommendation-api-on-azure"></a>Erstellen einer Echtzeitempfehlungs-API in Azure
 
@@ -96,7 +96,7 @@ Stellen Sie diese Architektur gemäß der **Azure Databricks**-Anleitung aus dem
 
 1. Erstellen Sie einen [Azure Databricks-Arbeitsbereich][workspace].
 
-2. Erstellen Sie in Azure Databricks einen neuen Cluster mit der folgenden Konfiguration:
+1. Erstellen Sie in Azure Databricks einen neuen Cluster mit der folgenden Konfiguration:
 
     - Clustermodus: Standard
     - Databricks-Runtimeversion: 4.3 (enthält Apache Spark 2.3.1 und Scala 2.11)
@@ -107,27 +107,27 @@ Stellen Sie diese Architektur gemäß der **Azure Databricks**-Anleitung aus dem
     - Spark-Konfiguration: (wie erforderlich)
     - Umgebungsvariablen: (wie erforderlich)
 
-3. Erstellen Sie ein persönliches Zugriffstoken innerhalb des [Azure Databricks-Arbeitsbereichs][workspace]. Ausführliche Informationen finden Sie in der [Dokumentation][adbauthentication] zur Azure Databricks-Authentifizierung.
+1. Erstellen Sie ein persönliches Zugriffstoken innerhalb des [Azure Databricks-Arbeitsbereichs][workspace]. Ausführliche Informationen finden Sie in der [Dokumentation][adbauthentication] zur Azure Databricks-Authentifizierung.
 
-3. Klonen Sie das Repository [Microsoft Recommenders][github] in einer Umgebung, in der Sie Skripts ausführen können (etwa auf Ihrem lokalen Computer).
+1. Klonen Sie das Repository [Microsoft Recommenders][github] in einer Umgebung, in der Sie Skripts ausführen können (etwa auf Ihrem lokalen Computer).
 
-4. Gehen Sie gemäß den Setupanweisungen für die **Schnellinstallation** vor, um in Azure Databricks die [relevanten Bibliotheken zu installieren][setup].
+1. Gehen Sie gemäß den Setupanweisungen für die **Schnellinstallation** vor, um in Azure Databricks die [relevanten Bibliotheken zu installieren][setup].
 
-5. Gehen Sie gemäß den Setupanweisungen für die **Schnellinstallation** vor, um [Azure Databricks für die Operationalisierung vorzubereiten][setupo16n].
+1. Gehen Sie gemäß den Setupanweisungen für die **Schnellinstallation** vor, um [Azure Databricks für die Operationalisierung vorzubereiten][setupo16n].
 
-6. Importieren Sie das [Notebook „ALS Movie Operationalization“][als-example] in Ihren Arbeitsbereich. Führen Sie nach der Anmeldung bei Ihrem Azure Databricks-Arbeitsbereich die folgenden Schritte aus:
+1. Importieren Sie das [Notebook „ALS Movie Operationalization“][als-example] in Ihren Arbeitsbereich. Führen Sie nach der Anmeldung bei Ihrem Azure Databricks-Arbeitsbereich die folgenden Schritte aus:
 
     a. Klicken Sie auf der linken Seite des Arbeitsbereichs auf **Home**.
 
     b. Klicken Sie in Ihrem Basisverzeichnis mit der rechten Maustaste auf den weißen Bereich. Wählen Sie **Importieren** aus.
-    
+
     c. Wählen Sie **URL** aus, und fügen Sie Folgendes in das Textfeld ein: `https://github.com/Microsoft/Recommenders/blob/master/notebooks/05_operationalize/als_movie_o16n.ipynb`
-    
+
     d. Klicken Sie auf **Importieren**.
 
-7. Öffnen Sie das Notebook in Azure Databricks, und fügen Sie den konfigurierten Cluster an.
+1. Öffnen Sie das Notebook in Azure Databricks, und fügen Sie den konfigurierten Cluster an.
 
-8. Führen Sie das Notebook aus, um die für die Erstellung einer Empfehlungs-API erforderlichen Azure-Ressourcen zu erstellen. Über die API werden die zehn besten Filmempfehlungen für einen Benutzer bereitgestellt.
+1. Führen Sie das Notebook aus, um die für die Erstellung einer Empfehlungs-API erforderlichen Azure-Ressourcen zu erstellen. Über die API werden die zehn besten Filmempfehlungen für einen Benutzer bereitgestellt.
 
 ## <a name="related-architectures"></a>Verwandte Architekturen
 

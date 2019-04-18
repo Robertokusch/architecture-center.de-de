@@ -4,12 +4,12 @@ description: Empfohlene Architektur für IoT-Anwendungen in Azure mit PaaS-Kompo
 titleSuffix: Azure Reference Architectures
 author: MikeWasson
 ms.date: 01/09/2019
-ms.openlocfilehash: 5a4b104044f3e64ffdce98e3952201d397d41f33
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 04bff9419a30a3610d59e3ca8f27c004a0bcb2be
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58344579"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641126"
 ---
 # <a name="azure-iot-reference-architecture"></a>Azure IoT-Referenzarchitektur
 
@@ -142,7 +142,7 @@ Die Nur-Text-Protokollierung verursacht zwar geringere Vorlaufkosten für die En
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-- Eine ausführlichere Erläuterung der empfohlenen Architektur und der Implementierungsoptionen finden Sie in der PDF-Datei [Microsoft Azure IoT Reference Architecture](http://aka.ms/iotrefarchitecture) (Microsoft Azure IoT-Referenzarchitektur).
+- Eine ausführlichere Erläuterung der empfohlenen Architektur und der Implementierungsoptionen finden Sie in der PDF-Datei [Microsoft Azure IoT Reference Architecture](https://aka.ms/iotrefarchitecture) (Microsoft Azure IoT-Referenzarchitektur).
 
 - Eine ausführliche Dokumentation der verschiedenen Azure IoT-Dienste finden Sie unter [Azure IoT-Grundlagen](/azure/iot-fundamentals/).
 

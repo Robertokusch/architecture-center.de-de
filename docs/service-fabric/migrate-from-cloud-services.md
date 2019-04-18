@@ -6,12 +6,12 @@ ms.date: 04/11/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: 66f1431f45a0c9accf3a8227fa8cbb5966568372
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: a1fc28737b194fe69e2ae094bd996d97363eb29c
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248011"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641109"
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>Migrieren einer Azure Cloud Services-Anwendung zu Azure Service Fabric 
 
@@ -26,7 +26,6 @@ Bevor Sie diesen Artikel lesen, ist es hilfreich, die Grundlagen der Service Fab
 - [Übersicht über Azure Service Fabric][sf-overview]
 - [Gründe für einen Microservices-Ansatz zum Erstellen von Anwendungen][sf-why-microservices]
 
-
 ## <a name="about-the-surveys-application"></a>Informationen zur Anwendung „Surveys“
 
 Im Jahr 2012 hat die Gruppe für Muster und Vorgehensweisen eine Anwendung namens „Surveys“ für das Buch [Developing Multi-tenant Applications for the Cloud][tailspin-book] (Entwickeln von mehrinstanzenfähigen Anwendungen für die Cloud) erstellt. Das Buch beschreibt ein fiktives Unternehmen namens „Tailspin“, das die Anwendung „Surveys“ entwirft und implementiert.
@@ -35,8 +34,8 @@ Im Jahr 2012 hat die Gruppe für Muster und Vorgehensweisen eine Anwendung namen
 
 Jetzt will Tailspin die Surveys-Anwendung mithilfe von Service Fabric, das unter Azure ausgeführt wird, in eine Microservices-Architektur verschieben. Da die Anwendung bereits als Cloud Services-Anwendung bereitgestellt wurde, verfolgt Tailspin einen mehrstufigen Ansatz:
 
-1.  Portierung der Clouddienste zu Service Fabric bei gleichzeitiger Minimierung von Änderungen an der Anwendung.
-2.  Optimierung der Anwendung für Service Fabric durch Umstellung auf eine Microservices-Architektur.
+1. Portierung der Clouddienste zu Service Fabric bei gleichzeitiger Minimierung von Änderungen an der Anwendung.
+2. Optimierung der Anwendung für Service Fabric durch Umstellung auf eine Microservices-Architektur.
 
 In diesem Artikel wird die erste Phase beschrieben. In einem späteren Artikel wird die zweite Phase beschrieben. In einem realen Projekt ist es wahrscheinlich, dass sich beide Phasen überlappen. Bei der Portierung zu Service Fabric würden Sie auch damit beginnen, die Anwendung in Mikroservices umzugestalten. Später können Sie die Architektur weiter verfeinern und umfassendere Dienste in kleinere Dienste unterteilen.  
 
@@ -87,7 +86,6 @@ In der folgenden Tabelle sind einige der wichtigsten Unterschiede zwischen Cloud
 | Automatische Skalierung | [Integrierter Dienst][cloud-service-autoscale] | VM Scale Sets für die automatische horizontale Skalierung |
 | Debuggen | Lokaler Emulator | Lokaler Cluster |
 
-
 \*Zustandsbehaftete Dienste verwenden [zuverlässige Sammlungen][sf-reliable-collections], um den Zustand replikatübergreifend zu speichern, damit alle Lesezugriffe lokal zu den Knoten im Cluster erfolgen. Schreibzugriffe werden aus Zuverlässigkeitsgründen knotenübergreifend repliziert. Zustandslose Dienste können einen externen Zustand aufweisen, indem sie eine Datenbank oder einen anderen externen Speicher verwenden.
 
 ** Workerrollen können die ASP.NET-Web-API mithilfe von OWIN auch selbst hosten.
@@ -123,7 +121,6 @@ Wie bereits erwähnt, war das Ziel dieser Phase die Migration zu Service Fabric 
 ![](./images/tailspin02.png)
 
 Diese Architektur ist der ursprünglichen Anwendung bewusst sehr ähnlich. Das Diagramm blendet jedoch einige wichtige Unterschiede aus. Im Rest dieses Artikels werden wir diese Unterschiede untersuchen. 
-
 
 ## <a name="converting-the-cloud-service-roles-to-services"></a>Konvertieren von Clouddienstrollen in Dienste
 
@@ -216,7 +213,6 @@ Wenn Sie verschiedene Konfigurationseinstellungen für mehrere Umgebungen unters
 2. Definieren Sie im Anwendungsmanifest eine Außerkraftsetzung für die Einstellung.
 3. Stellen Sie umgebungsspezifische Einstellungen in Anwendungsparameterdateien.
 
-
 ## <a name="deploying-the-application"></a>Bereitstellen der Anwendung
 
 Während Azure Cloud Services ein verwalteter Dienst ist, handelt es sich bei Service Fabric um eine Laufzeit. Sie können Service Fabric-Cluster in vielen Umgebungen erstellen, einschließlich Azure und lokal. In diesem Artikel konzentrieren wir uns auf die Bereitstellung für Azure. 
@@ -265,8 +261,8 @@ Das folgende Diagramm zeigt einen Cluster mit getrennten Front-End- und Back-End
 
 So implementieren Sie diesen Ansatz
 
-1.  Definieren Sie beim Erstellen des Clusters mindestens zwei Knotentypen. 
-2.  Verwenden Sie für jeden Dienst [Platzierungseinschränkungen][sf-placement-constraints], um den Dienst einem Knotentyp zuzuweisen.
+1. Definieren Sie beim Erstellen des Clusters mindestens zwei Knotentypen. 
+2. Verwenden Sie für jeden Dienst [Platzierungseinschränkungen][sf-placement-constraints], um den Dienst einem Knotentyp zuzuweisen.
 
 Bei der Bereitstellung in Azure wird jeder Knotentyp in einer separaten VM-Skalierungsgruppe bereitgestellt. Der Service Fabric-Cluster umfasst alle Knotentypen. Weitere Informationen finden Sie unter [Die Beziehung zwischen Service Fabric-Knotentypen und VM-Skalierungsgruppen][sf-node-types].
 
@@ -281,7 +277,6 @@ Informationen zum Konfigurieren eines öffentlichen HTTPS-Endpunkts finden Sie u
 Sie können die Anwendung horizontal hochskalieren, indem Sie dem Cluster virtuelle Computer hinzufügen. VM-Skalierungsgruppen unterstützen die automatische Skalierung mithilfe automatischer Skalierungsregeln auf Grundlage von Leistungsindikatoren. Weitere Informationen finden Sie unter [Zentrales Hoch- oder Herunterskalieren eines Service Fabric-Clusters mithilfe von Regeln für die automatische Skalierung][sf-auto-scale].
 
 Während der Cluster aktiv ist, sollten Sie Protokolle von allen Knoten an einem zentralen Speicherort sammeln. Weitere Informationen finden Sie unter [Sammeln von Protokollen mit der Azure-Diagnose][sf-logs].   
-
 
 ## <a name="conclusion"></a>Zusammenfassung
 

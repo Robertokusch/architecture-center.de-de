@@ -8,10 +8,10 @@ ms.date: 02/11/2019
 description: 'Große Unternehmen: Beschreibung der bewährten Methode'
 author: BrianBlanchard
 ms.openlocfilehash: 2d52797f1c3541fab1c97d97d0438210d2e66f79
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068989"
 ---
 # <a name="large-enterprise-best-practice-explained"></a>Große Unternehmen: Beschreibung der bewährten Methode
@@ -105,7 +105,7 @@ Wenn eines der in dieser Governancelösung ausgewählten Muster nicht mit den An
 - [Protokollierungs- und Berichterstellungsmuster](../../../decision-guides/log-and-report/overview.md)
 - [Richtliniendurchsetzungsmuster](../../../decision-guides/policy-enforcement/overview.md)
 - [Ressourcenkonsistenzmuster](../../../decision-guides/resource-consistency/overview.md)
-- [Ressourcenmarkierungsmuster](../../../decision-guides/resource-tagging/overview.md)
+- [Ressourcenkennzeichnungsmuster](../../../decision-guides/resource-tagging/overview.md)
 - [Softwaredefinierte Netzwerkmuster](../../../decision-guides/software-defined-network/overview.md)
 - [Abonnemententwurfsmuster](../../../decision-guides/subscriptions/overview.md)
 

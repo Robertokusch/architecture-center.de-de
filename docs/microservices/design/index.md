@@ -8,10 +8,10 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
 ms.openlocfilehash: 17e275e5b5f45233f7467192402cb28fce35c57b
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068904"
 ---
 # <a name="designing-a-microservices-architecture"></a>Entwerfen einer Microservices-Architektur
@@ -57,4 +57,4 @@ Unsere Referenzimplementierung verwendet Kubernetes mit [Azure Kubernetes Servic
 ## <a name="next-steps"></a>Nächste Schritte
 
 > [!div class="nextstepaction"]
-> [Auswählen einer Computeoption](./compute-options.md)
+> [Choosing a compute option for microservices](./compute-options.md) (Auswählen einer Computeoption für Microservices)

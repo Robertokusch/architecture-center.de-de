@@ -8,12 +8,12 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: client-assertion
-ms.openlocfilehash: 6aa8d33da0b2fd41fdc037bac28bca9f7ff09907
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 170a88863fef4b97e137d7fb047a9168d6463e01
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58249415"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639953"
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>Verwenden von Azure Key Vault zum Schützen von Anwendungsgeheimnissen
 
@@ -103,6 +103,7 @@ Weisen Sie diesen Benutzer jetzt als Abonnementbesitzer zu.
     ```powershell
     .\Setup-KeyVault.ps1 -Subject <<subject>>
     ```
+
     Geben Sie für den Parameter `Subject` einen beliebigen Namen ein, z.B. „surveysapp“. Das Skript generiert ein selbstsigniertes Zertifikat und speichert es im Zertifikatspeicher „Aktueller Benutzer/Eigene Zertifikate“. Die Ausgabe des Skripts ist ein JSON-Fragment. Kopieren Sie diesen Wert.
 
 2. Wechseln Sie im [Azure-Portal][azure-portal] zu dem Verzeichnis, in dem die Surveys-Anwendung registriert ist. Wählen Sie dazu in der rechten oberen Ecke des Portals Ihr Konto aus.
@@ -174,6 +175,7 @@ Weisen Sie diesen Benutzer jetzt als Abonnementbesitzer zu.
     ```powershell
     .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name> -KeyName Redis--Configuration -KeyValue "<<Redis DNS name>>.redis.cache.windows.net,password=<<Redis access key>>,ssl=true"
     ```
+
     Hierbei gilt:
 
    * Schlüsseltresorname = der Name, den Sie dem Schlüsseltresor im vorherigen Schritt zugewiesen haben
@@ -214,6 +216,7 @@ Weisen Sie diesen Benutzer jetzt als Abonnementbesitzer zu.
     //    config["AzureAd:ClientId"],
     //    config["AzureAd:ClientSecret"]);
     ```
+
 3. Suchen Sie in „Tailspin.Surveys.Web/Startup.cs“ den Code, der den `ICredentialService` registriert. Heben Sie Auskommentierungen für die Zeile mit `CertificateCredentialService` und die Zeile mit `ClientCredentialService` auf:
 
     ```csharp

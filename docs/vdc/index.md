@@ -6,18 +6,19 @@ layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 57f28808d3c49c74bc010133c670a186206a4466
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: f49640f4a994bf1cdca8029260fc95a5da323ff2
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58344528"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640616"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Virtuelles Azure-Rechenzentrum und die Steuerungsebene für Unternehmen
 
 Mit Azure Virtual Datacenter können Sie die Funktionen der Azure-Cloudplattform optimal nutzen und gleichzeitig Ihren bereits vorhandenen Sicherheits- und Netzwerkrichtlinien gerecht werden. Bei der Bereitstellung von Unternehmensworkloads in der Cloud müssen IT-Organisationen und Unternehmenseinheiten die richtige Balance zwischen Governance und Entwickleragilität finden. Mit den Modellen des virtuellen Azure-Rechenzentrums können Sie diese Balance erreichen, wobei die Governance im Vordergrund steht.
- 
+
 ## <a name="resources"></a>Ressourcen
+
 <table>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Concepts"><img src="../_images/virtual-datacenter.svg" alt="Virtual Datacenter eBook" /></a></td>
@@ -58,6 +59,5 @@ Um Workloads in der Cloud bereitstellen zu können, müssen Sie der Cloud das gl
 Das virtuelle Azure-Rechenzentrum basiert auf vier Komponenten: Identität, Verschlüsselung, softwaredefiniertes Netzwerk und Compliance (einschließlich Protokollen und Berichten).
 
 Im Modell des virtuellen Azure-Rechenzentrums können Sie Isolationsrichtlinien anwenden, die Cloud ähnlich wie ein vertrautes physisches Datencenter gestalten und das nötige Maß an Sicherheit und Vertrauen erreichen. Dies wird durch vier Komponenten ermöglicht, die jedem IT-Team eines Unternehmens bekannt sein dürften: softwaredefiniertes Netzwerk, Verschlüsselung, Identitätsverwaltung und die der Azure-Plattform zugrunde liegenden Compliancestandards und -zertifizierungen. Diese vier Komponenten machen ein virtuelles Datencenter zu einer vertrauenswürdigen Erweiterung Ihrer bestehenden Infrastruktur.
-
 
 Weitere Informationen erhalten Sie im E-Book <a href="https://aka.ms/VDC/eBook">Azure Virtual Datacenter: Concepts</a> (Virtuelles Azure-Rechenzentrum: Konzepte).

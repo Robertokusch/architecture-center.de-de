@@ -7,12 +7,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: 75aef5aec7f4663abff45ebdba5dbea245d3ac17
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: a36d2b4c7bfd2b26d5e1de44ddd8005fbce4bdd2
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248455"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640854"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>Entwerfen von Microservices: Erfassung und Workflow
 
@@ -86,7 +86,7 @@ Innerhalb einer Partition wartet der Ereignisprozessorhost darauf, dass `Process
 > [!NOTE]
 > Der Prozessorhost muss hierbei nicht tatsächlich (im Sinne einer Thread-Blockierung) *warten*. Da die `ProcessEventsAsync`-Methode asynchron ist, können vom Prozessorhost andere Arbeitsschritte ausgeführt werden, während die Verarbeitung der Methode abgeschlossen wird. Für diese Partition wird aber kein weiterer Batch mit Nachrichten bereitgestellt, bis die Methode zurückgegeben wurde.
 
-In der Drohnenanwendung kann ein Batch mit Nachrichten parallel verarbeitet werden. Das Warten auf den Abschluss der Verarbeitung des gesamten Batchs kann aber trotzdem zu einem Engpass führen. Die Verarbeitung kann nur so schnell wie die langsamste Nachricht im Batch erfolgen. Jegliche Abweichung bei den Antwortzeiten kann zu einem „Long Tail“-Zustand führen, bei dem einige langsame Antworten das gesamte System beeinträchtigen. Unsere Leistungstests haben ergeben, dass wir mit diesem Ansatz unseren Zieldurchsatz nicht erreichen konnten. Dies bedeutet *nicht*, dass Sie die Verwendung des Ereignisprozessorhosts vermeiden sollten. Vermeiden Sie in der `ProcesssEventsAsync`-Methode aber Aufgaben mit langer Ausführungsdauer, um einen hohen Durchsatz zu erzielen. Sorgen Sie dafür, dass jeder Batch schnell verarbeitet wird.
+In der Drohnenanwendung kann ein Batch mit Nachrichten parallel verarbeitet werden. Das Warten auf den Abschluss der Verarbeitung des gesamten Batchs kann aber trotzdem zu einem Engpass führen. Die Verarbeitung kann nur so schnell wie die langsamste Nachricht im Batch erfolgen. Jegliche Abweichung bei den Antwortzeiten kann zu einem „Long Tail“-Zustand führen, bei dem einige langsame Antworten das gesamte System beeinträchtigen. Unsere Leistungstests haben ergeben, dass wir mit diesem Ansatz unseren Zieldurchsatz nicht erreichen konnten. Dies bedeutet *nicht*, dass Sie die Verwendung des Ereignisprozessorhosts vermeiden sollten. Vermeiden Sie in der `ProcessEventsAsync`-Methode aber Aufgaben mit langer Ausführungsdauer, um einen hohen Durchsatz zu erzielen. Sorgen Sie dafür, dass jeder Batch schnell verarbeitet wird.
 
 ### <a name="iothub-react"></a>IotHub React
 

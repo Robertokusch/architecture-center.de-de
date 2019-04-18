@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai, AI
-ms.openlocfilehash: b7607984bcf2c4bd046421aeb6e9d52dd8e7c18e
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 9341b9e4c17025e9623902a6202076c352b237b9
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887742"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640547"
 ---
 # <a name="batch-scoring-of-python-machine-learning-models-on-azure"></a>Batchbewertung von Python-Modellen für Machine Learning in Azure
 
@@ -25,11 +25,12 @@ Eine Referenzimplementierung für diese Architektur ist auf [GitHub][github] ver
 **Szenario:** Diese Lösung überwacht den Betrieb einer großen Zahl von Geräten unter einer IoT-Einstellung, wobei jedes Gerät fortlaufend Sensormesswerte sendet. Es wird vorausgesetzt, dass jedem Gerät vorab trainierte Modelle für die Anomalieerkennung zugeordnet sind, um Folgendes vorherzusagen: Entspricht eine Reihe von Messwerten, die für ein vordefiniertes Zeitintervall aggregiert werden, einer Anomalie? In der Praxis kann dies ein Datenstrom mit Sensormesswerten sein, die gefiltert und aggregiert werden müssen, bevor sie für das Training oder für Echtzeitbewertungen verwendet werden. Der Einfachheit halber wird für diese Lösung beim Ausführen von Bewertungsaufträgen dieselbe Datendatei verwendet.
 
 Diese Referenzarchitektur ist für Workloads ausgelegt, die anhand eines Zeitplans ausgelöst werden. Die Verarbeitung umfasst die folgenden Schritte:
-1.  Senden von Sensormesswerten für die Erfassung in Azure Event Hubs
-2.  Durchführen der Datenstromverarbeitung und Speichern der Rohdaten
-3.  Senden der Daten an einen Machine Learning-Cluster, der für die Durchführung von Aufgaben bereit ist. Auf jedem Knoten im Cluster wird ein Bewertungsauftrag für einen bestimmten Sensor ausgeführt. 
-4.  Ausführen der Bewertungspipeline, über die die Bewertungsaufträge mit Machine Learning-Python-Skripts parallel ausgeführt werden. Die Pipeline wird erstellt und veröffentlicht, und es wird ein Zeitplan für die Ausführung nach einem vordefinierten Zeitintervall erstellt.
-5.  Generieren von Vorhersagen und Speichern im Blobspeicher zur späteren Verwendung
+
+1. Senden von Sensormesswerten für die Erfassung in Azure Event Hubs
+2. Durchführen der Datenstromverarbeitung und Speichern der Rohdaten
+3. Senden der Daten an einen Machine Learning-Cluster, der für die Durchführung von Aufgaben bereit ist. Auf jedem Knoten im Cluster wird ein Bewertungsauftrag für einen bestimmten Sensor ausgeführt. 
+4. Ausführen der Bewertungspipeline, über die die Bewertungsaufträge mit Machine Learning-Python-Skripts parallel ausgeführt werden. Die Pipeline wird erstellt und veröffentlicht, und es wird ein Zeitplan für die Ausführung nach einem vordefinierten Zeitintervall erstellt.
+5. Generieren von Vorhersagen und Speichern im Blobspeicher zur späteren Verwendung
 
 ## <a name="architecture"></a>Architecture
 
@@ -66,7 +67,7 @@ Der Einfachheit halber wird in diesem Szenario für einen Machine Learning-Pipel
 ## <a name="management-considerations"></a>Überlegungen zur Verwaltung
 
 - **Überwachen von Aufträgen**: Es ist wichtig, den Status von ausgeführten Aufträgen zu überwachen, aber es kann eine ziemliche Herausforderung darstellen, einen gesamten Cluster mit aktiven Knoten zu überwachen. Verwenden Sie für die Untersuchung des Zustands der Knoten im Cluster das [Azure-Portal][portal], um den [Machine Learning-Arbeitsbereich][ml-workspace] zu verwalten. Wenn ein Knoten inaktiv oder ein Auftrag fehlgeschlagen ist, werden die Fehlerprotokolle im Blobspeicher gespeichert und sind auch über den Abschnitt „Pipelines“ zugänglich. Verbinden Sie zum Durchführen einer umfassenderen Überwachung Protokolle mit [Application Insights][app-insights], oder führen Sie separate Prozesse aus, um den Status des Clusters und der zugehörigen Aufträge abzufragen.
--   **Protokollierung**: Machine Learning Service protokolliert alle stdout/stderr-Vorgänge für das zugeordnete Azure Storage-Konto. Verwenden Sie ein Speichernavigationstool, z.B. [Azure Storage-Explorer][explorer], um die Protokolldateien leicht anzeigen zu können.
+- **Protokollierung**: Machine Learning Service protokolliert alle stdout/stderr-Vorgänge für das zugeordnete Azure Storage-Konto. Verwenden Sie ein Speichernavigationstool, z.B. [Azure Storage-Explorer][explorer], um die Protokolldateien leicht anzeigen zu können.
 
 ## <a name="cost-considerations"></a>Kostenbetrachtung
 
@@ -75,7 +76,6 @@ Die teuersten Komponenten, die in dieser Referenzarchitektur genutzt werden, sin
 Konfigurieren Sie für Aufträge, die nicht direkt verarbeitet werden müssen, die Formel für die automatische Skalierung so, dass der Standardzustand (Minimum) ein Cluster von null Knoten ist. Bei dieser Konfiguration hat der Cluster anfangs null Knoten. Er skaliert nur dann zentral hoch, wenn er Aufträge in der Warteschlange erkennt. Wenn die Batchbewertung maximal einige Male am Tag ausgeführt wird, können Sie mithilfe dieser Einstellung eine erhebliche Kosteneinsparung erzielen.
 
 Die automatische Skalierung ist ggf. nicht für Batchaufträge geeignet, die zeitlich zu nahe beieinander liegen. Für die benötigte Zeit zum Erstellen und Entfernen eines Clusters fallen ebenfalls Kosten an. Wenn eine Batchworkload also nur wenige Minuten nach dem Ende des vorherigen Auftrags startet, ist es ggf. kostengünstiger, den Cluster permanent auszuführen – also auch in der Zeit zwischen den Aufträgen. Dies hängt davon ab, ob die Ausführung von Bewertungsprozessen mit hoher Häufigkeit (z.B. jede Stunde) oder geringerer Häufigkeit (z.B. einmal pro Monat) geplant ist.
-
 
 ## <a name="deployment"></a>Bereitstellung
 

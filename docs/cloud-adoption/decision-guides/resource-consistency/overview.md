@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: Erfahren Sie mehr zur Ressourcenkonsistenz bei der Planung von Azure-Migrationen.
 author: rotycenh
-ms.openlocfilehash: c2ff9a274692421e50775048586088134ff4c225
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 3159e4b7aeddfdd99261c0f68591998d741f3359
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241100"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640044"
 ---
 # <a name="caf-resource-consistency-decision-guide"></a>Framework für die Cloudeinführung (Cloud Adoption Framework, CAF): Leitfaden zur Entscheidungsfindung bei der Ressourcenkonsistenz
 
@@ -25,7 +25,6 @@ Wechseln Sie zu: [Grundlegende Gruppierung](#basic-grouping) | [Bereitstellungsk
 Entscheidungen hinsichtlich der Konsistenzanforderungen für die Ressourcen Ihrer Cloudumgebung werden in erster Linie von folgenden Faktoren beeinflusst: Größe der digitalen Umgebung nach der Migration, geschäftliche oder umgebungsbezogene Anforderungen, die nicht exakt in Ihr bestehendes Abonnementdesign passen, sowie die Notwendigkeit einer kontinuierlichen Erzwingung von Governance, nachdem Ressourcen bereitgestellt wurden. 
 
 Mit zunehmender Bedeutung dieser Faktoren wird es auch immer wichtiger, eine konsistente Bereitstellung, Gruppierung und Verwaltung cloudbasierter Ressourcen zu gewährleisten. Um eine höhere Ressourcenkonsistenz zu erreichen und die wachsenden Anforderungen zu erfüllen, sind erhöhte Anstrengungen in den Bereichen Automatisierung, Tools und Konsistenzerzwingung erforderlich, was zu einem erhöhten Zeitaufwand für Change Management und Nachverfolgung führt.
-
 
 ## <a name="basic-grouping"></a>Einfache Gruppierung
 
