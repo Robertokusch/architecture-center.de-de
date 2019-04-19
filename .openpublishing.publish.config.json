@@ -7,25 +7,32 @@
       "build_output_subfolder": "azure-architecture-center",
       "locale": "de-DE",
       "monikers": [],
-      "open_to_public_contributors": false,
+      "moniker_ranges": [],
+      "open_to_public_contributors": true,
       "type_mapping": {
         "Conceptual": "Content",
         "ManagedReference": "Content",
-        "RestApi": "Content"
+        "ContextObject": "Toc"
       },
       "build_entry_point": "docs",
-      "template_folder": "_themes"
+      "template_folder": "_themes",
+      "version": 0
     }
   ],
   "notification_subscribers": [],
   "branches_to_filter": [
-    "live-sxs",
+    "live",
     "master-sxs"
   ],
-  "git_repository_url_open_to_public_contributors": "https://github.com/mspnp/architecture-center",
+  "git_repository_url_open_to_public_contributors": "https://github.com/microsoftdocs/architecture-center.de-de",
+  "git_repository_branch_open_to_public_contributors": "live",
   "continue_with_document_error": true,
   "skip_source_output_uploading": false,
   "need_preview_pull_request": true,
+  "enable_incremental_build": true,
+  "contribution_branch_mappings": {
+    "live-sxs": "live"
+  },
   "dependent_repositories": [
     {
       "path_to_root": "_themes",
@@ -41,7 +48,7 @@
     },
     {
       "path_to_root": "_repo.en-us",
-      "url": "https://github.com/mspnp/architecture-center",
+      "url": "https://github.com/microsoftdocs/architecture-center",
       "branch": "live",
       "branch_mapping": {
         "live": "live",
@@ -49,10 +56,21 @@
       }
     }
   ],
+  "branch_target_mapping": {
+    "live-sxs": [
+      "Publish",
+      "Pdf"
+    ],
+    "live": [
+      "Publish",
+      "Pdf"
+    ]
+  },
   "need_generate_pdf_url_template": false,
-  "Targets": {
+  "targets": {
     "Pdf": {
       "template_folder": "_themes.pdf"
     }
-  }
+  },
+  "need_generate_intellisense": false
 }
