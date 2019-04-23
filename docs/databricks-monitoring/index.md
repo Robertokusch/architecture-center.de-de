@@ -3,12 +3,12 @@ title: Überwachen von Azure Databricks mit Azure Monitor
 description: Scala-Bibliothek, um die Überwachung von Azure Databricks in Azure Log Analytics zu ermöglichen
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 4544d3abc3264ec459a80ac1a61a912e6d30d6b2
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 93798ccf74735a880eab2999008b1495e6a63e10
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887691"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640531"
 ---
 # <a name="monitoring-azure-databricks"></a>Überwachen von Azure Databricks
 
@@ -24,7 +24,7 @@ In den folgenden Artikeln wird gezeigt, wie Sie Überwachungsdaten aus Azure Dat
 
 Die zu diesen Artikeln gehörende Codebibliothek erweitert die grundlegende Überwachungsfunktion von Azure Databricks, damit Spark-Metriken, -Ereignisse und -Protokollierungsinformationen an Azure Monitor gesendet werden können.
 
-Diese Artikel und die zugehörige Codebibliothek sind für Entwickler von Apache Spark- und Azure Databricks-Lösungen gedacht. Der Code muss in JAR-Dateien (Java Archive) integriert und anschließend in einem Azure Databricks-Cluster bereitgestellt werden. Der Code ist eine Kombination aus [Scala](https://www.scala-lang.org/) und Java und enthält entsprechende [Maven](https://maven.apache.org)-POM-Dateien (Projektobjektmodell) zum Erstellen der JAR-Ausgabedateien. Es wird empfohlen, sich mit Java, Scala und Maven vertraut zu machen.
+Diese Artikel und die zugehörige Codebibliothek sind für Entwickler von Apache Spark- und Azure Databricks-Lösungen gedacht. Der Code muss in JAR-Dateien (Java Archive) integriert und anschließend in einem Azure Databricks-Cluster bereitgestellt werden. Der Code ist eine Kombination aus [Scala](https://www.scala-lang.org/) und Java und enthält entsprechende [Maven](https://maven.apache.org)-POM-Dateien (Projektobjektmodell) zum Erstellen der JAR-Ausgabedateien. Sie sollten mit Java, Scala und Maven vertraut sein.
 
 ## <a name="next-steps"></a>Nächste Schritte
 

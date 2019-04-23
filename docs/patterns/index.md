@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c8fe971e031825632c2bb157bfd23e15f56520a3
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: f0cc64c555be092f9efb51e1f769c3668ce281af
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58343474"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641007"
 ---
 # <a name="cloud-design-patterns"></a>Cloudentwurfsmuster
 
@@ -58,7 +58,7 @@ Für jedes Muster werden das durch das Muster gelöste Problem, Überlegungen zu
     <td style="width: 64px; vertical-align: middle;"><a href="./category/management-monitoring.md"><img src="_images/category/management-monitoring.svg" alt="Management and Monitoring" /></a></td>
     <td>
         <h3><a href="./category/management-monitoring.md">Verwaltung und Überwachung</a></h3>
-        <p>Cloudanwendungen werden in einem Remotedatencenter ausgeführt, in dem Sie keine vollständige Kontrolle über die Infrastruktur oder – in manchen Fällen – das Betriebssystem haben. Die Verwaltung und Überwachung kann daher schwieriger sein als bei einer lokalen Bereitstellung. Anwendungen müssen Laufzeitinformationen verfügbar machen, die Administratoren und Betreiber zum Verwalten und Überwachen des Systems verwenden können. Zudem müssen sie sich ändernde Geschäftsanforderungen und Anpassungen ohne Beenden oder erneutes Bereitstellen der Anwendung unterstützen.</p>
+        <p>Cloudanwendungen werden in einem Remoterechenzentrum ausgeführt, in dem Sie keine vollständige Kontrolle über die Infrastruktur oder – in manchen Fällen – das Betriebssystem haben. Die Verwaltung und Überwachung kann daher schwieriger sein als bei einer lokalen Bereitstellung. Anwendungen müssen Laufzeitinformationen verfügbar machen, die Administratoren und Betreiber zum Verwalten und Überwachen des Systems verwenden können. Zudem müssen sie sich ändernde Geschäftsanforderungen und Anpassungen ohne Beenden oder erneutes Bereitstellen der Anwendung unterstützen.</p>
     </td>
 </tr>
 <tr>

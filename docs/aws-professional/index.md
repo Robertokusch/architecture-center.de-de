@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 89434c0ce72b9f061e4b092354b1dcbaf683b7c6
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 6e44953cccf39cc40be775f4043bcf8b1b890dae
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58346313"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641160"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure für AWS-Spezialisten
 
@@ -157,7 +157,7 @@ Im Gegensatz zu Verfügbarkeitszonen, bei denen es sich um physisch getrennte Re
 
 - [Hochverfügbarkeit für Azure-Anwendungen](../resiliency/high-availability-azure-applications.md)
 
-- [Notfallwiederherstellung für Azure-Anwendungen](../resiliency/disaster-recovery-azure-applications.md)
+- [Failure and disaster recovery for Azure applications](../reliability/disaster-recovery.md) (Wiederherstellung bei einem Fehler oder Notfall für Azure-Anwendungen)
 
 - [Geplante Wartung für virtuelle Linux-Computer in Azure](/azure/virtual-machines/linux/maintenance-and-updates)
 

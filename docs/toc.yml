@@ -1,881 +1,889 @@
-items:
 - name: Azure Architecture Center
   href: index.md
 - name: Cloudgrundlagen
   items:
-  - name: Anwendungsarchitekturleitfaden
-    items:
-    - name: Einführung
-      href: guide/index.md
-    - name: Architekturstile
+    - name: Anwendungsarchitekturleitfaden
       items:
-      - name: Übersicht
-        href: guide/architecture-styles/index.md
-      - name: Anwendung mit n-Schichten
-        href: guide/architecture-styles/n-tier.md
-      - name: Web-Warteschlange-Worker
-        href: guide/architecture-styles/web-queue-worker.md
-      - name: Microservices
-        href: guide/architecture-styles/microservices.md
-      - name: CQRS-Architektur
-        href: guide/architecture-styles/cqrs.md
-      - name: Ereignisgesteuerte Architektur
-        href: guide/architecture-styles/event-driven.md
-      - name: Große Datenmengen
-        href: guide/architecture-styles/big-data.md
-      - name: Big Compute
-        href: guide/architecture-styles/big-compute.md
-    - name: Wählen eines Computediensts
+        - name: Einführung
+          href: guide/index.md
+        - name: Architekturstile
+          items:
+            - name: Übersicht
+              href: guide/architecture-styles/index.md
+            - name: Anwendung mit n-Schichten
+              href: guide/architecture-styles/n-tier.md
+            - name: Web-Warteschlange-Worker
+              href: guide/architecture-styles/web-queue-worker.md
+            - name: Microservices
+              href: guide/architecture-styles/microservices.md
+            - name: CQRS-Architektur
+              href: guide/architecture-styles/cqrs.md
+            - name: Ereignisgesteuerte Architektur
+              href: guide/architecture-styles/event-driven.md
+            - name: Große Datenmengen
+              href: guide/architecture-styles/big-data.md
+            - name: Big Compute
+              href: guide/architecture-styles/big-compute.md
+        - name: Wählen eines Computediensts
+          items:
+            - name: Übersicht
+              href: guide/technology-choices/compute-overview.md
+            - name: Entscheidungsstruktur
+              href: guide/technology-choices/compute-decision-tree.md
+            - name: Vergleich der Computeoptionen
+              href: guide/technology-choices/compute-comparison.md
+        - name: Auswählen eines Datenspeichers
+          items:
+            - name: Übersicht
+              href: guide/technology-choices/data-store-overview.md
+            - name: Vergleich der Datenspeicher
+              href: guide/technology-choices/data-store-comparison.md
+        - name: Entwurfsprinzipien
+          items:
+            - name: Übersicht
+              href: guide/design-principles/index.md
+            - name: Entwurf mit Blick auf Selbstreparatur
+              href: guide/design-principles/self-healing.md
+            - name: Herstellen von Redundanz für alle Anwendungskomponenten
+              href: guide/design-principles/redundancy.md
+            - name: Minimieren der Koordinierung
+              href: guide/design-principles/minimize-coordination.md
+            - name: Ausrichtung des Entwurfs auf horizontale Skalierung
+              href: guide/design-principles/scale-out.md
+            - name: Umgehung von Beschränkungen durch Partitionierung
+              href: guide/design-principles/partition.md
+            - name: Entwurf mit Blick auf den Betrieb
+              href: guide/design-principles/design-for-operations.md
+            - name: Verwendung verwalteter Dienste
+              href: guide/design-principles/managed-services.md
+            - name: Verwendung des idealen Datenspeichers
+              href: guide/design-principles/use-the-best-data-store.md
+            - name: Entwurf mit Blick auf die Entwicklung
+              href: guide/design-principles/design-for-evolution.md
+            - name: Ausrichtung des Entwurfs auf die Unternehmensanforderungen
+              href: guide/design-principles/build-for-business.md
+        - name: Säulen der Softwarequalität
+          href: guide/pillars.md
+    - name: Cloudentwurfsmuster
       items:
-      - name: Übersicht
-        href: guide/technology-choices/compute-overview.md
-      - name: Entscheidungsstruktur
-        href: guide/technology-choices/compute-decision-tree.md
-      - name: Vergleich der Computeoptionen
-        href: guide/technology-choices/compute-comparison.md
-    - name: Auswählen eines Datenspeichers
+        - name: Übersicht
+          href: patterns/index.md
+        - name: Categories
+          items:
+            - name: Verfügbarkeit
+              href: patterns/category/availability.md
+            - name: Datenverwaltung
+              href: patterns/category/data-management.md
+            - name: Entwurf und Implementierung
+              href: patterns/category/design-implementation.md
+            - name: Nachrichten
+              href: patterns/category/messaging.md
+            - name: Verwaltung und Überwachung
+              href: patterns/category/management-monitoring.md
+            - name: Leistung und Skalierbarkeit
+              href: patterns/category/performance-scalability.md
+            - name: Resilienz
+              href: patterns/category/resiliency.md
+            - name: Sicherheit
+              href: patterns/category/security.md
+        - name: Ambassador
+          href: patterns/ambassador.md
+        - name: Antikorruptionsschicht
+          href: patterns/anti-corruption-layer.md
+        - name: Back-Ends für Front-Ends
+          href: patterns/backends-for-frontends.md
+        - name: Bulkhead
+          href: patterns/bulkhead.md
+        - name: Cachefremd
+          href: patterns/cache-aside.md
+        - name: Trennschalter
+          href: patterns/circuit-breaker.md
+        - name: Anspruchsprüfung
+          href: patterns/claim-check.md
+        - name: Command and Query Responsibility Segregation (CQRS)
+          href: patterns/cqrs.md
+        - name: Ausgleichende Transaktion
+          href: patterns/compensating-transaction.md
+        - name: Konkurrierende Consumer
+          href: patterns/competing-consumers.md
+        - name: Computeressourcenkonsolidierung
+          href: patterns/compute-resource-consolidation.md
+        - name: Ereignissourcing
+          href: patterns/event-sourcing.md
+        - name: Externer Konfigurationsspeicher
+          href: patterns/external-configuration-store.md
+        - name: Verbundidentität
+          href: patterns/federated-identity.md
+        - name: Gatekeeper
+          href: patterns/gatekeeper.md
+        - name: Gatewayaggregation
+          href: patterns/gateway-aggregation.md
+        - name: Gatewayabladung
+          href: patterns/gateway-offloading.md
+        - name: Gatewayrouting
+          href: patterns/gateway-routing.md
+        - name: Überwachung des Integritätsendpunkts
+          href: patterns/health-endpoint-monitoring.md
+        - name: Indextabelle
+          href: patterns/index-table.md
+        - name: Auswahl einer übergeordneten Instanz
+          href: patterns/leader-election.md
+        - name: Materialisierte Sicht
+          href: patterns/materialized-view.md
+        - name: Pipes und Filter
+          href: patterns/pipes-and-filters.md
+        - name: Prioritätswarteschlange
+          href: patterns/priority-queue.md
+        - name: Herausgeber/Abonnent
+          href: patterns/publisher-subscriber.md
+        - name: Warteschlangenbasierter Lastenausgleich
+          href: patterns/queue-based-load-leveling.md
+        - name: Wiederholen
+          href: patterns/retry.md
+        - name: Scheduler-Agent-Supervisor
+          href: patterns/scheduler-agent-supervisor.md
+        - name: Sharding (Horizontales Partitionieren)
+          href: patterns/sharding.md
+        - name: Sidecar
+          href: patterns/sidecar.md
+        - name: Hosten von statischen Inhalten
+          href: patterns/static-content-hosting.md
+        - name: Strangler
+          href: patterns/strangler.md
+        - name: Drosselung
+          href: patterns/throttling.md
+        - name: Valet-Schlüssel
+          href: patterns/valet-key.md
+    - name: Bewährte Methoden für Cloudanwendungen
       items:
-      - name: Übersicht
-        href: guide/technology-choices/data-store-overview.md
-      - name: Vergleich der Datenspeicher
-        href: guide/technology-choices/data-store-comparison.md
-    - name: Entwurfsprinzipien
+        - name: API-Design
+          href: best-practices/api-design.md
+        - name: API-Implementierung
+          href: best-practices/api-implementation.md
+        - name: Automatische Skalierung
+          href: best-practices/auto-scaling.md
+        - name: Hintergrundaufträge
+          href: best-practices/background-jobs.md
+        - name: Caching
+          href: best-practices/caching.md
+        - name: Content Delivery Network
+          href: best-practices/cdn.md
+        - name: Datenpartitionierung
+          href: best-practices/data-partitioning.md
+        - name: Strategien für die Datenpartitionierung (dienstbasiert)
+          href: best-practices/data-partitioning-strategies.md
+        - name: Überwachung und Diagnose
+          href: best-practices/monitoring.md
+        - name: Benennungskonventionen
+          href: best-practices/naming-conventions.md
+        - name: Behandeln vorübergehender Fehler
+          href: best-practices/transient-faults.md
+        - name: Wiederholungsanleitung für bestimmte Dienste
+          href: best-practices/retry-service-specific.md
+    - name: Leistungsbezogene Antimuster
       items:
-      - name: Übersicht
-        href: guide/design-principles/index.md
-      - name: Entwurf mit Blick auf Selbstreparatur
-        href: guide/design-principles/self-healing.md
-      - name: Herstellen von Redundanz für alle Anwendungskomponenten
-        href: guide/design-principles/redundancy.md
-      - name: Minimieren der Koordinierung
-        href: guide/design-principles/minimize-coordination.md
-      - name: Ausrichtung des Entwurfs auf horizontale Skalierung
-        href: guide/design-principles/scale-out.md
-      - name: Umgehung von Beschränkungen durch Partitionierung
-        href: guide/design-principles/partition.md
-      - name: Entwurf mit Blick auf den Betrieb
-        href: guide/design-principles/design-for-operations.md
-      - name: Verwendung verwalteter Dienste
-        href: guide/design-principles/managed-services.md
-      - name: Verwendung des idealen Datenspeichers
-        href: guide/design-principles/use-the-best-data-store.md
-      - name: Entwurf mit Blick auf die Entwicklung
-        href: guide/design-principles/design-for-evolution.md
-      - name: Ausrichtung des Entwurfs auf die Unternehmensanforderungen
-        href: guide/design-principles/build-for-business.md
-    - name: Säulen der Softwarequalität
-      href: guide/pillars.md
-  - name: Cloudentwurfsmuster
-    items:
-    - name: Übersicht
-      href: patterns/index.md
-    - name: Categories
+        - name: Übersicht
+          href: antipatterns/index.md
+        - name: Ausgelastete Datenbank
+          href: antipatterns/busy-database/index.md
+        - name: Ausgelastetes Front-End
+          href: antipatterns/busy-front-end/index.md
+        - name: Zu viele E/A-Vorgänge
+          href: antipatterns/chatty-io/index.md
+        - name: Irrelevante Abrufe
+          href: antipatterns/extraneous-fetching/index.md
+        - name: Ungeeignete Instanziierung
+          href: antipatterns/improper-instantiation/index.md
+        - name: Monolithische Persistenz
+          href: antipatterns/monolithic-persistence/index.md
+        - name: Kein Caching
+          href: antipatterns/no-caching/index.md
+        - name: Synchrone E/A-Vorgänge
+          href: antipatterns/synchronous-io/index.md
+    - name: Azure für AWS-Spezialisten
       items:
-      - name: Verfügbarkeit
-        href: patterns/category/availability.md
-      - name: Datenverwaltung
-        href: patterns/category/data-management.md
-      - name: Entwurf und Implementierung
-        href: patterns/category/design-implementation.md
-      - name: Nachrichten
-        href: patterns/category/messaging.md
-      - name: Verwaltung und Überwachung
-        href: patterns/category/management-monitoring.md
-      - name: Leistung und Skalierbarkeit
-        href: patterns/category/performance-scalability.md
-      - name: Resilienz
-        href: patterns/category/resiliency.md
-      - name: Sicherheit
-        href: patterns/category/security.md
-    - name: Ambassador
-      href: patterns/ambassador.md
-    - name: Antikorruptionsschicht
-      href: patterns/anti-corruption-layer.md
-    - name: Back-Ends für Front-Ends
-      href: patterns/backends-for-frontends.md
-    - name: Bulkhead
-      href: patterns/bulkhead.md
-    - name: Cachefremd
-      href: patterns/cache-aside.md
-    - name: Trennschalter
-      href: patterns/circuit-breaker.md
-    - name: Anspruchsprüfung
-      href: patterns/claim-check.md
-    - name: Command and Query Responsibility Segregation (CQRS)
-      href: patterns/cqrs.md
-    - name: Ausgleichende Transaktion
-      href: patterns/compensating-transaction.md
-    - name: Konkurrierende Consumer
-      href: patterns/competing-consumers.md
-    - name: Computeressourcenkonsolidierung
-      href: patterns/compute-resource-consolidation.md
-    - name: Ereignissourcing
-      href: patterns/event-sourcing.md
-    - name: Externer Konfigurationsspeicher
-      href: patterns/external-configuration-store.md
-    - name: Verbundidentität
-      href: patterns/federated-identity.md
-    - name: Gatekeeper
-      href: patterns/gatekeeper.md
-    - name: Gatewayaggregation
-      href: patterns/gateway-aggregation.md
-    - name: Gatewayabladung
-      href: patterns/gateway-offloading.md
-    - name: Gatewayrouting
-      href: patterns/gateway-routing.md
-    - name: Überwachung des Integritätsendpunkts
-      href: patterns/health-endpoint-monitoring.md
-    - name: Indextabelle
-      href: patterns/index-table.md
-    - name: Auswahl einer übergeordneten Instanz
-      href: patterns/leader-election.md
-    - name: Materialisierte Sicht
-      href: patterns/materialized-view.md
-    - name: Pipes und Filter
-      href: patterns/pipes-and-filters.md
-    - name: Prioritätswarteschlange
-      href: patterns/priority-queue.md
-    - name: Herausgeber/Abonnent
-      href: patterns/publisher-subscriber.md
-    - name: Warteschlangenbasierter Lastenausgleich
-      href: patterns/queue-based-load-leveling.md
-    - name: Wiederholen
-      href: patterns/retry.md
-    - name: Scheduler-Agent-Supervisor
-      href: patterns/scheduler-agent-supervisor.md
-    - name: Sharding (Horizontales Partitionieren)
-      href: patterns/sharding.md
-    - name: Sidecar
-      href: patterns/sidecar.md
-    - name: Hosten von statischen Inhalten
-      href: patterns/static-content-hosting.md
-    - name: Strangler
-      href: patterns/strangler.md
-    - name: Drosselung
-      href: patterns/throttling.md
-    - name: Valet-Schlüssel
-      href: patterns/valet-key.md
-  - name: Bewährte Methoden für Cloudanwendungen
-    items:
-    - name: API-Design
-      href: best-practices/api-design.md
-    - name: API-Implementierung
-      href: best-practices/api-implementation.md
-    - name: Automatische Skalierung
-      href: best-practices/auto-scaling.md
-    - name: Hintergrundaufträge
-      href: best-practices/background-jobs.md
-    - name: Caching
-      href: best-practices/caching.md
-    - name: Content Delivery Network
-      href: best-practices/cdn.md
-    - name: Datenpartitionierung
-      href: best-practices/data-partitioning.md
-    - name: Strategien für die Datenpartitionierung (dienstbasiert)
-      href: best-practices/data-partitioning-strategies.md
-    - name: Überwachung und Diagnose
-      href: best-practices/monitoring.md
-    - name: Benennungskonventionen
-      href: best-practices/naming-conventions.md
-    - name: Behandeln vorübergehender Fehler
-      href: best-practices/transient-faults.md
-    - name: Wiederholungsanleitung für bestimmte Dienste
-      href: best-practices/retry-service-specific.md
-  - name: Leistungsbezogene Antimuster
-    items:
-    - name: Übersicht
-      href: antipatterns/index.md
-    - name: Ausgelastete Datenbank
-      href: antipatterns/busy-database/index.md
-    - name: Ausgelastetes Front-End
-      href: antipatterns/busy-front-end/index.md
-    - name: Zu viele E/A-Vorgänge
-      href: antipatterns/chatty-io/index.md
-    - name: Irrelevante Abrufe
-      href: antipatterns/extraneous-fetching/index.md
-    - name: Ungeeignete Instanziierung
-      href: antipatterns/improper-instantiation/index.md
-    - name: Monolithische Persistenz
-      href: antipatterns/monolithic-persistence/index.md
-    - name: Kein Caching
-      href: antipatterns/no-caching/index.md
-    - name: Synchrone E/A-Vorgänge
-      href: antipatterns/synchronous-io/index.md
-  - name: Azure für AWS-Spezialisten
-    items:
-    - name: Übersicht
-      href: aws-professional/index.md
-    - name: Vergleich der Dienste
-      href: aws-professional/services.md
+        - name: Übersicht
+          href: aws-professional/index.md
+        - name: Vergleich der Dienste
+          href: aws-professional/services.md
 - name: Beispielszenarien
   items:
-  - name: Übersicht
-    href: example-scenario/index.md
-  - name: AI
-    items:
-    - name: Chatbot für Hotelreservierung
-      href: example-scenario/ai/commerce-chatbot.md
-    - name: Bildklassifizierung
-      href: example-scenario/ai/intelligent-apps-image-processing.md
-    - name: Filmempfehlung
-      href: example-scenario/ai/movie-recommendations.md
-    - name: Newsfeed-Erfassung
-      href: example-scenario/ai/newsfeed-ingestion.md
-  - name: Apps
-    items:
-    - name: CAE
-      href: example-scenario/apps/hpc-saas.md
-    - name: Dezentralisierte Vertrauensstellung zwischen Banken
-      href: example-scenario/apps/decentralized-trust.md
-    - name: DevOps mit Containern
-      href: example-scenario/apps/devops-with-aks.md
-    - name: DevOps mit Azure DevOps
-      href: example-scenario/apps/devops-dotnet-webapp.md
-    - name: SAP für Dev/Test
-      href: example-scenario/apps/sap-dev-test.md
-    - name: SAP für die Produktion
-      href: example-scenario/apps/sap-production.md
-    - name: E-Commerce-Front-End
-      href: example-scenario/apps/ecommerce-scenario.md
-    - name: E-Commerce-API-Verwaltung
-      href: example-scenario/apps/apim-api-scenario.md
-    - name: E-Commerce-Produktsuche
-      href: example-scenario/apps/ecommerce-search.md
-  - name: Daten und Analysen
-    items:
-    - name: ETL-Hybridvorgänge mit Data Factory
-      href: example-scenario/data/hybrid-etl-with-adf.md
-    - name: IoT für das Bauwesen
-      href: example-scenario/data/big-data-with-iot.md
-    - name: Data Warehousing und Analysen
-      href: example-scenario/data/data-warehouse.md
-    - name: IoT-Daten für die Automobilindustrie
-      href: example-scenario/data/realtime-analytics-vehicle-iot.md
-    - name: Betrugsermittlung in Echtzeit
-      href: example-scenario/data/fraud-detection.md
-    - name: Skalierbare Auftragsverarbeitung
-      href: example-scenario/data/ecommerce-order-processing.md
-  - name: Infrastruktur
-    items:
-    - name: Numerische Strömungsmechanik (Computational Fluid Dynamics, CFD)
-      href: example-scenario/infrastructure/hpc-cfd.md
-    - name: Virtuelle Linux-Desktops
-      href: example-scenario/infrastructure/linux-vdi-citrix.md
-    - name: Zerlegen monolithischer Anwendungen
-      href: example-scenario/infrastructure/service-fabric-microservices.md
-    - name: Hochgradig skalierbares WordPress-System
-      href: example-scenario/infrastructure/wordpress.md
-    - name: Hoch verfügbare Webanwendung
-      href: example-scenario/infrastructure/multi-tier-app-disaster-recovery.md
-    - name: Windows mit mehreren Ebenen
-      href: example-scenario/infrastructure/regulated-multitier-app.md
-    - name: Rendern von HPC-Video
-      href: example-scenario/infrastructure/video-rendering.md
-    - name: Bildmodellierung
-      href: example-scenario/infrastructure/image-modeling.md
+    - name: Übersicht
+      href: example-scenario/index.md
+    - name: AI
+      items:
+        - name: Chatbot für Hotelreservierung
+          href: example-scenario/ai/commerce-chatbot.md
+        - name: Bildklassifizierung
+          href: example-scenario/ai/intelligent-apps-image-processing.md
+        - name: Filmempfehlung
+          href: example-scenario/ai/movie-recommendations.md
+        - name: Newsfeed-Erfassung
+          href: example-scenario/ai/newsfeed-ingestion.md
+    - name: Apps
+      items:
+        - name: CAE
+          href: example-scenario/apps/hpc-saas.md
+        - name: Dezentralisierte Vertrauensstellung zwischen Banken
+          href: example-scenario/apps/decentralized-trust.md
+        - name: DevOps mit Containern
+          href: example-scenario/apps/devops-with-aks.md
+        - name: DevOps mit Azure DevOps
+          href: example-scenario/apps/devops-dotnet-webapp.md
+        - name: SAP für Dev/Test
+          href: example-scenario/apps/sap-dev-test.md
+        - name: SAP für die Produktion
+          href: example-scenario/apps/sap-production.md
+        - name: E-Commerce-Front-End
+          href: example-scenario/apps/ecommerce-scenario.md
+        - name: E-Commerce-API-Verwaltung
+          href: example-scenario/apps/apim-api-scenario.md
+        - name: E-Commerce-Produktsuche
+          href: example-scenario/apps/ecommerce-search.md
+        - name: Jenkins-Server
+          href: example-scenario/apps/jenkins.md
+    - name: Daten und Analysen
+      items:
+        - name: ETL-Hybridvorgänge mit Data Factory
+          href: example-scenario/data/hybrid-etl-with-adf.md
+        - name: IoT für das Bauwesen
+          href: example-scenario/data/big-data-with-iot.md
+        - name: Data Warehousing und Analysen
+          href: example-scenario/data/data-warehouse.md
+        - name: IoT-Daten für die Automobilindustrie
+          href: example-scenario/data/realtime-analytics-vehicle-iot.md
+        - name: Betrugsermittlung in Echtzeit
+          href: example-scenario/data/fraud-detection.md
+        - name: Skalierbare Auftragsverarbeitung
+          href: example-scenario/data/ecommerce-order-processing.md
+    - name: Infrastruktur
+      items:
+        - name: 'Numerische Strömungsmechanik (Computational Fluid Dynamics, CFD)'
+          href: example-scenario/infrastructure/hpc-cfd.md
+        - name: Virtuelle Linux-Desktops
+          href: example-scenario/infrastructure/linux-vdi-citrix.md
+        - name: Zerlegen monolithischer Anwendungen
+          href: example-scenario/infrastructure/service-fabric-microservices.md
+        - name: Hochgradig skalierbares WordPress-System
+          href: example-scenario/infrastructure/wordpress.md
+        - name: Hoch verfügbare Webanwendung
+          href: example-scenario/infrastructure/multi-tier-app-disaster-recovery.md
+        - name: Windows mit mehreren Ebenen
+          href: example-scenario/infrastructure/regulated-multitier-app.md
+        - name: Rendern von HPC-Video
+          href: example-scenario/infrastructure/video-rendering.md
+        - name: Bildmodellierung
+          href: example-scenario/infrastructure/image-modeling.md
 - name: Referenzarchitekturen
   items:
-  - name: Übersicht
-    href: reference-architectures/index.md
-  - name: AI
-    items:
-    - name: Training und Bewertung von Python-Modellen
+    - name: Übersicht
+      href: reference-architectures/index.md
+    - name: AI
       items:
-      - name: Verteiltes Training der Deep Learning-Modelle
-        href: reference-architectures/ai/training-deep-learning.md
-      - name: Batchbewertung der Deep Learning-Modelle
-        href: reference-architectures/ai/batch-scoring-deep-learning.md
-      - name: Trainieren von Python-Modellen vom Typ „scikit-learn“
-        href: reference-architectures/ai/training-python-models.md
-      - name: Batchbewertung von Python-Modellen
-        href: reference-architectures/ai/batch-scoring-python.md
-      - name: Echtzeitbewertung von Python- und Deep Learning-Modellen
-        href: reference-architectures/ai/realtime-scoring-python.md
-    - name: Bewerten von R-Modellen
+        - name: Training und Bewertung von Python-Modellen
+          items:
+            - name: Verteiltes Training der Deep Learning-Modelle
+              href: reference-architectures/ai/training-deep-learning.md
+            - name: Batchbewertung der Deep Learning-Modelle
+              href: reference-architectures/ai/batch-scoring-deep-learning.md
+            - name: Trainieren von Python-Modellen vom Typ „scikit-learn“
+              href: reference-architectures/ai/training-python-models.md
+            - name: Batchbewertung von Python-Modellen
+              href: reference-architectures/ai/batch-scoring-python.md
+            - name: Echtzeitbewertung von Python- und Deep Learning-Modellen
+              href: reference-architectures/ai/realtime-scoring-python.md
+        - name: Bewerten von R-Modellen
+          items:
+            - name: Batchbewertung von R-Modellen
+              href: reference-architectures/ai/batch-scoring-R-models.md
+            - name: Echtzeitbewertung von R-Modellen
+              href: reference-architectures/ai/realtime-scoring-r.md
+        - name: Batchbewertung von Spark-Modellen in Azure Databricks
+          href: reference-architectures/ai/batch-scoring-databricks.md
+        - name: Interaktiver Bot
+          href: reference-architectures/ai/conversational-bot.md
+        - name: Echtzeitempfehlungs-API
+          href: reference-architectures/ai/real-time-recommendation.md
+    - name: Große Datenmengen
       items:
-      - name: Batchbewertung von R-Modellen
-        href: reference-architectures/ai/batch-scoring-R-models.md
-      - name: Echtzeitbewertung von R-Modellen
-        href: reference-architectures/ai/realtime-scoring-r.md
-    - name: Batchbewertung von Spark-Modellen in Azure Databricks
-      href: reference-architectures/ai/batch-scoring-databricks.md
-    - name: Interaktiver Bot
-      href: reference-architectures/ai/conversational-bot.md
-    - name: Echtzeitempfehlungs-API
-      href: reference-architectures/ai/real-time-recommendation.md
-  - name: Große Datenmengen
-    items:
-    - name: Enterprise BI mit SQL Data Warehouse
-      href: reference-architectures/data/enterprise-bi-sqldw.md
-    - name: Automatisierte Enterprise BI-Instanz mit Azure Data Factory
-      href: reference-architectures/data/enterprise-bi-adf.md
-    - name: Datenstromverarbeitung mit Azure Databricks
-      href: reference-architectures/data/stream-processing-databricks.md
-    - name: Datenstromverarbeitung mit Azure Stream Analytics
-      href: reference-architectures/data/stream-processing-stream-analytics.md
-  - name: Unternehmensintegration
-    items:
-    - name: Einfache Unternehmensintegration
-      href: reference-architectures/enterprise-integration/basic-enterprise-integration.md
-    - name: Unternehmensintegration mit Warteschlangen und Ereignissen
-      href: reference-architectures/enterprise-integration/queues-events.md
-  - name: Hybridnetzwerke
-    items:
-    - name: Auswählen einer Hybrid-Netzwerkarchitektur
-      href: reference-architectures/hybrid-networking/index.md
-    - name: VPN
-      href: reference-architectures/hybrid-networking/vpn.md
-    - name: ExpressRoute
-      href: reference-architectures/hybrid-networking/expressroute.md
-    - name: ExpressRoute mit VPN-Failover
-      href: reference-architectures/hybrid-networking/expressroute-vpn-failover.md
-    - name: Hub-Spoke-Topologie
-      href: reference-architectures/hybrid-networking/hub-spoke.md
-    - name: Hub-Spoke-Topologie mit gemeinsamen Diensten
-      href: reference-architectures/hybrid-networking/shared-services.md
-    - name: Behandeln von Problemen mit einer VPN-Hybridverbindung
-      href: reference-architectures/hybrid-networking/troubleshoot-vpn.md
-  - name: Identitätsverwaltung
-    items:
-    - name: Auswählen einer Active Directory-Integrationsarchitektur
-      href: reference-architectures/identity/index.md
-    - name: Lokales AD-Verzeichnis in Azure AD integrieren
-      href: reference-architectures/identity/azure-ad.md
-    - name: AD DS auf Azure erweitern
-      href: reference-architectures/identity/adds-extend-domain.md
-    - name: AD DS-Gesamtstruktur in Azure erstellen
-      href: reference-architectures/identity/adds-forest.md
-    - name: Erweiterung von AD FS auf Azure
-      href: reference-architectures/identity/adfs.md
-  - name: Internet der Dinge (IoT, Internet of Things)
-    href: reference-architectures/iot/index.md
-  - name: Microservices
-    items:
-    - name: Azure Kubernetes Service (AKS)
-      href: reference-architectures/microservices/aks.md
-    - name: Azure Service Fabric
-      href: reference-architectures/microservices/service-fabric.md
-  - name: Netzwerk-DMZ
-    items:
-    - name: DMZ zwischen Azure und einem lokalen Netzwerk
-      href: reference-architectures/dmz/secure-vnet-hybrid.md
-    - name: DMZ zwischen Azure und dem Internet
-      href: reference-architectures/dmz/secure-vnet-dmz.md
-    - name: Hochverfügbare virtuelle Netzwerkgeräte
-      href: reference-architectures/dmz/nva-ha.md
-  - name: SAP
-    items:
-    - name: SAP NetWeaver für AnyDB
-      href: reference-architectures/sap/sap-netweaver.md
-    - name: SAP S/4HANA
-      href: reference-architectures/sap/sap-s4hana.md
-    - name: SAP HANA in Azure (große Instanzen)
-      href: reference-architectures/sap/hana-large-instances.md
-  - name: Serverlos
-    items:
-    - name: Serverlose Webanwendung
-      href: reference-architectures/serverless/web-app.md
-    - name: Serverlose Ereignisverarbeitung
-      href: reference-architectures/serverless/event-processing.md
-  - name: VM-Workloads
-    items:
-    - name: Einzelner virtueller Linux-Computer
-      href: reference-architectures/n-tier/linux-vm.md
-    - name: Einzelner virtueller Windows-Computer
-      href: reference-architectures/n-tier/windows-vm.md
-    - name: Jenkins-Server
-      href: reference-architectures/jenkins/index.md
-    - name: n-schichtige Anwendung mit SQL Server
-      href: reference-architectures/n-tier/n-tier-sql-server.md
-    - name: n-schichtige Anwendung für mehrere Regionen
-      href: reference-architectures/n-tier/multi-region-sql-server.md
-    - name: n-schichtige Anwendung mit Cassandra
-      href: reference-architectures/n-tier/n-tier-cassandra.md
-    - name: SharePoint Server 2016
-      href: reference-architectures/sharepoint/index.md
-  - name: Webanwendungen
-    items:
-    - name: Einfache Webanwendung
-      href: reference-architectures/app-service-web-app/basic-web-app.md
-    - name: Verbesserte Skalierbarkeit
-      href: reference-architectures/app-service-web-app/scalable-web-app.md
-    - name: Bereitstellung in mehreren Regionen
-      href: reference-architectures/app-service-web-app/multi-region.md
-    - name: Webanwendungsüberwachung
-      href: reference-architectures/app-service-web-app/app-monitoring.md
+        - name: Enterprise BI mit SQL Data Warehouse
+          href: reference-architectures/data/enterprise-bi-sqldw.md
+        - name: Automatisierte Enterprise BI-Instanz mit Azure Data Factory
+          href: reference-architectures/data/enterprise-bi-adf.md
+        - name: Datenstromverarbeitung mit Azure Databricks
+          href: reference-architectures/data/stream-processing-databricks.md
+        - name: Datenstromverarbeitung mit Azure Stream Analytics
+          href: reference-architectures/data/stream-processing-stream-analytics.md
+    - name: Unternehmensintegration
+      items:
+        - name: Einfache Unternehmensintegration
+          href: reference-architectures/enterprise-integration/basic-enterprise-integration.md
+        - name: Unternehmensintegration mit Warteschlangen und Ereignissen
+          href: reference-architectures/enterprise-integration/queues-events.md
+    - name: Hybridnetzwerke
+      items:
+        - name: Auswählen einer Hybrid-Netzwerkarchitektur
+          href: reference-architectures/hybrid-networking/index.md
+        - name: VPN
+          href: reference-architectures/hybrid-networking/vpn.md
+        - name: ExpressRoute
+          href: reference-architectures/hybrid-networking/expressroute.md
+        - name: ExpressRoute mit VPN-Failover
+          href: reference-architectures/hybrid-networking/expressroute-vpn-failover.md
+        - name: Hub-Spoke-Topologie
+          href: reference-architectures/hybrid-networking/hub-spoke.md
+        - name: Hub-Spoke-Topologie mit gemeinsamen Diensten
+          href: reference-architectures/hybrid-networking/shared-services.md
+        - name: Behandeln von Problemen mit einer VPN-Hybridverbindung
+          href: reference-architectures/hybrid-networking/troubleshoot-vpn.md
+    - name: Identitätsverwaltung
+      items:
+        - name: Auswählen einer Active Directory-Integrationsarchitektur
+          href: reference-architectures/identity/index.md
+        - name: Lokales AD-Verzeichnis in Azure AD integrieren
+          href: reference-architectures/identity/azure-ad.md
+        - name: AD DS auf Azure erweitern
+          href: reference-architectures/identity/adds-extend-domain.md
+        - name: AD DS-Gesamtstruktur in Azure erstellen
+          href: reference-architectures/identity/adds-forest.md
+        - name: Erweiterung von AD FS auf Azure
+          href: reference-architectures/identity/adfs.md
+    - name: 'Internet der Dinge (IoT, Internet of Things)'
+      href: reference-architectures/iot/index.md
+    - name: Microservices
+      items:
+        - name: Azure Kubernetes Service (AKS)
+          href: reference-architectures/microservices/aks.md
+        - name: Azure Service Fabric
+          href: reference-architectures/microservices/service-fabric.md
+    - name: Netzwerk-DMZ
+      items:
+        - name: DMZ zwischen Azure und einem lokalen Netzwerk
+          href: reference-architectures/dmz/secure-vnet-hybrid.md
+        - name: DMZ zwischen Azure und dem Internet
+          href: reference-architectures/dmz/secure-vnet-dmz.md
+        - name: Hochverfügbare virtuelle Netzwerkgeräte
+          href: reference-architectures/dmz/nva-ha.md
+    - name: SAP
+      items:
+        - name: SAP NetWeaver für AnyDB
+          href: reference-architectures/sap/sap-netweaver.md
+        - name: SAP S/4HANA
+          href: reference-architectures/sap/sap-s4hana.md
+        - name: SAP HANA in Azure (große Instanzen)
+          href: reference-architectures/sap/hana-large-instances.md
+    - name: Serverlos
+      items:
+        - name: Serverlose Webanwendung
+          href: reference-architectures/serverless/web-app.md
+        - name: Serverlose Ereignisverarbeitung
+          href: reference-architectures/serverless/event-processing.md
+    - name: VM-Workloads
+      items:
+        - name: Einzelner virtueller Linux-Computer
+          href: reference-architectures/n-tier/linux-vm.md
+        - name: Einzelner virtueller Windows-Computer
+          href: reference-architectures/n-tier/windows-vm.md
+        - name: n-schichtige Anwendung mit SQL Server
+          href: reference-architectures/n-tier/n-tier-sql-server.md
+        - name: n-schichtige Anwendung für mehrere Regionen
+          href: reference-architectures/n-tier/multi-region-sql-server.md
+        - name: n-schichtige Anwendung mit Cassandra
+          href: reference-architectures/n-tier/n-tier-cassandra.md
+        - name: SharePoint Server 2016
+          href: reference-architectures/sharepoint/index.md
+    - name: Webanwendungen
+      items:
+        - name: Einfache Webanwendung
+          href: reference-architectures/app-service-web-app/basic-web-app.md
+        - name: Verbesserte Skalierbarkeit
+          href: reference-architectures/app-service-web-app/scalable-web-app.md
+        - name: Bereitstellung in mehreren Regionen
+          href: reference-architectures/app-service-web-app/multi-region.md
+        - name: Webanwendungsüberwachung
+          href: reference-architectures/app-service-web-app/app-monitoring.md
 - name: Erstellen von Microservices in Azure
   items:
-  - name: Übersicht
-    href: microservices/index.md
-  - name: Einführung in Microservices
-    href: microservices/introduction.md
-  - name: Modellieren von Microservices
-    items:
-    - name: Domänenanalyse
-      href: microservices/model/domain-analysis.md
-    - name: Taktische DDD-Phase
-      href: microservices/model/tactical-ddd.md
-    - name: Identifizieren von Microservice-Grenzen
-      href: microservices/model/microservice-boundaries.md
-  - name: Entwerfen einer Microservices-Architektur
-    items:
-    - name: Einführung
-      href: microservices/design/index.md
-    - name: Auswählen einer Computeoption
-      href: microservices/design/compute-options.md
-    - name: Kommunikation zwischen Diensten
-      href: microservices/design/interservice-communication.md
-    - name: API-Design
-      href: microservices/design/api-design.md
-    - name: API-Gateways
-      href: microservices/design/gateway.md
-    - name: Überlegungen zu Daten
-      href: microservices/design/data-considerations.md
-    - name: Entwurfsmuster für Microservices
-      href: microservices/design/patterns.md
-  - name: Betreiben von Microservices in der Produktionsumgebung
-    items:
-    - name: Protokollierung und Überwachung
-      href: microservices/logging-monitoring.md
-    - name: CD/CI für Microservices
-      href: microservices/ci-cd.md
-    - name: CI/CD für Microservices in Kubernetes
-      href: microservices/ci-cd-kubernetes.md
+    - name: Übersicht
+      href: microservices/index.md
+    - name: Einführung in Microservices
+      href: microservices/introduction.md
+    - name: Modellieren von Microservices
+      items:
+        - name: Domänenanalyse
+          href: microservices/model/domain-analysis.md
+        - name: Taktische DDD-Phase
+          href: microservices/model/tactical-ddd.md
+        - name: Identifizieren von Microservice-Grenzen
+          href: microservices/model/microservice-boundaries.md
+    - name: Entwerfen einer Microservices-Architektur
+      items:
+        - name: Einführung
+          href: microservices/design/index.md
+        - name: Auswählen einer Computeoption
+          href: microservices/design/compute-options.md
+        - name: Kommunikation zwischen Diensten
+          href: microservices/design/interservice-communication.md
+        - name: API-Design
+          href: microservices/design/api-design.md
+        - name: API-Gateways
+          href: microservices/design/gateway.md
+        - name: Überlegungen zu Daten
+          href: microservices/design/data-considerations.md
+        - name: Entwurfsmuster für Microservices
+          href: microservices/design/patterns.md
+    - name: Betreiben von Microservices in der Produktionsumgebung
+      items:
+        - name: Protokollierung und Überwachung
+          href: microservices/logging-monitoring.md
+        - name: CD/CI für Microservices
+          href: microservices/ci-cd.md
+        - name: CI/CD für Microservices in Kubernetes
+          href: microservices/ci-cd-kubernetes.md
 - name: Entwurfshandbücher
   items:
-  - name: Datenarchitekturleitfaden
-    items:
-    - name: Einführung
-      href: data-guide/index.md
-    - name: Herkömmliche RDMBS-Workloads
+    - name: Datenarchitekturleitfaden
       items:
-      - name: Übersicht
-        href: data-guide/relational-data/index.md
-      - name: Onlinetransaktionsverarbeitung (OLTP)
-        href: data-guide/relational-data/online-transaction-processing.md
-      - name: Data Warehousing
-        href: data-guide/relational-data/data-warehousing.md
-      - name: Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)
-        href: data-guide/relational-data/online-analytical-processing.md
-      - name: Extrahieren, Transformieren und Laden (ETL)
-        href: data-guide/relational-data/etl.md
-    - name: Big Data-Architekturen
+        - name: Einführung
+          href: data-guide/index.md
+        - name: Herkömmliche RDMBS-Workloads
+          items:
+            - name: Übersicht
+              href: data-guide/relational-data/index.md
+            - name: Onlinetransaktionsverarbeitung (OLTP)
+              href: data-guide/relational-data/online-transaction-processing.md
+            - name: Data Warehousing
+              href: data-guide/relational-data/data-warehousing.md
+            - name: 'Analytische Onlineverarbeitung (Online Analytical Processing, OLAP)'
+              href: data-guide/relational-data/online-analytical-processing.md
+            - name: 'Extrahieren, Transformieren und Laden (ETL)'
+              href: data-guide/relational-data/etl.md
+        - name: Big Data-Architekturen
+          items:
+            - name: Übersicht
+              href: data-guide/big-data/index.md
+            - name: Batchverarbeitung
+              href: data-guide/big-data/batch-processing.md
+            - name: Verarbeitung in Echtzeit
+              href: data-guide/big-data/real-time-processing.md
+            - name: Bedarfsorientiertes Machine Learning
+              href: data-guide/big-data/machine-learning-at-scale.md
+            - name: Nicht relationale Datenspeicher
+              href: data-guide/big-data/non-relational-data.md
+            - name: Szenarien
+              items:
+                - name: Erweiterte Analyse
+                  href: data-guide/scenarios/advanced-analytics.md
+                - name: Data Lakes
+                  href: data-guide/scenarios/data-lake.md
+                - name: Freiform-Textsuche
+                  href: data-guide/scenarios/search.md
+                - name: Interaktive Datenuntersuchung
+                  href: data-guide/scenarios/interactive-data-exploration.md
+                - name: Verarbeitung natürlicher Sprache
+                  href: data-guide/scenarios/natural-language-processing.md
+                - name: Zeitreihenlösungen
+                  href: data-guide/scenarios/time-series.md
+                - name: Arbeiten mit CSV- und JSON-Dateien
+                  href: data-guide/scenarios/csv-and-json.md
+            - name: Auswahl der Technologie
+              items:
+                - name: Analysedatenspeicher
+                  href: data-guide/technology-choices/analytical-data-stores.md
+                - name: Analysen und Berichte
+                  href: data-guide/technology-choices/analysis-visualizations-reporting.md
+                - name: Batchverarbeitung
+                  href: data-guide/technology-choices/batch-processing.md
+                - name: Cognitive Services
+                  href: data-guide/technology-choices/cognitive-services.md
+                - name: Datenspeicher
+                  href: data-guide/technology-choices/data-storage.md
+                - name: Machine Learning
+                  href: data-guide/technology-choices/data-science-and-machine-learning.md
+                - name: Verarbeitung natürlicher Sprache
+                  href: data-guide/technology-choices/natural-language-processing.md
+                - name: Pipelineorchestrierung
+                  href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
+                - name: R-Entwicklerleitfaden für Azure
+                  href: data-guide/technology-choices/r-developers-guide.md
+                - name: Echtzeiterfassung von Nachrichten
+                  href: data-guide/technology-choices/real-time-ingestion.md
+                - name: Durchsuchen von Datenspeichern
+                  href: data-guide/technology-choices/search-options.md
+                - name: Streamverarbeitung
+                  href: data-guide/technology-choices/stream-processing.md
+        - name: Querschnittsthemen
+          items:
+            - name: Datenübertragung
+              href: data-guide/scenarios/data-transfer.md
+            - name: Erweitern lokaler Datenlösungen auf die Cloud
+              href: data-guide/scenarios/hybrid-on-premises-and-cloud.md
+            - name: Schützen von Datenlösungen
+              href: data-guide/scenarios/securing-data-solutions.md
+    - name: Erweitern von Azure Resource Manager-Vorlagen
       items:
-      - name: Übersicht
-        href: data-guide/big-data/index.md
-      - name: Batchverarbeitung
-        href: data-guide/big-data/batch-processing.md
-      - name: Verarbeitung in Echtzeit
-        href: data-guide/big-data/real-time-processing.md
-      - name: Bedarfsorientiertes Machine Learning
-        href: data-guide/big-data/machine-learning-at-scale.md
-      - name: Nicht relationale Datenspeicher
-        href: data-guide/big-data/non-relational-data.md
-      - name: Szenarien
-        items:
-        - name: Erweiterte Analyse
-          href: data-guide/scenarios/advanced-analytics.md
-        - name: Data Lakes
-          href: data-guide/scenarios/data-lake.md
-        - name: Freiform-Textsuche
-          href: data-guide/scenarios/search.md
-        - name: Interaktive Datenuntersuchung
-          href: data-guide/scenarios/interactive-data-exploration.md
-        - name: Verarbeitung natürlicher Sprache
-          href: data-guide/scenarios/natural-language-processing.md
-        - name: Zeitreihenlösungen
-          href: data-guide/scenarios/time-series.md
-        - name: Arbeiten mit CSV- und JSON-Dateien
-          href: data-guide/scenarios/csv-and-json.md
-      - name: Auswahl der Technologie
-        items:
-        - name: Analysedatenspeicher
-          href: data-guide/technology-choices/analytical-data-stores.md
-        - name: Analysen und Berichte
-          href: data-guide/technology-choices/analysis-visualizations-reporting.md
-        - name: Batchverarbeitung
-          href: data-guide/technology-choices/batch-processing.md
-        - name: Cognitive Services
-          href: data-guide/technology-choices/cognitive-services.md
-        - name: Datenspeicher
-          href: data-guide/technology-choices/data-storage.md
-        - name: Machine Learning
-          href: data-guide/technology-choices/data-science-and-machine-learning.md
-        - name: Verarbeitung natürlicher Sprache
-          href: data-guide/technology-choices/natural-language-processing.md
-        - name: Pipelineorchestrierung
-          href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
-        - name: R-Entwicklerleitfaden für Azure
-          href: data-guide/technology-choices/r-developers-guide.md
-        - name: Echtzeiterfassung von Nachrichten
-          href: data-guide/technology-choices/real-time-ingestion.md
-        - name: Durchsuchen von Datenspeichern
-          href: data-guide/technology-choices/search-options.md
-        - name: Streamverarbeitung
-          href: data-guide/technology-choices/stream-processing.md
-    - name: Querschnittsthemen
+        - name: Einführung
+          href: building-blocks/extending-templates/index.md
+        - name: Aktualisieren einer Ressource
+          href: building-blocks/extending-templates/update-resource.md
+        - name: Bedingtes Bereitstellen einer Ressource
+          href: building-blocks/extending-templates/conditional-deploy.md
+        - name: Verwenden eines Objekts als Parameter
+          href: building-blocks/extending-templates/objects-as-parameters.md
+        - name: Feature für die Transformation und Erfassung von Eigenschaften
+          href: building-blocks/extending-templates/collector.md
+    - name: Verwalten von mehrinstanzenfähigen Identitäten
       items:
-      - name: Datenübertragung
-        href: data-guide/scenarios/data-transfer.md
-      - name: Erweitern lokaler Datenlösungen auf die Cloud
-        href: data-guide/scenarios/hybrid-on-premises-and-cloud.md
-      - name: Schützen von Datenlösungen
-        href: data-guide/scenarios/securing-data-solutions.md
-  - name: Erweitern von Azure Resource Manager-Vorlagen
-    items:
-    - name: Einführung
-      href: building-blocks/extending-templates/index.md
-    - name: Aktualisieren einer Ressource
-      href: building-blocks/extending-templates/update-resource.md
-    - name: Bedingtes Bereitstellen einer Ressource
-      href: building-blocks/extending-templates/conditional-deploy.md
-    - name: Verwenden eines Objekts als Parameter
-      href: building-blocks/extending-templates/objects-as-parameters.md
-    - name: Feature für die Transformation und Erfassung von Eigenschaften
-      href: building-blocks/extending-templates/collector.md
-  - name: Verwalten von mehrinstanzenfähigen Identitäten
-    items:
-    - name: Einführung
-      href: multitenant-identity/index.md
-    - name: Das Tailspin-Szenario
-      href: multitenant-identity/tailspin.md
-    - name: Authentication
-      href: multitenant-identity/authenticate.md
-    - name: Anspruchsbasierte Identität
-      href: multitenant-identity/claims.md
-    - name: Mandantenanmeldung
-      href: multitenant-identity/signup.md
-    - name: Anwendungsrollen
-      href: multitenant-identity/app-roles.md
-    - name: Autorisierung
-      href: multitenant-identity/authorize.md
-    - name: Sichern einer Web-API
-      href: multitenant-identity/web-api.md
-    - name: Zwischenspeichern von Zugriffstoken
-      href: multitenant-identity/token-cache.md
-    - name: Clientassertion
-      href: multitenant-identity/client-assertion.md
-    - name: Schützen von Anwendungsgeheimnissen
-      href: multitenant-identity/key-vault.md
-    - name: Herstellen eines Verbunds mit der AD FS-Instanz eines Kunden
-      href: multitenant-identity/adfs.md
-    - name: Ausführen der Surveys-Anwendung
-      href: multitenant-identity/run-the-app.md
-  - name: Migration von Cloud Services zu Service Fabric
-    items:
-    - name: Migrieren einer Cloud Services-Anwendung zu Service Fabric
-      href: service-fabric/migrate-from-cloud-services.md
-    - name: Umgestalten einer Service Fabric-Anwendung
-      href: service-fabric/refactor-migrated-app.md
-  - name: Überwachen von Azure Databricks
-    items:
-    - name: Übersicht
-      href: databricks-monitoring/index.md
-    - name: Konfigurieren von Databricks zum Senden von Metriken an Azure Monitor
-      href: databricks-monitoring/configure-cluster.md
-    - name: Senden von Databricks-Anwendungsprotokollen an Azure Monitor
-      href: databricks-monitoring/application-logs.md
-    - name: Visualisieren von Databricks-Metriken mithilfe von Dashboards
-      href: databricks-monitoring/dashboards.md
-    - name: Behandeln von Leistungsengpässen
-      href: databricks-monitoring/performance-troubleshooting.md
+        - name: Einführung
+          href: multitenant-identity/index.md
+        - name: Das Tailspin-Szenario
+          href: multitenant-identity/tailspin.md
+        - name: Authentication
+          href: multitenant-identity/authenticate.md
+        - name: Anspruchsbasierte Identität
+          href: multitenant-identity/claims.md
+        - name: Mandantenanmeldung
+          href: multitenant-identity/signup.md
+        - name: Anwendungsrollen
+          href: multitenant-identity/app-roles.md
+        - name: Autorisierung
+          href: multitenant-identity/authorize.md
+        - name: Sichern einer Web-API
+          href: multitenant-identity/web-api.md
+        - name: Zwischenspeichern von Zugriffstoken
+          href: multitenant-identity/token-cache.md
+        - name: Clientassertion
+          href: multitenant-identity/client-assertion.md
+        - name: Schützen von Anwendungsgeheimnissen
+          href: multitenant-identity/key-vault.md
+        - name: Herstellen eines Verbunds mit der AD FS-Instanz eines Kunden
+          href: multitenant-identity/adfs.md
+        - name: Ausführen der Surveys-Anwendung
+          href: multitenant-identity/run-the-app.md
+    - name: Migration von Cloud Services zu Service Fabric
+      items:
+        - name: Migrieren einer Cloud Services-Anwendung zu Service Fabric
+          href: service-fabric/migrate-from-cloud-services.md
+        - name: Umgestalten einer Service Fabric-Anwendung
+          href: service-fabric/refactor-migrated-app.md
+    - name: Überwachen von Azure Databricks
+      items:
+        - name: Übersicht
+          href: databricks-monitoring/index.md
+        - name: Konfigurieren von Databricks zum Senden von Metriken an Azure Monitor
+          href: databricks-monitoring/configure-cluster.md
+        - name: Senden von Databricks-Anwendungsprotokollen an Azure Monitor
+          href: databricks-monitoring/application-logs.md
+        - name: Visualisieren von Databricks-Metriken mithilfe von Dashboards
+          href: databricks-monitoring/dashboards.md
+        - name: Behandeln von Leistungsengpässen
+          href: databricks-monitoring/performance-troubleshooting.md
 - name: Entwurf eines Überprüfungsframeworks
   items:
-  - name: Entwurf mit Blick auf Resilienz
-    href: resiliency/index.md
-  - name: Fehlermodusanalyse
-    href: resiliency/failure-mode-analysis.md
-  - name: Checkliste für die Verfügbarkeit
-    href: checklist/availability.md
-  - name: Checkliste für DevOps
-    href: checklist/dev-ops.md
-  - name: Checkliste für Resilienz (allgemein)
-    href: checklist/resiliency.md
-  - name: Checkliste für Resilienz (Azure-Dienste)
-    href: checklist/resiliency-per-service.md
-  - name: Checkliste für die Skalierbarkeit
-    href: checklist/scalability.md
+    - name: Entwerfen zuverlässiger Azure-Anwendungen
+      items:
+        - name: Übersicht
+          href: reliability/index.md
+        - name: Definieren von Anforderungen
+          href: reliability/requirements.md
+        - name: Entwickeln einer zuverlässigen Architektur
+          href: reliability/architect.md
+        - name: Testen der Zuverlässigkeit
+          href: reliability/testing.md
+        - name: Bereitstellen mit Zuverlässigkeit
+          href: reliability/deploy.md
+        - name: Überwachen der Anwendungsintegrität
+          href: reliability/monitoring.md
+        - name: Reagieren auf Fehler und Notfälle
+          href: reliability/disaster-recovery.md
+        - name: Checkliste für Resilienz für Azure-Dienste
+          href: checklist/resiliency-per-service.md
+        - name: Fehlermodusanalyse
+          href: resiliency/failure-mode-analysis.md
+        - name: Wiederherstellung nach einer regionsweiten Dienstunterbrechung
+          href: resiliency/recovery-loss-azure-region.md
+        - name: Wiederherstellung nach Datenbeschädigung oder unbeabsichtigtem Löschen
+          href: resiliency/recovery-data-corruption.md
+    - name: Checkliste für DevOps
+      href: checklist/dev-ops.md
+    - name: Checkliste für die Skalierbarkeit
+      href: checklist/scalability.md
 - name: Framework für die Cloudeinführung (Cloud Adoption Framework)
   items:
-  - name: Einführung
-    href: cloud-adoption/overview.md
-  - name: Erste Schritte
-    items:
-    - name: Übersicht
-      href: cloud-adoption/getting-started/overview.md
-    - name: Wie funktioniert Azure?
-      href: cloud-adoption/getting-started/what-is-azure.md
-    - name: Was ist die Cloudressourcenkontrolle?
-      href: cloud-adoption/getting-started/what-is-governance.md
-    - name: Ressourcenzugriffsverwaltung in Azure
-      href: cloud-adoption/getting-started/azure-resource-access.md
-  - name: Geschäftliche Begründung
-    items:
-    - name: Erstellen eines Geschäftsszenarios für die Cloudmigration
-      href: cloud-adoption/business-strategy/cloud-migration-business-case.md
-    - name: Erstellen eines Finanzmodells für die Cloudtransformation
-      href: cloud-adoption/business-strategy/financial-models.md
-    - name: Beispiele für Finanzergebnisse
-      href: cloud-adoption/business-strategy/business-outcomes/fiscal-outcomes.md
-  - name: Digitale Ressourcen
-    items:
-    - name: Die fünf R der Rationalisierung
-      href: cloud-adoption/digital-estate/5-rs-of-rationalization.md
-    - name: Worum handelt es sich bei digitalen Ressourcen?
-      href: cloud-adoption/digital-estate/overview.md
-    - name: Ansätze für die Planung digitaler Ressourcen
-      href: cloud-adoption/digital-estate/approach.md
-    - name: Sammeln von Bestandsdaten
-      href: cloud-adoption/digital-estate/inventory.md
-    - name: Rationalisieren der digitalen Ressourcen
-      href: cloud-adoption/digital-estate/rationalize.md
-    - name: Abstimmen von Kostenmodellen für die Kostenprognose
-      href: cloud-adoption/digital-estate/calculate.md
-  - name: Governance
-    items:
-    - name: Übersicht
-      href: cloud-adoption/governance/overview.md
-    - name: Nützliche Governance-Vorgehensweisen
+    - name: Einführung
+      href: cloud-adoption/overview.md
+    - name: Erste Schritte
       items:
-      - name: Übersicht über Vorgehensweisen
-        href: cloud-adoption/governance/journeys/overview.md
-      - name: Vorgehensweisen für kleine bis mittlere Unternehmen
-        items:
-        - name: Bewährte Methode
-          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/overview.md
-        - name: Erzählung
-          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/narrative.md
-        - name: Anfängliche Unternehmensrichtlinie
-          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/initial-corporate-policy.md
-        - name: Beschreibung der bewährten Methode
-          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/best-practice-explained.md
-        - name: Entwicklung der Sicherheitsbaseline
-          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/security-baseline-evolution.md
-        - name: Entwicklung der Ressourcenkonsistenz
-          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/resource-consistency-evolution.md
-        - name: Cost Management-Entwicklung
-          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/cost-management-evolution.md
-        - name: Multi-Cloud-Entwicklung
-          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/multi-cloud-evolution.md
-      - name: Vorgehensweise für große Unternehmen
-        items:
-        - name: Bewährte Methode
-          href: cloud-adoption/governance/journeys/large-enterprise/overview.md
-        - name: Erzählung
-          href: cloud-adoption/governance/journeys/large-enterprise/narrative.md
-        - name: Anfängliche Unternehmensrichtlinie
-          href: cloud-adoption/governance/journeys/large-enterprise/initial-corporate-policy.md
-        - name: Beschreibung der bewährten Methode
-          href: cloud-adoption/governance/journeys/large-enterprise/best-practice-explained.md
-        - name: Entwicklung der Identitätsbaseline
-          href: cloud-adoption/governance/journeys/large-enterprise/identity-baseline-evolution.md
-        - name: Entwicklung der Sicherheitsbaseline
-          href: cloud-adoption/governance/journeys/large-enterprise/security-baseline-evolution.md
-        - name: Entwicklung der Ressourcenkonsistenz
-          href: cloud-adoption/governance/journeys/large-enterprise/resource-consistency-evolution.md
-        - name: Cost Management-Entwicklung
-          href: cloud-adoption/governance/journeys/large-enterprise/cost-management-evolution.md
-        - name: Multi-Cloud-Entwicklung
-          href: cloud-adoption/governance/journeys/large-enterprise/multi-cloud-evolution.md
-        - name: Mehrere Governance-Ebenen
-          href: cloud-adoption/governance/journeys/large-enterprise/multiple-layers-of-governance.md
-    - name: Governance-Theorie
-      items:
-      - name: Implementieren einer Strategie für Cloud-Governance
-        href: cloud-adoption/governance/corporate-policy.md
-      - name: Die fünf Disziplinen der Cloud-Governance
-        href: cloud-adoption/governance/governance-disciplines.md
-      - name: Weiterentwickeln der Unternehmensrichtlinie und Compliance
-        items:
-        - name: Wie kann für die IT-Unternehmensrichtlinie die Bereitschaft für die Cloud erzielt werden?
-          href: cloud-adoption/governance/policy-compliance/overview.md
-        - name: Grundlegendes zu Geschäftsrisiken
-          href: cloud-adoption/governance/policy-compliance/understanding-business-risk.md
-        - name: Evaluieren der Risikotoleranz
-          href: cloud-adoption/governance/policy-compliance/risk-tolerance.md
-        - name: Definieren der Anweisungen von Unternehmensrichtlinien
-          href: cloud-adoption/governance/policy-compliance/define-policy.md
-        - name: Abstimmen von Entwurfsleitfäden für die Architektur
-          href: cloud-adoption/governance/policy-compliance/align-governance-journeys.md
-        - name: Entwickeln von Prozessen zur Einhaltung von Richtlinien
-          href: cloud-adoption/governance/policy-compliance/processes.md
-        - name: Was ist die Einhaltung gesetzlicher Bestimmungen?
-          href: cloud-adoption/governance/policy-compliance/what-is-regulatory-compliance.md
-        - name: Was ist eine Überprüfung von Cloudrichtlinien?
-          href: cloud-adoption/governance/policy-compliance/what-is-a-cloud-policy-review.md
-        - name: Wie kann sich ein CISO auf die Cloud vorbereiten?
-          href: cloud-adoption/governance/policy-compliance/how-can-a-ciso-prepare-for-the-cloud.md
-        - name: Was ist die Datenklassifizierung?
-          href: cloud-adoption/governance/policy-compliance/what-is-data-classification.md
-      - name: Implementieren der fünf Disziplinen der Cloud-Governance
-        items:
-        - name: Cost Management
-          items:
-          - name: Übersicht über die Disziplin „Cost Management“
-            href: cloud-adoption/governance/cost-management/overview.md
-          - name: Herunterladen der Vorlage
-            href: cloud-adoption/governance/cost-management/template.md
-          - name: Grundlegendes zu Geschäftsrisiken
-            href: cloud-adoption/governance/cost-management/business-risks.md
-          - name: 'Risikotoleranz: Metriken und Indikatoren'
-            href: cloud-adoption/governance/cost-management/metrics-tolerance.md
-          - name: Beispiele für Richtlinienanweisungen
-            href: cloud-adoption/governance/cost-management/policy-statements.md
-          - name: Prozesse für Richtlinienkonformität
-            href: cloud-adoption/governance/cost-management/compliance-processes.md
-          - name: Verbesserung von Disziplinen
-            href: cloud-adoption/governance/cost-management/discipline-improvement.md
-          - name: Azure-spezifische Toolkette
-            href: cloud-adoption/governance/cost-management/toolchain.md
-        - name: Sicherheitsbaseline
-          items:
-          - name: Übersicht über die Disziplin „Sicherheitsbaseline“
-            href: cloud-adoption/governance/security-baseline/overview.md
-          - name: Herunterladen der Vorlage
-            href: cloud-adoption/governance/security-baseline/template.md
-          - name: Grundlegendes zu Geschäftsrisiken
-            href: cloud-adoption/governance/security-baseline/business-risks.md
-          - name: 'Risikotoleranz: Metriken und Indikatoren'
-            href: cloud-adoption/governance/security-baseline/metrics-tolerance.md
-          - name: Beispiele für Richtlinienanweisungen
-            href: cloud-adoption/governance/security-baseline/policy-statements.md
-          - name: Prozesse für Richtlinienkonformität
-            href: cloud-adoption/governance/security-baseline/compliance-processes.md
-          - name: Verbesserung von Disziplinen
-            href: cloud-adoption/governance/security-baseline/discipline-improvement.md
-          - name: Cloudnative Sicherheitsbaseline
-            href: cloud-adoption/governance/security-baseline/cloud-native-policy.md
-          - name: Zusätzlicher Azure-Sicherheitsleitfaden
-            href: cloud-adoption/governance/security-baseline/azure-security-guidance.md
-          - name: Azure-spezifische Toolkette
-            href: cloud-adoption/governance/security-baseline/toolchain.md
-        - name: Identitätsbaseline
-          items:
-          - name: Übersicht über die Disziplin „Identitätsbaseline“
-            href: cloud-adoption/governance/identity-baseline/overview.md
-          - name: Herunterladen der Vorlage
-            href: cloud-adoption/governance/identity-baseline/template.md
-          - name: Grundlegendes zu Geschäftsrisiken
-            href: cloud-adoption/governance/identity-baseline/business-risks.md
-          - name: 'Risikotoleranz: Metriken und Indikatoren'
-            href: cloud-adoption/governance/identity-baseline/metrics-tolerance.md
-          - name: Beispiele für Richtlinienanweisungen
-            href: cloud-adoption/governance/identity-baseline/policy-statements.md
-          - name: Prozesse für Richtlinienkonformität
-            href: cloud-adoption/governance/identity-baseline/compliance-processes.md
-          - name: Verbesserung von Disziplinen
-            href: cloud-adoption/governance/identity-baseline/discipline-improvement.md
-          - name: Azure-spezifische Toolkette
-            href: cloud-adoption/governance/identity-baseline/toolchain.md
-        - name: Ressourcenkonsistenz
-          items:
-          - name: Übersicht über die Disziplin „Ressourcenkonsistenz“
-            href: cloud-adoption/governance/resource-consistency/overview.md
-          - name: Herunterladen der Vorlage
-            href: cloud-adoption/governance/resource-consistency/template.md
-          - name: Grundlegendes zu Geschäftsrisiken
-            href: cloud-adoption/governance/resource-consistency/business-risks.md
-          - name: 'Risikotoleranz: Metriken und Indikatoren'
-            href: cloud-adoption/governance/resource-consistency/metrics-tolerance.md
-          - name: Beispiele für Richtlinienanweisungen
-            href: cloud-adoption/governance/resource-consistency/policy-statements.md
-          - name: Prozesse für Richtlinienkonformität
-            href: cloud-adoption/governance/resource-consistency/compliance-processes.md
-          - name: Verbesserung von Disziplinen
-            href: cloud-adoption/governance/resource-consistency/discipline-improvement.md
-          - name: Ressourcenzugriffsverwaltung
-            href: cloud-adoption/governance/resource-consistency/azure-resource-access.md
-          - name: Governance-Entwurf für eine einfache Workload
-            href: cloud-adoption/governance/resource-consistency/governance-simple-workload.md
-          - name: Governance-Entwurf für mehrere Teams
-            href: cloud-adoption/governance/resource-consistency/governance-multiple-teams.md
-          - name: Azure-spezifische Toolkette
-            href: cloud-adoption/governance/resource-consistency/toolchain.md
-        - name: Beschleunigung der Bereitstellung
-          items:
-          - name: Übersicht über die Disziplin „Beschleunigung der Bereitstellung“
-            href: cloud-adoption/governance/deployment-acceleration/overview.md
-          - name: Herunterladen der Vorlage
-            href: cloud-adoption/governance/deployment-acceleration/template.md
-          - name: Grundlegendes zu Geschäftsrisiken
-            href: cloud-adoption/governance/deployment-acceleration/business-risks.md
-          - name: 'Risikotoleranz: Metriken und Indikatoren'
-            href: cloud-adoption/governance/deployment-acceleration/metrics-tolerance.md
-          - name: Beispiele für Richtlinienanweisungen
-            href: cloud-adoption/governance/deployment-acceleration/policy-statements.md
-          - name: Prozesse für Richtlinienkonformität
-            href: cloud-adoption/governance/deployment-acceleration/compliance-processes.md
-          - name: Verbesserung von Disziplinen
-            href: cloud-adoption/governance/deployment-acceleration/discipline-improvement.md
-          - name: Azure-spezifische Toolkette
-            href: cloud-adoption/governance/deployment-acceleration/toolchain.md
-  - name: Infrastruktur
-    items:
-    - name: Virtual Machines
-      items:
-      - name: Bereitstellen einer grundlegenden Workload
-        href: cloud-adoption/infrastructure/virtual-machines/basic-workload.md
-    - name: Mainframemigration
-      items:
-      - name: Übersicht
-        href: cloud-adoption/infrastructure/mainframe-migration/overview.md
-      - name: Mythen und Fakten
-        href: cloud-adoption/infrastructure/mainframe-migration/myths-and-facts.md
-      - name: Migrationsstrategien
-        href: cloud-adoption/infrastructure/mainframe-migration/migration-strategies.md
-      - name: Anwendungsstrategien
-        href: cloud-adoption/infrastructure/mainframe-migration/application-strategies.md
-    - name: Schaffen von Hybrid Cloud-Konsistenz
-      href: cloud-adoption/infrastructure/misc/hybrid-consistency.md
-  - name: Vorgänge
-    items:
-    - name: Übersicht
-      href: cloud-adoption/operations/overview.md
-    - name: Einrichten einer Überprüfung der Einsatztauglichkeit
-      href: cloud-adoption/operations/operational-fitness-review.md
-  - name: Referenzen
-    items:
-    - name: Virtuelles Rechenzentrum (Virtual Data Center, VDC)
-      href: vdc/index.md
-    - name: Azure-Unternehmensgerüst
-      href: cloud-adoption/appendix/azure-scaffold.md
-    - name: Implementieren eines Azure-Unternehmensgerüsts
-      href: cloud-adoption/appendix/azure-scaffold-examples.md
-    - name: Leitfaden zur Entscheidungsfindung
-      items:
-      - name: Übersicht
-        href: cloud-adoption/decision-guides/overview.md
-      - name: Abonnements
-        href: cloud-adoption/decision-guides/subscriptions/overview.md
-      - name: Identity
-        href: cloud-adoption/decision-guides/identity/overview.md
-      - name: Durchsetzung von Richtlinien
-        href: cloud-adoption/decision-guides/policy-enforcement/overview.md
-      - name: Ressourcenkonsistenz
-        href: cloud-adoption/decision-guides/resource-consistency/overview.md
-      - name: Tags für Ressourcen
-        href: cloud-adoption/decision-guides/resource-tagging/overview.md
-      - name: Verschlüsselung
-        href: cloud-adoption/decision-guides/encryption/overview.md
-      - name: Softwaredefinierte Netzwerke
-        items:
         - name: Übersicht
-          href: cloud-adoption/decision-guides/software-defined-network/overview.md
-        - name: Nur PaaS
-          href: cloud-adoption/decision-guides/software-defined-network/paas-only.md
-        - name: Cloudnativ
-          href: cloud-adoption/decision-guides/software-defined-network/cloud-native.md
-        - name: Cloud-DMZ
-          href: cloud-adoption/decision-guides/software-defined-network/cloud-dmz.md
-        - name: Hybrid
-          href: cloud-adoption/decision-guides/software-defined-network/hybrid.md
-        - name: Hub-and-Spoke-Modell
-          href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
-      - name: Protokolle und Berichterstellung
-        href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: f931e785077b6014bcc8428922572d9a8bd1d97d
-ms.sourcegitcommit: d58e6b2b891c9c99e951c59f15fce71addcb96b1
-ms.translationtype: HT
-ms.contentlocale: de-DE
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59533106"
+          href: cloud-adoption/getting-started/overview.md
+        - name: Wie funktioniert Azure?
+          href: cloud-adoption/getting-started/what-is-azure.md
+        - name: Was ist die Cloudressourcenkontrolle?
+          href: cloud-adoption/getting-started/what-is-governance.md
+        - name: Ressourcenzugriffsverwaltung in Azure
+          href: cloud-adoption/getting-started/azure-resource-access.md
+    - name: Geschäftliche Begründung
+      items:
+        - name: Erstellen eines Geschäftsszenarios für die Cloudmigration
+          href: cloud-adoption/business-strategy/cloud-migration-business-case.md
+        - name: Erstellen eines Finanzmodells für die Cloudtransformation
+          href: cloud-adoption/business-strategy/financial-models.md
+        - name: Beispiele für Finanzergebnisse
+          href: cloud-adoption/business-strategy/business-outcomes/fiscal-outcomes.md
+    - name: Digitale Ressourcen
+      items:
+        - name: Die fünf R der Rationalisierung
+          href: cloud-adoption/digital-estate/5-rs-of-rationalization.md
+        - name: Worum handelt es sich bei digitalen Ressourcen?
+          href: cloud-adoption/digital-estate/overview.md
+        - name: Ansätze für die Planung digitaler Ressourcen
+          href: cloud-adoption/digital-estate/approach.md
+        - name: Sammeln von Bestandsdaten
+          href: cloud-adoption/digital-estate/inventory.md
+        - name: Rationalisieren der digitalen Ressourcen
+          href: cloud-adoption/digital-estate/rationalize.md
+        - name: Abstimmen von Kostenmodellen für die Kostenprognose
+          href: cloud-adoption/digital-estate/calculate.md
+    - name: Governance
+      items:
+        - name: Übersicht
+          href: cloud-adoption/governance/overview.md
+        - name: Nützliche Governance-Vorgehensweisen
+          items:
+            - name: Übersicht über Vorgehensweisen
+              href: cloud-adoption/governance/journeys/overview.md
+            - name: Vorgehensweisen für kleine bis mittlere Unternehmen
+              items:
+                - name: Bewährte Methode
+                  href: cloud-adoption/governance/journeys/small-to-medium-enterprise/overview.md
+                - name: Erzählung
+                  href: cloud-adoption/governance/journeys/small-to-medium-enterprise/narrative.md
+                - name: Anfängliche Unternehmensrichtlinie
+                  href: cloud-adoption/governance/journeys/small-to-medium-enterprise/initial-corporate-policy.md
+                - name: Beschreibung der bewährten Methode
+                  href: cloud-adoption/governance/journeys/small-to-medium-enterprise/best-practice-explained.md
+                - name: Entwicklung der Sicherheitsbaseline
+                  href: cloud-adoption/governance/journeys/small-to-medium-enterprise/security-baseline-evolution.md
+                - name: Entwicklung der Ressourcenkonsistenz
+                  href: cloud-adoption/governance/journeys/small-to-medium-enterprise/resource-consistency-evolution.md
+                - name: Cost Management-Entwicklung
+                  href: cloud-adoption/governance/journeys/small-to-medium-enterprise/cost-management-evolution.md
+                - name: Multi-Cloud-Entwicklung
+                  href: cloud-adoption/governance/journeys/small-to-medium-enterprise/multi-cloud-evolution.md
+            - name: Vorgehensweise für große Unternehmen
+              items:
+                - name: Bewährte Methode
+                  href: cloud-adoption/governance/journeys/large-enterprise/overview.md
+                - name: Erzählung
+                  href: cloud-adoption/governance/journeys/large-enterprise/narrative.md
+                - name: Anfängliche Unternehmensrichtlinie
+                  href: cloud-adoption/governance/journeys/large-enterprise/initial-corporate-policy.md
+                - name: Beschreibung der bewährten Methode
+                  href: cloud-adoption/governance/journeys/large-enterprise/best-practice-explained.md
+                - name: Entwicklung der Identitätsbaseline
+                  href: cloud-adoption/governance/journeys/large-enterprise/identity-baseline-evolution.md
+                - name: Entwicklung der Sicherheitsbaseline
+                  href: cloud-adoption/governance/journeys/large-enterprise/security-baseline-evolution.md
+                - name: Entwicklung der Ressourcenkonsistenz
+                  href: cloud-adoption/governance/journeys/large-enterprise/resource-consistency-evolution.md
+                - name: Cost Management-Entwicklung
+                  href: cloud-adoption/governance/journeys/large-enterprise/cost-management-evolution.md
+                - name: Multi-Cloud-Entwicklung
+                  href: cloud-adoption/governance/journeys/large-enterprise/multi-cloud-evolution.md
+                - name: Mehrere Governance-Ebenen
+                  href: cloud-adoption/governance/journeys/large-enterprise/multiple-layers-of-governance.md
+        - name: Governance-Theorie
+          items:
+            - name: Implementieren einer Strategie für Cloud-Governance
+              href: cloud-adoption/governance/corporate-policy.md
+            - name: Die fünf Disziplinen der Cloud-Governance
+              href: cloud-adoption/governance/governance-disciplines.md
+            - name: Weiterentwickeln der Unternehmensrichtlinie und Compliance
+              items:
+                - name: Wie kann für die IT-Unternehmensrichtlinie die Bereitschaft für die Cloud erzielt werden?
+                  href: cloud-adoption/governance/policy-compliance/overview.md
+                - name: Grundlegendes zu Geschäftsrisiken
+                  href: cloud-adoption/governance/policy-compliance/understanding-business-risk.md
+                - name: Evaluieren der Risikotoleranz
+                  href: cloud-adoption/governance/policy-compliance/risk-tolerance.md
+                - name: Definieren der Anweisungen von Unternehmensrichtlinien
+                  href: cloud-adoption/governance/policy-compliance/define-policy.md
+                - name: Abstimmen von Entwurfsleitfäden für die Architektur
+                  href: cloud-adoption/governance/policy-compliance/align-governance-journeys.md
+                - name: Entwickeln von Prozessen zur Einhaltung von Richtlinien
+                  href: cloud-adoption/governance/policy-compliance/processes.md
+                - name: Was ist die Einhaltung gesetzlicher Bestimmungen?
+                  href: cloud-adoption/governance/policy-compliance/what-is-regulatory-compliance.md
+                - name: Was ist eine Überprüfung von Cloudrichtlinien?
+                  href: cloud-adoption/governance/policy-compliance/what-is-a-cloud-policy-review.md
+                - name: Wie kann sich ein CISO auf die Cloud vorbereiten?
+                  href: cloud-adoption/governance/policy-compliance/how-can-a-ciso-prepare-for-the-cloud.md
+                - name: Was ist die Datenklassifizierung?
+                  href: cloud-adoption/governance/policy-compliance/what-is-data-classification.md
+            - name: Implementieren der fünf Disziplinen der Cloud-Governance
+              items:
+                - name: Cost Management
+                  items:
+                    - name: Übersicht über die Disziplin „Cost Management“
+                      href: cloud-adoption/governance/cost-management/overview.md
+                    - name: Herunterladen der Vorlage
+                      href: cloud-adoption/governance/cost-management/template.md
+                    - name: Grundlegendes zu Geschäftsrisiken
+                      href: cloud-adoption/governance/cost-management/business-risks.md
+                    - name: 'Risikotoleranz: Metriken und Indikatoren'
+                      href: cloud-adoption/governance/cost-management/metrics-tolerance.md
+                    - name: Beispiele für Richtlinienanweisungen
+                      href: cloud-adoption/governance/cost-management/policy-statements.md
+                    - name: Prozesse für Richtlinienkonformität
+                      href: cloud-adoption/governance/cost-management/compliance-processes.md
+                    - name: Verbesserung von Disziplinen
+                      href: cloud-adoption/governance/cost-management/discipline-improvement.md
+                    - name: Azure-spezifische Toolkette
+                      href: cloud-adoption/governance/cost-management/toolchain.md
+                - name: Sicherheitsbaseline
+                  items:
+                    - name: Übersicht über die Disziplin „Sicherheitsbaseline“
+                      href: cloud-adoption/governance/security-baseline/overview.md
+                    - name: Herunterladen der Vorlage
+                      href: cloud-adoption/governance/security-baseline/template.md
+                    - name: Grundlegendes zu Geschäftsrisiken
+                      href: cloud-adoption/governance/security-baseline/business-risks.md
+                    - name: 'Risikotoleranz: Metriken und Indikatoren'
+                      href: cloud-adoption/governance/security-baseline/metrics-tolerance.md
+                    - name: Beispiele für Richtlinienanweisungen
+                      href: cloud-adoption/governance/security-baseline/policy-statements.md
+                    - name: Prozesse für Richtlinienkonformität
+                      href: cloud-adoption/governance/security-baseline/compliance-processes.md
+                    - name: Verbesserung von Disziplinen
+                      href: cloud-adoption/governance/security-baseline/discipline-improvement.md
+                    - name: Cloudnative Sicherheitsbaseline
+                      href: cloud-adoption/governance/security-baseline/cloud-native-policy.md
+                    - name: Zusätzlicher Azure-Sicherheitsleitfaden
+                      href: cloud-adoption/governance/security-baseline/azure-security-guidance.md
+                    - name: Azure-spezifische Toolkette
+                      href: cloud-adoption/governance/security-baseline/toolchain.md
+                - name: Identitätsbaseline
+                  items:
+                    - name: Übersicht über die Disziplin „Identitätsbaseline“
+                      href: cloud-adoption/governance/identity-baseline/overview.md
+                    - name: Herunterladen der Vorlage
+                      href: cloud-adoption/governance/identity-baseline/template.md
+                    - name: Grundlegendes zu Geschäftsrisiken
+                      href: cloud-adoption/governance/identity-baseline/business-risks.md
+                    - name: 'Risikotoleranz: Metriken und Indikatoren'
+                      href: cloud-adoption/governance/identity-baseline/metrics-tolerance.md
+                    - name: Beispiele für Richtlinienanweisungen
+                      href: cloud-adoption/governance/identity-baseline/policy-statements.md
+                    - name: Prozesse für Richtlinienkonformität
+                      href: cloud-adoption/governance/identity-baseline/compliance-processes.md
+                    - name: Verbesserung von Disziplinen
+                      href: cloud-adoption/governance/identity-baseline/discipline-improvement.md
+                    - name: Azure-spezifische Toolkette
+                      href: cloud-adoption/governance/identity-baseline/toolchain.md
+                - name: Ressourcenkonsistenz
+                  items:
+                    - name: Übersicht über die Disziplin „Ressourcenkonsistenz“
+                      href: cloud-adoption/governance/resource-consistency/overview.md
+                    - name: Herunterladen der Vorlage
+                      href: cloud-adoption/governance/resource-consistency/template.md
+                    - name: Grundlegendes zu Geschäftsrisiken
+                      href: cloud-adoption/governance/resource-consistency/business-risks.md
+                    - name: 'Risikotoleranz: Metriken und Indikatoren'
+                      href: cloud-adoption/governance/resource-consistency/metrics-tolerance.md
+                    - name: Beispiele für Richtlinienanweisungen
+                      href: cloud-adoption/governance/resource-consistency/policy-statements.md
+                    - name: Prozesse für Richtlinienkonformität
+                      href: cloud-adoption/governance/resource-consistency/compliance-processes.md
+                    - name: Verbesserung von Disziplinen
+                      href: cloud-adoption/governance/resource-consistency/discipline-improvement.md
+                    - name: Ressourcenzugriffsverwaltung
+                      href: cloud-adoption/governance/resource-consistency/azure-resource-access.md
+                    - name: Governance-Entwurf für eine einfache Workload
+                      href: cloud-adoption/governance/resource-consistency/governance-simple-workload.md
+                    - name: Governance-Entwurf für mehrere Teams
+                      href: cloud-adoption/governance/resource-consistency/governance-multiple-teams.md
+                    - name: Azure-spezifische Toolkette
+                      href: cloud-adoption/governance/resource-consistency/toolchain.md
+                - name: Beschleunigung der Bereitstellung
+                  items:
+                    - name: Übersicht über die Disziplin „Beschleunigung der Bereitstellung“
+                      href: cloud-adoption/governance/deployment-acceleration/overview.md
+                    - name: Herunterladen der Vorlage
+                      href: cloud-adoption/governance/deployment-acceleration/template.md
+                    - name: Grundlegendes zu Geschäftsrisiken
+                      href: cloud-adoption/governance/deployment-acceleration/business-risks.md
+                    - name: 'Risikotoleranz: Metriken und Indikatoren'
+                      href: cloud-adoption/governance/deployment-acceleration/metrics-tolerance.md
+                    - name: Beispiele für Richtlinienanweisungen
+                      href: cloud-adoption/governance/deployment-acceleration/policy-statements.md
+                    - name: Prozesse für Richtlinienkonformität
+                      href: cloud-adoption/governance/deployment-acceleration/compliance-processes.md
+                    - name: Verbesserung von Disziplinen
+                      href: cloud-adoption/governance/deployment-acceleration/discipline-improvement.md
+                    - name: Azure-spezifische Toolkette
+                      href: cloud-adoption/governance/deployment-acceleration/toolchain.md
+    - name: Infrastruktur
+      items:
+        - name: Virtual Machines
+          items:
+            - name: Bereitstellen einer grundlegenden Workload
+              href: cloud-adoption/infrastructure/virtual-machines/basic-workload.md
+        - name: Mainframemigration
+          items:
+            - name: Übersicht
+              href: cloud-adoption/infrastructure/mainframe-migration/overview.md
+            - name: Mythen und Fakten
+              href: cloud-adoption/infrastructure/mainframe-migration/myths-and-facts.md
+            - name: Migrationsstrategien
+              href: cloud-adoption/infrastructure/mainframe-migration/migration-strategies.md
+            - name: Anwendungsstrategien
+              href: cloud-adoption/infrastructure/mainframe-migration/application-strategies.md
+        - name: Schaffen von Hybrid Cloud-Konsistenz
+          href: cloud-adoption/infrastructure/misc/hybrid-consistency.md
+    - name: Vorgänge
+      items:
+        - name: Übersicht
+          href: cloud-adoption/operations/overview.md
+        - name: Einrichten einer Überprüfung der Einsatztauglichkeit
+          href: cloud-adoption/operations/operational-fitness-review.md
+    - name: Referenzen
+      items:
+        - name: 'Virtuelles Rechenzentrum (Virtual Data Center, VDC)'
+          href: vdc/index.md
+        - name: Azure-Unternehmensgerüst
+          href: cloud-adoption/appendix/azure-scaffold.md
+        - name: Implementieren eines Azure-Unternehmensgerüsts
+          href: cloud-adoption/appendix/azure-scaffold-examples.md
+        - name: Leitfaden zur Entscheidungsfindung
+          items:
+            - name: Übersicht
+              href: cloud-adoption/decision-guides/overview.md
+              items: null
+            - name: Abonnements
+              href: cloud-adoption/decision-guides/subscriptions/overview.md
+            - name: Identity
+              href: cloud-adoption/decision-guides/identity/overview.md
+            - name: Durchsetzung von Richtlinien
+              href: cloud-adoption/decision-guides/policy-enforcement/overview.md
+            - name: Ressourcenkonsistenz
+              href: cloud-adoption/decision-guides/resource-consistency/overview.md
+            - name: Tags für Ressourcen
+              href: cloud-adoption/decision-guides/resource-tagging/overview.md
+            - name: Verschlüsselung
+              href: cloud-adoption/decision-guides/encryption/overview.md
+            - name: Softwaredefinierte Netzwerke
+              items:
+                - name: Übersicht
+                  href: cloud-adoption/decision-guides/software-defined-network/overview.md
+                - name: Nur PaaS
+                  href: cloud-adoption/decision-guides/software-defined-network/paas-only.md
+                - name: Cloudnativ
+                  href: cloud-adoption/decision-guides/software-defined-network/cloud-native.md
+                - name: Cloud-DMZ
+                  href: cloud-adoption/decision-guides/software-defined-network/cloud-dmz.md
+                - name: Hybrid
+                  href: cloud-adoption/decision-guides/software-defined-network/hybrid.md
+                - name: Hub-and-Spoke-Modell
+                  href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
+            - name: Protokolle und Berichterstellung
+              href: cloud-adoption/decision-guides/log-and-report/overview.md
