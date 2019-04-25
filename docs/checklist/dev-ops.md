@@ -8,12 +8,12 @@ ms.topic: checklist
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: checklist
-ms.openlocfilehash: 1a000c811cce57cc9b1fcda84d0eb7e2a1312aca
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: b08884d2a39550b56b4c1b52a418f6607eda00fe
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243381"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640718"
 ---
 # <a name="devops-checklist"></a>Checkliste für DevOps
 
@@ -119,7 +119,7 @@ Nach dem ersten Release sollten Sie immer dann Leistungs- und Kapazitätstests d
 
 Container erstellen auch eine Abstraktionsschicht zwischen der Anwendung und dem zugrunde liegenden Betriebssystem, die für umgebungsübergreifende Konsistenz sorgt. Diese Abstraktion kann einen Container auch von anderen Prozessen oder Anwendungen isolieren, die auf einem Host ausgeführt werden.
 
-**Implementieren Sie Resilienz und Selbstreparatur.** Resilienz bezeichnet die Fähigkeit einer Anwendung, nach Ausfällen eine Wiederherstellung durchzuführen. Resilienzstrategien umfassen Wiederholungsversuche nach vorübergehenden Fehlern sowie die Durchführung eines Failovers in eine sekundäre Instanz oder sogar in eine andere Region. Weitere Informationen finden Sie unter [Entwerfen robuster Anwendungen für Azure][resiliency]. Instrumentieren Sie Ihre Anwendungen, sodass Probleme sofort gemeldet werden und Sie Ausfälle oder andere Systemfehler beheben können.
+**Implementieren Sie Resilienz und Selbstreparatur.** Resilienz bezeichnet die Fähigkeit einer Anwendung, nach Ausfällen eine Wiederherstellung durchzuführen. Resilienzstrategien umfassen Wiederholungsversuche nach vorübergehenden Fehlern sowie die Durchführung eines Failovers in eine sekundäre Instanz oder sogar in eine andere Region. Weitere Informationen finden Sie unter [Entwerfen zuverlässiger Azure-Anwendungen](../reliability/index.md). Instrumentieren Sie Ihre Anwendungen, sodass Probleme sofort gemeldet werden und Sie Ausfälle oder andere Systemfehler beheben können.
 
 **Erstellen Sie ein Betriebshandbuch.** Ein Betriebshandbuch oder *Runbook* dokumentiert die Verfahren und Verwaltungsinformationen, die vom Betriebspersonal für die Ausführung und Wartung eines Systems benötigt werden. Dokumentieren Sie des Weiteren alle Betriebsszenarien und Pläne für die Schadenminimierung, die nach einem Ausfall oder einer anderen Unterbrechung des Diensts ins Spiel kommen können. Erstellen Sie diese Dokumentation während des Entwicklungsprozesses, und halten Sie sie danach immer auf dem neuesten Stand. Diese Dokumentation sollte regelmäßig überprüft, getestet und verbessert werden.
 
@@ -158,7 +158,6 @@ Weitere Informationen zu DevOps finden Sie auf der Website zu Visual Studio unte
 [feature-toggles]: https://www.martinfowler.com/articles/feature-toggles.html
 [oms]: https://www.microsoft.com/cloud-platform/operations-management-suite
 [rbac]: /azure/active-directory/role-based-access-control-what-is
-[resiliency]: ../resiliency/index.md
 [resource-manager]: /azure/azure-resource-manager/
 [trunk-based]: https://trunkbaseddevelopment.com/
 [what-is-devops]: https://www.visualstudio.com/learn/what-is-devops/

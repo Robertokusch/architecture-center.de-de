@@ -3,12 +3,12 @@ title: Visualisieren von Azure Databricks-Metriken mithilfe von Dashboards
 description: 'Gewusst wie: Bereitstellen eines Grafana-Dashboards zum Überwachen der Leistung in Azure Databricks'
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 36fcd93f6ca757e8e750d0fcbbdf0311c08560b0
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: a84203a9188848e6363a80ac455332e8f6a73cda
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887827"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640310"
 ---
 # <a name="use-dashboards-to-visualize-azure-databricks-metrics"></a>Visualisieren von Azure Databricks-Metriken mithilfe von Dashboards
 
@@ -20,7 +20,7 @@ Diese Bibliothek aktiviert sowohl die Protokollierung von Azure Databricks-Diens
 
 ![Screenshot des Dashboards](./_images/dashboard-screenshot.png)
 
-## <a name="prequisites"></a>Voraussetzungen
+## <a name="prerequisites"></a>Voraussetzungen
 
 Klonen Sie das [Github-Repository](https://github.com/mspnp/spark-monitoring), und [befolgen Sie die Bereitstellungsanweisungen](./configure-cluster.md) zum Erstellen und Konfigurieren der Azure Monitor-Protokollierung für die Azure Databricks-Bibliothek, um Protokolle an den Azure Log Analytics-Arbeitsbereich zu senden.
 
@@ -81,7 +81,7 @@ Im Rahmen des Installationsvorgangs gibt das Grafana-Installationsskript ein tem
 
 1. Wählen Sie im Azure-Portal den virtuellen Computer aus, und klicken Sie auf **Übersicht**.
 1. Kopieren Sie die öffentliche IP-Adresse.
-1. Öffnen Sie einen Browser, und navigieren Sie zur folgenden URL: `http://<IP addresss>:3000`.
+1. Öffnen Sie einen Browser, und navigieren Sie zur folgenden URL: `http://<IP address>:3000`.
 1. Geben Sie im Grafana-Anmeldebildschirm **admin** für den Benutzernamen ein, und verwenden Sie das Grafana-Kennwort aus den vorherigen Schritten.
 1. Wählen Sie nach der Anmeldung **Konfiguration** aus (das Zahnradsymbol).
 1. Wählen Sie **Serveradministrator** aus.

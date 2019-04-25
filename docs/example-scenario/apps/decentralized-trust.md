@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: csa-team
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-decentralized-trust.png
-ms.openlocfilehash: a3c497f91b3861bf02f05981ee92e578a22a14ca
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 3bc75e59a4d391c74a0e606f9670c88509a3375b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246281"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640446"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Dezentralisierte Vertrauensstellung zwischen Banken in Azure
 
@@ -72,8 +72,6 @@ Bei erweiterten oder anderen Szenarien spielen möglicherweise Aspekte wie der D
 
 [Azure Monitor][monitor] überwacht das Blockchainnetzwerk kontinuierlich auf Probleme, um die Verfügbarkeit zu gewährleisten. Nach erfolgreicher Bereitstellung der Blockchainlösungsvorlage aus diesem Szenario erhalten Sie einen Link zu einem benutzerdefinierten Azure Monitor-basierten Überwachungsdashboard. Das Dashboard zeigt Knoten, die in den letzten 30 Minuten Heartbeats gemeldet haben, sowie weitere hilfreiche Statistiken.
 
-Weitere Verfügbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
-
 ### <a name="scalability"></a>Skalierbarkeit
 
 Eine verbreitete Sorge bei Blockchains ist häufig die Anzahl von Transaktionen, die eine Blockchain in einem vordefinierten Zeitraum enthalten kann. In diesem Szenario wird Proof-of-Authority verwendet, um im Vergleich zu Proof-of-Work eine bessere Verwaltung der Skalierbarkeit zu ermöglichen. In Proof-of-Authority-basierten Netzwerken sind die Konsensteilnehmer bekannt und werden verwaltet. Dadurch eignen sie sich besser für private Blockchains eines Konsortiums von Organisationen, die sich untereinander kennen. Parameter wie durchschnittliche Blockzeit, Transaktionen pro Minute und Auslastung von Computeressourcen lassen sich komfortabel über das benutzerdefinierte Dashboard überwachen. Ressourcen können dann auf der Grundlage der Skalierungsanforderungen angepasst werden.
@@ -90,7 +88,7 @@ Allgemeine Informationen zur Entwicklung sicherer Lösungen finden Sie in der [D
 
 Die Ethereum-PoA-Blockchain bietet selbst ein gewisses Maß an Resilienz, da die Überprüfungsknoten in unterschiedlichen Regionen bereitgestellt werden können. In Azure stehen Optionen für Bereitstellungen in mehr als 54 Regionen auf der ganzen Welt bereit. Eine Blockchain wie in diesem Szenario bietet einzigartige und innovative Möglichkeiten der Zusammenarbeit, um die Resilienz zu erhöhen. Die Resilienz des Netzwerks wird nicht nur durch eine einzelne zentrale Partei gewährleistet, sondern durch alle Mitglieder des Konsortiums. Bei einer Proof-of-Authority-basierten Blockchain ist die Netzwerkresilienz noch besser planbar.
 
-Allgemeine Informationen zur Entwicklung robuster Lösungen finden Sie unter [Entwerfen robuster Anwendungen für Azure][resiliency].
+Allgemeine Informationen zur Entwicklung robuster Lösungen finden Sie unter [Entwerfen zuverlässiger Azure-Anwendungen](../../reliability/index.md).
 
 ## <a name="pricing"></a>Preise
 
@@ -120,8 +118,6 @@ Weitere Informationen zur Verwendung der Ethereum-Proof-of-Authority-Lösungsvor
 [deploy]: https://portal.azure.com/?pub_source=email&pub_status=success#create/microsoft-azure-blockchain.azure-blockchain-ethereumethereum-poa-consortium
 [source]: https://github.com/vitoc/creditscoreblockchain
 [monitor]: /azure/monitoring-and-diagnostics/monitoring-overview-azure-monitor
-[availability]: /azure/architecture/checklist/availability
 [scalability]: /azure/architecture/checklist/scalability
-[resiliency]: ../../resiliency/index.md
 [security]: /azure/security/
 [vault]: https://azure.microsoft.com/services/key-vault/

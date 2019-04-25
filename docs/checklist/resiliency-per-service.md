@@ -8,16 +8,16 @@ ms.topic: checklist
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 647a17feb347fbb23e9ffa015ab9d640e8864439
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: db42bd259bf71ef2ffa3e9efc5e4cd6ba2078e6b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241771"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639698"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Checkliste für Resilienz für bestimmte Azure-Dienste
 
-Resilienz ist die Fähigkeit des Systems, nach Ausfällen für ein System eine Wiederherstellung durchzuführen und die Betriebsbereitschaft sicherzustellen. Sie gehört zu den [Säulen der Softwarequalität](../guide/pillars.md). Jede Technologie verfügt über ihre eigenen speziellen Fehlermodi, die Sie beim Entwerfen und Implementieren Ihrer Anwendung berücksichtigen müssen. Verwenden Sie diese Checkliste, um die Resilienzaspekte für bestimmte Azure-Dienste zu überprüfen. Verwenden Sie auch die [allgemeine Checkliste zur Resilienz](./resiliency.md).
+Bei der Resilienz (Robustheit) geht es um die Möglichkeit, nach Ausfällen für ein System eine Wiederherstellung durchzuführen und die Betriebsbereitschaft sicherzustellen. Jede Technologie verfügt über ihre eigenen speziellen Fehlermodi, die Sie beim Entwerfen und Implementieren Ihrer Anwendung berücksichtigen müssen. Verwenden Sie diese Checkliste, um die Resilienzaspekte für bestimmte Azure-Dienste zu überprüfen. Weitere Informationen zum Entwerfen resilienter Anwendungen finden Sie unter [Entwerfen zuverlässiger Azure-Anwendungen](../reliability/index.md).
 
 ## <a name="app-service"></a>App Service
 
@@ -153,7 +153,7 @@ Wenn Sie Redis Cache als temporären Zwischenspeicher für Daten und nicht als p
 
 **Verwenden Sie Azure Backup zum Sichern von VMs.** Sicherungen schützen vor versehentlichen Datenverlusten. Weitere Informationen finden Sie unter [Schützen von Azure-VMs mit einem Recovery Services-Tresor](/azure/backup/backup-azure-vms-first-look-arm/).
 
-**Aktivieren Sie Diagnoseprotokolle**, z.B. grundlegende Integritätsmetriken, Infrastrukturprotokolle und die [Startdiagnose][boot-diagnostics]. Startdiagnosen dienen dazu, einen Fehler beim Startvorgang zu untersuchen, wenn sich Ihre VM in einem nicht startfähigen Zustand befindet. Weitere Informationen finden Sie unter [Übersicht über Azure-Diagnoseprotokolle][diagnostics-logs].
+**Aktivieren Sie Diagnoseprotokolle**, z. B. grundlegende Integritätsmetriken, Infrastrukturprotokolle und die [Startdiagnose][boot-diagnostics]. Startdiagnosen dienen dazu, einen Fehler beim Startvorgang zu untersuchen, wenn sich Ihre VM in einem nicht startfähigen Zustand befindet. Weitere Informationen finden Sie unter [Übersicht über Azure-Diagnoseprotokolle][diagnostics-logs].
 
 **Verwenden Sie die AzureLogCollector-Erweiterung.** (Nur Windows-VMs.) Diese Erweiterung aggregiert Azure Platform-Protokolle und lädt sie in Azure-Speicher hoch, ohne dass eine Remoteanmeldung des Operators auf der VM erforderlich ist. Weitere Informationen finden Sie unter [AzureLogCollector-Erweiterung](/azure/virtual-machines/virtual-machines-windows-log-collector-extension/?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

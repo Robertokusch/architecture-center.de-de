@@ -8,12 +8,12 @@ description: Beispiele für Finanzergebnisse
 author: BrianBlanchard
 ms.date: 10/10/2018
 ms.topic: guide
-ms.openlocfilehash: a38c87254b368c45fc4b70e6ee1f94e86ad1068f
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 5b28e22fca294bd1311d29ee5f70ca45e70fae3e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242731"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640225"
 ---
 # <a name="examples-of-fiscal-outcomes"></a>Beispiele für Finanzergebnisse
 

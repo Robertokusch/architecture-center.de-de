@@ -3,12 +3,12 @@ title: Senden von Azure Databricks-Anwendungsprotokollen an Azure Monitor
 description: Informationen zum Senden benutzerdefinierter Protokolle und Metriken aus Azure Databricks an Azure Monitor
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 49c631687fb3e3bbd807ffbbb49d9c5f6526bfb4
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: ea67122d7871663e8aaf42b7af0043492f63b6b1
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503403"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639183"
 ---
 # <a name="send-azure-databricks-application-logs-to-azure-monitor"></a>Senden von Azure Databricks-Anwendungsprotokollen an Azure Monitor
 

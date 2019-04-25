@@ -1,29 +1,29 @@
 ---
-title: Erweitern von Active Directory Domain Services (AD DS) auf Azure
+title: Erweitern der lokalen Active Directory-Domäne auf Azure
 titleSuffix: Azure Reference Architectures
-description: Erweitern Sie Ihre lokale Active Directory-Domäne auf Azure.
+description: Bereitstellen von Active Directory Domain Services (AD DS) in einem virtuellen Azure-Netzwerk.
 author: telmosampaio
 ms.date: 05/02/2018
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 67f23ae3676d0fb95ef484fa6dcb7a8bb92e0fa2
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: c617a0ceba900fc9cd78eff21aadf5c94f6b143b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58420004"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640344"
 ---
-# <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Erweitern von Active Directory Domain Services (AD DS) auf Azure
+# <a name="extend-your-on-premises-active-directory-domain-to-azure"></a>Erweitern der lokalen Active Directory-Domäne auf Azure
 
-Diese Referenzarchitektur zeigt, wie Sie Ihre Active Directory-Umgebung nach Azure erweitern, um verteilte Authentifizierungsdienste mit Active Directory Domain Services (AD DS) bereitzustellen. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
+Diese Architektur zeigt das Erweitern einer lokalen Active Directory-Domäne auf Azure, um verteilte Authentifizierungsdienste bereitzustellen. [**Stellen Sie diese Lösung bereit**](#deploy-the-solution).
 
 ![Schützen einer Hybrid-Netzwerkarchitektur mit Active Directory](./images/adds-extend-domain.png)
 
 *Laden Sie eine [Visio-Datei][visio-download] mit dieser Architektur herunter.*
 
-AD DS dient zum Authentifizieren von Benutzern, Computern, Anwendungen oder anderen Identitäten in einer Sicherheitsdomäne. Ein lokales Hosting ist zwar möglich, aber wenn Ihre Anwendung teilweise lokal und teilweise in Azure gehostet wird, ist es möglicherweise effizienter, diese Funktionalität in Azure zu replizieren. Dies kann Verzögerungen verringern, die durch das Senden der Authentifizierung und von lokalen Autorisierungsanforderungen aus der Cloud zurück in die lokale AD DS-Instanz auftreten.
+Wenn Ihre Anwendung teilweise lokal und teilweise in Azure gehostet ist, ist es möglicherweise effizienter, Active Directory Domain Services (AD DS) in Azure zu replizieren. Dies kann Verzögerungen verringern, die durch das Senden von Autorisierungsanforderungen aus der Cloud zurück in die lokale AD DS-Instanz auftreten.
 
 Diese Architektur wird häufig verwendet, wenn das lokale Netzwerk und das virtuelle Azure-Netzwerk über eine VPN- oder ExpressRoute-Verbindung miteinander verbunden sind. Diese Architektur unterstützt auch die bidirektionale Replikation, sodass Änderungen sowohl lokal als auch in der Cloud vorgenommen werden können und dabei beide Quellen konsistent bleiben. Typische Einsatzfälle für diese Architektur sind Hybridanwendungen, bei denen die Funktionalität lokal und in Azure bereitgestellt wird und Anwendungen und Dienste die Authentifizierung mit Active Directory durchführen.
 

@@ -7,12 +7,12 @@ ms.date: 12/07/2018
 ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 9b931337f7f0e5dc58f83701271c7d3491af5bfd
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: f3d15d65aeab41977e6d30b8141baaa956da29d3
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248745"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640769"
 ---
 # <a name="publisher-subscriber-pattern"></a>Herausgeber-Abonnent-Muster
 

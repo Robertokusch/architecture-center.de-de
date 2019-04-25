@@ -7,12 +7,12 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: 'Große Unternehmen: mehrere Governance-Ebenen in großen Unternehmen'
 author: BrianBlanchard
-ms.openlocfilehash: 5d79d54f94a39aa1e16018b9c3c9f02c6862fff2
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 1a90f8007077df0ecefa8ec5d8c0dd6bfca9ccc7
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241122"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641211"
 ---
 # <a name="multiple-layers-of-governance-in-large-enterprises"></a>Große Unternehmen: mehrere Governance-Ebenen in großen Unternehmen
 

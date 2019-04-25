@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/ai/media/architecture-commerce-chatbot.png
-ms.openlocfilehash: 48f85e7443bcd6149c8024d20fb50816c1a4df38
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: c4859cb0e43603991e4f8e6a0311a28537f29f1a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245851"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640259"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Interaktiver Chatbot für Hotelreservierungen in Azure
 
@@ -65,8 +65,6 @@ Dieses Szenario umfasst einen interaktiven Bot, der als Concierge für ein Hotel
 
 In diesem Szenario werden Kundenreservierungen in Azure SQL-Datenbank gespeichert. SQL-Datenbank umfasst zonenredundante Datenbanken, Failovergruppen und Georeplikation. Weitere Informationen finden Sie unter [Verfügbarkeitsfunktionen][sqlavailability-docs].
 
-Weitere Verfügbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
-
 ### <a name="scalability"></a>Skalierbarkeit
 
 Für dieses Szenario wird Azure App Service verwendet. Mit App Service können Sie automatisch die Anzahl von Instanzen für die Botausführung skalieren. Dadurch können Sie bei Ihrer Webanwendung und Ihrem Chatbot mit der Kundennachfrage Schritt halten. Weitere Informationen zur automatischen Skalierung finden Sie im Azure Architecture Center unter [Automatische Skalierung][autoscaling].
@@ -87,13 +85,13 @@ In diesem Szenario werden Kundenreservierungen in Azure SQL-Datenbank gespeicher
 
 Die Integrität Ihrer Anwendung wird bei diesem Szenario mithilfe von Application Insights überwacht. Mit Application Insights können Sie Warnungen generieren und auf Leistungsprobleme reagieren, die die Benutzerfreundlichkeit und Verfügbarkeit des Chatbots beeinträchtigen. Weitere Informationen finden Sie unter [Was ist Application Insights?][appinsights-docs].
 
-Allgemeine Informationen zur Entwicklung robuster Lösungen finden Sie unter [Entwerfen robuster Anwendungen für Azure][resiliency].
+Andere auf Resilienz bezogene Themen finden Sie unter [Entwerfen zuverlässiger Azure-Anwendungen](../../reliability/index.md).
 
 ## <a name="deploy-the-scenario"></a>Bereitstellen des Szenarios
 
 Dieses Szenario ist in drei Komponenten unterteilt, sodass Sie sich auf die Bereiche konzentrieren können, die für Sie besonders interessant sind:
 
-- [Infrastrukturkomponenten:](#deploy-infrastructure-components) Verwenden Sie eine Azure Resource Manager-Vorlage, um die Hauptkomponenten der Infrastruktur (App Service, Web-App, Application Insights, Speicherkonto, SQL Server und Datenbank) bereitzustellen.
+- [Infrastrukturkomponenten:](#walk-through) Verwenden Sie eine Azure Resource Manager-Vorlage, um die Hauptkomponenten der Infrastruktur (App Service, Web-App, Application Insights, Speicherkonto, SQL Server und Datenbank) bereitzustellen.
 - [Web-App-Chatbot:](#deploy-web-app-chatbot) Verwenden Sie die Azure-Befehlszeilenschnittstelle, um einen Bot mit Bot Service und LUIS-App (Language Understanding and Intelligent Services) bereitzustellen.
 - [C#-Chatbot-Beispielanwendung:](#deploy-chatbot-c-application-code) Verwenden Sie Visual Studio, um sich mit dem Code der C#-Beispielanwendung für Hotelreservierungen vertraut zu machen und ihn für einen Bot in Azure bereitzustellen.
 
@@ -170,7 +168,6 @@ Eine Reihe geführter Tutorials für Azure Bot Service finden Sie im [Abschnitt 
 [appservice-docs]: /azure/app-service/
 [architecture]: ./media/architecture-commerce-chatbot.png
 [autoscaling]: ../../best-practices/auto-scaling.md
-[availability]: ../../checklist/availability.md
 [botservice-docs]: /azure/bot-service/
 [cognitive-docs]: /azure/cognitive-services/
 [resiliency]: ../../resiliency/index.md

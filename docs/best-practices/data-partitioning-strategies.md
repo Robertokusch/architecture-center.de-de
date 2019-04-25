@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 43838592ef4176c28e11b90180727a63b1e1f8f6
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: bb810f549c78d16eabd4a96cd811cdc120cc8b6f
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241821"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640939"
 ---
 # <a name="data-partitioning-strategies"></a>Strategien für die Datenpartitionierung
 

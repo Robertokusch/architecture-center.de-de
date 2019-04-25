@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 4b5842c3aac4cea34929ed72ad86071494b1fc1e
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 06090b0862a7c737d9ee93512f851d3fcf2e2d9f
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241741"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640871"
 ---
 # <a name="api-design"></a>API-Design
 
@@ -97,7 +97,7 @@ Durch Senden einer HTTP GET-Anforderung an den URI der Sammlung wird eine Liste 
 
 Führen Sie eine konsistente Benennungskonvention für URIs ein. Im Allgemeinen ist es hilfreich, Nomen in Pluralform für URIs zu verwenden, die auf Sammlungen verweisen. Es wird empfohlen, URIs für Sammlungen und Elemente in einer Hierarchie zu organisieren. Beispiel: `/customers` ist der Pfad zur Sammlung „Kunden“, und `/customers/5` ist der Pfad zum Kunden mit der ID 5. Dieser Ansatz trägt dazu bei, dass die Web-API intuitiv bleibt. Darüber hinaus können viele Web-API-Frameworks Anforderungen auf Grundlage von parametrisierte URI-Pfaden weiterleiten, sodass Sie eine Route für den Pfad `/customers/{id}` definieren könnten.
 
-Berücksichtigen Sie auch die Beziehungen zwischen verschiedenen Ressourcentypen und wie Sie diese Zuordnungen verfügbar machen können. Beispielsweise kann `/customers/5/orders` alle Bestellungen für Kunde 5 darstellen. Sie könnten auch in die andere Richtung gehen und die Zuordnung einer Bestellung an einen Kunden mit einem URI umgekehrt darstellen, z.B. `/orders/99/customer`. Eine zu umfangreiche Erweiterung dieses Modells kann jedoch aufwendig zu implementieren sein. Eine bessere Lösung ist das Bereitstellen navigierbarer Links zu zugeordneten Ressourcen im Text der HTTP-Antwortnachricht. Dieser Mechanismus wird im Abschnitt [Verwenden des HATEOAS-Ansatzes, um die Navigation zu verwandten Ressourcen zu ermöglichen](#using-the-hateoas-approach-to-enable-navigation-to-related-resources) weiter unten ausführlicher beschrieben.
+Berücksichtigen Sie auch die Beziehungen zwischen verschiedenen Ressourcentypen und wie Sie diese Zuordnungen verfügbar machen können. Beispielsweise kann `/customers/5/orders` alle Bestellungen für Kunde 5 darstellen. Sie könnten auch in die andere Richtung gehen und die Zuordnung einer Bestellung an einen Kunden mit einem URI umgekehrt darstellen, z.B. `/orders/99/customer`. Eine zu umfangreiche Erweiterung dieses Modells kann jedoch aufwendig zu implementieren sein. Eine bessere Lösung ist das Bereitstellen navigierbarer Links zu zugeordneten Ressourcen im Text der HTTP-Antwortnachricht. Dieser Mechanismus wird im Abschnitt [Verwenden von HATEOAS, um die Navigation zu verwandten Ressourcen zu ermöglichen](#use-hateoas-to-enable-navigation-to-related-resources) ausführlicher beschrieben.
 
 In komplexeren Systemen kann es attraktiv erscheinen, URIs bereitzustellen, die einem Client das Navigieren über mehrere Beziehungsebenen hinweg ermöglichen, z.B. `/customers/1/orders/99/products`. Dieses Maß an Komplexität kann jedoch schwierig zu verwalten sein und ist unflexibel, wenn sich die Beziehungen zwischen Ressourcen in der Zukunft ändern. Versuchen Sie stattdessen, URIs relativ einfach zu halten. Sobald eine Anwendung über einen Verweis auf eine Ressource verfügt, kann dieser Verweis zum Suchen von Elementen im Zusammenhang mit dieser Ressource verwendet werden. Die vorhergehende Abfrage kann durch den URI `/customers/1/orders` ersetzt werden, um alle Bestellungen für Kunde 1 zu finden, und dann durch `/orders/99/products` ersetzt werden, um die Produkte in einer Bestellung zu finden.
 

@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: seodec18, Windows
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/architecture-regulated-multitier-app.png
-ms.openlocfilehash: 440d208b423703fe791dcbe2cad0609fef0e6508
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 2e3bb28abf870a1ce358dd67efeb3f422b983651
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246221"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639936"
 ---
 # <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>Erstellen von sicheren Webanwendungen mit virtuellen Windows-Computern in Azure
 
@@ -67,8 +67,6 @@ Die VM-Instanzen in diesem Szenario werden für [Verfügbarkeitszonen](/azure/av
 
 Die Datenbankebene kann so konfiguriert werden, dass Always On-Verfügbarkeitsgruppen konfiguriert werden. Mit dieser SQL Server-Konfiguration wird eine primäre Datenbank in einem Cluster mit bis zu acht sekundären Datenbanken konfiguriert. Falls für die primäre Datenbank ein Problem besteht, führt der Cluster ein Failover auf eine der sekundären Datenbanken aus, damit die Anwendung weiterhin verfügbar ist. Weitere Informationen finden Sie unter [Übersicht über Always On-Verfügbarkeitsgruppen für SQL Server][sqlalwayson-docs].
 
-Weitere Informationen zur Verfügbarkeit finden Sie im Azure Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
-
 ### <a name="scalability"></a>Skalierbarkeit
 
 In diesem Szenario werden VM-Skalierungsgruppen für die Front-End- und Back-End-Komponenten verwendet. Mit Skalierungsgruppen kann die Anzahl von VM-Instanzen, die auf der Front-End-Anwendungsebene ausgeführt werden, als Reaktion auf eine veränderte Kundennachfrage oder basierend auf einem definierten Zeitplan automatisch skaliert werden. Weitere Informationen finden Sie unter [Übersicht über die automatische Skalierung mit VM-Skalierungsgruppen][vmssautoscale-docs].
@@ -85,7 +83,7 @@ Zeigen Sie die Anleitung zur Bereitstellung von PCI-DSS 3.2 (Payment Card Indust
 
 In Kombination mit der Nutzung von Verfügbarkeitszonen und VM-Skalierungsgruppen werden in diesem Szenario Azure Application Gateway und ein Lastenausgleichsmodul verwendet. Über diese beiden Netzwerkkomponenten wird Datenverkehr auf die verbundenen VM-Instanzen verteilt, und es werden Integritätstests eingebunden, mit denen sichergestellt wird, dass Datenverkehr nur auf fehlerfreie VMs verteilt wird. Zwei Application Gateway-Instanzen werden in einer Aktiv-Passiv-Konfiguration konfiguriert, und es wird ein zonenredundantes Lastenausgleichsmodul verwendet. Mit dieser Konfiguration verfügen die Netzwerkressourcen und die Anwendung über Resilienz gegenüber Problemen, die andernfalls zu einer Störung des Datenverkehrs und zu Auswirkungen auf den Zugriff durch Endbenutzer führen würden.
 
-Allgemeine Informationen zur Entwicklung robuster Szenarien finden Sie unter [Entwerfen robuster Anwendungen für Azure][resiliency].
+Allgemeine Informationen zur Entwicklung robuster Lösungen finden Sie unter [Entwerfen zuverlässiger Azure-Anwendungen](../../reliability/index.md).
 
 ## <a name="deploy-the-scenario"></a>Bereitstellen des Szenarios
 
@@ -133,12 +131,10 @@ Ausführlichere Informationen zur Implementierung finden Sie in der [Referenzarc
 [appgateway-docs]: /azure/application-gateway/overview
 [architecture]: ./media/architecture-regulated-multitier-app.png
 [autoscaling]: /azure/architecture/best-practices/auto-scaling
-[availability]: ../../checklist/availability.md
 [cloudwitness-docs]: /windows-server/failover-clustering/deploy-cloud-witness
 [loadbalancer-docs]: /azure/load-balancer/load-balancer-overview
 [nsg-docs]: /azure/virtual-network/security-overview
 [ntiersql-ra]: /azure/architecture/reference-architectures/n-tier/n-tier-sql-server
-[resiliency]: /azure/architecture/resiliency/
 [security]: /azure/security/
 [scalability]: /azure/architecture/checklist/scalability
 [scaleset-docs]: /azure/virtual-machine-scale-sets/overview

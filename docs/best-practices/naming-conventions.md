@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: ed1811495e81965fa514ab66dcfa49d00d2a59f2
-ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
+ms.openlocfilehash: e67da8043beed01c99f36da689dfd0553e012535
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/11/2019
-ms.locfileid: "59480098"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640395"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Namenskonventionen für Azure-Ressourcen
 
@@ -192,7 +192,7 @@ Weitere Informationen zum Konfigurieren dieser Funktion finden Sie unter [Konfig
 
 Weitere Informationen zur Benennung von Blobs, Containern und Tabellen finden Sie in der folgenden Liste:
 
-- [Benennen von und Verweisen auf Container, Blobs und Metadaten](https://msdn.microsoft.com/library/dd135715.aspx)
+- [Benennen von Containern, BLOBs und Metadaten und Verweisen auf diese](https://msdn.microsoft.com/library/dd135715.aspx)
 - [Benennen von Warteschlangen und Metadaten](https://msdn.microsoft.com/library/dd179349.aspx)
 - [Benennen von Tabellen](https://msdn.microsoft.com/library/azure/dd179338.aspx)
 
@@ -202,4 +202,3 @@ Es ist nicht möglich, den Namen eines Speicherkontos oder -containers nach dem 
 
 > [!TIP]
 > Es wird empfohlen, dass Sie vor der Entwicklung eines neuen Diensts oder einer neuen Anwendung eine Benennungskonvention für alle Speicherkonten und -typen einrichten.
-

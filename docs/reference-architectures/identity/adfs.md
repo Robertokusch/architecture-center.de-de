@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 22a2a2042c85e70d0d5a523c9ecf72395a9e774c
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 873b6a86da14e00d0a537f910d10922444cc1ded
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244391"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640735"
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>Erweitern von Active Directory Federation Services (AD FS) auf Azure
 

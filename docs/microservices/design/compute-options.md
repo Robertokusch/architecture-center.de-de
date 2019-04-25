@@ -17,10 +17,7 @@ Berücksichtigen Sie die folgenden Optionen auf der Azure-Plattform:
 
 - [Service Fabric](/azure/service-fabric/) ist eine Plattform für verteilte Systeme, mit der Microservices gepackt, bereitgestellt und verwaltet werden können. Microservices können in Service Fabric als Container, als binäre ausführbare Dateien oder als [Reliable Services](/azure/service-fabric/service-fabric-reliable-services-introduction) bereitgestellt werden. Mit dem Reliable Services-Programmiermodell können Dienste direkt über Service Fabric-APIs das System abfragen, die Integrität melden, Benachrichtigungen zu Konfigurations- und Codeänderungen empfangen sowie andere Dienste ermitteln. Ein zentraler Unterschied von Service Fabric ist der starke Fokus auf die Erstellung zustandsbehafteter Dienste mit [Reliable Collections](/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
 
-- [Azure Container Service](/azure/container-service/) (ACS) ist ein Azure-Dienst, mit dem Sie schnell einen produktionsbereiten DC/OS-, Docker Swarm- oder Kubernetes-Cluster bereitstellen können.
-
-  > [!NOTE]
-  > ACS unterstützt zwar Kubernetes, es empfiehlt sich jedoch, AKS für die Ausführung von Kubernetes in Azure zu verwenden. AKS bietet verbesserten Verwaltungsfunktionen und Kostenvorteile.
+- Andere Optionen, wie etwa Docker Enterprise Edition und Mesosphere DC/OS, können in einer IaaS-Umgebung auf Azure ausgeführt werden. Bereitstellungsvorlagen finden Sie im [Azure Marketplace](https://azuremarketplace.microsoft.com).
 
 ## <a name="containers"></a>Container
 

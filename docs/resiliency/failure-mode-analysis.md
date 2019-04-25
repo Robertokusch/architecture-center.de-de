@@ -7,22 +7,20 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: 6d0f58161c5b9d5922c21f24b1b1a50bab836bb1
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 0d89570ca42aa087a9c18148b5a4019b6f348e6b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248067"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640973"
 ---
-# <a name="failure-mode-analysis"></a>Fehlermodusanalyse
-
-[!INCLUDE [header](../_includes/header.md)]
+# <a name="failure-mode-analysis-for-azure-applications"></a>Fehlermodusanalyse für Azure-Anwendungen
 
 Die Fehlermodusanalyse (Failure Mode Analysis, FMA) ist ein Prozess zum Erzielen von Resilienz in einem System durch das Identifizieren möglicher Schwachstellen im System. Die Fehlermodusanalyse sollte in die Planungs- und Designphasen eingebunden werden, damit Sie die Wiederherstellung nach einem Fehler von Anfang an in das System integrieren können.
 
 Hier folgt der allgemeine Prozess zum Durchführen einer Fehlermodusanalyse:
 
-1. Identifizieren Sie alle Komponenten im System. Beziehen Sie externe Abhängigkeiten ein, z. B. Identitätsanbieter, Drittanbieterdienste usw.
+1. Identifizieren Sie alle Komponenten im System. Beziehen Sie externe Abhängigkeiten ein, z.B. Identitätsanbieter, Drittanbieterdienste usw.
 2. Identifizieren Sie für jede Komponente potenzielle Fehler, die auftreten können. Eine einzelne Komponente kann mehrere Fehlermodi aufweisen. Beispielsweise sollten Sie Lese- und Schreibfehler getrennt betrachten, da deren Auswirkung und mögliche Entschärfung unterschiedlich ausfallen werden.
 3. Bewerten Sie die einzelnen Fehlermodi nach ihrem Gesamtrisiko. Beachten Sie folgende Faktoren:
 

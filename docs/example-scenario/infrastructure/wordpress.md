@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/secure-scalable-wordpress.png
-ms.openlocfilehash: 6032247dce0d090885bc560d963f1e714d91f69c
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 4f347f91d5958fb83404856ec5d36d70a7ed0d19
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244631"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640089"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>Hochgradig skalierbare und sichere WordPress-Websites
 
@@ -72,15 +72,13 @@ Mit dem zweiten Workflow tragen Autoren neuen Inhalt bei:
 
 Die VM-Instanzen in diesem Szenario werden in mehreren Regionen bereitgestellt. Dabei werden die Daten zwischen den beiden über RSYNC für die WordPress-Inhalte und über die Replikation zwischen Primär- und Sekundärgerät für die MariaDB-Cluster repliziert.
 
-Weitere Verfügbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
-
 ### <a name="scalability"></a>Skalierbarkeit
 
 Dieses Szenario verwendet VM-Skalierungsgruppen für die beiden Front-End-Webservercluster in jeder Region. Mit Skalierungsgruppen kann die Anzahl von VM-Instanzen, die auf der Front-End-Anwendungsebene ausgeführt werden, als Reaktion auf eine veränderte Kundennachfrage oder basierend auf einem definierten Zeitplan automatisch skaliert werden. Weitere Informationen finden Sie unter [Übersicht über die automatische Skalierung mit VM-Skalierungsgruppen][docs-vmss-autoscale].
 
 Das Back-End ist ein MariaDB-Cluster in einer Verfügbarkeitsgruppe. Weitere Informationen finden Sie im [Tutorial zum MariaDB-Cluster][mariadb-tutorial].
 
-Weitere Skalierbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Skalierbarkeit][scalability].
+Weitere Skalierbarkeitsthemen finden Sie im Azure Architecture Center in der Checkliste für die Skalierbarkeit unter „Skalierbarkeit“.
 
 ### <a name="security"></a>Sicherheit
 
@@ -92,7 +90,7 @@ Allgemeine Informationen zur Entwicklung sicherer Szenarien finden Sie in der [D
 
 Dieses Szenario verwendet Azure-Lastenausgleiche in Kombination mit mehreren Regionen, Datenreplikation und VM-Skalierungsgruppen. Über diese Netzwerkkomponenten wird Datenverkehr auf die verbundenen VM-Instanzen verteilt, und es werden Integritätstests eingebunden, mit denen sichergestellt wird, dass Datenverkehr nur auf fehlerfreie virtuelle Computer verteilt wird. Alle diese Netzwerkkomponenten werden über ein CDN nach außen verfügbar gemacht. Mit dieser Konfiguration sind die Netzwerkressourcen und die Anwendung resilient gegenüber Problemen, die andernfalls zu einer Störung des Datenverkehrs und zu Auswirkungen auf den Zugriff durch Endbenutzer führen würden.
 
-Allgemeine Informationen zur Entwicklung robuster Szenarien finden Sie unter [Entwerfen robuster Anwendungen für Azure][resiliency].
+Allgemeine Informationen zur Entwicklung robuster Szenarien finden Sie unter [Entwerfen zuverlässiger Azure-Anwendungen](../../reliability/index.md).
 
 ## <a name="pricing"></a>Preise
 
@@ -112,6 +110,4 @@ Wir haben ein vorkonfiguriertes [Kostenprofil][pricing] basierend auf dem obigen
 [docs-nsg]: /azure/virtual-network/security-overview
 [security]: /azure/security/
 [availability]: ../../checklist/availability.md
-[resiliency]: /azure/architecture/resiliency/
-[scalability]: /azure/architecture/checklist/scalability
 [pricing]: https://azure.com/e/a8c4809dab444c1ca4870c489fbb196b

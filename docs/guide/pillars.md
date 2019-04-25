@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 76870f58fc957f6d82f6dc176d1c538c795a7d20
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: d6eed98c6e224956942c45b52621ec02832be015
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243061"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639766"
 ---
 # <a name="pillars-of-software-quality"></a>Säulen der Softwarequalität
 
@@ -76,8 +76,6 @@ In Azure wird in der Vereinbarung zum Servicelevel (SLA) die garantierte Betrieb
 
 Anwendungen benötigen häufig mehrere Dienste. Im Allgemeinen ist die Wahrscheinlichkeit, dass einer der Dienste ausfällt, von den anderen Diensten unabhängig. Angenommen, Ihre Anwendung verwendet zwei Dienste, und jeder weist eine SLA von 99,9 % auf. Die kombinierte SLA für beide Dienste beträgt 99,9% &times; 99,9% &asymp; 99,8% oder geringfügig weniger als jeder Dienst für sich genommen.
 
-Verwenden Sie die [Checkliste für die Verfügbarkeit][availability-checklist], um Ihren Entwurf vom Standpunkt der Verfügbarkeit aus zu überprüfen.
-
 ### <a name="availability-guidance"></a>Leitfaden für die Verfügbarkeit
 
 - [Entwurfsmuster für Verfügbarkeit][availability-patterns]
@@ -104,11 +102,9 @@ Nichtsdestoweniger müssen Sie weiterhin Resilienz in Ihre Anwendung integrieren
 
 Wenn Sie eine resiliente Anwendung entwerfen, müssen Sie Ihre Verfügbarkeitsanforderungen genau kennen. Wie viel Ausfallzeit ist akzeptabel? Dies ist teilweise eine Kostenfunktion. Welche Kosten fallen bei potenziellen Ausfallzeiten für Ihr Unternehmen an? Wie viel sollten Sie investieren, um die Hochverfügbarkeit der Anwendung sicherzustellen?
 
-Verwenden Sie die [Checkliste für die Resilienz][resiliency-checklist], um Ihren Entwurf vom Standpunkt der Resilienz aus zu überprüfen.
-
 ### <a name="resiliency-guidance"></a>Leitfaden zu Resilienz
 
-- [Entwickeln robuster Anwendungen für Azure][resiliency]
+- [Entwerfen zuverlässiger Azure-Anwendungen][resiliency]
 - [Entwurfsmuster für Resilienz][resiliency-patterns]
 - Bewährten Methoden: [Behandeln vorübergehender Fehler][transient-fault-handling], [Wiederholungsanleitung für bestimmte Dienste][retry-service-specific]
 
@@ -173,7 +169,7 @@ Verwenden Sie Key Vault, um Kryptografieschlüssel und Geheimnisse zu sichern. M
 
 [dr-guidance]: ../resiliency/disaster-recovery-azure-applications.md
 [identity-ref-arch]: ../reference-architectures/identity/index.md
-[resiliency]: ../resiliency/index.md
+[resiliency]: ../reliability/index.md
 
 [ad-subscriptions]: /azure/active-directory/active-directory-how-subscriptions-associated-directory
 [data-warehouse-encryption]: /azure/data-lake-store/data-lake-store-security-overview#data-protection
@@ -205,7 +201,5 @@ Verwenden Sie Key Vault, um Kryptografieschlüssel und Geheimnisse zu sichern. M
 [transient-fault-handling]: ../best-practices/transient-faults.md
 
 <!-- checklist -->
-[availability-checklist]: ../checklist/availability.md
 [devops-checklist]: ../checklist/dev-ops.md
-[resiliency-checklist]: ../checklist/resiliency.md
 [scalability-checklist]: ../checklist/scalability.md

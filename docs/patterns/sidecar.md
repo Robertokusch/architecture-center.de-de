@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 2b0e46a06f7fe47f281f726f73128db1d7dd1067
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 20a63cdd935f28cc47686238d34d654da2798985
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243561"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639596"
 ---
 # <a name="sidecar-pattern"></a>Sidecar-Muster
 

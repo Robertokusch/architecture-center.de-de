@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19, microservices
-ms.openlocfilehash: cc72f61003f4146fd65e501feebda0c0d1d27993
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 87a9dd31b6d935dd11a5a2a2950b6de11f337741
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245091"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639970"
 ---
 # <a name="microservices-architecture-style"></a>Architekturstil für Microservices
 
@@ -71,7 +71,7 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 
 - **Kleine, fokussierte Teams**. Teams können sich auf einen Dienst konzentrieren. Dank des geringeren Umfangs der einzelnen Services ist die Codebasis einfacher zu verstehen, und neue Teammitglieder können schneller eingearbeitet werden.
 
-- **Fehlerisolation**. Wenn ein Dienst ausfällt, ist nicht gleich die gesamte Anwendung betroffen. Das bedeutet aber nicht, dass Sie kostenlos Resilienz erhalten. Sie müssen weiterhin bewährte Methoden und Entwurfsmuster für die Resilienz befolgen. Weitere Informationen finden Sie unter [Entwerfen robuster Anwendungen für Azure][resiliency-overview].
+- **Fehlerisolation**. Wenn ein Dienst ausfällt, ist nicht gleich die gesamte Anwendung betroffen. Das bedeutet aber nicht, dass Sie kostenlos Resilienz erhalten. Sie müssen weiterhin bewährte Methoden und Entwurfsmuster für die Resilienz befolgen. Mehr dazu finden Sie unter [Entwerfen zuverlässiger Azure-Anwendungen][resiliency-overview].
 
 - **Verschiedene Technologiestapel**. Teams können die Technologie auswählen, die sich für ihren Dienst am besten eignet.
 
@@ -113,7 +113,7 @@ Ziehen Sie diese Art von Architektur in folgenden Fällen in Betracht:
 
 - Dienste sollten eine lose Kopplung und eine hohe funktionale Kohäsion aufweisen. Funktionen, die wahrscheinlich zusammen geändert werden, sollten auch zusammen gepackt und bereitgestellt werden. Wenn sie sich in verschiedenen Diensten befinden, sind diese Dienste letztlich eng gekoppelt, da eine Änderung in einem Dienst ein Update des anderen Diensts erfordert. Eine übermäßige Kommunikation zwischen zwei Diensten kann ein Symptom für enge Kopplung und geringe Kohäsion sein.
 
-- Isolieren Sie Fehler. Nutzen Sie Resilienzstrategien, um zu verhindern, dass Fehler in einem Dienst kaskadieren. Weitere Informationen finden Sie unter [Resilienzmuster][resiliency-patterns] und [Entwerfen resilienter Anwendungen][resiliency-overview].
+- Isolieren Sie Fehler. Nutzen Sie Resilienzstrategien, um zu verhindern, dass Fehler in einem Dienst kaskadieren. Weitere Informationen finden Sie unter [Resilienzmuster][resiliency-patterns] und [Entwerfen zuverlässiger Anwendungen][resiliency-overview].
 
 ## <a name="next-steps"></a>Nächste Schritte
 
@@ -121,5 +121,5 @@ Ausführliche Anleitungen zum Erstellen einer Microservices-Architektur in Azure
 
 <!-- links -->
 
-[resiliency-overview]: ../../resiliency/index.md
+[resiliency-overview]: ../../reliability/index.md
 [resiliency-patterns]: ../../patterns/category/resiliency.md

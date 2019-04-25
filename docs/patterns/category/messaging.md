@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: e2079d8ed33dd205c155348d455f6380fff660a3
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: f838288e10acf9af5776c93972028b6b878bd7b0
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58249335"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640667"
 ---
 # <a name="messaging-patterns"></a>Nachrichtenmuster
 

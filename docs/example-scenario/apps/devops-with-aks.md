@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-devops-with-aks.png
-ms.openlocfilehash: 89e50e67b2c933637442f0f01bf83ecc95743691
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 9be4f828c96c4ac321acf9d9719d0ef465fb35cf
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244031"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641177"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>CI/CD-Pipeline für containerbasierte Workloads
 
@@ -70,8 +70,6 @@ Bei diesem Szenario wird Azure Monitor mit Grafana für visuelle Dashboards komb
 
 Der Azure Kubernetes Service-Cluster verfügt über einen Lastenausgleich, der Anwendungsdatenverkehr an Container (Pods) verteilt, die Ihre Anwendung ausführen. Dieses Konzept der Ausführung von Containeranwendungen in Kubernetes stellt eine hochverfügbare Infrastruktur für Ihre Kunden bereit.
 
-Weitere Verfügbarkeitsthemen finden Sie im Azure Architecture Center in der [Checkliste für die Verfügbarkeit][availability].
-
 ### <a name="scalability"></a>Skalierbarkeit
 
 Azure Kubernetes Service ermöglicht die Skalierung der Anzahl von Clusterknoten, um den Anforderungen Ihrer Anwendungen gerecht zu werden. Mit zunehmender Größe Ihrer Anwendung können Sie die Anzahl von Kubernetes-Knoten für die Ausführung Ihres Diensts horizontal hochskalieren.
@@ -82,7 +80,7 @@ Weitere Skalierbarkeitsthemen finden Sie im Azure Architecture Center in der [Ch
 
 ### <a name="security"></a>Sicherheit
 
-Zur Minimierung der Angriffsfläche wird die Jenkins-VM-Instanz in diesem Szenario nicht über HTTP verfügbar gemacht. Für Verwaltungsaufgaben, die eine Interaktion mit Jenkins erfordern, wird von Ihrem lokalen Computer aus über einen SSH-Tunnel eine sichere Remoteverbindung hergestellt. Für die VM-Instanzen von Jenkins und Grafana ist ausschließlich die Authentifizierung mit öffentlichem SSH-Schlüssel zulässig. Kennwortbasierte Anmeldungen sind deaktiviert. Weitere Informationen finden Sie unter [Ausführen eines Jenkins-Servers in Azure](../../reference-architectures/jenkins/index.md).
+Zur Minimierung der Angriffsfläche wird die Jenkins-VM-Instanz in diesem Szenario nicht über HTTP verfügbar gemacht. Für Verwaltungsaufgaben, die eine Interaktion mit Jenkins erfordern, wird von Ihrem lokalen Computer aus über einen SSH-Tunnel eine sichere Remoteverbindung hergestellt. Für die VM-Instanzen von Jenkins und Grafana ist ausschließlich die Authentifizierung mit öffentlichem SSH-Schlüssel zulässig. Kennwortbasierte Anmeldungen sind deaktiviert. Weitere Informationen finden Sie unter [Ausführen eines Jenkins-Servers in Azure](./jenkins.md).
 
 Zur Trennung von Anmeldeinformationen und Berechtigungen verwendet dieses Szenario einen dedizierten Azure Active Directory-Dienstprinzipal. Die Anmeldeinformationen für diesen Dienstprinzipal werden als Objekt mit sicheren Anmeldeinformationen in Jenkins gespeichert, damit sie nicht direkt in Skripts oder in der Buildpipeline verfügbar/sichtbar sind.
 
@@ -92,7 +90,7 @@ Allgemeine Informationen zur Entwicklung sicherer Lösungen finden Sie in der [D
 
 In diesem Szenario wird Azure Kubernetes Service für Ihre Anwendung genutzt. Kubernetes verfügt über integrierte Resilienzkomponenten, die die Container (Pods) überwachen und im Falle eines Problems neu starten. In Kombination mit der Ausführung mehrerer Kubernetes-Knoten kann Ihre Anwendung die Nichtverfügbarkeit eines Pods oder Knotens tolerieren.
 
-Allgemeine Informationen zur Entwicklung robuster Lösungen finden Sie unter [Entwerfen robuster Anwendungen für Azure][resiliency].
+Allgemeine Informationen zur Entwicklung robuster Lösungen finden Sie unter [Entwerfen zuverlässiger Azure-Anwendungen](../../reliability/index.md).
 
 ## <a name="deploy-the-scenario"></a>Bereitstellen des Szenarios
 
@@ -147,7 +145,6 @@ Dieses Szenario verwendet Azure Container Registry und Azure Kubernetes Service,
 <!-- links -->
 [architecture]: ./media/architecture-devops-with-aks.png
 [autoscaling]: ../../best-practices/auto-scaling.md
-[availability]: ../../checklist/availability.md
 [docs-aci]: /azure/container-instances/container-instances-overview
 [docs-acr]: /azure/container-registry/container-registry-intro
 [docs-aks]: /azure/aks/intro-kubernetes
@@ -157,7 +154,6 @@ Dieses Szenario verwendet Azure Container Registry und Azure Kubernetes Service,
 [createsp]: /cli/azure/ad/sp#az-ad-sp-create
 [grafana]: https://grafana.com/
 [jenkins]: https://jenkins.io/
-[resiliency]: ../../resiliency/index.md
 [resource-groups]: /azure/azure-resource-manager/resource-group-overview
 [security]: /azure/security/
 [scalability]: ../../checklist/scalability.md

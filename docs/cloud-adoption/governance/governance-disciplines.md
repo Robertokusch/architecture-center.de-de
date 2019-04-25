@@ -9,12 +9,12 @@ description: Übersicht über die Governanceinhalte in CAF
 author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 80bdfc6f55b76fc3ae57d8fc25ce68c385eaa009
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: ddd7f5e4b7e79ebe2ddf87be7421b6c4691aced1
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241681"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639868"
 ---
 # <a name="the-five-disciplines-of-cloud-governance"></a>Die fünf Disziplinen der Cloud-Governance
 
@@ -26,7 +26,7 @@ ms.locfileid: "58241681"
         <div class="cardPadding" style="padding-bottom:10px;">
             <div class="card" style="padding-bottom:10px;">
                 <div class="cardText" style="padding-left:0px;">
-Jede Änderung von Geschäftsprozessen oder Technologieplattformen birgt Risiken. Cloud Governance-Teams, deren Mitglieder manchmal auch als Cloudverwalter bezeichnet werden, haben die Aufgabe, diese Risiken mit minimaler Unterbrechung der Einführungs- oder Innovationsanstrengungen zu minimieren.<br/><br/>Das CAF-Governancemodell steuert diese Entscheidungen (unabhängig von der gewählten Cloudplattform), indem es sich auf die <a href="#corporate-policy">Entwicklung der Unternehmensrichtlinien</a> und <a href="#disciplines-of-cloud-governance">Disziplinen von Cloud Governance</a> konzentriert. <a href="#actionable-journeys">Umsetzbare Entwurfsleitfäden</a> zeigen dieses Modell mithilfe von Azure-Diensten. Dieser Artikel dient als Einstiegsseite für die fünf Disziplinen des CAF-Governancemodells.
+Jede Änderung von Geschäftsprozessen oder Technologieplattformen birgt Risiken. Cloud Governance-Teams, deren Mitglieder manchmal auch als Cloudverwalter bezeichnet werden, haben die Aufgabe, diese Risiken mit minimaler Unterbrechung der Einführungs- oder Innovationsanstrengungen zu minimieren.<br/><br/>Das CAF-Governancemodell steuert diese Entscheidungen (unabhängig von der gewählten Cloudplattform), indem es sich auf die Entwicklung der Unternehmensrichtlinien und <a href="#disciplines-of-cloud-governance">Disziplinen von Cloud Governance</a> konzentriert. <a href="./journeys/overview.md">Umsetzbare Reisen</a> zeigen dieses Modell mithilfe von Azure-Diensten. Dieser Artikel dient als Einstiegsseite für die fünf Disziplinen des CAF-Governancemodells.
                 </div>
             </div>
         </div>

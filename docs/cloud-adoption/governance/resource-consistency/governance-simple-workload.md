@@ -7,12 +7,12 @@ ms.custom: governance
 description: Leitfaden zur Konfiguration von Kontrollen in Bezug auf Azure-Governance, um für Benutzer die Bereitstellung einer einfachen Workload zu ermöglichen.
 author: petertaylor9999
 ms.date: 02/11/2019
-ms.openlocfilehash: 0b6f16ee30ce3af8a533b6e153fbe318252c23e7
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 6bf2f15f706140955df29f7f372068c80ce1ad21
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246431"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640582"
 ---
 # <a name="governance-design-for-a-simple-workload"></a>Governance-Entwurf für eine einfache Workload
 

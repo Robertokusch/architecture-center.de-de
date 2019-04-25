@@ -7,20 +7,18 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: 535c53faa810f74299e715a204e427c8919ce360
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.openlocfilehash: 3e93a036bdb7cdf9f4e49ae81887063624372a6b
+ms.sourcegitcommit: d58e6b2b891c9c99e951c59f15fce71addcb96b1
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/08/2019
-ms.locfileid: "59069023"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59533123"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Microservicearchitektur in Azure Kubernetes Service (AKS)
 
 In dieser Referenzarchitektur wird veranschaulicht, wie eine Microserviceanwendung für Azure Kubernetes Service (AKS) bereitgestellt wird. Es wird eine einfache AKS-Konfiguration beschrieben, die als Ausgangspunkt für die meisten Bereitstellungen dienen kann. In diesem Artikel werden Kubernetes-Grundkenntnisse vorausgesetzt. Es geht hauptsächlich um die Infrastruktur- und DevOps-Aspekte bei der Ausführung einer Microservicearchitektur für AKS. Eine Anleitung zum Entwerfen von Microservices finden Sie unter [Erstellen von Microservices in Azure](../../microservices/index.md).
 
-![GitHub-Logo](../../_images/github.png) Eine Referenzimplementierung dieser Architektur ist auf [GitHub](https://github.com/mspnp/microservices-reference-implementation) verfügbar.
-
-
+![GitHub-Logo](../../_images/github.png) Eine Referenzimplementierung dieser Architektur ist auf [GitHub][ri] verfügbar.
 
 ![AKS-Referenzarchitektur](./_images/aks.png)
 
@@ -202,7 +200,7 @@ Da die Anmeldeinformationen des Clusteradministrators mit umfassenden Berechtigu
 
 - Die „Administratorrolle für Azure Kubernetes Service-Cluster“ verfügt über die Berechtigung zum Herunterladen der Anmeldeinformationen für den Clusteradministrator. Dieser Rolle sollten nur Clusteradministratoren zugewiesen werden.
 
-- Die „Benutzerrolle für Azure Kubernetes Service-Cluster“ verfügt über die Berechtigung zum Herunterladen der Anmeldeinformationen für den Clusterbenutzer. Benutzer ohne Administratorrechte können dieser Rolle zugewiesen werden. Mit dieser Rolle werden keine besonderen Berechtigungen für Kubernetes-Ressourcen im Cluster gewährt. Einem Benutzer wird lediglich die Berechtigung gewährt, eine Verbindung mit dem API-Server herzustellen. 
+- Die „Benutzerrolle für Azure Kubernetes Service-Cluster“ verfügt über die Berechtigung zum Herunterladen der Anmeldeinformationen für den Clusterbenutzer. Benutzer ohne Administratorrechte können dieser Rolle zugewiesen werden. Mit dieser Rolle werden keine besonderen Berechtigungen für Kubernetes-Ressourcen im Cluster gewährt. Einem Benutzer wird lediglich die Berechtigung gewährt, eine Verbindung mit dem API-Server herzustellen.
 
 Beachten Sie beim Definieren Ihrer RBAC-Richtlinien (sowohl für Kubernetes als auch für Azure) die Rollen in Ihrer Organisation:
 
@@ -259,109 +257,18 @@ Automatisieren Sie das Patchen der Images mit ACR Tasks, einem Feature von Azure
 Hier sind einige Ziele eines stabilen CI/CD-Prozesses für eine Microservicearchitektur aufgeführt:
 
 - Jedes Team kann die eigenen Dienste unabhängig erstellen und bereitstellen, ohne dass andere Teams hierdurch beeinträchtigt oder gestört werden.
-
 - Bevor eine neue Version eines Diensts für die Produktion bereitgestellt wird, wird sie zunächst zur Überprüfung in Umgebungen für die Entwicklung, Tests und Qualitätssicherung bereitgestellt. Jede Phase verfügt über so genannte „Quality Gates“.
-
 - Eine neue Version eines Diensts kann parallel zur vorherigen Version bereitgestellt werden.
-
 - Es sind ausreichende Richtlinien für die Zugriffssteuerung vorhanden.
+- Bei Workloads in Containern können Sie den Containerimages vertrauen, die für die Produktion bereitgestellt werden.
 
-- Sie können den Containerimages vertrauen, die für die Produktion bereitgestellt werden.
+Weitere Informationen zu den Herausforderungen finden Sie unter [CI/CD für Microservicearchitekturen](../../microservices/ci-cd.md).
 
-### <a name="isolation-of-environments"></a>Isolation von Umgebungen
+Bestimmte Empfehlungen und Best Practices finden Sie unter [CI/CD für Microservices in Kubernetes](../../microservices/ci-cd-kubernetes.md).
 
-Sie verfügen über mehrere Umgebungen, in denen Sie Dienste bereitstellen, z.B. Entwicklung, Feuerprobe, Integrationstests, Auslastungstests und schließlich Produktion. Für diese Umgebungen ist ein gewisses Maß an Isolation erforderlich. In Kubernetes haben Sie die Wahl zwischen physischer Isolation und logischer Isolation. Physische Isolation bedeutet, dass die Bereitstellung in separaten Clustern erfolgt. Bei der logischen Isolation werden wie oben beschrieben Namespaces und Richtlinien verwendet.
+## <a name="deploy-the-solution"></a>Bereitstellen der Lösung
 
-Unsere Empfehlung lautet, einen dedizierten Produktionscluster mit einem zusätzlichen separaten Cluster für Ihre Entwicklungs- und Testumgebungen zu erstellen. Verwenden Sie die logische Isolation, um Umgebungen im Entwicklungs-/Testcluster zu trennen. Im Entwicklungs-/Testcluster bereitgestellte Dienste sollten niemals Zugriff auf Datenspeicher haben, in denen sich Geschäftsdaten befinden. 
+Führen Sie die Schritte im [GitHub-Repository][ri-deploy] aus, um die Referenzimplementierung für diese Architektur bereitzustellen.
 
-### <a name="helm"></a>Helm
-
-Erwägen Sie die Verwendung von Helm zum Erstellen und Bereitstellen von Diensten. Einige Features von Helm für CI/CD sind:
-
-- Organisieren aller Kubernetes-Objekte für einen bestimmten Microservice in einem gemeinsamen Helm-Diagramm
-- Bereitstellen des Diagramms als einzelnen Helm-Befehl, anstatt einer Reihe von kubectl-Befehlen
-- Nachverfolgen von Updates und Revisionen per semantischer Versionierung und möglicher Rollback auf eine vorherige Version
-- Verwenden von Vorlagen zur Vermeidung von doppelten Informationen, z.B. Bezeichnungen und Selektoren, über viele Dateien hinweg
-- Verwalten von Abhängigkeiten zwischen Diagrammen
-- Veröffentlichen von Diagrammen in einem Helm-Repository, z.B. Azure Container Registry, und Integrieren in die Buildpipeline
-
-Weitere Informationen zur Verwendung von Container Registry als Helm-Repository finden Sie unter [Verwenden Sie Azure Container Registry als Helm-Repository für Ihre Anwendungsdiagramme](/azure/container-registry/container-registry-helm-repos).
-
-### <a name="cicd-workflow"></a>CI/CD-Workflow
-
-Vor dem Erstellen eines CI/CD-Workflows müssen Sie sich darüber im Klaren sein, wie die Codebasis strukturiert sein und verwaltet werden soll.
-
-- Arbeiten die Teams in separaten Repositorys oder in einem „Monorepo“ (einzelnen Repository)?
-- Wie sieht Ihre Strategie für das „Branchen“ aus?
-- Wer kann Code per Pushvorgang in die Produktion übertragen? Ist eine Release Manager-Rolle vorhanden?
-
-Die Beliebtheit des Monorepo-Ansatzes ist gestiegen, aber beide Ansätze haben sowohl Vor- als auch Nachteile.
-
-| &nbsp; | Monorepo | Mehrere Repositorys |
-|--------|----------|----------------|
-| **Vorteile** | Codefreigabe<br/>Einfacheres Standardisieren von Code und Tools<br/>Einfacheres Umgestalten von Code<br/>Auffindbarkeit: Zentrale Codeansicht<br/> | Eindeutige Eigentümerschaft pro Team<br/>Potenziell weniger Zusammenführungskonflikte<br/>Unterstützung bei der Durchsetzung der Entkopplung von Microservices |
-| **Herausforderungen** | Änderungen an freigegebenem Code können sich auf mehrere Microservices auswirken<br/>Höheres Potenzial für Zusammenführungskonflikte<br/>Tools müssen auf große Codebasis skaliert werden<br/>Zugriffssteuerung<br/>Komplexerer Bereitstellungsprozess | Schwierigere Codefreigabe<br/>Schwierigeres Durchsetzen von Codierungsstandards<br/>Verwaltung von Abhängigkeiten<br/>Diffuse Codebasis, schlechte Auffindbarkeit<br/>Mangel an freigegebener Infrastruktur
-
-In diesem Abschnitt wird ein möglicher CI/CD-Workflow veranschaulicht, der auf den folgenden Annahmen basiert:
-
-- Für das Coderepository wird der Monorepo-Ansatz genutzt, und die Ordner sind nach Microservice organisiert.
-- Die Branchstrategie des Teams basiert auf der [Trunk-basierten Entwicklung](https://trunkbaseddevelopment.com/).
-- Das Team nutzt [Azure Pipelines](/azure/devops/pipelines), um den CI/CD-Prozess auszuführen.
-- Das Team verwendet [Namespaces](/azure/container-registry/container-registry-best-practices#repository-namespaces) in Azure Container Registry, um Images, die bereits für die Produktion genehmigt wurden, von den noch in der Testphase befindlichen Images zu isolieren.
-
-In diesem Beispiel arbeitet ein Entwickler an einem Microservice mit dem Namen „Delivery Service“ (Lieferdienst). (Der Name stammt aus der Referenzimplementierung, die [hier](../../microservices/design/index.md#scenario) beschrieben ist.) Beim Entwickeln eines neuen Features checkt der Entwickler Code in einen Featurebranch ein.
-
-![CI/CD-Workflow](./_images/aks-cicd-1.png)
-
-Wenn Commits per Pushvorgang an diesen Branch übertragen werden, wird ein CI-Build für den Microservice ausgelöst. Für Featurebranches wird die Benennungskonvention `feature/*` verwendet. Die [Builddefinitionsdatei](/azure/devops/pipelines/yaml-schema) enthält einen Trigger, der nach dem Branchnamen und dem Quellpfad filtert. Mit diesem Ansatz kann jedes Team über eine eigene Buildpipeline verfügen.
-
-```yaml
-trigger:
-  batch: true
-  branches:
-    include:
-    - master
-    - feature/*
-
-    exclude:
-    - feature/experimental/*
-
-  paths:
-     include:
-     - /src/shipping/delivery/
-```
-
-An diesem Punkt des Workflows führt der CI-Build eine Codeüberprüfung mit minimalem Umfang durch:
-
-1. Erstellen des Codes
-1. Ausführen von Komponententests
-
-Hierbei werden die Buildzeiten kurz gehalten, damit der Entwickler schnell Feedback erhält. Wenn das Feature für die Zusammenführung mit dem Master bereit ist, öffnet der Entwickler einen PR-Vorgang. Hierdurch wird ein weiterer CI-Build ausgelöst, bei dem einige zusätzliche Überprüfungen durchgeführt werden:
-
-1. Erstellen des Codes
-1. Durchführen von Komponententests
-1. Erstellen des Runtime-Containerimages
-1. Durchführen von Überprüfungen auf Sicherheitsrisiken für das Image
-
-![CI/CD-Workflow](./_images/aks-cicd-2.png)
-
-> [!NOTE]
-> In Azure Repos können Sie [Richtlinien](/azure/devops/repos/git/branch-policies) zum Schützen von Branches definieren. Für die Richtlinie sind beispielsweise ggf. ein erfolgreicher CI-Build sowie eine Genehmigung eines Prüfers erforderlich, damit die Zusammenführung mit dem Master erfolgen kann.
-
-An einem bestimmten Punkt ist das Team zum Bereitstellen einer neuen Version des Lieferdiensts bereit. Hierzu erstellt der Release Manager einen Branch vom Master, indem er das folgende Benennungsmuster verwendet: `release/<microservice name>/<semver>`. Beispiel: `release/delivery/v1.0.2`.
-Hierdurch wird ein vollständiger CI-Buildvorgang ausgelöst, bei dem alle obigen Schritte und zusätzlich die folgenden Schritte ausgeführt werden:
-
-1. Übertragen des Docker-Images an Azure Container Registry per Pushvorgang. Das Image wird mit der Versionsnummer aus dem Branchnamen versehen.
-2. Ausführen von `helm package` zum Verpacken des Helm-Diagramms
-3. Übertragen des Helm-Pakets an Container Registry, indem `az acr helm push` ausgeführt wird
-
-Wenn dieser Buildvorgang erfolgreich ist, wird mithilfe einer [Releasepipeline](/azure/devops/pipelines/release/what-is-release-management) von Azure Pipelines ein Bereitstellungsprozess ausgelöst. Diese Pipeline
-
-1. Führen Sie `helm upgrade` aus, um das Helm-Diagramm in einer Umgebung für die Qualitätssicherung bereitzustellen.
-1. Eine genehmigende Person meldet sich ab, bevor das Paket für die Produktion bereitgestellt wird. Weitere Informationen finden Sie unter [Release deployment control using approvals](/azure/devops/pipelines/release/approvals/approvals) (Steuerung von Releasebereitstellungen durch Genehmigungen).
-1. Versehen Sie das Docker-Image für den Produktionsnamespace in Azure Container Registry mit einem neuen Tag. Wenn das derzeitige Tag beispielsweise `myrepo.azurecr.io/delivery:v1.0.2` lautet, lautet das Tag für die Produktion `myrepo.azurecr.io/prod/delivery:v1.0.2`.
-1. Führen Sie `helm upgrade` aus, um das Helm-Diagramm für die Produktionsumgebung bereitzustellen.
-
-![CI/CD-Workflow](./_images/aks-cicd-3.png)
-
-Es ist wichtig, Folgendes zu beachten: Auch beim Monorepo-Ansatz können diese Aufgaben einzelnen Microservices zugeordnet werden, damit die Teams Bereitstellungen schneller durchführen können. Dieser Prozess umfasst einige manuelle Schritte: Genehmigen von PRs, Erstellen von Releasebranches und Genehmigen von Bereitstellungen im Produktionscluster. Der Richtlinie nach sind dies manuelle Schritte, aber sie können auch vollständig automatisiert werden, falls die Organisation dies vorzieht.
+[ri]: https://github.com/mspnp/microservices-reference-implementation
+[ri-deploy]: https://github.com/mspnp/microservices-reference-implementation/blob/master/deployment.md

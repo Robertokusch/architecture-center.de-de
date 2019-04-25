@@ -3,18 +3,18 @@ title: Konfigurieren von Azure Databricks zum Senden von Metriken an Azure Monit
 description: Eine Scala-Bibliothek, um die Überwachung von Metriken und Protokollierungsdaten in Azure Log Analytics zu ermöglichen
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: af6b6433f87964ac60c179ecf498e54129344126
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: f2fc1fd19da661b74ddf032dd1d5153ce575345c
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503406"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639885"
 ---
 <!-- markdownlint-disable MD040 -->
 
 # <a name="configure-azure-databricks-to-send-metrics-to-azure-monitor"></a>Konfigurieren von Azure Databricks zum Senden von Metriken an Azure Monitor
 
-In diesem Artikel wird gezeigt, wie Sie einen Azure Databricks-Cluster so konfigurieren, dass Metriken an einen [Log Analytics-Arbeitsbereich ](/azure/azure-monitor/platform/manage-access) gesendet werden. Dazu wird die [Azure Databricks-Überwachungsbibliothek](https://github.com/mspnp/spark-monitoring) verwendet, die auf GitHub verfügbar ist. Es wird empfohlen, sich mit Java, Scala und Maven vertraut zu machen.
+In diesem Artikel wird gezeigt, wie Sie einen Azure Databricks-Cluster so konfigurieren, dass Metriken an einen [Log Analytics-Arbeitsbereich ](/azure/azure-monitor/platform/manage-access) gesendet werden. Dazu wird die [Azure Databricks-Überwachungsbibliothek](https://github.com/mspnp/spark-monitoring) verwendet, die auf GitHub verfügbar ist. Sie sollten mit Java, Scala und Maven vertraut sein.
 
 ## <a name="about-the-azure-databricks-monitoring-library"></a>Informationen zur Azure Databricks-Überwachungsbibliothek
 

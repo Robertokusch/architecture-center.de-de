@@ -9,12 +9,12 @@ ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: claims
 pnp.series.next: app-roles
-ms.openlocfilehash: a1ec441b731ba7f2166f9115452b052ec944444f
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: eb4e65b20ec3339b633b65d2adad768e98d1bdbb
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245041"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640599"
 ---
 # <a name="tenant-sign-up-and-onboarding"></a>Registrierung und Onboarding von Mandanten
 
@@ -63,7 +63,7 @@ Wenn ein anonymer Benutzer die Tailspin-Anwendung „Surveys“ besucht, werden 
 
 Diese Schaltflächen lösen Aktionen in der `AccountController`-Klasse aus.
 
-Die `SignIn` -Aktion gibt ein **ChallegeResult**zurück, was bewirkt, dass die OpenID Connect-Middleware zum Authentifizierungsendpunkt umgeleitet wird. Dies ist die Standardmethode zum Auslösen der Authentifizierung in ASP.NET Core.
+Die `SignIn` -Aktion gibt ein **ChallengeResult**zurück, was bewirkt, dass die OpenID Connect-Middleware zum Authentifizierungsendpunkt umgeleitet wird. Dies ist die Standardmethode zum Auslösen der Authentifizierung in ASP.NET Core.
 
 ```csharp
 [AllowAnonymous]
@@ -259,7 +259,7 @@ private async Task<Tenant> SignUpTenantAsync(BaseControlContext context, TenantM
 Es folgt eine Zusammenfassung des gesamten Registrierungsprozesses in der Tailspin-Anwendung „Surveys“:
 
 1. Der Benutzer klickt auf die Schaltfläche **Registrieren** .
-2. Die `AccountController.SignUp` -Aktion gibt ein Abfrageergebnis zurück.  Der Authentifizierungsstatus enthält den „signup“-Wert.
+2. Die `AccountController.SignUp`-Aktion gibt ein Abfrageergebnis zurück.  Der Authentifizierungsstatus enthält den „signup“-Wert.
 3. Fügen Sie im `RedirectToAuthenticationEndpoint`-Ereignis die `admin_consent`-Eingabeaufforderung hinzu.
 4. Die OpenID Connect-Middleware wird zu Azure AD umgeleitet, der Benutzer wird authentifiziert.
 5. Suchen Sie im `AuthenticationValidated` -Ereignis nach dem Status „signup“.

@@ -3,12 +3,12 @@ title: 'CAF: Schaffen von Hybrid Cloud-Konsistenz'
 description: Festlegen der Vorgehensweise zum Schaffen von Hybrid Cloud-Konsistenz
 author: BrianBlanchard
 ms.date: 12/27/2018
-ms.openlocfilehash: 22637a0496dc1e776d00570c3ef9844cc185a35d
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: d5cfc8565a97c0342b5dc200512308d4c795422a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243091"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639919"
 ---
 # <a name="create-hybrid-cloud-consistency"></a>Schaffen von Hybrid Cloud-Konsistenz
 

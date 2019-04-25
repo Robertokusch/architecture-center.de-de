@@ -6,12 +6,12 @@ ms.date: 09/20/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: afecf380b1a75d006f6f2bc0cb0e5058cd3feffc
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 7d7f6bd46fb60a190a7fb27432d5ff4b74b0c597
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241641"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640701"
 ---
 # <a name="establishing-an-operational-fitness-review"></a>Einrichten einer Überprüfung der Einsatztauglichkeit
 
@@ -31,11 +31,11 @@ Wie Sie in [Erste Schritte](../../cloud-adoption/getting-started/overview.md) ge
 
 Während dieses Prozesses liegt der Schwerpunkt häufig auf den _Features_ des Diensts. Das heißt, es gibt eine Reihe von gewünschten _Funktionsanforderungen_, die der Dienst erfüllen muss. Ein Produktlieferdienst benötigt beispielsweise Funktionen zum Bestimmen des Quell- und Zielortes des Produkts, zur Verfolgung des Produkts während der Lieferung, zur Benachrichtigung von Kunden und dergleichen.
 
-Im Gegensatz dazu beziehen sich die _nicht funktionalen_ Anforderungen auf Eigenschaften wie die [Verfügbarkeit](../../checklist/availability.md), [Resilienz](../../resiliency/index.md) und [Skalierbarkeit](../../checklist/scalability.md) des Dienstes. Diese Eigenschaften unterscheiden sich von den funktionalen Anforderungen, da sie die endgültige Funktion eines bestimmten Features im Dienst nicht direkt beeinflussen. Diese nicht-funktionalen Anforderungen beziehen sich jedoch auf die _Leistung_ und _Kontinuität_ des Dienstes.
+Im Gegensatz dazu beziehen sich die _nicht funktionalen_ Anforderungen auf Eigenschaften wie die [Zuverlässigkeit](../../reliability/index.md) und [Skalierbarkeit](../../checklist/scalability.md) des Dienstes. Diese Eigenschaften unterscheiden sich von den funktionalen Anforderungen, da sie die endgültige Funktion eines bestimmten Features im Dienst nicht direkt beeinflussen. Diese nicht-funktionalen Anforderungen beziehen sich jedoch auf die _Leistung_ und _Kontinuität_ des Dienstes.
 
 Einige nicht-funktionale Anforderungen können in Form einer Vereinbarung zum Servicelevel (SLA) festgelegt werden. Im Hinblick auf die Dienstkontinuität kann beispielsweise eine Verfügbarkeitsanforderung für den Dienst als Prozentsatz ausgedrückt werden, z.B. **verfügbar 99,99 % der Zeit**. Andere nicht-funktionale Anforderungen können schwieriger zu definieren sein und sich mit zunehmendem Produktionsbedarf ändern. So könnte beispielsweise ein verbraucherorientierter Dienst nach einem Popularitätsschub mit unerwarteten Durchsatzanforderungen konfrontiert werden.
 
-[HINWEIS] Die Definition der Anforderungen an die Resilienz, einschließlich Erläuterungen zu RPO, RTO, SLA und verwandten Konzepten, wird in [Entwerfen robuster Anwendungen für Azure](../../resiliency/index.md#define-your-availability-requirements) näher untersucht.
+[HINWEIS] Die Definition der Anforderungen an die Resilienz, einschließlich Erläuterungen zu RPO, RTO, SLA und verwandten Konzepten, wird in [Entwicklungsanforderungen für robuste Azure-Anwendungen](../../reliability/requirements.md) näher untersucht.
 
 ## <a name="operational-fitness-review-process"></a>Prozess der Überprüfung der Einsatztauglichkeit
 
@@ -109,7 +109,7 @@ Die Details des Prozesses und der Besprechung sollten an Ihre spezifischen Bedü
     Dieser Abschnitt des Architekturleitfadens für Azure-Anwendungen beschreibt die fünf Säulen der Softwarequalität: Skalierbarkeit, Verfügbarkeit, Resilienz, Verwaltung und Sicherheit.
 - [Zehn Entwurfsprinzipien für Azure-Anwendungen](../../guide/design-principles/index.md).
     Dieser Abschnitt des Architekturleitfadens für Azure-Anwendungen beschreibt eine Reihe von Entwurfsprinzipien, um Ihre Anwendung skalierbarer, belastbarer und verwaltbarer zu machen.
-- [Entwerfen robuster Anwendungen für Azure](../../resiliency/index.md).
+- [Entwerfen zuverlässiger Azure-Anwendungen](../../reliability/index.md).
     In diesem Leitfaden werden der Begriff „Resilienz“ und die dazugehörigen Konzepte definiert. Anschließend wird der Prozess zur Erreichung von Resilienz beschrieben. Hierzu wird ein strukturierter Ansatz für die Lebensdauer einer Anwendung verwendet – vom Entwurf und der Implementierung über die Bereitstellung bis zum Betrieb.
 - [Cloudentwurfsmuster](../../patterns/index.md).
     Diese Entwurfsmuster unterstützen Engineeringteams, wenn sie Anwendungen basierend auf den Säulen der Softwarequalität erstellen.
