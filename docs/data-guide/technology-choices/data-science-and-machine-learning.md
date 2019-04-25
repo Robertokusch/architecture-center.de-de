@@ -6,12 +6,12 @@ ms.date: 03/06/2019
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 1020e938a04c6a82e6cc831e6620ec17c9a10cc7
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: e4c81add1a97254f427d67584ff7e2a4799f84a9
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503229"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640905"
 ---
 # <a name="what-are-the-machine-learning-products-at-microsoft"></a>Welche Machine Learning-Produkte bietet Microsoft?
 
@@ -30,7 +30,7 @@ Microsoft bietet eine Reihe von Produkten zum Aufbereiten, Erstellen, Bereitstel
 
 In der Azure-Cloud stehen die folgenden Optionen für maschinelles Lernen zur Verfügung.
 
-| Cloudoptionen | Funktionsbeschreibung | Gebotene Möglichkeiten |
+| Cloudoptionen&nbsp; | Funktionsbeschreibung | Gebotene Möglichkeiten |
 |-|-|-|
 | [Azure Machine Learning-Dienst](#azure-machine-learning-service) | Verwalteter Clouddienst für maschinelles Lernen  | Trainieren, Bereitstellen und Verwalten von Modellen in Azure mithilfe von Python und CLI |
 | [Azure Machine Learning Studio](#azure-machine-learning-studio) | Visuelle Drag&ndash;&&ndash;Drop-Oberfläche für maschinelles Lernen | Erstellen von, Experimentieren mit und Bereitstellen von Modellen mithilfe von vorkonfigurierten Algorithmen |
@@ -63,7 +63,7 @@ Für maschinelles Lernen stehen die folgenden Entwicklungsplattformen und -tools
 
 Verwenden Sie den Azure Machine Learning Service, um Machine Learning-Modelle mithilfe von Python und CLI in der Cloud zu trainieren, bereitzustellen und zu verwalten.
 
-Probieren Sie die [kostenlose oder kostenpflichtige Version von Azure Machine Learning Service](http://aka.ms/AMLFree) aus.
+Probieren Sie die [kostenlose oder kostenpflichtige Version von Azure Machine Learning Service](https://aka.ms/AMLFree) aus.
 
 |||
 |-|-|
